@@ -1,25 +1,96 @@
-import ThemeToggle from './ThemeToggle';
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  NavbarButton,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from "@/components/ui/resizable-navbar";
+import { useState } from "react";
+import ThemeSwitcher from "./ThemeSwitcher";
+import { NavigationMenuDemo } from "./Header2";
 
-export default function Header() {
+export function NavbarComponent() {
+  const navItems = [
+    {
+      name: "Home",
+      link: "#home",
+    },
+    {
+      name: "About",
+      link: "#about",
+    },
+    {
+      name: "Services",
+      link: "#services",
+    },
+    {
+      name: "Contact",
+      link: "#contact",
+    },
+  ];
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <nav className="container mx-auto px-6 py-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <div className="text-2xl font-bold">
-            <span className="text-foreground">HTIS</span>
-            <div className="text-xs text-muted-foreground">INDIA</div>
+      <Navbar>
+        {/* Desktop Navigation */}
+        <NavBody>
+          <NavbarLogo />
+          <NavigationMenuDemo />
+          {/* <NavItems items={navItems} /> */}
+          <div className="flex items-center gap-4">
+            <ThemeSwitcher />
+            {/* <NavbarButton variant="secondary">Login</NavbarButton> */}
+            {/* <NavbarButton variant="primary">Book a call</NavbarButton> */}
           </div>
-        </div>
-        <div className="hidden md:flex space-x-8 text-sm">
-          <a href="#home" className="text-foreground hover:text-green-400 transition">Home</a>
-          <a href="#about" className="text-muted-foreground hover:text-green-400 transition">About us</a>
-          <a href="#services" className="text-muted-foreground hover:text-green-400 transition">Services</a>
-          <a href="#clients" className="text-muted-foreground hover:text-green-400 transition">Clients</a>
-          <a href="#solutions" className="text-muted-foreground hover:text-green-400 transition">Solutions</a>
-          <a href="#portfolio" className="text-muted-foreground hover:text-green-400 transition">Portfolio</a>
-        </div>
-        <ThemeToggle />
-      </div>
-    </nav>
+        </NavBody>
+
+        {/* Mobile Navigation */}
+        <MobileNav>
+          <MobileNavHeader>
+            <NavbarLogo />
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </MobileNavHeader>
+
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
+            {navItems.map((item, idx) => (
+              <a
+                key={`mobile-link-${idx}`}
+                href={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="relative text-neutral-600 dark:text-neutral-300"
+              >
+                <span className="block">{item.name}</span>
+              </a>
+            ))}
+            <div className="flex w-full flex-col gap-4">
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full"
+              >
+                Login
+              </NavbarButton>
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full"
+              >
+                Book a call
+              </NavbarButton>
+            </div>
+          </MobileNavMenu>
+        </MobileNav>
+      </Navbar>
   );
 }
