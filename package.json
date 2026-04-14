@@ -12,9 +12,16 @@
     "astro": "astro"
   },
   "dependencies": {
+    "astro": "^6.1.6"
+  },
+  "devDependencies": {
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.1.6",
     "daisyui": "^5.5.19",
+    "eslint": "^10.2.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "prettier": "^3.8.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.2.2"
   }
 }
