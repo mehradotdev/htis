@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import halfGlobe from '../assets/half-globe.png';
+import CurvedLineIcon from './icons/CurvedLineIcon.astro';
+---
+
+<section class="relative mx-auto max-w-6xl overflow-hidden px-4 py-24">
+  <div
+    class="relative mx-4 overflow-hidden rounded-3xl border border-t border-b border-base-content/5 border-primary/20 bg-base-200/20 px-8 py-20 shadow-sm lg:mx-0 lg:px-16"
+  >
+    <!-- Subtle curved top line -->
+    <div class="pointer-events-none absolute top-0 -mt-px flex w-full justify-center">
+      <CurvedLineIcon width="600" height="40" />
+    </div>
+
+    <!-- Content Split -->
+    <div
+      class="relative z-10 flex flex-col items-center justify-between space-y-12 md:flex-row md:space-y-0"
+    >
+      <!-- Stats Side -->
+      <div class="space-y-12 md:w-1/2">
+        <div>
+          <h2 class="mb-10 text-4xl font-bold text-[#2a453d] md:text-5xl">
+            Global Footprint
+          </h2>
+        </div>
+
+        <div class="grid gap-10">
+          <div>
+            <div class="flex items-baseline text-5xl font-light text-primary">
+              40 <span class="ml-1 text-4xl">+</span>
+            </div>
+            <p class="mt-1 text-lg text-base-content/70">Global Markets Served</p>
+          </div>
+
+          <div>
+            <div class="flex items-baseline text-5xl font-light text-primary">
+              310 <span class="ml-1 text-4xl">+</span>
+            </div>
+            <p class="mt-1 text-lg text-base-content/70">
+              Operational Cities Across India
+            </p>
+          </div>
+
+          <div>
+            <div class="flex items-baseline text-5xl font-light text-primary">
+              25 <span class="ml-1 text-4xl">+</span>
+            </div>
+            <p class="mt-1 text-lg text-base-content/70">Regional Offices</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Globe Graphic Side -->
+      <div class="relative flex h-[400px] justify-end md:w-1/2">
+        <!-- The globe is placed to overflow its container to look like the screenshot -->
+        <Image
+          src={halfGlobe}
+          alt="Half Globe Dotted Map"
+          class="absolute right-0 bottom-0 h-auto w-[120%] max-w-[600px] translate-x-[10%] translate-y-20 object-cover object-bottom opacity-90 mix-blend-multiply"
+        />
+      </div>
+    </div>
+  </div>
+</section>

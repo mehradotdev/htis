@@ -1,0 +1,125 @@
+---
+import { Image } from 'astro:assets';
+import ourJourney from '../assets/our-journey.png';
+---
+
+<section class="relative mx-auto max-w-7xl overflow-hidden px-4 py-24">
+  <!-- Subtle grid background -->
+  <div
+    class="absolute inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTAgMGg0MHYxbC00MCAuMDAxem0wIDM5LjAwMWg0MHYxSC4wMDF6bTM5LjAwMS0zOS4wMDFoMXY0MGgtMXpNMCAwaDF2NDBIMHoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4wNSkiLz4KPC9zdmc+')] opacity-50"
+  >
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center">
+    <div
+      class="relative mx-auto mt-10 flex w-full max-w-4xl items-center justify-center py-20"
+    >
+      <!-- 2003 Text Behind -->
+      <div
+        class="absolute top-0 left-[10%] z-0 text-5xl font-extrabold tracking-tight text-[#2a453d] md:text-7xl"
+      >
+        2003
+      </div>
+
+      <!-- Our Text Behind -->
+      <div
+        class="absolute top-0 right-[25%] z-0 text-5xl font-extrabold tracking-tight text-[#2a453d] md:text-7xl"
+      >
+        Our
+      </div>
+
+      <!-- Journey Text Sideways Behind -->
+      <div
+        class="absolute top-[40%] right-[10%] z-0 origin-right rotate-90 text-5xl font-extrabold tracking-tight whitespace-nowrap text-primary md:text-7xl"
+      >
+        Journey
+      </div>
+
+      <!-- Kickstarted Text Overlapping Front -->
+      <div
+        class="absolute bottom-4 left-[5%] z-30 text-5xl font-extrabold tracking-tight text-[#2a453d] drop-shadow-md md:text-7xl"
+      >
+        Kickstarted
+      </div>
+
+      <!-- Main Image -->
+      <div
+        class="relative z-20 mt-12 mb-8 w-[80%] overflow-hidden rounded-sm shadow-2xl md:w-[65%]"
+      >
+        <Image
+          src={ourJourney}
+          alt="Our Journey Team"
+          class="h-auto w-full object-cover"
+        />
+      </div>
+
+      <!-- Small subtext -->
+      <div
+        class="absolute bottom-0 left-[10%] z-30 max-w-xs rounded bg-base-100/80 p-4 text-sm text-base-content/60 backdrop-blur-sm md:text-base"
+      >
+        Aditya (Director) kickstarted the journey of HTIS in India.
+      </div>
+    </div>
+
+    <!-- Timeline Line -->
+    <div class="relative mt-24 w-full max-w-5xl">
+      <div
+        class="hide-scrollbar relative flex items-end justify-between overflow-x-auto pb-4"
+      >
+        <!-- Connecting Line -->
+        <div
+          class="absolute right-0 bottom-[0.35rem] left-0 z-0 h-1 border-t-2 border-dashed border-primary/30"
+        >
+        </div>
+
+        <!-- 2003 Milestone Active -->
+        <div class="relative z-10 flex min-w-[80px] flex-col items-center">
+          <div class="mb-1 text-xs font-bold text-[#2a453d]">2003</div>
+          <div class="mb-4 text-xs font-bold text-[#2a453d]">Kickstarted</div>
+          <div class="h-8 w-1 rounded-full bg-primary"></div>
+        </div>
+
+        {
+          /* Other inactive milestones */
+          [
+            { year: '2004', title: 'Milestone 1' },
+            { year: '2005', title: 'Milestone 2' },
+            { year: '2007', title: 'Milestone 3' },
+            { year: '2012', title: 'Milestone 4' },
+            { year: '2015', title: 'Achievement 1' },
+            { year: '2020', title: 'Milestone 5' },
+            { year: '2023', title: 'Milestone 7' },
+            { year: '2024', title: 'Milestone 8' },
+          ].map((milestone) => (
+            <div class="relative z-10 flex min-w-[80px] flex-col items-center opacity-60">
+              <div class="mb-1 text-[10px] text-base-content/50">{milestone.year}</div>
+              <div class="mb-2 text-[10px] text-base-content/50">{milestone.title}</div>
+              <div class="mt-3 h-3 w-1 rounded-full bg-primary/40" />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Small dots for timeline spacing -->
+      <div
+        class="pointer-events-none absolute bottom-[0.35rem] left-0 flex w-full justify-between px-[40px]"
+      >
+        {
+          Array.from({ length: 40 }).map((_) => (
+            <div class="h-1.5 w-1.5 rounded-full bg-primary/20" />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

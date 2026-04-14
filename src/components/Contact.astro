@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import customerSupportImg from '../assets/customer-support-img.svg';
+---
+
+<section class="relative z-20 mx-auto mt-20 max-w-6xl px-4">
+  <div
+    class="flex flex-col rounded-t-3xl bg-[#2a453d] p-8 shadow-xl md:flex-row md:rounded-3xl md:p-12"
+  >
+    <!-- Image Side -->
+    <div
+      class="relative flex min-h-[250px] items-end justify-center md:min-h-full md:w-5/12 md:justify-start"
+    >
+      <Image
+        src={customerSupportImg}
+        alt="Customer Support"
+        class="absolute bottom-[-2rem] z-10 h-auto w-[80%] max-w-[350px] object-contain md:bottom-[-3rem] md:left-[-2rem]"
+      />
+    </div>
+
+    <!-- Form Side -->
+    <div class="z-20 mt-40 pt-4 md:mt-0 md:w-7/12 md:pt-0">
+      <h2 class="mb-8 text-2xl font-bold text-white md:text-3xl">
+        Have a question or need assistance? Send us a message.
+      </h2>
+
+      <form class="space-y-4">
+        <div class="flex flex-col gap-4 md:flex-row">
+          <input
+            type="text"
+            placeholder="Full Name"
+            class="input-bordered input h-10 w-full border-white/30 bg-transparent text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            class="input-bordered input h-10 w-full border-white/30 bg-transparent text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+          />
+        </div>
+
+        <input
+          type="text"
+          placeholder="Category"
+          class="input-bordered input h-10 w-full border-white/30 bg-transparent text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+        />
+
+        <textarea
+          class="textarea-bordered textarea h-24 w-full border-white/30 bg-transparent text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+          placeholder="Your Message"></textarea>
+
+        <button
+          type="button"
+          class="btn mx-auto mt-2 flex w-full rounded border-none bg-primary font-bold text-[#2a453d] btn-primary hover:bg-primary/90 md:w-2/3"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
