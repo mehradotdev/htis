@@ -1,4 +1,4 @@
-# Astro Starter Kit: Basicsz
+# Astro Starter Kit: Basicszz
 
 ```sh
 bun create astro@latest -- --template basics
