@@ -1,0 +1,13 @@
+---
+// Standalone icon wrapper: We do not use IconBase.astro here because this icon
+// requires a radically different viewBox (0 0 600 40) compared to the standard (0 0 24 24).
+const props = Astro.props;
+---
+
+<svg viewBox="0 0 600 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" {...props}
+  ><path
+    d="M0 40C200 13.3333 400 13.3333 600 40"
+    stroke="var(--color-primary)"
+    stroke-opacity="0.3"
+    stroke-width="2"></path></svg
+>
