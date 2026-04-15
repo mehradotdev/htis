@@ -175,6 +175,15 @@ import legrandLogo from '../assets/legrand-logo.png';
     }, 3000);
   };
 
-  setupWordCarousel();
   document.addEventListener('astro:page-load', setupWordCarousel);
+
+  // Cleanup on page leave (for view transitions)
+  document.addEventListener(
+    'astro:before-swap', // or before-preparation, both work, but before-swap is when DOM is about to change
+    () => {
+      if (carouselInterval) clearInterval(carouselInterval);
+      document.removeEventListener('astro:page-load', setupWordCarousel);
+    },
+    { once: true },
+  );
 </script>

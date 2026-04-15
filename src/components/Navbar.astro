@@ -21,11 +21,11 @@ import MenuIcon from './icons/MenuIcon.astro';
           tabindex="0"
           class="dropdown-content menu z-[1] mt-3 w-52 menu-sm rounded-box bg-base-100 p-2 font-medium text-base-content shadow"
         >
-          <li><a class="font-semibold text-primary">Home</a></li>
-          <li><a>Product</a></li>
-          <li><a>FAQ</a></li>
-          <li><a>Blog</a></li>
-          <li><a>About Us</a></li>
+          <li><a href="/" class="font-semibold text-primary">Home</a></li>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">About Us</a></li>
         </ul>
       </div>
       <a href="/" class="btn h-auto p-2 text-xl normal-case btn-ghost">
@@ -36,15 +36,16 @@ import MenuIcon from './icons/MenuIcon.astro';
       <ul
         class="menu menu-horizontal space-x-6 px-1 text-sm font-medium text-base-content/80"
       >
-        <li><a class="font-semibold text-primary">Home</a></li>
-        <li><a>Product</a></li>
-        <li><a>FAQ</a></li>
-        <li><a>Blog</a></li>
-        <li><a>About Us</a></li>
+        <li><a href="/" class="font-semibold text-primary">Home</a></li>
+        <li><a href="#">Product</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">About Us</a></li>
       </ul>
     </div>
     <div class="navbar-end">
       <a
+        href="#"
         class="btn rounded-full px-6 tracking-wide text-primary-content opacity-90 shadow-md btn-sm btn-primary"
         >Contact Us</a
       >
@@ -53,47 +54,66 @@ import MenuIcon from './icons/MenuIcon.astro';
 </div>
 
 <script>
-  function updateNavbar() {
-    const wrapper = document.getElementById('navbar-wrapper');
-    const navbar = document.getElementById('navbar');
+  function initNavbar() {
+    function updateNavbar() {
+      const navbar = document.getElementById('navbar');
 
-    if (window.scrollY > 20) {
-      if (window.innerWidth >= 768) {
-        // Non-mobile: Boxy navbar - more compact and no borders
-        navbar?.classList.remove('max-w-7xl', 'bg-transparent', 'rounded-none');
-        navbar?.classList.add(
+      if (window.scrollY > 20) {
+        if (window.innerWidth >= 768) {
+          // Non-mobile: Boxy navbar - more compact and no borders
+          navbar?.classList.remove('max-w-7xl', 'bg-transparent', 'rounded-none');
+          navbar?.classList.add(
+            'max-w-5xl',
+            'bg-base-100',
+            'shadow-md',
+            'rounded-[2rem]',
+            'py-1',
+          );
+        } else {
+          // Mobile: full width, visible bg
+          navbar?.classList.remove(
+            'max-w-5xl',
+            'bg-transparent',
+            'rounded-[2rem]',
+            'py-1',
+          );
+          navbar?.classList.add('max-w-7xl', 'bg-base-100', 'shadow-sm', 'rounded-none');
+        }
+      } else {
+        // Top of page: Seamless navbar
+        navbar?.classList.remove(
           'max-w-5xl',
           'bg-base-100',
           'shadow-md',
+          'shadow-sm',
           'rounded-[2rem]',
           'py-1',
         );
-      } else {
-        // Mobile: full width, visible bg
-        navbar?.classList.remove('max-w-5xl', 'bg-transparent', 'rounded-[2rem]', 'py-1');
-        navbar?.classList.add('max-w-7xl', 'bg-base-100', 'shadow-sm', 'rounded-none');
+        navbar?.classList.add('max-w-7xl', 'bg-transparent', 'rounded-none');
       }
-    } else {
-      // Top of page: Seamless navbar
-      navbar?.classList.remove(
-        'max-w-5xl',
-        'bg-base-100',
-        'shadow-md',
-        'shadow-sm',
-        'rounded-[2rem]',
-        'py-1',
-      );
-      navbar?.classList.add('max-w-7xl', 'bg-transparent', 'rounded-none');
     }
+
+    // Event listeners
+    window.addEventListener('scroll', updateNavbar);
+    window.addEventListener('resize', updateNavbar);
+
+    // Run once to set initial state
+    updateNavbar();
+
+    // Cleanup for View Transitions
+    document.addEventListener(
+      'astro:before-swap',
+      () => {
+        window.removeEventListener('scroll', updateNavbar);
+        window.removeEventListener('resize', updateNavbar);
+      },
+      { once: true },
+    );
   }
 
-  // Event listeners
-  window.addEventListener('scroll', updateNavbar);
-  window.addEventListener('resize', updateNavbar);
+  // Initialize on hard load
+  initNavbar();
 
-  // Run once to set initial state
-  updateNavbar();
-
-  // View transitions support (if using Astro ViewTransitions)
-  document.addEventListener('astro:page-load', updateNavbar);
+  // Re-initialize after a swap (if using Astro ViewTransitions)
+  document.addEventListener('astro:after-swap', initNavbar);
 </script>

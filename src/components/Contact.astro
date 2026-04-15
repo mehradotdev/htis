@@ -24,32 +24,43 @@ import customerSupportImg from '../assets/customer-support-img.svg';
         Have a question or need assistance? Send us a message.
       </h2>
 
-      <form class="space-y-4">
+      <form id="contact-form" class="space-y-4">
         <div class="flex flex-col gap-4 md:flex-row">
           <input
             type="text"
+            name="fullName"
             placeholder="Full Name"
+            aria-label="Full Name"
+            required
             class="input-bordered input h-10 w-full border-white/30 bg-transparent text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
           />
           <input
             type="email"
+            name="email"
             placeholder="Email"
+            aria-label="Email Address"
+            required
             class="input-bordered input h-10 w-full border-white/30 bg-transparent text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
           />
         </div>
 
         <input
           type="text"
+          name="category"
           placeholder="Category"
+          aria-label="Category"
           class="input-bordered input h-10 w-full border-white/30 bg-transparent text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
         />
 
         <textarea
+          name="message"
+          required
           class="textarea-bordered textarea h-24 w-full border-white/30 bg-transparent text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+          aria-label="Your Message"
           placeholder="Your Message"></textarea>
 
         <button
-          type="button"
+          type="submit"
           class="btn mx-auto mt-2 flex w-full rounded border-none bg-primary font-bold text-[#2a453d] btn-primary hover:bg-primary/90 md:w-2/3"
         >
           Submit
@@ -58,3 +69,18 @@ import customerSupportImg from '../assets/customer-support-img.svg';
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Grab the form data to be ready for the API call
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+    console.log('Form data ready for submission:', data);
+
+    // TODO: Add logic here to submit the form data using fetch() or similar
+  });
+</script>

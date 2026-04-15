@@ -170,37 +170,81 @@ import ArrowRightIcon from './icons/ArrowRightIcon.astro';
 
       <!-- Block 3: Stats Box -->
       <div
-        class="relative z-10 flex w-full flex-col border-b border-base-content/10 bg-base-100/50 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] md:absolute md:top-0 md:left-[50%] md:h-[390px] md:w-[25%] md:border-r md:bg-base-100/90 md:backdrop-blur-md group-[.is-manpower-hovered]:md:top-[140px] group-[.is-manpower-hovered]:md:left-[75%]"
+        id="stats-box"
+        class="relative z-10 w-full overflow-hidden border-b border-base-content/10 bg-base-100/50 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] md:absolute md:top-0 md:left-[50%] md:h-[390px] md:w-[25%] md:border-r md:bg-base-100/90 md:backdrop-blur-md group-[.is-manpower-hovered]:md:top-[140px] group-[.is-manpower-hovered]:md:left-[75%]"
       >
+        <!-- Telecom Stats (Visible in State 1) -->
         <div
-          class="flex flex-1 flex-col items-center justify-center space-y-1 border-b border-base-content/10 p-4 text-center"
+          class="pointer-events-auto relative z-10 flex h-full w-full flex-col opacity-100 transition-opacity duration-700 group-[.is-manpower-hovered]:pointer-events-none group-[.is-manpower-hovered]:opacity-0"
         >
-          <span class="text-2xl font-bold text-primary">100+</span>
-          <span class="text-xs font-medium text-base-content/70"
-            >Network<br />Deployment</span
+          <div
+            class="flex flex-1 flex-col items-center justify-center space-y-1 border-b border-base-content/10 p-4 text-center"
           >
-        </div>
-        <div
-          class="flex flex-1 flex-col items-center justify-center space-y-1 border-b border-base-content/10 p-4 text-center"
-        >
-          <span class="text-2xl font-bold text-primary">11+</span>
-          <span class="text-xs font-medium text-base-content/70"
-            >Years of<br />Exprirence</span
+            <span class="text-2xl font-bold text-primary">100+</span>
+            <span class="text-xs font-medium text-base-content/70"
+              >Network<br />Deployment</span
+            >
+          </div>
+          <div
+            class="flex flex-1 flex-col items-center justify-center space-y-1 border-b border-base-content/10 p-4 text-center"
           >
-        </div>
-        <div
-          class="flex flex-1 flex-col items-center justify-center space-y-1 border-b border-base-content/10 p-4 text-center"
-        >
-          <span class="text-2xl font-bold text-primary">91+</span>
-          <span class="text-xs font-medium text-base-content/70"
-            >Enterprise<br />Clients</span
+            <span class="text-2xl font-bold text-primary">11+</span>
+            <span class="text-xs font-medium text-base-content/70"
+              >Years of<br />Experience</span
+            >
+          </div>
+          <div
+            class="flex flex-1 flex-col items-center justify-center space-y-1 border-b border-base-content/10 p-4 text-center"
           >
+            <span class="text-2xl font-bold text-primary">91+</span>
+            <span class="text-xs font-medium text-base-content/70"
+              >Enterprise<br />Clients</span
+            >
+          </div>
+          <div
+            class="flex flex-1 flex-col items-center justify-center space-y-1 p-4 text-center"
+          >
+            <span class="text-2xl font-bold text-primary">99%</span>
+            <span class="text-xs font-medium text-base-content/70">Uptime</span>
+          </div>
         </div>
+
+        <!-- Manpower Stats (Visible in State 2) -->
         <div
-          class="flex flex-1 flex-col items-center justify-center space-y-1 p-4 text-center"
+          class="pointer-events-none absolute inset-0 z-20 flex h-full w-full flex-col opacity-0 transition-opacity duration-700 group-[.is-manpower-hovered]:pointer-events-auto group-[.is-manpower-hovered]:opacity-100"
         >
-          <span class="text-2xl font-bold text-primary">99%</span>
-          <span class="text-xs font-medium text-base-content/70">Uptime</span>
+          <div
+            class="flex flex-1 flex-col items-center justify-center space-y-1 border-b border-base-content/10 p-4 text-center"
+          >
+            <span class="text-2xl font-bold text-primary">500+</span>
+            <span class="text-xs font-medium text-base-content/70"
+              >IT<br />Professionals</span
+            >
+          </div>
+          <div
+            class="flex flex-1 flex-col items-center justify-center space-y-1 border-b border-base-content/10 p-4 text-center"
+          >
+            <span class="text-2xl font-bold text-primary">11+</span>
+            <span class="text-xs font-medium text-base-content/70"
+              >Years of<br />Experience</span
+            >
+          </div>
+          <div
+            class="flex flex-1 flex-col items-center justify-center space-y-1 border-b border-base-content/10 p-4 text-center"
+          >
+            <span class="text-2xl font-bold text-primary">50+</span>
+            <span class="text-xs font-medium text-base-content/70"
+              >Corporate<br />Partners</span
+            >
+          </div>
+          <div
+            class="flex flex-1 flex-col items-center justify-center space-y-1 p-4 text-center"
+          >
+            <span class="text-2xl font-bold text-primary">98%</span>
+            <span class="text-xs font-medium text-base-content/70"
+              >Success<br />Rate</span
+            >
+          </div>
         </div>
       </div>
 
@@ -266,11 +310,12 @@ import ArrowRightIcon from './icons/ArrowRightIcon.astro';
     const icons = document.getElementById('icons-block');
     const hotspot = document.getElementById('manpower-hotspot');
     const container = document.getElementById('services-right-grid');
+    const statsBox = document.getElementById('stats-box');
 
     if (!trigger || !container) return;
 
     const activators = [trigger, hotspot];
-    const sustainers = [trigger, icons, hotspot];
+    const sustainers = [trigger, icons, hotspot, statsBox];
 
     function handleState() {
       // Allow slight ms for mouse to travel between adjacent blocks without flickering
