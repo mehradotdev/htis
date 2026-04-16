@@ -1,0 +1,194 @@
+---
+import { Image } from 'astro:assets';
+import bgImage from '../assets/team-member-bg.png';
+import member1 from '../assets/team-member-1.png';
+import member2 from '../assets/team-member-2.png';
+import member3 from '../assets/team-member-3.png';
+import member4 from '../assets/team-member-4.png';
+import member5 from '../assets/team-member-5.png';
+import member6 from '../assets/team-member-6.png';
+
+const team = [
+  {
+    img: member1,
+    name: 'Jhon Doe',
+    role: 'Managing Director',
+    desc: 'A visionary leader with over 20 years of experience driving enterprise growth and strategic transformation globally.',
+  },
+  {
+    img: member2,
+    name: 'Sarah Connor',
+    role: 'Chief Executive Officer',
+    desc: 'Passionate about culture, innovation, and guiding our company to new heights with resilient business models.',
+  },
+  {
+    img: member3,
+    name: 'Michael Ross',
+    role: 'Chief Technology Officer',
+    desc: "Pioneering cutting-edge technological solutions and scaling robust architectures for tomorrow's unique challenges.",
+  },
+  {
+    img: member4,
+    name: 'Emily Blunt',
+    role: 'Head of Operations',
+    desc: 'Ensuring seamless day-to-day operations and achieving operational excellence across all our diverse teams.',
+  },
+  {
+    img: member5,
+    name: 'David Miller',
+    role: 'Lead Developer',
+    desc: 'Crafting highly intuitive, user-centric products and software that redefine the boundaries of what is possible.',
+  },
+  {
+    img: member6,
+    name: 'Alice Clark',
+    role: 'Product Manager',
+    desc: 'Designing resilient, high-performance product pipelines crucial for solving complex real-world business problems.',
+  },
+];
+---
+
+<section id="team" class="relative w-full overflow-hidden py-24">
+  {/* Background Image Layer */}
+  <div class="absolute inset-0 z-0 bg-base-100">
+    <Image
+      src={bgImage}
+      alt="Background"
+      class="h-full w-full object-cover opacity-60 mix-blend-luminosity"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-base-200 via-base-100/60 to-base-100/20"
+    >
+    </div>
+  </div>
+
+  <div class="relative z-10 container mx-auto px-4 lg:px-8">
+    <div class="mb-12 max-w-3xl">
+      <h2 class="mb-6 text-4xl font-extrabold text-primary md:text-5xl">Meet the Team</h2>
+      <p
+        id="team-member-desc"
+        class="min-h-[5rem] text-lg font-medium text-base-content/80 transition-opacity duration-300 md:text-xl"
+      >
+        {team[0].desc}
+      </p>
+    </div>
+
+    {/* Horizontal Accordion Gallery */}
+    <div
+      class="team-gallery flex h-[28rem] w-full flex-row gap-1 overflow-hidden sm:h-[32rem] sm:gap-2 md:h-[40rem] md:gap-4"
+    >
+      {
+        team.map((member, index) => (
+          <div
+            class={`team-member-card relative cursor-pointer overflow-hidden rounded-2xl bg-white/70 shadow-md backdrop-blur-md transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] md:rounded-3xl ${index === 0 ? 'active' : ''}`}
+            data-index={index}
+            data-desc={member.desc}
+            tabindex="0"
+          >
+            {/* Overlay Content */}
+            <div class="card-content absolute inset-x-0 top-0 z-20 w-[260px] max-w-[90vw] bg-gradient-to-b from-white p-4 pb-16 transition-opacity duration-700 ease-in-out sm:p-6 md:w-[320px] md:p-8 lg:w-[360px]">
+              <h3 class="mb-1 text-xl leading-tight font-bold whitespace-nowrap text-primary drop-shadow-sm sm:text-2xl md:text-3xl">
+                {member.name}
+              </h3>
+              <p class="mb-2 text-xs font-bold tracking-wider whitespace-nowrap text-primary/80 uppercase sm:text-sm md:mb-4 md:text-base">
+                {member.role}
+              </p>
+            </div>
+
+            {/* Image Content */}
+            <div class="pointer-events-none absolute bottom-0 flex h-[90%] w-full items-end justify-center px-2 text-center md:h-[85%] lg:px-4">
+              <Image
+                src={member.img}
+                alt={member.name}
+                class="team-img h-full w-auto max-w-none origin-bottom object-contain transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+              />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-member-card {
+    flex: 1 1 0;
+    /* Basic border for inactive state using a subtle tone */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .team-member-card.active {
+    flex: 6 1 0;
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Initial state for inactive cards */
+  .team-member-card:not(.active) .card-content {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .team-member-card:not(.active) .team-img {
+    filter: grayscale(100%) contrast(1.1) brightness(0.9);
+    transform: scale(1.1) translateY(2%);
+    opacity: 0.8;
+  }
+
+  /* Active state overrides */
+  .team-member-card.active .card-content {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .team-member-card.active .team-img {
+    filter: grayscale(0%) contrast(1) brightness(1);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  /* Focus styling for keyboard accessibility */
+  .team-member-card:focus-visible {
+    outline: 2px solid var(--color-primary, #2a6b56);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  function setupTeamAccordion() {
+    const cards = document.querySelectorAll<HTMLElement>('.team-member-card');
+    const descElement = document.getElementById('team-member-desc');
+    if (!cards.length) return;
+
+    cards.forEach((card) => {
+      const handleExpand = () => {
+        // Prevent unnecessary DOM updates
+        if (card.classList.contains('active')) return;
+
+        cards.forEach((c) => c.classList.remove('active'));
+        card.classList.add('active');
+
+        if (descElement) {
+          descElement.style.opacity = '0';
+          setTimeout(() => {
+            descElement.textContent = card.dataset.desc || '';
+            descElement.style.opacity = '1';
+          }, 150);
+        }
+      };
+
+      card.addEventListener('mouseenter', handleExpand);
+      card.addEventListener('focus', handleExpand);
+      // For mobile tap
+      card.addEventListener('click', handleExpand);
+    });
+  }
+
+  // Setup on initial load
+  setupTeamAccordion();
+
+  // Setup on Astro page transitions (if view transitions are used)
+  document.addEventListener('astro:page-load', setupTeamAccordion);
+</script>
