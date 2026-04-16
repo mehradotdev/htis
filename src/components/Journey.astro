@@ -1,14 +1,18 @@
 ---
+/**
+ * @deprecated This component is no longer used.
+ * Use src/components/Journey.svelte instead.
+ */
 import { Image } from 'astro:assets';
-import img1 from '../assets/our-journey-1.png';
-import img2 from '../assets/our-journey-2.png';
-import img3 from '../assets/our-journey-3.png';
-import img4 from '../assets/our-journey-4.png';
-import img5 from '../assets/our-journey-5.png';
-import img6 from '../assets/our-journey-6.png';
-import img7 from '../assets/our-journey-7.png';
-import img8 from '../assets/our-journey-8.png';
-import img9 from '../assets/our-journey-9.png';
+import img1 from '~/assets/our-journey-1.png';
+import img2 from '~/assets/our-journey-2.png';
+import img3 from '~/assets/our-journey-3.png';
+import img4 from '~/assets/our-journey-4.png';
+import img5 from '~/assets/our-journey-5.png';
+import img6 from '~/assets/our-journey-6.png';
+import img7 from '~/assets/our-journey-7.png';
+import img8 from '~/assets/our-journey-8.png';
+import img9 from '~/assets/our-journey-9.png';
 
 const milestones = [
   {
@@ -133,9 +137,9 @@ const milestones = [
                 />
                 <div class="pointer-events-none absolute inset-0 bg-white/10 mix-blend-overlay" />
                 {/* Gradient for the Year (Top Left) */}
-                <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/80 via-transparent to-transparent opacity-80" />
+                <div class="pointer-events-none absolute inset-0 bg-linear-to-br from-white/80 via-transparent to-transparent opacity-80" />
                 {/* Gradient for the Title & Desc (Bottom Left) */}
-                <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/80 via-transparent to-transparent opacity-80" />
+                <div class="pointer-events-none absolute inset-0 bg-linear-to-tr from-white/80 via-transparent to-transparent opacity-80" />
               </div>
 
               {/* Year (Overlap Top Left) */}

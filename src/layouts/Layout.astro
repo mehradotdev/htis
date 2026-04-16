@@ -1,5 +1,6 @@
 ---
-import '../assets/app.css';
+import { ClientRouter } from 'astro:transitions';
+import '~/assets/app.css';
 
 interface Props {
   title?: string;
@@ -11,6 +12,7 @@ const { title = 'HTIS - Delivering Excellence in System Integrations' } = Astro.
 <!doctype html>
 <html lang="en" data-theme="htis-theme">
   <head>
+    <ClientRouter />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

@@ -1,12 +1,12 @@
 ---
 import { Image } from 'astro:assets';
-import heroBg from '../assets/hero-bg.png';
-import lifesizeLogo from '../assets/lifesize-logo.png';
-import honeywellLogo from '../assets/honeywell-logo.png';
-import nokiaLogo from '../assets/nokia-logo.png';
-import ericssonLogo from '../assets/ericsson-logo.png';
-import ncomputingLogo from '../assets/ncomputing-logo.png';
-import legrandLogo from '../assets/legrand-logo.png';
+import heroBg from '~/assets/hero-bg.png';
+import lifesizeLogo from '~/assets/lifesize-logo.png';
+import honeywellLogo from '~/assets/honeywell-logo.png';
+import nokiaLogo from '~/assets/nokia-logo.png';
+import ericssonLogo from '~/assets/ericsson-logo.png';
+import ncomputingLogo from '~/assets/ncomputing-logo.png';
+import legrandLogo from '~/assets/legrand-logo.png';
 ---
 
 <style>
@@ -27,11 +27,30 @@ import legrandLogo from '../assets/legrand-logo.png';
   class="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden pt-28 pb-10"
 >
   <!-- Background Image with Overlay -->
-  <div class="pointer-events-none absolute inset-0 z-0 opacity-80">
-    <Image src={heroBg} alt="Network Background" class="h-full w-full object-cover" />
-    <div class="absolute inset-0 bg-base-100/30 mix-blend-overlay"></div>
+  <div class="pointer-events-none absolute inset-0 z-0 bg-base-100">
+    <!-- Hero Image (Base Layer) -->
+    <Image
+      src={heroBg}
+      alt="Network Background"
+      class="absolute inset-0 h-full w-full object-cover opacity-80"
+    />
+
+    <!-- Green Gradient Overlay -->
     <div
-      class="absolute inset-0 bg-linear-to-b from-base-100/50 via-transparent to-base-100"
+      class="absolute inset-0 bg-linear-to-tr from-[#34594B]/30 via-transparent to-[#32cf93]/40 mix-blend-multiply"
+    >
+    </div>
+
+    <!-- Noise Overlay -->
+    <div
+      class="absolute inset-0 opacity-[0.4] mix-blend-overlay"
+      style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+    >
+    </div>
+
+    <!-- Bottom Fade (to blend with the rest of the page) -->
+    <div
+      class="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-base-100 to-transparent"
     >
     </div>
   </div>
@@ -67,13 +86,13 @@ import legrandLogo from '../assets/legrand-logo.png';
     </h1>
 
     <p
-      class="mx-auto mb-10 max-w-2xl text-lg font-medium text-base-content/70 md:text-xl"
+      class="mx-auto mb-10 max-w-2xl text-xl font-medium text-base-content/70 md:text-2xl"
     >
       Reliable expertise across infrastructure, technology, and people.
     </p>
 
     <button
-      class="btn rounded-full px-10 text-base text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
+      class="btn rounded-full px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
     >
       Contact us
     </button>
@@ -82,7 +101,7 @@ import legrandLogo from '../assets/legrand-logo.png';
   <div
     class="relative z-10 mt-auto hidden w-full max-w-full overflow-hidden pt-24 pb-8 md:block"
   >
-    <p class="mb-6 text-center text-sm font-semibold text-base-content/60">
+    <p class="mb-6 text-center text-base font-semibold text-base-content/60 md:text-lg">
       Trusted by 100+ Clients and Partners
     </p>
 

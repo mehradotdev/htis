@@ -1,12 +1,16 @@
 ---
+/**
+ * @deprecated This component is no longer used.
+ * Use src/components/Team.svelte instead.
+ */
 import { Image } from 'astro:assets';
-import bgImage from '../assets/team-member-bg.png';
-import member1 from '../assets/team-member-1.png';
-import member2 from '../assets/team-member-2.png';
-import member3 from '../assets/team-member-3.png';
-import member4 from '../assets/team-member-4.png';
-import member5 from '../assets/team-member-5.png';
-import member6 from '../assets/team-member-6.png';
+import bgImage from '~/assets/team-member-bg.png';
+import member1 from '~/assets/team-member-1.png';
+import member2 from '~/assets/team-member-2.png';
+import member3 from '~/assets/team-member-3.png';
+import member4 from '~/assets/team-member-4.png';
+import member5 from '~/assets/team-member-5.png';
+import member6 from '~/assets/team-member-6.png';
 
 const team = [
   {
@@ -80,13 +84,13 @@ const team = [
       {
         team.map((member, index) => (
           <div
-            class={`team-member-card relative cursor-pointer overflow-hidden rounded-2xl bg-white/70 shadow-md backdrop-blur-md transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] md:rounded-3xl ${index === 0 ? 'active' : ''}`}
+            class={`team-member-card relative cursor-pointer overflow-hidden rounded-2xl shadow-md transition-all duration-800 ease-[cubic-bezier(0.25,1,0.5,1)] md:rounded-3xl ${index === 0 ? 'active' : ''}`}
             data-index={index}
             data-desc={member.desc}
             tabindex="0"
           >
             {/* Overlay Content */}
-            <div class="card-content absolute inset-x-0 top-0 z-20 w-[260px] max-w-[90vw] bg-gradient-to-b from-white p-4 pb-16 transition-opacity duration-700 ease-in-out sm:p-6 md:w-[320px] md:p-8 lg:w-[360px]">
+            <div class="card-content absolute inset-x-0 top-0 z-20 w-[260px] max-w-[90vw] p-4 pb-16 transition-opacity duration-700 ease-in-out sm:p-6 md:w-[320px] md:p-8 lg:w-[360px]">
               <h3 class="mb-1 text-xl leading-tight font-bold whitespace-nowrap text-primary drop-shadow-sm sm:text-2xl md:text-3xl">
                 {member.name}
               </h3>
@@ -100,7 +104,7 @@ const team = [
               <Image
                 src={member.img}
                 alt={member.name}
-                class="team-img h-full w-auto max-w-none origin-bottom object-contain transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+                class="team-img h-full w-auto max-w-none origin-bottom object-contain transition-all duration-800 ease-[cubic-bezier(0.25,1,0.5,1)]"
               />
             </div>
           </div>
@@ -114,12 +118,17 @@ const team = [
   .team-member-card {
     flex: 1 1 0;
     /* Basic border for inactive state using a subtle tone */
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: none;
+    background-color: transparent; /* No background for inactive */
   }
 
   .team-member-card.active {
     flex: 6 1 0;
-    border-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: none;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+    backdrop-filter: blur(16px);
     box-shadow:
       0 20px 25px -5px rgba(0, 0, 0, 0.1),
       0 10px 10px -5px rgba(0, 0, 0, 0.04);

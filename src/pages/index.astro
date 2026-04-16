@@ -1,14 +1,52 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import Services from '../components/Services.astro';
-import Journey from '../components/Journey.astro';
-import Footprint from '../components/Footprint.astro';
-import Articles from '../components/Articles.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
-import Team from '../components/Team.astro';
+import Layout from '~/layouts/Layout.astro';
+import Navbar from '~/components/Navbar.astro';
+import Hero from '~/components/Hero.astro';
+import Services from '~/components/Services.astro';
+import Journey from '~/components/Journey.svelte';
+import Footprint from '~/components/Footprint.astro';
+import Articles from '~/components/Articles.astro';
+import Contact from '~/components/Contact.astro';
+import Footer from '~/components/Footer.astro';
+import Team from '~/components/Team.svelte';
+import { getMilestones, getTeamMembers } from '~/data/pageData';
+import bgImage from '~/assets/team-member-bg.png';
+import member1 from '~/assets/team-member-1.png';
+import member2 from '~/assets/team-member-2.png';
+import member3 from '~/assets/team-member-3.png';
+import member4 from '~/assets/team-member-4.png';
+import member5 from '~/assets/team-member-5.png';
+import member6 from '~/assets/team-member-6.png';
+import journeyImg1 from '~/assets/our-journey-1.png';
+import journeyImg2 from '~/assets/our-journey-2.png';
+import journeyImg3 from '~/assets/our-journey-3.png';
+import journeyImg4 from '~/assets/our-journey-4.png';
+import journeyImg5 from '~/assets/our-journey-5.png';
+import journeyImg6 from '~/assets/our-journey-6.png';
+import journeyImg7 from '~/assets/our-journey-7.png';
+import journeyImg8 from '~/assets/our-journey-8.png';
+import journeyImg9 from '~/assets/our-journey-9.png';
+
+const milestones = getMilestones([
+  journeyImg1.src,
+  journeyImg2.src,
+  journeyImg3.src,
+  journeyImg4.src,
+  journeyImg5.src,
+  journeyImg6.src,
+  journeyImg7.src,
+  journeyImg8.src,
+  journeyImg9.src,
+]);
+
+const team = getTeamMembers([
+  member1.src,
+  member2.src,
+  member3.src,
+  member4.src,
+  member5.src,
+  member6.src,
+]);
 ---
 
 <Layout>
@@ -16,13 +54,13 @@ import Team from '../components/Team.astro';
     <Navbar />
     <Hero />
     <Services />
-    <div class="bg-gradient-to-b from-transparent to-base-200/30">
-      <Journey />
-      <Team />
+    <div class="bg-linear-to-b from-transparent to-base-200/30">
+      <Journey milestones={milestones} client:visible />
+      <Team team={team} bgImageSrc={bgImage.src} client:visible />
       <Footprint />
     </div>
     <Articles />
-    <div class="bg-base-200/50 pb-20">
+    <div class="bg-base-200/50 pb-4 md:pb-8">
       <Contact />
       <Footer />
     </div>
