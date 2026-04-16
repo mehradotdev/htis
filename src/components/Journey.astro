@@ -327,7 +327,7 @@ const milestones = [
 </style>
 
 <script>
-  (function initJourneyCarousel() {
+  function initJourneyCarousel() {
     // Guard: prevent duplicate setup from multiple event hooks
     const section = document.getElementById('journey-section');
     if (!section) return;
@@ -399,6 +399,20 @@ const milestones = [
       });
     });
 
+    // Keyboard navigation for tabs
+    const tablist = section.querySelector('[role="tablist"]');
+    tablist?.addEventListener('keydown', (e: Event) => {
+      const keyboardEvent = e as KeyboardEvent;
+      if (keyboardEvent.key === 'ArrowRight' || keyboardEvent.key === 'ArrowLeft') {
+        keyboardEvent.preventDefault();
+        const direction = keyboardEvent.key === 'ArrowRight' ? 1 : -1;
+        const nextIndex = (currentIndex + direction + totalSlides) % totalSlides;
+        goToSlide(nextIndex);
+        buttons[nextIndex].focus();
+        startAutoPlay();
+      }
+    });
+
     // Start auto-play
     startAutoPlay();
 
@@ -411,5 +425,11 @@ const milestones = [
       },
       { once: true },
     );
-  })();
+  }
+
+  // Initialize on first load
+  initJourneyCarousel();
+
+  // Reinitialize after View Transitions
+  document.addEventListener('astro:page-load', initJourneyCarousel);
 </script>

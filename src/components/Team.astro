@@ -158,6 +158,11 @@ const team = [
 
 <script>
   function setupTeamAccordion() {
+    const section = document.getElementById('team');
+    if (!section) return;
+    if (section.dataset.accordionInit === 'true') return;
+    section.dataset.accordionInit = 'true';
+
     const cards = document.querySelectorAll<HTMLElement>('.team-member-card');
     const descElement = document.getElementById('team-member-desc');
     if (!cards.length) return;
@@ -184,11 +189,17 @@ const team = [
       // For mobile tap
       card.addEventListener('click', handleExpand);
     });
+
+    // Cleanup on View Transitions
+    document.addEventListener(
+      'astro:before-swap',
+      () => {
+        section.dataset.accordionInit = 'false';
+      },
+      { once: true },
+    );
   }
 
-  // Setup on initial load
-  setupTeamAccordion();
-
-  // Setup on Astro page transitions (if view transitions are used)
+  // Setup on initial load and after View Transitions
   document.addEventListener('astro:page-load', setupTeamAccordion);
 </script>
