@@ -13,6 +13,11 @@ export interface TeamMember {
 }
 
 export function getMilestones(imageSrcs: string[]): Milestone[] {
+  if (imageSrcs.length !== 9) {
+    throw new Error(
+      `getMilestones: Expected exactly 9 image sources for milestones, received ${imageSrcs.length}`,
+    );
+  }
   return [
     {
       year: '2003',
@@ -81,10 +86,15 @@ export function getMilestones(imageSrcs: string[]): Milestone[] {
 }
 
 export function getTeamMembers(memberImgSrcs: string[]): TeamMember[] {
+  if (memberImgSrcs.length !== 6) {
+    throw new Error(
+      `getTeamMembers: Expected exactly 6 image sources for team members, received ${memberImgSrcs.length}`,
+    );
+  }
   return [
     {
       img: memberImgSrcs[0],
-      name: 'Jhon Doe',
+      name: 'John Doe',
       role: 'Managing Director',
       desc: 'A visionary leader with over 20 years of experience driving enterprise growth and strategic transformation globally.',
     },

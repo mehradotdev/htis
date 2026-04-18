@@ -59,9 +59,23 @@ import MenuIcon from './icons/MenuIcon.astro';
       const navbar = document.getElementById('navbar');
 
       if (window.scrollY > 20) {
-        if (window.innerWidth >= 768) {
+        // Normalize classes before adding specific variants
+        navbar?.classList.remove(
+          'max-w-7xl',
+          'max-w-5xl',
+          'bg-transparent',
+          'bg-base-100/80',
+          'bg-base-100/90',
+          'backdrop-blur-md',
+          'shadow-md',
+          'shadow-sm',
+          'rounded-[2rem]',
+          'rounded-none',
+          'py-1'
+        );
+
+        if (window.matchMedia('(min-width: 1024px)').matches) {
           // Non-mobile: Boxy navbar - more compact and no borders
-          navbar?.classList.remove('max-w-7xl', 'bg-transparent', 'rounded-none');
           navbar?.classList.add(
             'max-w-5xl',
             'bg-base-100/80',
@@ -72,12 +86,6 @@ import MenuIcon from './icons/MenuIcon.astro';
           );
         } else {
           // Mobile: full width, visible bg
-          navbar?.classList.remove(
-            'max-w-5xl',
-            'bg-transparent',
-            'rounded-[2rem]',
-            'py-1',
-          );
           navbar?.classList.add(
             'max-w-7xl', 
             'bg-base-100/90', 

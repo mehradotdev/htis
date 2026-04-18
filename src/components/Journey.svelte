@@ -1,12 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
-
-  interface Milestone {
-    year: string;
-    title: string;
-    description: string;
-    imageSrc: string;
-  }
+  import type { Milestone } from '~/data/pageData';
 
   interface Props {
     milestones: Milestone[];
@@ -17,7 +11,7 @@
   let intervalId: ReturnType<typeof setInterval> | undefined;
   let timelineContainer: HTMLElement | undefined = $state();
 
-  const INTERVAL_MS = 3000;
+  const INTERVAL_MS = 4000;
 
   function goToSlide(index: number) {
     activeIndex = index;
@@ -26,8 +20,7 @@
 
   function scrollTimelineToActive(index: number) {
     if (!timelineContainer) return;
-    const buttons = timelineContainer.querySelectorAll<HTMLElement>('[role="tab"]');
-    const btn = buttons[index];
+    const btn = timelineContainer.querySelectorAll<HTMLElement>('button')[index];
     if (!btn) return;
 
     const btnRect = btn.getBoundingClientRect();
@@ -60,19 +53,6 @@
     startAutoPlay();
   }
 
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-      e.preventDefault();
-      const direction = e.key === 'ArrowRight' ? 1 : -1;
-      const nextIndex = (activeIndex + direction + milestones.length) % milestones.length;
-      goToSlide(nextIndex);
-      // Focus the newly active button
-      const buttons = timelineContainer?.querySelectorAll<HTMLElement>('[role="tab"]');
-      buttons?.[nextIndex]?.focus();
-      startAutoPlay();
-    }
-  }
-
   onMount(() => {
     startAutoPlay();
   });
@@ -93,7 +73,7 @@
 
   <div class="relative z-10 flex flex-col items-center">
     <!-- Slide Area -->
-    <div class="relative mx-auto mt-10 w-full max-w-5xl" aria-live="polite">
+    <div class="relative mx-auto mt-10 w-full max-w-5xl">
       <!-- Static decorative text -->
       <div
         class="pointer-events-none absolute inset-x-0 top-0 z-40 mx-auto mt-16 h-0 w-[90%] md:mt-24 md:w-[75%]"
@@ -173,10 +153,7 @@
     <div class="relative mt-16 w-full max-w-5xl md:mt-20">
       <div
         class="hide-scrollbar relative flex items-end justify-between overflow-x-auto pt-10 pb-4"
-        role="tablist"
-        tabindex="0"
         bind:this={timelineContainer}
-        onkeydown={handleKeydown}
       >
         <!-- Connecting Line -->
         <div
@@ -190,9 +167,6 @@
               ? 'opacity-100'
               : 'opacity-50'}"
             type="button"
-            role="tab"
-            aria-selected={activeIndex === index}
-            aria-label={`View milestone: ${milestone.year} — ${milestone.title}`}
             onclick={() => handleTimelineClick(index)}
           >
             <div

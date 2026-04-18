@@ -1,12 +1,6 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
-
-  interface TeamMember {
-    img: string;
-    name: string;
-    role: string;
-    desc: string;
-  }
+  import type { TeamMember } from '~/data/pageData';
 
   interface Props {
     team: TeamMember[];
@@ -56,7 +50,12 @@
           onmouseenter={() => (activeIndex = index)}
           onfocus={() => (activeIndex = index)}
           onclick={() => (activeIndex = index)}
-          onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && (activeIndex = index)}
+          onkeydown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              activeIndex = index;
+            }
+          }}
         >
           <!-- Overlay Content -->
           <div
