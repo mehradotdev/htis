@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import htisLogo from '~/assets/htis-logo.png';
 import MenuIcon from './icons/MenuIcon.astro';
+import { Sun, Moon } from '@lucide/astro';
 ---
 
 <div
@@ -43,7 +44,26 @@ import MenuIcon from './icons/MenuIcon.astro';
         <li><a href="#">About Us</a></li>
       </ul>
     </div>
-    <div class="navbar-end">
+    <div class="navbar-end gap-2">
+      <!-- Theme toggle -->
+      <label
+        id="theme-toggle-label"
+        class="swap swap-rotate btn btn-ghost btn-circle"
+        title="Toggle dark mode"
+        aria-label="Toggle dark mode"
+      >
+        <input
+          id="theme-toggle"
+          type="checkbox"
+          value="htis-theme-dark"
+          class="theme-controller"
+        />
+        <!-- Sun icon (shown in dark mode — click to go light) -->
+        <Sun class="swap-on h-5 w-5" size={20} />
+        <!-- Moon icon (shown in light mode — click to go dark) -->
+        <Moon class="swap-off h-5 w-5" size={20} />
+      </label>
+
       <a
         href="#"
         class="btn rounded-full px-6 text-lg tracking-wide text-primary-content opacity-90 shadow-md btn-primary"
@@ -54,7 +74,28 @@ import MenuIcon from './icons/MenuIcon.astro';
 </div>
 
 <script>
+  const LIGHT_THEME = 'htis-theme';
+  const DARK_THEME = 'htis-theme-dark';
+  const STORAGE_KEY = 'theme';
+
+  function applyTheme(isDark: boolean) {
+    const theme = isDark ? DARK_THEME : LIGHT_THEME;
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(STORAGE_KEY, theme);
+  }
+
+  function syncToggle() {
+    const toggle = document.getElementById('theme-toggle') as HTMLInputElement | null;
+    if (!toggle) return;
+    const saved = localStorage.getItem(STORAGE_KEY);
+    toggle.checked = saved === DARK_THEME;
+    toggle.addEventListener('change', () => applyTheme(toggle.checked));
+  }
+
   function initNavbar() {
+    // Sync theme toggle state
+    syncToggle();
+
     function updateNavbar() {
       const navbar = document.getElementById('navbar');
 
@@ -87,10 +128,10 @@ import MenuIcon from './icons/MenuIcon.astro';
         } else {
           // Mobile: full width, visible bg
           navbar?.classList.add(
-            'max-w-7xl', 
-            'bg-base-100/90', 
-            'backdrop-blur-md', 
-            'shadow-sm', 
+            'max-w-7xl',
+            'bg-base-100/90',
+            'backdrop-blur-md',
+            'shadow-sm',
             'rounded-none',
           );
         }
