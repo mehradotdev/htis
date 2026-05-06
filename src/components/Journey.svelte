@@ -163,15 +163,16 @@
     <!-- Timeline Navigation -->
     <div class="relative mt-2 w-full max-w-4xl px-2 md:px-4">
       <div
-        class="hide-scrollbar relative flex items-start justify-between overflow-x-auto pb-4 pt-2"
+        class="hide-scrollbar overflow-x-auto pb-4 pt-2"
         bind:this={timelineContainer}
       >
-        <!-- Horizontal Connecting Line -->
-        <div
-          class="absolute left-0 right-0 top-7 z-0 h-[2px] -translate-y-1/2 bg-primary/20"
-        ></div>
+        <div class="relative flex w-max min-w-full items-start justify-between">
+          <!-- Horizontal Connecting Line -->
+          <div
+            class="absolute left-0 right-0 top-5 z-0 h-[2px] -translate-y-1/2 bg-primary/20"
+          ></div>
 
-        {#each milestones as milestone, index}
+          {#each milestones as milestone, index}
           <button
             class="timeline-node group relative z-10 flex w-20 shrink-0 cursor-pointer flex-col items-center md:w-24"
             type="button"
@@ -210,6 +211,7 @@
             </div>
           </button>
         {/each}
+        </div>
       </div>
     </div>
   </div>
