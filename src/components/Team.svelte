@@ -11,7 +11,7 @@
   let activeIndex = $state(0);
 </script>
 
-<section id="team" class="relative w-full overflow-hidden py-24">
+<section id="team" class="relative w-full overflow-hidden pt-32 pb-24 md:pt-40">
   <!-- Background Image Layer -->
   <div class="absolute inset-0 z-0 bg-base-100">
     <img
@@ -39,7 +39,7 @@
 
     <!-- Horizontal Accordion Gallery -->
     <div
-      class="flex h-[28rem] w-full flex-row gap-1 overflow-hidden sm:h-[32rem] sm:gap-2 md:h-[40rem] md:gap-4"
+      class="flex h-[24rem] w-full flex-row gap-1 overflow-hidden sm:h-[28rem] sm:gap-2 md:h-[32rem] md:gap-4"
     >
       {#each team as member, index}
         <div
@@ -75,7 +75,7 @@
 
           <!-- Image Content -->
           <div
-            class="pointer-events-none absolute bottom-0 flex h-[90%] w-full items-end justify-center px-2 text-center md:h-[85%] lg:px-4"
+            class="pointer-events-none absolute bottom-0 flex h-[80%] w-full items-end justify-center px-2 text-center md:h-[75%] lg:px-4"
           >
             <img
               src={member.img}

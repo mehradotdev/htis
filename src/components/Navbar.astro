@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import htisLogo from '~/assets/htis-logo.png';
 import MenuIcon from './icons/MenuIcon.astro';
-import { Sun, Moon } from '@lucide/astro';
+import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
 ---
 
 <div
@@ -30,7 +30,14 @@ import { Sun, Moon } from '@lucide/astro';
         </ul>
       </div>
       <a href="/" class="btn h-auto p-2 text-xl normal-case btn-ghost">
-        <Image src={htisLogo} alt="HTIS Logo" width={140} class="object-contain" />
+        <Image
+          src={htisLogo}
+          alt="HTIS Logo"
+          width={140}
+          id="navbar-logo"
+          class="w-[140px] object-contain transition-all duration-500"
+          style="filter: var(--filter-invert-dark)"
+        />
       </a>
     </div>
     <div class="navbar-center hidden lg:flex">
@@ -45,27 +52,16 @@ import { Sun, Moon } from '@lucide/astro';
       </ul>
     </div>
     <div class="navbar-end gap-2">
-      <!-- Theme toggle -->
-      <label
-        id="theme-toggle-label"
-        class="swap swap-rotate btn btn-ghost btn-circle"
-        title="Toggle dark mode"
-        aria-label="Toggle dark mode"
-      >
-        <input
-          id="theme-toggle"
-          type="checkbox"
-          value="htis-theme-dark"
-          class="theme-controller"
-        />
-        <!-- Sun icon (shown in dark mode — click to go light) -->
-        <Sun class="swap-on h-5 w-5" size={20} />
-        <!-- Moon icon (shown in light mode — click to go dark) -->
-        <Moon class="swap-off h-5 w-5" size={20} />
-      </label>
+      <!-- Theme Toggle -->
+      <AnimatedThemeToggler
+        client:load
+        className="btn btn-ghost btn-circle"
+        duration={500}
+        aria-label="Toggle theme"
+      />
 
       <a
-        href="#"
+        href="#contact"
         class="btn rounded-full px-6 text-lg tracking-wide text-primary-content opacity-90 shadow-md btn-primary"
         >Contact Us</a
       >
@@ -74,30 +70,11 @@ import { Sun, Moon } from '@lucide/astro';
 </div>
 
 <script>
-  const LIGHT_THEME = 'htis-theme';
-  const DARK_THEME = 'htis-theme-dark';
-  const STORAGE_KEY = 'theme';
-
-  function applyTheme(isDark: boolean) {
-    const theme = isDark ? DARK_THEME : LIGHT_THEME;
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(STORAGE_KEY, theme);
-  }
-
-  function syncToggle() {
-    const toggle = document.getElementById('theme-toggle') as HTMLInputElement | null;
-    if (!toggle) return;
-    const saved = localStorage.getItem(STORAGE_KEY);
-    toggle.checked = saved === DARK_THEME;
-    toggle.addEventListener('change', () => applyTheme(toggle.checked));
-  }
-
   function initNavbar() {
-    // Sync theme toggle state
-    syncToggle();
 
     function updateNavbar() {
       const navbar = document.getElementById('navbar');
+      const logo = document.getElementById('navbar-logo');
 
       if (window.scrollY > 20) {
         // Normalize classes before adding specific variants
@@ -112,8 +89,13 @@ import { Sun, Moon } from '@lucide/astro';
           'shadow-sm',
           'rounded-[2rem]',
           'rounded-none',
-          'py-1'
+          'py-1',
+          'min-h-[4rem]',
         );
+        
+        logo?.classList.remove('w-[140px]');
+        logo?.classList.add('w-[110px]');
+        navbar?.classList.add('min-h-[3rem]');
 
         if (window.matchMedia('(min-width: 1024px)').matches) {
           // Non-mobile: Boxy navbar - more compact and no borders
@@ -147,8 +129,11 @@ import { Sun, Moon } from '@lucide/astro';
           'shadow-sm',
           'rounded-[2rem]',
           'py-1',
+          'min-h-[3rem]',
         );
-        navbar?.classList.add('max-w-7xl', 'bg-transparent', 'rounded-none');
+        navbar?.classList.add('max-w-7xl', 'bg-transparent', 'rounded-none', 'min-h-[4rem]');
+        logo?.classList.remove('w-[110px]');
+        logo?.classList.add('w-[140px]');
       }
     }
 

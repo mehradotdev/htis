@@ -24,7 +24,7 @@ import legrandLogo from '~/assets/legrand-logo.png';
 </style>
 
 <section
-  class="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden pt-28 pb-10"
+  class="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden pt-28 pb-10"
 >
   <!-- Background Image with Overlay -->
   <div class="pointer-events-none absolute inset-0 z-0 bg-base-100">
@@ -33,11 +33,12 @@ import legrandLogo from '~/assets/legrand-logo.png';
       src={heroBg}
       alt="Network Background"
       class="absolute inset-0 h-full w-full object-cover opacity-80"
+      style="filter: var(--filter-invert-dark)"
     />
 
     <!-- Green Gradient Overlay -->
     <div
-      class="absolute inset-0 bg-linear-to-tr from-[#34594B]/30 via-transparent to-[#32cf93]/40 mix-blend-multiply"
+      class="absolute inset-0 bg-linear-to-tr from-primary/30 via-transparent to-accent/40 mix-blend-multiply"
     >
     </div>
 
@@ -91,11 +92,12 @@ import legrandLogo from '~/assets/legrand-logo.png';
       Reliable expertise across infrastructure, technology, and people.
     </p>
 
-    <button
+    <a
+      href="#contact"
       class="btn rounded-full px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
     >
       Contact us
-    </button>
+    </a>
   </div>
 
   <div
@@ -105,10 +107,12 @@ import legrandLogo from '~/assets/legrand-logo.png';
       Trusted by 100+ Clients and Partners
     </p>
 
-    <!-- Marquee Container -->
-    <div
-      class="group flex w-max opacity-70 transition-opacity duration-500 hover:opacity-100"
-    >
+    <!-- Marquee Wrapper with Fade -->
+    <div class="flex w-full mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]">
+      <!-- Marquee Container -->
+      <div
+        class="group flex w-max opacity-70 transition-opacity duration-500 hover:opacity-100"
+      >
       {
         Array.from({ length: 8 }).map((_, i) => (
           <div
@@ -119,41 +123,48 @@ import legrandLogo from '~/assets/legrand-logo.png';
               src={ncomputingLogo}
               alt="NComputing"
               width={110}
-              class="object-contain grayscale transition-all duration-300 hover:grayscale-0"
+              class="object-contain transition-all duration-300 hover:filter-none!"
+              style="filter: var(--logo-filter)"
             />
             <Image
               src={legrandLogo}
               alt="Legrand"
               width={110}
-              class="object-contain grayscale transition-all duration-300 hover:grayscale-0"
+              class="object-contain transition-all duration-300 hover:filter-none!"
+              style="filter: var(--logo-filter)"
             />
             <Image
               src={lifesizeLogo}
               alt="Lifesize"
               width={110}
-              class="object-contain grayscale transition-all duration-300 hover:grayscale-0"
+              class="object-contain transition-all duration-300 hover:filter-none!"
+              style="filter: var(--logo-filter)"
             />
             <Image
               src={honeywellLogo}
               alt="Honeywell"
               width={110}
-              class="object-contain grayscale transition-all duration-300 hover:grayscale-0"
+              class="object-contain transition-all duration-300 hover:filter-none!"
+              style="filter: var(--logo-filter)"
             />
             <Image
               src={nokiaLogo}
               alt="Nokia"
               width={110}
-              class="object-contain grayscale transition-all duration-300 hover:grayscale-0"
+              class="object-contain transition-all duration-300 hover:filter-none!"
+              style="filter: var(--logo-filter)"
             />
             <Image
               src={ericssonLogo}
               alt="Ericsson"
               width={110}
-              class="object-contain grayscale transition-all duration-300 hover:grayscale-0"
+              class="object-contain transition-all duration-300 hover:filter-none!"
+              style="filter: var(--logo-filter)"
             />
           </div>
         ))
       }
+    </div>
     </div>
   </div>
 </section>

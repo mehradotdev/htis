@@ -1,205 +1,214 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
   import type { Milestone } from '~/data/pageData';
 
   interface Props {
+    /** List of chronological milestones to display in the journey */
     milestones: Milestone[];
   }
 
   let { milestones }: Props = $props();
+
+  // -- Constants & Derived --
+  const AUTOPLAY_INTERVAL_MS = 4000;
+  let N = $derived(milestones.length);
+  // Calculate exact angle and radius multiplier to form a perfect closed circle
+  let thetaVal = $derived(360 / N);
+  let rMultiplier = $derived(1 / (2 * Math.tan(Math.PI / N)));
+
+  // -- State --
   let activeIndex = $state(0);
-  let intervalId: ReturnType<typeof setInterval> | undefined;
+  let rotationIndex = $state(0);
   let timelineContainer: HTMLElement | undefined = $state();
 
-  const INTERVAL_MS = 4000;
+  // -- Effects --
+  // Automatically advance to the next slide.
+  $effect(() => {
+    activeIndex;
+    const intervalId = setInterval(nextSlide, AUTOPLAY_INTERVAL_MS);
+    return () => clearInterval(intervalId);
+  });
 
-  function goToSlide(index: number) {
-    activeIndex = index;
-    scrollTimelineToActive(index);
-  }
-
-  function scrollTimelineToActive(index: number) {
-    if (!timelineContainer) return;
-    const btn = timelineContainer.querySelectorAll<HTMLElement>('button')[index];
-    if (!btn) return;
-
-    const btnRect = btn.getBoundingClientRect();
-    const containerRect = timelineContainer.getBoundingClientRect();
-    const scrollLeft =
-      timelineContainer.scrollLeft +
-      (btnRect.left - containerRect.left) -
-      (containerRect.width - btnRect.width) / 2;
-    timelineContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-  }
-
+  // -- Handlers --
+  /** Moves to the next slide, wrapping around to the start */
   function nextSlide() {
     goToSlide((activeIndex + 1) % milestones.length);
   }
 
-  function startAutoPlay() {
-    stopAutoPlay();
-    intervalId = setInterval(nextSlide, INTERVAL_MS);
+  /** Navigates to a specific slide and ensures the timeline scrolls to it */
+  function goToSlide(index: number) {
+    // Calculate the shortest path on the circle to avoid backward spinning
+    let currentMod = ((rotationIndex % N) + N) % N; 
+    let diff = index - currentMod;
+    
+    if (diff > N / 2) diff -= N;
+    if (diff < -N / 2) diff += N;
+    
+    rotationIndex += diff;
+    activeIndex = index;
+    scrollTimelineToActive(index);
   }
 
-  function stopAutoPlay() {
-    if (intervalId !== undefined) {
-      clearInterval(intervalId);
-      intervalId = undefined;
-    }
+  /** Smoothly scrolls the horizontal timeline so the active node is centered */
+  function scrollTimelineToActive(index: number) {
+    if (!timelineContainer) return;
+
+    // Target specific timeline nodes by class to avoid selecting the 3D film frames
+    const nodes = timelineContainer.querySelectorAll<HTMLElement>('.timeline-node');
+    const targetNode = nodes[index];
+    if (!targetNode) return;
+
+    const nodeRect = targetNode.getBoundingClientRect();
+    const containerRect = timelineContainer.getBoundingClientRect();
+
+    // Calculate exact scroll position to center the target node
+    const scrollLeft =
+      timelineContainer.scrollLeft +
+      (nodeRect.left - containerRect.left) -
+      (containerRect.width - nodeRect.width) / 2;
+
+    timelineContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }
-
-  function handleTimelineClick(index: number) {
-    goToSlide(index);
-    startAutoPlay();
-  }
-
-  onMount(() => {
-    startAutoPlay();
-  });
-
-  onDestroy(() => {
-    stopAutoPlay();
-  });
 </script>
 
 <section
-  class="relative mx-auto max-w-7xl overflow-hidden px-4 py-24"
+  class="relative w-full overflow-hidden bg-base-100 px-4 py-12 md:py-16 transition-colors duration-500"
   id="journey-section"
 >
-  <!-- Subtle grid background -->
-  <div
-    class="absolute inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTAgMGg0MHYxbC00MCAuMDAxem0wIDM5LjAwMWg0MHYxSC4wMDF6bTM5LjAwMS0zOS4wMDFoMXY0MGgtMXpNMCAwaDF2NDBIMHoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4wNSkiLz4KPC9zdmc+')] opacity-50"
-  ></div>
-
-  <div class="relative z-10 flex flex-col items-center">
-    <!-- Slide Area -->
-    <div class="relative mx-auto mt-10 w-full max-w-5xl">
-      <!-- Static decorative text -->
-      <div
-        class="pointer-events-none absolute inset-x-0 top-0 z-40 mx-auto mt-16 h-0 w-[90%] md:mt-24 md:w-[75%]"
+  <div class="relative z-10 mx-auto flex max-w-6xl flex-col items-center">
+    <!-- Title Area -->
+    <div class="mb-8 text-center md:mb-12">
+      <h2 class="text-5xl font-extrabold tracking-tight text-base-content md:text-7xl">
+        Our <span class="text-primary">Journey</span>
+      </h2>
+      <p
+        class="mx-auto mt-4 max-w-2xl text-base font-medium text-base-content/80 md:text-xl"
       >
-        <div class="absolute top-0.5 -right-4 translate-x-1/2">
-          <div class="relative">
-            <div
-              class="absolute right-[70%] bottom-[90%] text-5xl leading-none font-extrabold tracking-tight text-[#2a453d] drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)] md:text-[80px]"
-            >
-              Our
-            </div>
-            <div
-              class="translate-y-4 text-5xl font-extrabold tracking-tight text-primary drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)] md:text-[80px]"
-              style="writing-mode: vertical-rl;"
-            >
-              Journey
-            </div>
-          </div>
-        </div>
-      </div>
+        A timeline of innovation, milestones, and achievements<br
+          class="hidden md:block"
+        /> that shaped our path forward.
+      </p>
+    </div>
 
-      <!-- Slides -->
-      {#each milestones as milestone, index}
-        <div class="journey-slide" class:active={activeIndex === index}>
-          <div class="relative mx-auto mt-16 mb-32 w-[90%] md:mt-24 md:mb-44 md:w-[75%]">
-            <!-- Main Image -->
-            <div
-              class="image-box relative z-20 aspect-[4/3] w-full overflow-hidden bg-base-200 shadow-xl md:aspect-[16/9]"
-            >
+    <!-- 3D Film Strip Carousel -->
+    <div class="carousel-container relative mt-4 w-full" style="--theta: {thetaVal}deg; --r-mult: {rMultiplier};">
+      <!-- Glow behind the center active item -->
+      <div class="glow-effect"></div>
+
+      <div
+        class="carousel-scene"
+        style="transform: translateZ(calc(var(--r) * -1)) rotateY(calc({rotationIndex} * var(--theta) * -1));"
+      >
+        {#each milestones as milestone, index}
+          {@const rawDist = Math.abs(activeIndex - index)}
+          {@const distance = rawDist > N / 2 ? N - rawDist : rawDist}
+          <!-- Fade items slightly in the back of the circle -->
+          {@const opacity = 1 - (distance / (N / 2)) * 0.7}
+
+          <button
+            class="film-frame {activeIndex === index ? 'active' : ''}"
+            style="
+              --index: {index}; 
+              opacity: {opacity};
+              pointer-events: {distance <= N / 3 ? 'auto' : 'none'};
+            "
+            onclick={() => goToSlide(index)}
+            aria-label={`View milestone for ${milestone.year}`}
+            aria-current={activeIndex === index ? 'true' : undefined}
+          >
+            <!-- Top Perforations -->
+            <div class="film-border top"></div>
+
+            <!-- Image -->
+            <div class="film-content">
               <img
                 src={milestone.imageSrc}
-                alt={`HTIS journey in ${milestone.year}: ${milestone.title}`}
-                class="absolute inset-0 h-full w-full object-cover"
-                loading={index < 2 ? 'eager' : 'lazy'}
+                alt={milestone.title}
+                class="film-image"
+                loading={index < 3 ? 'eager' : 'lazy'}
               />
-              <div
-                class="pointer-events-none absolute inset-0 bg-white/10 mix-blend-overlay"
-              ></div>
-              <!-- Gradient for Year (Top Left) -->
-              <div
-                class="pointer-events-none absolute inset-0 bg-linear-to-br from-white/80 via-transparent to-transparent opacity-80"
-              ></div>
-              <!-- Gradient for Title & Desc (Bottom Left) -->
-              <div
-                class="pointer-events-none absolute inset-0 bg-linear-to-tr from-white/80 via-transparent to-transparent opacity-80"
-              ></div>
+              <div class="film-overlay"></div>
             </div>
 
-            <!-- Year (Overlap Top Left) -->
-            <div
-              class="year-text absolute -top-10 -left-6 z-30 text-6xl leading-none font-extrabold tracking-tight text-[#2a453d] drop-shadow-md md:-top-16 md:-left-12 md:text-[110px]"
-            >
-              {milestone.year}
-            </div>
+            <!-- Bottom Perforations -->
+            <div class="film-border bottom"></div>
+          </button>
+        {/each}
+      </div>
+    </div>
 
-            <!-- Title & Description (Overlap Bottom Left) -->
-            <div
-              class="slide-info absolute top-full -mt-6 -left-2 z-30 max-w-sm md:-mt-10 md:-left-12 md:max-w-lg"
-            >
-              <h3
-                class="title-text text-5xl leading-none font-extrabold tracking-tight text-[#2a453d] drop-shadow-md md:text-[80px]"
-              >
-                {milestone.title}
-              </h3>
-              <p
-                class="desc-box mt-2 ml-1 text-base leading-relaxed font-medium text-[#2a453d]/80 md:mt-4 md:text-xl"
-              >
-                {milestone.description}
-              </p>
-            </div>
-          </div>
+    <!-- Active Milestone Info -->
+    <div
+      class="mt-4 flex h-[140px] flex-col items-center justify-end text-center md:mt-8"
+    >
+      {#key activeIndex}
+        <div class="animate-fade-in-up flex flex-col items-center px-4">
+          <h2 class="text-4xl font-extrabold text-primary md:text-5xl">
+            {milestones[activeIndex].year}
+          </h2>
+          <h3 class="mt-2 text-xl font-bold text-base-content md:text-2xl">
+            {milestones[activeIndex].title}
+          </h3>
+          <p
+            class="mx-auto mt-3 max-w-xl text-sm font-medium leading-relaxed text-base-content/80 md:text-base"
+          >
+            {milestones[activeIndex].description}
+          </p>
         </div>
-      {/each}
+      {/key}
+
+      <!-- Vertical Connecting Line to Timeline -->
+      <div class="mt-6 h-10 w-[2px] rounded-full bg-primary/40 md:mt-8"></div>
     </div>
 
     <!-- Timeline Navigation -->
-    <div class="relative mt-16 w-full max-w-5xl md:mt-20">
+    <div class="relative mt-2 w-full max-w-4xl px-2 md:px-4">
       <div
-        class="hide-scrollbar relative flex items-end justify-between overflow-x-auto pt-10 pb-4"
+        class="hide-scrollbar relative flex items-start justify-between overflow-x-auto pb-4 pt-2"
         bind:this={timelineContainer}
       >
-        <!-- Connecting Line -->
+        <!-- Horizontal Connecting Line -->
         <div
-          class="absolute right-0 bottom-4.5 left-0 z-0 h-[2px] border-t-2 border-dashed border-primary/20"
+          class="absolute left-0 right-0 top-7 z-0 h-[2px] -translate-y-1/2 bg-primary/20"
         ></div>
 
         {#each milestones as milestone, index}
           <button
-            class="relative z-10 flex h-[100px] min-w-[70px] cursor-pointer flex-col items-center transition-all duration-300 hover:opacity-100 md:min-w-[80px] {activeIndex ===
-            index
-              ? 'opacity-100'
-              : 'opacity-50'}"
+            class="timeline-node group relative z-10 flex w-20 shrink-0 cursor-pointer flex-col items-center md:w-24"
             type="button"
-            onclick={() => handleTimelineClick(index)}
+            aria-current={activeIndex === index ? 'step' : undefined}
+            onclick={() => goToSlide(index)}
           >
-            <div
-              class="mb-1 transition-all duration-300 {activeIndex === index
-                ? '-translate-y-[2px] text-base font-extrabold text-[#2a453d]'
-                : 'text-sm font-medium text-base-content/45'}"
-            >
-              {milestone.year}
+            <!-- Node Dot -->
+            <div class="relative flex h-10 w-10 items-center justify-center">
+              {#if activeIndex === index}
+                <div
+                  class="h-4 w-4 rounded-full border-[3px] border-primary bg-white shadow-[0_0_12px_rgba(42,69,61,0.4)]"
+                ></div>
+              {:else}
+                <div
+                  class="h-2.5 w-2.5 rounded-full bg-primary/20 transition-colors group-hover:bg-primary/50"
+                ></div>
+              {/if}
             </div>
-            <div
-              class="mb-2 px-1 text-center transition-all duration-300 {activeIndex ===
-              index
-                ? '-translate-y-[2px] text-sm font-bold text-[#2a453d]'
-                : 'text-xs font-medium text-base-content/45'}"
-            >
-              {milestone.title}
-            </div>
-            <div
-              class="w-[3px] rounded-full bg-primary transition-all duration-500 ease-out {activeIndex ===
-              index
-                ? 'mt-0 h-8 opacity-100 shadow-[0_0_10px_rgba(42,69,61,0.25)]'
-                : 'mt-2.5 h-3 opacity-35'}"
-            ></div>
-          </button>
-        {/each}
-      </div>
 
-      <!-- Small dots for timeline spacing (visual only) -->
-      <div
-        class="pointer-events-none absolute bottom-[1.12rem] left-0 hidden w-full justify-between px-[40px] md:flex"
-      >
-        {#each Array(40) as _}
-          <div class="h-1.5 w-1.5 rounded-full bg-primary/20"></div>
+            <!-- Node Text -->
+            <div
+              class="mt-2 text-center transition-all duration-300 {activeIndex === index
+                ? 'opacity-100'
+                : 'opacity-40 group-hover:opacity-70'}"
+            >
+              <div
+                class="text-sm font-extrabold text-base-content {activeIndex === index
+                  ? 'scale-110 transform'
+                  : ''} transition-transform"
+              >
+                {milestone.year}
+              </div>
+              <div class="mt-0.5 text-[10px] font-bold text-base-content/70 md:text-xs">
+                {milestone.title}
+              </div>
+            </div>
+          </button>
         {/each}
       </div>
     </div>
@@ -207,7 +216,7 @@
 </section>
 
 <style>
-  /* Scrollbar hiding */
+  /* ── Utilities ── */
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -216,71 +225,192 @@
     scrollbar-width: none;
   }
 
-  /* ── Slide layout ── */
-  .journey-slide {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: absolute;
-    inset: 0;
+  .animate-fade-in-up {
     opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in-up {
+      opacity: 1;
+      animation: none;
+    }
+  }
+
+  /* ── 3D Carousel Variables ── */
+  .carousel-container {
+    --w: 260px; /* Frame width mobile */
+    --r: calc(var(--w) * var(--r-mult));
+
+    height: 280px;
+    perspective: 800px;
+    /* Negative Y pulls the perspective up, making the cylinder look like an upward smile/arc */
+    perspective-origin: 50% -15%;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-container {
+      --w: 320px; /* Frame width desktop */
+      height: 320px;
+      perspective: 1000px;
+      perspective-origin: 50% -35%;
+    }
+  }
+
+  .carousel-scene {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.25, 1, 0.4, 1);
+  }
+
+  /* ── Glow Effect ── */
+  .glow-effect {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 90%;
+    max-width: 800px;
+    height: 100px;
+    transform: translateX(-50%);
+    background: radial-gradient(
+      ellipse at center,
+      rgba(32, 178, 112, 0.35) 0%,
+      rgba(32, 178, 112, 0.1) 40%,
+      transparent 70%
+    );
+    filter: blur(20px);
     pointer-events: none;
     z-index: 0;
+  }
+
+  /* ── Film Frame ── */
+  .film-frame {
+    width: var(--w);
+    height: calc(var(--w) * 0.65); /* ~16:10 aspect ratio */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: calc(var(--w) / -2);
+    margin-top: calc(var(--w) * -0.325);
+
+    /* Position each frame on the 3D cylinder surface */
+    transform: rotateY(calc(var(--index) * var(--theta))) translateZ(var(--r));
+
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
     transition: opacity 0.8s ease;
+    z-index: 1;
+    cursor: pointer;
   }
-  .journey-slide.active {
+
+  /* 
+   * Realistic film perforations using pure CSS gradients.
+   * This technique relies on layering linear gradients to draw the solid black
+   * film strips around the holes, leaving the holes fully transparent so the 
+   * page background and glow effects can show through flawlessly on all browsers.
+   */
+  .film-border {
+    height: 24px;
+    width: 100%;
+    background-color: transparent;
+    background-image:
+      linear-gradient(to bottom, #111 7px, transparent 7px, transparent 17px, #111 17px),
+      repeating-linear-gradient(
+        to right,
+        #111 0px,
+        #111 12px,
+        transparent 12px,
+        transparent 18px
+      );
+  }
+  @media (min-width: 768px) {
+    .film-border {
+      height: 32px;
+      background-image:
+        linear-gradient(
+          to bottom,
+          #111 9px,
+          transparent 9px,
+          transparent 23px,
+          #111 23px
+        ),
+        repeating-linear-gradient(
+          to right,
+          #111 0px,
+          #111 16px,
+          transparent 16px,
+          transparent 24px
+        );
+    }
+  }
+
+  /* ── Image Content ── */
+  .film-content {
+    flex: 1;
+    width: 100%;
     position: relative;
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 10;
+    overflow: hidden;
+    background: #000;
+    /* Use borders for the black gaps between frames, ensuring holes above/below remain transparent */
+    border-left: 2px solid #111;
+    border-right: 2px solid #111;
+    box-sizing: border-box;
   }
 
-  /* ── Slide element entrance animations ── */
-  .journey-slide .year-text {
-    transform: translateY(-20px);
-    opacity: 0;
+  .film-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1) brightness(0.7);
     transition:
-      transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.05s,
-      opacity 0.8s ease 0.05s;
-  }
-  .journey-slide.active .year-text {
-    transform: translateY(0);
-    opacity: 0.9;
+      filter 1s ease,
+      transform 1s ease;
+    transform: scale(1.02); /* Slight scale to avoid 3D edge bleeding */
   }
 
-  .journey-slide .image-box {
-    transform: scale(0.96) translateY(12px);
-    opacity: 0;
-    transition:
-      transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s,
-      opacity 0.7s ease 0.1s;
-  }
-  .journey-slide.active .image-box {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-
-  .journey-slide .title-text {
-    transform: translateX(-25px);
-    opacity: 0;
-    transition:
-      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s,
-      opacity 0.6s ease 0.25s;
-  }
-  .journey-slide.active .title-text {
-    transform: translateX(0);
+  .film-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      transparent,
+      rgba(0, 0, 0, 0.3)
+    );
+    pointer-events: none;
+    transition: opacity 1s ease;
     opacity: 1;
   }
 
-  .journey-slide .desc-box {
-    transform: translateY(15px);
-    opacity: 0;
-    transition:
-      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s,
-      opacity 0.6s ease 0.4s;
+  /* ── Active State Enhancements ── */
+  .film-frame.active .film-image {
+    filter: grayscale(0%) contrast(1) brightness(1);
   }
-  .journey-slide.active .desc-box {
-    transform: translateY(0);
-    opacity: 1;
+
+  .film-frame.active .film-overlay {
+    opacity: 0;
+  }
+
+  .film-frame.active {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Hover effect for non-active frames */
+  .film-frame:not(.active):hover .film-image {
+    filter: grayscale(50%) contrast(1.1) brightness(0.9);
   }
 </style>
