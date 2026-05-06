@@ -319,6 +319,13 @@
       style={getStyle(pos.c, pos.r, pos.cs, pos.rs)}
       onmouseenter={() => (active = service.id)}
       onfocus={() => (active = service.id)}
+      onclick={() => {
+        if (active === service.id) {
+          if (service.id === 'telecom') window.location.href = '/telecom';
+        } else {
+          active = service.id;
+        }
+      }}
     >
       <h3
         class="font-bold text-base-content/80 transition-all duration-700 {active ===
