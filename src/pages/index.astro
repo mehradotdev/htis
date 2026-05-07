@@ -11,12 +11,14 @@ import Footer from '~/components/Footer.astro';
 import Team from '~/components/Team.svelte';
 import { getMilestones, getTeamMembers } from '~/data/pageData';
 import bgImage from '~/assets/team-member-bg.png';
-import member1 from '~/assets/team-member-1.png';
-import member2 from '~/assets/team-member-2.png';
-import member3 from '~/assets/team-member-3.png';
-import member4 from '~/assets/team-member-4.png';
-import member5 from '~/assets/team-member-5.png';
-import member6 from '~/assets/team-member-6.png';
+import member1 from '~/assets/tm_Aditya_Kaushik.png';
+import member2 from '~/assets/tm_Sandeep_Aswal.jpg';
+import member3 from '~/assets/tm_Amit_Dhingra.jpeg';
+import member4 from '~/assets/tm_Arvind_Sharma.jpeg';
+import member5 from '~/assets/tm_Soni_Jain.png';
+import member6 from '~/assets/tm_Kuldeep_Singh.jpeg';
+import member7 from '~/assets/tm_Rohit_Gupta.jpeg';
+import member8 from '~/assets/tm_Ram_Pal.jpeg';
 import journeyImg1 from '~/assets/our-journey-1.png';
 import journeyImg2 from '~/assets/our-journey-2.png';
 import journeyImg3 from '~/assets/our-journey-3.png';
@@ -46,6 +48,8 @@ const team = getTeamMembers([
   member4.src,
   member5.src,
   member6.src,
+  member7.src,
+  member8.src,
 ]);
 ---
 
@@ -54,15 +58,17 @@ const team = getTeamMembers([
     <Navbar />
     <Hero />
     <Services />
-    <div class="bg-linear-to-b from-transparent to-base-200/30">
+    <div class="bg-linear-to-b from-transparent to-base-200/50">
       <Journey milestones={milestones} client:visible />
       <Team team={team} bgImageSrc={bgImage.src} client:visible />
       <Footprint />
     </div>
-    <Articles />
-    <div class="bg-base-200/50 pb-4 md:pb-8">
-      <Contact />
-      <Footer />
+    <div class="bg-base-200/50">
+      <Articles />
+      <div class="pt-16 md:pt-24">
+        <Contact />
+        <Footer />
+      </div>
     </div>
   </div>
 </Layout>

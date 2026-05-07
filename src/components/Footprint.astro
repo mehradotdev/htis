@@ -6,7 +6,7 @@ import CurvedLineIcon from './icons/CurvedLineIcon.astro';
 
 <section class="relative mx-auto max-w-6xl overflow-hidden px-4 py-24">
   <div
-    class="relative mx-4 overflow-hidden rounded-3xl border border-primary/20 bg-base-200/20 px-8 py-20 shadow-sm lg:mx-0 lg:px-16"
+    class="relative mx-4 overflow-hidden rounded-3xl border border-primary/20 bg-base-100 px-8 py-20 shadow-sm lg:mx-0 lg:px-16"
   >
     <!-- Subtle curved top line -->
     <div class="pointer-events-none absolute top-0 -mt-px flex w-full justify-center">
@@ -20,7 +20,7 @@ import CurvedLineIcon from './icons/CurvedLineIcon.astro';
       <!-- Stats Side -->
       <div class="space-y-12 md:w-1/2">
         <div>
-          <h2 class="mb-10 text-4xl font-bold text-[#2a453d] md:text-5xl">
+          <h2 class="mb-10 text-4xl font-bold text-base-content md:text-5xl">
             Global Footprint
           </h2>
         </div>
@@ -57,7 +57,8 @@ import CurvedLineIcon from './icons/CurvedLineIcon.astro';
         <Image
           src={halfGlobe}
           alt="Half Globe Dotted Map"
-          class="absolute right-0 bottom-0 h-auto w-[120%] max-w-[600px] translate-x-[10%] translate-y-20 object-cover object-bottom opacity-90 mix-blend-multiply"
+          class="absolute right-0 bottom-0 h-auto w-[120%] max-w-[600px] translate-x-[10%] translate-y-20 object-cover object-bottom opacity-90"
+          style="filter: var(--filter-invert-dark); mix-blend-mode: var(--bg-blend);"
         />
       </div>
     </div>

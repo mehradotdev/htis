@@ -1,0 +1,396 @@
+---
+import { Image } from 'astro:assets';
+import infoImg from '~/assets/lob-telecom-info.png';
+import awardsImg from '~/assets/lob-telecom-awards.png';
+import { telecomProcesses } from '~/data/pageData';
+---
+
+<!-- 1. Telecom Processes - Blueprint to Reality -->
+<section class="relative bg-base-200/30 py-24">
+  <div class="container mx-auto px-6">
+    <h2 class="mb-16 text-center text-4xl font-bold text-base-content md:text-5xl">
+      Telecom Processes - Blueprint to Reality
+    </h2>
+    <div class="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
+      <div class="join join-vertical w-full bg-base-100 shadow-xl">
+        {
+          telecomProcesses.map((process, i) => (
+            <div class="collapse-arrow collapse join-item border border-base-content/10">
+              {/* <input type="radio" name="telecom-processes" checked={i === 0} /> */}
+              <input type="checkbox" checked={i === 0} />
+              <div class="collapse-title text-lg font-semibold text-base-content/80 md:text-xl">
+                <span class="mr-2 font-bold text-primary">{process.id}</span>
+                {process.title}
+              </div>
+              <div class="collapse-content text-base-content/70">
+                <p class="mb-4 leading-relaxed">{process.description}</p>
+                <ul class="flex flex-col gap-3">
+                  {process.details.map((detail) => (
+                    <li class="text-sm">
+                      <strong class="font-medium text-base-content/90">
+                        {detail.name}:
+                      </strong>{' '}
+                      {detail.desc}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div
+        class="sticky top-28 aspect-4/3 w-full overflow-hidden rounded-2xl shadow-xl lg:aspect-auto lg:h-[600px]"
+      >
+        <Image
+          src={infoImg}
+          alt="Telecom Projects"
+          class="h-full w-full object-cover object-center"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Proven Network Deployments -->
+<section class="relative bg-base-100 py-24">
+  <div class="container mx-auto px-6">
+    <div class="mx-auto mb-16 max-w-3xl text-center">
+      <h2 class="mb-6 text-4xl font-bold text-base-content md:text-5xl">
+        Proven Network Deployments
+      </h2>
+      <p class="text-lg text-base-content/70">
+        Explore how we design, deploy, and transform networks across hundreds of sites and
+        thousands of devices.
+      </p>
+    </div>
+
+    <div
+      class="hide-scrollbar flex snap-x gap-6 overflow-x-auto pb-8"
+      style="scrollbar-width: none;"
+    >
+      <!-- Project Cards -->
+      {
+        [
+          {
+            title: 'PACO',
+            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
+          },
+          {
+            title: 'PACO',
+            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
+          },
+          {
+            title: 'Taxnet 2.0',
+            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
+            active: true,
+          },
+          {
+            title: 'PACO',
+            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
+          },
+          {
+            title: 'PACO',
+            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
+          },
+        ].map((project) => (
+          <div
+            class={`min-w-[300px] rounded-2xl border p-8 md:min-w-[350px] ${project.active ? 'border-primary bg-primary/5 shadow-md shadow-primary/10' : 'border-base-content/10 bg-base-100/50'} flex snap-center flex-col gap-6`}
+          >
+            <div class="flex items-start justify-between">
+              <h3 class="text-2xl font-semibold">{project.title}</h3>
+              <div class="flex h-8 w-8 items-center justify-center rounded-full border border-base-content/5 bg-base-200 text-primary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="h-4 w-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                  />
+                </svg>
+              </div>
+            </div>
+            <p class="flex-1 text-sm text-base-content/70">
+              Nationwide government network transformation project.
+            </p>
+            <div class="mt-auto flex flex-wrap gap-2">
+              {project.badges.map((badge) => (
+                <span class="rounded-full border border-base-content/5 bg-base-200 px-3 py-1 text-xs font-medium whitespace-nowrap text-base-content/70">
+                  {badge}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt-8 text-center">
+      <button
+        class="btn rounded-full px-10 text-white shadow-md transition-shadow btn-primary hover:shadow-lg"
+        >View all</button
+      >
+    </div>
+  </div>
+</section>
+
+<!-- 3. Built to Execute. Scaled to Deliver. -->
+<section class="relative bg-base-200/30 py-24">
+  <div class="container mx-auto px-6">
+    <div class="mb-16 max-w-2xl">
+      <h2 class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl">
+        Built to Execute.<br />Scaled to Deliver.
+      </h2>
+    </div>
+
+    <!-- Stats -->
+    <div
+      class="mb-20 grid grid-cols-2 gap-8 border-b border-base-content/10 pb-16 md:grid-cols-3 lg:grid-cols-5 lg:gap-6"
+    >
+      <div class="flex flex-col gap-2">
+        <span class="text-5xl font-bold text-primary md:text-6xl"
+          >1.2M<span class="text-4xl md:text-5xl">+</span></span
+        >
+        <span class="font-medium text-base-content/70">Sites Deployed</span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-5xl font-bold text-primary md:text-6xl"
+          >250K<span class="text-4xl md:text-5xl">+</span></span
+        >
+        <span class="font-medium text-base-content/70">Routers Deployed</span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-5xl font-bold text-primary md:text-6xl"
+          >16<span class="text-4xl md:text-5xl">+</span></span
+        >
+        <span class="font-medium text-base-content/70">Telecom Circles (India)</span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-5xl font-bold text-primary md:text-6xl"
+          >8<span class="text-4xl md:text-5xl">+</span></span
+        >
+        <div class="flex flex-col">
+          <span class="font-medium text-base-content/70">Countries Served</span>
+          <span class="mt-1 text-xs leading-relaxed text-base-content/50">
+            India, Bangladesh, Nepal, Sri Lanka, South Africa, UK, Nigeria, CAR
+          </span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-5xl font-bold text-primary md:text-6xl"
+          >3<span class="text-4xl font-light text-primary/60 md:text-5xl">/4</span></span
+        >
+        <span class="font-medium text-base-content/70">Major Operators Served</span>
+      </div>
+    </div>
+
+    <!-- Pillars -->
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <div class="flex flex-col gap-4">
+        <div
+          class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl border border-base-content/5 bg-base-100 text-primary shadow-sm"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-8 w-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold">
+          Converged IT Infrastructure & Systems Integration
+        </h3>
+        <p class="text-base-content/70">
+          Architecting the high-availability IT fabrics that power mission-critical
+          network operations. We provide the end-to-end IT backbone for modern Telcos,
+          ranging from Tier III/IV Data Center engineering and virtualization to
+          software-defined networking (SDN) and high-density compute environments.
+        </p>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div
+          class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl border border-base-content/5 bg-base-100 text-primary shadow-sm"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-8 w-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.492M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold">Specialized Technical Resourcing & Deployment</h3>
+        <p class="text-base-content/70">
+          Scalable L1–L6 talent solutions engineered for complex, multi-region telecom
+          rollouts. We bridge the technical skill gap by deploying a domain-expert
+          workforce. From high-niche technical architects (L6) to scalable field
+          engineering units (L1), we provide the human capital required for operational
+          excellence.
+        </p>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div
+          class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl border border-base-content/5 bg-base-100 text-primary shadow-sm"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-8 w-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.665-4.665M5.25 5.25l2.25 3.182m0 0h3.182m-3.182 0l-3.182 3.182m0 0v-3.182m0 3.182l3.182 3.182"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold">
+          Enterprise Software Engineering & On-Demand Solutions
+        </h3>
+        <p class="text-base-content/70">
+          Bespoke digital assets and SaaS platforms tailored for government and corporate
+          scale. We build the intelligence that drives connectivity. Specializing in
+          on-demand software development, we deliver secure, high-compliance digital
+          assets—including our proprietary ERP systems—designed for the most demanding
+          regulatory environments.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Loved by 100+ Clients, backed by 100+ awards and certificates -->
+<section class="relative overflow-hidden bg-base-100 py-24">
+  <div class="container mx-auto px-6">
+    <div class="mb-16 max-w-4xl">
+      <h2 class="text-4xl leading-tight font-bold text-base-content md:text-5xl">
+        Loved by <span class="text-primary">100+</span> Clients,<br />backed by <span
+          class="text-primary">100+</span
+        > awards and certificates
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
+      <!-- Left: Awards -->
+      <div class="flex w-full flex-col items-center gap-8 lg:items-start">
+        <div
+          class="w-full overflow-hidden rounded-2xl border border-base-content/5 bg-white p-6 shadow-xl"
+        >
+          <Image
+            src={awardsImg}
+            alt="Awards and Certificates"
+            class="h-auto w-full object-contain mix-blend-multiply"
+          />
+        </div>
+        <button
+          class="btn rounded-full px-10 text-white shadow-md transition-shadow btn-primary hover:shadow-lg"
+          >View all</button
+        >
+      </div>
+
+      <!-- Right: Testimonials -->
+      <div class="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
+        <!-- Column 1 -->
+        <div class="flex flex-col gap-6">
+          <div
+            class="relative rounded-2xl border border-primary/20 bg-primary/5 p-8 shadow-sm"
+          >
+            <svg
+              class="absolute top-4 right-4 h-10 w-10 text-primary/10"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+              ></path></svg
+            >
+            <p class="relative z-10 mb-6 font-medium text-base-content/80">
+              "HTIS handled our telecom hardware deployment across multiple sites with
+              precision. Everything was delivered on time without disrupting live
+              operations."
+            </p>
+            <div class="relative z-10">
+              <p class="font-bold text-base-content">Jhon Doe</p>
+              <p class="text-sm text-base-content/60">Cisco | HOD</p>
+            </div>
+          </div>
+          <div
+            class="relative rounded-2xl border border-base-content/10 bg-base-100 p-8 shadow-sm"
+          >
+            <p class="mb-6 font-medium text-base-content/80">
+              "We deploy trained field engineers and technical teams tailored to project
+              requirements. Our manpower model is built for flexibility."
+            </p>
+            <div>
+              <p class="font-bold text-base-content">Jhon Doe</p>
+              <p class="text-sm text-base-content/60">Cisco | HOD</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="mt-0 flex flex-col gap-6 md:mt-12">
+          <div
+            class="relative rounded-2xl border border-base-content/10 bg-base-100 p-8 shadow-sm"
+          >
+            <p class="mb-6 font-medium text-base-content/80">
+              "Coordinating multi-location deployments was effortless with HTIS. Their
+              execution was consistent and met all our technical standards."
+            </p>
+            <div>
+              <p class="font-bold text-base-content">Jhon Doe</p>
+              <p class="text-sm text-base-content/60">Cisco | HOD</p>
+            </div>
+          </div>
+          <div
+            class="relative rounded-2xl border border-base-content/10 bg-base-100 p-8 shadow-sm"
+          >
+            <p class="mb-6 font-medium text-base-content/80">
+              "We deploy trained field engineers and technical teams tailored to project
+              requirements. Our manpower model is built for flexibility."
+            </p>
+            <div>
+              <p class="font-bold text-base-content">Jhon Doe</p>
+              <p class="text-sm text-base-content/60">Cisco | HOD</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+</style>

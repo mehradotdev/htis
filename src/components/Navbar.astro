@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import htisLogo from '~/assets/htis-logo.png';
 import MenuIcon from './icons/MenuIcon.astro';
+import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
 ---
 
 <div
@@ -29,7 +30,14 @@ import MenuIcon from './icons/MenuIcon.astro';
         </ul>
       </div>
       <a href="/" class="btn h-auto p-2 text-xl normal-case btn-ghost">
-        <Image src={htisLogo} alt="HTIS Logo" width={140} class="object-contain" />
+        <Image
+          src={htisLogo}
+          alt="HTIS Logo"
+          width={140}
+          id="navbar-logo"
+          class="w-[140px] object-contain transition-all duration-500"
+          style="filter: var(--filter-invert-dark)"
+        />
       </a>
     </div>
     <div class="navbar-center hidden lg:flex">
@@ -43,9 +51,17 @@ import MenuIcon from './icons/MenuIcon.astro';
         <li><a href="#">About Us</a></li>
       </ul>
     </div>
-    <div class="navbar-end">
+    <div class="navbar-end gap-2">
+      <!-- Theme Toggle -->
+      <AnimatedThemeToggler
+        client:load
+        className="btn btn-ghost btn-circle"
+        duration={500}
+        aria-label="Toggle theme"
+      />
+
       <a
-        href="#"
+        href="#contact"
         class="btn rounded-full px-6 text-lg tracking-wide text-primary-content opacity-90 shadow-md btn-primary"
         >Contact Us</a
       >
@@ -55,8 +71,10 @@ import MenuIcon from './icons/MenuIcon.astro';
 
 <script>
   function initNavbar() {
+
     function updateNavbar() {
       const navbar = document.getElementById('navbar');
+      const logo = document.getElementById('navbar-logo');
 
       if (window.scrollY > 20) {
         // Normalize classes before adding specific variants
@@ -71,8 +89,13 @@ import MenuIcon from './icons/MenuIcon.astro';
           'shadow-sm',
           'rounded-[2rem]',
           'rounded-none',
-          'py-1'
+          'py-1',
+          'min-h-[4rem]',
         );
+        
+        logo?.classList.remove('w-[140px]');
+        logo?.classList.add('w-[110px]');
+        navbar?.classList.add('min-h-[3rem]');
 
         if (window.matchMedia('(min-width: 1024px)').matches) {
           // Non-mobile: Boxy navbar - more compact and no borders
@@ -87,10 +110,10 @@ import MenuIcon from './icons/MenuIcon.astro';
         } else {
           // Mobile: full width, visible bg
           navbar?.classList.add(
-            'max-w-7xl', 
-            'bg-base-100/90', 
-            'backdrop-blur-md', 
-            'shadow-sm', 
+            'max-w-7xl',
+            'bg-base-100/90',
+            'backdrop-blur-md',
+            'shadow-sm',
             'rounded-none',
           );
         }
@@ -106,8 +129,11 @@ import MenuIcon from './icons/MenuIcon.astro';
           'shadow-sm',
           'rounded-[2rem]',
           'py-1',
+          'min-h-[3rem]',
         );
-        navbar?.classList.add('max-w-7xl', 'bg-transparent', 'rounded-none');
+        navbar?.classList.add('max-w-7xl', 'bg-transparent', 'rounded-none', 'min-h-[4rem]');
+        logo?.classList.remove('w-[110px]');
+        logo?.classList.add('w-[140px]');
       }
     }
 
