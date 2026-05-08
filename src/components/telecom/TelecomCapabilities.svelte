@@ -1,7 +1,7 @@
 <script lang="ts">
   import { untrack } from 'svelte';
   import { slide, fly } from 'svelte/transition';
-  import type { CapabilityTab } from '~/data/pageData';
+  import type { CapabilityTab } from '~/data/pageDataTelecom';
 
   let { capabilities = [], images = [] }: { capabilities?: CapabilityTab[], images?: string[] } = $props();
   
@@ -74,7 +74,10 @@
           class="tab-button flex-1 min-w-[200px] whitespace-normal py-4 px-2 text-center text-sm md:text-base transition-colors relative pb-5 {activeTab === tab.id ? 'text-primary font-semibold' : 'text-base-content/60 hover:text-base-content/80'}"
           onclick={() => { activeTab = tab.id; activeItemIndex = 0; scrollTabToActive(index); }}
         >
-          {tab.label}
+          <span class="md:hidden">{tab.shortLabel || tab.label}</span>
+          <span class="hidden md:inline">
+            {activeTab === tab.id ? tab.label : (tab.shortLabel || tab.label)}
+          </span>
           {#if activeTab === tab.id}
             <div class="absolute bottom-0 left-4 right-4 md:left-8 md:right-8 h-[3px] bg-primary rounded-t-md"></div>
           {/if}
@@ -94,6 +97,10 @@
         >
           <!-- Progress bar -->
           {#if activeItemIndex === index}
+            <div
+              class="absolute inset-y-0 left-0 bg-primary/5 animate-progress"
+              style="--duration: {AUTOPLAY_INTERVAL_MS}ms;"
+            ></div>
             <div 
               class="absolute bottom-0 left-0 h-1 bg-primary animate-progress"
               style="--duration: {AUTOPLAY_INTERVAL_MS}ms;"

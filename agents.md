@@ -29,6 +29,11 @@
 
 > If your `<script>` block in an `.astro` file is doing `querySelector` + manual class toggling + state tracking + cleanup guards, it should probably be a `.svelte` island instead.
 
+### Svelte 5 Syntax & Features
+
+- **Use Runes**: Always prefer modern Svelte 5 runes syntax (`$props`, `$state`, `$derived`, `$effect`) over the older Svelte 4 syntax (`export let`, `let x = 0`, `$: x = y`). Use the new event handler syntax (`onchange`, `onclick` instead of `on:change`, `on:click`).
+- **Built-in Transitions**: For Svelte islands, leverage Svelte's built-in transition directives (e.g., `in:fade`, `out:slide`, from `svelte/transition`) for component-level interactive animations.
+
 ### Hydration directives
 
 - Use `client:visible` for below-the-fold interactive components (preferred — lazy hydration).

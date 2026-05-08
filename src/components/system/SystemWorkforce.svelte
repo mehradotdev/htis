@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
+  import { fade } from 'svelte/transition';
   import {
     ShieldCheck,
     UserCheck,
@@ -102,16 +103,16 @@
   <div
     class="relative w-full rounded-2xl overflow-hidden bg-white/5 mb-10 aspect-video lg:aspect-[2.3/1]"
   >
-    {#each images as img, i}
-      <img
-        src={img}
-        alt="Platform Preview"
-        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 {activeIndex ===
-        i
-          ? 'opacity-100 z-10'
-          : 'opacity-0 z-0'}"
-      />
-    {/each}
+    {#key activeIndex}
+      {#if images.length > 0}
+        <img
+          src={images[activeIndex] || images[0]}
+          alt="Platform Preview"
+          class="absolute inset-0 w-full h-full object-cover"
+          transition:fade={{ duration: 700 }}
+        />
+      {/if}
+    {/key}
   </div>
 
   <!-- Bottom Section -->

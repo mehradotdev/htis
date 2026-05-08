@@ -1,57 +1,31 @@
 ---
 import { Image } from 'astro:assets';
-import infoImg from '~/assets/lob-telecom-info.png';
 import awardsImg from '~/assets/lob-telecom-awards.png';
-import { telecomProcesses } from '~/data/pageData';
+import infoImg1 from '~/assets/lob-telecom-info-1.png';
+import infoImg2 from '~/assets/lob-telecom-info-2.png';
+import infoImg3 from '~/assets/lob-telecom-info-3.png';
+import infoImg4 from '~/assets/lob-telecom-info-4.png';
+import infoImg5 from '~/assets/lob-telecom-info-5.png';
+import infoImg6 from '~/assets/lob-telecom-info-6.png';
+import infoImg7 from '~/assets/lob-telecom-info-7.png';
+import { telecomProcesses } from '~/data/pageDataTelecom';
 import { ArrowUpRight, Network, Users, Code, Quote } from '@lucide/astro';
+import TelecomProcesses from './TelecomProcesses.svelte';
+import TelecomMetrics from './TelecomMetrics.svelte';
+
+const processImages = [
+  infoImg1.src,
+  infoImg2.src,
+  infoImg3.src,
+  infoImg4.src,
+  infoImg5.src,
+  infoImg6.src,
+  infoImg7.src,
+];
 ---
 
 <!-- 1. Telecom Processes - Blueprint to Reality -->
-<section class="relative bg-base-200/30 py-24">
-  <div class="container mx-auto px-6">
-    <h2 class="mb-16 text-center text-4xl font-bold text-base-content md:text-5xl">
-      Telecom Processes - Blueprint to Reality
-    </h2>
-    <div class="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
-      <div class="join join-vertical w-full bg-base-100 shadow-xl">
-        {
-          telecomProcesses.map((process, i) => (
-            <div class="collapse-arrow collapse join-item border border-base-content/10">
-              {/* <input type="radio" name="telecom-processes" checked={i === 0} /> */}
-              <input type="checkbox" checked={i === 0} />
-              <div class="collapse-title text-lg font-semibold text-base-content/80 md:text-xl">
-                <span class="mr-2 font-bold text-primary">{process.id}</span>
-                {process.title}
-              </div>
-              <div class="collapse-content text-base-content/70">
-                <p class="mb-4 leading-relaxed">{process.description}</p>
-                <ul class="flex flex-col gap-3">
-                  {process.details.map((detail) => (
-                    <li class="text-sm">
-                      <strong class="font-medium text-base-content/90">
-                        {detail.name}:
-                      </strong>{' '}
-                      {detail.desc}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-      <div
-        class="sticky top-28 aspect-4/3 w-full overflow-hidden rounded-2xl shadow-xl lg:aspect-auto lg:h-[600px]"
-      >
-        <Image
-          src={infoImg}
-          alt="Telecom Projects"
-          class="h-full w-full object-cover object-center"
-        />
-      </div>
-    </div>
-  </div>
-</section>
+<TelecomProcesses processes={telecomProcesses} images={processImages} client:visible />
 
 <!-- 2. Proven Network Deployments -->
 <section class="relative bg-base-100 py-24">
@@ -128,7 +102,7 @@ import { ArrowUpRight, Network, Users, Code, Quote } from '@lucide/astro';
 </section>
 
 <!-- 3. Built to Execute. Scaled to Deliver. -->
-<section class="relative bg-base-200/30 py-24">
+<section class="relative bg-base-200/50 py-24">
   <div class="container mx-auto px-6">
     <div class="mb-16 max-w-2xl">
       <h2 class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl">
@@ -137,49 +111,13 @@ import { ArrowUpRight, Network, Users, Code, Quote } from '@lucide/astro';
     </div>
 
     <!-- Stats -->
-    <div
-      class="mb-20 grid grid-cols-2 gap-8 border-b border-base-content/10 pb-16 md:grid-cols-3 lg:grid-cols-5 lg:gap-6"
-    >
-      <div class="flex flex-col gap-2">
-        <span class="text-5xl font-bold text-primary md:text-6xl"
-          >1.2M<span class="text-4xl md:text-5xl">+</span></span
-        >
-        <span class="font-medium text-base-content/70">Sites Deployed</span>
-      </div>
-      <div class="flex flex-col gap-2">
-        <span class="text-5xl font-bold text-primary md:text-6xl"
-          >250K<span class="text-4xl md:text-5xl">+</span></span
-        >
-        <span class="font-medium text-base-content/70">Routers Deployed</span>
-      </div>
-      <div class="flex flex-col gap-2">
-        <span class="text-5xl font-bold text-primary md:text-6xl"
-          >16<span class="text-4xl md:text-5xl">+</span></span
-        >
-        <span class="font-medium text-base-content/70">Telecom Circles (India)</span>
-      </div>
-      <div class="flex flex-col gap-2">
-        <span class="text-5xl font-bold text-primary md:text-6xl"
-          >8<span class="text-4xl md:text-5xl">+</span></span
-        >
-        <div class="flex flex-col">
-          <span class="font-medium text-base-content/70">Countries Served</span>
-          <span class="mt-1 text-xs leading-relaxed text-base-content/50">
-            India, Bangladesh, Nepal, Sri Lanka, South Africa, UK, Nigeria, CAR
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col gap-2">
-        <span class="text-5xl font-bold text-primary md:text-6xl"
-          >3<span class="text-4xl font-light text-primary/60 md:text-5xl">/4</span></span
-        >
-        <span class="font-medium text-base-content/70">Major Operators Served</span>
-      </div>
-    </div>
+    <TelecomMetrics client:visible />
 
     <!-- Pillars -->
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
-      <div class="flex flex-col gap-4">
+    <div
+      class="mt-16 grid grid-cols-1 border-y-2 border-base-content/20 py-12 md:grid-cols-3 lg:mt-20 lg:py-16"
+    >
+      <div class="flex flex-col gap-4 pb-12 md:pr-10 md:pb-0 lg:pr-14">
         <div
           class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl border border-base-content/5 bg-base-100 text-primary shadow-sm"
         >
@@ -188,21 +126,23 @@ import { ArrowUpRight, Network, Users, Code, Quote } from '@lucide/astro';
         <h3 class="text-xl font-bold">
           Converged IT Infrastructure & Systems Integration
         </h3>
-        <p class="text-base-content/70">
+        <p class="text-lg text-base-content/70">
           Architecting the high-availability IT fabrics that power mission-critical
           network operations. We provide the end-to-end IT backbone for modern Telcos,
           ranging from Tier III/IV Data Center engineering and virtualization to
           software-defined networking (SDN) and high-density compute environments.
         </p>
       </div>
-      <div class="flex flex-col gap-4">
+      <div
+        class="flex flex-col gap-4 border-y-2 border-base-content/20 py-12 md:border-x-2 md:border-y-0 md:px-10 md:py-0 lg:px-14"
+      >
         <div
           class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl border border-base-content/5 bg-base-100 text-primary shadow-sm"
         >
           <Users class="h-8 w-8" />
         </div>
         <h3 class="text-xl font-bold">Specialized Technical Resourcing & Deployment</h3>
-        <p class="text-base-content/70">
+        <p class="text-lg text-base-content/70">
           Scalable L1–L6 talent solutions engineered for complex, multi-region telecom
           rollouts. We bridge the technical skill gap by deploying a domain-expert
           workforce. From high-niche technical architects (L6) to scalable field
@@ -210,7 +150,7 @@ import { ArrowUpRight, Network, Users, Code, Quote } from '@lucide/astro';
           excellence.
         </p>
       </div>
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4 pt-12 md:pt-0 md:pl-10 lg:pl-14">
         <div
           class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl border border-base-content/5 bg-base-100 text-primary shadow-sm"
         >
@@ -219,7 +159,7 @@ import { ArrowUpRight, Network, Users, Code, Quote } from '@lucide/astro';
         <h3 class="text-xl font-bold">
           Enterprise Software Engineering & On-Demand Solutions
         </h3>
-        <p class="text-base-content/70">
+        <p class="text-lg text-base-content/70">
           Bespoke digital assets and SaaS platforms tailored for government and corporate
           scale. We build the intelligence that drives connectivity. Specializing in
           on-demand software development, we deliver secure, high-compliance digital
@@ -232,7 +172,7 @@ import { ArrowUpRight, Network, Users, Code, Quote } from '@lucide/astro';
 </section>
 
 <!-- 4. Loved by 100+ Clients, backed by 100+ awards and certificates -->
-<section class="relative overflow-hidden bg-base-100 py-24">
+<section class="relative overflow-hidden bg-base-200/30 py-24">
   <div class="container mx-auto px-6">
     <div class="mb-16 max-w-4xl">
       <h2 class="text-4xl leading-tight font-bold text-base-content md:text-5xl">
