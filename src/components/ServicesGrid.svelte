@@ -3,6 +3,7 @@
   let gridRef = $state();
 
   import { servicesData as services } from '../data/pageData';
+  import { ArrowRight } from '@lucide/svelte';
 
   // 5x5 geometric grid mapping - Perfect 4x4 Expanded Square
   const stateLayouts = {
@@ -173,9 +174,9 @@
     {@const pos = stateLayouts[active].titles[service.id]}
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <svelte:element
-      this={service.id === 'telecom' ? 'a' : 'button'}
-      href={service.id === 'telecom' ? '/telecom' : undefined}
-      type={service.id === 'telecom' ? undefined : 'button'}
+      this={['telecom', 'system'].includes(service.id) ? 'a' : 'button'}
+      href={service.id === 'telecom' ? '/telecom' : service.id === 'system' ? '/system-integrations' : undefined}
+      type={['telecom', 'system'].includes(service.id) ? undefined : 'button'}
       class="grid-block flex cursor-pointer no-underline transition-all duration-700 ease-in-out hover:bg-base-100/90 hover:shadow-lg bg-base-100/70 backdrop-blur-md p-6 md:p-8 {mobileOrder[
         service.id
       ]} {getBorders(pos.c, pos.r, pos.cs, pos.rs, 'title', 0)} {active === service.id
@@ -210,20 +211,7 @@
           ? '-rotate-45'
           : 'rotate-0'}"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-          class="w-4 h-4"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-          />
-        </svg>
+        <ArrowRight class="w-4 h-4" />
       </div>
     </svelte:element>
   {/each}
@@ -240,6 +228,7 @@
       >
         {#each service.icons as icon, idx}
           {@const pos = stateLayouts[active].icons[idx]}
+          {@const Icon = icon.icon}
           <div
             class="grid-block flex flex-col items-center justify-center p-4 text-center bg-base-100/70 backdrop-blur-md md:transition-all md:duration-700 ease-in-out {getBorders(
               pos.c,
@@ -253,16 +242,9 @@
               : 'md:opacity-0 md:pointer-events-none'}"
             style={getStyle(pos.c, pos.r)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="mb-2 h-8 w-8 text-primary"
-            >
-              {@html icon.svg}
-            </svg>
+            <div class="mb-2 text-primary">
+              <Icon size={32} />
+            </div>
             <span class="text-xs font-medium text-base-content/70"
               >{@html icon.label}</span
             >
