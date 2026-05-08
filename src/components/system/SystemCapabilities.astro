@@ -1,0 +1,82 @@
+---
+import {
+  Server,
+  Network,
+  Cloud,
+  ShieldCheck,
+  Cctv,
+  Monitor,
+  Briefcase,
+  UserPlus,
+} from '@lucide/astro';
+
+const capabilities = [
+  {
+    title: 'Converged Infrastructure & Data Center Stack',
+    desc: 'High-availability compute and storage architectures from the core to the edge.',
+    icon: Server,
+  },
+  {
+    title: 'Adaptive Networking & Secure Connectivity',
+    desc: 'Intelligent LAN, WAN, and Campus fabrics designed for seamless, high-speed data flow.',
+    icon: Network,
+  },
+  {
+    title: 'Hybrid Cloud & Digital Workspace',
+    desc: 'Transitioning traditional environments into elastic, cloud-native modern workplaces.',
+    icon: Cloud,
+  },
+  {
+    title: 'Unified Cyber-Defense & Resilience',
+    desc: 'Perimeter-to-Endpoint security frameworks to mitigate modern threat landscapes.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Environmental Control & Physical Security',
+    desc: 'Critical infrastructure protection including surveillance, power, and thermal management.',
+    icon: Cctv,
+  },
+  {
+    title: 'Professional Compute & Visual Systems',
+    desc: 'Specialized hardware and immersive AV/VC solutions for the modern enterprise.',
+    icon: Monitor,
+  },
+  {
+    title: 'Managed Lifecycle & ICT Projects',
+    desc: 'Comprehensive service models ensuring long-term operational continuity.',
+    icon: Briefcase,
+  },
+  {
+    title: 'Plus Thousands more Skills',
+    desc: 'Whatever skill or specialization your business requires, we have the top talent to meet your needs.',
+    colSpan: true,
+    icon: UserPlus,
+  },
+];
+---
+
+<div
+  class="grid grid-cols-1 gap-[1px] overflow-hidden rounded-2xl border border-base-content/10 bg-base-content/10 shadow-sm md:grid-cols-2 lg:grid-cols-3"
+>
+  {
+    capabilities.map((cap, idx) => {
+      const Icon = cap.icon;
+      return (
+        <div
+          class:list={[
+            'flex flex-col items-start bg-base-100/60 p-8 backdrop-blur-md transition-colors hover:bg-base-100/90',
+            cap.colSpan && 'lg:col-span-2',
+          ]}
+        >
+          {Icon && (
+            <div class="mb-4 rounded-xl bg-primary/10 p-3 text-primary">
+              <Icon class="h-8 w-8" />
+            </div>
+          )}
+          <h3 class="mb-2 text-xl font-bold text-base-content">{cap.title}</h3>
+          <p class="text-sm leading-relaxed text-base-content/70">{cap.desc}</p>
+        </div>
+      );
+    })
+  }
+</div>

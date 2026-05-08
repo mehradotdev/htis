@@ -1,0 +1,129 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/Layout.astro';
+import Navbar from '~/components/Navbar.astro';
+import Footer from '~/components/Footer.astro';
+import SystemCapabilities from '~/components/system/SystemCapabilities.astro';
+
+import heroLeftBg from '~/assets/lob-system-hero-left-bg.png';
+import heroRightBg from '~/assets/lob-system-hero-right-bg.png';
+import bgImage from '~/assets/team-member-bg.png';
+import SystemExtraSections from '~/components/system/SystemExtraSections.astro';
+---
+
+<Layout title="System Integrations - HTIS">
+  <div class="relative w-full overflow-clip">
+    <Navbar />
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-16">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col gap-6 lg:flex-row lg:gap-8">
+          <!-- Left part -->
+          <div
+            class="relative flex w-full items-center overflow-hidden rounded-[2rem] bg-base-200 lg:w-1/2"
+          >
+            <div class="absolute inset-0 z-0 opacity-40">
+              <Image
+                src={heroLeftBg}
+                alt=""
+                aria-hidden="true"
+                class="h-full w-full object-cover object-bottom"
+                style="filter: var(--filter-invert-dark)"
+              />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-base-200/50 to-transparent lg:hidden"
+            >
+            </div>
+            <div class="relative z-10 w-full px-8 py-16 md:px-12 lg:px-16 lg:py-24">
+              <h1
+                class="mb-6 max-w-lg text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-[54px]"
+              >
+                System Integration & IT Infrastructure: The Core to Edge Journey
+              </h1>
+              <p class="mb-10 max-w-lg text-xl font-medium text-base-content/80">
+                We don't just deploy hardware; we architect the digital nervous systems of
+                modern enterprises. Our System Integration vertical bridges the gap
+                between high-performance physical infrastructure and cognitive digital
+                operations.
+              </p>
+              <a
+                href="/#contact"
+                class="btn h-auto rounded-full border-none px-10 py-3 text-base text-white shadow-lg transition-transform btn-primary hover:scale-105"
+              >
+                Contact us
+              </a>
+            </div>
+          </div>
+          <!-- Right part -->
+          <div
+            class="relative min-h-[400px] w-full overflow-hidden rounded-[2rem] lg:min-h-[600px] lg:w-1/2"
+          >
+            <div class="absolute inset-0 z-0">
+              <Image
+                src={heroRightBg}
+                alt=""
+                aria-hidden="true"
+                class="h-full w-full object-cover"
+              />
+            </div>
+            <!-- Gradient overlay for text -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#1b153b]/90 via-[#1b153b]/20 to-transparent"
+            >
+            </div>
+            <div class="relative z-10 flex h-full items-end p-8 md:p-12 lg:pb-16">
+              <div>
+                <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+                  "Hire, manage, pay,<br />anyone, anywhere."
+                </h2>
+                <p class="text-xl text-white/80">-Jhon Doe, Cisco</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section class="relative overflow-hidden bg-base-100 py-24">
+      <!-- Background Image -->
+      <div
+        class="pointer-events-none absolute inset-0 z-0 opacity-40 mix-blend-luminosity dark:mix-blend-overlay"
+      >
+        <Image
+          src={bgImage}
+          alt=""
+          aria-hidden="true"
+          class="h-full w-full object-cover object-center"
+          style="filter: var(--filter-invert-dark)"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-base-100/80 via-transparent to-base-100"
+        >
+        </div>
+      </div>
+
+      <div class="relative z-10 container mx-auto px-6">
+        <div class="mb-16 max-w-3xl">
+          <h2 class="mb-6 text-4xl font-bold text-base-content md:text-5xl">
+            Our Capabilities
+          </h2>
+          <p class="text-lg font-medium text-base-content/70">
+            A structured approach to deploying, optimizing, and supporting telecom
+            networks across every stage.
+          </p>
+        </div>
+
+        <SystemCapabilities />
+      </div>
+    </section>
+
+    <SystemExtraSections />
+
+    <div class="bg-base-200/50 pt-16 md:pt-32">
+      <Footer />
+    </div>
+  </div>
+</Layout>

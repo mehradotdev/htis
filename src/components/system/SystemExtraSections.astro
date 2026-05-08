@@ -1,0 +1,167 @@
+---
+import { Image } from 'astro:assets';
+import SystemWorkforce from './SystemWorkforce.svelte';
+import SystemMetrics from './SystemMetrics.svelte';
+import { Users, Wrench, Maximize, UserCheck } from '@lucide/astro';
+
+import team1 from '~/assets/lob-system-construction-1.png';
+import team2 from '~/assets/lob-system-construction-2.png';
+import team3 from '~/assets/lob-system-construction-3.png';
+
+import wf1 from '~/assets/lob-system-workforce-1.png';
+import wf2 from '~/assets/lob-system-workforce-2.png';
+import wf3 from '~/assets/lob-system-workforce-3.png';
+const workforceImages = [wf1.src, wf2.src, wf3.src];
+
+import cs1 from '~/assets/lob-system-case-study-1.png';
+import cs2 from '~/assets/lob-system-case-study-2.png';
+import cs3 from '~/assets/lob-system-case-study-3.png';
+---
+
+<!-- 1. Build Amazing Teams, On Demand -->
+<section class="relative bg-base-200/50 py-24">
+  <div class="container mx-auto px-6">
+    <div class="mb-16">
+      <h2 class="mb-4 text-4xl font-bold text-base-content md:text-5xl">
+        Build Amazing Teams, On Demand
+      </h2>
+      <p class="text-lg text-base-content/70">
+        A structured approach to deploying, optimizing, and supporting telecom networks
+        across every stage.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
+        <div class="flex flex-col gap-4">
+          <Users class="h-12 w-12 text-[#60B68C]" />
+          <h3 class="text-xl font-bold text-base-content">Hire Quickly</h3>
+          <p class="text-base-content/70">
+            Hire in under 48 hours. Scale up or down, no strings attached. We offer
+            flexible engagements from hourly to full-time.
+          </p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <Wrench class="h-12 w-12 text-[#60B68C]" />
+          <h3 class="text-xl font-bold text-base-content">The Top 3%</h3>
+          <p class="text-base-content/70">
+            Every applicant to the platform is rigorously tested and vetted. Our highly
+            selective process leads to a 98% trial-to-hire success rate.
+          </p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <Maximize class="h-12 w-12 text-[#60B68C]" />
+          <h3 class="text-xl font-bold text-base-content">Leading the Future of Work</h3>
+          <p class="text-base-content/70">
+            Hire in under 48 hours. Scale up or down, no strings attached. We offer
+            flexible engagements from hourly to full-time.
+          </p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <UserCheck class="h-12 w-12 text-[#60B68C]" />
+          <h3 class="text-xl font-bold text-base-content">Hire Quickly</h3>
+          <p class="text-base-content/70">
+            Hire in under 48 hours. Scale up or down, no strings attached. We offer
+            flexible engagements from hourly to full-time.
+          </p>
+        </div>
+      </div>
+
+      <div class="relative mt-10 h-[400px] w-full md:h-[500px] lg:mt-0">
+        <div
+          class="absolute top-0 right-0 z-10 h-48 w-2/3 overflow-hidden rounded-xl border-4 border-base-100 shadow-lg md:h-64"
+        >
+          <Image src={team1} alt="Team Working" class="h-full w-full object-cover" />
+        </div>
+        <div
+          class="absolute right-8 bottom-0 z-30 h-48 w-2/3 overflow-hidden rounded-xl border-4 border-base-100 shadow-xl md:right-12 md:h-64"
+        >
+          <Image src={team2} alt="Team Planning" class="h-full w-full object-cover" />
+        </div>
+        <div
+          class="absolute top-24 left-0 z-20 h-48 w-2/3 overflow-hidden rounded-xl border-4 border-base-100 shadow-md md:top-32 md:h-64"
+        >
+          <Image src={team3} alt="Team Discussion" class="h-full w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. One modern experience for today's workforce -->
+<section class="relative bg-base-100 py-24">
+  <div class="container mx-auto px-6">
+    <SystemWorkforce images={workforceImages} client:visible />
+  </div>
+</section>
+
+<!-- 3. Metrics and 4. Case Studies -->
+<section class="relative bg-base-200/30 py-24">
+  <div class="container mx-auto px-6">
+    <SystemMetrics client:visible />
+
+    <div class="mt-16">
+      <h3 class="mb-10 text-3xl font-bold text-[#3A5D4A] text-base-content md:text-4xl">
+        Collaboration with Leading Brands
+      </h3>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div
+          class="flex flex-col overflow-hidden rounded-2xl border border-base-content/10 bg-base-100 shadow-sm"
+        >
+          <div class="aspect-[4/3] w-full overflow-hidden bg-base-200 md:aspect-video">
+            <Image src={cs1} alt="Case Study 1" class="h-full w-full object-cover" />
+          </div>
+          <div class="flex flex-1 flex-col gap-6 p-8">
+            <p class="text-lg font-medium text-base-content/80">
+              Deployed multi-level technical manpower for nationwide telecom rollout
+              across multiple circle
+            </p>
+            <a
+              href="#"
+              class="mt-auto flex items-center gap-1 font-medium text-[#60B68C] hover:underline"
+              >Read Full case-study <span aria-hidden="true">&rarr;</span></a
+            >
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col overflow-hidden rounded-2xl border border-base-content/10 bg-base-100 shadow-sm"
+        >
+          <div class="aspect-[4/3] w-full overflow-hidden bg-base-200 md:aspect-video">
+            <Image src={cs2} alt="Case Study 2" class="h-full w-full object-cover" />
+          </div>
+          <div class="flex flex-1 flex-col gap-6 p-8">
+            <p class="text-lg font-medium text-base-content/80">
+              Deployed multi-level technical manpower for nationwide telecom rollout
+              across multiple circle
+            </p>
+            <a
+              href="#"
+              class="mt-auto flex items-center gap-1 font-medium text-[#60B68C] hover:underline"
+              >Read Full case-study <span aria-hidden="true">&rarr;</span></a
+            >
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col overflow-hidden rounded-2xl border border-base-content/10 bg-base-100 shadow-sm"
+        >
+          <div class="aspect-[4/3] w-full overflow-hidden bg-base-200 md:aspect-video">
+            <Image src={cs3} alt="Case Study 3" class="h-full w-full object-cover" />
+          </div>
+          <div class="flex flex-1 flex-col gap-6 p-8">
+            <p class="text-lg font-medium text-base-content/80">
+              Deployed multi-level technical manpower for nationwide telecom rollout
+              across multiple circle
+            </p>
+            <a
+              href="#"
+              class="mt-auto flex items-center gap-1 font-medium text-[#60B68C] hover:underline"
+              >Read Full case-study <span aria-hidden="true">&rarr;</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
