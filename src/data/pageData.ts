@@ -225,6 +225,7 @@ export interface ServiceStat {
 export interface ServiceIcon {
   icon: any;
   label: string;
+  description: string;
 }
 
 export interface ServiceData {
@@ -247,27 +248,39 @@ export const servicesData: ServiceData[] = [
     icons: [
       {
         icon: Wifi,
-        label: 'Wireless<br/>Solutions',
+        label: '5G Core & IMS',
+        description:
+          'Service-Based Architecture (SBA) and VoLTE/VoNR cloud-native deployment.',
       },
       {
         icon: ShieldCheck,
-        label: 'Network<br/>Security',
+        label: 'Packet Core Ops',
+        description:
+          'Management of EPC, PCRF, and GI-LAN for high-throughput user-plane traffic.',
       },
       {
         icon: Cable,
-        label: 'Fiber<br/>Deployment',
+        label: 'IP/MPLS Transport',
+        description:
+          'Advanced routing, segment routing (SRv6), and high-capacity backhaul engineering.',
       },
       {
         icon: Radio,
-        label: 'RF<br/>Engineering',
+        label: 'RF & Wireless Design',
+        description:
+          'Precision radio frequency planning, 4G/5G site surveys, and coverage optimization.',
       },
       {
         icon: Headset,
-        label: 'AMC<br/>Support',
+        label: 'Compliance & IPDR',
+        description:
+          'Automated IP Detail Record generation and regulatory data retention systems.',
       },
       {
         icon: Wrench,
-        label: 'Telecom<br/>Maintenance',
+        label: 'Managed Maintenance',
+        description:
+          '24/7 proactive NOC support and comprehensive AMC for multi-vendor hardware.',
       },
     ],
   },
@@ -283,27 +296,39 @@ export const servicesData: ServiceData[] = [
     icons: [
       {
         icon: Users,
-        label: 'IT Staff<br/>Augmentation',
+        label: 'L1–L6 Talent Hub',
+        description:
+          'Full-spectrum resourcing from field technicians to senior system architects.',
       },
       {
         icon: Clock,
-        label: 'Temporary<br/>Hiring',
+        label: 'Niche Engineering',
+        description:
+          'Sourcing specialized experts for Packet Core, Cybersecurity, and Cloud migration.',
       },
       {
         icon: UserSearch,
-        label: 'Executive<br/>Search',
+        label: 'Project-Task Units',
+        description:
+          'Ready-to-deploy technical teams for task-based execution and site rollouts.',
       },
       {
         icon: FileSignature,
-        label: 'Contract to<br/>Hire',
+        label: 'Executive Search',
+        description:
+          'Targeted leadership hiring for high-stakes digital transformation projects.',
       },
       {
         icon: CircleDollarSign,
-        label: 'Payroll<br/>Management',
+        label: 'Staff Augmentation',
+        description:
+          'Flexible, scalable technical manpower to bridge immediate skill gaps.',
       },
       {
         icon: Network,
-        label: 'Project<br/>Teams',
+        label: 'Managed Compliance',
+        description:
+          'End-to-end payroll, insurance, and regulatory management for workforce stability.',
       },
     ],
   },
@@ -319,27 +344,38 @@ export const servicesData: ServiceData[] = [
     icons: [
       {
         icon: Code,
-        label: 'Custom<br/>Software',
+        label: 'UI/UX Strategy',
+        description:
+          'Human-centric interface design for high-complexity enterprise systems.',
       },
       {
         icon: Smartphone,
-        label: 'App<br/>Development',
+        label: 'Backend & API',
+        description:
+          'Scalable, high-performance architectures for real-time data processing.',
       },
       {
         icon: Cloud,
-        label: 'Cloud<br/>Solutions',
+        label: 'Enterprise ERP',
+        description:
+          ' Integrated resource planning ecosystems (wfms™) for operational control.',
       },
       {
         icon: Database,
-        label: 'Database<br/>Design',
+        label: 'On-Demand SaaS',
+        description: 'Cloud-native, multi-tenant platforms built for industrial scale.',
       },
       {
         icon: Monitor,
-        label: 'Web<br/>Applications',
+        label: 'Sovereign Portals',
+        description:
+          'High-compliance digital assets tailored for Government & Public Sector.',
       },
       {
         icon: CheckSquare,
-        label: 'QA &<br/>Testing',
+        label: 'DevSecOps',
+        description:
+          'Automated QA and secure deployment pipelines for zero-vulnerability code.',
       },
     ],
   },
@@ -355,27 +391,36 @@ export const servicesData: ServiceData[] = [
     icons: [
       {
         icon: Blocks,
-        label: 'API<br/>Integration',
+        label: 'Hybrid Cloud',
+        description:
+          'Orchestrating elastic workloads across private and public cloud fabrics.',
       },
       {
         icon: Cpu,
-        label: 'IoT<br/>Solutions',
+        label: 'Cyber-Defense',
+        description: 'Next-gen perimeter security, XDR, and Zero-Trust architectures.',
       },
       {
         icon: RefreshCw,
-        label: 'Legacy<br/>Modernization',
+        label: 'Data Center Stack',
+        description: 'End-to-end turnkey engineering from compute to virtualization.',
       },
       {
         icon: Server,
-        label: 'Data<br/>Center',
+        label: 'IP Surveillance',
+        description:
+          'Integrated high-definition monitoring and AI-driven access control.',
       },
       {
         icon: Shield,
-        label: 'Security<br/>Systems',
+        label: 'Fire & Power',
+        description: 'Mission-critical fire suppression and UPS/Power backup ecosystems.',
       },
       {
         icon: Building2,
-        label: 'Enterprise<br/>Systems',
+        label: 'Sovereign Security',
+        description:
+          'National-level compliance and data residency infrastructure solutions.',
       },
     ],
   },

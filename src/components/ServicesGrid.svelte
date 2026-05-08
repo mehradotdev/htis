@@ -1,6 +1,7 @@
 <script>
   let active = $state('collapsed');
   let gridRef = $state();
+  let activeTooltip = $state(null);
 
   import { servicesData as services } from '../data/pageData';
   import { ArrowRight } from '@lucide/svelte';
@@ -229,8 +230,15 @@
         {#each service.icons as icon, idx}
           {@const pos = stateLayouts[active].icons[idx]}
           {@const Icon = icon.icon}
-          <div
-            class="grid-block flex flex-col items-center justify-center p-4 text-center bg-base-100/70 backdrop-blur-md md:transition-all md:duration-700 ease-in-out {getBorders(
+          <button
+            type="button"
+            onclick={(e) => {
+              e.stopPropagation();
+              activeTooltip = activeTooltip === `${service.id}-${idx}` ? null : `${service.id}-${idx}`;
+            }}
+            onmouseleave={() => { activeTooltip = null; }}
+            onblur={() => { activeTooltip = null; }}
+            class="grid-block tooltip tooltip-primary flex flex-col items-center justify-center p-4 text-center bg-base-100/70 backdrop-blur-md md:transition-all md:duration-700 ease-in-out {getBorders(
               pos.c,
               pos.r,
               1,
@@ -239,8 +247,9 @@
               idx,
             )} {active === service.id
               ? 'md:opacity-100 md:pointer-events-auto'
-              : 'md:opacity-0 md:pointer-events-none'}"
+              : 'md:opacity-0 md:pointer-events-none'} {activeTooltip === `${service.id}-${idx}` ? 'tooltip-open' : ''}"
             style={getStyle(pos.c, pos.r)}
+            data-tip={icon.description}
           >
             <div class="mb-2 text-primary">
               <Icon size={32} />
@@ -248,7 +257,7 @@
             <span class="text-xs font-medium text-base-content/70"
               >{@html icon.label}</span
             >
-          </div>
+          </button>
         {/each}
       </div>
     {/each}
