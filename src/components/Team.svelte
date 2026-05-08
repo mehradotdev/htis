@@ -17,10 +17,11 @@
     <img
       src={bgImageSrc}
       alt=""
+      aria-hidden="true"
       class="h-full w-full object-cover opacity-60 mix-blend-luminosity"
     />
     <div
-      class="absolute inset-0 bg-gradient-to-t from-base-200 via-base-100/60 to-base-100/20"
+      class="absolute inset-0 bg-linear-to-t from-base-200 via-base-100/60 to-base-100/20"
     ></div>
   </div>
 

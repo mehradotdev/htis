@@ -143,6 +143,12 @@
   }
 
   $effect(() => {
+    // Open by default on mobile, no observer needed
+    if (window.innerWidth < 768) {
+      if (active === 'collapsed') active = 'telecom';
+      return;
+    }
+
     if (!gridRef) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -165,8 +171,12 @@
   </div>
   {#each services as service}
     {@const pos = stateLayouts[active].titles[service.id]}
-    <button
-      class="grid-block flex cursor-pointer transition-all duration-700 ease-in-out hover:bg-base-100/90 hover:shadow-lg bg-base-100/70 backdrop-blur-md p-6 md:p-8 {mobileOrder[
+    <!-- svelte-ignore a11y_no_static_element_interactions -->
+    <svelte:element
+      this={service.id === 'telecom' ? 'a' : 'button'}
+      href={service.id === 'telecom' ? '/telecom' : undefined}
+      type={service.id === 'telecom' ? undefined : 'button'}
+      class="grid-block flex cursor-pointer no-underline transition-all duration-700 ease-in-out hover:bg-base-100/90 hover:shadow-lg bg-base-100/70 backdrop-blur-md p-6 md:p-8 {mobileOrder[
         service.id
       ]} {getBorders(pos.c, pos.r, pos.cs, pos.rs, 'title', 0)} {active === service.id
         ? 'flex-row items-center justify-between text-left'
@@ -174,10 +184,9 @@
       style={getStyle(pos.c, pos.r, pos.cs, pos.rs)}
       onmouseenter={() => (active = service.id)}
       onfocus={() => (active = service.id)}
-      onclick={() => {
-        if (active === service.id) {
-          if (service.id === 'telecom') window.location.href = '/telecom';
-        } else {
+      onclick={(e) => {
+        if (active !== service.id) {
+          e.preventDefault();
           active = service.id;
         }
       }}
@@ -216,13 +225,14 @@
           />
         </svg>
       </div>
-    </button>
+    </svelte:element>
   {/each}
 
   <!-- Icons Drawer -->
   <div class="relative w-full h-[250px] md:h-auto md:contents {mobileOrder.icons}">
     {#each services as service}
       <div
+        aria-hidden={active !== service.id}
         class="absolute inset-0 grid grid-cols-3 grid-rows-2 md:static md:contents transition-opacity duration-700 {active ===
         service.id
           ? 'opacity-100 z-10 pointer-events-auto'
@@ -266,6 +276,7 @@
   <div class="relative w-full h-[390px] md:h-auto md:contents {mobileOrder.stats}">
     {#each services as service}
       <div
+        aria-hidden={active !== service.id}
         class="absolute inset-0 flex flex-col md:contents transition-opacity duration-700 {active ===
         service.id
           ? 'opacity-100 z-10 pointer-events-auto'

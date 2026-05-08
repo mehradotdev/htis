@@ -26,11 +26,14 @@ const { title = 'HTIS - Delivering Excellence in System Integrations' } = Astro.
     />
     <script is:inline>
       // Apply saved theme before first paint to avoid flash
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      } else {
-        document.documentElement.setAttribute('data-theme', 'htis-theme');
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      } catch (e) {
+        console.error('LocalStorage access failed:', e);
+        // Storage is blocked or restricted; default theme is already set on the <html> tag.
       }
     </script>
   </head>

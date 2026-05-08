@@ -51,7 +51,12 @@
       isDark = newTheme;
       const themeValue = newTheme ? DARK_THEME : LIGHT_THEME;
       document.documentElement.setAttribute('data-theme', themeValue);
-      localStorage.setItem(STORAGE_KEY, themeValue);
+      try {
+        localStorage.setItem(STORAGE_KEY, themeValue);
+      } catch (e) {
+        console.error('LocalStorage access failed:', e);
+        // Storage is blocked or restricted
+      }
       await tick();
     };
 
@@ -63,7 +68,7 @@
     const root = document.documentElement;
     root.dataset.magicuiThemeVt = 'active';
     root.style.setProperty('--magicui-theme-toggle-vt-duration', `${duration}ms`);
-    
+
     const cleanup = () => {
       delete root.dataset.magicuiThemeVt;
       root.style.removeProperty('--magicui-theme-toggle-vt-duration');
@@ -107,6 +112,7 @@
   type="button"
   bind:this={buttonRef}
   onclick={toggleTheme}
+  aria-pressed={isDark}
   class={className}
   {...restProps}
 >

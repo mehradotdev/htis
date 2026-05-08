@@ -183,7 +183,7 @@
             <div class="relative flex h-10 w-10 items-center justify-center">
               {#if activeIndex === index}
                 <div
-                  class="h-4 w-4 rounded-full border-[3px] border-primary bg-white shadow-[0_0_12px_rgba(42,69,61,0.4)]"
+                  class="h-4 w-4 rounded-full border-[3px] border-primary bg-base-100 shadow-[0_0_12px_rgba(42,69,61,0.4)]"
                 ></div>
               {:else}
                 <div
