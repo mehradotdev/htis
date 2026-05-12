@@ -1,0 +1,174 @@
+---
+import { Image } from 'astro:assets';
+import { Quote, ArrowRight } from '@lucide/astro';
+import awardsImg from '~/assets/lob-telecom-awards.png';
+
+const testimonialsCol1 = [
+  {
+    quote:
+      'HTIS handled our telecom hardware deployment across multiple sites with precision. Everything was delivered on time without disrupting live operations.',
+    name: 'Jhon Doe',
+    title: 'Cisco | HOD',
+  },
+  {
+    quote:
+      'We deploy trained field engineers and technical teams tailored to project requirements. Our manpower model is built for flexibility.',
+    name: 'Sarah Jenkins',
+    title: 'TechCorp | VP Engineering',
+  },
+  {
+    quote:
+      'Their network solutions transformed our infrastructure. Highly reliable and scalable systems that grew with our business needs.',
+    name: 'Michael Chen',
+    title: 'GlobalNet | CTO',
+  },
+  {
+    quote:
+      'Outstanding support and seamless integration. The team demonstrated deep technical expertise throughout the entire project lifecycle.',
+    name: 'Emily Rodriguez',
+    title: 'Nexus Systems | Director',
+  },
+];
+
+const testimonialsCol2 = [
+  {
+    quote:
+      'Coordinating multi-location deployments was effortless with HTIS. Their execution was consistent and met all our technical standards.',
+    name: 'Jhon Doe',
+    title: 'Cisco | HOD',
+  },
+  {
+    quote:
+      'The system architecture provided by HTIS gave us the edge we needed. Exceptional performance and zero downtime during the switch.',
+    name: 'David Kim',
+    title: 'Streamline IT | Lead Architect',
+  },
+  {
+    quote:
+      'A true partner in digital transformation. They understood our complex requirements and delivered a custom solution perfectly.',
+    name: 'Amanda Foster',
+    title: 'DataFlow | Operations',
+  },
+  {
+    quote:
+      'From planning to execution, their professionalism is unmatched. The customized network deployment exceeded all our expectations.',
+    name: 'Robert Taylor',
+    title: 'InnovaTech | CEO',
+  },
+];
+---
+
+<style>
+  @keyframes marquee-vertical {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  .animate-marquee-vertical-slow {
+    animation: marquee-vertical 40s linear infinite;
+  }
+  .animate-marquee-vertical-fast {
+    animation: marquee-vertical 25s linear infinite;
+  }
+</style>
+
+<section class="relative overflow-hidden bg-base-200/30 py-24">
+  <div class="container mx-auto px-6">
+    <div
+      class="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center"
+    >
+      <div class="max-w-4xl">
+        <h2 class="text-4xl leading-tight font-bold text-base-content md:text-5xl">
+          Loved by <span class="text-primary">100+</span> Clients,<br />backed by <span
+            class="text-primary">100+</span
+          > awards and certificates
+        </h2>
+      </div>
+      <button
+        class="btn btn-circle self-start border-primary/20 bg-primary/10 text-primary shadow-sm btn-lg hover:border-primary/30 hover:bg-primary/20"
+        aria-label="View all testimonials"
+      >
+        <ArrowRight class="h-6 w-6" />
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
+      <!-- Left: Awards -->
+      <div class="flex w-full flex-col items-center gap-8 lg:items-start">
+        <div
+          class="w-full overflow-hidden rounded-2xl border border-base-content/5 bg-base-100 p-6 shadow-xl"
+        >
+          <Image
+            src={awardsImg}
+            alt="Awards and Certificates"
+            class="h-auto w-full object-contain"
+            style="mix-blend-mode: var(--bg-blend); filter: var(--filter-invert-dark);"
+          />
+        </div>
+      </div>
+
+      <!-- Right: Testimonials -->
+      <div
+        class="relative h-[550px] overflow-hidden mask-[linear-gradient(to_bottom,transparent_0,black_64px,black_calc(100%-64px),transparent_100%)]"
+      >
+        <div class="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
+          <!-- Column 1 (Slow) -->
+          <div class="group flex flex-col gap-6">
+            <div
+              class="animate-marquee-vertical-slow flex flex-col gap-6 group-hover:[animation-play-state:paused]"
+            >
+              {
+                [...testimonialsCol1, ...testimonialsCol1].map((item, i) => (
+                  <div
+                    class={`relative rounded-2xl border ${i % 2 === 0 ? 'border-primary/20 bg-primary/5' : 'border-base-content/10 bg-base-100'} shrink-0 p-8 shadow-sm`}
+                  >
+                    {i % 2 === 0 && (
+                      <Quote class="absolute top-4 right-4 h-10 w-10 fill-current text-primary/10" />
+                    )}
+                    <p class="relative z-10 mb-6 font-medium text-base-content/80">
+                      "{item.quote}"
+                    </p>
+                    <div class="relative z-10">
+                      <p class="font-bold text-base-content">{item.name}</p>
+                      <p class="text-sm text-base-content/60">{item.title}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Column 2 (Fast) -->
+          <div class="group mt-0 flex flex-col gap-6 md:mt-12">
+            <div
+              class="animate-marquee-vertical-fast flex flex-col gap-6 group-hover:[animation-play-state:paused]"
+            >
+              {
+                [...testimonialsCol2, ...testimonialsCol2].map((item, i) => (
+                  <div
+                    class={`relative rounded-2xl border ${i % 2 === 1 ? 'border-primary/20 bg-primary/5' : 'border-base-content/10 bg-base-100'} shrink-0 p-8 shadow-sm`}
+                  >
+                    {i % 2 === 1 && (
+                      <Quote class="absolute top-4 right-4 h-10 w-10 fill-current text-primary/10" />
+                    )}
+                    <p class="relative z-10 mb-6 font-medium text-base-content/80">
+                      "{item.quote}"
+                    </p>
+                    <div class="relative z-10">
+                      <p class="font-bold text-base-content">{item.name}</p>
+                      <p class="text-sm text-base-content/60">{item.title}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

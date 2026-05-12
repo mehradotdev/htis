@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
   import { fade } from 'svelte/transition';
   import {
     ShieldCheck,
@@ -15,7 +14,7 @@
     ArrowRight,
   } from '@lucide/svelte';
 
-  export let images: string[] = [];
+  let { images = [] }: { images?: string[] } = $props();
 
   const tabs = [
     {
@@ -46,7 +45,7 @@
     { name: 'Contractor', icon: UserCheck, color: 'text-orange-300' },
   ];
 
-  let activeIndex = 0;
+  let activeIndex = $state(0);
   let interval: ReturnType<typeof setInterval>;
 
   function startInterval() {
@@ -56,12 +55,11 @@
     }, 5000);
   }
 
-  onMount(() => {
+  $effect(() => {
     startInterval();
-  });
-
-  onDestroy(() => {
-    clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   });
 
   function selectTab(index: number) {
@@ -83,7 +81,7 @@
         i
           ? 'bg-white/10 border-white/30 shadow-lg'
           : 'border-white/10 hover:border-white/20 bg-transparent'}"
-        on:click={() => selectTab(i)}
+        onclick={() => selectTab(i)}
       >
         {#if activeIndex === i}
           <!-- Progress bar effect -->
@@ -101,7 +99,7 @@
 
   <!-- Image Display -->
   <div
-    class="relative w-full rounded-2xl overflow-hidden bg-white/5 mb-10 aspect-video lg:aspect-[2.3/1]"
+    class="relative w-full rounded-2xl overflow-hidden bg-white/5 aspect-video lg:aspect-[2.3/1]"
   >
     {#key activeIndex}
       {#if images.length > 0}
@@ -115,12 +113,12 @@
     {/key}
   </div>
 
-  <!-- Bottom Section -->
+  <!-- Bottom Section overlaying the image -->
   <div
-    class="bg-[#1C3326] rounded-2xl p-8 flex flex-col lg:flex-row gap-8 justify-between items-center shadow-inner"
+    class="relative z-10 -mt-12 md:-mt-20 lg:-mt-28 mx-4 md:mx-6 lg:mx-8 bg-black/60 backdrop-blur-xl rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row gap-8 justify-between items-center border border-white/10 shadow-2xl"
   >
     <div class="lg:w-1/3">
-      <h3 class="text-lg md:text-xl font-bold mb-4 leading-tight">
+      <h3 class="text-lg md:text-xl font-bold mb-4 leading-tight text-white">
         Built on in-house infrastructure, with single payroll engines, owned entities, and
         more.
       </h3>
@@ -137,7 +135,7 @@
       {#each tools as tool}
         {@const Icon = tool.icon}
         <div
-          class="flex items-center gap-2 bg-[#172B20] border border-white/5 rounded-full px-4 py-2.5 text-xs md:text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer text-white/90"
+          class="flex items-center gap-2 bg-black/50 border border-white/10 rounded-full px-4 py-2.5 text-xs md:text-sm font-medium hover:bg-white/10 transition-colors cursor-pointer text-white/90 backdrop-blur-md"
         >
           <Icon size={16} class={tool.color} />
           {tool.name}

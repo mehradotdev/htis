@@ -32,6 +32,7 @@
 ### Svelte 5 Syntax & Features
 
 - **Use Runes**: Always prefer modern Svelte 5 runes syntax (`$props`, `$state`, `$derived`, `$effect`) over the older Svelte 4 syntax (`export let`, `let x = 0`, `$: x = y`). Use the new event handler syntax (`onchange`, `onclick` instead of `on:change`, `on:click`).
+- **Lifecycle Effects**: Always prefer the new `$effect` rune over `onMount` for handling side effects and component lifecycles.
 - **Built-in Transitions**: For Svelte islands, leverage Svelte's built-in transition directives (e.g., `in:fade`, `out:slide`, from `svelte/transition`) for component-level interactive animations.
 
 ### Hydration directives

@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import awardsImg from '~/assets/lob-telecom-awards.png';
 import infoImg1 from '~/assets/lob-telecom-info-1.png';
 import infoImg2 from '~/assets/lob-telecom-info-2.png';
 import infoImg3 from '~/assets/lob-telecom-info-3.png';
@@ -9,8 +8,9 @@ import infoImg5 from '~/assets/lob-telecom-info-5.png';
 import infoImg6 from '~/assets/lob-telecom-info-6.png';
 import infoImg7 from '~/assets/lob-telecom-info-7.png';
 import { telecomProcesses } from '~/data/pageDataTelecom';
-import { ArrowUpRight, Network, Users, Code, Quote } from '@lucide/astro';
+import { ArrowUpRight, Network, Users, Code } from '@lucide/astro';
 import TelecomProcesses from './TelecomProcesses.svelte';
+import TelecomDeployments from './TelecomDeployments.svelte';
 import TelecomMetrics from './TelecomMetrics.svelte';
 
 const processImages = [
@@ -28,78 +28,7 @@ const processImages = [
 <TelecomProcesses processes={telecomProcesses} images={processImages} client:visible />
 
 <!-- 2. Proven Network Deployments -->
-<section class="relative bg-base-100 py-24">
-  <div class="container mx-auto px-6">
-    <div class="mx-auto mb-16 max-w-3xl text-center">
-      <h2 class="mb-6 text-4xl font-bold text-base-content md:text-5xl">
-        Proven Network Deployments
-      </h2>
-      <p class="text-lg text-base-content/70">
-        Explore how we design, deploy, and transform networks across hundreds of sites and
-        thousands of devices.
-      </p>
-    </div>
-
-    <div
-      class="hide-scrollbar flex snap-x gap-6 overflow-x-auto pb-8"
-      style="scrollbar-width: none;"
-    >
-      <!-- Project Cards -->
-      {
-        [
-          {
-            title: 'PACO',
-            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
-          },
-          {
-            title: 'PACO',
-            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
-          },
-          {
-            title: 'Taxnet 2.0',
-            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
-            active: true,
-          },
-          {
-            title: 'PACO',
-            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
-          },
-          {
-            title: 'PACO',
-            badges: ['750+ locations', 'SD-WAN', 'MPLS hybrid architecture'],
-          },
-        ].map((project) => (
-          <div
-            class={`min-w-[300px] rounded-2xl border p-8 md:min-w-[350px] ${project.active ? 'border-primary bg-primary/5 shadow-md shadow-primary/10' : 'border-base-content/10 bg-base-100/50'} flex snap-center flex-col gap-6`}
-          >
-            <div class="flex items-start justify-between">
-              <h3 class="text-2xl font-semibold">{project.title}</h3>
-              <div class="flex h-8 w-8 items-center justify-center rounded-full border border-base-content/5 bg-base-200 text-primary">
-                <ArrowUpRight class="h-4 w-4" />
-              </div>
-            </div>
-            <p class="flex-1 text-sm text-base-content/70">
-              Nationwide government network transformation project.
-            </p>
-            <div class="mt-auto flex flex-wrap gap-2">
-              {project.badges.map((badge) => (
-                <span class="rounded-full border border-base-content/5 bg-base-200 px-3 py-1 text-xs font-medium whitespace-nowrap text-base-content/70">
-                  {badge}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))
-      }
-    </div>
-    <div class="mt-8 text-center">
-      <button
-        class="btn rounded-full px-10 text-white shadow-md transition-shadow btn-primary hover:shadow-lg"
-        >View all</button
-      >
-    </div>
-  </div>
-</section>
+<TelecomDeployments client:visible />
 
 <!-- 3. Built to Execute. Scaled to Deliver. -->
 <section class="relative bg-base-200/50 py-24">
@@ -166,102 +95,6 @@ const processImages = [
           assets—including our proprietary ERP systems—designed for the most demanding
           regulatory environments.
         </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. Loved by 100+ Clients, backed by 100+ awards and certificates -->
-<section class="relative overflow-hidden bg-base-200/30 py-24">
-  <div class="container mx-auto px-6">
-    <div class="mb-16 max-w-4xl">
-      <h2 class="text-4xl leading-tight font-bold text-base-content md:text-5xl">
-        Loved by <span class="text-primary">100+</span> Clients,<br />backed by <span
-          class="text-primary">100+</span
-        > awards and certificates
-      </h2>
-    </div>
-
-    <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
-      <!-- Left: Awards -->
-      <div class="flex w-full flex-col items-center gap-8 lg:items-start">
-        <div
-          class="w-full overflow-hidden rounded-2xl border border-base-content/5 bg-base-100 p-6 shadow-xl"
-        >
-          <Image
-            src={awardsImg}
-            alt="Awards and Certificates"
-            class="h-auto w-full object-contain"
-            style="mix-blend-mode: var(--bg-blend); filter: var(--filter-invert-dark);"
-          />
-        </div>
-        <button
-          class="btn rounded-full px-10 text-white shadow-md transition-shadow btn-primary hover:shadow-lg"
-          >View all</button
-        >
-      </div>
-
-      <!-- Right: Testimonials -->
-      <div class="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
-        <!-- Column 1 -->
-        <div class="flex flex-col gap-6">
-          <div
-            class="relative rounded-2xl border border-primary/20 bg-primary/5 p-8 shadow-sm"
-          >
-            <Quote
-              class="absolute top-4 right-4 h-10 w-10 fill-current text-primary/10"
-            />
-            <p class="relative z-10 mb-6 font-medium text-base-content/80">
-              "HTIS handled our telecom hardware deployment across multiple sites with
-              precision. Everything was delivered on time without disrupting live
-              operations."
-            </p>
-            <div class="relative z-10">
-              <p class="font-bold text-base-content">Jhon Doe</p>
-              <p class="text-sm text-base-content/60">Cisco | HOD</p>
-            </div>
-          </div>
-          <div
-            class="relative rounded-2xl border border-base-content/10 bg-base-100 p-8 shadow-sm"
-          >
-            <p class="mb-6 font-medium text-base-content/80">
-              "We deploy trained field engineers and technical teams tailored to project
-              requirements. Our manpower model is built for flexibility."
-            </p>
-            <div>
-              <p class="font-bold text-base-content">Jhon Doe</p>
-              <p class="text-sm text-base-content/60">Cisco | HOD</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Column 2 -->
-        <div class="mt-0 flex flex-col gap-6 md:mt-12">
-          <div
-            class="relative rounded-2xl border border-base-content/10 bg-base-100 p-8 shadow-sm"
-          >
-            <p class="mb-6 font-medium text-base-content/80">
-              "Coordinating multi-location deployments was effortless with HTIS. Their
-              execution was consistent and met all our technical standards."
-            </p>
-            <div>
-              <p class="font-bold text-base-content">Jhon Doe</p>
-              <p class="text-sm text-base-content/60">Cisco | HOD</p>
-            </div>
-          </div>
-          <div
-            class="relative rounded-2xl border border-base-content/10 bg-base-100 p-8 shadow-sm"
-          >
-            <p class="mb-6 font-medium text-base-content/80">
-              "We deploy trained field engineers and technical teams tailored to project
-              requirements. Our manpower model is built for flexibility."
-            </p>
-            <div>
-              <p class="font-bold text-base-content">Jhon Doe</p>
-              <p class="text-sm text-base-content/60">Cisco | HOD</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

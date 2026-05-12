@@ -285,7 +285,7 @@ export const servicesData: ServiceData[] = [
     ],
   },
   {
-    id: 'manpower',
+    id: 'resourcing',
     titleHtml: 'Resourcing',
     stats: [
       { val: '500+', label: 'Technical Professionals<br/>Deployed' },

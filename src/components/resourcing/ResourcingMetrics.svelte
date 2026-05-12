@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  
   const metrics = [
     { target: 1200, suffix: '+', label: 'Sites Deployed' },
     { target: 98, suffix: '%', label: 'On-Time Delivery' },
@@ -8,11 +6,11 @@
     { target: 54, suffix: '+', label: 'Industries Served' }
   ];
 
-  let currentValues = metrics.map(() => 0);
-  let sectionRef: HTMLElement;
-  let isVisible = false;
+  let currentValues = $state(metrics.map(() => 0));
+  let sectionRef: HTMLElement | undefined = $state();
+  let isVisible = $state(false);
 
-  onMount(() => {
+  $effect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting && !isVisible) {
         isVisible = true;

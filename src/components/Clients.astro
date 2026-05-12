@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+import { ArrowRight } from '@lucide/astro';
+import hartronLogo from '~/assets/hartron-logo.png';
+---
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes marquee-reverse {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+  .animate-marquee-reverse {
+    animation: marquee-reverse 30s linear infinite;
+  }
+</style>
+
+<section class="relative mx-auto max-w-6xl overflow-hidden px-4 pb-24">
+  <div class="mb-10 flex items-center justify-between">
+    <h2 class="text-3xl font-bold text-base-content md:text-5xl">
+      Some of our valuable Clients
+    </h2>
+    <a
+      href="#contact"
+      aria-label="Contact us"
+      class="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full border border-primary text-primary transition-colors hover:bg-primary hover:text-primary-content"
+    >
+      <ArrowRight class="h-6 w-6" />
+    </a>
+  </div>
+
+  <!-- Marquee Wrapper with Fade -->
+  <div
+    class="flex w-full flex-col gap-6 mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
+  >
+    <!-- Row 1: Right to Left -->
+    <div class="group flex w-max transition-opacity duration-500 hover:opacity-100">
+      {
+        Array.from({ length: 8 }).map((_, i) => (
+          <div
+            class="animate-marquee flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+            aria-hidden={i > 0 ? 'true' : undefined}
+          >
+            {Array.from({ length: 4 }).map(() => (
+              <div class="flex h-[100px] w-[200px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100">
+                <div
+                  class="h-12 w-[140px] bg-primary transition-opacity hover:opacity-80"
+                  style={`mask-image: url('${hartronLogo.src}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url('${hartronLogo.src}'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+                  aria-label="Hartron"
+                  role="img"
+                />
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Row 2: Left to Right -->
+    <div class="group flex w-max transition-opacity duration-500 hover:opacity-100">
+      {
+        Array.from({ length: 8 }).map((_, i) => (
+          <div
+            class="animate-marquee-reverse flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+            aria-hidden={i > 0 ? 'true' : undefined}
+          >
+            {Array.from({ length: 4 }).map(() => (
+              <div class="flex h-[100px] w-[200px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100">
+                <div
+                  class="h-12 w-[140px] bg-primary transition-opacity hover:opacity-80"
+                  style={`mask-image: url('${hartronLogo.src}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url('${hartronLogo.src}'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
+                  aria-label="Hartron"
+                  role="img"
+                />
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -9,6 +9,8 @@ import Articles from '~/components/Articles.astro';
 import Contact from '~/components/Contact.astro';
 import Footer from '~/components/Footer.astro';
 import Team from '~/components/Team.svelte';
+import Clients from '~/components/Clients.astro';
+import Testimonials from '~/components/Testimonials.astro';
 import { getMilestones, getTeamMembers } from '~/data/pageData';
 import bgImage from '~/assets/team-member-bg.png';
 import member1 from '~/assets/tm_Aditya_Kaushik.png';
@@ -62,6 +64,8 @@ const team = getTeamMembers([
       <Journey milestones={milestones} client:visible />
       <Team team={team} bgImageSrc={bgImage.src} client:visible />
       <Footprint />
+      <Clients />
+      <Testimonials />
     </div>
     <div class="bg-base-200/50">
       <Articles />

@@ -1,10 +1,10 @@
 <script>
+  import { servicesData as services } from '~/data/pageData';
+  import { ArrowRight } from '@lucide/svelte';
+
   let active = $state('collapsed');
   let gridRef = $state();
   let activeTooltip = $state(null);
-
-  import { servicesData as services } from '../data/pageData';
-  import { ArrowRight } from '@lucide/svelte';
 
   // 5x5 geometric grid mapping - Perfect 4x4 Expanded Square
   const stateLayouts = {
@@ -13,7 +13,7 @@
         telecom: { c: 0, r: 0, cs: 2.5, rs: 2.5 },
         software: { c: 2.5, r: 0, cs: 2.5, rs: 2.5 },
         system: { c: 0, r: 2.5, cs: 2.5, rs: 2.5 },
-        manpower: { c: 2.5, r: 2.5, cs: 2.5, rs: 2.5 },
+        resourcing: { c: 2.5, r: 2.5, cs: 2.5, rs: 2.5 },
       },
       icons: Array(6).fill({ c: 2, r: 2 }),
       stats: Array(4).fill({ c: 2, r: 2 }),
@@ -23,7 +23,7 @@
         telecom: { c: 0, r: 0, cs: 3, rs: 2 },
         software: { c: 4, r: 0, cs: 1, rs: 4 },
         system: { c: 0, r: 4, cs: 3, rs: 1 },
-        manpower: { c: 3, r: 4, cs: 2, rs: 1 },
+        resourcing: { c: 3, r: 4, cs: 2, rs: 1 },
       },
       icons: [
         { c: 0, r: 2 },
@@ -40,12 +40,12 @@
         { c: 3, r: 3 },
       ],
     },
-    manpower: {
+    resourcing: {
       titles: {
         telecom: { c: 0, r: 0, cs: 3, rs: 1 },
         software: { c: 3, r: 0, cs: 2, rs: 1 },
         system: { c: 0, r: 1, cs: 1, rs: 4 },
-        manpower: { c: 1, r: 1, cs: 3, rs: 2 },
+        resourcing: { c: 1, r: 1, cs: 3, rs: 2 },
       },
       icons: [
         { c: 1, r: 3 },
@@ -67,7 +67,7 @@
         telecom: { c: 0, r: 0, cs: 1, rs: 4 },
         software: { c: 1, r: 0, cs: 3, rs: 2 },
         system: { c: 0, r: 4, cs: 3, rs: 1 },
-        manpower: { c: 3, r: 4, cs: 2, rs: 1 },
+        resourcing: { c: 3, r: 4, cs: 2, rs: 1 },
       },
       icons: [
         { c: 1, r: 2 },
@@ -89,7 +89,7 @@
         telecom: { c: 0, r: 0, cs: 3, rs: 1 },
         software: { c: 3, r: 0, cs: 2, rs: 1 },
         system: { c: 0, r: 1, cs: 3, rs: 2 },
-        manpower: { c: 4, r: 1, cs: 1, rs: 4 },
+        resourcing: { c: 4, r: 1, cs: 1, rs: 4 },
       },
       icons: [
         { c: 0, r: 3 },
@@ -114,7 +114,7 @@
     stats: 'order-3',
     software: 'order-4',
     system: 'order-5',
-    manpower: 'order-6',
+    resourcing: 'order-6',
   };
 
   function getStyle(c, r, cs = 1, rs = 1) {
@@ -165,20 +165,26 @@
 
 <div
   bind:this={gridRef}
-  class="relative w-full flex flex-col md:block md:aspect-square overflow-hidden bg-base-100 lg:w-[60%]"
+  class="relative w-full flex flex-col md:block md:aspect-square bg-base-100 lg:w-[60%]"
 >
   <!-- Radial Greenish Blur Background -->
   <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
-    <div class="w-full h-full md:w-[80%] md:h-[80%] rounded-full bg-primary/20 blur-[80px]"></div>
+    <div
+      class="w-full h-full md:w-[80%] md:h-[80%] rounded-full bg-primary/20 blur-[80px]"
+    ></div>
   </div>
   {#each services as service}
     {@const pos = stateLayouts[active].titles[service.id]}
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <svelte:element
-      this={['telecom', 'system'].includes(service.id) ? 'a' : 'button'}
-      href={service.id === 'telecom' ? '/telecom' : service.id === 'system' ? '/system-integrations' : undefined}
-      type={['telecom', 'system'].includes(service.id) ? undefined : 'button'}
-      class="grid-block flex cursor-pointer no-underline transition-all duration-700 ease-in-out hover:bg-base-100/90 hover:shadow-lg bg-base-100/70 backdrop-blur-md p-6 md:p-8 {mobileOrder[
+      this={['telecom', 'resourcing'].includes(service.id) ? 'a' : 'button'}
+      href={service.id === 'telecom'
+        ? '/telecom'
+        : service.id === 'resourcing'
+          ? '/resourcing'
+          : undefined}
+      type={['telecom', 'resourcing'].includes(service.id) ? undefined : 'button'}
+      class="grid-block flex cursor-pointer no-underline transition-all duration-700 ease-in-out hover:bg-base-100/90 hover:shadow-lg hover:outline-2 hover:-outline-offset-2 hover:outline-primary bg-base-100/70 backdrop-blur-md p-6 md:p-8 {mobileOrder[
         service.id
       ]} {getBorders(pos.c, pos.r, pos.cs, pos.rs, 'title', 0)} {active === service.id
         ? 'flex-row items-center justify-between text-left'
@@ -234,11 +240,16 @@
             type="button"
             onclick={(e) => {
               e.stopPropagation();
-              activeTooltip = activeTooltip === `${service.id}-${idx}` ? null : `${service.id}-${idx}`;
+              activeTooltip =
+                activeTooltip === `${service.id}-${idx}` ? null : `${service.id}-${idx}`;
             }}
-            onmouseleave={() => { activeTooltip = null; }}
-            onblur={() => { activeTooltip = null; }}
-            class="grid-block tooltip tooltip-primary flex flex-col items-center justify-center p-4 text-center bg-base-100/70 backdrop-blur-md md:transition-all md:duration-700 ease-in-out {getBorders(
+            onmouseleave={() => {
+              activeTooltip = null;
+            }}
+            onblur={() => {
+              activeTooltip = null;
+            }}
+            class="grid-block tooltip tooltip-primary flex flex-col items-center justify-center p-4 text-center bg-base-100/70 backdrop-blur-md hover:bg-primary/5 hover:outline-2 hover:-outline-offset-2 hover:outline-primary md:transition-all md:duration-700 ease-in-out {getBorders(
               pos.c,
               pos.r,
               1,
@@ -247,7 +258,10 @@
               idx,
             )} {active === service.id
               ? 'md:opacity-100 md:pointer-events-auto'
-              : 'md:opacity-0 md:pointer-events-none'} {activeTooltip === `${service.id}-${idx}` ? 'tooltip-open' : ''}"
+              : 'md:opacity-0 md:pointer-events-none'} {activeTooltip ===
+            `${service.id}-${idx}`
+              ? 'tooltip-open'
+              : ''}"
             style={getStyle(pos.c, pos.r)}
             data-tip={icon.description}
           >
@@ -276,7 +290,7 @@
         {#each service.stats as stat, idx}
           {@const pos = stateLayouts[active].stats[idx]}
           <div
-            class="grid-block flex flex-1 flex-col items-center justify-center space-y-1 p-4 text-center bg-base-100/70 backdrop-blur-md md:transition-all md:duration-700 ease-in-out {getBorders(
+            class="grid-block flex flex-1 flex-col items-center justify-center space-y-1 p-4 text-center bg-base-100/70 backdrop-blur-md hover:bg-primary/5 hover:outline-2 hover:-outline-offset-2 hover:outline-primary md:transition-all md:duration-700 ease-in-out {getBorders(
               pos.c,
               pos.r,
               pos.cs || 1,

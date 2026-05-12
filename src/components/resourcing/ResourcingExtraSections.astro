@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import SystemWorkforce from './SystemWorkforce.svelte';
-import SystemMetrics from './SystemMetrics.svelte';
 import { Users, Wrench, Maximize, UserCheck } from '@lucide/astro';
+import ResourcingWorkforce from './ResourcingWorkforce.svelte';
+import ResourcingMetrics from './ResourcingMetrics.svelte';
 
 import team1 from '~/assets/lob-system-construction-1.png';
 import team2 from '~/assets/lob-system-construction-2.png';
@@ -11,11 +11,12 @@ import team3 from '~/assets/lob-system-construction-3.png';
 import wf1 from '~/assets/lob-system-workforce-1.png';
 import wf2 from '~/assets/lob-system-workforce-2.png';
 import wf3 from '~/assets/lob-system-workforce-3.png';
-const workforceImages = [wf1.src, wf2.src, wf3.src];
 
 import cs1 from '~/assets/lob-system-case-study-1.png';
 import cs2 from '~/assets/lob-system-case-study-2.png';
 import cs3 from '~/assets/lob-system-case-study-3.png';
+
+const workforceImages = [wf1.src, wf2.src, wf3.src];
 ---
 
 <!-- 1. Build Amazing Teams, On Demand -->
@@ -23,11 +24,10 @@ import cs3 from '~/assets/lob-system-case-study-3.png';
   <div class="container mx-auto px-6">
     <div class="mb-16">
       <h2 class="mb-4 text-4xl font-bold text-base-content md:text-5xl">
-        Build Amazing Teams, On Demand
+        Engineered Human Capital: The HTIS Standard
       </h2>
       <p class="text-lg text-base-content/70">
-        A structured approach to deploying, optimizing, and supporting telecom networks
-        across every stage.
+        A performance-driven framework for rapid deployment and operational excellence.
       </p>
     </div>
 
@@ -35,34 +35,44 @@ import cs3 from '~/assets/lob-system-case-study-3.png';
       <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
         <div class="flex flex-col gap-4">
           <Users class="h-12 w-12 text-[#60B68C]" />
-          <h3 class="text-xl font-bold text-base-content">Hire Quickly</h3>
+          <h3 class="text-xl font-bold text-base-content">Agile Resource Scaling</h3>
           <p class="text-base-content/70">
-            Hire in under 48 hours. Scale up or down, no strings attached. We offer
-            flexible engagements from hourly to full-time.
+            High-Velocity Deployment at Scale We specialize in rapid-deployment cycles for
+            large-scale network rollouts, delivering high-volume technical teams to the
+            field within compressed timelines to meet critical expansion milestones.
           </p>
         </div>
         <div class="flex flex-col gap-4">
           <Wrench class="h-12 w-12 text-[#60B68C]" />
-          <h3 class="text-xl font-bold text-base-content">The Top 3%</h3>
+          <h3 class="text-xl font-bold text-base-content">Precision Technical Vetting</h3>
           <p class="text-base-content/70">
-            Every applicant to the platform is rigorously tested and vetted. Our highly
-            selective process leads to a 98% trial-to-hire success rate.
+            98% Trial-to-Hire Success Rate Our rigorous job-description validation process
+            ensures a near-perfect technical match by subjecting every L1–L6 specialist to
+            exhaustive technical benchmarking and background verification before site
+            deployment.
           </p>
         </div>
         <div class="flex flex-col gap-4">
           <Maximize class="h-12 w-12 text-[#60B68C]" />
-          <h3 class="text-xl font-bold text-base-content">Leading the Future of Work</h3>
+          <h3 class="text-xl font-bold text-base-content">
+            Zero-Risk Statutory Compliance
+          </h3>
           <p class="text-base-content/70">
-            Hire in under 48 hours. Scale up or down, no strings attached. We offer
-            flexible engagements from hourly to full-time.
+            100% Adherence to Global Standards We eliminate financial and safety risks for
+            our clients by providing absolute adherence to PF, ESIC, and statutory labor
+            mandates alongside comprehensive insurance coverage.
           </p>
         </div>
         <div class="flex flex-col gap-4">
           <UserCheck class="h-12 w-12 text-[#60B68C]" />
-          <h3 class="text-xl font-bold text-base-content">Hire Quickly</h3>
+          <h3 class="text-xl font-bold text-base-content">
+            Sustained Operational Reliability
+          </h3>
           <p class="text-base-content/70">
-            Hire in under 48 hours. Scale up or down, no strings attached. We offer
-            flexible engagements from hourly to full-time.
+            Commitment to Ongoing Infrastructure Health Focused on long-term
+            infrastructure stability, our workforce model prioritizes operational
+            continuity through a strategic shift toward ongoing support rather than
+            short-term project deployments.
           </p>
         </div>
       </div>
@@ -91,14 +101,14 @@ import cs3 from '~/assets/lob-system-case-study-3.png';
 <!-- 2. One modern experience for today's workforce -->
 <section class="relative bg-base-100 py-24">
   <div class="container mx-auto px-6">
-    <SystemWorkforce images={workforceImages} client:visible />
+    <ResourcingWorkforce images={workforceImages} client:visible />
   </div>
 </section>
 
 <!-- 3. Metrics and 4. Case Studies -->
 <section class="relative bg-base-200/30 py-24">
   <div class="container mx-auto px-6">
-    <SystemMetrics client:visible />
+    <ResourcingMetrics client:visible />
 
     <div class="mt-16">
       <h3 class="mb-10 text-3xl font-bold text-[#3A5D4A] text-base-content md:text-4xl">

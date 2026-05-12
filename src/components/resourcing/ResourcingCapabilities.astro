@@ -1,0 +1,80 @@
+---
+import {
+  Server,
+  Network,
+  Cloud,
+  ShieldCheck,
+  Cctv,
+  Monitor,
+  Briefcase,
+  UserPlus,
+} from '@lucide/astro';
+
+const capabilities = [
+  {
+    title: 'Specialized riggers and MSc',
+    desc: 'level electricians for precise on-site installation and field execution.',
+    icon: Server,
+  },
+  {
+    title: 'Cisco-Certified Engineering',
+    desc: 'Niche CCNA and ACI-certified professionals for complex network deployment and optimization.',
+    icon: Network,
+  },
+  {
+    title: 'Data Center & Managed IT',
+    desc: 'Specialized technical support for critical IT infrastructure, including high-density server environments.',
+    icon: Cloud,
+  },
+  {
+    title: 'Strategic Operations Support',
+    desc: 'Dedicated site and operations coordinators ensuring smooth execution through clear process adherence.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Specialized Facility Management',
+    desc: 'Reliable manpower for long-term operational support in commercial and real estate-linked environments.',
+    icon: Cctv,
+  },
+  {
+    title: 'Security & Safety Management',
+    desc: 'Expert teams for airport security and site safety, adhering to high HSW/safety compliance standards.',
+    icon: Monitor,
+  },
+  {
+    title: 'Industry Specific Staffing',
+    desc: 'Domain-expert technical roles for ministries, medical sectors, and large-scale government projects.',
+    icon: Briefcase,
+  },
+  {
+    title: 'Cross-Functional Technical Skills',
+    desc: 'Scalable access to thousands of specialized technical and non-telecom roles tailored to your project needs.',
+    colSpan: true,
+    icon: UserPlus,
+  },
+];
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+  {
+    capabilities.map((cap, idx) => {
+      const Icon = cap.icon;
+      return (
+        <div
+          class:list={[
+            'flex flex-col items-start border border-base-content/20 bg-base-content/5 p-8 shadow-sm backdrop-blur-md transition-colors hover:bg-base-300/60',
+            cap.colSpan && 'lg:col-span-2',
+          ]}
+        >
+          {Icon && (
+            <div class="mb-4 rounded-xl bg-primary/10 p-3 text-primary">
+              <Icon class="h-8 w-8" />
+            </div>
+          )}
+          <h3 class="mb-2 text-xl font-bold text-base-content">{cap.title}</h3>
+          <p class="text-sm leading-relaxed text-base-content/70">{cap.desc}</p>
+        </div>
+      );
+    })
+  }
+</div>

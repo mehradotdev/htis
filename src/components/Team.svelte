@@ -18,7 +18,8 @@
       src={bgImageSrc}
       alt=""
       aria-hidden="true"
-      class="h-full w-full object-cover opacity-60 mix-blend-luminosity"
+      class="h-full w-full object-cover opacity-70"
+      style="filter: var(--filter-invert-dark)"
     />
     <div
       class="absolute inset-0 bg-linear-to-t from-base-200 via-base-100/60 to-base-100/20"
@@ -44,8 +45,10 @@
     >
       {#each team as member, index}
         <div
-          class="team-member-card relative cursor-pointer overflow-hidden rounded-2xl shadow-md transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] md:rounded-3xl"
-          class:active={activeIndex === index}
+          class="team-member-card relative cursor-pointer overflow-hidden rounded-2xl shadow-md transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] md:rounded-3xl {activeIndex ===
+          index
+            ? 'active bg-base-content/10 backdrop-blur-sm'
+            : ''}"
           role="button"
           tabindex="0"
           onmouseenter={() => (activeIndex = index)}
@@ -96,15 +99,12 @@
     /* Basic border for inactive state using a subtle tone */
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-top: none;
-    background-color: transparent; /* No background for inactive */
   }
 
   .team-member-card.active {
     flex: 6 1 0;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-top: none;
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
-    backdrop-filter: blur(16px);
     box-shadow:
       0 20px 25px -5px rgba(0, 0, 0, 0.1),
       0 10px 10px -5px rgba(0, 0, 0, 0.04);
