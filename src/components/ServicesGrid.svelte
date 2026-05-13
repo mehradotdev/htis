@@ -165,7 +165,7 @@
 
 <div
   bind:this={gridRef}
-  class="relative w-full flex flex-col md:block md:aspect-square bg-base-100 lg:w-[60%]"
+  class="relative hidden md:block w-full md:aspect-square bg-base-100 lg:w-[60%]"
 >
   <!-- Radial Greenish Blur Background -->
   <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">

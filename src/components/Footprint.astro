@@ -1,12 +1,11 @@
 ---
-import { Image } from 'astro:assets';
-import halfGlobe from '../assets/half-globe.png';
 import CurvedLineIcon from './icons/CurvedLineIcon.astro';
+import Globe from './Globe.svelte';
 ---
 
 <section class="relative mx-auto max-w-6xl overflow-hidden px-4 py-24">
   <div
-    class="relative mx-4 overflow-hidden rounded-3xl border border-primary/20 bg-base-100 px-8 py-20 shadow-sm lg:mx-0 lg:px-16"
+    class="relative isolate mx-4 transform-[translateZ(0)] overflow-hidden rounded-3xl border border-primary/20 bg-base-100 px-8 py-20 shadow-sm lg:mx-0 lg:px-16"
   >
     <!-- Subtle curved top line -->
     <div class="pointer-events-none absolute top-0 -mt-px flex w-full justify-center">
@@ -18,7 +17,7 @@ import CurvedLineIcon from './icons/CurvedLineIcon.astro';
       class="relative z-10 flex flex-col items-center justify-between space-y-12 md:flex-row md:space-y-0"
     >
       <!-- Stats Side -->
-      <div class="space-y-12 md:w-1/2">
+      <div class="space-y-12 pb-40 md:w-1/2 md:pb-0">
         <div>
           <h2 class="mb-10 text-4xl font-bold text-base-content md:text-5xl">
             Global Footprint
@@ -51,17 +50,15 @@ import CurvedLineIcon from './icons/CurvedLineIcon.astro';
         </div>
       </div>
 
-      <!-- Globe Graphic Side -->
-      <div class="relative flex h-[400px] justify-end md:w-1/2">
-        <!-- The globe is placed to overflow its container to look like the screenshot -->
-        <Image
-          src={halfGlobe}
-          alt=""
-          aria-hidden="true"
-          class="absolute right-0 bottom-0 h-auto w-[120%] max-w-[600px] translate-x-[10%] translate-y-20 object-cover object-bottom opacity-90"
-          style="filter: var(--filter-invert-dark); mix-blend-mode: var(--bg-blend);"
-        />
-      </div>
+      <!-- Globe spacer for flex layout (keeps stats side at 1/2 width) -->
+      <div class="hidden md:block md:w-1/2"></div>
+    </div>
+
+    <!-- Globe Graphic — absolutely positioned to peek from the bottom right -->
+    <div
+      class="pointer-events-none absolute bottom-0 left-1/2 aspect-square w-[650px] -translate-x-1/2 translate-y-[45%] md:right-0 md:left-auto md:translate-x-[2%] md:translate-y-[45%]"
+    >
+      <Globe client:visible config={{ width: 650 }} className="" />
     </div>
   </div>
 </section>

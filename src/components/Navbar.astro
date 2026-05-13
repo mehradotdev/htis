@@ -13,7 +13,7 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
     id="navbar"
     class="navbar mx-auto max-w-7xl bg-transparent px-4 transition-all duration-500 md:px-6"
   >
-    <div class="navbar-start">
+    <div class="navbar-start w-auto lg:flex-1">
       <div class="dropdown">
         <label tabindex="0" class="btn text-primary btn-ghost lg:hidden">
           <MenuIcon class="h-5 w-5" />
@@ -51,7 +51,7 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
         <li><a href="#">About Us</a></li>
       </ul>
     </div>
-    <div class="navbar-end gap-2">
+    <div class="navbar-end flex-1 gap-1 md:gap-2">
       <!-- Theme Toggle -->
       <AnimatedThemeToggler
         client:load
@@ -62,7 +62,7 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
 
       <a
         href="#contact"
-        class="btn rounded-full px-6 text-lg tracking-wide text-primary-content opacity-90 shadow-md btn-primary"
+        class="btn btn-primary rounded-full px-4 text-base tracking-wide text-primary-content opacity-90 shadow-md md:px-6 md:text-lg"
         >Contact Us</a
       >
     </div>

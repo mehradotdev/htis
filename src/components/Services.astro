@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import ServicesGrid from './ServicesGrid.svelte';
+import ServicesGridMobile from './ServicesGridMobile.svelte';
 import serviceBg from '~/assets/our-services-bg.png';
 ---
 
@@ -27,7 +28,10 @@ import serviceBg from '~/assets/our-services-bg.png';
       </h2>
     </div>
 
-    <!-- Right SIDE -->
+    <!-- Right SIDE Desktop -->
     <ServicesGrid client:visible />
+
+    <!-- Right SIDE Mobile -->
+    <ServicesGridMobile client:visible />
   </div>
 </section>
