@@ -205,7 +205,7 @@
               >
                 {milestone.year}
               </div>
-              <div class="mt-0.5 text-[10px] font-bold text-base-content/70 md:text-xs">
+              <div class="mt-0.5 hidden text-[10px] font-bold text-base-content/70 md:block md:text-xs">
                 {milestone.title}
               </div>
             </div>
