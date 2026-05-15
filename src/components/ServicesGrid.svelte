@@ -177,13 +177,15 @@
     {@const pos = stateLayouts[active].titles[service.id]}
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <svelte:element
-      this={['telecom', 'resourcing'].includes(service.id) ? 'a' : 'button'}
+      this={['telecom', 'resourcing', 'system'].includes(service.id) ? 'a' : 'button'}
       href={service.id === 'telecom'
         ? '/telecom'
         : service.id === 'resourcing'
           ? '/resourcing'
+          : service.id === 'system'
+            ? '/system-integration'
           : undefined}
-      type={['telecom', 'resourcing'].includes(service.id) ? undefined : 'button'}
+      type={['telecom', 'resourcing', 'system'].includes(service.id) ? undefined : 'button'}
       class="grid-block flex cursor-pointer no-underline transition-all duration-700 ease-in-out hover:bg-base-100/90 hover:shadow-lg hover:outline-2 hover:-outline-offset-2 hover:outline-primary bg-base-100/70 backdrop-blur-md p-6 md:p-8 {mobileOrder[
         service.id
       ]} {getBorders(pos.c, pos.r, pos.cs, pos.rs, 'title', 0)} {active === service.id

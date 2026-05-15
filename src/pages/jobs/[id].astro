@@ -1,0 +1,191 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Navbar from '~/components/Navbar.astro';
+import Footer from '~/components/Footer.astro';
+
+export function getStaticPaths() {
+  const jobs = [
+    {
+      id: 'account-executive',
+      role: 'Account Executive',
+      department: 'Sales',
+      location: 'Gurugram',
+      experience: '4+ Year of Experience',
+    },
+    {
+      id: 'front-end-software-developer',
+      role: 'Front-end Software Developer',
+      department: 'Software',
+      location: 'Gurugram',
+      experience: '2+ Year of Experience',
+    },
+    {
+      id: 'front-end-software-developer-2',
+      role: 'Front-end Software Developer',
+      department: 'Software',
+      location: 'Gurugram',
+      experience: '2+ Year of Experience',
+    },
+    {
+      id: 'front-end-software-developer-3',
+      role: 'Front-end Software Developer',
+      department: 'Software',
+      location: 'Gurugram',
+      experience: '2+ Year of Experience',
+    },
+    {
+      id: 'front-end-software-developer-4',
+      role: 'Front-end Software Developer',
+      department: 'Software',
+      location: 'Gurugram',
+      experience: '2+ Year of Experience',
+    },
+    {
+      id: 'front-end-software-developer-5',
+      role: 'Front-end Software Developer',
+      department: 'Software',
+      location: 'Gurugram',
+      experience: '2+ Year of Experience',
+    },
+    {
+      id: 'front-end-software-developer-6',
+      role: 'Front-end Software Developer',
+      department: 'Software',
+      location: 'Gurugram',
+      experience: '2+ Year of Experience',
+    },
+    {
+      id: 'backend-engineer',
+      role: 'Backend Engineer',
+      department: 'Software',
+      location: 'Mumbai',
+      experience: '3+ Year of Experience',
+    },
+    {
+      id: 'product-manager',
+      role: 'Product Manager',
+      department: 'Product',
+      location: 'Mumbai',
+      experience: '5+ Year of Experience',
+    },
+    {
+      id: 'ux-designer',
+      role: 'UX Designer',
+      department: 'Design',
+      location: 'Mumbai',
+      experience: '2+ Year of Experience',
+    },
+  ];
+
+  return jobs.map((job) => ({
+    params: { id: job.id },
+    props: { job },
+  }));
+}
+
+const { job } = Astro.props;
+---
+
+<Layout>
+  <div class="relative w-full min-h-screen bg-base-200/30 flex flex-col pt-24 pb-0">
+    <Navbar />
+    
+    <main class="flex-grow w-full max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-20 z-10">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-12 md:mb-16">
+        {job.role}
+      </h1>
+      
+      <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
+        <!-- Main Content -->
+        <div class="flex-1 text-base-content/80 text-lg space-y-12">
+          <section>
+            <h2 class="text-3xl font-bold text-primary mb-6">What You'll do</h2>
+            <p class="leading-relaxed">
+              As an {job.role}, you'll own the full sales cycle, from
+              prospecting and closing to managing existing relationships and identifying
+              new opportunities to expand our footprint within existing accounts.
+              Specifically, we're looking for someone who can execute on long-term
+              sales strategies, engage with internal and external stakeholders, align on
+              technical and business requirements with product teams, build value in
+              competitive situations, lead commercial negotiations, and close deals.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-3xl font-bold text-primary mb-6">Responsibilities</h2>
+            <ul class="list-disc pl-6 space-y-4 marker:text-primary/50 leading-relaxed">
+              <li>Own the full sales cycle, from business case development, to deal structuring and negotiating, to close</li>
+              <li>Own a named account list and develop account plans for winning and expanding business with high growth technology companies</li>
+              <li>Develop outbound strategies to create and nurture opportunities</li>
+              <li>Work with both new and existing customers to develop and execute long-term sales strategies to expand revenue</li>
+              <li>Drive deal strategy and commercial negotiations for large, complex renewals</li>
+              <li>Develop relationships with executive stakeholders within your book of business</li>
+              <li>Be responsible for account mapping and coordinating effective meetings with the appropriate external stakeholders expanding the customer relationship</li>
+              <li>Lead and contribute to team projects to develop and refine our sales process and help shape the sales culture</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-3xl font-bold text-primary mb-6">Who you are</h2>
+            <p class="leading-relaxed">
+              We're looking for someone who meets the minimum requirements to be
+              considered for the role. If you meet these requirements, you are
+              encouraged to apply. The preferred qualifications are a bonus, not a
+              requirement.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-3xl font-bold text-primary mb-6">Minimum requirements</h2>
+            <ul class="list-disc pl-6 space-y-4 marker:text-primary/50 leading-relaxed">
+              <li>6+ years of sales experience, preferably selling a highly technical product to enterprise customers, with a track record of top performance</li>
+              <li>Ability to understand technical requirements and craft solutions across multiple products</li>
+              <li>Ability to develop and execute account plans spanning multiple business units across complex organizations</li>
+              <li>A knack for working well with a wide range of people, both internally and externally</li>
+              <li>Strong presentation skills, particularly for in-person meetings with multiple stakeholders</li>
+              <li>Proven ability to lead complex negotiations involving bespoke commercial agreements</li>
+              <li>Superior verbal and written communication skills in English</li>
+              <li>Ability to operate in a highly ambiguous and fast-paced environment</li>
+              <li>Strong interest in technology and a deep understanding of the space</li>
+            </ul>
+          </section>
+        </div>
+
+        <!-- Sidebar / Sticky Card -->
+        <div class="lg:w-[380px] shrink-0">
+          <div class="bg-primary/5 rounded-[2rem] p-8 md:p-10 sticky top-32">
+            <div class="space-y-6">
+              <div class="flex items-center justify-between font-medium text-lg">
+                <span class="text-primary/70">Location:</span>
+                <span class="text-primary font-semibold">{job.location}</span>
+              </div>
+              
+              <div class="h-px bg-primary/20 w-full"></div>
+              
+              <div class="text-center font-bold text-primary text-xl">
+                {job.experience}
+              </div>
+              
+              <div class="h-px bg-primary/20 w-full"></div>
+              
+              <div class="flex items-center justify-between font-medium text-lg">
+                <span class="text-primary/70">Team:</span>
+                <span class="text-primary font-semibold">{job.department}</span>
+              </div>
+              
+              <div class="pt-4">
+                <button class="btn btn-primary w-full rounded-full text-base tracking-wide border-none bg-primary/80 hover:bg-primary text-white shadow-md">
+                  Apply for this role &rarr;
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="mt-auto">
+      <Footer />
+    </div>
+  </div>
+</Layout>
