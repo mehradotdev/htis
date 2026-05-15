@@ -17,7 +17,6 @@
     "@lucide/svelte": "^1.14.0",
     "astro": "6.2.2",
     "cobe": "^2.0.1",
-    "motion": "^12.38.0",
     "svelte": "^5.55.4"
   },
   "devDependencies": {

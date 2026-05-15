@@ -29,9 +29,9 @@ import serviceBg from '~/assets/our-services-bg.png';
     </div>
 
     <!-- Right SIDE Desktop -->
-    <ServicesGrid client:visible />
+    <ServicesGrid client:media="(min-width: 768px)" />
 
     <!-- Right SIDE Mobile -->
-    <ServicesGridMobile client:visible />
+    <ServicesGridMobile client:media="(max-width: 767px)" />
   </div>
 </section>

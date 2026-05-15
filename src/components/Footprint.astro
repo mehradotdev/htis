@@ -56,6 +56,7 @@ import Globe from './Globe.svelte';
 
     <!-- Globe Graphic — absolutely positioned to peek from the bottom right -->
     <div
+      aria-hidden="true"
       class="pointer-events-none absolute bottom-0 left-1/2 aspect-square w-[650px] -translate-x-1/2 translate-y-[45%] md:right-0 md:left-auto md:translate-x-[2%] md:translate-y-[45%]"
     >
       <Globe client:visible config={{ width: 650 }} className="" />

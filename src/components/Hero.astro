@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import LightRays from './LightRays.astro';
 import heroBg from '~/assets/hero-bg.png';
 import lifesizeLogo from '~/assets/lifesize-logo.png';
 import honeywellLogo from '~/assets/honeywell-logo.png';
@@ -33,26 +34,36 @@ import legrandLogo from '~/assets/legrand-logo.png';
       src={heroBg}
       alt=""
       aria-hidden="true"
-      class="absolute inset-0 h-full w-full object-cover opacity-80"
+      class="absolute inset-0 z-0 h-full w-full object-cover opacity-80"
       style="filter: var(--filter-invert-dark)"
+    />
+
+    <LightRays
+      className="z-[1] opacity-100"
+      color="rgba(138, 255, 199, 0.52)"
+      blur={54}
+      count={13}
+      speed={3}
+      length="88vh"
+      overlayOpacity={0.72}
     />
 
     <!-- Green Gradient Overlay -->
     <div
-      class="absolute inset-0 bg-linear-to-tr from-primary/30 via-transparent to-accent/40 mix-blend-multiply"
+      class="absolute inset-0 z-2 bg-linear-to-tr from-primary/16 via-transparent to-accent/10 mix-blend-multiply"
     >
     </div>
 
     <!-- Noise Overlay -->
     <div
-      class="absolute inset-0 opacity-[0.4] mix-blend-overlay"
+      class="absolute inset-0 z-3 opacity-[0.34] mix-blend-overlay"
       style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
     >
     </div>
 
     <!-- Bottom Fade (to blend with the rest of the page) -->
     <div
-      class="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-base-100 to-transparent"
+      class="absolute inset-x-0 bottom-0 z-4 h-32 bg-linear-to-t from-base-100 to-transparent"
     >
     </div>
   </div>
@@ -105,67 +116,69 @@ import legrandLogo from '~/assets/legrand-logo.png';
     class="relative z-10 mt-auto hidden w-full max-w-full overflow-hidden pt-24 pb-8 md:block"
   >
     <p class="mb-6 text-center text-base font-semibold text-base-content/60 md:text-lg">
-      Trusted by 100+ Clients and Partners
+      Trusted by 100+ Partners
     </p>
 
     <!-- Marquee Wrapper with Fade -->
-    <div class="flex w-full mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]">
+    <div
+      class="flex w-full mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
+    >
       <!-- Marquee Container -->
       <div
         class="group flex w-max opacity-70 transition-opacity duration-500 hover:opacity-100"
       >
-      {
-        Array.from({ length: 8 }).map((_, i) => (
-          <div
-            class="animate-marquee flex shrink-0 items-center gap-16 pr-16 group-hover:[animation-play-state:paused]"
-            aria-hidden={i > 0 ? 'true' : undefined}
-          >
-            <Image
-              src={ncomputingLogo}
-              alt="NComputing"
-              width={110}
-              class="object-contain transition-all duration-300 hover:filter-none!"
-              style="filter: var(--logo-filter)"
-            />
-            <Image
-              src={legrandLogo}
-              alt="Legrand"
-              width={110}
-              class="object-contain transition-all duration-300 hover:filter-none!"
-              style="filter: var(--logo-filter)"
-            />
-            <Image
-              src={lifesizeLogo}
-              alt="Lifesize"
-              width={110}
-              class="object-contain transition-all duration-300 hover:filter-none!"
-              style="filter: var(--logo-filter)"
-            />
-            <Image
-              src={honeywellLogo}
-              alt="Honeywell"
-              width={110}
-              class="object-contain transition-all duration-300 hover:filter-none!"
-              style="filter: var(--logo-filter)"
-            />
-            <Image
-              src={nokiaLogo}
-              alt="Nokia"
-              width={110}
-              class="object-contain transition-all duration-300 hover:filter-none!"
-              style="filter: var(--logo-filter)"
-            />
-            <Image
-              src={ericssonLogo}
-              alt="Ericsson"
-              width={110}
-              class="object-contain transition-all duration-300 hover:filter-none!"
-              style="filter: var(--logo-filter)"
-            />
-          </div>
-        ))
-      }
-    </div>
+        {
+          Array.from({ length: 8 }).map((_, i) => (
+            <div
+              class="animate-marquee flex shrink-0 items-center gap-16 pr-16 group-hover:[animation-play-state:paused]"
+              aria-hidden={i > 0 ? 'true' : undefined}
+            >
+              <Image
+                src={ncomputingLogo}
+                alt="NComputing"
+                width={110}
+                class="object-contain transition-all duration-300 hover:filter-none!"
+                style="filter: var(--logo-filter)"
+              />
+              <Image
+                src={legrandLogo}
+                alt="Legrand"
+                width={110}
+                class="object-contain transition-all duration-300 hover:filter-none!"
+                style="filter: var(--logo-filter)"
+              />
+              <Image
+                src={lifesizeLogo}
+                alt="Lifesize"
+                width={110}
+                class="object-contain transition-all duration-300 hover:filter-none!"
+                style="filter: var(--logo-filter)"
+              />
+              <Image
+                src={honeywellLogo}
+                alt="Honeywell"
+                width={110}
+                class="object-contain transition-all duration-300 hover:filter-none!"
+                style="filter: var(--logo-filter)"
+              />
+              <Image
+                src={nokiaLogo}
+                alt="Nokia"
+                width={110}
+                class="object-contain transition-all duration-300 hover:filter-none!"
+                style="filter: var(--logo-filter)"
+              />
+              <Image
+                src={ericssonLogo}
+                alt="Ericsson"
+                width={110}
+                class="object-contain transition-all duration-300 hover:filter-none!"
+                style="filter: var(--logo-filter)"
+              />
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

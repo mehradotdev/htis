@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { untrack } from 'svelte';
   import createGlobe, { type COBEOptions } from 'cobe';
 
   type GlobeConfig = Partial<COBEOptions>;
@@ -86,6 +87,7 @@
     if (pointerInteracting !== null) {
       const delta = clientX - pointerInteracting;
       r += delta / MOVEMENT_DAMPING;
+      pointerInteracting = clientX;
     }
   };
 
@@ -125,8 +127,8 @@
 
     const globe = createGlobe(canvas, {
       ...actualConfig,
-      width: size * INTERNAL_SCALE,
-      height: size * INTERNAL_SCALE,
+      width: untrack(() => size) * INTERNAL_SCALE,
+      height: untrack(() => size) * INTERNAL_SCALE,
     });
 
     const resizeObserver = new ResizeObserver(updateSize);
