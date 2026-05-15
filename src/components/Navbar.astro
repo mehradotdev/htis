@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import htisLogo from '~/assets/htis-logo.png';
+import htisLogo from '~/assets/logo-htis.png';
 import MenuIcon from './icons/MenuIcon.astro';
 import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
 ---
@@ -55,14 +55,14 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
       <!-- Theme Toggle -->
       <AnimatedThemeToggler
         client:load
-        className="btn btn-ghost btn-circle"
+        className="btn btn-circle btn-ghost"
         duration={500}
         aria-label="Toggle theme"
       />
 
       <a
         href="#contact"
-        class="btn btn-primary rounded-full px-4 text-base tracking-wide text-primary-content opacity-90 shadow-md md:px-6 md:text-lg"
+        class="btn rounded-full px-4 text-base tracking-wide text-primary-content opacity-90 shadow-md btn-primary md:px-6 md:text-lg"
         >Contact Us</a
       >
     </div>
@@ -71,7 +71,6 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
 
 <script>
   function initNavbar() {
-
     function updateNavbar() {
       const navbar = document.getElementById('navbar');
       const logo = document.getElementById('navbar-logo');
@@ -92,7 +91,7 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
           'py-1',
           'min-h-[4rem]',
         );
-        
+
         logo?.classList.remove('w-[140px]');
         logo?.classList.add('w-[110px]');
         navbar?.classList.add('min-h-[3rem]');
@@ -131,7 +130,12 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
           'py-1',
           'min-h-[3rem]',
         );
-        navbar?.classList.add('max-w-7xl', 'bg-transparent', 'rounded-none', 'min-h-[4rem]');
+        navbar?.classList.add(
+          'max-w-7xl',
+          'bg-transparent',
+          'rounded-none',
+          'min-h-[4rem]',
+        );
         logo?.classList.remove('w-[110px]');
         logo?.classList.add('w-[140px]');
       }
