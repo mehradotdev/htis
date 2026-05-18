@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Search, ChevronDown } from '@lucide/svelte';
+
   type Job = {
     id: string;
     role: string;
@@ -11,6 +13,27 @@
   let searchQuery = $state('');
   let selectedDepartments = $state<string[]>([]);
   let selectedLocations = $state<string[]>([]);
+
+  let deptDetailsRef = $state<HTMLDetailsElement | null>(null);
+  let locDetailsRef = $state<HTMLDetailsElement | null>(null);
+
+  function handleWindowClick(event: MouseEvent) {
+    const target = event.target as Node;
+    if (
+      deptDetailsRef &&
+      deptDetailsRef.hasAttribute('open') &&
+      !deptDetailsRef.contains(target)
+    ) {
+      deptDetailsRef.removeAttribute('open');
+    }
+    if (
+      locDetailsRef &&
+      locDetailsRef.hasAttribute('open') &&
+      !locDetailsRef.contains(target)
+    ) {
+      locDetailsRef.removeAttribute('open');
+    }
+  }
 
   let filteredJobs = $derived(
     jobs.filter((job) => {
@@ -54,24 +77,15 @@
   }
 </script>
 
+<svelte:window onclick={handleWindowClick} />
+
 <div>
   <!-- Filters -->
   <div class="flex flex-col md:flex-row gap-4 mb-4">
     <div class="relative flex-1">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-base-content/50 pointer-events-none"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-      </svg>
+      <Search
+        class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-base-content/50 pointer-events-none z-10"
+      />
       <input
         type="text"
         placeholder="Search For Job"
@@ -81,7 +95,7 @@
     </div>
 
     <!-- Department Dropdown -->
-    <details class="dropdown flex-1">
+    <details class="dropdown flex-1" bind:this={deptDetailsRef}>
       <summary
         class="btn btn-outline border-base-300 w-full justify-between font-normal bg-base-100 hover:bg-base-200 text-base-content/70 hover:border-base-300"
       >
@@ -90,22 +104,10 @@
             ? `${selectedDepartments.length} Selected`
             : 'Department'}
         </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 shrink-0"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"
-          /></svg
-        >
+        <ChevronDown class="h-4 w-4 shrink-0" />
       </summary>
       <ul
-        class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full mt-1 border border-base-200 max-h-60 overflow-y-auto block"
+        class="dropdown-content z-1 menu p-2 shadow bg-base-100 rounded-box w-full mt-1 border border-base-200 max-h-60 overflow-y-auto block"
       >
         {#each departments as dept}
           <li>
@@ -124,7 +126,7 @@
     </details>
 
     <!-- Location Dropdown -->
-    <details class="dropdown flex-1">
+    <details class="dropdown flex-1" bind:this={locDetailsRef}>
       <summary
         class="btn btn-outline border-base-300 w-full justify-between font-normal bg-base-100 hover:bg-base-200 text-base-content/70 hover:border-base-300"
       >
@@ -133,22 +135,10 @@
             ? `${selectedLocations.length} Selected`
             : 'Location'}
         </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 shrink-0"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"
-          /></svg
-        >
+        <ChevronDown class="h-4 w-4 shrink-0" />
       </summary>
       <ul
-        class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full mt-1 border border-base-200 max-h-60 overflow-y-auto block"
+        class="dropdown-content z-1 menu p-2 shadow bg-base-100 rounded-box w-full mt-1 border border-base-200 max-h-60 overflow-y-auto block"
       >
         {#each locations as loc}
           <li>
@@ -182,9 +172,9 @@
     <table class="table w-full">
       <thead>
         <tr>
-          <th class="font-bold text-primary/80 text-base bg-transparent">Role</th>
-          <th class="font-bold text-primary/80 text-base bg-transparent">Department</th>
-          <th class="font-bold text-primary/80 text-base bg-transparent">Location</th>
+          <th class="font-bold text-base-content text-base bg-transparent">Role</th>
+          <th class="font-bold text-base-content text-base bg-transparent">Department</th>
+          <th class="font-bold text-base-content text-base bg-transparent">Location</th>
         </tr>
       </thead>
       <tbody class="bg-base-100 rounded-box shadow-sm border border-base-200">
@@ -197,14 +187,18 @@
         {:else}
           {#each filteredJobs as job, index}
             <tr
-              class={`transition-colors hover:bg-base-200/50 cursor-pointer ${index % 2 !== 0 ? 'bg-base-200/30' : 'bg-base-100'}`}
-              onclick={() => (window.location.href = `/jobs/${job.id}`)}
+              class={`relative transition-colors hover:bg-base-200/50 ${index % 2 !== 0 ? 'bg-base-200/30' : 'bg-base-100'}`}
             >
               <td class="font-bold text-primary py-5">
-                <a href={`/jobs/${job.id}`} class="hover:underline">{job.role}</a>
+                <a
+                  href={`/jobs/${job.id}`}
+                  class="row-link hover:underline"
+                  aria-label={`${job.role} — ${job.department}, ${job.location}`}
+                  >{job.role}</a
+                >
               </td>
-              <td class="text-base-content/70 py-5">{job.department}</td>
-              <td class="text-base-content/70 py-5">{job.location}</td>
+              <td class="text-base-content py-5">{job.department}</td>
+              <td class="text-base-content py-5">{job.location}</td>
             </tr>
           {/each}
         {/if}
@@ -225,5 +219,19 @@
   /* Ensure proper width for labels inside dropdowns */
   .dropdown-content li {
     width: 100%;
+  }
+
+  /*
+   * Stretch the role anchor to cover the entire row.
+   * The <tr> has `position: relative` (via Tailwind's `relative` class).
+   * The ::after pseudo-element becomes a transparent overlay that
+   * intercepts clicks anywhere on the row — fully keyboard-accessible
+   * because the <a> itself is the focusable element.
+   */
+  .row-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 </style>
