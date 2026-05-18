@@ -1,8 +1,143 @@
 ---
 import { Image } from 'astro:assets';
 import htisLogo from '~/assets/logo-htis.png';
+import solutionsImg from '~/assets/lob-resourcing-construction-1.png';
+import resourcesImg from '~/assets/lob-resourcing-case-study-1.png';
 import MenuIcon from './icons/MenuIcon.astro';
 import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
+
+import {
+  Phone,
+  Server,
+  Code,
+  Users,
+  Antenna,
+  Landmark,
+  Building2,
+  Factory,
+  HeartPulse,
+  HardHat,
+  Laptop,
+  Network,
+  ShieldCheck,
+  Database,
+  Award,
+  Info,
+  FileText,
+  Briefcase,
+  ChevronDown,
+  ArrowRight,
+} from '@lucide/astro';
+
+const solutions = [
+  {
+    title: 'Telecom Services',
+    desc: 'Connectivity and network operations',
+    url: '/telecom',
+    icon: Phone,
+  },
+  {
+    title: 'System Integration',
+    desc: 'End-to-end IT infrastructure',
+    url: '/system-integration',
+    icon: Server,
+  },
+  {
+    title: 'Software Development',
+    desc: 'Custom applications and platforms',
+    url: '#',
+    icon: Code,
+  },
+  {
+    title: 'Resource Management',
+    desc: 'Skilled workforce solutions',
+    url: '/resourcing',
+    icon: Users,
+  },
+];
+
+const industriesCol1 = [
+  {
+    title: 'Telecom Operators',
+    desc: 'Network providers and ISPs',
+    url: '#',
+    icon: Antenna,
+  },
+  {
+    title: 'Public Sector, Ministries & Defence',
+    desc: 'Government and defense',
+    url: '#',
+    icon: Landmark,
+  },
+  {
+    title: 'BFSI (Banking, Financial Services & Insurance)',
+    desc: 'Banking and financial services',
+    url: '#',
+    icon: Building2,
+  },
+  {
+    title: 'Manufacturing, Automobile & FMCG',
+    desc: 'Automotive and consumer goods',
+    url: '#',
+    icon: Factory,
+  },
+  {
+    title: 'Healthcare & Education',
+    desc: 'Hospitals and academic institutions',
+    url: '#',
+    icon: HeartPulse,
+  },
+];
+
+const industriesCol2 = [
+  {
+    title: 'Real Estate, Infrastructure & Smart Spaces',
+    desc: 'Infrastructure and smart cities',
+    url: '#',
+    icon: HardHat,
+  },
+  {
+    title: 'Compute & Mobility',
+    desc: 'End-user computing and devices',
+    url: '#',
+    icon: Laptop,
+  },
+  {
+    title: 'Networking & Fabric',
+    desc: 'Enterprise network solutions',
+    url: '#',
+    icon: Network,
+  },
+  {
+    title: 'Cybersecurity',
+    desc: 'Security and compliance',
+    url: '#',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Storage & Backup',
+    desc: 'Data management and recovery',
+    url: '#',
+    icon: Database,
+  },
+];
+
+const resources = [
+  {
+    title: 'Awards & Achievement',
+    desc: 'Our recognition and accolades',
+    url: '/awards',
+    icon: Award,
+  },
+  { title: 'About us', desc: 'Company overview and vision', url: '#', icon: Info },
+  { title: 'Blogs', desc: 'Insights and industry news', url: '#', icon: FileText },
+  {
+    title: 'Case Studies',
+    desc: 'Success stories and implementations',
+    url: '#',
+    icon: Briefcase,
+  },
+];
 ---
 
 <div
@@ -20,13 +155,65 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
         </label>
         <ul
           tabindex="0"
-          class="dropdown-content menu z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 text-lg font-medium text-base-content shadow"
+          class="dropdown-content menu z-1 mt-3 max-h-[85vh] w-[22rem] flex-nowrap overflow-y-auto rounded-box border border-base-200/50 bg-base-100 p-2 text-base font-medium text-base-content shadow-xl"
         >
-          <li><a href="/" class="font-semibold text-primary">Home</a></li>
-          <li><a href="#">Product</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="/jobs">About Us</a></li>
+          <li><a href="/" class="py-3 font-semibold text-primary">Home</a></li>
+
+          <li>
+            <details>
+              <summary class="py-3 font-semibold">Solutions</summary>
+              <ul class="before:bg-base-200/50">
+                {
+                  solutions.map((item) => (
+                    <li>
+                      <a href={item.url} class="py-3">
+                        <item.icon class="mr-2 h-4 w-4 flex-shrink-0 text-primary" />
+                        <span class="leading-tight">{item.title}</span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </details>
+          </li>
+
+          <li>
+            <details>
+              <summary class="py-3 font-semibold">Industries</summary>
+              <ul class="before:bg-base-200/50">
+                {
+                  [...industriesCol1, ...industriesCol2].map((item) => (
+                    <li>
+                      <a href={item.url} class="py-2.5">
+                        <item.icon class="mr-2 h-4 w-4 flex-shrink-0 text-primary" />
+                        <span class="text-sm leading-tight">{item.title}</span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </details>
+          </li>
+
+          <li>
+            <details>
+              <summary class="py-3 font-semibold">Resources</summary>
+              <ul class="before:bg-base-200/50">
+                {
+                  resources.map((item) => (
+                    <li>
+                      <a href={item.url} class="py-3">
+                        <item.icon class="mr-2 h-4 w-4 flex-shrink-0 text-primary" />
+                        <span class="leading-tight">{item.title}</span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </details>
+          </li>
+
+          <li><a href="/jobs" class="py-3 font-semibold">Career</a></li>
         </ul>
       </div>
       <a href="/" class="btn h-auto p-2 text-xl normal-case btn-ghost">
@@ -40,16 +227,233 @@ import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
         />
       </a>
     </div>
-    <div class="navbar-center hidden lg:flex">
-      <ul
-        class="menu menu-horizontal space-x-6 px-1 text-lg font-medium text-base-content/80"
+    <div class="navbar-center hidden h-full items-center lg:flex">
+      <nav
+        class="relative flex h-full items-center space-x-6 px-1 text-[16px] font-medium text-base-content/80"
       >
-        <li><a href="/" class="font-semibold text-primary">Home</a></li>
-        <li><a href="#">Product</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="/jobs">About Us</a></li>
-      </ul>
+        <a
+          href="/"
+          class="py-4 font-semibold text-primary transition-colors hover:text-primary"
+          >Home</a
+        >
+
+        <!-- Solutions -->
+        <div class="group/nav flex h-full cursor-pointer items-center">
+          <div class="flex items-center gap-1 py-4 transition-colors hover:text-primary">
+            Solutions
+            <ChevronDown
+              class="h-4 w-4 opacity-50 transition-transform duration-300 group-hover/nav:-rotate-180"
+            />
+          </div>
+
+          <div
+            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-hover/nav:visible group-hover/nav:opacity-100"
+          >
+            <div
+              class="flex w-[800px] gap-8 rounded-[2rem] border border-base-200 bg-base-100 p-6 shadow-2xl before:absolute before:inset-0 before:-z-10 before:rounded-[2rem] before:shadow-xl before:shadow-base-content/5"
+            >
+              <div class="flex flex-1 flex-col gap-2">
+                <h3
+                  class="mb-2 px-3 text-xs font-bold tracking-widest text-base-content/50 uppercase"
+                >
+                  Our Solutions
+                </h3>
+                {
+                  solutions.map((item) => (
+                    <a
+                      href={item.url}
+                      class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
+                    >
+                      <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
+                        <item.icon class="h-5 w-5 flex-shrink-0" />
+                      </div>
+                      <div>
+                        <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
+                          {item.title}
+                        </div>
+                        <div class="mt-0.5 text-sm leading-snug text-base-content/60">
+                          {item.desc}
+                        </div>
+                      </div>
+                    </a>
+                  ))
+                }
+              </div>
+              <div
+                class="group/card relative w-[300px] flex-shrink-0 overflow-hidden rounded-[1.5rem] bg-base-200"
+              >
+                <Image
+                  src={solutionsImg}
+                  alt="Solutions"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-110"
+                  width={300}
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                >
+                </div>
+                <div class="absolute right-0 bottom-0 left-0 p-6 text-left text-white">
+                  <h4 class="mb-2 text-xl font-bold">Build the future</h4>
+                  <p class="mb-6 text-sm text-white/80">
+                    Discover our full range of enterprise solutions tailored for scale.
+                  </p>
+                  <a
+                    href="/system-integration"
+                    class="btn w-full rounded-full border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
+                  >
+                    Explore Solutions <ArrowRight class="ml-1 h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Industries -->
+        <div class="group/nav flex h-full cursor-pointer items-center">
+          <div class="flex items-center gap-1 py-4 transition-colors hover:text-primary">
+            Industries
+            <ChevronDown
+              class="h-4 w-4 opacity-50 transition-transform duration-300 group-hover/nav:-rotate-180"
+            />
+          </div>
+
+          <div
+            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-hover/nav:visible group-hover/nav:opacity-100"
+          >
+            <div
+              class="flex w-[850px] gap-6 rounded-[2rem] border border-base-200 bg-base-100 p-6 shadow-2xl before:absolute before:inset-0 before:-z-10 before:rounded-[2rem] before:shadow-xl before:shadow-base-content/5"
+            >
+              <div class="flex flex-1 flex-col gap-2">
+                <h3
+                  class="mb-2 px-3 text-xs font-bold tracking-widest text-base-content/50 uppercase"
+                >
+                  Industries We Serve
+                </h3>
+                {
+                  industriesCol1.map((item) => (
+                    <a
+                      href={item.url}
+                      class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
+                    >
+                      <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
+                        <item.icon class="h-5 w-5 flex-shrink-0" />
+                      </div>
+                      <div>
+                        <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
+                          {item.title}
+                        </div>
+                        <div class="mt-0.5 text-sm leading-snug text-base-content/60">
+                          {item.desc}
+                        </div>
+                      </div>
+                    </a>
+                  ))
+                }
+              </div>
+
+              <div class="my-4 w-[1px] bg-base-200/60"></div>
+
+              <div class="flex flex-1 flex-col gap-2 pt-8">
+                {
+                  industriesCol2.map((item) => (
+                    <a
+                      href={item.url}
+                      class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
+                    >
+                      <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
+                        <item.icon class="h-5 w-5 flex-shrink-0" />
+                      </div>
+                      <div>
+                        <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
+                          {item.title}
+                        </div>
+                        <div class="mt-0.5 text-sm leading-snug text-base-content/60">
+                          {item.desc}
+                        </div>
+                      </div>
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="group/nav flex h-full cursor-pointer items-center">
+          <div class="flex items-center gap-1 py-4 transition-colors hover:text-primary">
+            Resources
+            <ChevronDown
+              class="h-4 w-4 opacity-50 transition-transform duration-300 group-hover/nav:-rotate-180"
+            />
+          </div>
+
+          <div
+            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-hover/nav:visible group-hover/nav:opacity-100"
+          >
+            <div
+              class="flex w-[800px] gap-8 rounded-[2rem] border border-base-200 bg-base-100 p-6 shadow-2xl before:absolute before:inset-0 before:-z-10 before:rounded-[2rem] before:shadow-xl before:shadow-base-content/5"
+            >
+              <div class="flex flex-1 flex-col gap-2">
+                <h3
+                  class="mb-2 px-3 text-xs font-bold tracking-widest text-base-content/50 uppercase"
+                >
+                  Knowledge Hub
+                </h3>
+                {
+                  resources.map((item) => (
+                    <a
+                      href={item.url}
+                      class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
+                    >
+                      <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
+                        <item.icon class="h-5 w-5 flex-shrink-0" />
+                      </div>
+                      <div>
+                        <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
+                          {item.title}
+                        </div>
+                        <div class="mt-0.5 text-sm leading-snug text-base-content/60">
+                          {item.desc}
+                        </div>
+                      </div>
+                    </a>
+                  ))
+                }
+              </div>
+              <div
+                class="group/card relative w-[300px] flex-shrink-0 overflow-hidden rounded-[1.5rem] bg-base-200"
+              >
+                <Image
+                  src={resourcesImg}
+                  alt="Resources"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-110"
+                  width={300}
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                >
+                </div>
+                <div class="absolute right-0 bottom-0 left-0 p-6 text-left text-white">
+                  <h4 class="mb-2 text-xl font-bold">Our impact</h4>
+                  <p class="mb-6 text-sm text-white/80">
+                    Explore case studies and learn how we empower success globally.
+                  </p>
+                  <a
+                    href="#"
+                    class="btn w-full rounded-full border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
+                  >
+                    View Case Studies <ArrowRight class="ml-1 h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="/jobs" class="py-4 transition-colors hover:text-primary">Career</a>
+      </nav>
     </div>
     <div class="navbar-end flex-1 gap-1 md:gap-2">
       <!-- Theme Toggle -->

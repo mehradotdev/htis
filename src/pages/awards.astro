@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/Layout.astro';
+import Navbar from '~/components/Navbar.astro';
+import Footer from '~/components/Footer.astro';
+import AwardsGallery from '~/components/awards/AwardsGallery.svelte';
+
+import heroBg from '~/assets/awards-hero-bg.png';
+import awardPhoto from '~/assets/awards-photo.png';
+---
+
+<Layout title="Awards & Achievements - HTIS">
+  <div class="relative w-full overflow-clip">
+    <Navbar />
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-16">
+      <div class="container mx-auto px-6">
+        <div class="relative w-full overflow-hidden rounded-[2rem] bg-base-200">
+          <div class="absolute inset-0 z-0 opacity-80">
+            <Image
+              src={heroBg}
+              alt=""
+              aria-hidden="true"
+              class="h-full w-full object-cover object-right"
+              style="filter: var(--filter-invert-dark)"
+            />
+          </div>
+          <div
+            class="absolute inset-0 z-0 bg-linear-to-r from-base-200/90 via-base-200/50 to-transparent"
+          >
+          </div>
+          <div
+            class="relative z-10 w-full max-w-2xl px-8 py-16 md:px-12 lg:px-16 lg:py-24"
+          >
+            <h1
+              class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-[54px]"
+            >
+              Awards & Achievements
+            </h1>
+            <p class="text-xl font-medium text-base-content/70">
+              A testament to our commitment to excellence, innovation and delivering
+              exceptional value.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="pt-8 pb-24">
+      <div class="container mx-auto px-6">
+        <AwardsGallery photoSrc={awardPhoto.src} client:load />
+      </div>
+    </section>
+
+    <div class="bg-base-200/50">
+      <Footer />
+    </div>
+  </div>
+</Layout>
