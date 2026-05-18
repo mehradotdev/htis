@@ -11,8 +11,8 @@
   --logo-filter: grayscale(100%);
   --filter-invert-dark: none;
   --bg-blend: multiply;
-  --color-base-content: oklch(35% 0.05 160); /* ##77988B  ##34594B */
-  --color-primary: oklch(72% 0.14 160);
+  --color-base-content: oklch(0.4315 0.0489 167.98); /* ##77988B  ##34594B */
+  --color-primary: oklch(0.7253 0.1147 165.55);
   --color-primary-content: oklch(98% 0.01 160);
   --color-secondary: oklch(47% 0.11 160);
   --color-secondary-content: oklch(98% 0.01 160);

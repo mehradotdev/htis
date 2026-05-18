@@ -28,10 +28,12 @@
 
   <div class="relative z-10 container mx-auto px-4 lg:px-8">
     <div class="mb-12 max-w-3xl">
-      <h2 class="mb-6 text-4xl font-extrabold text-primary md:text-5xl">Meet the Team</h2>
+      <h2 class="mb-6 text-4xl font-extrabold text-base-content md:text-5xl">
+        Meet the Team
+      </h2>
       {#key activeIndex}
         <p
-          class="min-h-[5rem] text-lg font-medium text-base-content/80 md:text-xl"
+          class="min-h-20 text-lg font-medium text-base-content/80 md:text-xl"
           in:fade={{ duration: 200 }}
         >
           {team[activeIndex].desc}
@@ -71,7 +73,7 @@
               {member.name}
             </h3>
             <p
-              class="mb-2 text-xs font-bold tracking-wider whitespace-nowrap text-primary/80 uppercase sm:text-sm md:mb-4 md:text-base"
+              class="mb-2 text-xs font-bold tracking-wider whitespace-nowrap text-primary uppercase sm:text-sm md:mb-4 md:text-base"
             >
               {member.role}
             </p>

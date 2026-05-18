@@ -43,7 +43,9 @@
       The HTIS Partner Ecosystem
     </h2>
     <p class="text-lg md:text-xl text-base-content/70 leading-relaxed">
-      We collaborate with a specialized list of global OEMs to deliver end-to-end IT excellence. This ecosystem ensures that every layer of your infrastructure, from the endpoint to the cloud, is powered by industry-leading technology.
+      We collaborate with a specialized list of global OEMs to deliver end-to-end IT
+      excellence. This ecosystem ensures that every layer of your infrastructure, from the
+      endpoint to the cloud, is powered by industry-leading technology.
     </p>
   </div>
 
@@ -51,14 +53,17 @@
   <div class="flex flex-wrap gap-3 mb-16">
     {#each tabs as tab, i}
       <button
-        class="px-6 py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-300 relative overflow-hidden cursor-pointer border {activeIndex === i
+        class="px-6 py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-300 relative overflow-hidden cursor-pointer border {activeIndex ===
+        i
           ? 'bg-primary text-primary-content border-primary shadow-md'
           : 'bg-primary/20 text-primary border-transparent hover:bg-primary/30 hover:text-primary'}"
         onclick={() => selectTab(i)}
       >
         {#if activeIndex === i}
           <!-- Progress bar effect -->
-          <div class="absolute bottom-0 left-0 h-1 bg-primary-content/40 animate-fill-bg"></div>
+          <div
+            class="absolute bottom-0 left-0 h-1 bg-primary-content/40 animate-fill-bg"
+          ></div>
         {/if}
         {tab.title}
       </button>
@@ -69,10 +74,10 @@
   <div class="min-h-[160px] relative">
     {#key activeIndex}
       <div in:fade={{ duration: 400 }} class="absolute inset-0">
-        <h3 class="text-lg md:text-xl font-medium text-primary mb-8">
+        <h3 class="text-lg md:text-2xl font-medium text-primary mb-8">
           {tabs[activeIndex].subtitle}
         </h3>
-        
+
         <div class="flex flex-wrap items-center gap-8 md:gap-14">
           {#each tabs[activeIndex].partners as partner}
             {#if partner.logoSrc}
@@ -82,7 +87,9 @@
                 class="h-10 md:h-14 object-contain max-w-[160px] grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
               />
             {:else}
-              <div class="text-lg md:text-xl font-bold text-base-content/40 hover:text-base-content/70 transition-colors uppercase tracking-wider">
+              <div
+                class="text-lg md:text-xl font-bold text-base-content/40 hover:text-base-content/70 transition-colors uppercase tracking-wider"
+              >
                 {partner.name}
               </div>
             {/if}

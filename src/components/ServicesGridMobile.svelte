@@ -2,6 +2,8 @@
   import { servicesData as services } from '~/data/pageData';
   import { ArrowRight } from '@lucide/svelte';
 
+  const serviceHrefs = { telecom: '/telecom', resourcing: '/resourcing', system: '/system-integration', software: '/system-integration' };
+
   // Open 'telecom' by default on mobile
   let active = $state('telecom');
 </script>
@@ -32,21 +34,13 @@
               </h3>
             </button>
 
-            <!-- svelte-ignore a11y_no_static_element_interactions -->
-            <svelte:element
-              this={['telecom', 'resourcing', 'system'].includes(service.id) ? 'a' : 'button'}
-              href={service.id === 'system' ? '/system-integration' : (['telecom', 'resourcing'].includes(service.id) ? `/${service.id}` : undefined)}
-              type={['telecom', 'resourcing', 'system'].includes(service.id) ? undefined : 'button'}
-              onclick={(e) => {
-                if (!['telecom', 'resourcing', 'system'].includes(service.id)) {
-                  active = active === service.id ? 'collapsed' : service.id;
-                }
-              }}
+            <a
+              href={serviceHrefs[service.id]}
               class="ml-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-primary bg-primary/10 text-primary transition-transform duration-300 hover:bg-primary/20 {active === service.id ? '-rotate-45' : 'rotate-0'}"
-              aria-label={['telecom', 'resourcing', 'system'].includes(service.id) ? "Go to page" : "Toggle accordion"}
+              aria-label="Go to page"
             >
               <ArrowRight class="h-5 w-5" />
-            </svelte:element>
+            </a>
           </div>
 
           <!-- Accordion Content (Stats) -->

@@ -8,7 +8,7 @@ import infoImg5 from '~/assets/lob-telecom-info-5.png';
 import infoImg6 from '~/assets/lob-telecom-info-6.png';
 import infoImg7 from '~/assets/lob-telecom-info-7.png';
 import { telecomProcesses } from '~/data/pageDataTelecom';
-import { ArrowUpRight, Network, Users, Code } from '@lucide/astro';
+import { ArrowUpRight, Network, Users, Code, ArrowRight } from '@lucide/astro';
 import TelecomProcesses from './TelecomProcesses.svelte';
 import TelecomDeployments from './TelecomDeployments.svelte';
 import TelecomMetrics from './TelecomMetrics.svelte';
@@ -44,34 +44,48 @@ const processImages = [
 
     <!-- Pillars -->
     <div
-      class="mt-16 grid grid-cols-1 border-y-2 border-base-content/20 py-12 md:grid-cols-3 lg:mt-20 lg:py-16"
+      class="mt-16 flex flex-col border-t-2 border-base-content/20 py-12 md:flex-row md:gap-x-6 lg:mt-20 lg:gap-x-10 lg:py-16"
     >
-      <div class="flex flex-col gap-4 pb-12 md:pr-10 md:pb-0 lg:pr-14">
-        <div
-          class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl border border-base-content/5 bg-base-100 text-primary shadow-sm"
-        >
-          <Network class="h-8 w-8" />
+      <div class="flex flex-1 flex-col gap-4 pb-12 md:pb-0">
+        <div class="mb-2 flex items-start justify-between">
+          <Network class="h-12 w-12 text-[#60B68C]" />
+          <a
+            href="#"
+            aria-label="View more details"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+          >
+            <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+          </a>
         </div>
         <h3 class="text-xl font-bold">
           Converged IT Infrastructure & Systems Integration
         </h3>
-        <p class="text-lg text-base-content/70">
+        <p class="text-justify text-lg text-base-content/70">
           Architecting the high-availability IT fabrics that power mission-critical
           network operations. We provide the end-to-end IT backbone for modern Telcos,
           ranging from Tier III/IV Data Center engineering and virtualization to
           software-defined networking (SDN) and high-density compute environments.
         </p>
       </div>
+
+      <!-- Divider -->
+      <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
+
       <div
-        class="flex flex-col gap-4 border-y-2 border-base-content/20 py-12 md:border-x-2 md:border-y-0 md:px-10 md:py-0 lg:px-14"
+        class="flex flex-1 flex-col gap-4 border-y-2 border-base-content/20 py-12 md:border-y-0 md:py-0"
       >
-        <div
-          class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl border border-base-content/5 bg-base-100 text-primary shadow-sm"
-        >
-          <Users class="h-8 w-8" />
+        <div class="mb-2 flex items-start justify-between">
+          <Users class="h-12 w-12 text-[#60B68C]" />
+          <a
+            href="#"
+            aria-label="View more details"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+          >
+            <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+          </a>
         </div>
         <h3 class="text-xl font-bold">Specialized Technical Resourcing & Deployment</h3>
-        <p class="text-lg text-base-content/70">
+        <p class="text-justify text-lg text-base-content/70">
           Scalable L1–L6 talent solutions engineered for complex, multi-region telecom
           rollouts. We bridge the technical skill gap by deploying a domain-expert
           workforce. From high-niche technical architects (L6) to scalable field
@@ -79,16 +93,25 @@ const processImages = [
           excellence.
         </p>
       </div>
-      <div class="flex flex-col gap-4 pt-12 md:pt-0 md:pl-10 lg:pl-14">
-        <div
-          class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl border border-base-content/5 bg-base-100 text-primary shadow-sm"
-        >
-          <Code class="h-8 w-8" />
+
+      <!-- Divider -->
+      <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
+
+      <div class="flex flex-1 flex-col gap-4 pt-12 md:pt-0">
+        <div class="mb-2 flex items-start justify-between">
+          <Code class="h-12 w-12 text-[#60B68C]" />
+          <a
+            href="#"
+            aria-label="View more details"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+          >
+            <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+          </a>
         </div>
         <h3 class="text-xl font-bold">
           Enterprise Software Engineering & On-Demand Solutions
         </h3>
-        <p class="text-lg text-base-content/70">
+        <p class="text-justify text-lg text-base-content/70">
           Bespoke digital assets and SaaS platforms tailored for government and corporate
           scale. We build the intelligence that drives connectivity. Specializing in
           on-demand software development, we deliver secure, high-compliance digital
