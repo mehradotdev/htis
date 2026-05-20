@@ -183,3 +183,106 @@ export const jobs: Job[] = [
     ]
   }
 ];
+
+export function getDummyJobDetails(apiJob: any): Job {
+  const title = apiJob.title || '';
+  const lowerTitle = title.toLowerCase();
+  
+  let match = jobs.find(j => 
+    lowerTitle.includes(j.role.toLowerCase()) || 
+    j.role.toLowerCase().includes(lowerTitle)
+  );
+
+  // If we don't have a direct match, let's fallback to some realistic defaults based on the title keywords
+  if (!match) {
+    if (lowerTitle.includes('lead') || lowerTitle.includes('manager') || lowerTitle.includes('director')) {
+      match = {
+        id: apiJob.jobId.toString(),
+        role: title,
+        department: apiJob.skills || 'Management',
+        location: apiJob.location || 'Remote',
+        experience: `${apiJob.minExperience || 5}+ Years`,
+        whatYouWillDo: `As a ${title}, you will be responsible for leading teams, defining technical or business strategy, and ensuring high-quality execution of initiatives. You will act as a bridge between engineering, product, and leadership to deliver robust, scalable, and value-driven solutions.`,
+        responsibilities: [
+          "Lead and mentor cross-functional teams to deliver high-quality products and features",
+          "Define the technical roadmap, architectural standards, and best practices for the department",
+          "Collaborate with product management and business leaders to align technical direction with goals",
+          "Conduct architectural reviews and ensure scalable, secure, and performant implementations",
+          "Foster a collaborative, inclusive, and high-performance engineering culture",
+          "Identify and mitigate project risks, resolving technical hurdles in a timely manner"
+        ],
+        minimumRequirements: [
+          `${apiJob.minExperience || 5}+ years of professional software engineering and leadership experience`,
+          "Strong experience in systems architecture, design patterns, and full-stack or backend frameworks",
+          "Proven track record of mentoring developers and leading technical projects",
+          "Excellent communication and collaboration skills with technical and non-technical stakeholders",
+          "Solid understanding of software development lifecycles, Agile methodologies, and CI/CD pipelines",
+          "Degree in Computer Science, Engineering, or equivalent practical experience"
+        ]
+      };
+    } else if (lowerTitle.includes('account') || lowerTitle.includes('sales') || lowerTitle.includes('marketing')) {
+      match = {
+        id: apiJob.jobId.toString(),
+        role: title,
+        department: apiJob.skills || 'Sales',
+        location: apiJob.location || 'Remote',
+        experience: `${apiJob.minExperience || 2}+ Years`,
+        whatYouWillDo: `As an ${title}, you will own the business relationship and expansion strategy. You'll work closely with key clients, understand their pain points, and align our state-of-the-art solutions to their technical and business requirements.`,
+        responsibilities: [
+          "Own and drive the sales cycle from prospecting to commercial negotiation and closing",
+          "Develop robust account plans for winning and expanding business with high-growth companies",
+          "Work with technical and business teams to align solutions with customer requirements",
+          "Build and maintain strong, long-term relationships with key client stakeholders",
+          "Deliver engaging product presentations and demonstrations to diverse audiences"
+        ],
+        minimumRequirements: [
+          `${apiJob.minExperience || 2}+ years of experience in enterprise sales, account management, or business development`,
+          "Strong capability to understand technical requirements and present complex solutions",
+          "Excellent presentation, negotiation, and verbal/written communication skills",
+          "Ability to thrive in a fast-paced, goal-oriented, and ambiguous environment"
+        ]
+      };
+    } else {
+      // Fallback for software developer / programming
+      match = {
+        id: apiJob.jobId.toString(),
+        role: title,
+        department: apiJob.skills || 'Engineering',
+        location: apiJob.location || 'Remote',
+        experience: `${apiJob.minExperience || 2}+ Years`,
+        whatYouWillDo: `As a ${title}, you will be responsible for building, optimizing, and maintaining user-facing and backend features for our software platforms. You will write clean, well-tested code, collaborate with designers and project managers, and contribute to the ongoing improvement of our technical ecosystem.`,
+        responsibilities: [
+          "Develop new features and optimize performance using modern programming languages and frameworks",
+          "Write clean, testable, maintainable, and well-documented code",
+          "Collaborate with UI/UX designers and backend developers to integrate systems",
+          "Participate in design discussions, code reviews, and Agile team ceremonies",
+          "Analyze, debug, and resolve performance bottlenecks and application errors"
+        ],
+        minimumRequirements: [
+          `${apiJob.minExperience || 2}+ years of professional software development experience`,
+          "Proficiency in programming languages such as JavaScript/TypeScript, C#, Python, or Java",
+          "Familiarity with modern framework patterns (e.g. ASP.NET, Svelte, React, or Node.js)",
+          "Strong understanding of responsive design, web performance, and API design",
+          "Excellent problem-solving skills and capability to work in a collaborative environment"
+        ]
+      };
+    }
+  }
+
+  // Merge dynamic properties from API job
+  return {
+    id: apiJob.jobId.toString(),
+    role: apiJob.title || match.role,
+    department: apiJob.skills || match.department,
+    location: apiJob.location || match.location,
+    experience: apiJob.minExperience && apiJob.maxExperience 
+      ? `${apiJob.minExperience}-${apiJob.maxExperience} Years of Experience`
+      : match.experience,
+    whatYouWillDo: (apiJob.description && apiJob.description.length > 10) 
+      ? apiJob.description 
+      : match.whatYouWillDo,
+    responsibilities: match.responsibilities,
+    minimumRequirements: match.minimumRequirements
+  };
+}
+
