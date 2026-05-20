@@ -20,10 +20,8 @@ import {
   Laptop,
   Network,
   ShieldCheck,
-  Database,
   Award,
   Info,
-  FileText,
   Briefcase,
   ChevronDown,
   ArrowRight,
@@ -115,10 +113,10 @@ const industriesCol2 = [
     icon: ShieldCheck,
   },
   {
-    title: 'Storage & Backup',
-    desc: 'Data management and recovery',
-    url: '#',
-    icon: Database,
+    title: 'View all Industries',
+    desc: 'Explore all our industry solutions',
+    url: '/industry',
+    icon: ArrowRight,
   },
 ];
 
@@ -129,12 +127,12 @@ const resources = [
     url: '/awards',
     icon: Award,
   },
-  { title: 'About us', desc: 'Company overview and vision', url: '#', icon: Info },
-  { title: 'Blogs', desc: 'Insights and industry news', url: '#', icon: FileText },
+  { title: 'About us', desc: 'Company overview and vision', url: '/about', icon: Info },
+  // { title: 'Blogs', desc: 'Insights and industry news', url: '#', icon: FileText },
   {
     title: 'Case Studies',
     desc: 'Success stories and implementations',
-    url: '#',
+    url: '/case-studies',
     icon: Briefcase,
   },
 ];
@@ -456,7 +454,7 @@ const resources = [
                     Explore case studies and learn how we empower success globally.
                   </p>
                   <a
-                    href="#"
+                    href="/case-studies"
                     class="btn w-full rounded-full border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
                   >
                     View Case Studies <ArrowRight class="ml-1 h-4 w-4" />
