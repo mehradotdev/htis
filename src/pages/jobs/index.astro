@@ -3,7 +3,6 @@ import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import JobListing from '~/components/jobs/JobListing.svelte';
-import { jobs } from '~/data/jobs';
 ---
 
 <Layout>
@@ -15,7 +14,7 @@ import { jobs } from '~/data/jobs';
         Find your next<br />Opportunity
       </h1>
 
-      <JobListing jobs={jobs} client:load />
+      <JobListing client:load />
     </main>
 
     <div class="mt-auto">

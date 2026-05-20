@@ -8,7 +8,36 @@
     location: string;
   };
 
-  let { jobs = [] }: { jobs: Job[] } = $props();
+  let jobs = $state<Job[]>([]);
+  let isLoading = $state(true);
+  let error = $state<string | null>(null);
+
+  $effect(() => {
+    async function fetchJobs() {
+      try {
+        const response = await fetch('https://wfmsv2api.htistelecom.in/api/Hiring/JobList');
+        if (!response.ok) {
+          throw new Error('Failed to fetch jobs from API');
+        }
+        const data = await response.json();
+        if (data.success && Array.isArray(data.data)) {
+          jobs = data.data.map((j: any) => ({
+            id: j.jobId.toString(),
+            role: j.title || '',
+            department: j.skills || 'Other',
+            location: j.location || 'Remote',
+          }));
+        } else {
+          error = 'Invalid API response format';
+        }
+      } catch (err: any) {
+        error = err.message || 'An error occurred while fetching jobs';
+      } finally {
+        isLoading = false;
+      }
+    }
+    fetchJobs();
+  });
 
   let searchQuery = $state('');
   let selectedDepartments = $state<string[]>([]);
@@ -167,44 +196,56 @@
     </button>
   </div>
 
-  <!-- Jobs Table -->
-  <div class="overflow-x-auto">
-    <table class="table w-full">
-      <thead>
-        <tr>
-          <th class="font-bold text-base-content text-base bg-transparent">Role</th>
-          <th class="font-bold text-base-content text-base bg-transparent">Department</th>
-          <th class="font-bold text-base-content text-base bg-transparent">Location</th>
-        </tr>
-      </thead>
-      <tbody class="bg-base-100 rounded-box shadow-sm border border-base-200">
-        {#if filteredJobs.length === 0}
+  {#if isLoading}
+    <div class="flex flex-col items-center justify-center p-20 gap-4 bg-base-100 rounded-box border border-base-200 shadow-sm">
+      <span class="loading loading-spinner loading-lg text-primary"></span>
+      <p class="text-base-content/60 font-medium">Loading opportunities...</p>
+    </div>
+  {:else if error}
+    <div class="alert alert-error shadow-sm mb-8">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <span>{error}</span>
+    </div>
+  {:else}
+    <!-- Jobs Table -->
+    <div class="overflow-x-auto">
+      <table class="table w-full">
+        <thead>
           <tr>
-            <td colspan="3" class="p-8 text-center text-base-content/60">
-              No jobs found matching your criteria.
-            </td>
+            <th class="font-bold text-base-content text-base bg-transparent">Role</th>
+            <th class="font-bold text-base-content text-base bg-transparent">Department</th>
+            <th class="font-bold text-base-content text-base bg-transparent">Location</th>
           </tr>
-        {:else}
-          {#each filteredJobs as job, index}
-            <tr
-              class={`relative transition-colors hover:bg-base-200/50 ${index % 2 !== 0 ? 'bg-base-200/30' : 'bg-base-100'}`}
-            >
-              <td class="font-bold text-primary py-5">
-                <a
-                  href={`/jobs/${job.id}`}
-                  class="row-link hover:underline"
-                  aria-label={`${job.role} — ${job.department}, ${job.location}`}
-                  >{job.role}</a
-                >
+        </thead>
+        <tbody class="bg-base-100 rounded-box shadow-sm border border-base-200">
+          {#if filteredJobs.length === 0}
+            <tr>
+              <td colspan="3" class="p-8 text-center text-base-content/60">
+                No jobs found matching your criteria.
               </td>
-              <td class="text-base-content py-5">{job.department}</td>
-              <td class="text-base-content py-5">{job.location}</td>
             </tr>
-          {/each}
-        {/if}
-      </tbody>
-    </table>
-  </div>
+          {:else}
+            {#each filteredJobs as job, index}
+              <tr
+                class={`relative transition-colors hover:bg-base-200/50 ${index % 2 !== 0 ? 'bg-base-200/30' : 'bg-base-100'}`}
+              >
+                <td class="font-bold text-primary py-5">
+                  <a
+                    href={`/jobs/${job.id}`}
+                    class="row-link hover:underline"
+                    aria-label={`${job.role} — ${job.department}, ${job.location}`}
+                    >{job.role}</a
+                  >
+                </td>
+                <td class="text-base-content py-5">{job.department}</td>
+                <td class="text-base-content py-5">{job.location}</td>
+              </tr>
+            {/each}
+          {/if}
+        </tbody>
+      </table>
+    </div>
+  {/if}
 </div>
 
 <style>
