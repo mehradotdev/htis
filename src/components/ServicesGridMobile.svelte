@@ -2,7 +2,12 @@
   import { servicesData as services } from '~/data/pageData';
   import { ArrowRight } from '@lucide/svelte';
 
-  const serviceHrefs = { telecom: '/telecom', resourcing: '/resourcing', system: '/system-integration', software: '/system-integration' };
+  const serviceHrefs = {
+    telecom: '/telecom',
+    resourcing: '/resourcing',
+    system: '/system-integration',
+    software: '/software',
+  };
 
   // Open 'telecom' by default on mobile
   let active = $state('telecom');
@@ -11,7 +16,9 @@
 <div class="flex w-full flex-col bg-base-100 md:hidden">
   <!-- Radial Greenish Blur Background -->
   <div class="relative w-full overflow-hidden">
-    <div class="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+    <div
+      class="pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
+    >
       <div class="h-[150%] w-[150%] rounded-full bg-primary/20 blur-[80px]"></div>
     </div>
 
@@ -36,7 +43,10 @@
 
             <a
               href={serviceHrefs[service.id]}
-              class="ml-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-primary bg-primary/10 text-primary transition-transform duration-300 hover:bg-primary/20 {active === service.id ? '-rotate-45' : 'rotate-0'}"
+              class="ml-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-primary bg-primary/10 text-primary transition-transform duration-300 hover:bg-primary/20 {active ===
+              service.id
+                ? '-rotate-45'
+                : 'rotate-0'}"
               aria-label="Go to page"
             >
               <ArrowRight class="h-5 w-5" />
@@ -56,7 +66,9 @@
                 class="flex flex-col items-center justify-center border-t border-solid border-base-content/20 bg-base-100/40 py-6 px-4 text-center"
               >
                 <span class="mb-1 text-3xl font-bold text-primary">{stat.val}</span>
-                <span class="text-sm font-medium text-base-content/70">{@html stat.label}</span>
+                <span class="text-sm font-medium text-base-content/70"
+                  >{@html stat.label}</span
+                >
               </div>
             {/each}
           </div>

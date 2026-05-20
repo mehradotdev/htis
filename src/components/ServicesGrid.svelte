@@ -6,7 +6,12 @@
   let gridRef = $state();
   let activeTooltip = $state(null);
 
-  const serviceHrefs = { telecom: '/telecom', resourcing: '/resourcing', system: '/system-integration', software: '/system-integration' };
+  const serviceHrefs = {
+    telecom: '/telecom',
+    resourcing: '/resourcing',
+    system: '/system-integration',
+    software: '/software',
+  };
 
   // 5x5 geometric grid mapping - Perfect 4x4 Expanded Square
   const stateLayouts = {
