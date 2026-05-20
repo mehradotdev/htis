@@ -1,0 +1,155 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/Layout.astro';
+import Navbar from '~/components/Navbar.astro';
+import Footer from '~/components/Footer.astro';
+
+import heroBg from '~/assets/industry-hero-bg.png';
+import heroImg from '~/assets/industry-hero-img.png';
+
+import {
+  Phone,
+  Landmark,
+  Building2,
+  Factory,
+  HeartPulse,
+  HardHat,
+  Laptop,
+  Network,
+  ShieldCheck,
+  ArrowUpRight
+} from '@lucide/astro';
+
+const industries = [
+  {
+    title: 'Telecom Operators',
+    desc: 'Empowering connectivity with next-generation network infrastructure, high-speed fiber solutions, and robust operational support to meet the growing demands of a digital world.',
+    icon: Phone,
+  },
+  {
+    title: 'Public Sector, Ministries & Defence',
+    desc: 'Delivering secure, scalable, and mission-critical IT infrastructure and communication systems tailored for government agencies, ministries, and defense organizations.',
+    icon: Landmark,
+  },
+  {
+    title: 'BFSI',
+    desc: 'Driving financial digital transformation through ultra-secure data centers, seamless network integration, and high-availability infrastructure for banks and financial institutions.',
+    icon: Building2,
+  },
+  {
+    title: 'Manufacturing, Automobile & FMCG',
+    desc: 'Accelerating Industry 4.0 adoption with smart factory connectivity, automation integrations, and resilient supply chain networking for modern production facilities.',
+    icon: Factory,
+  },
+  {
+    title: 'Healthcare & Education',
+    desc: 'Enabling remote care, telemedicine networks, and digital classrooms through high-bandwidth connectivity and secure, compliant data management solutions.',
+    icon: HeartPulse,
+  },
+  {
+    title: 'Real Estate & Smart Spaces',
+    desc: 'Building intelligent environments with integrated IoT networks, smart building automation, and future-ready IT infrastructure for commercial and residential spaces.',
+    icon: HardHat,
+  },
+  {
+    title: 'Compute & Mobility',
+    desc: 'Enhancing enterprise productivity through scalable end-user computing, enterprise mobility management, and reliable remote access solutions.',
+    icon: Laptop,
+  },
+  {
+    title: 'Networking & Fabric',
+    desc: 'Architecting high-performance enterprise networks with advanced routing, switching, and software-defined networking (SDN) for seamless cross-site connectivity.',
+    icon: Network,
+  },
+  {
+    title: 'Cybersecurity',
+    desc: 'Protecting critical assets and sensitive data with comprehensive security frameworks, threat intelligence, and zero-trust network architectures.',
+    icon: ShieldCheck,
+  },
+];
+---
+
+<Layout title="Industries - HTIS">
+  <div class="relative w-full overflow-clip">
+    <Navbar />
+
+    <!-- Section 1: Hero Section -->
+    <section class="relative pt-32 pb-20 w-full overflow-hidden bg-base-100 flex items-center min-h-[500px] md:min-h-[600px]">
+      <!-- Background -->
+      <div class="absolute inset-0 z-0 opacity-100">
+        <Image
+          src={heroBg}
+          alt=""
+          aria-hidden="true"
+          class="h-full w-full object-cover object-center"
+          style="filter: var(--filter-invert-dark)"
+        />
+      </div>
+      <!-- Radial overlay for text readability -->
+      <!-- <div class="absolute inset-0 z-0 bg-gradient-to-r from-base-100/35 via-base-100/80 to-transparent"></div> -->
+
+      <!-- Hero Content -->
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Text Content -->
+          <div class="space-y-6 md:pr-10 text-left">
+            <h1 class="text-4xl md:text-5xl lg:text-[56px] font-extrabold text-base-content tracking-tight leading-tight">
+              Industries we <br class="hidden lg:block" /><span class="text-primary">Empower</span>
+            </h1>
+            <p class="text-lg md:text-xl font-medium text-base-content/85 max-w-xl leading-relaxed">
+              We deliver tailored solutions across a wide range of industries, helping businesses innovate, optimize, and grow in a rapidly changing world.
+            </p>
+            <div class="pt-4">
+              <a href="#contact" class="btn btn-primary rounded-full px-8 text-base font-semibold shadow-lg hover:shadow-primary/30 transition-all duration-300">
+                Contact us
+              </a>
+            </div>
+          </div>
+          
+          <!-- Image -->
+          <div class="relative flex justify-center lg:justify-end">
+            <Image
+              src={heroImg}
+              alt="Industries Collage"
+              class="w-full max-w-lg lg:max-w-xl object-contain relative z-10 transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Industries Grid -->
+    <section class="bg-base-200/50 py-20 md:py-28">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {industries.map((item) => (
+            <a href="#" class="group relative bg-base-100 border border-base-content/30 rounded-[2rem] p-8 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:border-primary/30 transition-all duration-500 flex flex-col">
+              <!-- Top Right Arrow -->
+              <button class="btn btn-circle btn-ghost btn-sm absolute top-4 right-4 border border-primary/30 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-content group-hover:border-primary group-hover:rotate-45">
+                <ArrowUpRight class="w-4 h-4" />
+              </button>
+
+              <!-- Icon + Content (centered) -->
+              <div class="flex flex-col items-center text-center mt-2">
+                <div class="mb-6 w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
+                  <item.icon class="w-10 h-10" />
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-base-content mb-4 group-hover:text-primary transition-colors">
+                  {item.title}
+                </h3>
+                <p class="text-base-content/75 leading-relaxed text-sm md:text-base">
+                  {item.desc}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer block -->
+    <div class="bg-base-200/50">
+      <Footer />
+    </div>
+  </div>
+</Layout>
