@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-@plugin "daisyui";
-@plugin "daisyui/theme" {
+@plugin 'daisyui';
+@plugin 'daisyui/theme' {
   name: 'htis-theme';
   default: true;
   prefersdark: false;
@@ -36,8 +36,13 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
+
+  /* Custom challenge colors */
+  --challenge-accent: oklch(55% 0.18 60);
+  --challenge-bg: oklch(98% 0.015 60);
+  --challenge-border: oklch(93% 0.03 60);
 }
-@plugin "daisyui/theme" {
+@plugin 'daisyui/theme' {
   name: 'htis-theme-dark';
   default: false;
   prefersdark: true;
@@ -73,10 +78,20 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
+
+  /* Custom challenge colors */
+  --challenge-accent: oklch(78% 0.15 75);
+  --challenge-bg: oklch(22% 0.02 75 / 0.4);
+  --challenge-border: oklch(35% 0.05 75 / 0.4);
 }
 
 @theme {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-sans:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  --color-challenge-accent: var(--challenge-accent);
+  --color-challenge-bg: var(--challenge-bg);
+  --color-challenge-border: var(--challenge-border);
 }
 
 body {
