@@ -57,9 +57,9 @@ const capabilitiesImages = [cap1.src, cap2.src, cap3.src];
           </p>
           <a
             href="/#contact"
-            class="btn rounded-full border-none px-8 text-white shadow-lg transition-transform btn-primary hover:scale-105"
+            class="btn rounded-lg border-none px-8 text-white shadow-lg transition-transform btn-primary hover:scale-105"
           >
-            Contact us
+            Contact Us
           </a>
         </div>
       </div>
@@ -95,7 +95,11 @@ const capabilitiesImages = [cap1.src, cap2.src, cap3.src];
           </p>
         </div>
 
-        <TelecomCapabilities capabilities={telecomCapabilities} images={capabilitiesImages} client:visible />
+        <TelecomCapabilities
+          capabilities={telecomCapabilities}
+          images={capabilitiesImages}
+          client:visible
+        />
       </div>
     </section>
 
