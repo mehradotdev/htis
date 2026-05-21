@@ -5,7 +5,7 @@
 
 ## Project Stack & Tools
 
-- This is an **Astro project**.
+- This is an **Astro project** with **Alpine.js** integration.
 - We use the **daisyUI** component library via Tailwind CSS.
 - **Skill Requirement**: Prefer the `daisyui` skill when you need implementation details for daisyUI components.
 
@@ -27,7 +27,7 @@
 
 ### Rule of thumb
 
-> If your `<script>` block in an `.astro` file is doing `querySelector` + manual class toggling + state tracking + cleanup guards, it should probably be a `.svelte` island instead.
+> If your `<script>` block in an `.astro` file is doing `querySelector` + manual class toggling + state tracking + cleanup guards, you should **prefer using Alpine.js** directly in the markup to keep it simple, clean, and declarative. If the state and interactivity are complex and require advanced reactive patterns, it should be a `.svelte` island instead.
 
 ### Svelte 5 Syntax & Features
 
