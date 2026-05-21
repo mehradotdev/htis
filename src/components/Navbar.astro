@@ -11,20 +11,17 @@ import {
   Server,
   Code,
   Users,
-  Antenna,
   Landmark,
   Building2,
   Factory,
   HeartPulse,
   HardHat,
-  Laptop,
-  Network,
-  ShieldCheck,
   Award,
   Info,
   Briefcase,
   ChevronDown,
   ArrowRight,
+  RadioTower,
 } from '@lucide/astro';
 
 const solutions = [
@@ -56,33 +53,33 @@ const solutions = [
 
 const industriesCol1 = [
   {
-    title: 'Telecom Operators',
+    title: 'Telecos and ISPs',
     desc: 'Network providers and ISPs',
-    url: '#',
-    icon: Antenna,
+    url: '/industry/telcos-and-isps',
+    icon: RadioTower,
   },
   {
     title: 'Public Sector, Ministries & Defence',
     desc: 'Government and defense',
-    url: '#',
+    url: '/industry/public-sector-ministries-defence',
     icon: Landmark,
   },
   {
     title: 'BFSI (Banking, Financial Services & Insurance)',
     desc: 'Banking and financial services',
-    url: '#',
+    url: '/industry/bfsi',
     icon: Building2,
   },
   {
     title: 'Manufacturing, Automobile & FMCG',
     desc: 'Automotive and consumer goods',
-    url: '#',
+    url: '/industry/manufacturing-automobile-fmcg',
     icon: Factory,
   },
   {
     title: 'Healthcare & Education',
     desc: 'Hospitals and academic institutions',
-    url: '#',
+    url: '/industry/healthcare-education',
     icon: HeartPulse,
   },
 ];
@@ -91,26 +88,8 @@ const industriesCol2 = [
   {
     title: 'Real Estate, Infrastructure & Smart Spaces',
     desc: 'Infrastructure and smart cities',
-    url: '#',
+    url: '/industry/real-estate-infrastructure-smart-spaces',
     icon: HardHat,
-  },
-  {
-    title: 'Compute & Mobility',
-    desc: 'End-user computing and devices',
-    url: '#',
-    icon: Laptop,
-  },
-  {
-    title: 'Networking & Fabric',
-    desc: 'Enterprise network solutions',
-    url: '#',
-    icon: Network,
-  },
-  {
-    title: 'Cybersecurity',
-    desc: 'Security and compliance',
-    url: '#',
-    icon: ShieldCheck,
   },
   {
     title: 'View all Industries',
@@ -132,7 +111,7 @@ const resources = [
   {
     title: 'Case Studies',
     desc: 'Success stories and implementations',
-    url: '/case-studies',
+    url: '/case-study',
     icon: Briefcase,
   },
 ];
@@ -165,7 +144,7 @@ const resources = [
                   solutions.map((item) => (
                     <li>
                       <a href={item.url} class="py-3">
-                        <item.icon class="mr-2 h-4 w-4 flex-shrink-0 text-primary" />
+                        <item.icon class="mr-2 h-4 w-4 shrink-0 text-primary" />
                         <span class="leading-tight">{item.title}</span>
                       </a>
                     </li>
@@ -183,7 +162,7 @@ const resources = [
                   [...industriesCol1, ...industriesCol2].map((item) => (
                     <li>
                       <a href={item.url} class="py-2.5">
-                        <item.icon class="mr-2 h-4 w-4 flex-shrink-0 text-primary" />
+                        <item.icon class="mr-2 h-4 w-4 shrink-0 text-primary" />
                         <span class="text-sm leading-tight">{item.title}</span>
                       </a>
                     </li>
@@ -201,7 +180,7 @@ const resources = [
                   resources.map((item) => (
                     <li>
                       <a href={item.url} class="py-3">
-                        <item.icon class="mr-2 h-4 w-4 flex-shrink-0 text-primary" />
+                        <item.icon class="mr-2 h-4 w-4 shrink-0 text-primary" />
                         <span class="leading-tight">{item.title}</span>
                       </a>
                     </li>
@@ -235,25 +214,33 @@ const resources = [
           >Home</a
         >
 
-        <!-- Solutions -->
-        <div class="group/nav flex h-full items-center">
+        <!-- Solutions: Dropdown open state, focus/hover sync, Escape key to close, and screen-reader accessibility (aria-expanded) managed via Alpine.js -->
+        <div
+          class="group/nav flex h-full items-center"
+          x-data="{ open: false }"
+          @mouseenter="open = true"
+          @mouseleave="if (!$el.contains(document.activeElement)) open = false"
+          @focusin="open = true"
+          @focusout="if (!$el.contains($event.relatedTarget)) open = false"
+          @keydown.escape="open = false; document.activeElement.blur()"
+        >
           <button
             type="button"
             class="flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none"
             aria-haspopup="true"
-            aria-expanded="false"
+            :aria-expanded="open"
           >
             Solutions
             <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-300 group-hover/nav:-rotate-180 group-focus-within/nav:-rotate-180"
+              class="h-4 w-4 opacity-50 transition-transform duration-300 group-focus-within/nav:-rotate-180 group-hover/nav:-rotate-180"
             />
           </button>
 
           <div
-            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100"
+            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-focus-within/nav:visible group-focus-within/nav:opacity-100 group-hover/nav:visible group-hover/nav:opacity-100"
           >
             <div
-              class="flex w-[800px] gap-8 rounded-[2rem] border border-base-200 bg-base-100 p-6 shadow-2xl before:absolute before:inset-0 before:-z-10 before:rounded-[2rem] before:shadow-xl before:shadow-base-content/5"
+              class="flex w-[800px] gap-8 rounded-4xl border border-base-200 bg-base-100 p-6 shadow-2xl"
             >
               <div class="flex flex-1 flex-col gap-2">
                 <h3
@@ -268,7 +255,7 @@ const resources = [
                       class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
                     >
                       <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
-                        <item.icon class="h-5 w-5 flex-shrink-0" />
+                        <item.icon class="h-5 w-5 shrink-0" />
                       </div>
                       <div>
                         <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
@@ -283,7 +270,7 @@ const resources = [
                 }
               </div>
               <div
-                class="group/card relative w-[300px] flex-shrink-0 overflow-hidden rounded-[1.5rem] bg-base-200"
+                class="group/card relative w-[300px] shrink-0 overflow-hidden rounded-3xl bg-base-200"
               >
                 <Image
                   src={solutionsImg}
@@ -292,7 +279,7 @@ const resources = [
                   width={300}
                 />
                 <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                  class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"
                 >
                 </div>
                 <div class="absolute right-0 bottom-0 left-0 p-6 text-left text-white">
@@ -302,7 +289,7 @@ const resources = [
                   </p>
                   <a
                     href="/system-integration"
-                    class="btn w-full rounded-full border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
+                    class="btn w-full rounded-lg border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
                   >
                     Explore Solutions <ArrowRight class="ml-1 h-4 w-4" />
                   </a>
@@ -312,25 +299,33 @@ const resources = [
           </div>
         </div>
 
-        <!-- Industries -->
-        <div class="group/nav flex h-full items-center">
+        <!-- Industries: Dropdown open state, focus/hover sync, Escape key to close, and screen-reader accessibility (aria-expanded) managed via Alpine.js -->
+        <div
+          class="group/nav flex h-full items-center"
+          x-data="{ open: false }"
+          @mouseenter="open = true"
+          @mouseleave="if (!$el.contains(document.activeElement)) open = false"
+          @focusin="open = true"
+          @focusout="if (!$el.contains($event.relatedTarget)) open = false"
+          @keydown.escape="open = false; document.activeElement.blur()"
+        >
           <button
             type="button"
             class="flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none"
             aria-haspopup="true"
-            aria-expanded="false"
+            :aria-expanded="open"
           >
             Industries
             <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-300 group-hover/nav:-rotate-180 group-focus-within/nav:-rotate-180"
+              class="h-4 w-4 opacity-50 transition-transform duration-300 group-focus-within/nav:-rotate-180 group-hover/nav:-rotate-180"
             />
           </button>
 
           <div
-            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100"
+            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-focus-within/nav:visible group-focus-within/nav:opacity-100 group-hover/nav:visible group-hover/nav:opacity-100"
           >
             <div
-              class="flex w-[850px] gap-6 rounded-[2rem] border border-base-200 bg-base-100 p-6 shadow-2xl before:absolute before:inset-0 before:-z-10 before:rounded-[2rem] before:shadow-xl before:shadow-base-content/5"
+              class="flex w-[850px] gap-6 rounded-4xl border border-base-200 bg-base-100 p-6 shadow-2xl"
             >
               <div class="flex flex-1 flex-col gap-2">
                 <h3
@@ -345,7 +340,7 @@ const resources = [
                       class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
                     >
                       <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
-                        <item.icon class="h-5 w-5 flex-shrink-0" />
+                        <item.icon class="h-5 w-5 shrink-0" />
                       </div>
                       <div>
                         <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
@@ -370,7 +365,7 @@ const resources = [
                       class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
                     >
                       <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
-                        <item.icon class="h-5 w-5 flex-shrink-0" />
+                        <item.icon class="h-5 w-5 shrink-0" />
                       </div>
                       <div>
                         <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
@@ -388,25 +383,33 @@ const resources = [
           </div>
         </div>
 
-        <!-- Resources -->
-        <div class="group/nav flex h-full items-center">
+        <!-- Resources: Dropdown open state, focus/hover sync, Escape key to close, and screen-reader accessibility (aria-expanded) managed via Alpine.js -->
+        <div
+          class="group/nav flex h-full items-center"
+          x-data="{ open: false }"
+          @mouseenter="open = true"
+          @mouseleave="if (!$el.contains(document.activeElement)) open = false"
+          @focusin="open = true"
+          @focusout="if (!$el.contains($event.relatedTarget)) open = false"
+          @keydown.escape="open = false; document.activeElement.blur()"
+        >
           <button
             type="button"
             class="flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none"
             aria-haspopup="true"
-            aria-expanded="false"
+            :aria-expanded="open"
           >
             Resources
             <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-300 group-hover/nav:-rotate-180 group-focus-within/nav:-rotate-180"
+              class="h-4 w-4 opacity-50 transition-transform duration-300 group-focus-within/nav:-rotate-180 group-hover/nav:-rotate-180"
             />
           </button>
 
           <div
-            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100"
+            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-focus-within/nav:visible group-focus-within/nav:opacity-100 group-hover/nav:visible group-hover/nav:opacity-100"
           >
             <div
-              class="flex w-[800px] gap-8 rounded-[2rem] border border-base-200 bg-base-100 p-6 shadow-2xl before:absolute before:inset-0 before:-z-10 before:rounded-[2rem] before:shadow-xl before:shadow-base-content/5"
+              class="flex w-[800px] gap-8 rounded-4xl border border-base-200 bg-base-100 p-6 shadow-2xl"
             >
               <div class="flex flex-1 flex-col gap-2">
                 <h3
@@ -421,7 +424,7 @@ const resources = [
                       class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
                     >
                       <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
-                        <item.icon class="h-5 w-5 flex-shrink-0" />
+                        <item.icon class="h-5 w-5 shrink-0" />
                       </div>
                       <div>
                         <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
@@ -436,7 +439,7 @@ const resources = [
                 }
               </div>
               <div
-                class="group/card relative w-[300px] flex-shrink-0 overflow-hidden rounded-[1.5rem] bg-base-200"
+                class="group/card relative w-[300px] shrink-0 overflow-hidden rounded-3xl bg-base-200"
               >
                 <Image
                   src={resourcesImg}
@@ -445,7 +448,7 @@ const resources = [
                   width={300}
                 />
                 <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                  class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"
                 >
                 </div>
                 <div class="absolute right-0 bottom-0 left-0 p-6 text-left text-white">
@@ -454,8 +457,8 @@ const resources = [
                     Explore case studies and learn how we empower success globally.
                   </p>
                   <a
-                    href="/case-studies"
-                    class="btn w-full rounded-full border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
+                    href="/case-study"
+                    class="btn w-full rounded-lg border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
                   >
                     View Case Studies <ArrowRight class="ml-1 h-4 w-4" />
                   </a>
@@ -479,7 +482,7 @@ const resources = [
 
       <a
         href="#contact"
-        class="btn rounded-full px-4 text-base tracking-wide text-primary-content opacity-90 shadow-md btn-primary md:px-5"
+        class="btn rounded-lg px-4 text-base tracking-wide text-primary-content opacity-90 shadow-md btn-primary md:px-5"
         >Contact Us</a
       >
     </div>
