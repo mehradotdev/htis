@@ -1,0 +1,546 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/Layout.astro';
+import Navbar from '~/components/Navbar.astro';
+import Footer from '~/components/Footer.astro';
+import { caseStudiesData, type CaseStudyData } from '~/data/case-studies';
+import heroBg from '~/assets/industry-hero-bg.png';
+import teamBg from '~/assets/team-member-bg.png';
+
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  AlertTriangle,
+  ShieldCheck,
+  Building2,
+  TrendingUp,
+  Zap,
+  Globe2,
+} from '@lucide/astro';
+
+// Generate static routes at build time for all case studies
+export async function getStaticPaths() {
+  return caseStudiesData.map((study) => ({
+    params: { slug: study.slug },
+    props: { study },
+  }));
+}
+
+const { study } = Astro.props as { study: CaseStudyData };
+---
+
+<Layout title={`${study.title} - HTIS Case Study`}>
+  <div class="relative flex min-h-screen w-full flex-col overflow-clip bg-base-200/50">
+    <Navbar />
+
+    <!-- Section 1: Hero Block (Top) -->
+    <section
+      class="relative flex min-h-[550px] w-full items-center overflow-hidden pt-32 pb-20 md:min-h-[600px]"
+    >
+      <!-- Background Graphic Layer -->
+      <div class="pointer-events-none absolute inset-0 z-0 opacity-100">
+        <Image
+          src={heroBg}
+          alt=""
+          aria-hidden="true"
+          class="h-full w-full object-cover object-center"
+          style="filter: var(--filter-invert-dark)"
+        />
+      </div>
+
+      <!-- Hero Readability Gradients -->
+      <div
+        class="absolute inset-0 z-0 bg-linear-to-r from-base-100/95 via-base-100/80 to-transparent lg:w-2/3"
+      >
+      </div>
+      <div
+        class="absolute inset-0 z-0 bg-linear-to-b from-transparent via-base-100/20 to-base-100"
+      >
+      </div>
+
+      <div class="relative z-10 container mx-auto px-6">
+        <!-- Back Navigation Link -->
+        <div class="mb-8">
+          <a
+            href="/case-study"
+            class="hover:text-primary-focus group inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors"
+            id="btn-back-to-case-studies"
+          >
+            <ArrowLeft class="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            Back to Case Studies
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+          <!-- Text Core Column -->
+          <div class="space-y-6 text-left lg:col-span-8">
+            <div
+              class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-primary uppercase md:text-sm"
+            >
+              Case Study: {study.solution}
+            </div>
+
+            <!-- Client / project label -->
+            <div
+              class="text-xs font-bold tracking-widest text-base-content/50 uppercase md:text-sm"
+            >
+              {study.clientLabel}
+            </div>
+
+            <!-- Outcome-focused Title -->
+            <h1
+              class="text-3xl leading-tight font-extrabold tracking-tight text-base-content md:text-4xl lg:text-5xl"
+            >
+              {study.heroTitle}
+            </h1>
+
+            <!-- 1-2 line summary -->
+            <p
+              class="max-w-2xl text-lg leading-relaxed font-medium text-base-content/85 md:text-xl"
+            >
+              {study.heroSummary}
+            </p>
+
+            <!-- Key metrics chips -->
+            <div class="flex flex-wrap gap-3 pt-2">
+              {
+                study.heroMetrics.map((metric, idx) => (
+                  <div
+                    class="flex items-center gap-2 rounded-xl border border-base-content/10 bg-base-100/60 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur-md"
+                    id={`hero-metric-chip-${idx}`}
+                  >
+                    <Zap class="h-3.5 w-3.5 shrink-0" />
+                    {metric}
+                  </div>
+                ))
+              }
+            </div>
+
+            <!-- CTA button -->
+            <div class="pt-6">
+              <a
+                href="#contact-row"
+                class="btn rounded-lg px-8 text-base font-semibold shadow-lg transition-all duration-300 btn-primary hover:shadow-primary/30"
+                id="hero-cta-btn"
+              >
+                Talk to our team
+              </a>
+            </div>
+          </div>
+
+          <!-- Dynamic Graphic Column -->
+          <div class="flex justify-center lg:col-span-4 lg:justify-end">
+            <div class="group relative hidden lg:block">
+              <div
+                class="absolute -inset-4 rounded-full bg-primary/10 opacity-75 blur-xl transition-opacity duration-500 group-hover:opacity-100"
+              >
+              </div>
+              <div
+                class="absolute -inset-1 rounded-full bg-linear-to-r from-primary to-secondary opacity-20 blur-md transition-transform duration-500 group-hover:scale-105"
+              >
+              </div>
+
+              <div
+                class="relative flex h-40 w-40 items-center justify-center rounded-full border border-base-content/10 bg-base-100 text-primary shadow-2xl transition-transform duration-500 group-hover:scale-[1.03] md:h-48 md:w-48"
+              >
+                <Globe2 class="h-16 w-16 stroke-[1.2]" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Client & Context -->
+    <section
+      class="relative scroll-mt-20 border-y border-base-content/5 bg-base-200/50 py-16"
+    >
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
+          <!-- Client details panel -->
+          <div class="space-y-6 lg:col-span-5">
+            <div
+              class="text-xs font-bold tracking-widest text-primary uppercase md:text-sm"
+            >
+              Client & Context
+            </div>
+            <h2
+              class="text-2xl font-extrabold tracking-tight text-base-content md:text-3xl"
+            >
+              Operational Profile
+            </h2>
+
+            <div class="space-y-4">
+              <!-- Sector -->
+              <div
+                class="flex items-start gap-4 rounded-2xl border border-base-content/5 bg-base-100 p-4 shadow-sm"
+              >
+                <div
+                  class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary"
+                >
+                  <Building2 class="h-5 w-5" />
+                </div>
+                <div>
+                  <h3
+                    class="text-xs font-bold tracking-wider text-base-content/40 uppercase"
+                  >
+                    Sector / Client Type
+                  </h3>
+                  <p class="text-sm font-semibold text-base-content">
+                    {study.clientContext.clientType}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Scale -->
+              <div
+                class="flex items-start gap-4 rounded-2xl border border-base-content/5 bg-base-100 p-4 shadow-sm"
+              >
+                <div
+                  class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary"
+                >
+                  <TrendingUp class="h-5 w-5" />
+                </div>
+                <div>
+                  <h3
+                    class="text-xs font-bold tracking-wider text-base-content/40 uppercase"
+                  >
+                    Deployment Scale
+                  </h3>
+                  <p class="text-sm font-semibold text-base-content">
+                    {study.clientContext.industryScale}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Environment -->
+              <div
+                class="flex items-start gap-4 rounded-2xl border border-base-content/5 bg-base-100 p-4 shadow-sm"
+              >
+                <div
+                  class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary"
+                >
+                  <Zap class="h-5 w-5" />
+                </div>
+                <div>
+                  <h3
+                    class="text-xs font-bold tracking-wider text-base-content/40 uppercase"
+                  >
+                    Operating Environment
+                  </h3>
+                  <p class="text-sm font-semibold text-base-content">
+                    {study.clientContext.environment}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description / context bullets -->
+          <div class="space-y-6 lg:col-span-7">
+            <h3 class="text-xl font-bold tracking-tight text-base-content">
+              Business Context Overview
+            </h3>
+            <p class="leading-relaxed text-base-content/85">
+              HTIS partnered directly with stakeholders to align infrastructural capacity,
+              compliance systems, and operations metrics with high-performance industry
+              paradigms. Below is a detailed contextual breakdown:
+            </p>
+            <ul class="space-y-4">
+              {
+                study.clientContext.bullets.map((bullet, idx) => (
+                  <li class="flex items-start gap-3.5" id={`context-bullet-${idx}`}>
+                    <div class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <span class="text-sm leading-relaxed text-base-content/75 md:text-base">
+                      {bullet}
+                    </span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: The Challenge (Before HTIS) -->
+    <section class="relative overflow-hidden bg-base-100 py-20">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+          <div class="space-y-6 lg:col-span-5">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-2xl border border-challenge-accent/25 bg-challenge-accent/15 text-challenge-accent shadow-sm shadow-challenge-accent/10"
+            >
+              <AlertTriangle class="h-6 w-6" />
+            </div>
+            <div
+              class="text-xs font-bold tracking-widest text-challenge-accent uppercase md:text-sm"
+            >
+              The Challenge
+            </div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-base-content">
+              Operational Headwinds <br /> & Operational Pain
+            </h2>
+            <p class="text-sm leading-relaxed text-base-content/75 md:text-base">
+              The legacy workflow frameworks lacked necessary digital capabilities,
+              creating constant service disruption and compounding resource overheads.
+            </p>
+          </div>
+
+          <div class="lg:col-span-7">
+            <div
+              class="relative space-y-6 overflow-hidden rounded-4xl border border-challenge-border bg-challenge-bg p-6 shadow-sm md:p-8"
+            >
+              <p class="text-base leading-relaxed font-semibold text-challenge-accent/90">
+                {study.challenge.paragraph}
+              </p>
+
+              <div class="space-y-4 border-t border-challenge-border pt-6">
+                {
+                  study.challenge.bullets.map((bullet, idx) => (
+                    <div
+                      class="flex items-start gap-3 text-sm leading-relaxed text-base-content/80 md:text-base"
+                      id={`challenge-bullet-${idx}`}
+                    >
+                      <div class="mt-2 h-2 w-2 shrink-0 rounded-full bg-challenge-accent" />
+                      <span>{bullet}</span>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Our Solution (HTIS) -->
+    <section
+      class="relative overflow-hidden border-y border-base-content/5 bg-base-200/40 py-20 md:py-24"
+    >
+      <div
+        class="pointer-events-none absolute inset-0 opacity-5 mix-blend-luminosity dark:mix-blend-overlay"
+      >
+        <Image
+          src={teamBg}
+          alt=""
+          aria-hidden="true"
+          class="h-full w-full object-cover object-center"
+        />
+      </div>
+
+      <div class="relative z-10 container mx-auto px-6">
+        <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+          <div class="order-2 lg:order-1 lg:col-span-7">
+            <div
+              class="relative space-y-6 overflow-hidden rounded-4xl border border-primary/20 bg-base-100 p-6 shadow-sm md:p-8"
+            >
+              <p class="text-base leading-relaxed font-semibold text-primary">
+                {study.solutionDetails.paragraph}
+              </p>
+
+              <div class="space-y-4 border-t border-base-content/10 pt-6">
+                {
+                  study.solutionDetails.bullets.map((bullet, idx) => (
+                    <div
+                      class="flex items-start gap-3.5 text-sm leading-relaxed text-base-content/75 md:text-base"
+                      id={`solution-bullet-${idx}`}
+                    >
+                      <CheckCircle2 class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                      <span>{bullet}</span>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 space-y-6 lg:order-2 lg:col-span-5 lg:pl-8">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary shadow-sm shadow-primary/5"
+            >
+              <ShieldCheck class="h-6 w-6" />
+            </div>
+            <div
+              class="text-xs font-bold tracking-widest text-primary uppercase md:text-sm"
+            >
+              The Solution
+            </div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-base-content">
+              Precision Engineering & Delivery
+            </h2>
+            <p class="text-sm leading-relaxed text-base-content/75 md:text-base">
+              HTIS customized a robust, scalable infrastructure framework designed for
+              long-term load profiles and automated fault recovery.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Outcomes & Impact -->
+    <section class="bg-base-100 py-20 md:py-24">
+      <div class="container mx-auto px-6">
+        <div class="mx-auto mb-16 max-w-3xl space-y-4 text-center">
+          <div
+            class="text-xs font-bold tracking-widest text-primary uppercase md:text-sm"
+          >
+            Outcomes & Impact
+          </div>
+          <h2
+            class="text-3xl font-extrabold tracking-tight text-base-content md:text-4xl"
+          >
+            Quantifiable Success & Results
+          </h2>
+          <p class="text-base leading-relaxed text-base-content/70 md:text-lg">
+            By actively refactoring operational layers, we achieved major improvements
+            across all core key performance metrics.
+          </p>
+        </div>
+
+        <!-- Metrics Cards Grid -->
+        <div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+          {
+            study.outcomes.metrics.map((metric, index) => (
+              <div class="group relative flex min-h-[180px] flex-col justify-center rounded-3xl border border-base-content/10 bg-base-100 p-8 text-center transition-all duration-300 hover:border-primary/20 hover:shadow-lg">
+                <div class="absolute -inset-0.5 rounded-3xl bg-linear-to-r from-primary to-secondary opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-10" />
+                <div class="relative z-10">
+                  <div class="mb-3 bg-linear-to-r from-primary to-secondary bg-clip-text text-4xl font-black tracking-tight text-transparent md:text-5xl">
+                    {metric.value}
+                  </div>
+                  <div class="text-sm font-bold text-base-content/70 md:text-base">
+                    {metric.label}
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Qualitative impact bullets -->
+        <div
+          class="mx-auto max-w-4xl rounded-4xl border border-base-content/5 bg-base-200/50 p-6 md:p-8"
+        >
+          <h3 class="mb-4 text-lg font-bold tracking-tight text-base-content">
+            Qualitative Gains & Value
+          </h3>
+          <ul class="space-y-4">
+            {
+              study.outcomes.bullets.map((bullet, idx) => (
+                <li
+                  class="flex items-start gap-3.5 text-sm leading-relaxed text-base-content/70 md:text-base"
+                  id={`outcome-bullet-${idx}`}
+                >
+                  <CheckCircle2 class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                  <span>{bullet}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Why HTIS -->
+    <section class="border-y border-base-content/5 bg-base-200/50 py-20">
+      <div class="container mx-auto px-6">
+        <div class="mx-auto mb-16 max-w-3xl space-y-4 text-center">
+          <div
+            class="text-xs font-bold tracking-widest text-primary uppercase md:text-sm"
+          >
+            Proven Capability
+          </div>
+          <h2 class="text-3xl font-extrabold tracking-tight text-base-content">
+            Why Partner with HTIS?
+          </h2>
+          <p class="text-base leading-relaxed text-base-content/70 md:text-lg">
+            Our multi-disciplinary engineering expertise enables us to seamlessly execute
+            high-complexity technology integrations at scale.
+          </p>
+        </div>
+
+        <!-- Why HTIS grid -->
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {
+            study.whyHTIS.map((bullet, idx) => (
+              <div
+                class="group flex flex-col justify-between rounded-4xl border border-base-content/10 bg-base-100 p-8 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.03)]"
+                id={`why-htis-card-${idx}`}
+              >
+                <div class="space-y-6">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-105">
+                    <ShieldCheck class="h-6 w-6" />
+                  </div>
+                  <h3 class="text-lg leading-snug font-bold tracking-tight text-base-content">
+                    Key Strengths
+                  </h3>
+                  <p class="text-sm leading-relaxed text-base-content/70 md:text-base">
+                    {bullet}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Final CTA -->
+    <section class="bg-base-200/50 py-20 md:py-24" id="contact-row">
+      <div class="container mx-auto px-6">
+        <div
+          class="relative mx-auto max-w-5xl overflow-hidden rounded-[3rem] border border-base-content/10 bg-base-100/80 p-10 text-center shadow-sm md:p-16"
+        >
+          <!-- Decorative Blur Spheres -->
+          <div
+            class="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-primary/5 blur-3xl"
+          >
+          </div>
+          <div
+            class="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl"
+          >
+          </div>
+
+          <div class="relative z-10 mx-auto max-w-2xl space-y-6">
+            <h2
+              class="text-3xl leading-tight font-extrabold tracking-tight text-base-content md:text-4xl"
+            >
+              Want similar outcomes for your organisation?
+            </h2>
+            <p class="text-base leading-relaxed text-base-content/75 md:text-lg">
+              Consult with HTIS experts to custom-engineer reliable active
+              infrastructures, deploy modern software telematics, and streamline
+              operations processes.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 pt-4">
+              <a
+                href="/#contact"
+                class="group btn inline-flex items-center gap-2 rounded-lg px-8 text-base font-bold shadow-lg transition-all duration-300 btn-primary hover:shadow-primary/30"
+                id="cta-schedule-btn"
+              >
+                Schedule a discussion
+                <ArrowRight
+                  class="h-5 w-5 transition-transform group-hover:translate-x-1"
+                />
+              </a>
+              <a
+                href="/#contact"
+                class="btn rounded-lg border-base-content/20 px-8 text-base font-bold transition-all duration-300 btn-outline hover:border-primary"
+                id="cta-share-btn"
+              >
+                Share your requirement
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Block -->
+    <div class="mt-auto bg-base-200/50">
+      <Footer />
+    </div>
+  </div>
+</Layout>
