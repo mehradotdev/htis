@@ -1,6 +1,9 @@
 # build output
 dist/
 
+.agents/skills/skill-creator/
+skills-lock.json
+
 # generated types
 .astro/
 
