@@ -1,0 +1,166 @@
+---
+import { Image } from 'astro:assets';
+import bgImage from '~/assets/team-member-bg.png';
+import webUi from '~/assets/lob-software-web-ui.png';
+import mobileUi from '~/assets/lob-software-mobile-ui.png';
+// import { Cpu, ShieldCheck } from '@lucide/astro';
+
+const cards = [
+  {
+    title: 'Web & Interactive UI',
+    description:
+      'High-performance interfaces architected with React JS, Bootstrap 5 , and jQuery to ensure responsive, modular, and fast-loading web applications.',
+    image: webUi,
+    alt: 'Web & Interactive UI Mockup',
+    isMobileImage: false,
+  },
+  {
+    title: 'Cross-Platform Mobile',
+    description:
+      'Utilizing React Native to deploy native-quality experiences for Android and iOS from a single codebase, powering our 1,800+ daily active field users.',
+    image: mobileUi,
+    alt: 'Cross-Platform Mobile Mockup',
+    isMobileImage: true,
+  },
+  {
+    title: 'Cross-Platform Mobile',
+    description:
+      'Utilizing React Native to deploy native-quality experiences for Android and iOS from a single codebase, powering our 1,800+ daily active field users.',
+    image: mobileUi,
+    alt: 'Cross-Platform Mobile Mockup',
+    isMobileImage: true,
+  },
+  {
+    title: 'Web & Interactive UI',
+    description:
+      'High-performance interfaces architected with React JS, Bootstrap 5 , and jQuery to ensure responsive, modular, and fast-loading web applications.',
+    image: webUi,
+    alt: 'Web & Interactive UI Mockup',
+    isMobileImage: false,
+  },
+  {
+    title: 'Web & Interactive UI',
+    description:
+      'High-performance interfaces architected with React JS, Bootstrap 5 , and jQuery to ensure responsive, modular, and fast-loading web applications.',
+    image: webUi,
+    alt: 'Web & Interactive UI Mockup',
+    isMobileImage: false,
+  },
+  {
+    title: 'Cross-Platform Mobile',
+    description:
+      'Utilizing React Native to deploy native-quality experiences for Android and iOS from a single codebase, powering our 1,800+ daily active field users.',
+    image: mobileUi,
+    alt: 'Cross-Platform Mobile Mockup',
+    isMobileImage: true,
+  },
+];
+---
+
+<section
+  class="relative overflow-hidden border-t border-base-content/10 bg-base-100 py-24"
+>
+  <!-- Background Image with mix-blend-mode / luminosity masking -->
+  <div class="pointer-events-none absolute inset-0 z-0 opacity-50">
+    <Image
+      src={bgImage}
+      alt=""
+      aria-hidden="true"
+      class="h-full w-full object-cover object-center"
+      style="filter: var(--filter-invert-dark)"
+    />
+    <!-- <div
+      class="absolute inset-0 bg-linear-to-b from-base-100/90 via-transparent to-base-100"
+    >
+    </div> -->
+  </div>
+
+  <div class="relative z-10 container mx-auto px-6">
+    <!-- Header -->
+    <div class="mb-20 max-w-3xl text-left">
+      <!-- <span class="text-xs uppercase tracking-wider font-bold text-primary mb-2 block">
+        Engineering Excellence
+      </span> -->
+      <h2
+        class="mb-6 text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
+      >
+        Modern Engineering Stack &<br class="hidden sm:inline" /> Adaptive Architecture
+      </h2>
+      <p class="text-lg font-medium text-base-content/70">
+        We utilize state-of-the-art architectures and cutting-edge software paradigms to
+        build secure, robust, and highly scalable digital ecosystems.
+      </p>
+    </div>
+
+    <!-- Alternating 6-card grid to match Figma Mockup -->
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
+      {
+        cards.map((card) => (
+          <div class="group relative flex min-h-[300px] flex-col items-stretch justify-between overflow-hidden rounded-2xl border border-base-content/12 bg-base-100/10 shadow-md backdrop-blur-lg transition-all duration-500 hover:-translate-y-1 hover:border-primary/20 hover:shadow-xl sm:flex-row">
+            {/* Soft decorative background glow inside card */}
+            <div class="absolute -right-12 -bottom-12 z-0 h-48 w-48 rounded-full bg-primary/5 blur-3xl transition-all duration-500 group-hover:bg-primary/8" />
+
+            {/* Left: Content Section */}
+            <div class="z-10 flex flex-1 flex-col justify-center gap-3.5 p-8 sm:max-w-[58%] sm:p-10">
+              <h3 class="text-2xl font-extrabold tracking-tight text-base-content transition-colors duration-300 group-hover:text-primary">
+                {card.title}
+              </h3>
+              <p class="text-sm leading-relaxed font-medium text-base-content/75 md:text-base">
+                {card.description}
+              </p>
+            </div>
+
+            {/* Right: Image Section */}
+            <div class="relative z-10 flex min-h-[220px] items-end justify-center self-stretch overflow-hidden sm:min-h-auto sm:w-[42%]">
+              {/* Inner soft radial gradient behind image */}
+              <div class="pointer-events-none absolute inset-0 z-0 bg-radial from-primary/10 via-transparent to-transparent opacity-65" />
+
+              <div class="relative z-10 flex h-full w-full items-end justify-center px-6">
+                {card.isMobileImage ? (
+                  <Image
+                    src={card.image}
+                    alt={card.alt}
+                    class="w-full max-w-[130px] object-contain object-bottom transition-transform duration-500 group-hover:scale-105 sm:absolute sm:-right-2 sm:-bottom-8 sm:h-[110%] sm:w-[90%] sm:max-w-none"
+                  />
+                ) : (
+                  <Image
+                    src={card.image}
+                    alt={card.alt}
+                    class="w-full max-w-[240px] object-contain object-bottom-right transition-transform duration-500 group-hover:scale-105 sm:absolute sm:-right-4 sm:-bottom-4 sm:h-[105%] sm:w-[115%] sm:max-w-none"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Extra Architectural Pillars bottom strip -->
+    <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 border-t border-base-content/15 pt-12">
+      <div class="flex gap-4 items-start p-4">
+        <Cpu class="h-6 w-6 text-primary shrink-0 mt-1" />
+        <div>
+          <h4 class="font-bold text-base-content text-base mb-1">Microservices Foundation</h4>
+          <p class="text-sm text-base-content/70">Highly decoupled modules communicating via robust message queues and secure gateway networks.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start p-4">
+        <ShieldCheck class="h-6 w-6 text-primary shrink-0 mt-1" />
+        <div>
+          <h4 class="font-bold text-base-content text-base mb-1">Sovereign-Grade Security</h4>
+          <p class="text-sm text-base-content/70">Complies with strict municipal data residency, ISO security protocols, and advanced payload encryption.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start p-4">
+        <svg class="h-6 w-6 text-primary shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        <div>
+          <h4 class="font-bold text-base-content text-base mb-1">Automated Operations (CI/CD)</h4>
+          <p class="text-sm text-base-content/70">Zero-downtime hot reloads and instant deployments managed via robust, secure docker pipelines.</p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>
