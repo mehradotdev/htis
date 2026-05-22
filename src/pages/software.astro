@@ -1,0 +1,314 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/Layout.astro';
+import Navbar from '~/components/Navbar.astro';
+import Footer from '~/components/Footer.astro';
+import SoftwarePortfolio from '~/components/software/SoftwarePortfolio.svelte';
+import SoftwareEngineeringStack from '~/components/software/SoftwareEngineeringStack.astro';
+import SoftwareArchitecturalPrinciples from '~/components/software/SoftwareArchitecturalPrinciples.astro';
+
+// Structured data
+import { softwareCapabilities } from '~/data/pageDataSoftware';
+
+// Asset Imports
+import heroBg from '~/assets/lob-software-hero-bg.png';
+import heroImg from '~/assets/lob-software-hero-img.png';
+import bgImage from '~/assets/team-member-bg.png';
+import { RadioTower, Server, Users, ArrowRight } from '@lucide/astro';
+
+// Tab 1: SaaS images
+import saas1 from '~/assets/lob-software-sw-port-saas-1.png';
+import saas2 from '~/assets/lob-software-sw-port-saas-2.png';
+import saas3 from '~/assets/lob-software-sw-port-saas-3.png';
+
+// Tab 2: Enterprise images
+import ent1 from '~/assets/lob-software-sw-port-enterprise-1.png';
+import ent2 from '~/assets/lob-software-sw-port-enterprise-2.png';
+import ent3 from '~/assets/lob-software-sw-port-enterprise-3.png';
+import ent4 from '~/assets/lob-software-sw-port-enterprise-4.png';
+
+// Tab 3: Public sector images
+import pub1 from '~/assets/lob-software-sw-port-public-1.png';
+import pub2 from '~/assets/lob-software-sw-port-public-2.png';
+import pub3 from '~/assets/lob-software-sw-port-public-3.png';
+
+// New Section Imports
+import SoftwareOnboarding from '~/components/software/SoftwareOnboarding.astro';
+import SoftwareCaseStudies from '~/components/software/SoftwareCaseStudies.svelte';
+
+import caseStudy1 from '~/assets/lob-software-case-study-1.png';
+import caseStudy2 from '~/assets/lob-software-case-study-2.png';
+import caseStudy3 from '~/assets/lob-software-case-study-3.png';
+
+// Resolve image paths for Svelte 5 component
+const saasImages = [saas1.src, saas2.src, saas3.src];
+const enterpriseImages = [ent1.src, ent2.src, ent3.src, ent4.src];
+const publicImages = [pub1.src, pub2.src, pub3.src];
+const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
+---
+
+<Layout title="Software Development & SaaS - HTIS">
+  <div class="relative w-full overflow-clip">
+    <Navbar />
+
+    <!-- Hero Section -->
+    <section class="relative flex min-h-[85vh] items-center pt-32 pb-16 lg:pt-36 lg:pb-0">
+      <!-- Background Graphic Layer -->
+      <div class="absolute inset-0 z-0">
+        <Image
+          src={heroBg}
+          alt=""
+          aria-hidden="true"
+          class="h-full w-full object-cover object-center opacity-15"
+          style="filter: var(--filter-invert-dark)"
+        />
+        <!-- Custom gradient masks to blend container and typography readability -->
+        <!-- <div class="absolute inset-0 bg-base-100/50 lg:bg-transparent"></div> -->
+        <!-- <div
+          class="absolute inset-0 bg-linear-to-r from-base-100/98 via-base-100/80 to-transparent lg:w-2/3"
+        >
+        </div> -->
+        <!-- <div
+          class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-base-100"
+        >
+        </div> -->
+      </div>
+
+      <!-- Core Content -->
+      <div class="relative z-10 container mx-auto w-full px-6">
+        <div class="flex flex-col gap-12 lg:flex-row lg:items-center">
+          <!-- Text Column -->
+          <div class="flex flex-col items-start gap-6 text-left lg:w-1/2 lg:pr-8">
+            <!-- <span
+              class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wider text-primary uppercase"
+            >
+              Proprietary SaaS & Engineering
+            </span> -->
+
+            <h1
+              class="text-4xl leading-tight font-extrabold tracking-tight text-base-content md:text-5xl lg:text-6xl"
+            >
+              Digital Intelligence:<br />
+              <span
+                class="bg-linear-to-r from-primary to-[#60B68C] bg-clip-text text-primary"
+                >Enterprise SaaS</span
+              >
+            </h1>
+
+            <p
+              class="max-w-2xl text-lg leading-relaxed font-medium text-base-content/85 md:text-xl"
+            >
+              We architect the resilient software ecosystems that drive modern enterprise
+              and government operations. By merging the agility of on-demand engineering
+              with the stability of our flagship SaaS products, we deliver secure,
+              high-compliance digital assets tailored to the most demanding regulatory
+              environments.
+            </p>
+
+            <div class="mt-4 flex flex-wrap gap-4">
+              <a
+                href="/#contact"
+                class="btn cursor-pointer rounded-lg px-8 py-3.5 tracking-wide text-white shadow-lg transition-all btn-primary hover:scale-103 hover:shadow-primary/30"
+              >
+                Contact Us
+              </a>
+              <a
+                href="#portfolio"
+                class="btn rounded-lg border-base-content/10 px-8 py-3.5 font-semibold tracking-wide text-base-content btn-ghost hover:bg-base-200/50"
+              >
+                Explore Portfolio
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile-only image (inside flow) -->
+          <div class="flex items-center justify-center lg:hidden">
+            <Image
+              src={heroImg}
+              alt="HTIS Software Mockup Showcase"
+              class="h-auto w-full max-w-md object-contain drop-shadow-2xl"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Image — absolutely positioned on right side (desktop only), like SystemIntegrationHero -->
+      <div
+        class="pointer-events-none absolute inset-y-0 right-0 z-1 hidden w-[50%] lg:block"
+      >
+        <!-- Subtle backlighting flare -->
+        <div
+          class="absolute right-10 bottom-20 z-0 h-[450px] w-[450px] rounded-full bg-primary/10 blur-3xl"
+        >
+        </div>
+        <Image
+          src={heroImg}
+          alt="HTIS Software Mockup Showcase"
+          class="absolute bottom-0 left-1/2 z-10 h-[90%] w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-2xl"
+          loading="eager"
+        />
+      </div>
+    </section>
+
+    <!-- 2nd Section: Converged Software Portfolio -->
+    <section id="portfolio" class="relative overflow-hidden bg-base-100 py-24">
+      <!-- Background Subtle Grid Mesh -->
+      <div
+        class="pointer-events-none absolute inset-0 z-0 opacity-20 mix-blend-luminosity dark:mix-blend-overlay"
+      >
+        <Image
+          src={bgImage}
+          alt=""
+          aria-hidden="true"
+          class="h-full w-full object-cover object-center"
+          style="filter: var(--filter-invert-dark)"
+        />
+        <div
+          class="absolute inset-0 bg-linear-to-b from-base-100/90 via-transparent to-base-100"
+        >
+        </div>
+      </div>
+
+      <div class="relative z-10 container mx-auto px-6">
+        <!-- Title Info -->
+        <div class="mb-16 max-w-3xl text-left">
+          <!-- <span
+            class="mb-2 block text-xs font-bold tracking-wider text-primary uppercase"
+          >
+            Product & Engineering Matrix
+          </span> -->
+          <h2
+            class="mb-6 text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
+          >
+            Converged Software Portfolio
+          </h2>
+          <p class="text-lg font-medium text-base-content/70">
+            Enterprise SaaS & Bespoke Engineering - An interactive look at our proprietary
+            products and requirement-driven engineering capabilities.
+          </p>
+        </div>
+
+        <!-- Svelte 5 Interactive Tabbed Showcase Island -->
+        <SoftwarePortfolio
+          capabilities={softwareCapabilities}
+          saasImages={saasImages}
+          enterpriseImages={enterpriseImages}
+          publicImages={publicImages}
+          client:visible
+        />
+      </div>
+    </section>
+
+    <!-- 3rd Section: Modern Engineering Stack -->
+    <SoftwareEngineeringStack />
+
+    <!-- 4th Section: Architectural Principles -->
+    <SoftwareArchitecturalPrinciples />
+
+    <!-- 5th Section: Unified Ecosystem Synergy -->
+    <section class="relative bg-base-200/40 py-24">
+      <div class="container mx-auto px-6">
+        <div class="mb-16">
+          <h2 class="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl">
+            Unified Ecosystem Synergy
+          </h2>
+        </div>
+
+        <!-- Pillars Layout from system-integration with LOB anchors and Lucide icons -->
+        <div
+          class="mt-16 flex flex-col border-t-2 border-base-content/20 py-12 md:flex-row md:gap-x-6 lg:mt-20 lg:gap-x-10 lg:py-16"
+        >
+          <!-- Pillar 1: Carrier-Grade Network Automation -->
+          <div class="flex flex-1 flex-col gap-4 pb-12 md:pb-0">
+            <div class="mb-2 flex items-start justify-between">
+              <RadioTower class="h-12 w-12 text-[#60B68C]" />
+              <a
+                href="/telecom"
+                aria-label="Explore Telecom Services"
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+              >
+                <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+              </a>
+            </div>
+            <h3 class="text-xl font-bold">Carrier-Grade Network Automation</h3>
+            <p class="text-justify text-lg text-base-content/70">
+              We engineer custom AMC and Complaint Management Dashboards that convert complex network telemetry into actionable insights. By bridging the gap between software logic and physical layer execution, our tools optimize field workflows, streamline maintenance tracking, and maximize operational continuity.
+            </p>
+          </div>
+
+          <!-- Divider -->
+          <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
+
+          <!-- Pillar 2: Secure Infrastructure Orchestration -->
+          <div
+            class="flex flex-1 flex-col gap-4 border-y-2 border-base-content/20 py-12 md:border-y-0 md:py-0"
+          >
+            <div class="mb-2 flex items-start justify-between">
+              <Server class="h-12 w-12 text-[#60B68C]" />
+              <a
+                href="/system-integration"
+                aria-label="Explore System Integration"
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+              >
+                <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+              </a>
+            </div>
+            <h3 class="text-xl font-bold">Secure Infrastructure Orchestration</h3>
+            <p class="text-justify text-lg text-base-content/70">
+              We bridge the gap between enterprise hardware and cloud software. Built for seamless deployment on secure AWS cloud servers, our custom applications feature strict Role-Based Access Control (RBAC) to integrate perfectly into zero-trust data centre architectures.
+            </p>
+          </div>
+
+          <!-- Divider -->
+          <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
+
+          <!-- Pillar 3: High-Volume Human Capital Automation -->
+          <div class="flex flex-1 flex-col gap-4 pt-12 md:pt-0">
+            <div class="mb-2 flex items-start justify-between">
+              <Users class="h-12 w-12 text-[#60B68C]" />
+              <a
+                href="/resourcing"
+                aria-label="Explore Resource Management"
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+              >
+                <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+              </a>
+            </div>
+            <h3 class="text-xl font-bold">High-Volume Human Capital Automation</h3>
+            <p class="text-justify text-lg text-base-content/70">
+              Our proprietary wfms™ ERP effortlessly supports 3,000 daily active users, fully automating Attendance, Claims, Tasks, and Payroll Engines via web and mobile. By digitizing compliance, we eliminate operational risk and drive long-term workforce retention.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6th Section: Engagement Lifecycle & Deployment Roadmap -->
+    <SoftwareOnboarding />
+
+    <!-- 7th Section: Strategic Case Studies & Technical Impact -->
+    <SoftwareCaseStudies images={caseStudyImages} client:visible />
+
+    <!-- Footer Section -->
+    <div class="bg-base-200/50">
+      <Footer />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Subtle dynamic floating animation for hero mockups */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>
