@@ -71,9 +71,9 @@ const reversedClients = [...clients].reverse();
 // Helper to calculate elegant dynamic card width based on aspect ratio
 function getCardWidth(img: any) {
   const aspectRatio = img.width / img.height;
-  const targetLogoHeight = 48; // max-h-12 is 48px
-  const calculatedWidth = Math.round(targetLogoHeight * aspectRatio) + 80;
-  return Math.max(120, Math.min(280, calculatedWidth));
+  const targetLogoHeight = 56; // max-h-14 is 56px
+  const calculatedWidth = Math.round(targetLogoHeight * aspectRatio) + 48;
+  return Math.max(110, Math.min(300, calculatedWidth));
 }
 ---
 
@@ -107,8 +107,9 @@ function getCardWidth(img: any) {
     mix-blend-mode: multiply;
   }
 
-  html[data-theme="htis-theme-dark"] .client-logo {
-    filter: grayscale(100%) sepia(100%) hue-rotate(290deg) saturate(300%) brightness(110%) invert(100%);
+  html[data-theme='htis-theme-dark'] .client-logo {
+    filter: grayscale(100%) sepia(100%) hue-rotate(290deg) saturate(300%) brightness(110%)
+      invert(100%);
     mix-blend-mode: screen;
   }
 </style>
@@ -129,23 +130,23 @@ function getCardWidth(img: any) {
 
   <!-- Marquee Wrapper with Fade -->
   <div
-    class="flex w-full flex-col gap-6 mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
+    class="flex w-full flex-col gap-4 mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
   >
     <!-- Row 1: Right to Left (order 1...30) -->
     <div class="group flex w-max transition-opacity duration-500 hover:opacity-100">
       <div
-        class="animate-marquee flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+        class="animate-marquee flex shrink-0 items-center gap-4 pr-4 group-hover:[animation-play-state:paused]"
       >
         {
           clients.map((logo) => (
             <div
-              class="flex h-[100px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
               style={`width: ${getCardWidth(logo.img)}px;`}
             >
               <Image
                 src={logo.img}
                 alt={logo.label}
-                class="h-auto max-h-12 w-auto max-w-[140px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 client-logo"
+                class="client-logo h-auto max-h-14 w-auto max-w-[160px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
           ))
@@ -153,19 +154,19 @@ function getCardWidth(img: any) {
       </div>
       <!-- Duplicate list for seamless infinite scroll -->
       <div
-        class="animate-marquee flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+        class="animate-marquee flex shrink-0 items-center gap-4 pr-4 group-hover:[animation-play-state:paused]"
         aria-hidden="true"
       >
         {
           clients.map((logo) => (
             <div
-              class="flex h-[100px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
               style={`width: ${getCardWidth(logo.img)}px;`}
             >
               <Image
                 src={logo.img}
                 alt={logo.label}
-                class="h-auto max-h-12 w-auto max-w-[140px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 client-logo"
+                class="client-logo h-auto max-h-14 w-auto max-w-[160px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
           ))
@@ -176,18 +177,18 @@ function getCardWidth(img: any) {
     <!-- Row 2: Left to Right (order 30...1) -->
     <div class="group flex w-max transition-opacity duration-500 hover:opacity-100">
       <div
-        class="animate-marquee-reverse flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+        class="animate-marquee-reverse flex shrink-0 items-center gap-4 pr-4 group-hover:[animation-play-state:paused]"
       >
         {
           reversedClients.map((logo) => (
             <div
-              class="flex h-[100px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
               style={`width: ${getCardWidth(logo.img)}px;`}
             >
               <Image
                 src={logo.img}
                 alt={logo.label}
-                class="h-auto max-h-12 w-auto max-w-[140px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 client-logo"
+                class="client-logo h-auto max-h-14 w-auto max-w-[160px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
           ))
@@ -195,19 +196,19 @@ function getCardWidth(img: any) {
       </div>
       <!-- Duplicate list for seamless infinite scroll -->
       <div
-        class="animate-marquee-reverse flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+        class="animate-marquee-reverse flex shrink-0 items-center gap-4 pr-4 group-hover:[animation-play-state:paused]"
         aria-hidden="true"
       >
         {
           reversedClients.map((logo) => (
             <div
-              class="flex h-[100px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
               style={`width: ${getCardWidth(logo.img)}px;`}
             >
               <Image
                 src={logo.img}
                 alt={logo.label}
-                class="h-auto max-h-12 w-auto max-w-[140px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 client-logo"
+                class="client-logo h-auto max-h-14 w-auto max-w-[160px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
           ))
