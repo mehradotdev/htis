@@ -2,7 +2,7 @@
 dist/
 
 .agents/skills/skill-creator/
-skills-lock.json
+# skills-lock.json
 
 # generated types
 .astro/
