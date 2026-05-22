@@ -1,7 +1,80 @@
 ---
 import { Image } from 'astro:assets';
 import { ArrowRight } from '@lucide/astro';
-import hartronLogo from '~/assets/logo-hartron.png';
+
+import logoHartron from '~/assets/logo-hartron.png';
+import logoAiims from '~/assets/logo-aiims.png';
+import logoAirtel from '~/assets/logo-airtel.png';
+import logoCeasefire from '~/assets/logo-ceasefire-industries.jpeg';
+import logoCisco from '~/assets/logo-cisco.png';
+import logoDda from '~/assets/logo-dda.png';
+import logoDgtahc from '~/assets/logo-dgtahc.jpg';
+import logoDite from '~/assets/logo-dite.jpeg';
+import logoFccb from '~/assets/logo-fccb.png';
+import logoGmrl from '~/assets/logo-gmrl.png';
+import logoHpgic from '~/assets/logo-hpgic.jpg';
+import logoHpsedc from '~/assets/logo-hpsedc.png';
+import logoHpsldc from '~/assets/logo-hpsldc.jpg';
+import logoHvpn from '~/assets/logo-hvpn.jpeg';
+import logoImmacule from '~/assets/logo-immacule-lifesciences.png';
+import logoIndusTowers from '~/assets/logo-indus-towers.jpeg';
+import logoKuantum from '~/assets/logo-kuantum_papers.jpeg';
+import logoLovely from '~/assets/logo-lovely-international-trust.jpeg';
+import logoNewIndia from '~/assets/logo-new-India-assurance.png';
+import logoPunjabCourt from '~/assets/logo-punjab_and_haryana_high_court_logo.png';
+import logoRadisys from '~/assets/logo-radisys-india.jpeg';
+import logoReliance from '~/assets/logo-reliance-industries-limited.png';
+import logoRhef from '~/assets/logo-rhef.png';
+import logoRoparBank from '~/assets/logo-ropar-central-cooperative-bank.png';
+import logoSangrurBank from '~/assets/logo-SANGRUR-CENTRAL-COOPERATIVE-BANK.jpeg';
+import logoSupreme from '~/assets/logo-supreme-industries.jpeg';
+import logoTechMahindra from '~/assets/logo-tech-mahindra.jpg';
+import logoThapar from '~/assets/logo-thapar-institute-of-engineering-&-technology.png';
+import logoUjvn from '~/assets/logo-UJVN.png';
+import logoVodafone from '~/assets/logo-vodafone-Idea.png';
+
+const clients = [
+  { img: logoHartron, label: 'Hartron' },
+  { img: logoAiims, label: 'AIIMS' },
+  { img: logoAirtel, label: 'Airtel' },
+  { img: logoCeasefire, label: 'Ceasefire Industries' },
+  { img: logoCisco, label: 'Cisco' },
+  { img: logoDda, label: 'DDA' },
+  { img: logoDgtahc, label: 'Directorate General of Training' },
+  { img: logoDite, label: 'DITE' },
+  { img: logoFccb, label: 'FCCB' },
+  { img: logoGmrl, label: 'GMRL' },
+  { img: logoHpgic, label: 'HPGIC' },
+  { img: logoHpsedc, label: 'HPSEDC' },
+  { img: logoHpsldc, label: 'HPSLDC' },
+  { img: logoHvpn, label: 'HVPN' },
+  { img: logoImmacule, label: 'Immacule Lifesciences' },
+  { img: logoIndusTowers, label: 'Indus Towers' },
+  { img: logoKuantum, label: 'Kuantum Papers' },
+  { img: logoLovely, label: 'Lovely International Trust' },
+  { img: logoNewIndia, label: 'New India Assurance' },
+  { img: logoPunjabCourt, label: 'Punjab & Haryana High Court' },
+  { img: logoRadisys, label: 'Radisys India' },
+  { img: logoReliance, label: 'Reliance Industries Limited' },
+  { img: logoRhef, label: 'RHEF' },
+  { img: logoRoparBank, label: 'Ropar Central Cooperative Bank' },
+  { img: logoSangrurBank, label: 'Sangrur Central Cooperative Bank' },
+  { img: logoSupreme, label: 'Supreme Industries' },
+  { img: logoTechMahindra, label: 'Tech Mahindra' },
+  { img: logoThapar, label: 'Thapar Institute' },
+  { img: logoUjvn, label: 'UJVN' },
+  { img: logoVodafone, label: 'Vodafone Idea' },
+];
+
+const reversedClients = [...clients].reverse();
+
+// Helper to calculate elegant dynamic card width based on aspect ratio
+function getCardWidth(img: any) {
+  const aspectRatio = img.width / img.height;
+  const targetLogoHeight = 48; // max-h-12 is 48px
+  const calculatedWidth = Math.round(targetLogoHeight * aspectRatio) + 80;
+  return Math.max(120, Math.min(280, calculatedWidth));
+}
 ---
 
 <style>
@@ -22,10 +95,21 @@ import hartronLogo from '~/assets/logo-hartron.png';
     }
   }
   .animate-marquee {
-    animation: marquee 30s linear infinite;
+    animation: marquee 60s linear infinite;
   }
   .animate-marquee-reverse {
-    animation: marquee-reverse 30s linear infinite;
+    animation: marquee-reverse 60s linear infinite;
+  }
+
+  /* Elegant primary green stencil filter */
+  .client-logo {
+    filter: grayscale(100%) sepia(100%) hue-rotate(110deg) saturate(300%) brightness(90%);
+    mix-blend-mode: multiply;
+  }
+
+  html[data-theme="htis-theme-dark"] .client-logo {
+    filter: grayscale(100%) sepia(100%) hue-rotate(290deg) saturate(300%) brightness(110%) invert(100%);
+    mix-blend-mode: screen;
   }
 </style>
 
@@ -47,50 +131,88 @@ import hartronLogo from '~/assets/logo-hartron.png';
   <div
     class="flex w-full flex-col gap-6 mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
   >
-    <!-- Row 1: Right to Left -->
+    <!-- Row 1: Right to Left (order 1...30) -->
     <div class="group flex w-max transition-opacity duration-500 hover:opacity-100">
-      {
-        Array.from({ length: 8 }).map((_, i) => (
-          <div
-            class="animate-marquee flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
-            aria-hidden={i > 0 ? 'true' : undefined}
-          >
-            {Array.from({ length: 4 }).map(() => (
-              <div class="flex h-[100px] w-[200px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100">
-                <div
-                  class="h-12 w-[140px] bg-primary transition-opacity hover:opacity-80"
-                  style={`mask-image: url('${hartronLogo.src}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url('${hartronLogo.src}'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
-                  aria-label="Hartron"
-                  role="img"
-                />
-              </div>
-            ))}
-          </div>
-        ))
-      }
+      <div
+        class="animate-marquee flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+      >
+        {
+          clients.map((logo) => (
+            <div
+              class="flex h-[100px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              style={`width: ${getCardWidth(logo.img)}px;`}
+            >
+              <Image
+                src={logo.img}
+                alt={logo.label}
+                class="h-auto max-h-12 w-auto max-w-[140px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 client-logo"
+              />
+            </div>
+          ))
+        }
+      </div>
+      <!-- Duplicate list for seamless infinite scroll -->
+      <div
+        class="animate-marquee flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+        aria-hidden="true"
+      >
+        {
+          clients.map((logo) => (
+            <div
+              class="flex h-[100px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              style={`width: ${getCardWidth(logo.img)}px;`}
+            >
+              <Image
+                src={logo.img}
+                alt={logo.label}
+                class="h-auto max-h-12 w-auto max-w-[140px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 client-logo"
+              />
+            </div>
+          ))
+        }
+      </div>
     </div>
 
-    <!-- Row 2: Left to Right -->
+    <!-- Row 2: Left to Right (order 30...1) -->
     <div class="group flex w-max transition-opacity duration-500 hover:opacity-100">
-      {
-        Array.from({ length: 8 }).map((_, i) => (
-          <div
-            class="animate-marquee-reverse flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
-            aria-hidden={i > 0 ? 'true' : undefined}
-          >
-            {Array.from({ length: 4 }).map(() => (
-              <div class="flex h-[100px] w-[200px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100">
-                <div
-                  class="h-12 w-[140px] bg-primary transition-opacity hover:opacity-80"
-                  style={`mask-image: url('${hartronLogo.src}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-image: url('${hartronLogo.src}'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;`}
-                  aria-label="Hartron"
-                  role="img"
-                />
-              </div>
-            ))}
-          </div>
-        ))
-      }
+      <div
+        class="animate-marquee-reverse flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+      >
+        {
+          reversedClients.map((logo) => (
+            <div
+              class="flex h-[100px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              style={`width: ${getCardWidth(logo.img)}px;`}
+            >
+              <Image
+                src={logo.img}
+                alt={logo.label}
+                class="h-auto max-h-12 w-auto max-w-[140px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 client-logo"
+              />
+            </div>
+          ))
+        }
+      </div>
+      <!-- Duplicate list for seamless infinite scroll -->
+      <div
+        class="animate-marquee-reverse flex shrink-0 items-center gap-6 pr-6 group-hover:[animation-play-state:paused]"
+        aria-hidden="true"
+      >
+        {
+          reversedClients.map((logo) => (
+            <div
+              class="flex h-[100px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-4 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              style={`width: ${getCardWidth(logo.img)}px;`}
+            >
+              <Image
+                src={logo.img}
+                alt={logo.label}
+                class="h-auto max-h-12 w-auto max-w-[140px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100 client-logo"
+              />
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
