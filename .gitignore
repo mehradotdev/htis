@@ -1,7 +1,7 @@
 # build output
 dist/
 
-.agents/skills/skill-creator/
+# .agents/skills/skill-creator/
 # skills-lock.json
 
 # generated types
