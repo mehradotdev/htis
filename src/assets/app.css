@@ -94,6 +94,8 @@
   --color-challenge-border: var(--challenge-border);
 }
 
+@variant dark (&:where([data-theme="htis-theme-dark"], [data-theme="htis-theme-dark"] *));
+
 body {
   font-family: var(--font-sans);
 }

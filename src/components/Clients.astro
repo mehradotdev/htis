@@ -107,7 +107,7 @@ function getCardWidth(img: any) {
     mix-blend-mode: multiply;
   }
 
-  html[data-theme='htis-theme-dark'] .client-logo {
+  :global(html[data-theme='htis-theme-dark']) .client-logo {
     filter: grayscale(100%) sepia(100%) hue-rotate(290deg) saturate(300%) brightness(110%)
       invert(100%);
     mix-blend-mode: screen;
