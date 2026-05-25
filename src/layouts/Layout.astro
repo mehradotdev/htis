@@ -25,16 +25,37 @@ const { title = 'HTIS - Delivering Excellence in System Integrations' } = Astro.
       rel="stylesheet"
     />
     <script is:inline>
-      // Apply saved theme before first paint to avoid flash
-      try {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-          document.documentElement.setAttribute('data-theme', savedTheme);
+      /**
+       * Astro View Transitions (ClientRouter) theme persistence helper.
+       * 
+       * When navigating between pages using Astro's ClientRouter, the DOM is patched/swapped
+       * without a full page reload. This process resets the `<html>` element's attributes
+       * (like `data-theme`) to the default state defined in the next page's static HTML template.
+       * 
+       * To keep the theme persistent:
+       * 1. `applyTheme()` reads and applies the theme from localStorage.
+       * 2. It runs synchronously on initial load to prevent Flash of Unstyled Theme (FOUT).
+       * 3. It registers an `astro:after-swap` listener to re-apply the correct theme immediately
+       *    after Astro swaps the DOM, before the new page renders and hydrates.
+       */
+      const applyTheme = () => {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+          }
+        } catch (e) {
+          console.error('LocalStorage access failed:', e);
         }
-      } catch (e) {
-        console.error('LocalStorage access failed:', e);
-        // Storage is blocked or restricted; default theme is already set on the <html> tag.
-      }
+      };
+
+      // Apply saved theme before first paint to avoid flash
+      applyTheme();
+
+      // Re-apply theme after Astro view transition swaps the page
+      document.addEventListener('astro:after-swap', applyTheme);
+      // Fallback: Re-apply theme after the page has fully loaded and hydrated
+      document.addEventListener('astro:page-load', applyTheme);
     </script>
   </head>
   <body class="bg-base-100 text-base-content antialiased">
