@@ -4,7 +4,6 @@
   import {
     CirclePlus,
     CircleMinus,
-    ArrowRight,
     Laptop,
     Smartphone,
     ShieldCheck,
@@ -57,13 +56,18 @@
     let start = Date.now();
 
     const intervalId = setInterval(() => {
-      let elapsed = Date.now() - start;
+      const elapsed = Date.now() - start;
+      progress = Math.min((elapsed / AUTOPLAY_INTERVAL_MS) * 100, 100);
       if (elapsed >= AUTOPLAY_INTERVAL_MS) {
+        // Reset start and progress immediately before updating activeItemIndex.
+        // Because Svelte 5 schedules effect teardowns asynchronously, there might be a
+        // tiny delay before this interval is cleared. Resetting here prevents additional
+        // ticks of the interval from firing and causing rapid index cycling in the interim.
+        start = Date.now();
+        progress = 0;
         if (currentTabObj && currentTabObj.items.length > 1) {
           activeItemIndex = (activeItemIndex + 1) % currentTabObj.items.length;
         }
-      } else {
-        progress = (elapsed / AUTOPLAY_INTERVAL_MS) * 100;
       }
     }, STEP_TIME_MS);
 
@@ -77,11 +81,7 @@
   }
 </script>
 
-<div
-  class="w-full"
-  role="region"
-  aria-label="Software Portfolio"
->
+<div class="w-full" role="region" aria-label="Software Portfolio">
   <!-- Tabs Navigation -->
   <div
     class="w-full flex flex-col sm:flex-row justify-center items-stretch gap-2 bg-base-100/60 backdrop-blur-md rounded-2xl border border-base-content/10 p-2 mb-6"
@@ -223,5 +223,3 @@
     </div>
   </div>
 </div>
-
-

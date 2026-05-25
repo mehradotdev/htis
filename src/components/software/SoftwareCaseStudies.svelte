@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { ChevronLeft, ChevronRight, ArrowUpRight, FileText, TrendingUp } from '@lucide/svelte';
+
   // Svelte 5 Runes Syntax
   const { images } = $props<{ images: string[] }>();
 
@@ -31,16 +33,58 @@
 
   // Function to programmatically scroll horizontal container
   function scroll(direction: 'left' | 'right') {
-    if (scrollContainer) {
-      const cardWidth = window.innerWidth < 768 ? window.innerWidth * 0.9 : 780;
-      const gap = 32; // gap-8 is 32px
-      const scrollAmount = cardWidth + gap;
+    if (!scrollContainer) return;
 
-      scrollContainer.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
+    const container = scrollContainer;
+    const cards = Array.from(container.children) as HTMLElement[];
+    if (cards.length === 0) return;
+
+    const style = window.getComputedStyle(container);
+    const paddingLeft = parseFloat(style.paddingLeft) || 0;
+
+    // Calculate perfect snap position for each card
+    const snapPositions = cards.map(
+      (card) => card.offsetLeft - container.offsetLeft - paddingLeft
+    );
+
+    const currentScroll = container.scrollLeft;
+
+    // Find the closest card index based on current scroll position
+    let closestIndex = 0;
+    let minDifference = Infinity;
+
+    snapPositions.forEach((pos, index) => {
+      const diff = Math.abs(pos - currentScroll);
+      if (diff < minDifference) {
+        minDifference = diff;
+        closestIndex = index;
+      }
+    });
+
+    // Handle edge cases near boundaries where fractional pixels or max scroll bounds apply
+    const isAtEnd = currentScroll + container.clientWidth >= container.scrollWidth - 15;
+    const isAtStart = currentScroll <= 15;
+
+    let currentIndex = closestIndex;
+    if (isAtEnd) {
+      currentIndex = cards.length - 1;
+    } else if (isAtStart) {
+      currentIndex = 0;
     }
+
+    // Determine target index
+    let targetIndex = currentIndex;
+    if (direction === 'left') {
+      targetIndex = Math.max(currentIndex - 1, 0);
+    } else {
+      targetIndex = Math.min(currentIndex + 1, cards.length - 1);
+    }
+
+    // Scroll smoothly to the target snap position
+    container.scrollTo({
+      left: snapPositions[targetIndex],
+      behavior: 'smooth',
+    });
   }
 </script>
 
@@ -48,7 +92,7 @@
   <div class="container mx-auto px-6">
     <!-- Section Header with Next/Prev navigation buttons -->
     <div
-      class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6"
+      class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6"
     >
       <div class="max-w-3xl text-left">
         <!-- <span class="mb-3 block text-xs font-bold tracking-widest text-primary uppercase">
@@ -66,38 +110,14 @@
           aria-label="Previous Case Study"
           class="flex h-12 w-12 items-center justify-center rounded-full border border-base-content/15 bg-base-200 text-base-content shadow-sm transition-all duration-300 hover:bg-primary hover:text-primary-content hover:border-primary active:scale-95"
         >
-          <svg
-            class="h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
-          </svg>
+          <ChevronLeft class="h-5 w-5" strokeWidth={2.5} />
         </button>
         <button
           onclick={() => scroll('right')}
           aria-label="Next Case Study"
           class="flex h-12 w-12 items-center justify-center rounded-full border border-base-content/15 bg-base-200 text-base-content shadow-sm transition-all duration-300 hover:bg-primary hover:text-primary-content hover:border-primary active:scale-95"
         >
-          <svg
-            class="h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-            />
-          </svg>
+          <ChevronRight class="h-5 w-5" strokeWidth={2.5} />
         </button>
       </div>
     </div>
@@ -106,40 +126,28 @@
   <!-- Horizontal scrollable container -->
   <div
     bind:this={scrollContainer}
-    class="flex overflow-x-auto gap-8 px-6 md:px-[10vw] pb-8 snap-x snap-mandatory scroll-smooth no-scrollbar"
+    class="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory scroll-smooth no-scrollbar case-studies-scroll-container"
   >
     {#each caseStudies as study}
       <div
         class="flex-none w-[90vw] md:w-[780px] bg-base-100 rounded-3xl p-8 md:p-12 border border-base-content/10 shadow-lg snap-start flex flex-col md:flex-row items-center gap-8 relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-primary/20"
       >
+        <!-- Link Icon Circle (Top-Right) -->
+        <a
+          href="/case-study"
+          aria-label={`Explore ${study.title} Case Study`}
+          class="absolute top-6 right-6 md:top-8 md:right-8 h-10 w-10 flex items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 hover:bg-primary hover:text-primary-content z-20"
+        >
+          <ArrowUpRight class="w-5 h-5" strokeWidth={2.5} />
+        </a>
+
         <!-- Content Column (Left on desktop) -->
         <div class="w-full md:w-[55%] flex flex-col items-start text-left gap-6 z-10">
-          <div class="flex justify-between items-start w-full">
-            <h3
-              class="text-xl md:text-2xl font-black text-base-content tracking-tight leading-tight max-w-[80%] uppercase font-sans"
-            >
-              {study.title}
-            </h3>
-
-            <!-- Link Icon Circle -->
-            <div
-              class="h-10 w-10 flex items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 cursor-pointer hover:bg-primary hover:text-primary-content"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-                />
-              </svg>
-            </div>
-          </div>
+          <h3
+            class="text-xl md:text-2xl font-black text-base-content tracking-tight leading-tight uppercase font-sans"
+          >
+            {study.title}
+          </h3>
 
           <div class="w-12 h-1 bg-primary rounded-full"></div>
 
@@ -148,19 +156,7 @@
             <span
               class="text-xs font-black tracking-widest text-primary uppercase flex items-center gap-2 font-mono"
             >
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-                />
-              </svg>
+              <FileText class="w-4 h-4" strokeWidth={2} />
               The Solution:
             </span>
             <p class="text-base md:text-lg font-bold text-base-content leading-snug">
@@ -173,19 +169,7 @@
             <span
               class="text-xs font-black tracking-widest text-primary uppercase flex items-center gap-2 font-mono"
             >
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.281m5.94 2.28l-2.28 5.941"
-                />
-              </svg>
+              <TrendingUp class="w-4 h-4" strokeWidth={2} />
               The Impact:
             </span>
             <p
@@ -216,6 +200,49 @@
 </section>
 
 <style>
+  .case-studies-scroll-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    scroll-padding-left: 1.5rem;
+    scroll-padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .case-studies-scroll-container {
+      padding-left: calc((100vw - 768px) / 2 + 1.5rem);
+      padding-right: calc((100vw - 768px) / 2 + 1.5rem);
+      scroll-padding-left: calc((100vw - 768px) / 2 + 1.5rem);
+      scroll-padding-right: calc((100vw - 768px) / 2 + 1.5rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .case-studies-scroll-container {
+      padding-left: calc((100vw - 1024px) / 2 + 1.5rem);
+      padding-right: calc((100vw - 1024px) / 2 + 1.5rem);
+      scroll-padding-left: calc((100vw - 1024px) / 2 + 1.5rem);
+      scroll-padding-right: calc((100vw - 1024px) / 2 + 1.5rem);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .case-studies-scroll-container {
+      padding-left: calc((100vw - 1280px) / 2 + 1.5rem);
+      padding-right: calc((100vw - 1280px) / 2 + 1.5rem);
+      scroll-padding-left: calc((100vw - 1280px) / 2 + 1.5rem);
+      scroll-padding-right: calc((100vw - 1280px) / 2 + 1.5rem);
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .case-studies-scroll-container {
+      padding-left: calc((100vw - 1536px) / 2 + 1.5rem);
+      padding-right: calc((100vw - 1536px) / 2 + 1.5rem);
+      scroll-padding-left: calc((100vw - 1536px) / 2 + 1.5rem);
+      scroll-padding-right: calc((100vw - 1536px) / 2 + 1.5rem);
+    }
+  }
+
   /* Hide scrollbar utility scoped directly to the Svelte component */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
