@@ -134,7 +134,7 @@
 <div class="flex flex-col lg:flex-row gap-8 items-start">
   <!-- Filter Sidebar (Sticky on Desktop) -->
   <div
-    class="card bg-base-100 border border-base-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-6 w-full lg:w-[320px] shrink-0 lg:sticky lg:top-28 h-fit rounded-[1.5rem] transition-all duration-300 !overflow-visible z-10"
+    class="card bg-base-100 border border-base-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-6 w-full lg:w-[320px] shrink-0 lg:sticky lg:top-28 h-fit rounded-3xl transition-all duration-300 overflow-visible! z-10"
   >
     <h2 class="text-xl font-bold mb-6 text-base-content tracking-tight">Filter</h2>
 
@@ -247,16 +247,16 @@
     {#each filteredStudies as study (study.id)}
       <a
         href={`/case-study/${study.slug}`}
-        class="card bg-base-100 border border-base-200/80 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.03)] hover:shadow-xl hover:border-primary/20 transition-all duration-300 rounded-[1.5rem] p-4 sm:p-5 flex flex-col sm:flex-row gap-5 group no-underline text-current"
+        class="card bg-base-100 border border-base-200/80 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.03)] hover:shadow-xl hover:border-primary/20 transition-all duration-300 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row gap-6 group no-underline text-current"
       >
         <!-- Image Container -->
         <div
-          class="w-full sm:w-[220px] lg:w-[260px] shrink-0 rounded-xl overflow-hidden bg-base-200 relative"
+          class="w-full sm:w-[140px] lg:w-[160px] aspect-square shrink-0 rounded-xl overflow-hidden bg-base-200 relative"
         >
           <img
             src={imgSrc}
             alt={study.title}
-            class="w-full h-full object-cover aspect-[4/3] sm:aspect-auto sm:absolute sm:inset-0 transition-transform duration-500 group-hover:scale-105"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
 
@@ -265,20 +265,20 @@
           <!-- Top Right Icon -->
           <div class="hidden sm:flex absolute top-0 right-0">
             <div
-              class="btn btn-circle btn-sm btn-ghost border border-base-300 text-primary opacity-60 group-hover:opacity-100 group-hover:bg-primary group-hover:border-primary group-hover:text-primary-content transition-all duration-300 transform group-hover:scale-110"
+              class="btn btn-circle btn-sm border border-secondary/50 bg-transparent text-secondary group-hover:opacity-100 group-hover:bg-secondary group-hover:border-secondary group-hover:text-secondary-content transition-all duration-300 transform group-hover:scale-110"
               aria-hidden="true"
             >
-              <ArrowUpRight class="w-4 h-4" />
+              <ArrowUpRight class="w-4 h-4" strokeWidth={3} />
             </div>
           </div>
 
           <h3
-            class="text-xl sm:text-2xl font-bold text-base-content mb-2 sm:mb-3 group-hover:text-primary transition-colors line-clamp-2 pr-10 sm:pr-0"
+            class="text-xl font-bold text-base-content mb-2 group-hover:text-primary transition-colors line-clamp-2 pr-10 sm:pr-0"
           >
             {study.title}
           </h3>
 
-          <p class="text-base sm:text-sm text-base-content/70 mb-5 leading-relaxed">
+          <p class="text-sm text-base-content/70 mb-4 leading-relaxed max-w-2xl">
             {study.description}
           </p>
 
@@ -286,7 +286,7 @@
           <div class="flex flex-wrap gap-2 mt-auto">
             {#each study.tags as tag}
               <div
-                class="badge badge-outline border-base-200 text-base-content/70 bg-base-50 text-[11px] font-medium py-2.5 px-3 rounded-full hover:border-primary/30 transition-colors"
+                class="px-3 py-1 text-xs font-semibold text-secondary bg-secondary/10 border border-secondary/20 dark:text-base-content dark:bg-primary/15 dark:border-primary/25 rounded-md transition-colors hover:bg-secondary/20 dark:hover:bg-primary/25"
               >
                 {tag}
               </div>
@@ -297,7 +297,7 @@
     {:else}
       <!-- Empty State -->
       <div
-        class="py-16 px-6 text-center border-2 border-base-200 border-dashed rounded-[1.5rem] bg-base-100/50 flex flex-col items-center justify-center w-full"
+        class="py-16 px-6 text-center border-2 border-base-200 border-dashed rounded-3xl bg-base-100/50 flex flex-col items-center justify-center w-full"
       >
         <div class="bg-base-200/50 p-4 rounded-full mb-4">
           <Search class="w-8 h-8 text-base-content/40" />
