@@ -87,7 +87,7 @@
 
 <section class="relative bg-base-100 py-24 overflow-hidden">
   <div class="container mx-auto px-6">
-    <div class="mb-16 flex flex-col items-end justify-between gap-8 md:flex-row">
+    <div class="mb-10 flex flex-col items-end justify-between gap-8 md:flex-row">
       <div class="max-w-3xl">
         <h2
           class="mb-6 text-4xl font-bold tracking-tight text-base-content md:text-5xl lg:text-6xl"
