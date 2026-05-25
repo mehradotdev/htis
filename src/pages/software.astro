@@ -90,7 +90,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
             >
               Digital Intelligence:<br />
               <span
-                class="bg-linear-to-r from-primary to-[#60B68C] bg-clip-text text-primary"
+                class="bg-linear-to-r from-primary to-[#60B68C] bg-clip-text text-transparent"
                 >Enterprise SaaS</span
               >
             </h1>
@@ -108,13 +108,13 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
             <div class="mt-4 flex flex-wrap gap-4">
               <a
                 href="/#contact"
-                class="btn cursor-pointer rounded-lg px-8 py-3.5 tracking-wide text-white shadow-lg transition-all btn-primary hover:scale-103 hover:shadow-primary/30"
+                class="btn cursor-pointer rounded-lg px-8 py-3.5 tracking-wide text-white shadow-lg transition-all btn-primary hover:scale-105 hover:shadow-primary/30"
               >
                 Contact Us
               </a>
               <a
                 href="#portfolio"
-                class="btn rounded-lg border-base-content/10 px-8 py-3.5 font-semibold tracking-wide text-base-content btn-ghost hover:bg-base-200/50"
+                class="btn rounded-lg border-base-content/50 px-8 py-3.5 font-semibold tracking-wide text-base-content btn-ghost hover:bg-base-200/50"
               >
                 Explore Portfolio
               </a>
@@ -126,7 +126,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
             <Image
               src={heroImg}
               alt="HTIS Software Mockup Showcase"
-              class="h-auto w-full max-w-md object-contain drop-shadow-2xl"
+              class="animate-float h-auto w-full max-w-md object-contain drop-shadow-2xl"
               loading="eager"
             />
           </div>
@@ -142,12 +142,17 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
           class="absolute right-10 bottom-20 z-0 h-[450px] w-[450px] rounded-full bg-primary/10 blur-3xl"
         >
         </div>
-        <Image
-          src={heroImg}
-          alt="HTIS Software Mockup Showcase"
-          class="absolute bottom-0 left-1/2 z-10 h-[90%] w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-2xl"
-          loading="eager"
-        />
+        <!-- Wrapping container to handle the float animation safely on desktop while preserving horizontal centering -->
+        <div
+          class="animate-float absolute bottom-0 left-1/2 z-10 h-[90%] -translate-x-1/2"
+        >
+          <Image
+            src={heroImg}
+            alt="HTIS Software Mockup Showcase"
+            class="h-full w-auto max-w-none object-contain drop-shadow-2xl"
+            loading="eager"
+          />
+        </div>
       </div>
     </section>
 
@@ -172,7 +177,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
 
       <div class="relative z-10 container mx-auto px-6">
         <!-- Title Info -->
-        <div class="mb-16 max-w-3xl text-left">
+        <div class="mb-10 max-w-3xl text-left">
           <!-- <span
             class="mb-2 block text-xs font-bold tracking-wider text-primary uppercase"
           >
@@ -209,15 +214,17 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
     <!-- 5th Section: Unified Ecosystem Synergy -->
     <section class="relative bg-base-200/40 py-24">
       <div class="container mx-auto px-6">
-        <div class="mb-16">
-          <h2 class="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl">
+        <div class="mb-2">
+          <h2
+            class="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
+          >
             Unified Ecosystem Synergy
           </h2>
         </div>
 
         <!-- Pillars Layout from system-integration with LOB anchors and Lucide icons -->
         <div
-          class="mt-16 flex flex-col border-t-2 border-base-content/20 py-12 md:flex-row md:gap-x-6 lg:mt-20 lg:gap-x-10 lg:py-16"
+          class="mt-8 flex flex-col border-t-2 border-base-content/20 py-12 md:flex-row md:gap-x-6 lg:mt-10 lg:gap-x-10 lg:py-16"
         >
           <!-- Pillar 1: Carrier-Grade Network Automation -->
           <div class="flex flex-1 flex-col gap-4 pb-12 md:pb-0">
@@ -233,7 +240,11 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
             </div>
             <h3 class="text-xl font-bold">Carrier-Grade Network Automation</h3>
             <p class="text-justify text-lg text-base-content/70">
-              We engineer custom AMC and Complaint Management Dashboards that convert complex network telemetry into actionable insights. By bridging the gap between software logic and physical layer execution, our tools optimize field workflows, streamline maintenance tracking, and maximize operational continuity.
+              We engineer custom AMC and Complaint Management Dashboards that convert
+              complex network telemetry into actionable insights. By bridging the gap
+              between software logic and physical layer execution, our tools optimize
+              field workflows, streamline maintenance tracking, and maximize operational
+              continuity.
             </p>
           </div>
 
@@ -256,7 +267,10 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
             </div>
             <h3 class="text-xl font-bold">Secure Infrastructure Orchestration</h3>
             <p class="text-justify text-lg text-base-content/70">
-              We bridge the gap between enterprise hardware and cloud software. Built for seamless deployment on secure AWS cloud servers, our custom applications feature strict Role-Based Access Control (RBAC) to integrate perfectly into zero-trust data centre architectures.
+              We bridge the gap between enterprise hardware and cloud software. Built for
+              seamless deployment on secure AWS cloud servers, our custom applications
+              feature strict Role-Based Access Control (RBAC) to integrate perfectly into
+              zero-trust data centre architectures.
             </p>
           </div>
 
@@ -277,7 +291,10 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
             </div>
             <h3 class="text-xl font-bold">High-Volume Human Capital Automation</h3>
             <p class="text-justify text-lg text-base-content/70">
-              Our proprietary wfms™ ERP effortlessly supports 3,000 daily active users, fully automating Attendance, Claims, Tasks, and Payroll Engines via web and mobile. By digitizing compliance, we eliminate operational risk and drive long-term workforce retention.
+              Our proprietary wfms™ ERP effortlessly supports 3,000 daily active users,
+              fully automating Attendance, Claims, Tasks, and Payroll Engines via web and
+              mobile. By digitizing compliance, we eliminate operational risk and drive
+              long-term workforce retention.
             </p>
           </div>
         </div>
