@@ -93,14 +93,30 @@ const posts = [
             </a>
 
             {/* The actual iframe */}
+            {/*
+              NOTE: Do NOT add loading="lazy" to these iframes.
+
+              With lazy loading, the browser defers the request until the iframe
+              is near the viewport. By that time our `load` listener is already
+              attached. When a privacy extension (e.g. Privacy Badger) blocks
+              the request, the browser still fires a `load` event for the
+              empty/blocked content — our handler catches it and hides the
+              fallback card, leaving a blank space.
+
+              Without lazy loading the request fires immediately during HTML
+              parsing, before our script attaches listeners. A blocked request's
+              `load` event is missed, so the fallback card stays visible.
+            */}
             <iframe
               src={post.src}
               height={post.height}
               width="504"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+              referrerpolicy="no-referrer"
               allowfullscreen
               title={post.title}
               data-index={i}
-              class="li-iframe relative z-10 opacity-0 transition-opacity duration-300"
+              class="li-iframe pointer-events-none relative z-10 opacity-0 transition-opacity duration-300"
               style={`width:100%;height:${post.height}px;border:none;`}
             />
           </div>
@@ -111,18 +127,35 @@ const posts = [
 </section>
 
 <script>
-  document.querySelectorAll<HTMLIFrameElement>('.li-iframe').forEach((iframe) => {
-    iframe.addEventListener('load', () => {
-      // If the iframe loaded real content, show it and hide the fallback
-      try {
-        const wrapper = iframe.closest('.li-embed-wrapper');
-        const fallback = wrapper?.querySelector<HTMLElement>('.li-fallback');
-        if (fallback) fallback.style.display = 'none';
-        iframe.classList.remove('opacity-0');
-        iframe.classList.add('opacity-100');
-      } catch {
-        // blocked — leave fallback visible
-      }
+  function setupLinkedInEmbeds() {
+    document.querySelectorAll<HTMLIFrameElement>('.li-iframe').forEach((iframe) => {
+      if (iframe.dataset.initialized) return;
+      iframe.dataset.initialized = 'true';
+      iframe.addEventListener(
+        'load',
+        () => {
+          // If the iframe loaded a same-origin empty document (about:blank),
+          // it was blocked by a privacy extension — keep the fallback visible.
+          try {
+            if (iframe.contentDocument && !iframe.contentDocument.body?.childElementCount)
+              return;
+          } catch {
+            // SecurityError = cross-origin = real LinkedIn content loaded
+          }
+
+          const wrapper = iframe.closest('.li-embed-wrapper');
+          const fallback = wrapper?.querySelector<HTMLElement>('.li-fallback');
+          if (fallback) fallback.style.display = 'none';
+          iframe.classList.remove('opacity-0', 'pointer-events-none');
+          iframe.classList.add('opacity-100');
+        },
+        { once: true },
+      );
     });
-  });
+  }
+
+  // Run immediately so listeners attach before privacy extensions can intervene
+  setupLinkedInEmbeds();
+  // Re-run after view-transition navigations for newly swapped-in iframes
+  document.addEventListener('astro:page-load', setupLinkedInEmbeds);
 </script>
