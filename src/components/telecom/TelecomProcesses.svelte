@@ -38,7 +38,7 @@
   <div class="container mx-auto px-6">
     <!-- Main Heading -->
     <h2
-      class="mb-16 md:mb-24 text-center text-4xl text-base-content md:text-5xl lg:text-6xl max-w-5xl mx-auto leading-tight font-medium tracking-tight"
+      class="mb-10 md:mb-12 text-center text-4xl text-base-content md:text-5xl lg:text-6xl max-w-5xl mx-auto leading-tight font-medium tracking-tight"
     >
       Telecom Processes &mdash; <br class="md:hidden" />
       <span class="italic font-light text-base-content/80">Blueprint to Reality.</span>
@@ -105,7 +105,7 @@
 
         <!-- Right Side: Image Container -->
         <div
-          class="relative w-full h-[30vh] lg:h-full lg:w-1/2 rounded-2xl lg:rounded-[2rem] overflow-hidden bg-base-100 shadow-md"
+          class="relative w-full h-[30vh] lg:h-full lg:w-1/2 rounded-2xl lg:rounded-4xl overflow-hidden bg-base-100 shadow-md"
         >
           {#key activeIndex}
             <img
