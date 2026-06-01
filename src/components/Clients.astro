@@ -72,8 +72,8 @@ const reversedClients = [...clients].reverse();
 function getCardWidth(img: any) {
   const aspectRatio = img.width / img.height;
   const targetLogoHeight = 56; // max-h-14 is 56px
-  const calculatedWidth = Math.round(targetLogoHeight * aspectRatio) + 48;
-  return Math.max(110, Math.min(300, calculatedWidth));
+  const calculatedWidth = Math.round(targetLogoHeight * aspectRatio) + 16;
+  return Math.max(60, Math.min(300, calculatedWidth));
 }
 ---
 
@@ -101,17 +101,7 @@ function getCardWidth(img: any) {
     animation: marquee-reverse 60s linear infinite;
   }
 
-  /* Elegant primary green stencil filter */
-  .client-logo {
-    filter: grayscale(100%) sepia(100%) hue-rotate(110deg) saturate(300%) brightness(90%);
-    mix-blend-mode: multiply;
-  }
 
-  :global(html[data-theme='htis-theme-dark']) .client-logo {
-    filter: grayscale(100%) sepia(100%) hue-rotate(290deg) saturate(300%) brightness(110%)
-      invert(100%);
-    mix-blend-mode: screen;
-  }
 </style>
 
 <section class="relative mx-auto max-w-6xl overflow-hidden px-4 pb-24">
@@ -140,13 +130,13 @@ function getCardWidth(img: any) {
         {
           clients.map((logo) => (
             <div
-              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 py-3 px-2 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
               style={`width: ${getCardWidth(logo.img)}px;`}
             >
               <Image
                 src={logo.img}
                 alt={logo.label}
-                class="client-logo h-auto max-h-14 w-auto max-w-[160px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
+                class="client-logo h-auto max-h-14 w-auto max-w-[260px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
           ))
@@ -160,13 +150,13 @@ function getCardWidth(img: any) {
         {
           clients.map((logo) => (
             <div
-              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 py-3 px-2 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
               style={`width: ${getCardWidth(logo.img)}px;`}
             >
               <Image
                 src={logo.img}
                 alt={logo.label}
-                class="client-logo h-auto max-h-14 w-auto max-w-[160px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
+                class="client-logo h-auto max-h-14 w-auto max-w-[260px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
           ))
@@ -182,13 +172,13 @@ function getCardWidth(img: any) {
         {
           reversedClients.map((logo) => (
             <div
-              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 py-3 px-2 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
               style={`width: ${getCardWidth(logo.img)}px;`}
             >
               <Image
                 src={logo.img}
                 alt={logo.label}
-                class="client-logo h-auto max-h-14 w-auto max-w-[160px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
+                class="client-logo h-auto max-h-14 w-auto max-w-[260px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
           ))
@@ -202,13 +192,13 @@ function getCardWidth(img: any) {
         {
           reversedClients.map((logo) => (
             <div
-              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 p-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
+              class="flex h-[90px] shrink-0 items-center justify-center rounded-xl border-2 border-primary bg-base-100/50 py-3 px-2 shadow-sm backdrop-blur-sm transition-colors hover:bg-base-100"
               style={`width: ${getCardWidth(logo.img)}px;`}
             >
               <Image
                 src={logo.img}
                 alt={logo.label}
-                class="client-logo h-auto max-h-14 w-auto max-w-[160px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
+                class="client-logo h-auto max-h-14 w-auto max-w-[260px] object-contain opacity-85 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
           ))

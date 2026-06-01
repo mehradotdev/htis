@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import htisLogo from '~/assets/logo-htis.png';
+import htisLogo from '~/assets/htis-logo.png';
 import TwitterIcon from './icons/TwitterIcon.astro';
 import InstagramIcon from './icons/InstagramIcon.astro';
 import LinkedInIcon from './icons/LinkedInIcon.astro';
@@ -26,13 +26,7 @@ const { overlap = false } = Astro.props;
       >
         <!-- Logo and Description -->
         <aside class="max-w-xs space-y-4">
-          <Image
-            src={htisLogo}
-            alt="HTIS Logo"
-            width={120}
-            class="object-contain"
-            style="filter: var(--filter-invert-dark)"
-          />
+          <Image src={htisLogo} alt="HTIS Logo" width={120} class="object-contain" />
           <p class="mt-4 text-lg leading-relaxed text-base-content/60">
             HTIS is a thriving community where innovators, professionals, and enthusiasts
             come together to share knowledge, collaborate, and grow.

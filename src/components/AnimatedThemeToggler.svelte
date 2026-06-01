@@ -52,9 +52,9 @@
       const themeValue = newTheme ? DARK_THEME : LIGHT_THEME;
       document.documentElement.setAttribute('data-theme', themeValue);
       try {
-        localStorage.setItem(STORAGE_KEY, themeValue);
+        sessionStorage.setItem(STORAGE_KEY, themeValue);
       } catch (e) {
-        console.error('LocalStorage access failed:', e);
+        console.error('SessionStorage access failed:', e);
         // Storage is blocked or restricted
       }
       await tick();

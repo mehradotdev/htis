@@ -111,10 +111,10 @@
       bind:this={tabsContainer}
       onscroll={checkScroll}
     >
-      <div class="flex flex-nowrap px-4 md:px-10 pt-4 w-max min-w-full">
+      <div class="flex flex-nowrap px-4 md:px-6 lg:px-8 pt-4 w-max lg:w-full min-w-full justify-start lg:justify-between">
         {#each capabilities as tab, index}
           <button
-            class="tab-button cursor-pointer flex-1 min-w-[200px] whitespace-normal py-4 px-2 text-center text-sm md:text-base transition-colors relative pb-5 {activeTab ===
+            class="tab-button cursor-pointer flex-1 min-w-[140px] md:min-w-[160px] lg:min-w-0 whitespace-normal py-4 px-2 lg:px-1 text-center text-xs md:text-sm lg:text-base transition-colors relative pb-5 {activeTab ===
             tab.id
               ? 'text-primary font-semibold'
               : 'text-base-content/60 hover:text-base-content/80'}"
@@ -124,10 +124,7 @@
               scrollTabToActive(index);
             }}
           >
-            <span class="md:hidden">{tab.shortLabel || tab.label}</span>
-            <span class="hidden md:inline">
-              {activeTab === tab.id ? tab.label : tab.shortLabel || tab.label}
-            </span>
+            <span>{tab.shortLabel || tab.label}</span>
             {#if activeTab === tab.id}
               <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-primary/20"></div>
               <div
@@ -162,6 +159,11 @@
   <div class="p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
     <!-- Left: Accordion -->
     <div class="flex flex-col gap-3">
+      {#if capabilities.find((t) => t.id === activeTab)}
+        <h3 class="text-xl md:text-2xl font-bold text-base-content mb-4 tracking-tight">
+          {capabilities.find((t) => t.id === activeTab)?.label}
+        </h3>
+      {/if}
       {#each capabilities.find((t) => t.id === activeTab)?.items || [] as item, index}
         <button
           class="relative cursor-pointer overflow-hidden text-left w-full px-6 py-4 rounded-xl border transition-all duration-300 {activeItemIndex ===

@@ -33,19 +33,23 @@ const { title = 'HTIS - Delivering Excellence in System Integrations' } = Astro.
        * (like `data-theme`) to the default state defined in the next page's static HTML template.
        * 
        * To keep the theme persistent:
-       * 1. `applyTheme()` reads and applies the theme from localStorage.
+       * 1. `applyTheme()` reads and applies the theme from sessionStorage, defaulting to the OS
+       *    color scheme preference (dark vs. light) if not yet set in the session.
        * 2. It runs synchronously on initial load to prevent Flash of Unstyled Theme (FOUT).
        * 3. It registers an `astro:after-swap` listener to re-apply the correct theme immediately
        *    after Astro swaps the DOM, before the new page renders and hydrates.
        */
       const applyTheme = () => {
         try {
-          const savedTheme = localStorage.getItem('theme');
-          if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
+          let savedTheme = sessionStorage.getItem('theme');
+          if (!savedTheme) {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            savedTheme = prefersDark ? 'htis-theme-dark' : 'htis-theme';
+            sessionStorage.setItem('theme', savedTheme);
           }
+          document.documentElement.setAttribute('data-theme', savedTheme);
         } catch (e) {
-          console.error('LocalStorage access failed:', e);
+          console.error('SessionStorage access failed:', e);
         }
       };
 

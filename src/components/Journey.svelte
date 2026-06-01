@@ -37,12 +37,12 @@
   /** Navigates to a specific slide and ensures the timeline scrolls to it */
   function goToSlide(index: number) {
     // Calculate the shortest path on the circle to avoid backward spinning
-    let currentMod = ((rotationIndex % N) + N) % N; 
+    let currentMod = ((rotationIndex % N) + N) % N;
     let diff = index - currentMod;
-    
+
     if (diff > N / 2) diff -= N;
     if (diff < -N / 2) diff += N;
-    
+
     rotationIndex += diff;
     activeIndex = index;
     scrollTimelineToActive(index);
@@ -90,7 +90,10 @@
     </div>
 
     <!-- 3D Film Strip Carousel -->
-    <div class="carousel-container relative mt-4 w-full" style="--theta: {thetaVal}deg; --r-mult: {rMultiplier};">
+    <div
+      class="carousel-container relative mt-4 w-full"
+      style="--theta: {thetaVal}deg; --r-mult: {rMultiplier};"
+    >
       <!-- Glow behind the center active item -->
       <div class="glow-effect"></div>
 
@@ -162,10 +165,7 @@
 
     <!-- Timeline Navigation -->
     <div class="relative mt-2 w-full max-w-4xl px-2 md:px-4">
-      <div
-        class="hide-scrollbar overflow-x-auto pb-4 pt-2"
-        bind:this={timelineContainer}
-      >
+      <div class="hide-scrollbar overflow-x-auto pb-4 pt-2" bind:this={timelineContainer}>
         <div class="relative flex w-max min-w-full items-start justify-between">
           <!-- Horizontal Connecting Line -->
           <div
@@ -173,44 +173,46 @@
           ></div>
 
           {#each milestones as milestone, index}
-          <button
-            class="timeline-node group relative z-10 flex w-20 shrink-0 cursor-pointer flex-col items-center md:w-24"
-            type="button"
-            aria-current={activeIndex === index ? 'step' : undefined}
-            onclick={() => goToSlide(index)}
-          >
-            <!-- Node Dot -->
-            <div class="relative flex h-10 w-10 items-center justify-center">
-              {#if activeIndex === index}
-                <div
-                  class="h-4 w-4 rounded-full border-[3px] border-primary bg-base-100 shadow-[0_0_12px_rgba(42,69,61,0.4)]"
-                ></div>
-              {:else}
-                <div
-                  class="h-2.5 w-2.5 rounded-full bg-primary/20 transition-colors group-hover:bg-primary/50"
-                ></div>
-              {/if}
-            </div>
-
-            <!-- Node Text -->
-            <div
-              class="mt-2 text-center transition-all duration-300 {activeIndex === index
-                ? 'opacity-100'
-                : 'opacity-40 group-hover:opacity-70'}"
+            <button
+              class="timeline-node group relative z-10 flex w-20 shrink-0 cursor-pointer flex-col items-center md:w-24"
+              type="button"
+              aria-current={activeIndex === index ? 'step' : undefined}
+              onclick={() => goToSlide(index)}
             >
+              <!-- Node Dot -->
+              <div class="relative flex h-10 w-10 items-center justify-center">
+                {#if activeIndex === index}
+                  <div
+                    class="h-4 w-4 rounded-full border-[3px] border-primary bg-base-100 shadow-[0_0_12px_rgba(42,69,61,0.4)]"
+                  ></div>
+                {:else}
+                  <div
+                    class="h-2.5 w-2.5 rounded-full bg-primary/20 transition-colors group-hover:bg-primary/50"
+                  ></div>
+                {/if}
+              </div>
+
+              <!-- Node Text -->
               <div
-                class="text-sm font-extrabold text-base-content {activeIndex === index
-                  ? 'scale-110 transform'
-                  : ''} transition-transform"
+                class="mt-2 text-center transition-all duration-300 {activeIndex === index
+                  ? 'opacity-100'
+                  : 'opacity-40 group-hover:opacity-70'}"
               >
-                {milestone.year}
+                <div
+                  class="text-sm font-extrabold text-base-content {activeIndex === index
+                    ? 'scale-110 transform'
+                    : ''} transition-transform"
+                >
+                  {milestone.year}
+                </div>
+                <div
+                  class="mt-0.5 hidden text-[10px] font-bold text-base-content/70 md:block md:text-xs"
+                >
+                  {milestone.title}
+                </div>
               </div>
-              <div class="mt-0.5 hidden text-[10px] font-bold text-base-content/70 md:block md:text-xs">
-                {milestone.title}
-              </div>
-            </div>
-          </button>
-        {/each}
+            </button>
+          {/each}
         </div>
       </div>
     </div>
