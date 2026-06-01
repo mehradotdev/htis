@@ -40,7 +40,7 @@
 <div class="w-full">
   <div class="max-w-4xl mb-12">
     <h2 class="mb-6 text-3xl font-bold md:text-4xl lg:text-5xl text-base-content">
-      The HTIS Partner Ecosystem
+      <span class="text-2xl md:text-3xl lg:text-4xl font-medium">The</span> <span class="text-primary">HTIS Partner</span> Ecosystem
     </h2>
     <p class="text-lg md:text-xl text-base-content/70 leading-relaxed">
       We collaborate with a specialized list of global OEMs to deliver end-to-end IT
@@ -84,7 +84,7 @@
               <img
                 src={partner.logoSrc}
                 alt={partner.name}
-                class="h-10 md:h-14 object-contain max-w-[160px] grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+                class="h-10 md:h-14 object-contain max-w-[260px] transition-all duration-300 opacity-85 hover:opacity-100"
               />
             {:else}
               <div

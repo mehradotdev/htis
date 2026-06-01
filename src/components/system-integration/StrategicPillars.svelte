@@ -191,15 +191,18 @@
       {#each pillars as pillar, i}
         {@const Icon = pillar.icon}
         <button
-          class="absolute z-10 flex h-12 w-12 items-center justify-center rounded-full border shadow-sm backdrop-blur-md transition-all duration-300 md:h-14 md:w-14 {activeIndex ===
+          class="absolute z-10 flex h-12 w-12 items-center justify-center rounded-full border shadow-sm transition-all duration-300 md:h-14 md:w-14 overflow-hidden {activeIndex ===
           i
-            ? 'border-primary/50 bg-base-100 text-primary scale-110 shadow-primary/20'
-            : 'border-base-content/20 bg-base-100/50 text-base-content/60 hover:scale-105 hover:bg-base-200 hover:text-base-content/90'}"
+            ? 'border-primary bg-base-100 text-primary scale-110 shadow-lg shadow-primary/25'
+            : 'border-base-content/15 bg-base-100 text-base-content/60 hover:scale-105 hover:bg-base-200 hover:text-base-content/90'}"
           style={getIconPosition(i)}
           onclick={() => (activeIndex = i)}
           aria-label={pillar.title}
         >
-          <Icon class="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.5} />
+          {#if activeIndex === i}
+            <div class="absolute inset-0 bg-primary/15 pointer-events-none"></div>
+          {/if}
+          <Icon class="relative z-10 h-5 w-5 md:h-6 md:w-6" strokeWidth={2.5} />
         </button>
       {/each}
     </div>

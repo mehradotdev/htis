@@ -42,9 +42,14 @@
     const style = window.getComputedStyle(container);
     const paddingLeft = parseFloat(style.paddingLeft) || 0;
 
-    // Calculate perfect snap position for each card
+    // Calculate perfect snap position for each card using bounding rects (immune to offsetParent changes)
+    const containerRect = container.getBoundingClientRect();
     const snapPositions = cards.map(
-      (card) => card.offsetLeft - container.offsetLeft - paddingLeft
+      (card) =>
+        card.getBoundingClientRect().left -
+        containerRect.left +
+        container.scrollLeft -
+        paddingLeft
     );
 
     const currentScroll = container.scrollLeft;

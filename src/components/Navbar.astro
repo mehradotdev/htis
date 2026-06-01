@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import htisLogo from '~/assets/logo-htis.png';
+import htisLogo from '~/assets/htis-logo.png';
 import solutionsImg from '~/assets/lob-resourcing-construction-1.png';
 import resourcesImg from '~/assets/lob-resourcing-case-study-1.png';
 import MenuIcon from './icons/MenuIcon.astro';
@@ -115,6 +115,20 @@ const resources = [
     icon: Briefcase,
   },
 ];
+
+const { pathname: rawPathname } = Astro.url;
+const pathname = rawPathname.replace(/\/$/, '') || '/';
+
+const isActive = (path: string) => {
+  if (path === '/') {
+    return pathname === '/';
+  }
+  return pathname.startsWith(path);
+};
+
+const isSolutionsActive = solutions.some((item) => pathname.startsWith(item.url));
+const isIndustriesActive = pathname.startsWith('/industry');
+const isResourcesActive = resources.some((item) => pathname.startsWith(item.url));
 ---
 
 <div
@@ -134,17 +148,32 @@ const resources = [
           tabindex="0"
           class="dropdown-content menu z-1 mt-3 max-h-[85vh] w-[22rem] flex-nowrap overflow-y-auto rounded-box border border-base-200/50 bg-base-100 p-2 text-base font-medium text-base-content shadow-xl"
         >
-          <li><a href="/" class="py-3 font-semibold text-primary">Home</a></li>
+          <li>
+            <a
+              href="/"
+              class={`py-3 ${isActive('/') ? 'font-semibold text-primary bg-base-200/60' : 'text-base-content/80'}`}
+            >
+              Home
+            </a>
+          </li>
 
           <li>
-            <details>
-              <summary class="py-3 font-semibold">Solutions</summary>
+            <details open={isSolutionsActive}>
+              <summary
+                class={`py-3 font-semibold ${isSolutionsActive ? 'text-primary' : ''}`}
+                >Solutions</summary
+              >
               <ul class="before:bg-base-200/50">
                 {
                   solutions.map((item) => (
                     <li>
-                      <a href={item.url} class="py-3">
-                        <item.icon class="mr-2 h-4 w-4 shrink-0 text-primary" />
+                      <a
+                        href={item.url}
+                        class={`py-3 ${isActive(item.url) ? 'bg-base-200/60 font-medium text-primary' : ''}`}
+                      >
+                        <item.icon
+                          class={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
+                        />
                         <span class="leading-tight">{item.title}</span>
                       </a>
                     </li>
@@ -155,14 +184,22 @@ const resources = [
           </li>
 
           <li>
-            <details>
-              <summary class="py-3 font-semibold">Industries</summary>
+            <details open={isIndustriesActive}>
+              <summary
+                class={`py-3 font-semibold ${isIndustriesActive ? 'text-primary' : ''}`}
+                >Industries</summary
+              >
               <ul class="before:bg-base-200/50">
                 {
                   [...industriesCol1, ...industriesCol2].map((item) => (
                     <li>
-                      <a href={item.url} class="py-2.5">
-                        <item.icon class="mr-2 h-4 w-4 shrink-0 text-primary" />
+                      <a
+                        href={item.url}
+                        class={`py-2.5 ${isActive(item.url) ? 'bg-base-200/60 font-medium text-primary' : ''}`}
+                      >
+                        <item.icon
+                          class={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
+                        />
                         <span class="text-sm leading-tight">{item.title}</span>
                       </a>
                     </li>
@@ -173,14 +210,22 @@ const resources = [
           </li>
 
           <li>
-            <details>
-              <summary class="py-3 font-semibold">Resources</summary>
+            <details open={isResourcesActive}>
+              <summary
+                class={`py-3 font-semibold ${isResourcesActive ? 'text-primary' : ''}`}
+                >Resources</summary
+              >
               <ul class="before:bg-base-200/50">
                 {
                   resources.map((item) => (
                     <li>
-                      <a href={item.url} class="py-3">
-                        <item.icon class="mr-2 h-4 w-4 shrink-0 text-primary" />
+                      <a
+                        href={item.url}
+                        class={`py-3 ${isActive(item.url) ? 'bg-base-200/60 font-medium text-primary' : ''}`}
+                      >
+                        <item.icon
+                          class={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
+                        />
                         <span class="leading-tight">{item.title}</span>
                       </a>
                     </li>
@@ -190,7 +235,14 @@ const resources = [
             </details>
           </li>
 
-          <li><a href="/jobs" class="py-3 font-semibold">Career</a></li>
+          <li>
+            <a
+              href="/jobs"
+              class={`py-3 ${isActive('/jobs') ? 'font-semibold text-primary bg-base-200/60' : 'text-base-content/80'}`}
+            >
+              Career
+            </a>
+          </li>
         </ul>
       </div>
       <a href="/" class="btn h-auto p-2 text-xl normal-case btn-ghost">
@@ -200,44 +252,56 @@ const resources = [
           width={140}
           id="navbar-logo"
           class="w-[140px] object-contain transition-all duration-500"
-          style="filter: var(--filter-invert-dark)"
         />
       </a>
     </div>
     <div class="navbar-center hidden h-full items-center lg:flex">
       <nav
         class="relative flex h-full items-center space-x-6 px-1 text-[16px] font-medium text-base-content/80"
+        x-data="{ 
+          activeDropdown: null,
+          toggle(name) {
+            this.activeDropdown = this.activeDropdown === name ? null : name;
+          },
+          close() {
+            this.activeDropdown = null;
+          }
+        }"
+        @click.away="close()"
+        @keydown.escape.window="close()"
       >
         <a
           href="/"
-          class="py-4 font-semibold text-primary transition-colors hover:text-primary"
-          >Home</a
+          class={`py-4 transition-colors hover:text-primary ${isActive('/') ? 'text-primary font-semibold' : 'text-base-content/80'}`}
         >
+          Home
+        </a>
 
         <!-- Solutions: Dropdown open state, focus/hover sync, Escape key to close, and screen-reader accessibility (aria-expanded) managed via Alpine.js -->
         <div
           class="group/nav flex h-full items-center"
-          x-data="{ open: false }"
-          @mouseenter="open = true"
-          @mouseleave="if (!$el.contains(document.activeElement)) open = false"
-          @focusin="open = true"
-          @focusout="if (!$el.contains($event.relatedTarget)) open = false"
-          @keydown.escape="open = false; document.activeElement.blur()"
+          @pointerenter="if ($event.pointerType !== 'touch') activeDropdown = 'solutions'"
+          @pointerleave="if ($event.pointerType !== 'touch') activeDropdown = null"
+          @focusin="activeDropdown = 'solutions'"
+          @focusout="if (!$el.contains($event.relatedTarget)) activeDropdown = null"
         >
           <button
             type="button"
-            class="flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none"
+            class={`flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isSolutionsActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
             aria-haspopup="true"
-            :aria-expanded="open"
+            :aria-expanded="activeDropdown === 'solutions'"
+            @click="toggle('solutions')"
           >
             Solutions
             <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-300 group-focus-within/nav:-rotate-180 group-hover/nav:-rotate-180"
+              class="h-4 w-4 opacity-50 transition-transform duration-300"
+              :class="activeDropdown === 'solutions' ? '-rotate-180 text-primary' : ''"
             />
           </button>
 
           <div
-            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-focus-within/nav:visible group-focus-within/nav:opacity-100 group-hover/nav:visible group-hover/nav:opacity-100"
+            class="absolute top-[85%] left-1/2 z-50 -translate-x-1/2 transform-gpu cursor-default pt-6 transition-all duration-300 invisible opacity-0 translate-y-2"
+            :class="{ 'visible opacity-100 translate-y-0': activeDropdown === 'solutions', 'invisible opacity-0 translate-y-2': activeDropdown !== 'solutions' }"
           >
             <div
               class="flex w-[800px] gap-8 rounded-4xl border border-base-200 bg-base-100 p-6 shadow-2xl"
@@ -252,13 +316,17 @@ const resources = [
                   solutions.map((item) => (
                     <a
                       href={item.url}
-                      class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
+                      class={`group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50 ${isActive(item.url) ? 'bg-base-200/30' : ''}`}
                     >
-                      <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
+                      <div
+                        class={`mt-0.5 rounded-xl p-2.5 transition-all duration-300 ${isActive(item.url) ? 'bg-primary text-primary-content shadow-lg shadow-primary/20' : 'bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20'}`}
+                      >
                         <item.icon class="h-5 w-5 shrink-0" />
                       </div>
                       <div>
-                        <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
+                        <div
+                          class={`font-bold transition-colors ${isActive(item.url) ? 'text-primary' : 'text-base-content group-hover/item:text-primary'}`}
+                        >
                           {item.title}
                         </div>
                         <div class="mt-0.5 text-sm leading-snug text-base-content/60">
@@ -302,27 +370,28 @@ const resources = [
         <!-- Industries: Dropdown open state, focus/hover sync, Escape key to close, and screen-reader accessibility (aria-expanded) managed via Alpine.js -->
         <div
           class="group/nav flex h-full items-center"
-          x-data="{ open: false }"
-          @mouseenter="open = true"
-          @mouseleave="if (!$el.contains(document.activeElement)) open = false"
-          @focusin="open = true"
-          @focusout="if (!$el.contains($event.relatedTarget)) open = false"
-          @keydown.escape="open = false; document.activeElement.blur()"
+          @pointerenter="if ($event.pointerType !== 'touch') activeDropdown = 'industries'"
+          @pointerleave="if ($event.pointerType !== 'touch') activeDropdown = null"
+          @focusin="activeDropdown = 'industries'"
+          @focusout="if (!$el.contains($event.relatedTarget)) activeDropdown = null"
         >
           <button
             type="button"
-            class="flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none"
+            class={`flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isIndustriesActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
             aria-haspopup="true"
-            :aria-expanded="open"
+            :aria-expanded="activeDropdown === 'industries'"
+            @click="toggle('industries')"
           >
             Industries
             <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-300 group-focus-within/nav:-rotate-180 group-hover/nav:-rotate-180"
+              class="h-4 w-4 opacity-50 transition-transform duration-300"
+              :class="activeDropdown === 'industries' ? '-rotate-180 text-primary' : ''"
             />
           </button>
 
           <div
-            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-focus-within/nav:visible group-focus-within/nav:opacity-100 group-hover/nav:visible group-hover/nav:opacity-100"
+            class="absolute top-[85%] left-1/2 z-50 -translate-x-1/2 transform-gpu cursor-default pt-6 transition-all duration-300 invisible opacity-0 translate-y-2"
+            :class="{ 'visible opacity-100 translate-y-0': activeDropdown === 'industries', 'invisible opacity-0 translate-y-2': activeDropdown !== 'industries' }"
           >
             <div
               class="flex w-[850px] gap-6 rounded-4xl border border-base-200 bg-base-100 p-6 shadow-2xl"
@@ -337,13 +406,17 @@ const resources = [
                   industriesCol1.map((item) => (
                     <a
                       href={item.url}
-                      class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
+                      class={`group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50 ${isActive(item.url) ? 'bg-base-200/30' : ''}`}
                     >
-                      <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
+                      <div
+                        class={`mt-0.5 rounded-xl p-2.5 transition-all duration-300 ${isActive(item.url) ? 'bg-primary text-primary-content shadow-lg shadow-primary/20' : 'bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20'}`}
+                      >
                         <item.icon class="h-5 w-5 shrink-0" />
                       </div>
                       <div>
-                        <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
+                        <div
+                          class={`font-bold transition-colors ${isActive(item.url) ? 'text-primary' : 'text-base-content group-hover/item:text-primary'}`}
+                        >
                           {item.title}
                         </div>
                         <div class="mt-0.5 text-sm leading-snug text-base-content/60">
@@ -362,13 +435,17 @@ const resources = [
                   industriesCol2.map((item) => (
                     <a
                       href={item.url}
-                      class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
+                      class={`group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50 ${isActive(item.url) ? 'bg-base-200/30' : ''}`}
                     >
-                      <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
+                      <div
+                        class={`mt-0.5 rounded-xl p-2.5 transition-all duration-300 ${isActive(item.url) ? 'bg-primary text-primary-content shadow-lg shadow-primary/20' : 'bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20'}`}
+                      >
                         <item.icon class="h-5 w-5 shrink-0" />
                       </div>
                       <div>
-                        <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
+                        <div
+                          class={`font-bold transition-colors ${isActive(item.url) ? 'text-primary' : 'text-base-content group-hover/item:text-primary'}`}
+                        >
                           {item.title}
                         </div>
                         <div class="mt-0.5 text-sm leading-snug text-base-content/60">
@@ -386,27 +463,28 @@ const resources = [
         <!-- Resources: Dropdown open state, focus/hover sync, Escape key to close, and screen-reader accessibility (aria-expanded) managed via Alpine.js -->
         <div
           class="group/nav flex h-full items-center"
-          x-data="{ open: false }"
-          @mouseenter="open = true"
-          @mouseleave="if (!$el.contains(document.activeElement)) open = false"
-          @focusin="open = true"
-          @focusout="if (!$el.contains($event.relatedTarget)) open = false"
-          @keydown.escape="open = false; document.activeElement.blur()"
+          @pointerenter="if ($event.pointerType !== 'touch') activeDropdown = 'resources'"
+          @pointerleave="if ($event.pointerType !== 'touch') activeDropdown = null"
+          @focusin="activeDropdown = 'resources'"
+          @focusout="if (!$el.contains($event.relatedTarget)) activeDropdown = null"
         >
           <button
             type="button"
-            class="flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none"
+            class={`flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isResourcesActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
             aria-haspopup="true"
-            :aria-expanded="open"
+            :aria-expanded="activeDropdown === 'resources'"
+            @click="toggle('resources')"
           >
             Resources
             <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-300 group-focus-within/nav:-rotate-180 group-hover/nav:-rotate-180"
+              class="h-4 w-4 opacity-50 transition-transform duration-300"
+              :class="activeDropdown === 'resources' ? '-rotate-180 text-primary' : ''"
             />
           </button>
 
           <div
-            class="invisible absolute top-[85%] left-1/2 z-50 -translate-x-1/2 cursor-default pt-6 opacity-0 transition-all duration-300 group-focus-within/nav:visible group-focus-within/nav:opacity-100 group-hover/nav:visible group-hover/nav:opacity-100"
+            class="absolute top-[85%] left-1/2 z-50 -translate-x-1/2 transform-gpu cursor-default pt-6 transition-all duration-300 invisible opacity-0 translate-y-2"
+            :class="{ 'visible opacity-100 translate-y-0': activeDropdown === 'resources', 'invisible opacity-0 translate-y-2': activeDropdown !== 'resources' }"
           >
             <div
               class="flex w-[800px] gap-8 rounded-4xl border border-base-200 bg-base-100 p-6 shadow-2xl"
@@ -421,13 +499,17 @@ const resources = [
                   resources.map((item) => (
                     <a
                       href={item.url}
-                      class="group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50"
+                      class={`group/item flex items-start gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-base-200/50 ${isActive(item.url) ? 'bg-base-200/30' : ''}`}
                     >
-                      <div class="mt-0.5 rounded-xl bg-primary/10 p-2.5 text-primary transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20">
+                      <div
+                        class={`mt-0.5 rounded-xl p-2.5 transition-all duration-300 ${isActive(item.url) ? 'bg-primary text-primary-content shadow-lg shadow-primary/20' : 'bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20'}`}
+                      >
                         <item.icon class="h-5 w-5 shrink-0" />
                       </div>
                       <div>
-                        <div class="font-bold text-base-content transition-colors group-hover/item:text-primary">
+                        <div
+                          class={`font-bold transition-colors ${isActive(item.url) ? 'text-primary' : 'text-base-content group-hover/item:text-primary'}`}
+                        >
                           {item.title}
                         </div>
                         <div class="mt-0.5 text-sm leading-snug text-base-content/60">
@@ -468,7 +550,12 @@ const resources = [
           </div>
         </div>
 
-        <a href="/jobs" class="py-4 transition-colors hover:text-primary">Career</a>
+        <a
+          href="/jobs"
+          class={`py-4 transition-colors hover:text-primary ${isActive('/jobs') ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+        >
+          Career
+        </a>
       </nav>
     </div>
     <div class="navbar-end flex-1 gap-1 md:gap-2">
