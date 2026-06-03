@@ -1,15 +1,17 @@
 ---
 import { Image } from 'astro:assets';
+import { CircleCheck } from '@lucide/astro';
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
-import { CircleCheck } from '@lucide/astro';
+import AboutTeam from '~/components/AboutTeam.svelte';
 
 import heroBg from '~/assets/about-hero-bg.png';
 import missionImg from '~/assets/about-mission.png';
 import lifeImg from '~/assets/about-life-at-htis.png';
 import lifeBg from '~/assets/about-life-at-htis-bg.png';
 import principlesImg from '~/assets/about-principles.png';
+import johnDoeImg from '~/assets/tm_John_Doe.png';
 ---
 
 <Layout title="About Us - HTIS">
@@ -190,6 +192,9 @@ import principlesImg from '~/assets/about-principles.png';
         </div>
       </div>
     </section>
+
+    <!-- Section: Team Section -->
+    <AboutTeam memberImg={johnDoeImg.src} client:visible />
 
     <!-- Section 4: Principles Section -->
     <section class="bg-base-200/50 py-16 md:py-24">

@@ -87,7 +87,9 @@
 
 <section class="relative bg-base-100 py-24 overflow-hidden">
   <div class="container mx-auto px-6">
-    <div class="mb-10 flex flex-col items-end justify-between gap-8 md:flex-row md:items-start">
+    <div
+      class="mb-10 flex flex-col items-end justify-between gap-8 md:flex-row md:items-start"
+    >
       <div class="max-w-3xl">
         <h2
           class="mb-6 text-4xl font-bold tracking-tight text-base-content md:text-5xl lg:text-6xl"
@@ -112,10 +114,7 @@
     </div>
 
     <!-- Carousel track -->
-    <div
-      class="carousel-viewport relative"
-      style="height: {CARD_W * 1.4}px;"
-    >
+    <div class="carousel-viewport relative" style="height: {CARD_W * 1.4}px;">
       {#each slots as slot (slot.index)}
         {@const isActive = slot.offset === 0}
         {@const scale = isActive ? SCALE_ACTIVE : SCALE_INACTIVE}
@@ -129,8 +128,8 @@
           onclick={() => goTo(slot.index)}
           class="carousel-card absolute left-1/2 top-1/2 flex flex-col gap-5 rounded-2xl border p-6 text-left cursor-pointer
             {isActive
-              ? 'border-primary/30 bg-primary/5 shadow-xl shadow-primary/10'
-              : 'border-base-content/10 bg-base-100/50 hover:border-base-content/20'}"
+            ? 'border-primary/30 bg-primary/5 shadow-xl shadow-primary/10 h-[340px]'
+            : 'border-base-content/10 bg-base-100/50 hover:border-base-content/20 h-[300px]'}"
           style="
             width: {CARD_W}px;
             transform: translate(-50%, -50%) translateX({translateX}px) scale({scale});
@@ -150,10 +149,10 @@
           <p class="max-w-[200px] flex-1 text-base leading-relaxed text-base-content/70">
             {project.description}
           </p>
-          <div class="mt-auto flex max-w-[220px] flex-wrap gap-1.5">
+          <div class="mt-auto flex max-w-[220px] flex-wrap gap-2">
             {#each project.badges as badge}
               <span
-                class="rounded-full border border-base-content/5 bg-base-200/50 px-2.5 py-1 text-[10px] font-semibold tracking-tight text-base-content/70 uppercase"
+                class="px-2.5 py-1 text-[10px] font-semibold tracking-tight text-secondary bg-secondary/10 border border-secondary/20 dark:text-base-content dark:bg-primary/15 dark:border-primary/25 rounded-md uppercase transition-colors hover:bg-secondary/20 dark:hover:bg-primary/25"
               >
                 {badge}
               </span>
@@ -181,13 +180,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  .carousel-card {
-    transition:
-      transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-      border-color 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-</style>

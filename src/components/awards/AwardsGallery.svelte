@@ -186,35 +186,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  /* 
-    The keyframes must be declared :global because Svelte's scoped compiler hashes 
-    any style/keyframe names declared here by default. Since we are dynamically applying 
-    the animation via JavaScript inline style assignment (gridEl.style.animation) 
-    in the $effect above, Svelte cannot statically analyze that the keyframes are used, 
-    and would otherwise hash/strip them, making them unreachable from our JS.
-  */
-  :global {
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  }
-</style>

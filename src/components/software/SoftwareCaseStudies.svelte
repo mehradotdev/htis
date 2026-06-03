@@ -1,5 +1,11 @@
 <script lang="ts">
-  import { ChevronLeft, ChevronRight, ArrowUpRight, FileText, TrendingUp } from '@lucide/svelte';
+  import {
+    ChevronLeft,
+    ChevronRight,
+    ArrowUpRight,
+    FileText,
+    TrendingUp,
+  } from '@lucide/svelte';
 
   // Svelte 5 Runes Syntax
   const { images } = $props<{ images: string[] }>();
@@ -49,7 +55,7 @@
         card.getBoundingClientRect().left -
         containerRect.left +
         container.scrollLeft -
-        paddingLeft
+        paddingLeft,
     );
 
     const currentScroll = container.scrollLeft;
@@ -203,57 +209,3 @@
     {/each}
   </div>
 </section>
-
-<style>
-  .case-studies-scroll-container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    scroll-padding-left: 1.5rem;
-    scroll-padding-right: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .case-studies-scroll-container {
-      padding-left: calc((100vw - 768px) / 2 + 1.5rem);
-      padding-right: calc((100vw - 768px) / 2 + 1.5rem);
-      scroll-padding-left: calc((100vw - 768px) / 2 + 1.5rem);
-      scroll-padding-right: calc((100vw - 768px) / 2 + 1.5rem);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .case-studies-scroll-container {
-      padding-left: calc((100vw - 1024px) / 2 + 1.5rem);
-      padding-right: calc((100vw - 1024px) / 2 + 1.5rem);
-      scroll-padding-left: calc((100vw - 1024px) / 2 + 1.5rem);
-      scroll-padding-right: calc((100vw - 1024px) / 2 + 1.5rem);
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .case-studies-scroll-container {
-      padding-left: calc((100vw - 1280px) / 2 + 1.5rem);
-      padding-right: calc((100vw - 1280px) / 2 + 1.5rem);
-      scroll-padding-left: calc((100vw - 1280px) / 2 + 1.5rem);
-      scroll-padding-right: calc((100vw - 1280px) / 2 + 1.5rem);
-    }
-  }
-
-  @media (min-width: 1536px) {
-    .case-studies-scroll-container {
-      padding-left: calc((100vw - 1536px) / 2 + 1.5rem);
-      padding-right: calc((100vw - 1536px) / 2 + 1.5rem);
-      scroll-padding-left: calc((100vw - 1536px) / 2 + 1.5rem);
-      scroll-padding-right: calc((100vw - 1536px) / 2 + 1.5rem);
-    }
-  }
-
-  /* Hide scrollbar utility scoped directly to the Svelte component */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-</style>

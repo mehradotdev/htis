@@ -255,32 +255,3 @@
     </div>
   {/if}
 </div>
-
-<style>
-  /* Fix details dropdown staying open issues on daisyUI */
-  details > summary {
-    list-style: none;
-  }
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
-
-  /* Ensure proper width for labels inside dropdowns */
-  .dropdown-content li {
-    width: 100%;
-  }
-
-  /*
-   * Stretch the role anchor to cover the entire row.
-   * The <tr> has `position: relative` (via Tailwind's `relative` class).
-   * The ::after pseudo-element becomes a transparent overlay that
-   * intercepts clicks anywhere on the row — fully keyboard-accessible
-   * because the <a> itself is the focusable element.
-   */
-  .row-link::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-  }
-</style>

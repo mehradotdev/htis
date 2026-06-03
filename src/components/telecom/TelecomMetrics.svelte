@@ -39,7 +39,7 @@
       isFloat: false,
       unit: '',
       suffix: '/4',
-      label: 'Major Operators Served',
+      label: 'Major Indian Operators Served',
       subLabel: '',
     },
   ];

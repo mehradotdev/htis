@@ -84,14 +84,14 @@
   }
 </script>
 
-<div
-  class="bg-base-100/50 backdrop-blur-md rounded-3xl border border-base-content/10 shadow-lg overflow-hidden flex flex-col"
->
-  <!-- Tabs -->
-  <div class="relative w-full border-b border-base-content/10 group">
+<div class="w-full" role="region" aria-label="Telecom Capabilities">
+  <!-- Tabs Navigation -->
+  <div
+    class="relative w-full bg-base-100/60 backdrop-blur-md rounded-2xl border border-base-content/10 p-2 mb-6 group"
+  >
     {#if canScrollLeft}
       <button
-        class="absolute left-0 top-0 bottom-0 z-10 px-2 flex items-center justify-center bg-gradient-to-r from-base-100 via-base-100/90 to-transparent transition-opacity"
+        class="absolute left-1 top-1 bottom-1 z-10 px-2 flex items-center justify-center bg-gradient-to-r from-base-100 via-base-100/90 to-transparent transition-opacity rounded-l-xl"
         onclick={() => {
           if (tabsContainer) tabsContainer.scrollBy({ left: -200, behavior: 'smooth' });
         }}
@@ -107,28 +107,27 @@
     {/if}
 
     <div
-      class="w-full overflow-x-auto scrollbar-hide relative"
+      class="w-full overflow-x-auto no-scrollbar relative"
       bind:this={tabsContainer}
       onscroll={checkScroll}
     >
-      <div class="flex flex-nowrap px-4 md:px-6 lg:px-8 pt-4 w-max lg:w-full min-w-full justify-start lg:justify-between">
+      <div class="flex flex-nowrap gap-2 w-max lg:w-full min-w-full justify-start px-1">
         {#each capabilities as tab, index}
           <button
-            class="tab-button cursor-pointer flex-1 min-w-[140px] md:min-w-[160px] lg:min-w-0 whitespace-normal py-4 px-2 lg:px-1 text-center text-xs md:text-sm lg:text-base transition-colors relative pb-5 {activeTab ===
-            tab.id
-              ? 'text-primary font-semibold'
-              : 'text-base-content/60 hover:text-base-content/80'}"
+            class="tab-button cursor-pointer flex-1 min-w-[140px] md:min-w-[160px] lg:min-w-0 px-6 py-4 rounded-xl font-bold transition-all duration-300 text-sm md:text-base text-center select-none overflow-hidden relative
+              {activeTab === tab.id
+              ? 'bg-primary text-primary-content shadow-lg shadow-primary/20 scale-[1.02]'
+              : 'text-base-content/70 hover:text-base-content hover:bg-base-200/50'}"
             onclick={() => {
               activeTab = tab.id;
               activeItemIndex = 0;
               scrollTabToActive(index);
             }}
           >
-            <span>{tab.shortLabel || tab.label}</span>
+            <span class="relative z-10">{tab.shortLabel || tab.label}</span>
             {#if activeTab === tab.id}
-              <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-primary/20"></div>
               <div
-                class="absolute bottom-0 left-0 h-[3px] bg-primary animate-progress"
+                class="absolute bottom-0 left-0 h-[6px] bg-primary-content/85 animate-progress"
                 style="--duration: {AUTOPLAY_INTERVAL_MS}ms;"
               ></div>
             {/if}
@@ -139,7 +138,7 @@
 
     {#if canScrollRight}
       <button
-        class="absolute right-0 top-0 bottom-0 z-10 px-2 flex items-center justify-center bg-gradient-to-l from-base-100 via-base-100/90 to-transparent transition-opacity"
+        class="absolute right-1 top-1 bottom-1 z-10 px-2 flex items-center justify-center bg-gradient-to-l from-base-100 via-base-100/90 to-transparent transition-opacity rounded-r-xl"
         onclick={() => {
           if (tabsContainer) tabsContainer.scrollBy({ left: 200, behavior: 'smooth' });
         }}
@@ -155,8 +154,10 @@
     {/if}
   </div>
 
-  <!-- Content Area -->
-  <div class="p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+  <!-- Content Container (Card Area) -->
+  <div
+    class="bg-base-100/50 backdrop-blur-md rounded-3xl border border-base-content/10 shadow-lg overflow-hidden p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10"
+  >
     <!-- Left: Accordion -->
     <div class="flex flex-col gap-3">
       {#if capabilities.find((t) => t.id === activeTab)}
@@ -214,24 +215,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  @keyframes progress {
-    from {
-      width: 0%;
-    }
-    to {
-      width: 100%;
-    }
-  }
-  .animate-progress {
-    animation: progress var(--duration, 15s) linear forwards;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-</style>

@@ -115,6 +115,13 @@
     },
   };
 
+  const activeServiceLayouts = {
+    telecom: { c: 0, r: 0, cs: 4, rs: 4 },
+    software: { c: 1, r: 0, cs: 4, rs: 4 },
+    system: { c: 0, r: 1, cs: 4, rs: 4 },
+    resourcing: { c: 1, r: 1, cs: 4, rs: 4 },
+  };
+
   const mobileOrder = {
     telecom: 'order-1',
     icons: 'order-2',
@@ -311,25 +318,12 @@
       </div>
     {/each}
   </div>
-</div>
 
-<style>
-  .grid-block {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-  @media (min-width: 768px) {
-    .grid-block {
-      position: absolute !important;
-      top: var(--md-top);
-      left: var(--md-left);
-      width: var(--md-w);
-      height: var(--md-h);
-      z-index: var(--md-z, 10);
-    }
-    button.grid-block:hover {
-      z-index: 40 !important;
-    }
-  }
-</style>
+  {#if activeServiceLayouts[active]}
+    {@const pos = activeServiceLayouts[active]}
+    <div
+      class="grid-block outline-2 -outline-offset-2 outline-primary pointer-events-none transition-all duration-700 ease-in-out"
+      style="{getStyle(pos.c, pos.r, pos.cs, pos.rs)} --md-z: 35;"
+    ></div>
+  {/if}
+</div>

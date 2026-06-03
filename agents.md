@@ -57,3 +57,24 @@ import img from '../assets/image.png';
 
 - **Visual-only animations** (scroll-triggered reveals, parallax, timeline sequences): Use **Astro + GSAP/Motion One** — no framework needed.
 - **Stateful animations** (user-driven, complex internal state): Use a **Svelte island**.
+
+### Styling in Svelte Components
+
+**Never use `<style>` blocks in Svelte components.** Astro's `ClientRouter` (View Transitions) performs soft DOM swaps on navigation. When a user navigates away from a page, Svelte's scoped `<style>` tags are stripped from `<head>`. On back/forward navigation, the browser restores the cached HTML, but Svelte islands — especially those using `client:visible` (lazy hydration) — don't re-inject their scoped styles before the component becomes visible, causing FOUC (flash of unstyled content) or permanently broken styling.
+
+**Use this priority order:**
+
+1. **Tailwind utility classes** (preferred) — use built-in classes (`flex`, `rounded-2xl`, `transition-all`, etc.) directly in the component's `class=""` attribute. These are part of the global CSS bundle and always survive page transitions.
+
+2. **`@utility` directives in `app.css`** — for simple reusable custom utilities that can't be expressed with existing Tailwind classes (e.g., `no-scrollbar`, `animate-progress`, `vertical-text`). Register them using `@utility name { ... }` in `app.css`. These become first-class Tailwind utilities (tree-shaken, usable in `class=""`).
+
+3. **Plain global CSS in `app.css`** (last resort) — for styles that **cannot** be expressed as Tailwind classes or `@utility` directives:
+   - Compound state selectors (`.parent.active .child`, `:not(.state) .target`)
+   - Pseudo-elements with generated content (`::after { content: '' }`)
+   - 3D transforms and `transform-style: preserve-3d`
+   - CSS custom property-driven layouts (`var(--md-top)`)
+   - Complex responsive `calc()` expressions across multiple breakpoints
+   - `!important` overrides
+   - `@keyframes` applied via JavaScript (`el.style.animation = 'name ...'`)
+
+   When adding global CSS, add a section header comment explaining **which component uses it** and **why it can't be Tailwind-ified**.

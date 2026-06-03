@@ -160,9 +160,9 @@ export function getMilestones(imageSrcs: string[]): Milestone[] {
 }
 
 export function getTeamMembers(memberImgSrcs: string[]): TeamMember[] {
-  if (memberImgSrcs.length !== 8) {
+  if (memberImgSrcs.length < 4) {
     throw new Error(
-      `getTeamMembers: Expected exactly 8 image sources for team members, received ${memberImgSrcs.length}`,
+      `getTeamMembers: Expected at least 4 image sources for team members, received ${memberImgSrcs.length}`,
     );
   }
   return [
@@ -190,54 +190,6 @@ export function getTeamMembers(memberImgSrcs: string[]): TeamMember[] {
       role: 'Head - Centre of Excellence',
       desc: 'Sets the high technical standards for our services and finds new ways to solve technology problems.',
     },
-    {
-      img: memberImgSrcs[4],
-      name: 'John Doe 1',
-      role: 'Manager 1',
-      desc: 'Manages the daily operations of the company and ensures that all projects are completed on time and within budget.',
-    },
-    {
-      img: memberImgSrcs[4],
-      name: 'John Doe 2',
-      role: 'Manager 2',
-      desc: 'Manages the daily operations of the company and ensures that all projects are completed on time and within budget.',
-    },
-    {
-      img: memberImgSrcs[4],
-      name: 'John Doe 3',
-      role: 'Manager 3',
-      desc: 'Manages the daily operations of the company and ensures that all projects are completed on time and within budget.',
-    },
-    {
-      img: memberImgSrcs[4],
-      name: 'John Doe 4',
-      role: 'Manager 4',
-      desc: 'Manages the daily operations of the company and ensures that all projects are completed on time and within budget.',
-    },
-    // {
-    //   img: memberImgSrcs[4],
-    //   name: 'Soni Jain',
-    //   role: 'Finance Controller',
-    //   desc: 'Manages the company’s budget and handles the costs for our large-scale technology and infrastructure projects.',
-    // },
-    // {
-    //   img: memberImgSrcs[5],
-    //   name: 'Kuldeep Singh',
-    //   role: 'HOD - Software Development',
-    //   desc: 'Leads the team that builds secure and reliable software to meet the needs of large businesses and the government.',
-    // },
-    // {
-    //   img: memberImgSrcs[6],
-    //   name: 'Rohit Gupta',
-    //   role: 'Delivery Head',
-    //   desc: 'Oversees all technical projects from start to finish to make sure they are completed on time and meet our high-quality standards.',
-    // },
-    // {
-    //   img: memberImgSrcs[7],
-    //   name: 'Ram Pal',
-    //   role: 'HOD - Human Resource',
-    //   desc: 'Manages our team of experts and makes sure we have the right people ready for every level of a project.',
-    // },
   ];
 }
 

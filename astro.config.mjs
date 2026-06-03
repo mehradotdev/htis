@@ -10,5 +10,8 @@ export default defineConfig({
   integrations: [svelte(), alpinejs()],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ['cobe'],
+    },
   },
 });

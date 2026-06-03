@@ -38,7 +38,8 @@
   const tabs = [
     {
       title: 'Digital Intelligence & Software Talent',
-      description: 'Powered by our proprietary wfms™ ERP, Educare™ School ERP, and HRMS/Payroll engines to deliver secure, high-compliance digital assets and bespoke enterprise solutions.',
+      description:
+        'Powered by our proprietary wfms™ ERP, Educare™ School ERP, and HRMS/Payroll engines to deliver secure, high-compliance digital assets and bespoke enterprise solutions.',
       tools: [
         { name: 'wfms™ ERP', icon: Database, color: 'text-purple-400' },
         { name: 'Educare™ ERP', icon: BookOpen, color: 'text-orange-400' },
@@ -54,7 +55,8 @@
     },
     {
       title: 'Infrastructure & Systems Specialists',
-      description: 'Delivering mission-critical technical talent for Data Center stacks and converged IT environments, supported by rigorous HSW safety audits and turnkey facility management.',
+      description:
+        'Delivering mission-critical technical talent for Data Center stacks and converged IT environments, supported by rigorous HSW safety audits and turnkey facility management.',
       tools: [
         { name: 'ACI Engineers', icon: Network, color: 'text-purple-400' },
         { name: 'Data Center Stacks', icon: Server, color: 'text-blue-400' },
@@ -70,7 +72,8 @@
     },
     {
       title: 'Core Telecom & Network Operations',
-      description: 'Scaling specialized technical workforces for next-gen network rollouts, backed by automated IPDR systems, RF engineering expertise, and 100% statutory compliance',
+      description:
+        'Scaling specialized technical workforces for next-gen network rollouts, backed by automated IPDR systems, RF engineering expertise, and 100% statutory compliance',
       tools: [
         { name: 'CCNA Specialists', icon: Award, color: 'text-blue-400' },
         { name: '5G Core Ops', icon: Radio, color: 'text-green-400' },
@@ -175,7 +178,10 @@
 
     <div class="lg:w-2/3 flex flex-wrap gap-3 justify-end items-center">
       {#key activeIndex}
-        <div class="flex flex-wrap gap-3 justify-end items-center" in:fade={{ duration: 300 }}>
+        <div
+          class="flex flex-wrap gap-3 justify-end items-center"
+          in:fade={{ duration: 300 }}
+        >
           {#each tabs[activeIndex].tools as tool}
             {@const Icon = tool.icon}
             <div
@@ -190,17 +196,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  @keyframes fillBg {
-    0% {
-      width: 0%;
-    }
-    100% {
-      width: 100%;
-    }
-  }
-  .animate-fill-bg {
-    animation: fillBg 5s linear forwards;
-  }
-</style>

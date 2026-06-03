@@ -169,66 +169,54 @@
   </button>
 {/snippet}
 
-<div
-  class="flex flex-col items-center justify-between gap-8 lg:flex-row lg:items-stretch"
->
-  <!-- Left Column -->
-  <div class="flex w-full flex-col justify-center gap-6 lg:w-1/3">
-    {#each leftPillars as pillar}
-      {@render pillarCard(pillar)}
-    {/each}
-  </div>
-
-  <!-- Center Column -->
-  <div class="flex w-full flex-col items-center justify-center gap-8 lg:w-1/3">
-    <div class="relative flex w-full justify-center items-center">
-      <img
-        src={centerImageSrc}
-        alt="Strategic Pillars"
-        class="pointer-events-none max-h-[600px] w-full scale-125 object-contain drop-shadow-2xl lg:scale-150"
-        style="-webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 70%); filter: var(--filter-invert-dark)"
-      />
-      {#each pillars as pillar, i}
-        {@const Icon = pillar.icon}
-        <button
-          class="absolute z-10 flex h-12 w-12 items-center justify-center rounded-full border shadow-sm transition-all duration-300 md:h-14 md:w-14 overflow-hidden {activeIndex ===
-          i
-            ? 'border-primary bg-base-100 text-primary scale-110 shadow-lg shadow-primary/25'
-            : 'border-base-content/15 bg-base-100 text-base-content/60 hover:scale-105 hover:bg-base-200 hover:text-base-content/90'}"
-          style={getIconPosition(i)}
-          onclick={() => (activeIndex = i)}
-          aria-label={pillar.title}
-        >
-          {#if activeIndex === i}
-            <div class="absolute inset-0 bg-primary/15 pointer-events-none"></div>
-          {/if}
-          <Icon class="relative z-10 h-5 w-5 md:h-6 md:w-6" strokeWidth={2.5} />
-        </button>
+<div class="lg:min-h-[650px]">
+  <div
+    class="flex flex-col items-center justify-between gap-8 lg:flex-row lg:items-stretch"
+  >
+    <!-- Left Column -->
+    <div class="flex w-full flex-col justify-center gap-6 lg:w-1/3">
+      {#each leftPillars as pillar}
+        {@render pillarCard(pillar)}
       {/each}
     </div>
-    {#each centerPillars as pillar}
-      {@render pillarCard(pillar)}
-    {/each}
-  </div>
 
-  <!-- Right Column -->
-  <div class="flex w-full flex-col justify-center gap-6 lg:w-1/3">
-    {#each rightPillars as pillar}
-      {@render pillarCard(pillar)}
-    {/each}
+    <!-- Center Column -->
+    <div class="flex w-full flex-col items-center justify-center gap-8 lg:w-1/3">
+      <div class="relative flex w-full justify-center items-center">
+        <img
+          src={centerImageSrc}
+          alt="Strategic Pillars"
+          class="pointer-events-none max-h-[600px] w-full scale-125 object-contain drop-shadow-2xl lg:scale-150"
+          style="-webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 70%); filter: var(--filter-invert-dark)"
+        />
+        {#each pillars as pillar, i}
+          {@const Icon = pillar.icon}
+          <button
+            class="absolute z-10 flex h-12 w-12 items-center justify-center rounded-full border shadow-sm transition-all duration-300 md:h-14 md:w-14 overflow-hidden {activeIndex ===
+            i
+              ? 'border-primary bg-base-100 text-primary scale-110 shadow-lg shadow-primary/25'
+              : 'border-base-content/15 bg-base-100 text-base-content/60 hover:scale-105 hover:bg-base-200 hover:text-base-content/90'}"
+            style={getIconPosition(i)}
+            onclick={() => (activeIndex = i)}
+            aria-label={pillar.title}
+          >
+            {#if activeIndex === i}
+              <div class="absolute inset-0 bg-primary/15 pointer-events-none"></div>
+            {/if}
+            <Icon class="relative z-10 h-5 w-5 md:h-6 md:w-6" strokeWidth={2.5} />
+          </button>
+        {/each}
+      </div>
+      {#each centerPillars as pillar}
+        {@render pillarCard(pillar)}
+      {/each}
+    </div>
+
+    <!-- Right Column -->
+    <div class="flex w-full flex-col justify-center gap-6 lg:w-1/3">
+      {#each rightPillars as pillar}
+        {@render pillarCard(pillar)}
+      {/each}
+    </div>
   </div>
 </div>
-
-<style>
-  @keyframes progress {
-    from {
-      width: 0%;
-    }
-    to {
-      width: 100%;
-    }
-  }
-  .animate-progress {
-    animation: progress var(--duration, 5s) linear forwards;
-  }
-</style>

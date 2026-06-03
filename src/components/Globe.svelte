@@ -157,8 +157,7 @@
     const screenY = (-s + 1) / 2;
 
     // Visibility: front-hemisphere check from cobe
-    const zCheck =
-      -sinPhi * cosTheta * ex + sinTheta * ey + cosPhi * cosTheta * ez;
+    const zCheck = -sinPhi * cosTheta * ex + sinTheta * ey + cosPhi * cosTheta * ez;
     const visible = zCheck >= 0;
 
     return {
@@ -363,96 +362,3 @@
     </button>
   {/each}
 </div>
-
-<style>
-  .globe-marker {
-    position: absolute;
-    transform: translate(-50%, -100%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    border: none;
-    background: none;
-    padding: 0;
-    pointer-events: none;
-    white-space: nowrap;
-    transition: opacity 0.2s ease;
-  }
-
-  /* The connecting dot at the bottom of the label */
-  .marker-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: oklch(0.45 0.03 264.542);
-    margin-top: 2px;
-    flex-shrink: 0;
-    box-shadow: 0 0 4px oklch(0.45 0.03 264.542 / 0.4);
-    transition: all 0.25s ease;
-    pointer-events: auto;
-  }
-
-  .expanded .marker-dot {
-    background: oklch(0.588 0.158 241.966);
-    box-shadow: 0 0 8px oklch(0.588 0.158 241.966 / 0.5);
-  }
-
-  /* The name badge — always visible */
-  .marker-badge {
-    display: flex;
-    align-items: center;
-    padding: 3px 8px;
-    border-radius: 4px;
-    background: oklch(0.45 0.03 264.542 / 0.85);
-    backdrop-filter: blur(6px);
-    box-shadow:
-      0 2px 6px oklch(0 0 0 / 0.12),
-      0 0 0 1px oklch(0 0 0 / 0.05);
-    transition: all 0.25s ease;
-    pointer-events: auto;
-  }
-
-  .expanded .marker-badge {
-    background: oklch(0.588 0.158 241.966 / 0.92);
-    border-radius: 4px 4px 0 0;
-  }
-
-  .marker-name {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: white;
-    line-height: 1;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-
-  /* Expanded detail panel below the badge */
-  .marker-detail {
-    display: block;
-    padding: 4px 8px 5px;
-    border-radius: 0 0 4px 4px;
-    background: oklch(0.588 0.158 241.966 / 0.82);
-    backdrop-filter: blur(6px);
-    font-size: 9px;
-    font-weight: 500;
-    color: oklch(0.95 0.01 264.542);
-    line-height: 1.3;
-    font-family: system-ui, -apple-system, sans-serif;
-    box-shadow: 0 3px 8px oklch(0 0 0 / 0.1);
-    animation: label-expand 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  @keyframes label-expand {
-    from {
-      opacity: 0;
-      transform: translateY(-4px) scaleY(0.6);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scaleY(1);
-    }
-  }
-</style>

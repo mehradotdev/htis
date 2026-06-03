@@ -317,24 +317,3 @@
     {/each}
   </div>
 </div>
-
-<style>
-  :global(.group:hover .tooltip::before),
-  :global(.group:hover .tooltip::after) {
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
-  /* Fix details dropdown staying open issues on daisyUI */
-  details > summary {
-    list-style: none;
-  }
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
-
-  /* Ensure proper width for labels inside dropdowns */
-  .dropdown-content li {
-    width: 100%;
-  }
-</style>

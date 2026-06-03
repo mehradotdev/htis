@@ -170,7 +170,7 @@ export const telecomCapabilities: CapabilityTab[] = [
   {
     id: 'enterprise-connectivity',
     label: 'Enterprise Connectivity & LAN/WAN Services',
-    shortLabel: 'Enterprise Connectivity',
+    shortLabel: 'Connectivity',
     items: [
       {
         title: 'Professional deployment services',
