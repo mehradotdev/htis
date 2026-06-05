@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import '~/assets/app.css';
+import WhatsAppButton from '~/components/WhatsAppButton.astro';
 
 interface Props {
   title?: string;
@@ -64,6 +65,7 @@ const { title = 'HTIS - Delivering Excellence in System Integrations' } = Astro.
   </head>
   <body class="bg-base-100 text-base-content antialiased">
     <slot />
+    <WhatsAppButton />
   </body>
 </html>
 
