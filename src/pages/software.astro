@@ -35,6 +35,7 @@ import pub3 from '~/assets/lob-software-sw-port-public-3.png';
 // New Section Imports
 import SoftwareOnboarding from '~/components/software/SoftwareOnboarding.astro';
 import SoftwareCaseStudies from '~/components/software/SoftwareCaseStudies.svelte';
+import SoftwareMetrics from '~/components/software/SoftwareMetrics.svelte';
 
 import caseStudy1 from '~/assets/lob-software-case-study-1.png';
 import caseStudy2 from '~/assets/lob-software-case-study-2.png';
@@ -211,25 +212,25 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
     <!-- 4th Section: Architectural Principles -->
     <SoftwareArchitecturalPrinciples />
 
-    <!-- 5th Section: Unified Ecosystem Synergy -->
-    <section class="relative bg-base-200/40 py-24">
+    <!-- 5th Section: Built to Execute & Synergy Pillars -->
+    <section class="relative bg-base-200/50 pt-24">
       <div class="container mx-auto px-6">
-        <div class="mb-2">
-          <h2
-            class="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
-          >
-            Unified Ecosystem Synergy
+        <div class="mb-10 max-w-2xl">
+          <h2 class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl">
+            Built to Execute.<br />Scaled to Deliver.
           </h2>
         </div>
 
+        <SoftwareMetrics client:visible />
+
         <!-- Pillars Layout from system-integration with LOB anchors and Lucide icons -->
         <div
-          class="mt-8 flex flex-col border-t-2 border-base-content/20 py-12 md:flex-row md:gap-x-6 lg:mt-10 lg:gap-x-10 lg:py-16"
+          class="mt-16 flex flex-col border-t-2 border-base-content/20 py-12 md:flex-row md:gap-x-6 lg:mt-20 lg:gap-x-10 lg:py-16"
         >
           <!-- Pillar 1: Carrier-Grade Network Automation -->
           <div class="flex flex-1 flex-col gap-4 pb-12 md:pb-0">
             <div class="mb-2 flex items-start justify-between">
-              <RadioTower class="h-12 w-12 text-[#60B68C]" />
+              <RadioTower class="h-12 w-12 text-primary" />
               <a
                 href="/telecom"
                 aria-label="Explore Telecom Services"
@@ -238,7 +239,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
                 <ArrowRight class="h-5 w-5" stroke-width="2.5" />
               </a>
             </div>
-            <h3 class="text-xl font-bold">Carrier-Grade Network Automation</h3>
+            <h3 class="text-2xl font-medium">Carrier-Grade Network Automation</h3>
             <p class="text-justify text-lg text-base-content/70">
               We engineer custom AMC and Complaint Management Dashboards that convert
               complex network telemetry into actionable insights. By bridging the gap
@@ -256,7 +257,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
             class="flex flex-1 flex-col gap-4 border-y-2 border-base-content/20 py-12 md:border-y-0 md:py-0"
           >
             <div class="mb-2 flex items-start justify-between">
-              <Server class="h-12 w-12 text-[#60B68C]" />
+              <Server class="h-12 w-12 text-primary" />
               <a
                 href="/system-integration"
                 aria-label="Explore System Integration"
@@ -265,7 +266,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
                 <ArrowRight class="h-5 w-5" stroke-width="2.5" />
               </a>
             </div>
-            <h3 class="text-xl font-bold">Secure Infrastructure Orchestration</h3>
+            <h3 class="text-2xl font-medium">Secure Infrastructure Orchestration</h3>
             <p class="text-justify text-lg text-base-content/70">
               We bridge the gap between enterprise hardware and cloud software. Built for
               seamless deployment on secure AWS cloud servers, our custom applications
@@ -280,7 +281,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
           <!-- Pillar 3: High-Volume Human Capital Automation -->
           <div class="flex flex-1 flex-col gap-4 pt-12 md:pt-0">
             <div class="mb-2 flex items-start justify-between">
-              <Users class="h-12 w-12 text-[#60B68C]" />
+              <Users class="h-12 w-12 text-primary" />
               <a
                 href="/resourcing"
                 aria-label="Explore Resource Management"
@@ -289,7 +290,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
                 <ArrowRight class="h-5 w-5" stroke-width="2.5" />
               </a>
             </div>
-            <h3 class="text-xl font-bold">High-Volume Human Capital Automation</h3>
+            <h3 class="text-2xl font-medium">High-Volume Human Capital Automation</h3>
             <p class="text-justify text-lg text-base-content/70">
               Our proprietary wfms™ ERP effortlessly supports 3,000 daily active users,
               fully automating Attendance, Claims, Tasks, and Payroll Engines via web and

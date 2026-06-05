@@ -92,7 +92,7 @@
     >
       <div class="max-w-3xl">
         <h2
-          class="mb-6 text-4xl font-bold tracking-tight text-base-content md:text-5xl lg:text-6xl"
+          class="mb-6 text-4xl font-bold tracking-tight text-base-content md:text-5xl"
         >
           Proven Network Deployments
         </h2>
@@ -139,7 +139,9 @@
           aria-label="View {project.title} deployment"
         >
           <div class="flex items-start justify-between">
-            <h3 class="text-xl font-bold tracking-tight md:text-2xl">{project.title}</h3>
+            <h3 class="text-xl font-medium tracking-tight md:text-2xl">
+              {project.title}
+            </h3>
             <div
               class="flex h-10 w-10 items-center justify-center rounded-full border border-base-content/5 bg-base-200 text-primary transition-colors"
             >

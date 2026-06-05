@@ -131,14 +131,14 @@
   >
     <div class="flex-1 w-full overflow-hidden">
       <h3
-        class="mb-2 text-lg font-bold transition-colors {activeIndex === globalIndex
+        class="mb-2 text-2xl font-medium transition-colors {activeIndex === globalIndex
           ? 'text-primary'
           : 'text-base-content/90'}"
       >
         {pillar.title}
       </h3>
       <p
-        class="text-sm font-medium transition-colors {activeIndex === globalIndex
+        class="text-base font-medium transition-colors {activeIndex === globalIndex
           ? 'text-base-content/90'
           : 'text-base-content/70'}"
       >
@@ -147,7 +147,7 @@
       {#if activeIndex === globalIndex}
         <div transition:slide={{ duration: 300 }}>
           <div class="mt-4 border-t border-base-content/10 pt-4">
-            <p class="text-sm leading-relaxed text-base-content/80">
+            <p class="text-sm leading-relaxed text-base-content">
               {pillar.content}
             </p>
           </div>
@@ -169,7 +169,7 @@
   </button>
 {/snippet}
 
-<div class="lg:min-h-[650px]">
+<div class="lg:min-h-[770px]">
   <div
     class="flex flex-col items-center justify-between gap-8 lg:flex-row lg:items-stretch"
   >

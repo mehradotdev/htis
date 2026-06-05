@@ -1,10 +1,39 @@
 ---
 import { Image } from 'astro:assets';
 import bgImage from '~/assets/team-member-bg.png';
-import archImg from '~/assets/lob-software-arch-principles.png';
+
+const principles = [
+  {
+    title: 'Intelligent Operational Flow',
+    description:
+      'We are actively embedding AI-driven logic into our workflows - such as in our wfms™ and COMPASS systems - to transition from reactive task management to proactive, intelligent decision-making.',
+  },
+  {
+    title: 'Omni-Channel Deployment',
+    description:
+      'Our shift toward React-based architectures allows us to maintain visual and functional consistency across web, mobile, and TV, ensuring a unified user experience for both government and corporate stakeholders.',
+  },
+  {
+    title: 'Cloud-Native Scalability',
+    description:
+      'Leveraging AWS cloud servers, we provide the resilient infrastructure necessary to host high-compliance government portals and large-scale enterprise SaaS products with zero performance compromise.',
+  },
+  {
+    title: 'Security & Integrity (RBAC)',
+    description:
+      'Every application, from mobile field tools to TV-based dashboards, implements rigorous Role-Based Access Control (RBAC) to safeguard sensitive data across all endpoints.',
+  },
+  {
+    title: 'Modular Engineering Reuse',
+    description:
+      'By maintaining a library of common technical components, our 18-member core team accelerates delivery timelines while ensuring every line of code meets our strict quality benchmarks.',
+  },
+];
 ---
 
-<section class="relative overflow-hidden border-t border-base-content/10 bg-base-100 py-24">
+<section
+  class="relative overflow-hidden border-t border-base-content/10 bg-base-100 py-24"
+>
   <!-- Background mesh grid -->
   <div class="pointer-events-none absolute inset-0 z-0 opacity-20">
     <Image
@@ -17,226 +46,31 @@ import archImg from '~/assets/lob-software-arch-principles.png';
   </div>
 
   <div class="relative z-10 container mx-auto px-6">
-    <div class="mb-10 max-w-3xl text-left">
+    <div class="mb-16 max-w-3xl text-left">
       <h2 class="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl">
         Architectural Principles
       </h2>
+      <p class="mt-4 text-lg font-medium text-base-content/70">
+        Our core engineering philosophies designed to build secure, scalable, and
+        high-performance digital ecosystems.
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-      <!-- Left: Image Box with Soft Green Accent BG -->
-      <div class="flex items-center justify-center rounded-3xl border border-base-content/5 bg-[#EAF5F0] p-8 shadow-inner dark:bg-emerald-950/20 lg:col-span-5 lg:p-12">
-        <Image
-          src={archImg}
-          alt="Architectural Principles Showcase"
-          class="animate-float h-auto w-full max-w-xs object-contain drop-shadow-2xl md:max-w-sm"
-        />
-      </div>
-
-      <!-- Right: Interactive Accordion of Principles with Autoplay & Progress Loader -->
-      <div
-        class="flex flex-col gap-4 lg:col-span-7"
-        x-data="{
-          active: 0,
-          progress: 0,
-          interval: null,
-          totalTime: 5000,
-          stepTime: 50,
-          init() {
-            this.startAutoplay();
-          },
-          startAutoplay() {
-            if (this.interval) {
-              clearInterval(this.interval);
-              this.interval = null;
-            }
-            this.progress = 0;
-            let start = Date.now();
-            this.interval = setInterval(() => {
-              let elapsed = Date.now() - start;
-              if (elapsed >= this.totalTime) {
-                this.active = (this.active + 1) % 5;
-                this.progress = 0;
-                start = Date.now();
-              } else {
-                this.progress = (elapsed / this.totalTime) * 100;
-              }
-            }, this.stepTime);
-          },
-          selectItem(index) {
-            this.active = index;
-            this.startAutoplay();
-          }
-        }"
-      >
-        
-        <!-- Principle 1 -->
-        <div
-          @click="selectItem(0)"
-          class="relative overflow-hidden select-none cursor-pointer rounded-xl border border-base-content/12 bg-base-100 p-5 shadow-xs transition-all duration-300"
-          :class="active === 0 ? 'border-primary/45 ring-1 ring-primary/20 shadow-md scale-[1.01]' : 'hover:border-base-content/20 hover:shadow-xs'"
-        >
-          <div :class="active === 0 ? 'text-left animate-fade-in' : 'text-center py-1'">
-            <h3
-              class="text-lg font-bold transition-colors duration-300"
-              :class="active === 0 ? 'text-primary text-xl' : 'text-base-content/85'"
-            >
-              Intelligent Operational Flow
-            </h3>
-            <div
-              x-show="active === 0"
-              x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 -translate-y-2"
-              x-transition:enter-end="opacity-100 translate-y-0"
-              class="mt-3 text-justify text-base leading-relaxed text-base-content/75"
-            >
-              We are actively embedding AI-driven logic into our workflows - such as in our wfms™ and COMPASS systems - to transition from reactive task management to proactive, intelligent decision-making.
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      {
+        principles.map((principle) => (
+          <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/5 bg-[#295943] p-6 text-white shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#60B68C]/30 hover:bg-[#1d4231] hover:shadow-2xl">
+            <div>
+              <div class="mb-5 flex min-h-[72px] items-center justify-center rounded-xl bg-white px-4 py-3 text-center text-2xl font-medium text-[#1d4231] shadow-md transition-all duration-300 group-hover:bg-[#60B68C] group-hover:text-white">
+                {principle.title}
+              </div>
+              <p class="text-justify text-base leading-relaxed text-white/80">
+                {principle.description}
+              </p>
             </div>
           </div>
-          <!-- Loader bar -->
-          <div
-            class="absolute bottom-0 left-0 h-[4px] bg-primary transition-[width] duration-75 ease-linear"
-            :style="active === 0 ? 'width: ' + progress + '%' : 'width: 0%'"
-          ></div>
-        </div>
-
-        <!-- Principle 2 -->
-        <div
-          @click="selectItem(1)"
-          class="relative overflow-hidden select-none cursor-pointer rounded-xl border border-base-content/12 bg-base-100 p-5 shadow-xs transition-all duration-300"
-          :class="active === 1 ? 'border-primary/45 ring-1 ring-primary/20 shadow-md scale-[1.01]' : 'hover:border-base-content/20 hover:shadow-xs'"
-        >
-          <div :class="active === 1 ? 'text-left' : 'text-center py-1'">
-            <h3
-              class="text-lg font-bold transition-colors duration-300"
-              :class="active === 1 ? 'text-primary text-xl' : 'text-base-content/85'"
-            >
-              Omni-Channel Deployment
-            </h3>
-            <div
-              x-show="active === 1"
-              x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 -translate-y-2"
-              x-transition:enter-end="opacity-100 translate-y-0"
-              class="mt-3 text-justify text-base leading-relaxed text-base-content/75"
-            >
-              Our shift toward React-based architectures allows us to maintain visual and functional consistency across web, mobile, and TV, ensuring a unified user experience for both government and corporate stakeholders.
-            </div>
-          </div>
-          <!-- Loader bar -->
-          <div
-            class="absolute bottom-0 left-0 h-[4px] bg-primary transition-[width] duration-75 ease-linear"
-            :style="active === 1 ? 'width: ' + progress + '%' : 'width: 0%'"
-          ></div>
-        </div>
-
-        <!-- Principle 3 -->
-        <div
-          @click="selectItem(2)"
-          class="relative overflow-hidden select-none cursor-pointer rounded-xl border border-base-content/12 bg-base-100 p-5 shadow-xs transition-all duration-300"
-          :class="active === 2 ? 'border-primary/45 ring-1 ring-primary/20 shadow-md scale-[1.01]' : 'hover:border-base-content/20 hover:shadow-xs'"
-        >
-          <div :class="active === 2 ? 'text-left' : 'text-center py-1'">
-            <h3
-              class="text-lg font-bold transition-colors duration-300"
-              :class="active === 2 ? 'text-primary text-xl' : 'text-base-content/85'"
-            >
-              Cloud-Native Scalability
-            </h3>
-            <div
-              x-show="active === 2"
-              x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 -translate-y-2"
-              x-transition:enter-end="opacity-100 translate-y-0"
-              class="mt-3 text-justify text-base leading-relaxed text-base-content/75"
-            >
-              Leveraging AWS cloud servers, we provide the resilient infrastructure necessary to host high-compliance government portals and large-scale enterprise SaaS products with zero performance compromise.
-            </div>
-          </div>
-          <!-- Loader bar -->
-          <div
-            class="absolute bottom-0 left-0 h-[4px] bg-primary transition-[width] duration-75 ease-linear"
-            :style="active === 2 ? 'width: ' + progress + '%' : 'width: 0%'"
-          ></div>
-        </div>
-
-        <!-- Principle 4 -->
-        <div
-          @click="selectItem(3)"
-          class="relative overflow-hidden select-none cursor-pointer rounded-xl border border-base-content/12 bg-base-100 p-5 shadow-xs transition-all duration-300"
-          :class="active === 3 ? 'border-primary/45 ring-1 ring-primary/20 shadow-md scale-[1.01]' : 'hover:border-base-content/20 hover:shadow-xs'"
-        >
-          <div :class="active === 3 ? 'text-left' : 'text-center py-1'">
-            <h3
-              class="text-lg font-bold transition-colors duration-300"
-              :class="active === 3 ? 'text-primary text-xl' : 'text-base-content/85'"
-            >
-              Security & Integrity (RBAC)
-            </h3>
-            <div
-              x-show="active === 3"
-              x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 -translate-y-2"
-              x-transition:enter-end="opacity-100 translate-y-0"
-              class="mt-3 text-justify text-base leading-relaxed text-base-content/75"
-            >
-              Every application, from mobile field tools to TV-based dashboards, implements rigorous Role-Based Access Control (RBAC) to safeguard sensitive data across all endpoints.
-            </div>
-          </div>
-          <!-- Loader bar -->
-          <div
-            class="absolute bottom-0 left-0 h-[4px] bg-primary transition-[width] duration-75 ease-linear"
-            :style="active === 3 ? 'width: ' + progress + '%' : 'width: 0%'"
-          ></div>
-        </div>
-
-        <!-- Principle 5 -->
-        <div
-          @click="selectItem(4)"
-          class="relative overflow-hidden select-none cursor-pointer rounded-xl border border-base-content/12 bg-base-100 p-5 shadow-xs transition-all duration-300"
-          :class="active === 4 ? 'border-primary/45 ring-1 ring-primary/20 shadow-md scale-[1.01]' : 'hover:border-base-content/20 hover:shadow-xs'"
-        >
-          <div :class="active === 4 ? 'text-left' : 'text-center py-1'">
-            <h3
-              class="text-lg font-bold transition-colors duration-300"
-              :class="active === 4 ? 'text-primary text-xl' : 'text-base-content/85'"
-            >
-              Modular Engineering Reuse
-            </h3>
-            <div
-              x-show="active === 4"
-              x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 -translate-y-2"
-              x-transition:enter-end="opacity-100 translate-y-0"
-              class="mt-3 text-justify text-base leading-relaxed text-base-content/75"
-            >
-              By maintaining a library of common technical components, our 18-member core team accelerates delivery timelines while ensuring every line of code meets our strict quality benchmarks.
-            </div>
-          </div>
-          <!-- Loader bar -->
-          <div
-            class="absolute bottom-0 left-0 h-[4px] bg-primary transition-[width] duration-75 ease-linear"
-            :style="active === 4 ? 'width: ' + progress + '%' : 'width: 0%'"
-          ></div>
-        </div>
-
-      </div>
+        ))
+      }
     </div>
   </div>
 </section>
-
-<style>
-  /* Subtle dynamic floating animation for architectural principles showcase */
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-</style>
