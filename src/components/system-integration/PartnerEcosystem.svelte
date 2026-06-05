@@ -30,6 +30,35 @@
   let interval: ReturnType<typeof setInterval>;
   let carouselContainer = $state<HTMLDivElement | null>(null);
   let tabsContainer = $state<HTMLDivElement | null>(null);
+  let hasScrollableContent = $state(false);
+
+  function updateScrollState() {
+    if (!carouselContainer) {
+      hasScrollableContent = false;
+      return;
+    }
+    const { scrollWidth, clientWidth } = carouselContainer;
+    const maxScroll = scrollWidth - clientWidth;
+    hasScrollableContent = maxScroll > 0;
+  }
+
+  $effect(() => {
+    if (!carouselContainer) {
+      hasScrollableContent = false;
+      return;
+    }
+
+    updateScrollState();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateScrollState();
+    });
+    resizeObserver.observe(carouselContainer);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  });
 
   function scrollTabToActive(index: number) {
     if (!tabsContainer) return;
@@ -163,7 +192,7 @@
 
             <!-- Title & Description -->
             <div class="flex-1">
-              <h3 class="text-xl md:text-2xl font-bold text-secondary mb-2">
+              <h3 class="text-xl md:text-2xl font-medium text-secondary mb-2">
                 {tabs[activeIndex].subtitle}
               </h3>
               <div class="w-12 h-1 bg-primary rounded-full my-3"></div>
@@ -177,13 +206,16 @@
           <!-- Partners Carousel -->
           <div class="relative flex items-center w-full mt-6">
             <!-- Left Navigation Button -->
-            <button
-              onclick={() => scroll('left')}
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-all hover:bg-primary hover:text-primary-content active:scale-95 shadow-sm cursor-pointer mr-2 hover:shadow-md"
-              aria-label="Previous partners"
-            >
-              <ChevronLeft class="h-5 w-5" />
-            </button>
+            {#if hasScrollableContent}
+              <button
+                onclick={() => scroll('left')}
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-all hover:bg-primary hover:text-primary-content active:scale-95 shadow-sm cursor-pointer mr-2 hover:shadow-md"
+                aria-label="Previous partners"
+                transition:fade={{ duration: 200 }}
+              >
+                <ChevronLeft class="h-5 w-5" />
+              </button>
+            {/if}
 
             <!-- Carousel track/viewport -->
             <div
@@ -212,13 +244,16 @@
             </div>
 
             <!-- Right Navigation Button -->
-            <button
-              onclick={() => scroll('right')}
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-all hover:bg-primary hover:text-primary-content active:scale-95 shadow-sm cursor-pointer ml-2 hover:shadow-md"
-              aria-label="Next partners"
-            >
-              <ChevronRight class="h-5 w-5" />
-            </button>
+            {#if hasScrollableContent}
+              <button
+                onclick={() => scroll('right')}
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-all hover:bg-primary hover:text-primary-content active:scale-95 shadow-sm cursor-pointer ml-2 hover:shadow-md"
+                aria-label="Next partners"
+                transition:fade={{ duration: 200 }}
+              >
+                <ChevronRight class="h-5 w-5" />
+              </button>
+            {/if}
           </div>
         </div>
       {/key}

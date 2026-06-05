@@ -114,7 +114,7 @@
       <div class="flex flex-nowrap gap-2 w-max lg:w-full min-w-full justify-start px-1">
         {#each capabilities as tab, index}
           <button
-            class="tab-button cursor-pointer flex-1 min-w-[140px] md:min-w-[160px] lg:min-w-0 px-6 py-4 rounded-xl font-bold transition-all duration-300 text-sm md:text-base text-center select-none overflow-hidden relative
+            class="tab-button cursor-pointer flex-1 min-w-[140px] md:min-w-[160px] lg:min-w-0 px-6 py-4 rounded-xl font-medium transition-all duration-300 text-sm md:text-xl text-center select-none overflow-hidden relative
               {activeTab === tab.id
               ? 'bg-primary text-primary-content shadow-lg shadow-primary/20 scale-[1.02]'
               : 'text-base-content/70 hover:text-base-content hover:bg-base-200/50'}"
@@ -126,10 +126,10 @@
           >
             <span class="relative z-10">{tab.shortLabel || tab.label}</span>
             {#if activeTab === tab.id}
-              <div
-                class="absolute bottom-0 left-0 h-[6px] bg-primary-content/85 animate-progress"
+              <span
+                class="absolute bottom-0 left-0 h-[6px] bg-primary-content/85 animate-progress block"
                 style="--duration: {AUTOPLAY_INTERVAL_MS}ms;"
-              ></div>
+              ></span>
             {/if}
           </button>
         {/each}
@@ -138,7 +138,7 @@
 
     {#if canScrollRight}
       <button
-        class="absolute right-1 top-1 bottom-1 z-10 px-2 flex items-center justify-center bg-gradient-to-l from-base-100 via-base-100/90 to-transparent transition-opacity rounded-r-xl"
+        class="absolute right-1 top-1 bottom-1 z-10 px-2 flex items-center justify-center bg-linear-to-l from-base-100 via-base-100/90 to-transparent transition-opacity rounded-r-xl"
         onclick={() => {
           if (tabsContainer) tabsContainer.scrollBy({ left: 200, behavior: 'smooth' });
         }}
@@ -156,22 +156,33 @@
 
   <!-- Content Container (Card Area) -->
   <div
-    class="bg-base-100/50 backdrop-blur-md rounded-3xl border border-base-content/10 shadow-lg overflow-hidden p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10"
+    class="bg-base-100/50 backdrop-blur-md rounded-3xl border border-base-content/10 shadow-lg overflow-hidden p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-6"
   >
+    {#if capabilities.find((t) => t.id === activeTab)}
+      <h3
+        class="lg:col-span-2 text-2xl md:text-3xl font-medium text-base-content tracking-tight mb-2 md:mb-4"
+      >
+        {capabilities.find((t) => t.id === activeTab)?.label}
+      </h3>
+    {/if}
+
     <!-- Left: Accordion -->
     <div class="flex flex-col gap-3">
-      {#if capabilities.find((t) => t.id === activeTab)}
-        <h3 class="text-xl md:text-2xl font-bold text-base-content mb-4 tracking-tight">
-          {capabilities.find((t) => t.id === activeTab)?.label}
-        </h3>
-      {/if}
       {#each capabilities.find((t) => t.id === activeTab)?.items || [] as item, index}
-        <button
+        <div
+          role="button"
+          tabindex="0"
           class="relative cursor-pointer overflow-hidden text-left w-full px-6 py-4 rounded-xl border transition-all duration-300 {activeItemIndex ===
           index
             ? 'bg-base-100 border-base-content/10 shadow-sm'
             : 'border-base-content/5 bg-transparent hover:bg-base-200/30'}"
           onclick={() => (activeItemIndex = activeItemIndex === index ? -1 : index)}
+          onkeydown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              activeItemIndex = activeItemIndex === index ? -1 : index;
+            }
+          }}
         >
           <div class="relative z-10 flex justify-between items-center w-full">
             <h4
@@ -194,7 +205,7 @@
               <p class="text-base-content/60 text-sm pb-1">{item.desc}</p>
             </div>
           {/if}
-        </button>
+        </div>
       {/each}
     </div>
 

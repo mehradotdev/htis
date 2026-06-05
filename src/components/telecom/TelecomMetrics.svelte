@@ -100,11 +100,11 @@
 >
   {#each metrics as metric, i}
     <div class="flex flex-col gap-2">
-      <span class="text-5xl font-bold text-primary md:text-6xl"
+      <span class="text-5xl md:text-6xl lg:text-7xl font-light text-primary"
         >{currentValues[i]}{metric.unit}<span
           class={metric.suffix === '/4'
-            ? 'text-4xl font-light text-primary/60 md:text-5xl'
-            : 'text-4xl md:text-5xl'}>{metric.suffix}</span
+            ? 'text-4xl md:text-5xl font-light text-primary/60'
+            : 'text-4xl md:text-5xl font-light'}>{metric.suffix}</span
         ></span
       >
       {#if metric.subLabel}

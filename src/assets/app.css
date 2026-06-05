@@ -135,7 +135,6 @@ body {
  * See agents.md "Styling in Svelte Components" for the full guideline.
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-
 /* ──────────────────────────────────────
  * TAILWIND UTILITIES (@utility)
  *
@@ -152,17 +151,29 @@ body {
   }
 }
 
-@keyframes progress {
-  from { width: 0%; }
-  to { width: 100%; }
+/* Custom progress animation. Named htis-progress to avoid collision
+   with DaisyUI's built-in `@keyframes progress` animation. */
+@keyframes htis-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 @utility animate-progress {
-  animation: progress var(--duration, 6s) linear forwards;
+  animation: htis-progress var(--duration, 6s) linear forwards;
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @utility animate-fade-in-up {
   opacity: 0;
@@ -174,8 +185,12 @@ body {
 }
 
 @keyframes fillBg {
-  from { width: 0%; }
-  to { width: 100%; }
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 @utility animate-fill-bg {
   animation: fillBg 5s linear forwards;
@@ -195,7 +210,6 @@ body {
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
-
 
 /* ──────────────────────────────────────
  * GLOBAL FIXES & PSEUDO-ELEMENT STYLES
@@ -234,14 +248,25 @@ details > summary::-webkit-details-marker {
 
 /* Slide animations — applied via JS `el.style.animation` (AwardsGallery) */
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
 
 /* ──────────────────────────────────────
  * TEAM ACCORDION (Visionary Core)
@@ -292,7 +317,6 @@ details > summary::-webkit-details-marker {
 .team-member-card:not(.active) .inactive-icon {
   transition: transform 0.4s ease;
 }
-
 
 /* ──────────────────────────────────────
  * JOURNEY 3D FILM STRIP CAROUSEL
@@ -364,14 +388,26 @@ details > summary::-webkit-details-marker {
   background-color: transparent;
   background-image:
     linear-gradient(to bottom, #111 7px, transparent 7px, transparent 17px, #111 17px),
-    repeating-linear-gradient(to right, #111 0px, #111 12px, transparent 12px, transparent 18px);
+    repeating-linear-gradient(
+      to right,
+      #111 0px,
+      #111 12px,
+      transparent 12px,
+      transparent 18px
+    );
 }
 @media (min-width: 768px) {
   .film-border {
     height: 32px;
     background-image:
       linear-gradient(to bottom, #111 9px, transparent 9px, transparent 23px, #111 23px),
-      repeating-linear-gradient(to right, #111 0px, #111 16px, transparent 16px, transparent 24px);
+      repeating-linear-gradient(
+        to right,
+        #111 0px,
+        #111 16px,
+        transparent 16px,
+        transparent 24px
+      );
   }
 }
 .film-content {
@@ -389,13 +425,20 @@ details > summary::-webkit-details-marker {
   height: 100%;
   object-fit: cover;
   filter: grayscale(100%) contrast(1.1) brightness(0.7);
-  transition: filter 1s ease, transform 1s ease;
+  transition:
+    filter 1s ease,
+    transform 1s ease;
   transform: scale(1.02);
 }
 .film-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent, rgba(0, 0, 0, 0.3));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    transparent,
+    rgba(0, 0, 0, 0.3)
+  );
   pointer-events: none;
   transition: opacity 1s ease;
   opacity: 1;
@@ -412,7 +455,6 @@ details > summary::-webkit-details-marker {
 .film-frame:not(.active):hover .film-image {
   filter: grayscale(50%) contrast(1.1) brightness(0.9);
 }
-
 
 /* ──────────────────────────────────────
  * SERVICES GRID (Homepage)
@@ -439,7 +481,6 @@ details > summary::-webkit-details-marker {
     z-index: 40 !important;
   }
 }
-
 
 /* ──────────────────────────────────────
  * SOFTWARE CASE STUDIES SCROLL CONTAINER
@@ -487,7 +528,6 @@ details > summary::-webkit-details-marker {
     scroll-padding-right: calc((100vw - 1536px) / 2 + 1.5rem);
   }
 }
-
 
 /* ──────────────────────────────────────
  * GLOBE MARKERS
@@ -551,7 +591,10 @@ details > summary::-webkit-details-marker {
   text-transform: uppercase;
   color: white;
   line-height: 1;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 .marker-detail {
   display: block;
@@ -563,12 +606,20 @@ details > summary::-webkit-details-marker {
   font-weight: 500;
   color: oklch(0.95 0.01 264.542);
   line-height: 1.3;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   box-shadow: 0 3px 8px oklch(0 0 0 / 0.1);
   animation: label-expand 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 @keyframes label-expand {
-  from { opacity: 0; transform: translateY(-4px) scaleY(0.6); }
-  to { opacity: 1; transform: translateY(0) scaleY(1); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scaleY(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
 }
-

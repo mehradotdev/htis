@@ -78,3 +78,22 @@ import img from '../assets/image.png';
    - `@keyframes` applied via JavaScript (`el.style.animation = 'name ...'`)
 
    When adding global CSS, add a section header comment explaining **which component uses it** and **why it can't be Tailwind-ified**.
+
+### Vite Dev-Mode CSS & Astro View Transitions
+
+In **development mode**, Tailwind CSS v4's Vite plugin (`@tailwindcss/vite`) injects utility classes on-demand via dynamic `<style>` tags in `<head>`. When Astro's `ClientRouter` performs a soft DOM swap during page navigation, these dynamically injected `<style>` tags can be **stripped or replaced** with the destination page's styles. On browser back/forward, the cached DOM is restored but the original page's dynamic CSS rules may be missing — causing broken responsive layouts (e.g., `lg:flex-col`, `lg:w-[336px]` not applied on desktop).
+
+> **This is a dev-mode only issue.** Production builds bundle all CSS statically, so they are not affected.
+
+**Fix pattern:** For layout-critical responsive properties in Svelte islands, duplicate them as plain CSS `@media` rules in `app.css` using a component-scoped class prefix (e.g., `.tp-layout`, `.tp-nav`). These rules are always present in the global CSS bundle and survive View Transitions:
+
+```css
+/* app.css — TelecomProcesses layout fallback */
+@media (min-width: 1024px) {
+  .tp-layout { flex-direction: row; gap: 2.5rem; }
+  .tp-stepper { width: 336px; flex-shrink: 0; }
+  .tp-nav { flex-direction: column; gap: 0; height: 100%; }
+}
+```
+
+Keep the Tailwind utility classes on the elements too — they serve as the source of truth for the design and work correctly in production.

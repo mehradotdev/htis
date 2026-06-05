@@ -155,7 +155,7 @@
         <!-- Content Column (Left on desktop) -->
         <div class="w-full md:w-[55%] flex flex-col items-start text-left gap-6 z-10">
           <h3
-            class="text-xl md:text-2xl font-black text-base-content tracking-tight leading-tight uppercase font-sans"
+            class="text-xl md:text-2xl font-medium text-base-content tracking-tight leading-tight uppercase font-sans"
           >
             {study.title}
           </h3>
@@ -170,7 +170,7 @@
               <FileText class="w-4 h-4" strokeWidth={2} />
               The Solution:
             </span>
-            <p class="text-base md:text-lg font-bold text-base-content leading-snug">
+            <p class="text-base md:text-lg font-medium text-base-content leading-snug">
               {study.solution}
             </p>
           </div>

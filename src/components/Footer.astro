@@ -22,91 +22,84 @@ const { overlap = false } = Astro.props;
   >
     <div class="mx-auto max-w-7xl">
       <div
-        class="footer pb-16 text-base-content/80 lg:flex lg:w-full lg:flex-row lg:justify-between lg:gap-8"
+        class="grid grid-cols-1 gap-8 md:grid-cols-6 lg:flex lg:justify-between lg:gap-12 pb-10 text-base-content/80"
       >
         <!-- Logo and Description -->
-        <aside class="max-w-xs space-y-4">
+        <aside class="col-span-1 md:col-span-6 lg:max-w-sm space-y-4">
           <Image src={htisLogo} alt="HTIS Logo" width={120} class="object-contain" />
-          <p class="mt-4 text-lg leading-relaxed text-base-content/60">
+          <p class="mt-4 text-[15px] leading-relaxed text-base-content/60 max-w-sm">
             HTIS is a thriving community where innovators, professionals, and enthusiasts
             come together to share knowledge, collaborate, and grow.
           </p>
-
-          <!-- Social Icons (Placeholders) -->
-          <div class="mt-4 flex gap-4 text-base-content">
-            <a
-              href="#"
-              aria-label="Twitter"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="cursor-pointer transition-colors hover:text-primary"
-            >
-              <TwitterIcon class="h-5 w-5" />
-            </a>
-            <a
-              href="#"
-              aria-label="Instagram"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="cursor-pointer transition-colors hover:text-primary"
-            >
-              <InstagramIcon class="h-5 w-5" />
-            </a>
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="cursor-pointer transition-colors hover:text-primary"
-            >
-              <LinkedInIcon class="h-5 w-5" />
-            </a>
-          </div>
         </aside>
 
-        <!-- Links List -->
-        <nav>
-          <h6 class="footer-title mb-2 text-lg text-base-content normal-case opacity-100">
-            Company
-          </h6>
-          <a href="/about" class="mb-1 link link-hover hover:text-primary">About us</a>
-          <a href="#" class="mb-1 link link-hover hover:text-primary">Services</a>
-          <a href="#" class="mb-1 link link-hover hover:text-primary">Community</a>
-          <a href="#" class="mb-1 link link-hover hover:text-primary">Testimonial</a>
-        </nav>
-
-        <nav>
-          <h6 class="footer-title mb-2 text-lg text-base-content normal-case opacity-100">
+        <!-- Services Links -->
+        <nav class="col-span-1 md:col-span-3 lg:w-auto">
+          <h6 class="mb-3 text-[17px] font-semibold text-base-content">
             Services
           </h6>
-          <a href="#" class="mb-1 link link-hover hover:text-primary">Web Technologies</a>
-          <a href="#" class="mb-1 link link-hover hover:text-primary">Telecom</a>
-          <a href="#" class="mb-1 link link-hover hover:text-primary">Manpower</a>
-          <a href="#" class="mb-1 link link-hover hover:text-primary"
-            >System Integration</a
-          >
+          <a href="/telecom" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Telecom</a>
+          <a href="/system-integration" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">System Integration</a>
+          <a href="/software" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Software Development</a>
+          <a href="/resourcing" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Resource Management</a>
         </nav>
 
-        <nav>
-          <h6 class="footer-title mb-2 text-lg text-base-content normal-case opacity-100">
-            Our communities
+        <!-- Company Links -->
+        <nav class="col-span-1 md:col-span-3 lg:w-auto">
+          <h6 class="mb-3 text-[17px] font-semibold text-base-content">
+            Company
           </h6>
-          <a href="#" class="mb-1 link link-hover hover:text-primary">Communities</a>
-          <a href="#" class="mb-1 link link-hover hover:text-primary">Forum</a>
-          <a href="#" class="mb-1 link link-hover hover:text-primary">Chat</a>
+          <a href="/about" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">About us</a>
+          <a href="#" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Services</a>
+          <a href="#" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Community</a>
+          <a href="#" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Testimonial</a>
         </nav>
 
-        <!-- Contact List -->
-        <nav>
-          <h6 class="footer-title mb-2 text-lg text-base-content normal-case opacity-100">
+        <!-- Social Links -->
+        <nav class="col-span-1 md:col-span-3 lg:w-auto">
+          <h6 class="mb-3 text-[17px] font-semibold text-base-content">
+            Socials
+          </h6>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mb-2 flex items-center gap-2 text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1"
+          >
+            <TwitterIcon class="h-4 w-4" />
+            <span>Twitter</span>
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mb-2 flex items-center gap-2 text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1"
+          >
+            <InstagramIcon class="h-4 w-4" />
+            <span>Instagram</span>
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mb-2 flex items-center gap-2 text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1"
+          >
+            <LinkedInIcon class="h-4 w-4" />
+            <span>LinkedIn</span>
+          </a>
+        </nav>
+
+        <!-- Contact Links -->
+        <nav class="col-span-1 md:col-span-3 lg:w-auto">
+          <h6 class="mb-3 text-[17px] font-semibold text-base-content">
             Contact
           </h6>
-          <div class="mb-2 flex items-center gap-2">
-            <PhoneIcon class="h-5 w-5 text-primary" />
+          <div class="mb-2 flex items-center gap-2 text-[15px] text-base-content/65">
+            <PhoneIcon class="h-4 w-4 text-primary" />
             <span>+123 456 7890</span>
           </div>
-          <div class="flex items-center gap-2">
-            <EnvelopeIcon class="h-5 w-5 text-primary" />
+          <div class="flex items-center gap-2 text-[15px] text-base-content/65">
+            <EnvelopeIcon class="h-4 w-4 text-primary" />
             <span>support@htis.com</span>
           </div>
         </nav>
@@ -114,14 +107,15 @@ const { overlap = false } = Astro.props;
 
       <!-- Bottom Bar -->
       <div
-        class="flex flex-col items-center justify-between border-t border-base-200 pt-8 text-sm text-base-content/60 md:flex-row"
+        class="flex flex-col items-center justify-between border-t border-base-200 pt-6 pb-2 text-sm text-base-content/60 md:flex-row gap-4"
       >
         <p>© 2026. All rights reserved.</p>
-        <div class="mt-4 flex gap-6 md:mt-0">
-          <a href="/privacy" class="cursor-pointer hover:text-primary">Privacy Policy</a>
-          <a href="#" class="cursor-pointer hover:text-primary">Terms of Use</a>
-          <a href="#" class="cursor-pointer hover:text-primary">Legal</a>
-          <a href="#" class="cursor-pointer hover:text-primary">Site Map</a>
+
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-end">
+          <a href="/privacy" class="cursor-pointer hover:text-primary transition-colors duration-200">Privacy Policy</a>
+          <a href="#" class="cursor-pointer hover:text-primary transition-colors duration-200">Terms of Use</a>
+          <a href="#" class="cursor-pointer hover:text-primary transition-colors duration-200">Legal</a>
+          <a href="#" class="cursor-pointer hover:text-primary transition-colors duration-200">Site Map</a>
         </div>
       </div>
     </div>

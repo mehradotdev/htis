@@ -5,14 +5,17 @@ import bgImage from '~/assets/lob-software-onboarding-bg.png';
 
 <section class="relative overflow-hidden bg-[#163426] py-24 text-white">
   <!-- Background Image with custom overlay -->
-  <div class="absolute inset-0 z-0 select-none pointer-events-none">
+  <div class="pointer-events-none absolute inset-0 z-0 select-none">
     <Image
       src={bgImage}
       alt=""
       aria-hidden="true"
       class="h-full w-full object-cover object-center opacity-25"
     />
-    <div class="absolute inset-0 bg-linear-to-b from-[#163426]/95 via-transparent to-[#163426]/95"></div>
+    <div
+      class="absolute inset-0 bg-linear-to-b from-[#163426]/95 via-transparent to-[#163426]/95"
+    >
+    </div>
   </div>
 
   <div class="relative z-10 container mx-auto px-6">
@@ -21,161 +24,274 @@ import bgImage from '~/assets/lob-software-onboarding-bg.png';
       <span class="mb-4 block text-xs font-bold tracking-widest text-[#60B68C] uppercase">
         Engagement Lifecycle & Deployment Roadmap
       </span>
-      <h2 class="mx-auto max-w-4xl text-3xl font-extrabold tracking-tight leading-tight md:text-5xl">
+      <h2
+        class="mx-auto max-w-4xl text-3xl leading-tight font-extrabold tracking-tight md:text-5xl"
+      >
         A structured commercial framework for project onboarding and lifecycle governance.
       </h2>
     </div>
 
     <!-- Desktop Timeline Layout -->
-    <div class="hidden md:block relative max-w-6xl mx-auto mb-16">
-      
+    <div class="relative mx-auto mb-16 hidden max-w-6xl md:block">
       <!-- Arrow 1: between circle 01 and 02 — curves UP -->
-      <div class="absolute top-[8px] left-[5.5%] w-[20%] h-12 z-0 pointer-events-none">
-        <svg class="w-full h-full overflow-visible" viewBox="0 0 200 50" fill="none" preserveAspectRatio="none">
+      <div class="pointer-events-none absolute top-[8px] left-[5.5%] z-0 h-12 w-[20%]">
+        <svg
+          class="h-full w-full overflow-visible"
+          viewBox="0 0 200 50"
+          fill="none"
+          preserveAspectRatio="none"
+        >
           <defs>
-            <marker id="arrow-rm-1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#60B68C" />
+            <marker
+              id="arrow-rm-1"
+              viewBox="0 0 10 10"
+              refX="6"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#60B68C"></path>
             </marker>
           </defs>
-          <path d="M 5,30 Q 100,0 195,27" stroke="#60B68C" stroke-width="2.5" stroke-dasharray="6,6" fill="none" marker-end="url(#arrow-rm-1)" class="opacity-75" />
+          <path
+            d="M 5,30 Q 100,0 195,27"
+            stroke="#60B68C"
+            stroke-width="2.5"
+            stroke-dasharray="6,6"
+            fill="none"
+            marker-end="url(#arrow-rm-1)"
+            class="opacity-75"></path>
         </svg>
       </div>
 
       <!-- Arrow 2: between circle 02 and 03 — curves DOWN -->
-      <div class="absolute top-[8px] left-[31.2%] w-[20%] h-12 z-0 pointer-events-none">
-        <svg class="w-full h-full overflow-visible" viewBox="0 0 200 50" fill="none" preserveAspectRatio="none">
+      <div class="pointer-events-none absolute top-[8px] left-[31.2%] z-0 h-12 w-[20%]">
+        <svg
+          class="h-full w-full overflow-visible"
+          viewBox="0 0 200 50"
+          fill="none"
+          preserveAspectRatio="none"
+        >
           <defs>
-            <marker id="arrow-rm-2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#60B68C" />
+            <marker
+              id="arrow-rm-2"
+              viewBox="0 0 10 10"
+              refX="6"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#60B68C"></path>
             </marker>
           </defs>
-          <path d="M 5,20 Q 100,50 195,23" stroke="#60B68C" stroke-width="2.5" stroke-dasharray="6,6" fill="none" marker-end="url(#arrow-rm-2)" class="opacity-75" />
+          <path
+            d="M 5,20 Q 100,50 195,23"
+            stroke="#60B68C"
+            stroke-width="2.5"
+            stroke-dasharray="6,6"
+            fill="none"
+            marker-end="url(#arrow-rm-2)"
+            class="opacity-75"></path>
         </svg>
       </div>
 
       <!-- Arrow 3: between circle 03 and 04 — curves UP -->
-      <div class="absolute top-[8px] left-[57%] w-[20%] h-12 z-0 pointer-events-none">
-        <svg class="w-full h-full overflow-visible" viewBox="0 0 200 50" fill="none" preserveAspectRatio="none">
+      <div class="pointer-events-none absolute top-[8px] left-[57%] z-0 h-12 w-[20%]">
+        <svg
+          class="h-full w-full overflow-visible"
+          viewBox="0 0 200 50"
+          fill="none"
+          preserveAspectRatio="none"
+        >
           <defs>
-            <marker id="arrow-rm-3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#60B68C" />
+            <marker
+              id="arrow-rm-3"
+              viewBox="0 0 10 10"
+              refX="6"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#60B68C"></path>
             </marker>
           </defs>
-          <path d="M 5,30 Q 100,0 195,27" stroke="#60B68C" stroke-width="2.5" stroke-dasharray="6,6" fill="none" marker-end="url(#arrow-rm-3)" class="opacity-75" />
+          <path
+            d="M 5,30 Q 100,0 195,27"
+            stroke="#60B68C"
+            stroke-width="2.5"
+            stroke-dasharray="6,6"
+            fill="none"
+            marker-end="url(#arrow-rm-3)"
+            class="opacity-75"></path>
         </svg>
       </div>
 
       <!-- Row of Circles aligned exactly with the grid columns -->
-      <div class="relative z-10 grid grid-cols-4 gap-8 justify-items-start">
+      <div class="relative z-10 grid grid-cols-4 justify-items-start gap-8">
         <!-- Step 1 Circle -->
-        <div class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-[#163426] text-xl font-bold shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#60B68C] hover:text-white">
+        <div
+          class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-xl font-bold text-[#163426] shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#60B68C] hover:text-white"
+        >
           01
-          <div class="absolute -inset-1.5 rounded-full border border-white/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+          <div
+            class="absolute -inset-1.5 scale-0 rounded-full border border-white/20 transition-transform duration-300 group-hover:scale-100"
+          >
+          </div>
         </div>
 
         <!-- Step 2 Circle -->
-        <div class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-[#163426] text-xl font-bold shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#60B68C] hover:text-white">
+        <div
+          class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-xl font-bold text-[#163426] shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#60B68C] hover:text-white"
+        >
           02
-          <div class="absolute -inset-1.5 rounded-full border border-white/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+          <div
+            class="absolute -inset-1.5 scale-0 rounded-full border border-white/20 transition-transform duration-300 group-hover:scale-100"
+          >
+          </div>
         </div>
 
         <!-- Step 3 Circle -->
-        <div class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-[#163426] text-xl font-bold shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#60B68C] hover:text-white">
+        <div
+          class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-xl font-bold text-[#163426] shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#60B68C] hover:text-white"
+        >
           03
-          <div class="absolute -inset-1.5 rounded-full border border-white/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+          <div
+            class="absolute -inset-1.5 scale-0 rounded-full border border-white/20 transition-transform duration-300 group-hover:scale-100"
+          >
+          </div>
         </div>
 
         <!-- Step 4 Circle -->
-        <div class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-[#163426] text-xl font-bold shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#60B68C] hover:text-white">
+        <div
+          class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-xl font-bold text-[#163426] shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#60B68C] hover:text-white"
+        >
           04
-          <div class="absolute -inset-1.5 rounded-full border border-white/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+          <div
+            class="absolute -inset-1.5 scale-0 rounded-full border border-white/20 transition-transform duration-300 group-hover:scale-100"
+          >
+          </div>
         </div>
       </div>
-      
+
       <!-- Columns grid for details below circles -->
       <div class="mt-8 grid grid-cols-4 gap-8">
         <div class="flex flex-col gap-3">
-          <h3 class="text-lg font-bold text-white tracking-wide">Consultative Alignment & Pre-Study</h3>
-          <p class="text-sm leading-relaxed text-white/70 text-justify">
-            We begin with direct stakeholder discussions and use-case analysis to map out your functional goals, third-party integration needs, and scope boundaries before a commercial commitment is made.
+          <h3 class="text-2xl font-medium tracking-wide text-white">
+            Consultative Alignment & Pre-Study
+          </h3>
+          <p class="text-justify text-base leading-relaxed text-white/70">
+            We begin with direct stakeholder discussions and use-case analysis to map out
+            your functional goals, third-party integration needs, and scope boundaries
+            before a commercial commitment is made.
           </p>
         </div>
         <div class="flex flex-col gap-3">
-          <h3 class="text-lg font-bold text-white tracking-wide">Milestone & Timeline Benchmarking</h3>
-          <p class="text-sm leading-relaxed text-white/70 text-justify">
-            Project timelines and delivery gates are mathematically planned out based on architectural complexity, necessary testing cycles, and your internal approval constraints.
+          <h3 class="text-2xl font-medium tracking-wide text-white">
+            Milestone & Timeline Benchmarking
+          </h3>
+          <p class="text-justify text-base leading-relaxed text-white/70">
+            Project timelines and delivery gates are mathematically planned out based on
+            architectural complexity, necessary testing cycles, and your internal approval
+            constraints.
           </p>
         </div>
         <div class="flex flex-col gap-3">
-          <h3 class="text-lg font-bold text-white tracking-wide">Core Engineering Mobilization</h3>
-          <p class="text-sm leading-relaxed text-white/70 text-justify">
-            We allocate a dedicated pod from our 18-member core engineering team, keeping the same developers and testers locked into your project lifecycle to preserve absolute knowledge continuity.
+          <h3 class="text-2xl font-medium tracking-wide text-white">
+            Core Engineering Mobilization
+          </h3>
+          <p class="text-justify text-base leading-relaxed text-white/70">
+            We allocate a dedicated pod from our 18-member core engineering team, keeping
+            the same developers and testers locked into your project lifecycle to preserve
+            absolute knowledge continuity.
           </p>
         </div>
         <div class="flex flex-col gap-3">
-          <h3 class="text-lg font-bold text-white tracking-wide">Continuous Scope Governance</h3>
-          <p class="text-sm leading-relaxed text-white/70 text-justify">
-            As requirements evolve, updates are seamlessly managed via structured documentation amendments and direct stakeholder review meetings, ensuring project timelines remain completely undisturbed.
+          <h3 class="text-2xl font-medium tracking-wide text-white">
+            Continuous Scope Governance
+          </h3>
+          <p class="text-justify text-base leading-relaxed text-white/70">
+            As requirements evolve, updates are seamlessly managed via structured
+            documentation amendments and direct stakeholder review meetings, ensuring
+            project timelines remain completely undisturbed.
           </p>
         </div>
       </div>
     </div>
 
     <!-- Mobile Timeline Layout -->
-    <div class="block md:hidden relative max-w-lg mx-auto pl-12 before:absolute before:left-[23px] before:top-4 before:bottom-4 before:w-[2px] before:border-l-2 before:border-dashed before:border-[#60B68C]/40">
-      
+    <div
+      class="relative mx-auto block max-w-lg pl-12 before:absolute before:top-4 before:bottom-4 before:left-[23px] before:w-[2px] before:border-l-2 before:border-dashed before:border-[#60B68C]/40 md:hidden"
+    >
       <!-- Step 1 -->
       <div class="relative mb-12 last:mb-0">
-        <div class="absolute -left-12 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#163426] text-lg font-bold shadow-md z-10">
+        <div
+          class="absolute top-0 -left-12 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg font-bold text-[#163426] shadow-md"
+        >
           01
         </div>
         <div class="flex flex-col gap-2 text-left">
           <h3 class="text-xl font-bold text-white">Consultative Alignment & Pre-Study</h3>
-          <p class="text-base text-white/80 leading-relaxed text-justify">
-            We begin with direct stakeholder discussions and use-case analysis to map out your functional goals, third-party integration needs, and scope boundaries before a commercial commitment is made.
+          <p class="text-justify text-base leading-relaxed text-white/80">
+            We begin with direct stakeholder discussions and use-case analysis to map out
+            your functional goals, third-party integration needs, and scope boundaries
+            before a commercial commitment is made.
           </p>
         </div>
       </div>
 
       <!-- Step 2 -->
       <div class="relative mb-12 last:mb-0">
-        <div class="absolute -left-12 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#163426] text-lg font-bold shadow-md z-10">
+        <div
+          class="absolute top-0 -left-12 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg font-bold text-[#163426] shadow-md"
+        >
           02
         </div>
         <div class="flex flex-col gap-2 text-left">
           <h3 class="text-xl font-bold text-white">Milestone & Timeline Benchmarking</h3>
-          <p class="text-base text-white/80 leading-relaxed text-justify">
-            Project timelines and delivery gates are mathematically planned out based on architectural complexity, necessary testing cycles, and your internal approval constraints.
+          <p class="text-justify text-base leading-relaxed text-white/80">
+            Project timelines and delivery gates are mathematically planned out based on
+            architectural complexity, necessary testing cycles, and your internal approval
+            constraints.
           </p>
         </div>
       </div>
 
       <!-- Step 3 -->
       <div class="relative mb-12 last:mb-0">
-        <div class="absolute -left-12 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#163426] text-lg font-bold shadow-md z-10">
+        <div
+          class="absolute top-0 -left-12 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg font-bold text-[#163426] shadow-md"
+        >
           03
         </div>
         <div class="flex flex-col gap-2 text-left">
           <h3 class="text-xl font-bold text-white">Core Engineering Mobilization</h3>
-          <p class="text-base text-white/80 leading-relaxed text-justify">
-            We allocate a dedicated pod from our 18-member core engineering team, keeping the same developers and testers locked into your project lifecycle to preserve absolute knowledge continuity.
+          <p class="text-justify text-base leading-relaxed text-white/80">
+            We allocate a dedicated pod from our 18-member core engineering team, keeping
+            the same developers and testers locked into your project lifecycle to preserve
+            absolute knowledge continuity.
           </p>
         </div>
       </div>
 
       <!-- Step 4 -->
       <div class="relative mb-12 last:mb-0">
-        <div class="absolute -left-12 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#163426] text-lg font-bold shadow-md z-10">
+        <div
+          class="absolute top-0 -left-12 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg font-bold text-[#163426] shadow-md"
+        >
           04
         </div>
         <div class="flex flex-col gap-2 text-left">
           <h3 class="text-xl font-bold text-white">Continuous Scope Governance</h3>
-          <p class="text-base text-white/80 leading-relaxed text-justify">
-            As requirements evolve, updates are seamlessly managed via structured documentation amendments and direct stakeholder review meetings, ensuring project timelines remain completely undisturbed.
+          <p class="text-justify text-base leading-relaxed text-white/80">
+            As requirements evolve, updates are seamlessly managed via structured
+            documentation amendments and direct stakeholder review meetings, ensuring
+            project timelines remain completely undisturbed.
           </p>
         </div>
       </div>
-
     </div>
   </div>
 </section>

@@ -7,6 +7,7 @@
     Laptop,
     Smartphone,
     ShieldCheck,
+    ArrowUpRight,
   } from '@lucide/svelte';
   import type { CapabilityTab } from '~/data/pageDataSoftware';
 
@@ -88,7 +89,7 @@
   >
     {#each capabilities as tab}
       <button
-        class="flex-1 px-6 py-4 rounded-xl font-bold transition-all duration-300 text-sm md:text-base text-center cursor-pointer select-none
+        class="flex-1 px-6 py-4 rounded-xl font-medium transition-all duration-300 text-base md:text-xl text-center cursor-pointer select-none
           {activeTab === tab.id
           ? 'bg-primary text-primary-content shadow-lg shadow-primary/20 scale-[1.02]'
           : 'text-base-content/70 hover:text-base-content hover:bg-base-200/50'}"
@@ -124,7 +125,7 @@
             High-Compliance Digital Infrastructure
           {/if}
         </span> -->
-        <h3 class="text-2xl md:text-3xl font-bold text-base-content mb-4">
+        <h3 class="text-2xl md:text-3xl font-medium text-base-content mb-4">
           {currentTabObj?.label}
         </h3>
         <p class="text-base-content/70 leading-relaxed text-sm md:text-base">
@@ -172,6 +173,16 @@
               <div transition:slide={{ duration: 300 }} class="relative z-10 mt-3 pl-9">
                 <p class="text-base-content/75 text-sm md:text-base leading-relaxed pb-1">
                   {item.desc}
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-0.5 text-primary hover:underline font-semibold ml-1.5 align-baseline"
+                    onclick={(e) => e.stopPropagation()}
+                  >
+                    Know more
+                    <ArrowUpRight size={14} class="translate-y-[1px]" />
+                  </a>
                 </p>
               </div>
             {/if}
