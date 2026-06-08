@@ -3,13 +3,30 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import svelte from '@astrojs/svelte';
 import alpinejs from '@astrojs/alpinejs';
+import yaml from 'js-yaml';
+
+const yamlPlugin = {
+  name: 'htis-yaml-loader',
+  /**
+   * @param {string} code
+   * @param {string} id
+   */
+  transform(code, id) {
+    if (!/\.ya?ml$/.test(id)) return null;
+
+    return {
+      code: `export default ${JSON.stringify(yaml.load(code))};`,
+      map: null,
+    };
+  },
+};
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
   integrations: [svelte(), alpinejs()],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [yamlPlugin, tailwindcss()],
     optimizeDeps: {
       include: ['cobe'],
     },

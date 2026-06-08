@@ -3,58 +3,13 @@ import { Image } from 'astro:assets';
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
+import CmsIcon from '~/components/CmsIcon.astro';
 
 import heroBg from '~/assets/industry-hero-bg.png';
 import heroImg from '~/assets/industry-hero-img.png';
+import { orderedIndustriesData } from '~/data/cms';
 
-import {
-  RadioTower,
-  Landmark,
-  Building2,
-  Factory,
-  HeartPulse,
-  HardHat,
-  ArrowUpRight,
-} from '@lucide/astro';
-
-const industries = [
-  {
-    title: 'Telcos and ISPs',
-    slug: 'telcos-and-isps',
-    desc: 'Empowering connectivity with next-generation network infrastructure, high-speed fiber solutions, and robust operational support to meet the growing demands of a digital world.',
-    icon: RadioTower,
-  },
-  {
-    title: 'Public Sector, Ministries & Defence',
-    slug: 'public-sector-ministries-defence',
-    desc: 'Delivering secure, scalable, and mission-critical IT infrastructure and communication systems tailored for government agencies, ministries, and defense organizations.',
-    icon: Landmark,
-  },
-  {
-    title: 'BFSI (Banking, Financial Services & Insurance)',
-    slug: 'bfsi',
-    desc: 'Driving financial digital transformation through ultra-secure data centers, seamless network integration, and high-availability infrastructure for banks and financial institutions.',
-    icon: Building2,
-  },
-  {
-    title: 'Manufacturing, Automobile & FMCG',
-    slug: 'manufacturing-automobile-fmcg',
-    desc: 'Accelerating Industry 4.0 adoption with smart factory connectivity, automation integrations, and resilient supply chain networking for modern production facilities.',
-    icon: Factory,
-  },
-  {
-    title: 'Healthcare & Education',
-    slug: 'healthcare-education',
-    desc: 'Enabling remote care, telemedicine networks, and digital classrooms through high-bandwidth connectivity and secure, compliant data management solutions.',
-    icon: HeartPulse,
-  },
-  {
-    title: 'Real Estate, Infrastructure & Smart Spaces',
-    slug: 'real-estate-infrastructure-smart-spaces',
-    desc: 'Building intelligent environments with integrated IoT networks, smart building automation, and future-ready IT infrastructure for commercial and residential spaces.',
-    icon: HardHat,
-  },
-];
+import { ArrowUpRight } from '@lucide/astro';
 ---
 
 <Layout title="Industries - HTIS">
@@ -123,7 +78,7 @@ const industries = [
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {
-            industries.map((item) => (
+            orderedIndustriesData.map((item) => (
               <a
                 href={`/industry/${item.slug}`}
                 class="group relative flex flex-col rounded-4xl border border-base-content/30 bg-base-100 p-8 transition-all duration-500 hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
@@ -136,13 +91,13 @@ const industries = [
                 {/* Icon + Content (centered) */}
                 <div class="mt-2 flex flex-col items-center text-center">
                   <div class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform duration-500 group-hover:scale-110">
-                    <item.icon class="h-10 w-10" />
+                    <CmsIcon name={item.iconName} className="h-10 w-10" />
                   </div>
                   <h3 class="mb-4 text-xl font-bold text-base-content transition-colors group-hover:text-primary md:text-2xl">
                     {item.title}
                   </h3>
                   <p class="text-sm leading-relaxed text-base-content/75 md:text-base">
-                    {item.desc}
+                    {item.heroSubtitle}
                   </p>
                 </div>
               </a>

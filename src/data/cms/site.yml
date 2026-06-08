@@ -1,0 +1,7 @@
+defaultTitle: HTIS - Delivering Excellence in System Integrations
+language: en
+theme: htis-theme
+darkTheme: htis-theme-dark
+favicon: /favicon.png
+contactAnchor: "#contact"
+

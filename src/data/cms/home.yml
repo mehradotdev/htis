@@ -1,0 +1,125 @@
+hero:
+  backgroundImage: hero-bg.png
+  titlePrefix: Delivering Excellence in
+  rotatingWords:
+    - System Integrations
+    - Telecommunications
+    - Software Development
+    - Manpower Services
+  subtitle: Reliable expertise across infrastructure, technology, and people.
+  ctaLabel: Contact Us
+  ctaUrl: "#contact"
+  trustedByLabel: Trusted by 100+ Partners
+  partnerLogos:
+    - image: logo-ncomputing.png
+      alt: NComputing
+    - image: logo-legrand.png
+      alt: Legrand
+    - image: logo-lifesize.png
+      alt: Lifesize
+    - image: logo-honeywell.png
+      alt: Honeywell
+    - image: logo-nokia.png
+      alt: Nokia
+    - image: logo-ericsson.png
+      alt: Ericsson
+
+journey:
+  titlePrefix: Our
+  titleHighlight: Journey
+  subtitle: A timeline of innovation, milestones, and achievements that shaped our path forward.
+  images:
+    - our-journey-1.png
+    - our-journey-2.png
+    - our-journey-3.png
+    - our-journey-4.png
+    - our-journey-5.png
+    - our-journey-6.png
+    - our-journey-7.png
+    - our-journey-8.png
+    - our-journey-9.png
+  milestones:
+    - year: "2008"
+      title: Establishment
+      description: HTIS was officially established.
+    - year: "2008"
+      title: First Customer - Vodafone
+      description: Secured Vodafone as our very first customer.
+    - year: "2008"
+      title: Second Customer - Bharti
+      description: Expanded our early portfolio with Bharti as our second customer.
+    - year: "2012"
+      title: Firmed HTIS Telecom
+      description: Officially firmed as HTIS Telecom Private Limited.
+    - year: "2013"
+      title: Cisco Service Partner
+      description: Registered as an official Cisco Service Partner.
+    - year: "2014"
+      title: Jio 4G Roll-out
+      description: Cisco Delivery Jio 4G Roll-out started, delivering over half of India North and West, and deploying lacs of routers until 2019.
+    - year: "2017"
+      title: Global PSSA with Cisco
+      description: Signed Global PSSA with Cisco as a Niche Category Partner in the field of Service Provider (SP) domain.
+    - year: "2017"
+      title: Global Expansion
+      description: Extended our services to Sri Lanka, Bangladesh, South Africa, and the broader Africa region.
+    - year: 2018-19
+      title: NTT Data Partnership
+      description: Signed a global partnership with NTT data in the UK and deployed 15+ resources based in London for BTS testing.
+    - year: "2019"
+      title: UN Peace Keeping Project
+      description: Delivered a United Nations Peace Keeping Project in the Central African Republic in partnership with Cisco.
+    - year: "2020"
+      title: WFMS Foundation
+      description: Laid the foundation of wfms during the COVID lockdown, evolving into a Line of Business for Software Development.
+    - year: "2020"
+      title: System Integration
+      description: Started envisioning System Integration post-COVID and hired a dedicated sales team across North India.
+    - year: "2021"
+      title: 100Cr Business Milestone
+      description: Within 1 year of our new vision, we successfully delivered over 100Cr in business.
+    - year: "2021"
+      title: NHM Primary Health Centres
+      description: IT-fied 400 NHM Primary Health Centres in Himachal Pradesh during the 2020 lockdown.
+    - year: 2022-24
+      title: 5G Swap for Jio
+      description: Executed 5G Swap for Jio across more than 25,000 sites.
+    - year: "2024"
+      title: Samsung Award
+      description: Received a prestigious award from Samsung.
+    - year: "2024"
+      title: Cisco Award
+      description: Received a prestigious award from Cisco.
+    - year: "2024"
+      title: Smart Classrooms Solution
+      description: Delivered a 5000+ Smart Classrooms Solution in Himachal Pradesh with Samsung hardware and a Learning Management Solution developed by HTIS.
+    - year: "2026"
+      title: wfms 2.0 Launch
+      description: Scheduled launch of the next generation of our wfms platform, wfms 2.0.
+
+team:
+  backgroundImage: team-member-bg.png
+  meetTeamImage: our-journey-2.png
+  heading: The Visionary Core
+  description: Our leadership team brings together decades of experience in telecommunications, software engineering, and systems integration, guiding HTIS toward continuous innovation and excellence.
+  ctaTitle: Meet the Team
+  ctaLabel: Learn More
+  ctaUrl: /about#team
+  members:
+    - name: Aditya Kaushik
+      role: Managing Director
+      desc: Sets the company’s long-term goals and ensures we stay a leader in the technology industry.
+      image: tm_Aditya_Kaushik.png
+    - name: Sandeep Aswal
+      role: Chief Operating Officer
+      desc: Manages daily business tasks to make sure all large projects are completed successfully and on time.
+      image: tm_Sandeep_Aswal.png
+    - name: Amit Dhingra
+      role: Senior Vice President
+      desc: Leads major company projects and manages relationships with our most important partners.
+      image: tm_Amit_Dhingra.png
+    - name: Arvind Sharma
+      role: Head - Centre of Excellence
+      desc: Sets the high technical standards for our services and finds new ways to solve technology problems.
+      image: tm_Arvind_Sharma.png
+

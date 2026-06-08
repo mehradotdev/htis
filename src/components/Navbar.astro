@@ -1,120 +1,24 @@
 ---
 import { Image } from 'astro:assets';
-import htisLogo from '~/assets/htis-logo.png';
-import solutionsImg from '~/assets/lob-resourcing-construction-1.png';
-import resourcesImg from '~/assets/lob-resourcing-case-study-1.png';
 import MenuIcon from './icons/MenuIcon.astro';
 import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
+import CmsIcon from './CmsIcon.astro';
+import { getCmsAsset, industryNavItems, navigation } from '~/data/cms';
 
-import {
-  Phone,
-  Server,
-  Code,
-  Users,
-  Landmark,
-  Building2,
-  Factory,
-  HeartPulse,
-  HardHat,
-  Award,
-  Info,
-  Briefcase,
-  ChevronDown,
-  ArrowRight,
-  RadioTower,
-} from '@lucide/astro';
+import { ArrowRight, ChevronDown } from '@lucide/astro';
 
-const solutions = [
-  {
-    title: 'Telecom Services',
-    desc: 'Connectivity and network operations',
-    url: '/telecom',
-    icon: Phone,
-  },
-  {
-    title: 'System Integration',
-    desc: 'End-to-end IT infrastructure',
-    url: '/system-integration',
-    icon: Server,
-  },
-  {
-    title: 'Software Development',
-    desc: 'Custom applications and platforms',
-    url: '/software',
-    icon: Code,
-  },
-  {
-    title: 'Resource Management',
-    desc: 'Skilled workforce solutions',
-    url: '/resourcing',
-    icon: Users,
-  },
-];
+const navLogo = getCmsAsset(navigation.logo.image);
+const solutionsImg = getCmsAsset(navigation.solutions.card.image);
+const resourcesImg = getCmsAsset(navigation.resources.card.image);
 
-const industriesCol1 = [
-  {
-    title: 'Telcos and ISPs',
-    desc: 'Network providers and ISPs',
-    url: '/industry/telcos-and-isps',
-    icon: RadioTower,
-  },
-  {
-    title: 'Public Sector, Ministries & Defence',
-    desc: 'Government and defense',
-    url: '/industry/public-sector-ministries-defence',
-    icon: Landmark,
-  },
-  {
-    title: 'BFSI (Banking, Financial Services & Insurance)',
-    desc: 'Banking and financial services',
-    url: '/industry/bfsi',
-    icon: Building2,
-  },
-  {
-    title: 'Manufacturing, Automobile & FMCG',
-    desc: 'Automotive and consumer goods',
-    url: '/industry/manufacturing-automobile-fmcg',
-    icon: Factory,
-  },
-  {
-    title: 'Healthcare & Education',
-    desc: 'Hospitals and academic institutions',
-    url: '/industry/healthcare-education',
-    icon: HeartPulse,
-  },
-];
-
+const solutions = navigation.solutions.items;
+const industryItems = industryNavItems;
+const industriesCol1 = industryItems.slice(0, 5);
 const industriesCol2 = [
-  {
-    title: 'Real Estate, Infrastructure & Smart Spaces',
-    desc: 'Infrastructure and smart cities',
-    url: '/industry/real-estate-infrastructure-smart-spaces',
-    icon: HardHat,
-  },
-  {
-    title: 'View all Industries',
-    desc: 'Explore all our industry solutions',
-    url: '/industry',
-    icon: ArrowRight,
-  },
+  ...industryItems.slice(5),
+  navigation.industries.viewAll,
 ];
-
-const resources = [
-  {
-    title: 'Awards & Achievements',
-    desc: 'Our recognition and accolades',
-    url: '/awards',
-    icon: Award,
-  },
-  { title: 'About us', desc: 'Company overview and vision', url: '/about', icon: Info },
-  // { title: 'Blogs', desc: 'Insights and industry news', url: '#', icon: FileText },
-  {
-    title: 'Case Studies',
-    desc: 'Success stories and implementations',
-    url: '/case-study',
-    icon: Briefcase,
-  },
-];
+const resources = navigation.resources.items;
 
 const { pathname: rawPathname } = Astro.url;
 const pathname = rawPathname.replace(/\/$/, '') || '/';
@@ -153,7 +57,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
               href="/"
               class={`py-3 ${isActive('/') ? 'font-semibold text-primary bg-base-200/60' : 'text-base-content/80'}`}
             >
-              Home
+              {navigation.primary.home.title}
             </a>
           </li>
 
@@ -161,7 +65,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             <details open={isSolutionsActive}>
               <summary
                 class={`py-3 font-semibold ${isSolutionsActive ? 'text-primary' : ''}`}
-                >Solutions</summary
+                >{navigation.solutions.label}</summary
               >
               <ul class="before:bg-base-200/50">
                 {
@@ -171,8 +75,9 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                         href={item.url}
                         class={`py-3 ${isActive(item.url) ? 'bg-base-200/60 font-medium text-primary' : ''}`}
                       >
-                        <item.icon
-                          class={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
+                        <CmsIcon
+                          name={item.icon}
+                          className={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
                         />
                         <span class="leading-tight">{item.title}</span>
                       </a>
@@ -187,7 +92,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             <details open={isIndustriesActive}>
               <summary
                 class={`py-3 font-semibold ${isIndustriesActive ? 'text-primary' : ''}`}
-                >Industries</summary
+                >{navigation.industries.label}</summary
               >
               <ul class="before:bg-base-200/50">
                 {
@@ -197,8 +102,9 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                         href={item.url}
                         class={`py-2.5 ${isActive(item.url) ? 'bg-base-200/60 font-medium text-primary' : ''}`}
                       >
-                        <item.icon
-                          class={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
+                        <CmsIcon
+                          name={item.icon}
+                          className={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
                         />
                         <span class="text-sm leading-tight">{item.title}</span>
                       </a>
@@ -213,7 +119,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             <details open={isResourcesActive}>
               <summary
                 class={`py-3 font-semibold ${isResourcesActive ? 'text-primary' : ''}`}
-                >Resources</summary
+                >{navigation.resources.label}</summary
               >
               <ul class="before:bg-base-200/50">
                 {
@@ -223,8 +129,9 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                         href={item.url}
                         class={`py-3 ${isActive(item.url) ? 'bg-base-200/60 font-medium text-primary' : ''}`}
                       >
-                        <item.icon
-                          class={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
+                        <CmsIcon
+                          name={item.icon}
+                          className={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
                         />
                         <span class="leading-tight">{item.title}</span>
                       </a>
@@ -240,15 +147,15 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
               href="/jobs"
               class={`py-3 ${isActive('/jobs') ? 'font-semibold text-primary bg-base-200/60' : 'text-base-content/80'}`}
             >
-              Career
+              {navigation.primary.career.title}
             </a>
           </li>
         </ul>
       </div>
       <a href="/" class="btn h-auto p-2 text-xl normal-case btn-ghost">
         <Image
-          src={htisLogo}
-          alt="HTIS Logo"
+          src={navLogo}
+          alt={navigation.logo.alt}
           width={140}
           id="navbar-logo"
           class="w-[140px] object-contain transition-all duration-500"
@@ -274,7 +181,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
           href="/"
           class={`py-4 transition-colors hover:text-primary ${isActive('/') ? 'text-primary font-semibold' : 'text-base-content/80'}`}
         >
-          Home
+          {navigation.primary.home.title}
         </a>
 
         <!-- Solutions: Dropdown open state, focus/hover sync, Escape key to close, and screen-reader accessibility (aria-expanded) managed via Alpine.js -->
@@ -292,7 +199,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             :aria-expanded="activeDropdown === 'solutions'"
             @click="toggle('solutions')"
           >
-            Solutions
+            {navigation.solutions.label}
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-300"
               :class="activeDropdown === 'solutions' ? '-rotate-180 text-primary' : ''"
@@ -310,7 +217,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 <h3
                   class="mb-2 px-3 text-xs font-bold tracking-widest text-base-content/50 uppercase"
                 >
-                  Our Solutions
+                  {navigation.solutions.heading}
                 </h3>
                 {
                   solutions.map((item) => (
@@ -321,7 +228,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                       <div
                         class={`mt-0.5 rounded-xl p-2.5 transition-all duration-300 ${isActive(item.url) ? 'bg-primary text-primary-content shadow-lg shadow-primary/20' : 'bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20'}`}
                       >
-                        <item.icon class="h-5 w-5 shrink-0" />
+                        <CmsIcon name={item.icon} className="h-5 w-5 shrink-0" />
                       </div>
                       <div>
                         <div
@@ -342,7 +249,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
               >
                 <Image
                   src={solutionsImg}
-                  alt="Solutions"
+                  alt={navigation.solutions.card.alt}
                   class="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                   width={300}
                 />
@@ -351,15 +258,15 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 >
                 </div>
                 <div class="absolute right-0 bottom-0 left-0 p-6 text-left text-white">
-                  <h4 class="mb-2 text-xl font-bold">Build the future</h4>
+                  <h4 class="mb-2 text-xl font-bold">{navigation.solutions.card.title}</h4>
                   <p class="mb-6 text-sm text-white/80">
-                    Discover our full range of enterprise solutions tailored for scale.
+                    {navigation.solutions.card.description}
                   </p>
                   <a
-                    href="/system-integration"
+                    href={navigation.solutions.card.ctaUrl}
                     class="btn w-full rounded-lg border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
                   >
-                    Explore Solutions <ArrowRight class="ml-1 h-4 w-4" />
+                    {navigation.solutions.card.ctaLabel} <ArrowRight class="ml-1 h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -382,7 +289,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             :aria-expanded="activeDropdown === 'industries'"
             @click="toggle('industries')"
           >
-            Industries
+            {navigation.industries.label}
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-300"
               :class="activeDropdown === 'industries' ? '-rotate-180 text-primary' : ''"
@@ -400,7 +307,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 <h3
                   class="mb-2 px-3 text-xs font-bold tracking-widest text-base-content/50 uppercase"
                 >
-                  Industries We Serve
+                  {navigation.industries.heading}
                 </h3>
                 {
                   industriesCol1.map((item) => (
@@ -411,7 +318,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                       <div
                         class={`mt-0.5 rounded-xl p-2.5 transition-all duration-300 ${isActive(item.url) ? 'bg-primary text-primary-content shadow-lg shadow-primary/20' : 'bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20'}`}
                       >
-                        <item.icon class="h-5 w-5 shrink-0" />
+                        <CmsIcon name={item.icon} className="h-5 w-5 shrink-0" />
                       </div>
                       <div>
                         <div
@@ -440,7 +347,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                       <div
                         class={`mt-0.5 rounded-xl p-2.5 transition-all duration-300 ${isActive(item.url) ? 'bg-primary text-primary-content shadow-lg shadow-primary/20' : 'bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20'}`}
                       >
-                        <item.icon class="h-5 w-5 shrink-0" />
+                        <CmsIcon name={item.icon} className="h-5 w-5 shrink-0" />
                       </div>
                       <div>
                         <div
@@ -475,7 +382,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             :aria-expanded="activeDropdown === 'resources'"
             @click="toggle('resources')"
           >
-            Resources
+            {navigation.resources.label}
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-300"
               :class="activeDropdown === 'resources' ? '-rotate-180 text-primary' : ''"
@@ -493,7 +400,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 <h3
                   class="mb-2 px-3 text-xs font-bold tracking-widest text-base-content/50 uppercase"
                 >
-                  Knowledge Hub
+                  {navigation.resources.heading}
                 </h3>
                 {
                   resources.map((item) => (
@@ -504,7 +411,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                       <div
                         class={`mt-0.5 rounded-xl p-2.5 transition-all duration-300 ${isActive(item.url) ? 'bg-primary text-primary-content shadow-lg shadow-primary/20' : 'bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-content group-hover/item:shadow-lg group-hover/item:shadow-primary/20'}`}
                       >
-                        <item.icon class="h-5 w-5 shrink-0" />
+                        <CmsIcon name={item.icon} className="h-5 w-5 shrink-0" />
                       </div>
                       <div>
                         <div
@@ -525,7 +432,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
               >
                 <Image
                   src={resourcesImg}
-                  alt="Resources"
+                  alt={navigation.resources.card.alt}
                   class="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                   width={300}
                 />
@@ -534,15 +441,15 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 >
                 </div>
                 <div class="absolute right-0 bottom-0 left-0 p-6 text-left text-white">
-                  <h4 class="mb-2 text-xl font-bold">Our impact</h4>
+                  <h4 class="mb-2 text-xl font-bold">{navigation.resources.card.title}</h4>
                   <p class="mb-6 text-sm text-white/80">
-                    Explore case studies and learn how we empower success globally.
+                    {navigation.resources.card.description}
                   </p>
                   <a
-                    href="/case-study"
+                    href={navigation.resources.card.ctaUrl}
                     class="btn w-full rounded-lg border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
                   >
-                    View Case Studies <ArrowRight class="ml-1 h-4 w-4" />
+                    {navigation.resources.card.ctaLabel} <ArrowRight class="ml-1 h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -554,7 +461,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
           href="/jobs"
           class={`py-4 transition-colors hover:text-primary ${isActive('/jobs') ? 'text-primary font-semibold' : 'text-base-content/80'}`}
         >
-          Career
+          {navigation.primary.career.title}
         </a>
       </nav>
     </div>
@@ -568,9 +475,9 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
       />
 
       <a
-        href="#contact"
+        href={navigation.primary.contact.url}
         class="btn rounded-lg px-4 text-base tracking-wide text-primary-content opacity-90 shadow-md btn-primary md:px-5"
-        >Contact Us</a
+        >{navigation.primary.contact.title}</a
       >
     </div>
   </div>

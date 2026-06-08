@@ -1,0 +1,40 @@
+slug: manufacturing-automobile-fmcg
+title: Manufacturing, Automobile & FMCG
+shortTitle: Manufacturing
+summary: Automotive and consumer goods
+heroSubtitle: Accelerating Industry 4.0 with resilient industrial Wi-Fi networks, IoT-driven automation grids, and high-performance supply chain software.
+iconName: Factory
+techStack:
+  - Industrial Wi-Fi 7
+  - Private LTE/5G Cores
+  - Ruggedized Switches
+  - OT/IT Convergence
+  - Real-Time GPS Fleet
+  - Telemetry Processing
+challenges:
+  - title: Extreme Physical Environments
+    description: Ensuring computing hardware and routing switches function reliably in areas prone to heat, dust, oils, and intense electromagnetic hums.
+  - title: Dense Sensor Data Ingestion
+    description: Managing tens of thousands of continuous mechanical sensors and telemetry feeds without creating high local packet latency.
+  - title: Fragmented Supply Chains
+    description: Losing operational efficiency due to uncoordinated stock alerts, manual vehicle tracking, and slow warehouse handoffs.
+capabilities:
+  - title: Rugged Industrial Connectivity
+    description: Designing and scaling network layouts across vast mechanical yards and hot assembly floors using specialized, protected active hardware.
+    bulletPoints:
+      - IP67 dust/waterproof Wi-Fi 7 and industrial access point deployments
+      - Private LTE/5G wireless overlays for interference-free wireless coverage
+      - Ruggedized POE+ network routing switch commissionings
+  - title: Operational Technology (OT) Integration
+    description: Bridging the divide between digital IT databases and physical shop-floor machinery, facilitating real-time telemetry processing.
+    bulletPoints:
+      - Secure edge gateways connecting machinery to centralized cloud databases
+      - Sub-millisecond data routing priorities for real-time robotic controls
+      - Centralized IoT sensor dashboards reporting health and energy use
+  - title: Logistics & Fleet Management
+    description: Developing high-impact custom software platforms to trace inventory movements, coordinate dispatches, and track trucks.
+    bulletPoints:
+      - Real-time vehicle GPS tracking systems with automated geofenced alarms
+      - Centralized ERP modules optimizing truck space and dispatch orders
+      - Sleek mobile field utility apps keeping drivers connected with main stations
+

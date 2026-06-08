@@ -1,0 +1,40 @@
+slug: bfsi
+title: BFSI (Banking, Financial Services & Insurance)
+shortTitle: Banking
+summary: Banking and financial services
+heroSubtitle: Driving ultra-secure digital banking transformation with zero-trust networking, low-latency transaction routing, and high-availability backup systems.
+iconName: Building2
+techStack:
+  - Zero-Trust Architecture
+  - Next-Gen Firewalls
+  - HSM Integrations
+  - Active-Active DR
+  - Micro-segmentation
+  - Low-Latency Fabrics
+challenges:
+  - title: Sophisticated Security Exploits
+    description: Safeguarding massive volumes of sensitive customer financial records and transactions against coordinate digital exploits and state-sponsored groups.
+  - title: Zero Downtime Tolerances
+    description: Avoiding catastrophic losses from system outages through fail-safe system structures, real-time database syncing, and instant backups.
+  - title: Transaction Latency Bottlenecks
+    description: Executing intensive, multi-tier compliance check-ups and cryptographic validations within fractions of a second to ensure seamless transaction completions.
+capabilities:
+  - title: Zero-Trust Cyber Defense
+    description: Deploying state-of-the-art security postures that assume zero absolute perimeter trust, relying on rigorous verification, encryption, and isolated compartments.
+    bulletPoints:
+      - Next-gen application-aware firewalls and automated intrusion preventions
+      - Hardware Security Module (HSM) deployment for high-performance cryptographic keys
+      - Continuous real-time anomaly detection and extended threat hunting (XDR)
+  - title: Active-Active Disaster Recovery
+    description: Orchestrating real-time, zero-lag replication layouts across multiple physical server hubs to guarantee immediate automated recovery in any disaster scenario.
+    bulletPoints:
+      - Synchronous zero-loss database replication strategies
+      - Automated, state-monitored network failover route configurations
+      - Proactive periodic offline-drills and capacity checks
+  - title: Low-Latency Banking Fabrics
+    description: Architecting high-frequency, high-bandwidth internal routing switches and networks optimized for rapid payment settlement and trade processing.
+    bulletPoints:
+      - Software-defined local networking optimization inside core banking centers
+      - Traffic prioritization rules favoring mission-critical API payloads
+      - Dense fiber interconnect layout engineering with ultra-low transit hops
+

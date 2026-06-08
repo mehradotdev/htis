@@ -1,14 +1,28 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
-  import type { TeamMember } from '~/data/pageData';
+  import type { TeamMember } from '~/data/cms';
 
   interface Props {
     team: TeamMember[];
     bgImageSrc: string;
     meetTeamImageSrc: string;
+    heading?: string;
+    description?: string;
+    ctaTitle?: string;
+    ctaLabel?: string;
+    ctaUrl?: string;
   }
 
-  let { team, bgImageSrc, meetTeamImageSrc }: Props = $props();
+  let {
+    team,
+    bgImageSrc,
+    meetTeamImageSrc,
+    heading = 'The Visionary Core',
+    description = 'Our leadership team brings together decades of experience in telecommunications, software engineering, and systems integration, guiding HTIS toward continuous innovation and excellence.',
+    ctaTitle = 'Meet the Team',
+    ctaLabel = 'Learn More',
+    ctaUrl = '/about#team',
+  }: Props = $props();
   let activeIndex = $state(0);
 </script>
 
@@ -30,12 +44,10 @@
   <div class="relative z-10 container mx-auto px-4 lg:px-8">
     <div class="mb-12 max-w-3xl">
       <h2 class="mb-6 text-4xl font-extrabold text-base-content md:text-5xl">
-        The Visionary Core
+        {heading}
       </h2>
       <p class="text-lg font-medium text-base-content/80 md:text-xl leading-relaxed">
-        Our leadership team brings together decades of experience in telecommunications,
-        software engineering, and systems integration, guiding HTIS toward continuous
-        innovation and excellence.
+        {description}
       </p>
     </div>
 
@@ -150,17 +162,17 @@
             <h3
               class="mb-2 text-xl leading-tight font-bold text-primary drop-shadow-sm sm:text-2xl md:text-3xl"
             >
-              Meet the Team
+              {ctaTitle}
             </h3>
           </div>
 
           {#if activeIndex === team.length}
             <div in:fade={{ duration: 300, delay: 150 }} class="mb-4">
               <a
-                href="/about#team"
+                href={ctaUrl}
                 class="btn btn-primary rounded-full px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-primary/20 hover:scale-105 transition-all duration-300 pointer-events-auto"
               >
-                Learn More
+                {ctaLabel}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-3.5 w-3.5 ml-1 inline-block"
@@ -209,7 +221,7 @@
           <span
             class="text-[10px] sm:text-xs font-bold tracking-widest text-primary uppercase vertical-text"
           >
-            Meet the Team
+            {ctaTitle}
           </span>
         </div>
       </div>

@@ -11,35 +11,7 @@ import Footer from '~/components/Footer.astro';
 import Team from '~/components/Team.svelte';
 import Clients from '~/components/Clients.astro';
 import Testimonials from '~/components/Testimonials.astro';
-import { getMilestones, getTeamMembers } from '~/data/pageData';
-import bgImage from '~/assets/team-member-bg.png';
-import member1 from '~/assets/tm_Aditya_Kaushik.png';
-import member2 from '~/assets/tm_Sandeep_Aswal.png';
-import member3 from '~/assets/tm_Amit_Dhingra.png';
-import member4 from '~/assets/tm_Arvind_Sharma.png';
-import journeyImg1 from '~/assets/our-journey-1.png';
-import journeyImg2 from '~/assets/our-journey-2.png';
-import journeyImg3 from '~/assets/our-journey-3.png';
-import journeyImg4 from '~/assets/our-journey-4.png';
-import journeyImg5 from '~/assets/our-journey-5.png';
-import journeyImg6 from '~/assets/our-journey-6.png';
-import journeyImg7 from '~/assets/our-journey-7.png';
-import journeyImg8 from '~/assets/our-journey-8.png';
-import journeyImg9 from '~/assets/our-journey-9.png';
-
-const milestones = getMilestones([
-  journeyImg1.src,
-  journeyImg2.src,
-  journeyImg3.src,
-  journeyImg4.src,
-  journeyImg5.src,
-  journeyImg6.src,
-  journeyImg7.src,
-  journeyImg8.src,
-  journeyImg9.src,
-]);
-
-const team = getTeamMembers([member1.src, member2.src, member3.src, member4.src]);
+import { home } from '~/data/cms';
 ---
 
 <Layout>
@@ -48,11 +20,22 @@ const team = getTeamMembers([member1.src, member2.src, member3.src, member4.src]
     <Hero />
     <Services />
     <div class="bg-linear-to-b from-transparent to-base-200/50">
-      <Journey milestones={milestones} client:visible />
+      <Journey
+        milestones={home.journey.milestones}
+        titlePrefix={home.journey.titlePrefix}
+        titleHighlight={home.journey.titleHighlight}
+        subtitle={home.journey.subtitle}
+        client:visible
+      />
       <Team
-        team={team}
-        bgImageSrc={bgImage.src}
-        meetTeamImageSrc={journeyImg2.src}
+        team={home.team.members}
+        bgImageSrc={home.team.backgroundImageSrc}
+        meetTeamImageSrc={home.team.meetTeamImageSrc}
+        heading={home.team.heading}
+        description={home.team.description}
+        ctaTitle={home.team.ctaTitle}
+        ctaLabel={home.team.ctaLabel}
+        ctaUrl={home.team.ctaUrl}
         client:visible
       />
       <Footprint />

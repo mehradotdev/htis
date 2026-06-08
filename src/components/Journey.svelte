@@ -1,12 +1,20 @@
 <script lang="ts">
-  import type { Milestone } from '~/data/pageData';
+  import type { Milestone } from '~/data/cms';
 
   interface Props {
     /** List of chronological milestones to display in the journey */
     milestones: Milestone[];
+    titlePrefix?: string;
+    titleHighlight?: string;
+    subtitle?: string;
   }
 
-  let { milestones }: Props = $props();
+  let {
+    milestones,
+    titlePrefix = 'Our',
+    titleHighlight = 'Journey',
+    subtitle = 'A timeline of innovation, milestones, and achievements that shaped our path forward.',
+  }: Props = $props();
 
   // -- Constants & Derived --
   const AUTOPLAY_INTERVAL_MS = 4000;
@@ -78,14 +86,12 @@
     <!-- Title Area -->
     <div class="mb-8 text-center md:mb-12">
       <h2 class="text-5xl font-extrabold tracking-tight text-base-content md:text-7xl">
-        Our <span class="text-primary">Journey</span>
+        {titlePrefix} <span class="text-primary">{titleHighlight}</span>
       </h2>
       <p
         class="mx-auto mt-4 max-w-2xl text-base font-medium text-base-content/80 md:text-xl"
       >
-        A timeline of innovation, milestones, and achievements<br
-          class="hidden md:block"
-        /> that shaped our path forward.
+        {subtitle}
       </p>
     </div>
 

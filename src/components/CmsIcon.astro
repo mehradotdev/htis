@@ -1,0 +1,49 @@
+---
+import {
+  ArrowRight,
+  Award,
+  Briefcase,
+  Building2,
+  CircleQuestionMark,
+  Code,
+  Factory,
+  HardHat,
+  HeartPulse,
+  Info,
+  Landmark,
+  Phone,
+  RadioTower,
+  Server,
+  Users,
+} from '@lucide/astro';
+
+interface Props {
+  name?: string;
+  className?: string;
+}
+
+const { name, className } = Astro.props;
+
+const iconMap = {
+  ArrowRight,
+  Award,
+  Briefcase,
+  Building2,
+  Code,
+  Factory,
+  HardHat,
+  HeartPulse,
+  Info,
+  Landmark,
+  Phone,
+  RadioTower,
+  Server,
+  Users,
+} as const;
+
+const Icon =
+  name && name in iconMap ? iconMap[name as keyof typeof iconMap] : CircleQuestionMark;
+---
+
+<Icon class={className} />
+
