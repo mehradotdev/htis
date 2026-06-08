@@ -1,0 +1,40 @@
+slug: healthcare-education
+title: Healthcare & Education
+shortTitle: Healthcare & Edu
+summary: Hospitals and academic institutions
+heroSubtitle: Bridging distances with high-capacity telemedicine networks, cloud-managed clinical platforms, and interactive smart classroom environments.
+iconName: HeartPulse
+techStack:
+  - Smart Classrooms
+  - Custom LMS Systems
+  - Telehealth Wireless
+  - HIPAA Secure Storage
+  - Encrypted WAN Networks
+  - Samsung Display Arrays
+challenges:
+  - title: Rigid Medical Privacy Rules
+    description: Engineering file systems and databases that fully satisfy strict healthcare privacy acts (like HIPAA) without slowing down physician access.
+  - title: Unequal Remote Network Quality
+    description: Providing crisp, high-definition educational streams and telehealth links to under-connected village clinics and rural classrooms.
+  - title: Unengaged Legacy Learning
+    description: Transitioning static local schools away from traditional chalkboards into immersive, interactive, and cloud-connected learning grids.
+capabilities:
+  - title: Interactive Smart Classrooms
+    description: Architecting and deploying large-scale connected learning rooms featuring digital displays, high-fidelity media, and customized software systems (such as the 5,000+ classroom Himachal Pradesh deployment).
+    bulletPoints:
+      - Samsung Interactive Display array installations and network calibrations
+      - Custom cloud Learning Management Software (LMS) custom-built by HTIS
+      - Reliable, high-bandwidth school campus Wi-Fi infrastructure layouts
+  - title: High-Capacity Telemedicine Networks
+    description: Connecting remote healthcare centers directly to expert urban medical hubs with stable, high-bandwidth streaming channels.
+    bulletPoints:
+      - High-definition low-latency video and audio transmission channels
+      - Integrated secure diagnostic feed routings (EEG, vital monitors)
+      - Point-to-point wireless or dedicated fiber backhaul infrastructure
+  - title: HIPAA-Compliant Patient Data Systems
+    description: Constructing secure, encrypted database environments designed to store, manage, and retrieve highly private electronic health records (EHR).
+    bulletPoints:
+      - AES-256 database-level encryption at rest and in transit
+      - Comprehensive audit logging and multi-factor staff logins
+      - Secure high-availability hosting options with automated hourly back-ups
+

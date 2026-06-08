@@ -1,0 +1,56 @@
+logo:
+  image: htis-logo.png
+  alt: HTIS Logo
+description: HTIS is a thriving community where innovators, professionals, and enthusiasts come together to share knowledge, collaborate, and grow.
+
+sections:
+  - heading: Services
+    links:
+      - label: Telecom
+        url: /telecom
+      - label: System Integration
+        url: /system-integration
+      - label: Software Development
+        url: /software
+      - label: Resource Management
+        url: /resourcing
+  - heading: Company
+    links:
+      - label: About us
+        url: /about
+      - label: Services
+        url: "#"
+      - label: Community
+        url: "#"
+      - label: Testimonial
+        url: "#"
+
+socials:
+  heading: Socials
+  links:
+    - label: Twitter
+      url: "#"
+      icon: Twitter
+    - label: Instagram
+      url: "#"
+      icon: Instagram
+    - label: LinkedIn
+      url: "#"
+      icon: LinkedIn
+
+contact:
+  heading: Contact
+  phone: "+123 456 7890"
+  email: support@htis.com
+
+copyright: © 2026. All rights reserved.
+legalLinks:
+  - label: Privacy Policy
+    url: /privacy
+  - label: Terms of Use
+    url: "#"
+  - label: Legal
+    url: "#"
+  - label: Site Map
+    url: "#"
+

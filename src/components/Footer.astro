@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import htisLogo from '~/assets/htis-logo.png';
+import { footer, getCmsAsset } from '~/data/cms';
 import TwitterIcon from './icons/TwitterIcon.astro';
 import InstagramIcon from './icons/InstagramIcon.astro';
 import LinkedInIcon from './icons/LinkedInIcon.astro';
@@ -12,6 +12,16 @@ interface Props {
 }
 
 const { overlap = false } = Astro.props;
+
+const footerLogo = getCmsAsset(footer.logo.image);
+const socialIconMap = {
+  Twitter: TwitterIcon,
+  Instagram: InstagramIcon,
+  LinkedIn: LinkedInIcon,
+} as const;
+
+const resolveSocialIcon = (iconName: string) =>
+  socialIconMap[iconName as keyof typeof socialIconMap] ?? LinkedInIcon;
 ---
 
 <div class={overlap ? '' : 'pt-12'}>
@@ -26,81 +36,66 @@ const { overlap = false } = Astro.props;
       >
         <!-- Logo and Description -->
         <aside class="col-span-1 md:col-span-6 lg:max-w-sm space-y-4">
-          <Image src={htisLogo} alt="HTIS Logo" width={120} class="object-contain" />
+          <Image src={footerLogo} alt={footer.logo.alt} width={120} class="object-contain" />
           <p class="mt-4 text-[15px] leading-relaxed text-base-content/60 max-w-sm">
-            HTIS is a thriving community where innovators, professionals, and enthusiasts
-            come together to share knowledge, collaborate, and grow.
+            {footer.description}
           </p>
         </aside>
 
-        <!-- Services Links -->
-        <nav class="col-span-1 md:col-span-3 lg:w-auto">
-          <h6 class="mb-3 text-[17px] font-semibold text-base-content">
-            Services
-          </h6>
-          <a href="/telecom" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Telecom</a>
-          <a href="/system-integration" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">System Integration</a>
-          <a href="/software" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Software Development</a>
-          <a href="/resourcing" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Resource Management</a>
-        </nav>
-
-        <!-- Company Links -->
-        <nav class="col-span-1 md:col-span-3 lg:w-auto">
-          <h6 class="mb-3 text-[17px] font-semibold text-base-content">
-            Company
-          </h6>
-          <a href="/about" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">About us</a>
-          <a href="#" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Services</a>
-          <a href="#" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Community</a>
-          <a href="#" class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1">Testimonial</a>
-        </nav>
+        {
+          footer.sections.map((section) => (
+            <nav class="col-span-1 md:col-span-3 lg:w-auto">
+              <h6 class="mb-3 text-[17px] font-semibold text-base-content">
+                {section.heading}
+              </h6>
+              {section.links.map((link) => (
+                <a
+                  href={link.url}
+                  class="mb-1.5 block text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          ))
+        }
 
         <!-- Social Links -->
         <nav class="col-span-1 md:col-span-3 lg:w-auto">
           <h6 class="mb-3 text-[17px] font-semibold text-base-content">
-            Socials
+            {footer.socials.heading}
           </h6>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mb-2 flex items-center gap-2 text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1"
-          >
-            <TwitterIcon class="h-4 w-4" />
-            <span>Twitter</span>
-          </a>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mb-2 flex items-center gap-2 text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1"
-          >
-            <InstagramIcon class="h-4 w-4" />
-            <span>Instagram</span>
-          </a>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mb-2 flex items-center gap-2 text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1"
-          >
-            <LinkedInIcon class="h-4 w-4" />
-            <span>LinkedIn</span>
-          </a>
+          {
+            footer.socials.links.map((link) => {
+              const Icon = resolveSocialIcon(link.icon);
+
+              return (
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mb-2 flex items-center gap-2 text-[15px] text-base-content/65 hover:text-primary transition-all duration-200 hover:translate-x-1"
+                >
+                  <Icon class="h-4 w-4" />
+                  <span>{link.label}</span>
+                </a>
+              );
+            })
+          }
         </nav>
 
         <!-- Contact Links -->
         <nav class="col-span-1 md:col-span-3 lg:w-auto">
           <h6 class="mb-3 text-[17px] font-semibold text-base-content">
-            Contact
+            {footer.contact.heading}
           </h6>
           <div class="mb-2 flex items-center gap-2 text-[15px] text-base-content/65">
             <PhoneIcon class="h-4 w-4 text-primary" />
-            <span>+123 456 7890</span>
+            <span>{footer.contact.phone}</span>
           </div>
           <div class="flex items-center gap-2 text-[15px] text-base-content/65">
             <EnvelopeIcon class="h-4 w-4 text-primary" />
-            <span>support@htis.com</span>
+            <span>{footer.contact.email}</span>
           </div>
         </nav>
       </div>
@@ -109,13 +104,19 @@ const { overlap = false } = Astro.props;
       <div
         class="flex flex-col items-center justify-between border-t border-base-200 pt-6 pb-2 text-sm text-base-content/60 md:flex-row gap-4"
       >
-        <p>© 2026. All rights reserved.</p>
+        <p>{footer.copyright}</p>
 
         <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-end">
-          <a href="/privacy" class="cursor-pointer hover:text-primary transition-colors duration-200">Privacy Policy</a>
-          <a href="#" class="cursor-pointer hover:text-primary transition-colors duration-200">Terms of Use</a>
-          <a href="#" class="cursor-pointer hover:text-primary transition-colors duration-200">Legal</a>
-          <a href="#" class="cursor-pointer hover:text-primary transition-colors duration-200">Site Map</a>
+          {
+            footer.legalLinks.map((link) => (
+              <a
+                href={link.url}
+                class="cursor-pointer hover:text-primary transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            ))
+          }
         </div>
       </div>
     </div>
