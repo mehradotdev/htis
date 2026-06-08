@@ -60,7 +60,7 @@
   {#each metrics as metric, i}
     <div class="flex flex-col gap-2">
       <div class="flex items-baseline text-primary">
-        <span class="text-5xl md:text-6xl lg:text-7xl font-light"
+        <span class="text-5xl md:text-6xl font-bold"
           >{#if metric.target >= 1000 && currentValues[i] >= 1000}{currentValues[
               i
             ].toLocaleString()}{:else}{currentValues[i]}{/if}<span

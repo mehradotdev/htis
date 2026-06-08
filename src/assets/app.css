@@ -332,6 +332,18 @@ details > summary::-webkit-details-marker {
   transition: transform 0.4s ease;
 }
 
+/* Mobile: push active card image up so description flows below it,
+   not over it. On md+ the overlay design is used instead. */
+@media (max-width: 767px) {
+  .team-member-card.active .team-img-wrap {
+    bottom: 4.5rem;
+    height: 58%;
+  }
+  .team-member-card.active .team-desc {
+    border-top: 1px solid oklch(0.6 0.16 150 / 0.15);
+  }
+}
+
 /* ──────────────────────────────────────
  * JOURNEY 3D FILM STRIP CAROUSEL
  *

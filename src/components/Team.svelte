@@ -77,14 +77,17 @@
             </p>
           </div>
 
-          <!-- Description Overlay over the image with text highlighter effect -->
+          <!-- Description: below image on mobile, overlay on desktop -->
           {#if activeIndex === index}
             <div
               in:fade={{ duration: 300, delay: 150 }}
-              class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-full max-w-[85%] text-center pointer-events-none"
+              class="team-desc absolute z-20 pointer-events-none text-center
+                left-0 right-0 bottom-0 bg-base-200/85 dark:bg-base-300/85 backdrop-blur-sm px-3 py-2.5
+                md:left-1/2 md:right-auto md:-translate-x-1/2 md:bottom-6 md:w-full md:max-w-[85%] md:bg-transparent md:dark:bg-transparent md:backdrop-blur-none md:p-0"
             >
               <span
-                class="bg-base-100/60 dark:bg-base-200/60 text-base-content text-sm sm:text-base font-semibold px-2.5 py-1.5 rounded-md shadow-md leading-[1.8] inline box-decoration-clone"
+                class="text-base-content text-xs sm:text-sm font-semibold leading-relaxed
+                  md:text-sm md:bg-base-100/60 md:dark:bg-base-200/60 md:px-2.5 md:py-1.5 md:rounded-md md:shadow-md md:leading-[1.8] md:inline md:box-decoration-clone"
               >
                 {member.desc}
               </span>
@@ -93,12 +96,12 @@
 
           <!-- Image Content -->
           <div
-            class="pointer-events-none absolute bottom-0 flex h-[80%] w-full items-end justify-center px-2 text-center md:h-[75%] lg:px-4"
+            class="team-img-wrap pointer-events-none absolute bottom-0 flex h-[80%] w-full items-end justify-center px-2 text-center md:h-[75%] lg:px-4"
           >
             <img
               src={member.img}
               alt={member.name}
-              class="team-img h-full w-auto max-w-none origin-bottom object-contain transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+              class="team-img h-full w-auto max-w-none origin-bottom object-contain transition-all duration-800 ease-[cubic-bezier(0.25,1,0.5,1)]"
             />
           </div>
         </div>

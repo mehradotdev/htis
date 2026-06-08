@@ -67,7 +67,7 @@
     {#each metrics as metric, i}
       <div class="flex flex-col gap-2">
         <div class="flex items-baseline text-primary">
-          <span class="text-5xl md:text-6xl lg:text-7xl font-light"
+          <span class="text-5xl md:text-6xl font-bold"
             >{currentValues[i]}<span class="text-4xl md:text-5xl font-light"
               >{metric.suffix}</span
             ></span
