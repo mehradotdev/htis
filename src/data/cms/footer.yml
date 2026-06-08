@@ -1,8 +1,8 @@
 logo:
   image: htis-logo.png
   alt: HTIS Logo
-description: HTIS is a thriving community where innovators, professionals, and enthusiasts come together to share knowledge, collaborate, and grow.
-
+description: HTIS is a thriving community where innovators, professionals, and
+  enthusiasts come together to share knowledge, collaborate, and grow.
 sections:
   - heading: Services
     links:
@@ -24,7 +24,6 @@ sections:
         url: "#"
       - label: Testimonial
         url: "#"
-
 socials:
   heading: Socials
   links:
@@ -37,12 +36,10 @@ socials:
     - label: LinkedIn
       url: "#"
       icon: LinkedIn
-
 contact:
   heading: Contact
-  phone: "+123 456 7890"
-  email: support@htis.com
-
+  phone: "+123345446"
+  email: info@htis.com
 copyright: © 2026. All rights reserved.
 legalLinks:
   - label: Privacy Policy
@@ -53,4 +50,3 @@ legalLinks:
     url: "#"
   - label: Site Map
     url: "#"
-
