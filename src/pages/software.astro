@@ -5,7 +5,7 @@ import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import SoftwarePortfolio from '~/components/software/SoftwarePortfolio.svelte';
 import SoftwareEngineeringStack from '~/components/software/SoftwareEngineeringStack.astro';
-import SoftwareArchitecturalPrinciples from '~/components/software/SoftwareArchitecturalPrinciples.astro';
+import SoftwareArchitecturalPrinciples from '~/components/software/SoftwareArchitecturalPrinciples.svelte';
 
 // Structured data
 import { softwareCapabilities } from '~/data/pageDataSoftware';
@@ -210,7 +210,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
     <SoftwareEngineeringStack />
 
     <!-- 4th Section: Architectural Principles -->
-    <SoftwareArchitecturalPrinciples />
+    <SoftwareArchitecturalPrinciples bgImageSrc={bgImage.src} client:visible />
 
     <!-- 5th Section: Built to Execute & Synergy Pillars -->
     <section class="relative bg-base-200/50 pt-24">
