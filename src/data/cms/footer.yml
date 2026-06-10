@@ -28,18 +28,24 @@ socials:
   heading: Socials
   links:
     - label: Twitter
-      url: "#"
+      url: https://x.com/Htis_Telecom
       icon: Twitter
     - label: Instagram
-      url: "#"
+      url: https://www.instagram.com/htis_telecom/
       icon: Instagram
     - label: LinkedIn
-      url: "#"
+      url: https://www.linkedin.com/company/htis-telecom/
       icon: LinkedIn
+    - label: Facebook
+      url: https://www.facebook.com/htistelecomindia
+      icon: Instagram
+    - label: Youtube
+      url: https://www.youtube.com/@HTISTelecom
+      icon: Twitter
 contact:
   heading: Contact
-  phone: "+123345446"
-  email: help@htis.com
+  phone: +91 86999 54005
+  email: info@htis.com
 copyright: © 2026. All rights reserved.
 legalLinks:
   - label: Privacy Policy
