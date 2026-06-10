@@ -2,10 +2,10 @@ hero:
   backgroundImage: src/assets/hero-bg.png
   titlePrefix: Delivering Excellence in
   rotatingWords:
-    - System Integrations
-    - Telecommunications
+    - System Integration
+    - Telecommunication
     - Software Development
-    - Manpower Services
+    - Workforce Management
   subtitle: Reliable expertise across infrastructure, technology, and people.
   ctaLabel: Contact Us
   ctaUrl: "#contact"
@@ -23,11 +23,11 @@ hero:
       alt: Nokia
     - image: src/assets/logo-ericsson.png
       alt: Ericsson
-
 journey:
   titlePrefix: Our
   titleHighlight: Journey
-  subtitle: A timeline of innovation, milestones, and achievements that shaped our path forward.
+  subtitle: A timeline of innovation, milestones, and achievements that shaped our
+    path forward.
   images:
     - src/assets/our-journey-1.png
     - src/assets/our-journey-2.png
@@ -56,31 +56,40 @@ journey:
       description: Registered as an official Cisco Service Partner.
     - year: "2014"
       title: Jio 4G Roll-out
-      description: Cisco Delivery Jio 4G Roll-out started, delivering over half of India North and West, and deploying lacs of routers until 2019.
+      description: Cisco Delivery Jio 4G Roll-out started, delivering over half of
+        India North and West, and deploying lacs of routers until 2019.
     - year: "2017"
       title: Global PSSA with Cisco
-      description: Signed Global PSSA with Cisco as a Niche Category Partner in the field of Service Provider (SP) domain.
+      description: Signed Global PSSA with Cisco as a Niche Category Partner in the
+        field of Service Provider (SP) domain.
     - year: "2017"
       title: Global Expansion
-      description: Extended our services to Sri Lanka, Bangladesh, South Africa, and the broader Africa region.
+      description: Extended our services to Sri Lanka, Bangladesh, South Africa, and
+        the broader Africa region.
     - year: 2018-19
       title: NTT Data Partnership
-      description: Signed a global partnership with NTT data in the UK and deployed 15+ resources based in London for BTS testing.
+      description: Signed a global partnership with NTT data in the UK and deployed
+        15+ resources based in London for BTS testing.
     - year: "2019"
       title: UN Peace Keeping Project
-      description: Delivered a United Nations Peace Keeping Project in the Central African Republic in partnership with Cisco.
+      description: Delivered a United Nations Peace Keeping Project in the Central
+        African Republic in partnership with Cisco.
     - year: "2020"
       title: WFMS Foundation
-      description: Laid the foundation of wfms during the COVID lockdown, evolving into a Line of Business for Software Development.
+      description: Laid the foundation of wfms during the COVID lockdown, evolving
+        into a Line of Business for Software Development.
     - year: "2020"
       title: System Integration
-      description: Started envisioning System Integration post-COVID and hired a dedicated sales team across North India.
+      description: Started envisioning System Integration post-COVID and hired a
+        dedicated sales team across North India.
     - year: "2021"
       title: 100Cr Business Milestone
-      description: Within 1 year of our new vision, we successfully delivered over 100Cr in business.
+      description: Within 1 year of our new vision, we successfully delivered over
+        100Cr in business.
     - year: "2021"
       title: NHM Primary Health Centres
-      description: IT-fied 400 NHM Primary Health Centres in Himachal Pradesh during the 2020 lockdown.
+      description: IT-fied 400 NHM Primary Health Centres in Himachal Pradesh during
+        the 2020 lockdown.
     - year: 2022-24
       title: 5G Swap for Jio
       description: Executed 5G Swap for Jio across more than 25,000 sites.
@@ -92,34 +101,40 @@ journey:
       description: Received a prestigious award from Cisco.
     - year: "2024"
       title: Smart Classrooms Solution
-      description: Delivered a 5000+ Smart Classrooms Solution in Himachal Pradesh with Samsung hardware and a Learning Management Solution developed by HTIS.
+      description: Delivered a 5000+ Smart Classrooms Solution in Himachal Pradesh
+        with Samsung hardware and a Learning Management Solution developed by
+        HTIS.
     - year: "2026"
       title: wfms 2.0 Launch
       description: Scheduled launch of the next generation of our wfms platform, wfms 2.0.
-
 team:
   backgroundImage: src/assets/team-member-bg.png
   meetTeamImage: src/assets/our-journey-2.png
   heading: The Visionary Core
-  description: Our leadership team brings together decades of experience in telecommunications, software engineering, and systems integration, guiding HTIS toward continuous innovation and excellence.
+  description: Our leadership team brings together decades of experience in
+    telecommunications, software engineering, and systems integration, guiding
+    HTIS toward continuous innovation and excellence.
   ctaTitle: Meet the Team
   ctaLabel: Learn More
   ctaUrl: /about#team
   members:
     - name: Aditya Kaushik
       role: Managing Director
-      desc: Sets the company’s long-term goals and ensures we stay a leader in the technology industry.
+      desc: Sets the company’s long-term goals and ensures we stay a leader in the
+        technology industry.
       image: src/assets/tm_Aditya_Kaushik.png
     - name: Sandeep Aswal
       role: Chief Operating Officer
-      desc: Manages daily business tasks to make sure all large projects are completed successfully and on time.
+      desc: Manages daily business tasks to make sure all large projects are completed
+        successfully and on time.
       image: src/assets/tm_Sandeep_Aswal.png
     - name: Amit Dhingra
       role: Senior Vice President
-      desc: Leads major company projects and manages relationships with our most important partners.
+      desc: Leads major company projects and manages relationships with our most
+        important partners.
       image: src/assets/tm_Amit_Dhingra.png
     - name: Arvind Sharma
       role: Head - Centre of Excellence
-      desc: Sets the high technical standards for our services and finds new ways to solve technology problems.
+      desc: Sets the high technical standards for our services and finds new ways to
+        solve technology problems.
       image: src/assets/tm_Arvind_Sharma.png
-
