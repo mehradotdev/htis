@@ -6,17 +6,11 @@ import Footer from '~/components/Footer.astro';
 import TelecomCapabilities from '~/components/telecom/TelecomCapabilities.svelte';
 import TelecomExtraSections from '~/components/telecom/TelecomExtraSections.astro';
 
-import heroBg from '~/assets/lob-telecom-hero-bg.png';
-import bgImage from '~/assets/team-member-bg.png';
-import cap1 from '~/assets/lob-telecom-capability-1.png';
-import cap2 from '~/assets/lob-telecom-capability-2.png';
-import cap3 from '~/assets/lob-telecom-capability-3.png';
 import { telecomCapabilities } from '~/data/pageDataTelecom';
-
-const capabilitiesImages = [cap1.src, cap2.src, cap3.src];
+import { telecom } from '~/data/cms';
 ---
 
-<Layout title="Telecom - HTIS">
+<Layout title={telecom.title}>
   <div class="relative w-full overflow-clip">
     <Navbar />
 
@@ -25,7 +19,7 @@ const capabilitiesImages = [cap1.src, cap2.src, cap3.src];
       <!-- Background Image -->
       <div class="absolute inset-0 z-0">
         <Image
-          src={heroBg}
+          src={telecom.hero.backgroundImage}
           alt=""
           aria-hidden="true"
           class="h-full w-full object-cover object-right lg:object-center"
@@ -49,17 +43,16 @@ const capabilitiesImages = [cap1.src, cap2.src, cap3.src];
           <h1
             class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-6xl"
           >
-            Connecting the next billion-intelligent Network for tomorrow
+            {telecom.hero.title}
           </h1>
           <p class="mb-10 text-lg text-base-content/80 md:text-xl">
-            Seamlessly integrating turnkey physical infrastructure and cognitive network
-            intelligence to build hyper-scale, future-ready networks.
+            {telecom.hero.subtitle}
           </p>
           <a
-            href="/#contact"
+            href={telecom.hero.ctaUrl}
             class="btn rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
           >
-            Contact Us
+            {telecom.hero.ctaLabel}
           </a>
         </div>
       </div>
@@ -72,7 +65,7 @@ const capabilitiesImages = [cap1.src, cap2.src, cap3.src];
         class="pointer-events-none absolute inset-0 z-0 opacity-40 mix-blend-luminosity dark:mix-blend-overlay"
       >
         <Image
-          src={bgImage}
+          src={telecom.capabilities.backgroundImage}
           alt=""
           aria-hidden="true"
           class="h-full w-full object-cover object-center"
@@ -87,17 +80,16 @@ const capabilitiesImages = [cap1.src, cap2.src, cap3.src];
       <div class="relative z-10 container mx-auto px-6">
         <div class="mx-auto mb-10 max-w-3xl text-center">
           <h2 class="mb-6 text-4xl font-bold text-base-content md:text-5xl">
-            Our Capabilities
+            {telecom.capabilities.heading}
           </h2>
           <p class="text-lg text-base-content/70">
-            A structured approach to deploying, optimizing, and supporting telecom
-            networks across every stage.
+            {telecom.capabilities.description}
           </p>
         </div>
 
         <TelecomCapabilities
           capabilities={telecomCapabilities}
-          images={capabilitiesImages}
+          images={telecom.capabilities.images}
           client:visible
         />
       </div>

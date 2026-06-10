@@ -10,45 +10,18 @@ import SoftwareArchitecturalPrinciples from '~/components/software/SoftwareArchi
 // Structured data
 import { softwareCapabilities } from '~/data/pageDataSoftware';
 
-// Asset Imports
-import heroBg from '~/assets/lob-software-hero-bg.png';
-import heroImg from '~/assets/lob-software-hero-img.png';
-import bgImage from '~/assets/team-member-bg.png';
 import { RadioTower, Server, Users, ArrowRight } from '@lucide/astro';
-
-// Tab 1: SaaS images
-import saas1 from '~/assets/lob-software-sw-port-saas-1.png';
-import saas2 from '~/assets/lob-software-sw-port-saas-2.png';
-import saas3 from '~/assets/lob-software-sw-port-saas-3.png';
-
-// Tab 2: Enterprise images
-import ent1 from '~/assets/lob-software-sw-port-enterprise-1.png';
-import ent2 from '~/assets/lob-software-sw-port-enterprise-2.png';
-import ent3 from '~/assets/lob-software-sw-port-enterprise-3.png';
-import ent4 from '~/assets/lob-software-sw-port-enterprise-4.png';
-
-// Tab 3: Public sector images
-import pub1 from '~/assets/lob-software-sw-port-public-1.png';
-import pub2 from '~/assets/lob-software-sw-port-public-2.png';
-import pub3 from '~/assets/lob-software-sw-port-public-3.png';
 
 // New Section Imports
 import SoftwareOnboarding from '~/components/software/SoftwareOnboarding.astro';
 import SoftwareCaseStudies from '~/components/software/SoftwareCaseStudies.svelte';
 import SoftwareMetrics from '~/components/software/SoftwareMetrics.svelte';
+import { software } from '~/data/cms';
 
-import caseStudy1 from '~/assets/lob-software-case-study-1.png';
-import caseStudy2 from '~/assets/lob-software-case-study-2.png';
-import caseStudy3 from '~/assets/lob-software-case-study-3.png';
-
-// Resolve image paths for Svelte 5 component
-const saasImages = [saas1.src, saas2.src, saas3.src];
-const enterpriseImages = [ent1.src, ent2.src, ent3.src, ent4.src];
-const publicImages = [pub1.src, pub2.src, pub3.src];
-const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
+const iconMap = { RadioTower, Server, Users };
 ---
 
-<Layout title="Software Development & SaaS - HTIS">
+<Layout title={software.title}>
   <div class="relative w-full overflow-clip">
     <Navbar />
 
@@ -57,7 +30,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
       <!-- Background Graphic Layer -->
       <div class="absolute inset-0 z-0">
         <Image
-          src={heroBg}
+          src={software.hero.backgroundImage}
           alt=""
           aria-hidden="true"
           class="h-full w-full object-cover object-center opacity-15"
@@ -89,35 +62,31 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
             <h1
               class="text-4xl leading-tight font-extrabold tracking-tight text-base-content md:text-5xl lg:text-6xl"
             >
-              Digital Intelligence:<br />
+              {software.hero.title}<br />
               <span
                 class="bg-linear-to-r from-primary to-[#60B68C] bg-clip-text text-transparent"
-                >Enterprise SaaS</span
+                >{software.hero.highlight}</span
               >
             </h1>
 
             <p
               class="max-w-2xl text-lg leading-relaxed font-medium text-base-content/85 md:text-xl"
             >
-              We architect the resilient software ecosystems that drive modern enterprise
-              and government operations. By merging the agility of on-demand engineering
-              with the stability of our flagship SaaS products, we deliver secure,
-              high-compliance digital assets tailored to the most demanding regulatory
-              environments.
+              {software.hero.subtitle}
             </p>
 
             <div class="mt-4 flex flex-wrap gap-4">
               <a
-                href="/#contact"
+                href={software.hero.ctaUrl}
                 class="btn rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
               >
-                Contact Us
+                {software.hero.ctaLabel}
               </a>
               <a
-                href="#portfolio"
+                href={software.hero.secondaryCtaUrl}
                 class="btn rounded-lg border-base-content/50 px-12 text-xl font-semibold tracking-wide text-base-content btn-ghost btn-lg hover:bg-base-200/50"
               >
-                Explore Portfolio
+                {software.hero.secondaryCtaLabel}
               </a>
             </div>
           </div>
@@ -125,7 +94,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
           <!-- Mobile-only image (inside flow) -->
           <div class="flex items-center justify-center lg:hidden">
             <Image
-              src={heroImg}
+              src={software.hero.foregroundImage!}
               alt="HTIS Software Mockup Showcase"
               class="animate-float h-auto w-full max-w-md object-contain drop-shadow-2xl"
               loading="eager"
@@ -148,7 +117,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
           class="animate-float absolute bottom-0 left-1/2 z-10 h-[90%] -translate-x-1/2"
         >
           <Image
-            src={heroImg}
+            src={software.hero.foregroundImage!}
             alt="HTIS Software Mockup Showcase"
             class="h-full w-auto max-w-none object-contain drop-shadow-2xl"
             loading="eager"
@@ -164,7 +133,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
         class="pointer-events-none absolute inset-0 z-0 opacity-20 mix-blend-luminosity dark:mix-blend-overlay"
       >
         <Image
-          src={bgImage}
+          src={software.portfolio.backgroundImage}
           alt=""
           aria-hidden="true"
           class="h-full w-full object-cover object-center"
@@ -187,20 +156,19 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
           <h2
             class="mb-6 text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
           >
-            Converged Software Portfolio
+            {software.portfolio.heading}
           </h2>
           <p class="text-lg font-medium text-base-content/70">
-            Enterprise SaaS & Bespoke Engineering - An interactive look at our proprietary
-            products and requirement-driven engineering capabilities.
+            {software.portfolio.description}
           </p>
         </div>
 
         <!-- Svelte 5 Interactive Tabbed Showcase Island -->
         <SoftwarePortfolio
           capabilities={softwareCapabilities}
-          saasImages={saasImages}
-          enterpriseImages={enterpriseImages}
-          publicImages={publicImages}
+          saasImages={software.portfolio.saasImages}
+          enterpriseImages={software.portfolio.enterpriseImages}
+          publicImages={software.portfolio.publicImages}
           client:visible
         />
       </div>
@@ -210,14 +178,17 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
     <SoftwareEngineeringStack />
 
     <!-- 4th Section: Architectural Principles -->
-    <SoftwareArchitecturalPrinciples bgImageSrc={bgImage.src} client:visible />
+    <SoftwareArchitecturalPrinciples
+      bgImageSrc={software.portfolio.backgroundImage.src}
+      client:visible
+    />
 
     <!-- 5th Section: Built to Execute & Synergy Pillars -->
     <section class="relative bg-base-200/50 pt-24">
       <div class="container mx-auto px-6">
         <div class="mb-10 max-w-2xl">
           <h2 class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl">
-            Built to Execute.<br />Scaled to Deliver.
+            <Fragment set:html={software.execution.headingHtml} />
           </h2>
         </div>
 
@@ -227,77 +198,43 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
         <div
           class="mt-16 flex flex-col border-t-2 border-base-content/20 py-12 md:flex-row md:gap-x-6 lg:mt-20 lg:gap-x-10 lg:py-16"
         >
-          <!-- Pillar 1: Carrier-Grade Network Automation -->
-          <div class="flex flex-1 flex-col gap-4 pb-12 md:pb-0">
-            <div class="mb-2 flex items-start justify-between">
-              <RadioTower class="h-12 w-12 text-primary" />
-              <a
-                href="/telecom"
-                aria-label="Explore Telecom Services"
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
-              >
-                <ArrowRight class="h-5 w-5" stroke-width="2.5" />
-              </a>
-            </div>
-            <h3 class="text-2xl font-medium">Carrier-Grade Network Automation</h3>
-            <p class="text-justify text-lg text-base-content/70">
-              We engineer custom AMC and Complaint Management Dashboards that convert
-              complex network telemetry into actionable insights. By bridging the gap
-              between software logic and physical layer execution, our tools optimize
-              field workflows, streamline maintenance tracking, and maximize operational
-              continuity.
-            </p>
-          </div>
-
-          <!-- Divider -->
-          <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
-
-          <!-- Pillar 2: Secure Infrastructure Orchestration -->
-          <div
-            class="flex flex-1 flex-col gap-4 border-y-2 border-base-content/20 py-12 md:border-y-0 md:py-0"
-          >
-            <div class="mb-2 flex items-start justify-between">
-              <Server class="h-12 w-12 text-primary" />
-              <a
-                href="/system-integration"
-                aria-label="Explore System Integration"
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
-              >
-                <ArrowRight class="h-5 w-5" stroke-width="2.5" />
-              </a>
-            </div>
-            <h3 class="text-2xl font-medium">Secure Infrastructure Orchestration</h3>
-            <p class="text-justify text-lg text-base-content/70">
-              We bridge the gap between enterprise hardware and cloud software. Built for
-              seamless deployment on secure AWS cloud servers, our custom applications
-              feature strict Role-Based Access Control (RBAC) to integrate perfectly into
-              zero-trust data centre architectures.
-            </p>
-          </div>
-
-          <!-- Divider -->
-          <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
-
-          <!-- Pillar 3: High-Volume Human Capital Automation -->
-          <div class="flex flex-1 flex-col gap-4 pt-12 md:pt-0">
-            <div class="mb-2 flex items-start justify-between">
-              <Users class="h-12 w-12 text-primary" />
-              <a
-                href="/resourcing"
-                aria-label="Explore Resource Management"
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
-              >
-                <ArrowRight class="h-5 w-5" stroke-width="2.5" />
-              </a>
-            </div>
-            <h3 class="text-2xl font-medium">High-Volume Human Capital Automation</h3>
-            <p class="text-justify text-lg text-base-content/70">
-              Our proprietary wfms™ ERP effortlessly supports 3,000 daily active users,
-              fully automating Attendance, Claims, Tasks, and Payroll Engines via web and
-              mobile. By digitizing compliance, we eliminate operational risk and drive
-              long-term workforce retention.
-            </p>
-          </div>
+          {
+            software.execution.pillars.map((pillar, index) => {
+              const Icon = iconMap[pillar.iconName as keyof typeof iconMap];
+              return (
+                <>
+                  {index > 0 && (
+                    <div class="hidden w-[2px] bg-base-content/20 md:block" />
+                  )}
+                  <div
+                    class:list={[
+                      'flex flex-1 flex-col gap-4',
+                      index === 0 && 'pb-12 md:pb-0',
+                      index > 0 &&
+                        index < software.execution.pillars.length - 1 &&
+                        'border-y-2 border-base-content/20 py-12 md:border-y-0 md:py-0',
+                      index === software.execution.pillars.length - 1 && 'pt-12 md:pt-0',
+                    ]}
+                  >
+                    <div class="mb-2 flex items-start justify-between">
+                      {Icon && <Icon class="h-12 w-12 text-primary" />}
+                      <a
+                        href={pillar.url ?? '#'}
+                        aria-label={pillar.ariaLabel ?? pillar.title}
+                        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+                      >
+                        <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+                      </a>
+                    </div>
+                    <h3 class="text-2xl font-medium">{pillar.title}</h3>
+                    <p class="text-justify text-lg text-base-content/70">
+                      {pillar.description}
+                    </p>
+                  </div>
+                </>
+              );
+            })
+          }
         </div>
       </div>
     </section>
@@ -306,7 +243,7 @@ const caseStudyImages = [caseStudy1.src, caseStudy2.src, caseStudy3.src];
     <SoftwareOnboarding />
 
     <!-- 7th Section: Strategic Case Studies & Technical Impact -->
-    <SoftwareCaseStudies images={caseStudyImages} client:visible />
+    <SoftwareCaseStudies images={software.caseStudyImages} client:visible />
 
     <!-- Footer Section -->
     <div class="bg-base-200/50">

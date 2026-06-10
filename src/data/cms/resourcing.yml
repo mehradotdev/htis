@@ -1,0 +1,43 @@
+title: Resourcing - HTIS
+hero:
+  backgroundImage: lob-resourcing-hero-left-bg.png
+  title: 'Full-Spectrum Resourcing: From Field to Core'
+  subtitle: A strategic approach to deploying specialized white-collar and technical manpower at scale. We provide the stable human capital required for large-scale rollouts, ensuring full regulatory compliance and proactive lifecycle management
+  ctaLabel: Contact Us
+  ctaUrl: /#contact
+  carouselImages:
+    - lob-resourcing-hero-right-bg-1.png
+    - lob-resourcing-hero-right-bg-2.png
+    - lob-resourcing-hero-right-bg-3.png
+    - lob-resourcing-hero-right-bg-4.png
+    - lob-resourcing-hero-right-bg-5.png
+capabilities:
+  backgroundImage: team-member-bg.png
+  heading: Our Capabilities - Strategic Human Capital Deployment
+  description: A structured, compliance-driven framework for engineering and operational talent at scale.
+  items:
+    - iconName: Server
+      title: Specialized riggers and MSc
+      desc: level electricians for precise on-site installation and field execution.
+    - iconName: Network
+      title: Cisco-Certified Engineering
+      desc: Niche CCNA and ACI-certified professionals for complex network deployment and optimization.
+    - iconName: Cloud
+      title: Data Center & Managed IT
+      desc: Specialized technical support for critical IT infrastructure, including high-density server environments.
+    - iconName: ShieldCheck
+      title: Strategic Operations Support
+      desc: Dedicated site and operations coordinators ensuring smooth execution through clear process adherence.
+    - iconName: Cctv
+      title: Specialized Facility Management
+      desc: Reliable manpower for long-term operational support in commercial and real estate-linked environments.
+    - iconName: Monitor
+      title: Security & Safety Management
+      desc: Expert teams for airport security and site safety, adhering to high HSW/safety compliance standards.
+    - iconName: Briefcase
+      title: Industry Specific Staffing
+      desc: Domain-expert technical roles for ministries, medical sectors, and large-scale government projects.
+    - iconName: UserPlus
+      title: Cross-Functional Technical Skills
+      desc: Scalable access to thousands of specialized technical and non-telecom roles tailored to your project needs.
+      colSpan: true

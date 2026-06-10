@@ -1,7 +1,11 @@
 import footerYaml from './footer.yml';
 import homeYaml from './home.yml';
 import navigationYaml from './navigation.yml';
+import resourcingYaml from './resourcing.yml';
 import siteYaml from './site.yml';
+import softwareYaml from './software.yml';
+import systemIntegrationYaml from './system-integration.yml';
+import telecomYaml from './telecom.yml';
 
 type AssetModule = { default?: ImageMetadata } | ImageMetadata;
 
@@ -109,6 +113,109 @@ interface HomeYaml {
   };
 }
 
+interface PageHeroYaml {
+  backgroundImage: string;
+  foregroundImage?: string;
+  title: string;
+  highlight?: string;
+  subtitle: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaUrl?: string;
+  carouselImages?: string[];
+}
+
+interface ExecutionPillarYaml {
+  iconName: string;
+  title: string;
+  description: string;
+  url?: string;
+  ariaLabel?: string;
+}
+
+interface ExecutionYaml {
+  heading: string;
+  pillars: ExecutionPillarYaml[];
+}
+
+interface PartnerTabYaml {
+  title: string;
+  subtitle: string;
+  description: string;
+  partners: Array<{ name: string; logo?: string }>;
+}
+
+interface CaseStudyYaml {
+  title: string;
+  description?: string;
+  ctaLabel: string;
+  ctaUrl: string;
+}
+
+interface TelecomYaml {
+  title: string;
+  hero: PageHeroYaml;
+  capabilities: {
+    backgroundImage: string;
+    heading: string;
+    description: string;
+    images: string[];
+  };
+}
+
+interface SystemIntegrationYaml {
+  title: string;
+  hero: PageHeroYaml;
+  strategicPillars: {
+    backgroundImage: string;
+    centerImage: string;
+    heading: string;
+  };
+  partnerEcosystem: {
+    tabs: PartnerTabYaml[];
+  };
+  execution: ExecutionYaml;
+  deployments: {
+    heading: string;
+    image: string;
+    imageAlt: string;
+    featured: CaseStudyYaml;
+    items: CaseStudyYaml[];
+  };
+}
+
+interface SoftwareYaml {
+  title: string;
+  hero: PageHeroYaml;
+  portfolio: {
+    backgroundImage: string;
+    heading: string;
+    description: string;
+    saasImages: string[];
+    enterpriseImages: string[];
+    publicImages: string[];
+  };
+  execution: ExecutionYaml;
+  caseStudyImages: string[];
+}
+
+interface ResourcingYaml {
+  title: string;
+  hero: PageHeroYaml;
+  capabilities: {
+    backgroundImage: string;
+    heading: string;
+    description: string;
+    items: Array<{
+      iconName: string;
+      title: string;
+      desc: string;
+      colSpan?: boolean;
+    }>;
+  };
+}
+
 const industryModules = import.meta.glob<IndustryData>('./industries/*.yml', {
   eager: true,
   import: 'default',
@@ -207,6 +314,95 @@ export const home = (() => {
   };
 })();
 
+function resolveHero(hero: PageHeroYaml) {
+  return {
+    ...hero,
+    backgroundImage: getCmsAsset(hero.backgroundImage),
+    foregroundImage: hero.foregroundImage ? getCmsAsset(hero.foregroundImage) : undefined,
+    carouselImages: hero.carouselImages?.map(getCmsAssetSrc) ?? [],
+  };
+}
+
+function resolveExecution(execution: ExecutionYaml) {
+  return {
+    ...execution,
+    headingHtml: execution.heading.replace(/\n/g, '<br />'),
+  };
+}
+
+export const telecom = (() => {
+  const data = telecomYaml as TelecomYaml;
+
+  return {
+    ...data,
+    hero: resolveHero(data.hero),
+    capabilities: {
+      ...data.capabilities,
+      backgroundImage: getCmsAsset(data.capabilities.backgroundImage),
+      images: data.capabilities.images.map(getCmsAssetSrc),
+    },
+  };
+})();
+
+export const systemIntegration = (() => {
+  const data = systemIntegrationYaml as SystemIntegrationYaml;
+
+  return {
+    ...data,
+    hero: resolveHero(data.hero),
+    strategicPillars: {
+      ...data.strategicPillars,
+      backgroundImage: getCmsAsset(data.strategicPillars.backgroundImage),
+      centerImageSrc: getCmsAssetSrc(data.strategicPillars.centerImage),
+    },
+    partnerEcosystem: {
+      tabs: data.partnerEcosystem.tabs.map((tab) => ({
+        ...tab,
+        partners: tab.partners.map((partner) => ({
+          name: partner.name,
+          logoSrc: partner.logo ? getCmsAssetSrc(partner.logo) : undefined,
+        })),
+      })),
+    },
+    execution: resolveExecution(data.execution),
+    deployments: {
+      ...data.deployments,
+      image: getCmsAsset(data.deployments.image),
+    },
+  };
+})();
+
+export const software = (() => {
+  const data = softwareYaml as SoftwareYaml;
+
+  return {
+    ...data,
+    hero: resolveHero(data.hero),
+    portfolio: {
+      ...data.portfolio,
+      backgroundImage: getCmsAsset(data.portfolio.backgroundImage),
+      saasImages: data.portfolio.saasImages.map(getCmsAssetSrc),
+      enterpriseImages: data.portfolio.enterpriseImages.map(getCmsAssetSrc),
+      publicImages: data.portfolio.publicImages.map(getCmsAssetSrc),
+    },
+    execution: resolveExecution(data.execution),
+    caseStudyImages: data.caseStudyImages.map(getCmsAssetSrc),
+  };
+})();
+
+export const resourcing = (() => {
+  const data = resourcingYaml as ResourcingYaml;
+
+  return {
+    ...data,
+    hero: resolveHero(data.hero),
+    capabilities: {
+      ...data.capabilities,
+      backgroundImage: getCmsAsset(data.capabilities.backgroundImage),
+    },
+  };
+})();
+
 export const industriesData = Object.values(industryModules).sort((a, b) =>
   a.slug.localeCompare(b.slug),
 );
@@ -220,18 +416,15 @@ const industryOrder = [
   'real-estate-infrastructure-smart-spaces',
 ];
 
-export const orderedIndustriesData = [...industriesData].sort(
-  (a, b) => {
-    const aIndex = industryOrder.indexOf(a.slug);
-    const bIndex = industryOrder.indexOf(b.slug);
+export const orderedIndustriesData = [...industriesData].sort((a, b) => {
+  const aIndex = industryOrder.indexOf(a.slug);
+  const bIndex = industryOrder.indexOf(b.slug);
 
-    return (
-      (aIndex === -1 ? Number.MAX_SAFE_INTEGER : aIndex) -
-        (bIndex === -1 ? Number.MAX_SAFE_INTEGER : bIndex) ||
-      a.title.localeCompare(b.title)
-    );
-  },
-);
+  return (
+    (aIndex === -1 ? Number.MAX_SAFE_INTEGER : aIndex) -
+      (bIndex === -1 ? Number.MAX_SAFE_INTEGER : bIndex) || a.title.localeCompare(b.title)
+  );
+});
 
 export const industryNavItems: CmsNavItem[] = orderedIndustriesData.map((industry) => ({
   title: industry.title,

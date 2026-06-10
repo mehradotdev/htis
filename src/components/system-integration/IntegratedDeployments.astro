@@ -1,7 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import { ArrowRight } from '@lucide/astro';
-import caseStudyImg from '~/assets/lob-system-case-study-1.png';
+
+interface CaseStudyItem {
+  title: string;
+  description?: string;
+  ctaLabel: string;
+  ctaUrl: string;
+}
+
+interface Props {
+  heading: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  featured: CaseStudyItem;
+  items: CaseStudyItem[];
+}
+
+const { heading, image, imageAlt, featured, items } = Astro.props;
 ---
 
 <section class="relative bg-base-200/50 py-24">
@@ -9,7 +25,7 @@ import caseStudyImg from '~/assets/lob-system-case-study-1.png';
     <!-- Header -->
     <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <h2 class="text-3xl font-bold text-base-content md:text-4xl">
-        Integrated Infrastructure Deployments
+        {heading}
       </h2>
       <a
         href="#"
@@ -28,8 +44,8 @@ import caseStudyImg from '~/assets/lob-system-case-study-1.png';
           <!-- Image -->
           <div class="shrink-0">
             <Image
-              src={caseStudyImg}
-              alt="Enterprise Network Infrastructure"
+              src={image}
+              alt={imageAlt}
               class="h-[217px] w-[198px] rounded-sm object-cover shadow-sm max-lg:aspect-square max-lg:h-auto max-lg:w-full max-lg:max-w-sm"
             />
           </div>
@@ -37,17 +53,19 @@ import caseStudyImg from '~/assets/lob-system-case-study-1.png';
           <!-- Main Feature Text -->
           <div class="flex flex-col space-y-4 lg:pr-4">
             <h3 class="text-2xl font-medium text-base-content">
-              Enterprise Network Infrastructure
+              {featured.title}
             </h3>
-            <p class="text-lg text-base-content/70">
-              From structured cabling to active network systems, we build reliable
-              connectivity foundations that power enterprise communication and data flow.
-            </p>
+            {
+              featured.description && (
+                <p class="text-lg text-base-content/70">{featured.description}</p>
+              )
+            }
             <a
-              href="#"
+              href={featured.ctaUrl}
               class="mt-2 inline-flex w-max items-center text-sm font-medium text-primary decoration-2 underline-offset-4 hover:underline"
             >
-              Read Case Study <ArrowRight class="ml-1 h-4 w-4" />
+              {featured.ctaLabel}
+              <ArrowRight class="ml-1 h-4 w-4" />
             </a>
           </div>
         </div>
@@ -57,35 +75,27 @@ import caseStudyImg from '~/assets/lob-system-case-study-1.png';
 
         <!-- Right part: Smaller features -->
         <div class="flex flex-col md:w-[40%] lg:w-[35%] lg:pl-4">
-          <!-- Top Item -->
-          <div class="border-b-2 border-base-content/20 pb-8">
-            <h4 class="mb-3 text-xl font-medium text-base-content">
-              Surveillance & Security Integration
-            </h4>
-            <p class="mb-4 text-base text-base-content/70">
-              Integrated CCTV, access control, and monitoring infrastructure designed to
-              improve security visibility and operational oversight.
-            </p>
-            <a
-              href="#"
-              class="inline-flex items-center text-sm font-medium text-primary decoration-2 underline-offset-4 hover:underline"
-            >
-              Read Case Study <ArrowRight class="ml-1 h-4 w-4" />
-            </a>
-          </div>
-
-          <!-- Bottom Item -->
-          <div class="pt-8">
-            <h4 class="mb-4 text-xl font-medium text-base-content">
-              Data Center & Server Integration
-            </h4>
-            <a
-              href="#"
-              class="inline-flex items-center text-sm font-medium text-primary decoration-2 underline-offset-4 hover:underline"
-            >
-              Read Case Study <ArrowRight class="ml-1 h-4 w-4" />
-            </a>
-          </div>
+          {
+            items.map((item, index) => (
+              <div
+                class:list={[
+                  index > 0 && 'pt-8',
+                  index < items.length - 1 && 'border-b-2 border-base-content/20 pb-8',
+                ]}
+              >
+                <h4 class="mb-3 text-xl font-medium text-base-content">{item.title}</h4>
+                {item.description && (
+                  <p class="mb-4 text-base text-base-content/70">{item.description}</p>
+                )}
+                <a
+                  href={item.ctaUrl}
+                  class="inline-flex items-center text-sm font-medium text-primary decoration-2 underline-offset-4 hover:underline"
+                >
+                  {item.ctaLabel} <ArrowRight class="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>

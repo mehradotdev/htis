@@ -1,13 +1,19 @@
 ---
 import { Image } from 'astro:assets';
-import heroBg from '~/assets/hero-bg.png';
 import LightRays from '~/components/LightRays.astro';
 import SystemIntegrationCarousel from './SystemIntegrationCarousel.svelte';
 
-import carousel1 from '~/assets/lob-system-hero-carousel-1.png';
-import carousel2 from '~/assets/lob-system-hero-carousel-2.png';
-import carousel3 from '~/assets/lob-system-hero-carousel-3.png';
-import carousel4 from '~/assets/lob-system-hero-carousel-4.png';
+interface Props {
+  backgroundImage: ImageMetadata;
+  title: string;
+  subtitle: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  carouselImages: string[];
+}
+
+const { backgroundImage, title, subtitle, ctaLabel, ctaUrl, carouselImages } =
+  Astro.props;
 ---
 
 <section
@@ -16,7 +22,7 @@ import carousel4 from '~/assets/lob-system-hero-carousel-4.png';
   <!-- Background Image with Overlay -->
   <div class="pointer-events-none absolute inset-0 z-0 bg-base-100">
     <Image
-      src={heroBg}
+      src={backgroundImage}
       alt=""
       aria-hidden="true"
       class="absolute inset-0 z-0 h-full w-full object-cover opacity-80"
@@ -54,18 +60,16 @@ import carousel4 from '~/assets/lob-system-hero-carousel-4.png';
         <h1
           class="mb-6 text-4xl leading-tight font-bold text-base-content sm:text-5xl lg:text-[54px]"
         >
-          System Integration & IT Infrastructure
+          {title}
         </h1>
         <p class="mb-10 max-w-xl text-lg font-medium text-base-content/80 lg:text-xl">
-          We don't just deploy hardware; we architect the digital nervous systems of
-          modern enterprises. Our System Integration vertical bridges the gap between
-          high-performance physical infrastructure and cognitive digital operations.
+          {subtitle}
         </p>
         <a
-          href="#contact"
+          href={ctaUrl}
           class="btn rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
         >
-          Contact Us
+          {ctaLabel}
         </a>
       </div>
     </div>
@@ -75,9 +79,6 @@ import carousel4 from '~/assets/lob-system-hero-carousel-4.png';
   <div
     class="absolute inset-y-0 right-0 z-1 block w-full mask-[linear-gradient(to_right,transparent_0,black_40%,black_60%)] opacity-40 lg:block lg:w-[45%]"
   >
-    <SystemIntegrationCarousel
-      images={[carousel1.src, carousel2.src, carousel3.src, carousel4.src]}
-      client:load
-    />
+    <SystemIntegrationCarousel images={carouselImages} client:load />
   </div>
 </section>

@@ -5,18 +5,12 @@ import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import ResourcingCapabilities from '~/components/resourcing/ResourcingCapabilities.astro';
 
-import heroLeftBg from '~/assets/lob-resourcing-hero-left-bg.png';
-import heroRightBg1 from '~/assets/lob-resourcing-hero-right-bg-1.png';
-import heroRightBg2 from '~/assets/lob-resourcing-hero-right-bg-2.png';
-import heroRightBg3 from '~/assets/lob-resourcing-hero-right-bg-3.png';
-import heroRightBg4 from '~/assets/lob-resourcing-hero-right-bg-4.png';
-import heroRightBg5 from '~/assets/lob-resourcing-hero-right-bg-5.png';
-import bgImage from '~/assets/team-member-bg.png';
 import ResourcingExtraSections from '~/components/resourcing/ResourcingExtraSections.astro';
 import ResourcingHeroCarousel from '~/components/resourcing/ResourcingHeroCarousel.svelte';
+import { resourcing } from '~/data/cms';
 ---
 
-<Layout title="Resourcing - HTIS">
+<Layout title={resourcing.title}>
   <div class="relative w-full overflow-clip">
     <Navbar />
 
@@ -30,7 +24,7 @@ import ResourcingHeroCarousel from '~/components/resourcing/ResourcingHeroCarous
           >
             <div class="absolute inset-0 z-0 opacity-40">
               <Image
-                src={heroLeftBg}
+                src={resourcing.hero.backgroundImage}
                 alt=""
                 aria-hidden="true"
                 class="h-full w-full object-cover object-bottom"
@@ -45,33 +39,21 @@ import ResourcingHeroCarousel from '~/components/resourcing/ResourcingHeroCarous
               <h1
                 class="mb-6 max-w-lg text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-[54px]"
               >
-                Full-Spectrum Resourcing: From Field to Core
+                {resourcing.hero.title}
               </h1>
               <p class="mb-10 max-w-lg text-xl font-medium text-base-content/80">
-                A strategic approach to deploying specialized white-collar and technical
-                manpower at scale. We provide the stable human capital required for
-                large-scale rollouts, ensuring full regulatory compliance and proactive
-                lifecycle management
+                {resourcing.hero.subtitle}
               </p>
               <a
-                href="/#contact"
+                href={resourcing.hero.ctaUrl}
                 class="btn rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
               >
-                Contact Us
+                {resourcing.hero.ctaLabel}
               </a>
             </div>
           </div>
           <!-- Right part -->
-          <ResourcingHeroCarousel
-            images={[
-              heroRightBg1.src,
-              heroRightBg2.src,
-              heroRightBg3.src,
-              heroRightBg4.src,
-              heroRightBg5.src,
-            ]}
-            client:load
-          />
+          <ResourcingHeroCarousel images={resourcing.hero.carouselImages} client:load />
         </div>
       </div>
     </section>
@@ -83,7 +65,7 @@ import ResourcingHeroCarousel from '~/components/resourcing/ResourcingHeroCarous
         class="pointer-events-none absolute inset-0 z-0 opacity-70 dark:mix-blend-overlay"
       >
         <Image
-          src={bgImage}
+          src={resourcing.capabilities.backgroundImage}
           alt=""
           aria-hidden="true"
           class="h-full w-full object-cover object-center"
@@ -98,15 +80,14 @@ import ResourcingHeroCarousel from '~/components/resourcing/ResourcingHeroCarous
       <div class="relative z-10 container mx-auto px-6">
         <div class="mb-10 max-w-3xl">
           <h2 class="mb-6 text-4xl font-bold text-base-content md:text-5xl">
-            Our Capabilities - Strategic Human Capital Deployment
+            {resourcing.capabilities.heading}
           </h2>
           <p class="text-xl font-medium text-base-content/70">
-            A structured, compliance-driven framework for engineering and operational
-            talent at scale.
+            {resourcing.capabilities.description}
           </p>
         </div>
 
-        <ResourcingCapabilities />
+        <ResourcingCapabilities capabilities={resourcing.capabilities.items} />
       </div>
     </section>
 

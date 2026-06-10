@@ -8,122 +8,25 @@ import PartnerEcosystem from '~/components/system-integration/PartnerEcosystem.s
 import IntegratedDeployments from '~/components/system-integration/IntegratedDeployments.astro';
 
 import { Image } from 'astro:assets';
-import bgImage from '~/assets/team-member-bg.png';
-import centerImage from '~/assets/lob-system-tech-pillars.png';
 import { Network, Users, Code, ArrowRight } from '@lucide/astro';
 import TelecomMetrics from '~/components/telecom/TelecomMetrics.svelte';
+import { systemIntegration } from '~/data/cms';
 
-import logoDell from '~/assets/logo-dell.png';
-import logoHP from '~/assets/logo-HP.png';
-import logoCisco from '~/assets/logo-Cisco.webp';
-import logoAruba from '~/assets/logo-Aruba.png';
-import logoJuniper from '~/assets/logo-Juniper-Networks.png';
-import logoRuckus from '~/assets/logo-ruckus-networks.png';
-import logoFortinet from '~/assets/logo-Fortinet.png';
-import logoCheckPoint from '~/assets/logo-CheckPoint.png';
-import logoSonicwall from '~/assets/logo-Sonicwall.png';
-import logoSchneider from '~/assets/logo-Schneider-Electric.png';
-import logoVertiv from '~/assets/logo-Vertiv.png';
-import logoEaton from '~/assets/logo-Eaton.jpg';
-import logoHikvision from '~/assets/logo-Hikvision.png';
-import logoSamsung from '~/assets/logo-Samsung.png';
-
-const ecosystemTabs = [
-  {
-    title: 'Compute & Mobility',
-    subtitle: 'Laptops, Servers, High-End Workstations',
-    description:
-      'High-performance, secure, and scalable client systems, servers, and workspace solutions.',
-    partners: [
-      { name: 'Dell', logoSrc: logoDell.src },
-      { name: 'HP', logoSrc: logoHP.src },
-      { name: 'Lenovo' },
-      { name: 'MSi' },
-      { name: 'Apple (Enterprise)' },
-    ],
-  },
-  {
-    title: 'Networking & Fabric',
-    subtitle: 'Active Switches, Routers, Wireless, SD-WAN',
-    description:
-      'High-performance, secure and scalable network infrastructure that keeps your business connected.',
-    partners: [
-      { name: 'Cisco', logoSrc: logoCisco.src },
-      { name: 'Aruba (HPE)', logoSrc: logoAruba.src },
-      { name: 'Juniper Networks', logoSrc: logoJuniper.src },
-      { name: 'Ruckus', logoSrc: logoRuckus.src },
-    ],
-  },
-  {
-    title: 'Cybersecurity',
-    subtitle: 'Firewalls, EDR/XDR, Identity Management',
-    description:
-      'Perimeter-to-endpoint security frameworks designed to mitigate threats and protect critical assets.',
-    partners: [
-      { name: 'Palo Alto' },
-      { name: 'Fortinet', logoSrc: logoFortinet.src },
-      { name: 'Check Point', logoSrc: logoCheckPoint.src },
-      { name: 'SonicWall', logoSrc: logoSonicwall.src },
-      { name: 'Sophos' },
-    ],
-  },
-  {
-    title: 'Cloud & Virtualization',
-    subtitle: 'Hybrid Cloud, VDI, Hyperconverged (HCI)',
-    description:
-      'Seamless hybrid cloud migration, secure virtual desktops, and scalable virtual environments.',
-    partners: [
-      { name: 'AWS' },
-      { name: 'Microsoft Azure' },
-      { name: 'VMware' },
-      { name: 'Nutanix' },
-    ],
-  },
-  {
-    title: 'Storage & Backup',
-    subtitle: 'Enterprise Storage, Data Protection',
-    description:
-      'Enterprise-grade storage systems and resilient data protection to guarantee business continuity.',
-    partners: [
-      { name: 'NetApp' },
-      { name: 'Pure Storage' },
-      { name: 'Veeam' },
-      { name: 'Commvault' },
-    ],
-  },
-  {
-    title: 'Infra & Power',
-    subtitle: 'Data Centre Racks, UPS, Precision Cooling',
-    description:
-      'Mission-critical power backup, cooling systems, and racks ensuring maximum datacenter uptime.',
-    partners: [
-      { name: 'Schneider Electric', logoSrc: logoSchneider.src },
-      { name: 'APC' },
-      { name: 'Vertiv', logoSrc: logoVertiv.src },
-      { name: 'Eaton', logoSrc: logoEaton.src },
-    ],
-  },
-  {
-    title: 'Surveillance & AV',
-    subtitle: 'Physical Security, LED Walls, VC',
-    description:
-      'Integrated physical security, CCTV surveillance, and high-impact visual communication systems.',
-    partners: [
-      { name: 'Hikvision', logoSrc: logoHikvision.src },
-      { name: 'Axis' },
-      { name: 'Milestone' },
-      { name: 'Samsung', logoSrc: logoSamsung.src },
-      { name: 'Crestron' },
-    ],
-  },
-];
+const iconMap = { Network, Users, Code };
 ---
 
-<Layout title="System Integration & IT Infrastructure - HTIS">
+<Layout title={systemIntegration.title}>
   <div class="relative w-full overflow-clip">
     <Navbar />
 
-    <SystemIntegrationHero />
+    <SystemIntegrationHero
+      backgroundImage={systemIntegration.hero.backgroundImage}
+      title={systemIntegration.hero.title}
+      subtitle={systemIntegration.hero.subtitle}
+      ctaLabel={systemIntegration.hero.ctaLabel}
+      ctaUrl={systemIntegration.hero.ctaUrl}
+      carouselImages={systemIntegration.hero.carouselImages}
+    />
 
     <!-- Strategic Technical Pillars Section -->
     <section class="relative overflow-hidden bg-base-100 py-24">
@@ -132,7 +35,7 @@ const ecosystemTabs = [
         class="pointer-events-none absolute inset-0 z-0 opacity-70 dark:mix-blend-overlay"
       >
         <Image
-          src={bgImage}
+          src={systemIntegration.strategicPillars.backgroundImage}
           alt=""
           aria-hidden="true"
           class="h-full w-full object-cover object-center"
@@ -147,18 +50,21 @@ const ecosystemTabs = [
       <div class="relative z-10 container mx-auto px-6">
         <div class="mb-10">
           <h2 class="text-4xl font-bold text-base-content md:text-5xl">
-            Strategic Technical Pillars
+            {systemIntegration.strategicPillars.heading}
           </h2>
         </div>
 
-        <StrategicPillars centerImageSrc={centerImage.src} client:visible />
+        <StrategicPillars
+          centerImageSrc={systemIntegration.strategicPillars.centerImageSrc}
+          client:visible
+        />
       </div>
     </section>
 
     <!-- The HTIS Partner Ecosystem Section -->
     <section class="relative bg-base-100 py-16 md:py-24">
       <div class="container mx-auto px-6">
-        <PartnerEcosystem tabs={ecosystemTabs} client:visible />
+        <PartnerEcosystem tabs={systemIntegration.partnerEcosystem.tabs} client:visible />
       </div>
     </section>
 
@@ -167,7 +73,7 @@ const ecosystemTabs = [
       <div class="container mx-auto px-6">
         <div class="mb-10 max-w-2xl">
           <h2 class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl">
-            Built to Execute.<br />Scaled to Deliver.
+            <Fragment set:html={systemIntegration.execution.headingHtml} />
           </h2>
         </div>
 
@@ -178,87 +84,51 @@ const ecosystemTabs = [
         <div
           class="mt-16 flex flex-col border-t-2 border-base-content/20 py-12 md:flex-row md:gap-x-6 lg:mt-20 lg:gap-x-10 lg:py-16"
         >
-          <div class="flex flex-1 flex-col gap-4 pb-12 md:pb-0">
-            <div class="mb-2 flex items-start justify-between">
-              <Network class="h-12 w-12 text-primary" />
-              <a
-                href="#"
-                aria-label="View more details"
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
-              >
-                <ArrowRight class="h-5 w-5" stroke-width="2.5" />
-              </a>
-            </div>
-            <h3 class="text-2xl font-medium">
-              Core Telecom <br /> and Network Operations
-            </h3>
-            <p class="text-justify text-lg text-base-content/70">
-              Scaling the Experts of Next-Gen Connectivity. Mobilizing mission-critical
-              field and core engineering teams for 4G/5G rollouts and network evolution.
-              We provide the specialized riggers, CCNA/ACI engineers, and operations
-              coordinators required to ensure carrier-grade stability and high-performance
-              network execution.
-            </p>
-          </div>
-
-          <!-- Divider -->
-          <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
-
-          <div
-            class="flex flex-1 flex-col gap-4 border-y-2 border-base-content/20 py-12 md:border-y-0 md:py-0"
-          >
-            <div class="mb-2 flex items-start justify-between">
-              <Users class="h-12 w-12 text-primary" />
-              <a
-                href="#"
-                aria-label="View more details"
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
-              >
-                <ArrowRight class="h-5 w-5" stroke-width="2.5" />
-              </a>
-            </div>
-            <h3 class="text-2xl font-medium">
-              Specialized Technical Resourcing <br /> and Deployment
-            </h3>
-            <p class="text-justify text-lg text-base-content/70">
-              Scalable L1–L6 talent solutions engineered for complex, multi-region telecom
-              rollouts. We bridge the technical skill gap by deploying a domain-expert
-              workforce. From high-niche technical architects (L6) to scalable field
-              engineering units (L1), we provide the human capital required for
-              operational excellence.
-            </p>
-          </div>
-
-          <!-- Divider -->
-          <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
-
-          <div class="flex flex-1 flex-col gap-4 pt-12 md:pt-0">
-            <div class="mb-2 flex items-start justify-between">
-              <Code class="h-12 w-12 text-primary" />
-              <a
-                href="#"
-                aria-label="View more details"
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
-              >
-                <ArrowRight class="h-5 w-5" stroke-width="2.5" />
-              </a>
-            </div>
-            <h3 class="text-2xl font-medium">
-              Enterprise Software Engineering <br /> and On-Demand Solutions
-            </h3>
-            <p class="text-justify text-lg text-base-content/70">
-              Bespoke digital assets and SaaS platforms tailored for government and
-              corporate scale. We build the intelligence that drives connectivity.
-              Specializing in on-demand software development, we deliver secure,
-              high-compliance digital assets—including our proprietary ERP
-              systems—designed for the most demanding regulatory environments.
-            </p>
-          </div>
+          {
+            systemIntegration.execution.pillars.map((pillar, index) => {
+              const Icon = iconMap[pillar.iconName as keyof typeof iconMap];
+              return (
+                <>
+                  {index > 0 && (
+                    <div class="hidden w-[2px] bg-base-content/20 md:block" />
+                  )}
+                  <div
+                    class:list={[
+                      'flex flex-1 flex-col gap-4',
+                      index === 0 && 'pb-12 md:pb-0',
+                      index > 0 &&
+                        index < systemIntegration.execution.pillars.length - 1 &&
+                        'border-y-2 border-base-content/20 py-12 md:border-y-0 md:py-0',
+                      index === systemIntegration.execution.pillars.length - 1 &&
+                        'pt-12 md:pt-0',
+                    ]}
+                  >
+                    <div class="mb-2 flex items-start justify-between">
+                      {Icon && <Icon class="h-12 w-12 text-primary" />}
+                      <a
+                        href={pillar.url ?? '#'}
+                        aria-label={pillar.ariaLabel ?? pillar.title}
+                        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+                      >
+                        <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+                      </a>
+                    </div>
+                    <h3 class="text-2xl font-medium">
+                      <Fragment set:html={pillar.title.replace(/\n/g, '<br />')} />
+                    </h3>
+                    <p class="text-justify text-lg text-base-content/70">
+                      {pillar.description}
+                    </p>
+                  </div>
+                </>
+              );
+            })
+          }
         </div>
       </div>
     </section>
 
-    <IntegratedDeployments />
+    <IntegratedDeployments {...systemIntegration.deployments} />
 
     <div class="bg-base-200/50">
       <Footer />
