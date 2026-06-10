@@ -1,18 +1,18 @@
 title: System Integration & IT Infrastructure - HTIS
 hero:
-  backgroundImage: hero-bg.png
+  backgroundImage: src/assets/hero-bg.png
   title: System Integration & IT Infrastructure
   subtitle: We don't just deploy hardware; we architect the digital nervous systems of modern enterprises. Our System Integration vertical bridges the gap between high-performance physical infrastructure and cognitive digital operations.
   ctaLabel: Contact Us
   ctaUrl: '#contact'
   carouselImages:
-    - lob-system-hero-carousel-1.png
-    - lob-system-hero-carousel-2.png
-    - lob-system-hero-carousel-3.png
-    - lob-system-hero-carousel-4.png
+    - src/assets/lob-system-hero-carousel-1.png
+    - src/assets/lob-system-hero-carousel-2.png
+    - src/assets/lob-system-hero-carousel-3.png
+    - src/assets/lob-system-hero-carousel-4.png
 strategicPillars:
-  backgroundImage: team-member-bg.png
-  centerImage: lob-system-tech-pillars.png
+  backgroundImage: src/assets/team-member-bg.png
+  centerImage: src/assets/lob-system-tech-pillars.png
   heading: Strategic Technical Pillars
 partnerEcosystem:
   tabs:
@@ -21,9 +21,9 @@ partnerEcosystem:
       description: High-performance, secure, and scalable client systems, servers, and workspace solutions.
       partners:
         - name: Dell
-          logo: logo-dell.png
+          logo: src/assets/logo-dell.png
         - name: HP
-          logo: logo-HP.png
+          logo: src/assets/logo-HP.png
         - name: Lenovo
         - name: MSi
         - name: Apple (Enterprise)
@@ -32,24 +32,24 @@ partnerEcosystem:
       description: High-performance, secure and scalable network infrastructure that keeps your business connected.
       partners:
         - name: Cisco
-          logo: logo-Cisco.webp
+          logo: src/assets/logo-Cisco.webp
         - name: Aruba (HPE)
-          logo: logo-Aruba.png
+          logo: src/assets/logo-Aruba.png
         - name: Juniper Networks
-          logo: logo-Juniper-Networks.png
+          logo: src/assets/logo-Juniper-Networks.png
         - name: Ruckus
-          logo: logo-ruckus-networks.png
+          logo: src/assets/logo-ruckus-networks.png
     - title: Cybersecurity
       subtitle: Firewalls, EDR/XDR, Identity Management
       description: Perimeter-to-endpoint security frameworks designed to mitigate threats and protect critical assets.
       partners:
         - name: Palo Alto
         - name: Fortinet
-          logo: logo-Fortinet.png
+          logo: src/assets/logo-Fortinet.png
         - name: Check Point
-          logo: logo-CheckPoint.png
+          logo: src/assets/logo-CheckPoint.png
         - name: SonicWall
-          logo: logo-Sonicwall.png
+          logo: src/assets/logo-Sonicwall.png
         - name: Sophos
     - title: Cloud & Virtualization
       subtitle: Hybrid Cloud, VDI, Hyperconverged (HCI)
@@ -72,22 +72,22 @@ partnerEcosystem:
       description: Mission-critical power backup, cooling systems, and racks ensuring maximum datacenter uptime.
       partners:
         - name: Schneider Electric
-          logo: logo-Schneider-Electric.png
+          logo: src/assets/logo-Schneider-Electric.png
         - name: APC
         - name: Vertiv
-          logo: logo-Vertiv.png
+          logo: src/assets/logo-Vertiv.png
         - name: Eaton
-          logo: logo-Eaton.jpg
+          logo: src/assets/logo-Eaton.jpg
     - title: Surveillance & AV
       subtitle: Physical Security, LED Walls, VC
       description: Integrated physical security, CCTV surveillance, and high-impact visual communication systems.
       partners:
         - name: Hikvision
-          logo: logo-Hikvision.png
+          logo: src/assets/logo-Hikvision.png
         - name: Axis
         - name: Milestone
         - name: Samsung
-          logo: logo-Samsung.png
+          logo: src/assets/logo-Samsung.png
         - name: Crestron
 execution:
   heading: |-
@@ -117,7 +117,7 @@ execution:
       ariaLabel: View more details
 deployments:
   heading: Integrated Infrastructure Deployments
-  image: lob-system-case-study-1.png
+  image: src/assets/lob-system-case-study-1.png
   imageAlt: Enterprise Network Infrastructure
   featured:
     title: Enterprise Network Infrastructure

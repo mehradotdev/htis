@@ -1,18 +1,18 @@
 title: Resourcing - HTIS
 hero:
-  backgroundImage: lob-resourcing-hero-left-bg.png
+  backgroundImage: src/assets/lob-resourcing-hero-left-bg.png
   title: 'Full-Spectrum Resourcing: From Field to Core'
   subtitle: A strategic approach to deploying specialized white-collar and technical manpower at scale. We provide the stable human capital required for large-scale rollouts, ensuring full regulatory compliance and proactive lifecycle management
   ctaLabel: Contact Us
   ctaUrl: /#contact
   carouselImages:
-    - lob-resourcing-hero-right-bg-1.png
-    - lob-resourcing-hero-right-bg-2.png
-    - lob-resourcing-hero-right-bg-3.png
-    - lob-resourcing-hero-right-bg-4.png
-    - lob-resourcing-hero-right-bg-5.png
+    - src/assets/lob-resourcing-hero-right-bg-1.png
+    - src/assets/lob-resourcing-hero-right-bg-2.png
+    - src/assets/lob-resourcing-hero-right-bg-3.png
+    - src/assets/lob-resourcing-hero-right-bg-4.png
+    - src/assets/lob-resourcing-hero-right-bg-5.png
 capabilities:
-  backgroundImage: team-member-bg.png
+  backgroundImage: src/assets/team-member-bg.png
   heading: Our Capabilities - Strategic Human Capital Deployment
   description: A structured, compliance-driven framework for engineering and operational talent at scale.
   items:

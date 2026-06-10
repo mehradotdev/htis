@@ -1,7 +1,7 @@
 title: Software Development & SaaS - HTIS
 hero:
-  backgroundImage: lob-software-hero-bg.png
-  foregroundImage: lob-software-hero-img.png
+  backgroundImage: src/assets/lob-software-hero-bg.png
+  foregroundImage: src/assets/lob-software-hero-img.png
   title: 'Digital Intelligence:'
   highlight: Enterprise SaaS
   subtitle: We architect the resilient software ecosystems that drive modern enterprise and government operations. By merging the agility of on-demand engineering with the stability of our flagship SaaS products, we deliver secure, high-compliance digital assets tailored to the most demanding regulatory environments.
@@ -10,22 +10,22 @@ hero:
   secondaryCtaLabel: Explore Portfolio
   secondaryCtaUrl: '#portfolio'
 portfolio:
-  backgroundImage: team-member-bg.png
+  backgroundImage: src/assets/team-member-bg.png
   heading: Converged Software Portfolio
   description: Enterprise SaaS & Bespoke Engineering - An interactive look at our proprietary products and requirement-driven engineering capabilities.
   saasImages:
-    - lob-software-sw-port-saas-1.png
-    - lob-software-sw-port-saas-2.png
-    - lob-software-sw-port-saas-3.png
+    - src/assets/lob-software-sw-port-saas-1.png
+    - src/assets/lob-software-sw-port-saas-2.png
+    - src/assets/lob-software-sw-port-saas-3.png
   enterpriseImages:
-    - lob-software-sw-port-enterprise-1.png
-    - lob-software-sw-port-enterprise-2.png
-    - lob-software-sw-port-enterprise-3.png
-    - lob-software-sw-port-enterprise-4.png
+    - src/assets/lob-software-sw-port-enterprise-1.png
+    - src/assets/lob-software-sw-port-enterprise-2.png
+    - src/assets/lob-software-sw-port-enterprise-3.png
+    - src/assets/lob-software-sw-port-enterprise-4.png
   publicImages:
-    - lob-software-sw-port-public-1.png
-    - lob-software-sw-port-public-2.png
-    - lob-software-sw-port-public-3.png
+    - src/assets/lob-software-sw-port-public-1.png
+    - src/assets/lob-software-sw-port-public-2.png
+    - src/assets/lob-software-sw-port-public-3.png
 execution:
   heading: |-
     Built to Execute.
@@ -47,6 +47,6 @@ execution:
       url: /resourcing
       ariaLabel: Explore Resource Management
 caseStudyImages:
-  - lob-software-case-study-1.png
-  - lob-software-case-study-2.png
-  - lob-software-case-study-3.png
+  - src/assets/lob-software-case-study-1.png
+  - src/assets/lob-software-case-study-2.png
+  - src/assets/lob-software-case-study-3.png

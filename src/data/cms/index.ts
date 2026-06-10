@@ -21,7 +21,7 @@ const assets = Object.fromEntries(
 );
 
 export function getCmsAsset(filename: string): ImageMetadata {
-  const assetName = filename.split('/').pop() ?? filename;
+  const assetName = filename.replace(/^src\/assets\//, '').split('/').pop() ?? filename;
   const asset = assets[assetName];
   if (!asset) {
     throw new Error(`CMS asset not found: ${filename}`);

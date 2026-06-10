@@ -384,80 +384,6 @@ content:
                     type: image
                     required: true
 
-      - name: industries
-        label: Industries
-        type: collection
-        path: src/data/cms/industries
-        format: yaml
-        filename:
-          template: '{slug}.yml'
-          field: create
-        view:
-          primary: title
-          fields: [title, slug, shortTitle]
-          sort: [title, slug]
-        fields:
-          - name: slug
-            type: string
-            required: true
-            pattern:
-              regex: '^[a-z0-9-]+$'
-              message: Use lowercase letters, numbers, and hyphens only.
-          - name: title
-            type: string
-            required: true
-          - name: shortTitle
-            type: string
-            required: true
-          - name: summary
-            type: text
-            required: true
-          - name: heroSubtitle
-            type: text
-            required: true
-          - name: iconName
-            label: Icon
-            type: select
-            required: true
-            options:
-              values: [Building2, Factory, HardHat, HeartPulse, Landmark, RadioTower]
-          - name: techStack
-            label: Tech stack
-            type: string
-            list: true
-            required: true
-          - name: challenges
-            type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: '{title}'
-            fields:
-              - name: title
-                type: string
-                required: true
-              - name: description
-                type: text
-                required: true
-          - name: capabilities
-            type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: '{title}'
-            fields:
-              - name: title
-                type: string
-                required: true
-              - name: description
-                type: text
-                required: true
-              - name: bulletPoints
-                label: Bullet points
-                type: string
-                list: true
-                required: true
-
       - name: telecom
         label: Telecom
         type: file
@@ -768,3 +694,77 @@ content:
                     label: Span two desktop columns
                     type: boolean
                     required: false
+
+      - name: industries
+        label: Industries
+        type: collection
+        path: src/data/cms/industries
+        format: yaml
+        filename:
+          template: '{slug}.yml'
+          field: create
+        view:
+          primary: title
+          fields: [title, slug, shortTitle]
+          sort: [title, slug]
+        fields:
+          - name: slug
+            type: string
+            required: true
+            pattern:
+              regex: '^[a-z0-9-]+$'
+              message: Use lowercase letters, numbers, and hyphens only.
+          - name: title
+            type: string
+            required: true
+          - name: shortTitle
+            type: string
+            required: true
+          - name: summary
+            type: text
+            required: true
+          - name: heroSubtitle
+            type: text
+            required: true
+          - name: iconName
+            label: Icon
+            type: select
+            required: true
+            options:
+              values: [Building2, Factory, HardHat, HeartPulse, Landmark, RadioTower]
+          - name: techStack
+            label: Tech stack
+            type: string
+            list: true
+            required: true
+          - name: challenges
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: '{title}'
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: description
+                type: text
+                required: true
+          - name: capabilities
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: '{title}'
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: description
+                type: text
+                required: true
+              - name: bulletPoints
+                label: Bullet points
+                type: string
+                list: true
+                required: true

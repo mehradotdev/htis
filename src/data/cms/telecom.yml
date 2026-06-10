@@ -1,15 +1,15 @@
 title: Telecom - HTIS
 hero:
-  backgroundImage: lob-telecom-hero-bg.png
+  backgroundImage: src/assets/lob-telecom-hero-bg.png
   title: Connecting the next billion-intelligent Network for tomorrow
   subtitle: Seamlessly integrating turnkey physical infrastructure and cognitive network intelligence to build hyper-scale, future-ready networks.
   ctaLabel: Contact Us
   ctaUrl: /#contact
 capabilities:
-  backgroundImage: team-member-bg.png
+  backgroundImage: src/assets/team-member-bg.png
   heading: Our Capabilities
   description: A structured approach to deploying, optimizing, and supporting telecom networks across every stage.
   images:
-    - lob-telecom-capability-1.png
-    - lob-telecom-capability-2.png
-    - lob-telecom-capability-3.png
+    - src/assets/lob-telecom-capability-1.png
+    - src/assets/lob-telecom-capability-2.png
+    - src/assets/lob-telecom-capability-3.png

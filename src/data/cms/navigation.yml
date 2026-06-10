@@ -1,5 +1,5 @@
 logo:
-  image: htis-logo.png
+  image: src/assets/htis-logo.png
   alt: HTIS Logo
 
 primary:
@@ -17,7 +17,7 @@ solutions:
   label: Solutions
   heading: Our Solutions
   card:
-    image: lob-resourcing-construction-1.png
+    image: src/assets/lob-resourcing-construction-1.png
     alt: Solutions
     title: Build the future
     description: Discover our full range of enterprise solutions tailored for scale.
@@ -54,7 +54,7 @@ resources:
   label: Resources
   heading: Knowledge Hub
   card:
-    image: lob-resourcing-case-study-1.png
+    image: src/assets/lob-resourcing-case-study-1.png
     alt: Resources
     title: Our impact
     description: Explore case studies and learn how we empower success globally.

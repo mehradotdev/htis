@@ -1,5 +1,5 @@
 hero:
-  backgroundImage: hero-bg.png
+  backgroundImage: src/assets/hero-bg.png
   titlePrefix: Delivering Excellence in
   rotatingWords:
     - System Integrations
@@ -11,17 +11,17 @@ hero:
   ctaUrl: "#contact"
   trustedByLabel: Trusted by 100+ Partners
   partnerLogos:
-    - image: logo-ncomputing.png
+    - image: src/assets/logo-ncomputing.png
       alt: NComputing
-    - image: logo-legrand.png
+    - image: src/assets/logo-legrand.png
       alt: Legrand
-    - image: logo-lifesize.png
+    - image: src/assets/logo-lifesize.png
       alt: Lifesize
-    - image: logo-honeywell.png
+    - image: src/assets/logo-honeywell.png
       alt: Honeywell
-    - image: logo-nokia.png
+    - image: src/assets/logo-nokia.png
       alt: Nokia
-    - image: logo-ericsson.png
+    - image: src/assets/logo-ericsson.png
       alt: Ericsson
 
 journey:
@@ -29,15 +29,15 @@ journey:
   titleHighlight: Journey
   subtitle: A timeline of innovation, milestones, and achievements that shaped our path forward.
   images:
-    - our-journey-1.png
-    - our-journey-2.png
-    - our-journey-3.png
-    - our-journey-4.png
-    - our-journey-5.png
-    - our-journey-6.png
-    - our-journey-7.png
-    - our-journey-8.png
-    - our-journey-9.png
+    - src/assets/our-journey-1.png
+    - src/assets/our-journey-2.png
+    - src/assets/our-journey-3.png
+    - src/assets/our-journey-4.png
+    - src/assets/our-journey-5.png
+    - src/assets/our-journey-6.png
+    - src/assets/our-journey-7.png
+    - src/assets/our-journey-8.png
+    - src/assets/our-journey-9.png
   milestones:
     - year: "2008"
       title: Establishment
@@ -98,8 +98,8 @@ journey:
       description: Scheduled launch of the next generation of our wfms platform, wfms 2.0.
 
 team:
-  backgroundImage: team-member-bg.png
-  meetTeamImage: our-journey-2.png
+  backgroundImage: src/assets/team-member-bg.png
+  meetTeamImage: src/assets/our-journey-2.png
   heading: The Visionary Core
   description: Our leadership team brings together decades of experience in telecommunications, software engineering, and systems integration, guiding HTIS toward continuous innovation and excellence.
   ctaTitle: Meet the Team
@@ -109,17 +109,17 @@ team:
     - name: Aditya Kaushik
       role: Managing Director
       desc: Sets the company’s long-term goals and ensures we stay a leader in the technology industry.
-      image: tm_Aditya_Kaushik.png
+      image: src/assets/tm_Aditya_Kaushik.png
     - name: Sandeep Aswal
       role: Chief Operating Officer
       desc: Manages daily business tasks to make sure all large projects are completed successfully and on time.
-      image: tm_Sandeep_Aswal.png
+      image: src/assets/tm_Sandeep_Aswal.png
     - name: Amit Dhingra
       role: Senior Vice President
       desc: Leads major company projects and manages relationships with our most important partners.
-      image: tm_Amit_Dhingra.png
+      image: src/assets/tm_Amit_Dhingra.png
     - name: Arvind Sharma
       role: Head - Centre of Excellence
       desc: Sets the high technical standards for our services and finds new ways to solve technology problems.
-      image: tm_Arvind_Sharma.png
+      image: src/assets/tm_Arvind_Sharma.png
 
