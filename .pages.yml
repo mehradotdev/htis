@@ -320,10 +320,6 @@ content:
               - name: subtitle
                 type: text
                 required: true
-              - name: images
-                type: image
-                list: true
-                required: true
               - name: milestones
                 type: object
                 list:
@@ -339,6 +335,9 @@ content:
                     required: true
                   - name: description
                     type: text
+                    required: true
+                  - name: image
+                    type: image
                     required: true
           - name: team
             type: object
@@ -383,6 +382,194 @@ content:
                   - name: image
                     type: image
                     required: true
+
+      - name: about
+        label: About
+        type: file
+        path: src/data/cms/about.yml
+        format: yaml
+        operations:
+          delete: false
+        fields:
+          - name: title
+            type: string
+            required: true
+          - name: hero
+            type: object
+            fields:
+              - name: backgroundImage
+                label: Background image
+                type: image
+                required: true
+              - name: title
+                type: string
+                required: true
+              - name: highlight
+                type: string
+                required: true
+              - name: subtitle
+                type: text
+                required: true
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
+          - name: mission
+            label: Mission section
+            type: object
+            fields:
+              - name: image
+                type: image
+                required: true
+              - name: imageAlt
+                label: Image alt
+                type: string
+                required: true
+              - name: cards
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{title}'
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: description
+                    type: text
+                    required: true
+          - name: lifeAtHtis
+            label: Life at HTIS
+            type: object
+            fields:
+              - name: backgroundImage
+                label: Background image
+                type: image
+                required: true
+              - name: image
+                type: image
+                required: true
+              - name: imageAlt
+                label: Image alt
+                type: string
+                required: true
+              - name: title
+                type: string
+                required: true
+              - name: highlight
+                type: string
+                required: true
+              - name: body
+                type: text
+                list: true
+                required: true
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
+          - name: team
+            type: object
+            fields:
+              - name: members
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{name}'
+                fields:
+                  - name: name
+                    type: string
+                    required: true
+                  - name: role
+                    type: string
+                    required: true
+                  - name: dept
+                    label: Department
+                    type: string
+                    required: true
+                  - name: image
+                    type: image
+                    required: true
+          - name: principles
+            type: object
+            fields:
+              - name: image
+                type: image
+                required: true
+              - name: imageAlt
+                label: Image alt
+                type: string
+                required: true
+              - name: title
+                type: string
+                required: true
+              - name: highlight
+                type: string
+                required: true
+              - name: description
+                type: text
+                required: true
+              - name: items
+                type: string
+                list: true
+                required: true
+
+      - name: awards
+        label: Awards
+        type: file
+        path: src/data/cms/awards.yml
+        format: yaml
+        operations:
+          delete: false
+        fields:
+          - name: title
+            type: string
+            required: true
+          - name: hero
+            type: object
+            fields:
+              - name: backgroundImage
+                label: Background image
+                type: image
+                required: true
+              - name: title
+                type: string
+                required: true
+              - name: subtitle
+                type: text
+                required: true
+          - name: items
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: '{title}'
+            fields:
+              - name: type
+                type: select
+                required: true
+                options:
+                  values: [award, certificate]
+              - name: title
+                type: string
+                required: true
+              - name: organization
+                type: string
+                required: true
+              - name: date
+                type: string
+                required: true
+              - name: image
+                type: image
+                required: true
 
       - name: telecom
         label: Telecom

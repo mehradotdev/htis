@@ -1,3 +1,5 @@
+import aboutYaml from './about.yml';
+import awardsYaml from './awards.yml';
 import footerYaml from './footer.yml';
 import homeYaml from './home.yml';
 import navigationYaml from './navigation.yml';
@@ -83,6 +85,15 @@ export interface TeamMember {
   desc: string;
 }
 
+export interface AwardGalleryItem {
+  id: number;
+  type: 'award' | 'certificate';
+  title: string;
+  organization: string;
+  date: string;
+  src: string;
+}
+
 interface HomeYaml {
   hero: {
     backgroundImage: string;
@@ -98,8 +109,7 @@ interface HomeYaml {
     titlePrefix: string;
     titleHighlight: string;
     subtitle: string;
-    images: string[];
-    milestones: Array<Omit<Milestone, 'imageSrc'>>;
+    milestones: Array<Omit<Milestone, 'imageSrc'> & { image: string }>;
   };
   team: {
     backgroundImage: string;
@@ -111,6 +121,68 @@ interface HomeYaml {
     ctaUrl: string;
     members: Array<{ name: string; role: string; desc: string; image: string }>;
   };
+}
+
+interface AboutYaml {
+  title: string;
+  hero: {
+    backgroundImage: string;
+    title: string;
+    highlight: string;
+    subtitle: string;
+    ctaLabel: string;
+    ctaUrl: string;
+  };
+  mission: {
+    image: string;
+    imageAlt: string;
+    cards: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
+  lifeAtHtis: {
+    backgroundImage: string;
+    image: string;
+    imageAlt: string;
+    title: string;
+    highlight: string;
+    body: string[];
+    ctaLabel: string;
+    ctaUrl: string;
+  };
+  team: {
+    members: Array<{
+      name: string;
+      role: string;
+      dept: string;
+      image: string;
+    }>;
+  };
+  principles: {
+    image: string;
+    imageAlt: string;
+    title: string;
+    highlight: string;
+    description: string;
+    items: string[];
+  };
+}
+
+interface AwardsYaml {
+  title: string;
+  hero: {
+    backgroundImage: string;
+    title: string;
+    subtitle: string;
+  };
+  items: Array<{
+    type: 'award' | 'certificate';
+    title: string;
+    organization: string;
+    date: string;
+    image: string;
+  }>;
 }
 
 interface PageHeroYaml {
@@ -282,7 +354,6 @@ export const footer = footerYaml as {
 
 export const home = (() => {
   const data = homeYaml as HomeYaml;
-  const journeyImages = data.journey.images.map(getCmsAssetSrc);
 
   return {
     hero: {
@@ -295,9 +366,9 @@ export const home = (() => {
     },
     journey: {
       ...data.journey,
-      milestones: data.journey.milestones.map((milestone, index) => ({
+      milestones: data.journey.milestones.map(({ image, ...milestone }) => ({
         ...milestone,
-        imageSrc: journeyImages[index % journeyImages.length],
+        imageSrc: getCmsAssetSrc(image),
       })),
     },
     team: {
@@ -311,6 +382,67 @@ export const home = (() => {
         desc: member.desc,
       })),
     },
+  };
+})();
+
+export const about = (() => {
+  const data = aboutYaml as AboutYaml;
+
+  return {
+    ...data,
+    hero: {
+      ...data.hero,
+      backgroundImage: getCmsAsset(data.hero.backgroundImage),
+    },
+    mission: {
+      ...data.mission,
+      image: getCmsAsset(data.mission.image),
+    },
+    lifeAtHtis: {
+      ...data.lifeAtHtis,
+      backgroundImage: getCmsAsset(data.lifeAtHtis.backgroundImage),
+      image: getCmsAsset(data.lifeAtHtis.image),
+    },
+    team: {
+      members: data.team.members.map((member) => ({
+        name: member.name,
+        role: member.role,
+        dept: member.dept,
+        img: getCmsAssetSrc(member.image),
+      })),
+    },
+    principles: {
+      ...data.principles,
+      image: getCmsAsset(data.principles.image),
+    },
+  };
+})();
+
+export const awards: {
+  title: string;
+  hero: {
+    backgroundImage: ImageMetadata;
+    title: string;
+    subtitle: string;
+  };
+  items: AwardGalleryItem[];
+} = (() => {
+  const data = awardsYaml as AwardsYaml;
+
+  return {
+    ...data,
+    hero: {
+      ...data.hero,
+      backgroundImage: getCmsAsset(data.hero.backgroundImage),
+    },
+    items: data.items.map((item, index) => ({
+      id: index + 1,
+      type: item.type,
+      title: item.title,
+      organization: item.organization,
+      date: item.date,
+      src: getCmsAssetSrc(item.image),
+    })),
   };
 })();
 

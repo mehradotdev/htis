@@ -1,0 +1,103 @@
+title: About Us - HTIS
+hero:
+  backgroundImage: src/assets/about-hero-bg.png
+  title: The People and Expertise
+  highlight: Behind HTIS
+  subtitle: Building dependable infrastructure solutions through engineering innovation,
+    deep-rooted experience, and long-term partnerships.
+  ctaLabel: Contact Us
+  ctaUrl: /#contact
+mission:
+  image: src/assets/about-mission.png
+  imageAlt: Writing vision on boards
+  cards:
+    - title: Our Vision
+      description: To shape the future of global connectivity and digital infrastructure
+        by delivering seamless, next-generation enterprise solutions that empower
+        businesses to scale sustainably.
+    - title: Our Mission
+      description: To deliver dependable, high-performance IT infrastructure and telecom
+        services through continuous engineering innovation, operational excellence,
+        and lasting client partnerships.
+    - title: Our Value
+      description: We are anchored in reliability, professional integrity, and an
+        unyielding commitment to engineering excellence. We believe in collaborative
+        success and creating practical impact.
+lifeAtHtis:
+  backgroundImage: src/assets/about-life-at-htis-bg.png
+  image: src/assets/about-life-at-htis.png
+  imageAlt: Collage of team and office life at HTIS
+  title: Life at
+  highlight: HTIS
+  body:
+    - At HTIS, our culture thrives on collaboration, continuous growth, and an inclusive
+      community where every voice is valued. We foster an environment of professional
+      excellence combined with creative freedom.
+    - Whether building next-generation telecom networks or integrating complex
+      enterprise IT infrastructures, our teams work together to solve meaningful
+      challenges. We invite you to bring your passion and join our growing team.
+  ctaLabel: See Open Roles
+  ctaUrl: /jobs
+team:
+  members:
+    - name: Jhon Doe
+      role: Head of Commercials
+      dept: Operations
+      image: src/assets/tm_John_Doe1.png
+    - name: Jane Smith
+      role: Lead Engineer
+      dept: Telecom Systems
+      image: src/assets/tm_John_Doe2.png
+    - name: Robert Johnson
+      role: Chief Architect
+      dept: Software Division
+      image: src/assets/tm_John_Doe3.png
+    - name: Emily Davis
+      role: Operations Manager
+      dept: System Integration
+      image: src/assets/tm_John_Doe4.png
+    - name: Michael Brown
+      role: Technical Specialist
+      dept: Infrastructure
+      image: src/assets/tm_John_Doe5.png
+    - name: Sophia Wilson
+      role: Client Relations
+      dept: Project Management
+      image: src/assets/tm_John_Doe6.png
+    - name: David Taylor
+      role: Financial Controller
+      dept: Operations
+      image: src/assets/tm_John_Doe7.png
+    - name: Olivia Martinez
+      role: HR & Culture Lead
+      dept: People Operations
+      image: src/assets/tm_John_Doe8.png
+    - name: James Anderson
+      role: Security Operations Lead
+      dept: Cyber Defense
+      image: src/assets/tm_John_Doe9.png
+    - name: Isabella Thomas
+      role: Senior Project Manager
+      dept: Telecom
+      image: src/assets/tm_John_Doe10.png
+    - name: William Jackson
+      role: Cloud Operations Lead
+      dept: Technology
+      image: src/assets/tm_John_Doe11.png
+    - name: Mia White
+      role: QA Lead
+      dept: Software Quality
+      image: src/assets/tm_John_Doe12.png
+principles:
+  image: src/assets/about-principles.png
+  imageAlt: Telecom tower and architectural technology elements
+  title: Principles that shape
+  highlight: Every Solution
+  description: At HTIS, our work is guided by a commitment to reliability, collaboration,
+    and continuous improvement - helping us deliver solutions organizations can depend on.
+  items:
+    - Reliability Across Every Deployment
+    - Accountability in Every Partnership
+    - Innovation with Practical Impact
+    - Collaboration That Drives Results
+    - Commitment to Long-Term Growth

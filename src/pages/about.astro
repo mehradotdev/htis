@@ -5,16 +5,10 @@ import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import AboutTeam from '~/components/AboutTeam.svelte';
-
-import heroBg from '~/assets/about-hero-bg.png';
-import missionImg from '~/assets/about-mission.png';
-import lifeImg from '~/assets/about-life-at-htis.png';
-import lifeBg from '~/assets/about-life-at-htis-bg.png';
-import principlesImg from '~/assets/about-principles.png';
-import johnDoeImg from '~/assets/tm_John_Doe.png';
+import { about } from '~/data/cms';
 ---
 
-<Layout title="About Us - HTIS">
+<Layout title={about.title}>
   <div class="relative w-full overflow-clip">
     <Navbar />
 
@@ -25,7 +19,7 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
       <!-- Background with dot-grid pattern and theme-aware filter -->
       <div class="absolute inset-0 z-0 opacity-90">
         <Image
-          src={heroBg}
+          src={about.hero.backgroundImage}
           alt=""
           aria-hidden="true"
           class="h-full w-full object-cover object-center"
@@ -43,20 +37,19 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
         <h1
           class="mb-6 text-4xl leading-tight font-extrabold tracking-tight text-base-content md:text-5xl lg:text-[56px]"
         >
-          The People and Expertise <span class="text-primary">Behind HTIS</span>
+          {about.hero.title} <span class="text-primary">{about.hero.highlight}</span>
         </h1>
         <p
           class="mx-auto mb-10 max-w-2xl text-lg leading-relaxed font-medium text-base-content/85 md:text-xl"
         >
-          Building dependable infrastructure solutions through engineering innovation,
-          deep-rooted experience, and long-term partnerships.
+          {about.hero.subtitle}
         </p>
         <div>
           <a
-            href="#contact"
+            href={about.hero.ctaUrl}
             class="btn rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
           >
-            Contact Us
+            {about.hero.ctaLabel}
           </a>
         </div>
       </div>
@@ -68,47 +61,18 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
         <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-12">
           <!-- Left Column: Layered Premium Cards -->
           <div class="space-y-4 lg:col-span-7">
-            <!-- Our Vision Card -->
-            <div
-              class="group rounded-2xl border border-base-200/60 bg-base-100 p-5 shadow-xs transition-all duration-300 hover:border-primary/20 hover:shadow-md md:p-6"
-            >
-              <h3 class="mb-1 text-lg font-bold text-base-content transition-colors">
-                Our Vision
-              </h3>
-              <p class="text-sm leading-relaxed text-base-content/75 md:text-base">
-                To shape the future of global connectivity and digital infrastructure by
-                delivering seamless, next-generation enterprise solutions that empower
-                businesses to scale sustainably.
-              </p>
-            </div>
-
-            <!-- Our Mission Card -->
-            <div
-              class="group rounded-2xl border border-base-200/60 bg-base-100 p-5 shadow-xs transition-all duration-300 hover:border-primary/20 hover:shadow-md md:p-6"
-            >
-              <h3 class="mb-1 text-lg font-bold text-base-content transition-colors">
-                Our Mission
-              </h3>
-              <p class="text-sm leading-relaxed text-base-content/75 md:text-base">
-                To deliver dependable, high-performance IT infrastructure and telecom
-                services through continuous engineering innovation, operational
-                excellence, and lasting client partnerships.
-              </p>
-            </div>
-
-            <!-- Our Value Card -->
-            <div
-              class="group rounded-2xl border border-base-200/60 bg-base-100 p-5 shadow-xs transition-all duration-300 hover:border-primary/20 hover:shadow-md md:p-6"
-            >
-              <h3 class="mb-1 text-lg font-bold text-base-content transition-colors">
-                Our Value
-              </h3>
-              <p class="text-sm leading-relaxed text-base-content/75 md:text-base">
-                We are anchored in reliability, professional integrity, and an unyielding
-                commitment to engineering excellence. We believe in collaborative success
-                and creating practical impact.
-              </p>
-            </div>
+            {
+              about.mission.cards.map((card) => (
+                <div class="group rounded-2xl border border-base-200/60 bg-base-100 p-5 shadow-xs transition-all duration-300 hover:border-primary/20 hover:shadow-md md:p-6">
+                  <h3 class="mb-1 text-lg font-bold text-base-content transition-colors">
+                    {card.title}
+                  </h3>
+                  <p class="text-sm leading-relaxed text-base-content/75 md:text-base">
+                    {card.description}
+                  </p>
+                </div>
+              ))
+            }
           </div>
 
           <!-- Right Column: Visual Element -->
@@ -120,8 +84,8 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
               >
               </div>
               <Image
-                src={missionImg}
-                alt="Writing vision on boards"
+                src={about.mission.image}
+                alt={about.mission.imageAlt}
                 class="relative z-10 w-full rounded-xl border border-base-200 object-cover shadow-xl transition-all duration-500 hover:scale-[1.01]"
               />
             </div>
@@ -135,7 +99,7 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
       <!-- Background elements for visual complexity -->
       <div class="absolute inset-0 z-0 opacity-90">
         <Image
-          src={lifeBg}
+          src={about.lifeAtHtis.backgroundImage}
           alt=""
           aria-hidden="true"
           class="h-full w-full object-cover"
@@ -155,8 +119,8 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
               class="relative w-full max-w-md transition-transform duration-500 hover:scale-[1.01] lg:max-w-lg"
             >
               <Image
-                src={lifeImg}
-                alt="Collage of team and office life at HTIS"
+                src={about.lifeAtHtis.image}
+                alt={about.lifeAtHtis.imageAlt}
                 class="filter w-full object-contain drop-shadow-2xl"
               />
             </div>
@@ -167,25 +131,27 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
             <h2
               class="text-3xl font-extrabold tracking-tight text-base-content md:text-4xl"
             >
-              Life at <span class="text-primary">HTIS</span>
+              {about.lifeAtHtis.title} <span class="text-primary">{about.lifeAtHtis.highlight}</span>
             </h2>
             <div class="h-1.5 w-20 rounded-full bg-primary"></div>
-            <p class="pt-2 text-base leading-relaxed text-base-content/80 md:text-lg">
-              At HTIS, our culture thrives on collaboration, continuous growth, and an
-              inclusive community where every voice is valued. We foster an environment of
-              professional excellence combined with creative freedom.
-            </p>
-            <p class="text-base leading-relaxed text-base-content/80 md:text-lg">
-              Whether building next-generation telecom networks or integrating complex
-              enterprise IT infrastructures, our teams work together to solve meaningful
-              challenges. We invite you to bring your passion and join our growing team.
-            </p>
+            {
+              about.lifeAtHtis.body.map((paragraph, index) => (
+                <p
+                  class:list={[
+                    'text-base leading-relaxed text-base-content/80 md:text-lg',
+                    index === 0 && 'pt-2',
+                  ]}
+                >
+                  {paragraph}
+                </p>
+              ))
+            }
             <div class="pt-4">
               <a
-                href="/jobs"
+                href={about.lifeAtHtis.ctaUrl}
                 class="btn rounded-full px-8 text-base font-semibold shadow-md transition-all duration-300 btn-primary hover:shadow-primary/20"
               >
-                See Open Roles
+                {about.lifeAtHtis.ctaLabel}
               </a>
             </div>
           </div>
@@ -194,7 +160,7 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
     </section>
 
     <!-- Section: Team Section -->
-    <AboutTeam memberImg={johnDoeImg.src} client:visible />
+  <AboutTeam team={about.team.members} client:visible />
 
     <!-- Section 4: Principles Section -->
     <section class="bg-base-200/50 py-16 md:py-24">
@@ -206,72 +172,26 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
               <h2
                 class="text-3xl font-extrabold tracking-tight text-base-content md:text-4xl"
               >
-                Principles that shape <span class="text-primary">Every Solution</span>
+                {about.principles.title}
+                <span class="text-primary"> {about.principles.highlight}</span>
               </h2>
               <p class="mt-4 text-base leading-relaxed text-base-content/75 md:text-lg">
-                At HTIS, our work is guided by a commitment to reliability, collaboration,
-                and continuous improvement — helping us deliver solutions organizations
-                can depend on.
+                {about.principles.description}
               </p>
             </div>
 
             <!-- Custom Checklist Stack (Single Column as in Figma) -->
             <div class="flex max-w-lg flex-col gap-3">
-              <div
-                class="group flex items-center gap-3.5 rounded-xl border border-base-200/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-primary/5"
-              >
-                <CircleCheck
-                  class="h-5 w-5 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110"
-                />
-                <span
-                  class="text-base font-semibold text-base-content/90 transition-colors group-hover:text-primary"
-                  >Reliability Across Every Deployment</span
-                >
-              </div>
-              <div
-                class="group flex items-center gap-3.5 rounded-xl border border-base-200/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-primary/5"
-              >
-                <CircleCheck
-                  class="h-5 w-5 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110"
-                />
-                <span
-                  class="text-base font-semibold text-base-content/90 transition-colors group-hover:text-primary"
-                  >Accountability in Every Partnership</span
-                >
-              </div>
-              <div
-                class="group flex items-center gap-3.5 rounded-xl border border-base-200/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-primary/5"
-              >
-                <CircleCheck
-                  class="h-5 w-5 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110"
-                />
-                <span
-                  class="text-base font-semibold text-base-content/90 transition-colors group-hover:text-primary"
-                  >Innovation with Practical Impact</span
-                >
-              </div>
-              <div
-                class="group flex items-center gap-3.5 rounded-xl border border-base-200/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-primary/5"
-              >
-                <CircleCheck
-                  class="h-5 w-5 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110"
-                />
-                <span
-                  class="text-base font-semibold text-base-content/90 transition-colors group-hover:text-primary"
-                  >Collaboration That Drives Results</span
-                >
-              </div>
-              <div
-                class="group flex items-center gap-3.5 rounded-xl border border-base-200/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-primary/5"
-              >
-                <CircleCheck
-                  class="h-5 w-5 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110"
-                />
-                <span
-                  class="text-base font-semibold text-base-content/90 transition-colors group-hover:text-primary"
-                  >Commitment to Long-Term Growth</span
-                >
-              </div>
+              {
+                about.principles.items.map((item) => (
+                  <div class="group flex items-center gap-3.5 rounded-xl border border-base-200/40 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-primary/5">
+                    <CircleCheck class="h-5 w-5 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110" />
+                    <span class="text-base font-semibold text-base-content/90 transition-colors group-hover:text-primary">
+                      {item}
+                    </span>
+                  </div>
+                ))
+              }
             </div>
           </div>
 
@@ -286,8 +206,8 @@ import johnDoeImg from '~/assets/tm_John_Doe.png';
               >
               </div>
               <Image
-                src={principlesImg}
-                alt="Telecom tower and architectural technology elements"
+                src={about.principles.image}
+                alt={about.principles.imageAlt}
                 class="relative z-10 w-full rounded-4xl object-contain"
               />
             </div>

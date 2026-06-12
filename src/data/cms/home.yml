@@ -44,85 +44,94 @@ journey:
   titleHighlight: Journey
   subtitle: A timeline of innovation, milestones, and achievements that shaped our
     path forward.
-  images:
-    - src/assets/our-journey-1.png
-    - src/assets/our-journey-2.png
-    - src/assets/our-journey-3.png
-    - src/assets/our-journey-4.png
-    - src/assets/our-journey-5.png
-    - src/assets/our-journey-6.png
-    - src/assets/our-journey-7.png
-    - src/assets/our-journey-8.png
-    - src/assets/our-journey-9.png
   milestones:
     - year: "2008"
       title: Establishment
       description: HTIS was officially established.
+      image: src/assets/our-journey-1.png
     - year: "2008"
       title: First Customer - Vodafone
       description: Secured Vodafone as our very first customer.
+      image: src/assets/our-journey-2.png
     - year: "2008"
       title: Second Customer - Bharti
       description: Expanded our early portfolio with Bharti as our second customer.
+      image: src/assets/our-journey-3.png
     - year: "2012"
       title: Firmed HTIS Telecom
       description: Officially firmed as HTIS Telecom Private Limited.
+      image: src/assets/our-journey-4.png
     - year: "2013"
       title: Cisco Service Partner
       description: Registered as an official Cisco Service Partner.
+      image: src/assets/our-journey-5.png
     - year: "2014"
       title: Jio 4G Roll-out
       description: Cisco Delivery Jio 4G Roll-out started, delivering over half of
         India North and West, and deploying lacs of routers until 2019.
+      image: src/assets/our-journey-6.png
     - year: "2017"
       title: Global PSSA with Cisco
       description: Signed Global PSSA with Cisco as a Niche Category Partner in the
         field of Service Provider (SP) domain.
+      image: src/assets/our-journey-7.png
     - year: "2017"
       title: Global Expansion
       description: Extended our services to Sri Lanka, Bangladesh, South Africa, and
         the broader Africa region.
+      image: src/assets/our-journey-8.png
     - year: 2018-19
       title: NTT Data Partnership
       description: Signed a global partnership with NTT data in the UK and deployed
         15+ resources based in London for BTS testing.
+      image: src/assets/our-journey-9.png
     - year: "2019"
       title: UN Peace Keeping Project
       description: Delivered a United Nations Peace Keeping Project in the Central
         African Republic in partnership with Cisco.
+      image: src/assets/our-journey-1.png
     - year: "2020"
       title: WFMS Foundation
       description: Laid the foundation of wfms during the COVID lockdown, evolving
         into a Line of Business for Software Development.
+      image: src/assets/our-journey-2.png
     - year: "2020"
       title: System Integration
       description: Started envisioning System Integration post-COVID and hired a
         dedicated sales team across North India.
+      image: src/assets/our-journey-3.png
     - year: "2021"
       title: 100Cr Business Milestone
       description: Within 1 year of our new vision, we successfully delivered over
         100Cr in business.
+      image: src/assets/our-journey-4.png
     - year: "2021"
       title: NHM Primary Health Centres
       description: IT-fied 400 NHM Primary Health Centres in Himachal Pradesh during
         the 2020 lockdown.
+      image: src/assets/our-journey-5.png
     - year: 2022-24
       title: 5G Swap for Jio
       description: Executed 5G Swap for Jio across more than 25,000 sites.
+      image: src/assets/our-journey-6.png
     - year: "2024"
       title: Samsung Award
       description: Received a prestigious award from Samsung.
+      image: src/assets/our-journey-7.png
     - year: "2024"
       title: Cisco Award
       description: Received a prestigious award from Cisco.
+      image: src/assets/our-journey-8.png
     - year: "2024"
       title: Smart Classrooms Solution
       description: Delivered a 5000+ Smart Classrooms Solution in Himachal Pradesh
         with Samsung hardware and a Learning Management Solution developed by
         HTIS.
+      image: src/assets/our-journey-9.png
     - year: "2026"
       title: wfms 2.0 Launch
       description: Scheduled launch of the next generation of our wfms platform, wfms 2.0.
+      image: src/assets/our-journey-1.png
 team:
   backgroundImage: src/assets/team-member-bg.png
   meetTeamImage: src/assets/our-journey-2.png

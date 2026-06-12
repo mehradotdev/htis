@@ -2,27 +2,18 @@
   import { fade } from 'svelte/transition';
   import { ChevronLeft, ChevronRight } from '@lucide/svelte';
 
-  interface Props {
-    memberImg: string;
+  interface TeamMember {
+    name: string;
+    role: string;
+    dept: string;
+    img: string;
   }
 
-  let { memberImg }: Props = $props();
+  interface Props {
+    team: TeamMember[];
+  }
 
-  // 12 dummy team members to ensure overflow and scrollbar activation across various screens
-  const team = [
-    { name: 'Jhon Doe', role: 'Head of Commercials', dept: 'Operations' },
-    { name: 'Jane Smith', role: 'Lead Engineer', dept: 'Telecom Systems' },
-    { name: 'Robert Johnson', role: 'Chief Architect', dept: 'Software Division' },
-    { name: 'Emily Davis', role: 'Operations Manager', dept: 'System Integration' },
-    { name: 'Michael Brown', role: 'Technical Specialist', dept: 'Infrastructure' },
-    { name: 'Sophia Wilson', role: 'Client Relations', dept: 'Project Management' },
-    { name: 'David Taylor', role: 'Financial Controller', dept: 'Operations' },
-    { name: 'Olivia Martinez', role: 'HR & Culture Lead', dept: 'People Operations' },
-    { name: 'James Anderson', role: 'Security Operations Lead', dept: 'Cyber Defense' },
-    { name: 'Isabella Thomas', role: 'Senior Project Manager', dept: 'Telecom' },
-    { name: 'William Jackson', role: 'Cloud Operations Lead', dept: 'Technology' },
-    { name: 'Mia White', role: 'QA Lead', dept: 'Software Quality' },
-  ];
+  let { team }: Props = $props();
 
   let scrollContainer = $state<HTMLDivElement | null>(null);
   let scrollProgress = $state(0);
@@ -123,7 +114,7 @@
             <div
               class="h-16 w-16 overflow-hidden rounded-xl border border-base-200/60 bg-base-200 shrink-0"
             >
-              <img src={memberImg} alt={member.name} class="h-full w-full object-cover" />
+              <img src={member.img} alt={member.name} class="h-full w-full object-cover" />
             </div>
             <div class="flex flex-col min-w-0">
               <span class="text-lg font-bold text-base-content leading-tight truncate"

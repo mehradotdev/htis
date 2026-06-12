@@ -4,116 +4,10 @@ import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import AwardsGallery from '~/components/awards/AwardsGallery.svelte';
-
-import heroBg from '~/assets/awards-hero-bg.png';
-
-// Import all award and certificate assets
-import acAward1 from '~/assets/ac-award1.JPG';
-import acAward2 from '~/assets/ac-award2.JPG';
-import acAward3 from '~/assets/ac-award3.jpg';
-import acAward4 from '~/assets/ac-award4.jpg';
-import acAward5 from '~/assets/ac-award5.jpg';
-
-import acCertificate1 from '~/assets/ac-certificate1.JPG';
-import acCertificate2 from '~/assets/ac-certificate2.PNG';
-import acCertificate3 from '~/assets/ac-certificate3.PNG';
-import acCertificate4 from '~/assets/ac-certificate4.PNG';
-import acCertificate5 from '~/assets/ac-certificate5.PNG';
-import acCertificate6 from '~/assets/ac-certificate6.JPG';
-
-const items = [
-  {
-    id: 1,
-    type: 'award',
-    title: 'Aarohan Job & Internship Fair Excellence Award',
-    organization: 'SGT University',
-    date: 'May 7, 2026',
-    src: acAward1.src,
-  },
-  {
-    id: 2,
-    type: 'award',
-    title: 'SGT University Remembrance & Recognition Award',
-    organization: 'SGT University',
-    date: 'May 7, 2026',
-    src: acAward2.src,
-  },
-  {
-    id: 3,
-    type: 'award',
-    title: 'Certificate of Recognition (Distinguished Sales Performance)',
-    organization: 'Cisco & Inflow Technologies',
-    date: 'September 15, 2022',
-    src: acAward3.src,
-  },
-  {
-    id: 4,
-    type: 'award',
-    title: 'Certificate of Appreciation (Think : Create : Exhibit)',
-    organization: 'Janki Devi Vocational Centre',
-    date: 'March 12, 2024',
-    src: acAward4.src,
-  },
-  {
-    id: 5,
-    type: 'award',
-    title: 'Airtel 98,000 Sites Deployment Recognition',
-    organization: 'Airtel',
-    date: 'November 20, 2023',
-    src: acAward5.src,
-  },
-  {
-    id: 6,
-    type: 'certificate',
-    title: 'ISO 27001 Information Security Management System',
-    organization: 'Global Certification Services',
-    date: 'January 10, 2025',
-    src: acCertificate1.src,
-  },
-  {
-    id: 7,
-    type: 'certificate',
-    title: 'MSME Udyam Registration Certificate',
-    organization: 'Ministry of Micro, Small & Medium Enterprises',
-    date: 'April 1, 2025',
-    src: acCertificate2.src,
-  },
-  {
-    id: 8,
-    type: 'certificate',
-    title: 'CMMI Maturity Level 5 Certification',
-    organization: 'British Columbia Inspection & Certification',
-    date: 'April 3, 2026',
-    src: acCertificate3.src,
-  },
-  {
-    id: 9,
-    type: 'certificate',
-    title: 'ISO 22301:2019 BCMS Certification',
-    organization: 'British Columbia Inspection & Certification',
-    date: 'April 3, 2026',
-    src: acCertificate4.src,
-  },
-  {
-    id: 10,
-    type: 'certificate',
-    title: 'ISO 45001:2018 OH&SMS Certification',
-    organization: 'Global Standards',
-    date: 'April 8, 2026',
-    src: acCertificate5.src,
-  },
-  {
-    id: 11,
-    type: 'certificate',
-    title: 'ISO 9001:2015 QMS Certification',
-    organization: 'Royal Stancert B.V.',
-    date: 'December 3, 2019',
-    src: acCertificate6.src,
-  },
-];
+import { awards } from '~/data/cms';
 ---
 
-<Layout title="Awards & Achievements - HTIS">
+<Layout title={awards.title}>
   <div class="relative w-full overflow-clip">
     <Navbar />
 
@@ -123,7 +17,7 @@ const items = [
         <div class="relative w-full overflow-hidden rounded-[2rem] bg-base-200">
           <div class="absolute inset-0 z-0 opacity-80">
             <Image
-              src={heroBg}
+              src={awards.hero.backgroundImage}
               alt=""
               aria-hidden="true"
               class="h-full w-full object-cover object-right"
@@ -140,11 +34,10 @@ const items = [
             <h1
               class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-[54px]"
             >
-              Awards & Achievements
+              {awards.hero.title}
             </h1>
             <p class="text-xl font-medium text-base-content/70">
-              A testament to our commitment to excellence, innovation and delivering
-              exceptional value.
+              {awards.hero.subtitle}
             </p>
           </div>
         </div>
@@ -154,7 +47,7 @@ const items = [
     <!-- Gallery Section -->
     <section class="pt-4 pb-8">
       <div class="container mx-auto px-6">
-        <AwardsGallery items={items} client:load />
+        <AwardsGallery items={awards.items} client:load />
       </div>
     </section>
 
