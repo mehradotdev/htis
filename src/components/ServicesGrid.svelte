@@ -256,7 +256,7 @@
             onblur={() => {
               activeTooltip = null;
             }}
-            class="grid-block tooltip tooltip-primary flex flex-col items-center justify-center p-4 text-center bg-base-100/70 backdrop-blur-md hover:bg-primary/5 hover:outline-2 hover:-outline-offset-2 hover:outline-primary md:transition-all md:duration-700 ease-in-out {getBorders(
+            class="grid-block tooltip tooltip-primary flex flex-col items-center justify-center p-2 lg:p-3 text-center bg-base-100/70 backdrop-blur-md hover:bg-primary/5 hover:outline-2 hover:-outline-offset-2 hover:outline-primary md:transition-all md:duration-700 ease-in-out {getBorders(
               pos.c,
               pos.r,
               1,
@@ -273,9 +273,9 @@
             data-tip={icon.description}
           >
             <div class="mb-2 text-primary">
-              <Icon size={32} />
+              <Icon size={40} />
             </div>
-            <span class="text-xs font-medium text-base-content/70"
+            <span class="text-xs lg:text-sm font-semibold text-base-content/80"
               >{@html icon.label}</span
             >
           </button>
@@ -297,7 +297,7 @@
         {#each service.stats as stat, idx}
           {@const pos = stateLayouts[active].stats[idx]}
           <div
-            class="grid-block flex flex-1 flex-col items-center justify-center space-y-1 p-4 text-center bg-base-100/70 backdrop-blur-md hover:bg-primary/5 hover:outline-2 hover:-outline-offset-2 hover:outline-primary md:transition-all md:duration-700 ease-in-out {getBorders(
+            class="grid-block flex flex-1 flex-col items-center justify-center space-y-1 p-2 lg:p-3 text-center bg-base-100/70 backdrop-blur-md hover:bg-primary/5 hover:outline-2 hover:-outline-offset-2 hover:outline-primary md:transition-all md:duration-700 ease-in-out {getBorders(
               pos.c,
               pos.r,
               pos.cs || 1,
@@ -309,8 +309,8 @@
               : 'md:opacity-0 md:pointer-events-none'}"
             style={getStyle(pos.c, pos.r, pos.cs || 1, pos.rs || 1)}
           >
-            <span class="text-2xl font-bold text-primary">{stat.val}</span>
-            <span class="text-xs font-medium text-base-content/70"
+            <span class="text-2xl lg:text-3xl font-bold text-primary">{stat.val}</span>
+            <span class="text-xs lg:text-sm font-semibold text-base-content/80"
               >{@html stat.label}</span
             >
           </div>

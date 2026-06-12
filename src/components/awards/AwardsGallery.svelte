@@ -2,8 +2,6 @@
   import { ChevronDown, ChevronUp, Calendar } from '@lucide/svelte';
   import { tick } from 'svelte';
 
-  let { photoSrc }: { photoSrc: string } = $props();
-
   type ItemType = 'award' | 'certificate';
 
   interface AwardItem {
@@ -12,39 +10,18 @@
     title: string;
     organization: string;
     date: string;
+    src: string;
   }
 
-  // Generate fake data
-  const generateData = (): AwardItem[] => {
-    const data: AwardItem[] = [];
-    for (let i = 1; i <= 12; i++) {
-      data.push({
-        id: i,
-        type: 'award',
-        title: `IT Service Excellence Award ${2026 - Math.floor((i - 1) / 3)}`,
-        organization: 'NASSCOM',
-        date: `May 15, 2026`,
-      });
-    }
-    for (let i = 1; i <= 12; i++) {
-      data.push({
-        id: i + 12,
-        type: 'certificate',
-        title: `Technical Innovation Certificate ${2026 - Math.floor((i - 1) / 3)}`,
-        organization: 'NASSCOM',
-        date: `June 10, 2026`,
-      });
-    }
-    return data;
-  };
-
-  const allItems = generateData();
+  let { items = [] }: { items: AwardItem[] } = $props();
 
   let activeTab = $state<'all' | 'award' | 'certificate'>('all');
   let startIndex = $state(0);
   let animKey = $state(0);
   let animDirection = $state<'down' | 'up'>('down');
   let gridEl = $state<HTMLDivElement>();
+  let selectedItem = $state<AwardItem | null>(null);
+  let dialogEl = $state<HTMLDialogElement>();
 
   $effect(() => {
     animKey; // subscribe
@@ -57,20 +34,28 @@
     });
   });
 
+  $effect(() => {
+    if (selectedItem) {
+      dialogEl?.showModal();
+    } else {
+      dialogEl?.close();
+    }
+  });
+
   const filteredItems = $derived(
-    activeTab === 'all' ? allItems : allItems.filter((item) => item.type === activeTab),
+    activeTab === 'all' ? items : items.filter((item) => item.type === activeTab),
   );
 
   const visibleItems = $derived.by(() => {
-    const items = [];
+    const res = [];
     const len = filteredItems.length;
     // Show 6 items (2 rows of 3)
     for (let i = 0; i < 6; i++) {
       if (len > 0) {
-        items.push(filteredItems[(startIndex + i) % len]);
+        res.push(filteredItems[(startIndex + i) % len]);
       }
     }
-    return items;
+    return res;
   });
 
   function handleTabChange(tab: 'all' | 'award' | 'certificate') {
@@ -99,7 +84,7 @@
   <!-- Tabs -->
   <div class="flex border-b border-base-300">
     <button
-      class="px-8 py-3 text-base font-medium transition-colors relative {activeTab ===
+      class="px-8 py-3 text-base font-medium transition-colors relative cursor-pointer {activeTab ===
       'all'
         ? 'text-primary'
         : 'text-base-content/60 hover:text-base-content'}"
@@ -111,7 +96,7 @@
       {/if}
     </button>
     <button
-      class="px-8 py-3 text-base font-medium transition-colors relative {activeTab ===
+      class="px-8 py-3 text-base font-medium transition-colors relative cursor-pointer {activeTab ===
       'award'
         ? 'text-primary'
         : 'text-base-content/60 hover:text-base-content'}"
@@ -123,7 +108,7 @@
       {/if}
     </button>
     <button
-      class="px-8 py-3 text-base font-medium transition-colors relative {activeTab ===
+      class="px-8 py-3 text-base font-medium transition-colors relative cursor-pointer {activeTab ===
       'certificate'
         ? 'text-primary'
         : 'text-base-content/60 hover:text-base-content'}"
@@ -142,32 +127,36 @@
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4"
   >
     {#each visibleItems as item}
-      <div
-        class="bg-base-100 rounded-xl shadow-sm border border-base-200 overflow-hidden"
+      <button
+        class="bg-base-100 rounded-xl shadow-xs border border-base-200 overflow-hidden cursor-pointer hover:shadow-md hover:border-primary/20 transition-all duration-300 flex flex-col text-left w-full outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        onclick={() => selectedItem = item}
+        aria-haspopup="dialog"
       >
-        <div class="p-2.5 pb-0">
+        <div class="p-2.5 pb-0 w-full">
           <img
-            src={photoSrc}
+            src={item.src}
             alt={item.title}
-            class="w-full max-h-[180px] object-contain rounded-lg bg-base-200/30"
+            class="w-full aspect-square object-cover rounded-lg bg-base-200/30 transition-transform duration-500 hover:scale-[1.02]"
           />
         </div>
-        <div class="px-3 pt-2 pb-3">
-          <h3 class="text-sm font-bold text-base-content leading-snug">{item.title}</h3>
-          <p class="text-primary font-medium text-xs mt-0.5">{item.organization}</p>
-          <div class="flex items-center text-base-content/50 text-xs font-medium mt-1.5">
+        <div class="px-3 pt-3 pb-3 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm font-bold text-base-content leading-snug line-clamp-2">{item.title}</h3>
+            <p class="text-primary font-medium text-xs mt-1">{item.organization}</p>
+          </div>
+          <div class="flex items-center text-base-content/50 text-xs font-medium mt-3">
             <Calendar size={14} class="mr-1.5" />
             {item.date}
           </div>
         </div>
-      </div>
+      </button>
     {/each}
   </div>
 
   <!-- Pagination / Navigation -->
   <div class="flex justify-between items-center bg-base-200/60 rounded-xl p-2.5">
     <button
-      class="btn btn-circle btn-sm bg-primary/20 text-primary hover:bg-primary/30 border-none"
+      class="btn btn-circle btn-sm bg-primary/20 text-primary hover:bg-primary/30 border-none cursor-pointer"
       onclick={goUp}
       aria-label="Go up a row"
     >
@@ -177,7 +166,7 @@
     <div class="flex items-center gap-4">
       <span class="text-base-content/60 font-medium">load more</span>
       <button
-        class="btn btn-circle btn-sm btn-primary border-none text-white hover:bg-primary/90"
+        class="btn btn-circle btn-sm btn-primary border-none text-white hover:bg-primary/90 cursor-pointer"
         onclick={goDown}
         aria-label="Go down a row"
       >
@@ -186,3 +175,45 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Popup for Full Image View -->
+<dialog bind:this={dialogEl} class="modal" onclose={() => selectedItem = null}>
+  {#if selectedItem}
+    <div
+      class="modal-box max-w-4xl bg-base-100 p-0 overflow-hidden relative flex flex-col items-center justify-center border border-base-300 shadow-2xl"
+    >
+      <button
+        class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3 z-50 text-base-content hover:bg-base-300/40 cursor-pointer"
+        onclick={() => selectedItem = null}
+        aria-label="Close modal"
+      >
+        ✕
+      </button>
+      
+      <div class="w-full max-h-[70vh] md:max-h-[75vh] overflow-hidden flex items-center justify-center p-4 bg-black/5">
+        <img
+          src={selectedItem.src}
+          alt={selectedItem.title}
+          class="max-w-full max-h-[65vh] md:max-h-[70vh] object-contain rounded-md shadow-md"
+        />
+      </div>
+      
+      <div class="w-full p-5 bg-base-200/70 border-t border-base-200 text-left">
+        <span class="badge badge-primary badge-outline text-[10px] font-semibold tracking-wider uppercase mb-2">
+          {selectedItem.type}
+        </span>
+        <h3 class="text-lg font-bold text-base-content leading-snug">{selectedItem.title}</h3>
+        <p class="text-primary font-semibold text-xs mt-1">{selectedItem.organization}</p>
+        <div class="flex items-center text-base-content/60 text-xs font-medium mt-3.5">
+          <Calendar size={14} class="mr-2" />
+          {selectedItem.date}
+        </div>
+      </div>
+    </div>
+    
+    <form method="dialog" class="modal-backdrop bg-black/60 backdrop-blur-xs">
+      <button onclick={() => selectedItem = null}>close</button>
+    </form>
+  {/if}
+</dialog>
+

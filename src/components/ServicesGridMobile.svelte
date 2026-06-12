@@ -65,8 +65,8 @@
               <div
                 class="flex flex-col items-center justify-center border-t border-solid border-base-content/20 bg-base-100/40 py-6 px-4 text-center"
               >
-                <span class="mb-1 text-3xl font-bold text-primary">{stat.val}</span>
-                <span class="text-sm font-medium text-base-content/70"
+                <span class="mb-1 text-4xl font-bold text-primary">{stat.val}</span>
+                <span class="text-sm lg:text-base font-semibold text-base-content/80"
                   >{@html stat.label}</span
                 >
               </div>
