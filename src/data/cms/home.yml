@@ -19,14 +19,12 @@ hero:
       alt: Honeywell
     - image: src/assets/logo-nokia.png
       alt: Nokia
-    - image: src/assets/logo-ericsson.png
+    - image: src/assets/ericsson.png
       alt: Ericsson
     - image: src/assets/aruba.png
       alt: Aruba
     - image: src/assets/belden.png
       alt: Belden
-    - image: src/assets/benq.jpg
-      alt: BenQ
 journey:
   titlePrefix: Our
   titleHighlight: Journey
