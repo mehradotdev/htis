@@ -35,6 +35,8 @@ hero:
       alt: Canon
     - image: src/assets/check-point.png
       alt: "Check Point "
+    - image: src/assets/cisco.png
+      alt: "Cisco "
 journey:
   titlePrefix: Our
   titleHighlight: Journey
