@@ -27,6 +27,8 @@ hero:
       alt: Belden
     - image: src/assets/benq.png
       alt: BenQ
+    - image: src/assets/bosch.webp
+      alt: Bosch
 journey:
   titlePrefix: Our
   titleHighlight: Journey
