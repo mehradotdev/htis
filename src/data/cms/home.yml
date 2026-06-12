@@ -37,6 +37,8 @@ hero:
       alt: "Check Point "
     - image: src/assets/cisco.png
       alt: "Cisco "
+    - image: src/assets/commscope.png
+      alt: Commscope
 journey:
   titlePrefix: Our
   titleHighlight: Journey
