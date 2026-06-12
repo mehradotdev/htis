@@ -25,6 +25,8 @@ hero:
       alt: Aruba
     - image: src/assets/belden-2.png
       alt: Belden
+    - image: src/assets/benq.png
+      alt: BenQ
 journey:
   titlePrefix: Our
   titleHighlight: Journey
