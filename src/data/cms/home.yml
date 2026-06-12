@@ -33,6 +33,8 @@ hero:
       alt: BPE
     - image: src/assets/canon.png
       alt: Canon
+    - image: src/assets/check-point.png
+      alt: "Check Point "
 journey:
   titlePrefix: Our
   titleHighlight: Journey
