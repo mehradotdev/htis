@@ -23,7 +23,7 @@ hero:
       alt: Ericsson
     - image: src/assets/aruba-2.png
       alt: Aruba
-    - image: src/assets/belden-1.png
+    - image: src/assets/belden-2.png
       alt: Belden
 journey:
   titlePrefix: Our
