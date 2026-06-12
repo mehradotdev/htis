@@ -29,6 +29,8 @@ hero:
       alt: BenQ
     - image: src/assets/bosch.webp
       alt: Bosch
+    - image: src/assets/bpe.webp
+      alt: BPE
 journey:
   titlePrefix: Our
   titleHighlight: Journey
