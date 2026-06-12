@@ -11,8 +11,6 @@ hero:
   ctaUrl: "#contact"
   trustedByLabel: Trusted by 100+ Partners
   partnerLogos:
-    - image: src/assets/logo-ncomputing.png
-      alt: NComputing
     - image: src/assets/logo-legrand.png
       alt: Legrand
     - image: src/assets/logo-lifesize.png
@@ -23,6 +21,12 @@ hero:
       alt: Nokia
     - image: src/assets/logo-ericsson.png
       alt: Ericsson
+    - image: src/assets/aruba.png
+      alt: Aruba
+    - image: src/assets/belden.png
+      alt: Belden
+    - image: src/assets/benq.jpg
+      alt: BenQ
 journey:
   titlePrefix: Our
   titleHighlight: Journey
