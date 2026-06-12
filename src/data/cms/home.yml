@@ -31,6 +31,8 @@ hero:
       alt: Bosch
     - image: src/assets/bpe.webp
       alt: BPE
+    - image: src/assets/canon.png
+      alt: Canon
 journey:
   titlePrefix: Our
   titleHighlight: Journey
