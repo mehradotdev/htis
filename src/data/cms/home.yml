@@ -9,7 +9,7 @@ hero:
   subtitle: Reliable expertise across infrastructure, technology, and people.
   ctaLabel: Contact Us
   ctaUrl: "#contact"
-  trustedByLabel: Trusted by 100+ Partners
+  trustedByLabel: Trusted by 50+ Partners
   partnerLogos:
     - image: src/assets/logo-legrand.png
       alt: Legrand
