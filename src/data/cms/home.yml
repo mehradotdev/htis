@@ -65,6 +65,8 @@ hero:
       alt: Hik vision
     - image: src/assets/hp.png
       alt: hp
+    - image: src/assets/hpe-1.png
+      alt: HPE
 journey:
   titlePrefix: Our
   titleHighlight: Journey
