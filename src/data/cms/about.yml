@@ -3,8 +3,8 @@ hero:
   backgroundImage: src/assets/about-hero-bg.png
   title: The People and Expertise
   highlight: Behind HTIS
-  subtitle: Building dependable infrastructure solutions through engineering innovation,
-    deep-rooted experience, and long-term partnerships.
+  subtitle: Building dependable infrastructure solutions through engineering
+    innovation, deep-rooted experience, and long-term partnerships.
   ctaLabel: Contact Us
   ctaUrl: /#contact
 mission:
@@ -12,17 +12,17 @@ mission:
   imageAlt: Writing vision on boards
   cards:
     - title: Our Vision
-      description: To shape the future of global connectivity and digital infrastructure
-        by delivering seamless, next-generation enterprise solutions that empower
-        businesses to scale sustainably.
+      description: To shape the future of global connectivity and digital
+        infrastructure by delivering seamless, next-generation enterprise
+        solutions that empower businesses to scale sustainably.
     - title: Our Mission
-      description: To deliver dependable, high-performance IT infrastructure and telecom
-        services through continuous engineering innovation, operational excellence,
-        and lasting client partnerships.
+      description: To deliver dependable, high-performance IT infrastructure and
+        telecom services through continuous engineering innovation, operational
+        excellence, and lasting client partnerships.
     - title: Our Value
       description: We are anchored in reliability, professional integrity, and an
-        unyielding commitment to engineering excellence. We believe in collaborative
-        success and creating practical impact.
+        unyielding commitment to engineering excellence. We believe in
+        collaborative success and creating practical impact.
 lifeAtHtis:
   backgroundImage: src/assets/about-life-at-htis-bg.png
   image: src/assets/about-life-at-htis.png
@@ -30,9 +30,9 @@ lifeAtHtis:
   title: Life at
   highlight: HTIS
   body:
-    - At HTIS, our culture thrives on collaboration, continuous growth, and an inclusive
-      community where every voice is valued. We foster an environment of professional
-      excellence combined with creative freedom.
+    - At HTIS, our culture thrives on collaboration, continuous growth, and an
+      inclusive community where every voice is valued. We foster an environment
+      of professional excellence combined with creative freedom.
     - Whether building next-generation telecom networks or integrating complex
       enterprise IT infrastructures, our teams work together to solve meaningful
       challenges. We invite you to bring your passion and join our growing team.
@@ -40,17 +40,17 @@ lifeAtHtis:
   ctaUrl: /jobs
 team:
   members:
-    - name: Jhon Doe
-      role: Head of Commercials
-      dept: Operations
+    - name: "Aditya Kaushik "
+      role: Managing Director
+      dept: "HTIS "
       image: src/assets/tm_John_Doe1.png
-    - name: Jane Smith
-      role: Lead Engineer
-      dept: Telecom Systems
+    - name: "Sandeep Aswal "
+      role: Chief Operating Officer
+      dept: HTIS
       image: src/assets/tm_John_Doe2.png
-    - name: Robert Johnson
-      role: Chief Architect
-      dept: Software Division
+    - name: "Amit Dhingra "
+      role: "Sr. Vice President "
+      dept: System Integration
       image: src/assets/tm_John_Doe3.png
     - name: Emily Davis
       role: Operations Manager
@@ -93,8 +93,9 @@ principles:
   imageAlt: Telecom tower and architectural technology elements
   title: Principles that shape
   highlight: Every Solution
-  description: At HTIS, our work is guided by a commitment to reliability, collaboration,
-    and continuous improvement - helping us deliver solutions organizations can depend on.
+  description: At HTIS, our work is guided by a commitment to reliability,
+    collaboration, and continuous improvement - helping us deliver solutions
+    organizations can depend on.
   items:
     - Reliability Across Every Deployment
     - Accountability in Every Partnership
