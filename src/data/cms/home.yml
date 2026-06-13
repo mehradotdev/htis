@@ -55,6 +55,10 @@ hero:
       alt: Eaton
     - image: src/assets/epson-1.png
       alt: Epson
+    - image: src/assets/extreme-networks-1.png
+      alt: Extreme networks
+    - image: src/assets/fortinet.png
+      alt: Fortinet
 journey:
   titlePrefix: Our
   titleHighlight: Journey
