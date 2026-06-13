@@ -43,6 +43,12 @@ hero:
       alt: cpplus
     - image: src/assets/crestron-2.png
       alt: Crestron
+    - image: src/assets/dell-1.png
+      alt: DELL
+    - image: src/assets/delta-2.png
+      alt: DELTA
+    - image: src/assets/derwiser-2.png
+      alt: Derwiser
 journey:
   titlePrefix: Our
   titleHighlight: Journey
