@@ -85,6 +85,10 @@ hero:
       alt: molex
     - image: src/assets/netgear-1.png
       alt: Netgear
+    - image: src/assets/panasonic-1.png
+      alt: Panasonic
+    - image: src/assets/peoplelink.png
+      alt: People link
 journey:
   titlePrefix: Our
   titleHighlight: Journey
