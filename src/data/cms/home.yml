@@ -59,6 +59,8 @@ hero:
       alt: Extreme networks
     - image: src/assets/fortinet.png
       alt: Fortinet
+    - image: src/assets/harman-kardon-1.png
+      alt: Harman kardon
 journey:
   titlePrefix: Our
   titleHighlight: Journey
