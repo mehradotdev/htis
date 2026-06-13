@@ -205,7 +205,7 @@ journey:
       image: src/assets/our-journey-1.png
 team:
   backgroundImage: src/assets/team-member-bg.png
-  meetTeamImage: src/assets/our-journey-2.png
+  meetTeamImage: src/assets/htis-team.jpg
   heading: The Visionary Core
   description: Our leadership team brings together decades of experience in
     telecommunications, software engineering, and systems integration, guiding
