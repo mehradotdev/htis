@@ -99,6 +99,14 @@ hero:
       alt: Ruckus networks
     - image: src/assets/schneider-electric.png
       alt: Schneider Electric
+    - image: src/assets/sonicwall.png
+      alt: Sonic wall
+    - image: src/assets/sophos.png
+      alt: Sophos
+    - image: src/assets/trendmicro.png
+      alt: Trend Micro
+    - image: src/assets/vertiv.png
+      alt: Vertiv
 journey:
   titlePrefix: Our
   titleHighlight: Journey
