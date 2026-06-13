@@ -218,12 +218,12 @@ team:
       role: Managing Director
       desc: Sets the company’s long-term goals and ensures we stay a leader in the
         technology industry.
-      image: src/assets/tm_Aditya_Kaushik.png
+      image: src/assets/aditya-kaushik-1.png
     - name: Sandeep Aswal
       role: Chief Operating Officer
       desc: Manages daily business tasks to make sure all large projects are completed
         successfully and on time.
-      image: src/assets/tm_Sandeep_Aswal.png
+      image: src/assets/sandeep-aswal-1.png
     - name: Amit Dhingra
       role: Senior Vice President
       desc: Leads major company projects and manages relationships with our most
@@ -233,4 +233,4 @@ team:
       role: Head - Centre of Excellence
       desc: Sets the high technical standards for our services and finds new ways to
         solve technology problems.
-      image: src/assets/tm_Arvind_Sharma.png
+      image: src/assets/arvind-sharma-1.png
