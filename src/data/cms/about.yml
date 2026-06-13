@@ -75,11 +75,11 @@ team:
     - name: Soni Jain
       role: General Manager
       dept: Finance
-      image: src/assets/soni-jainfinance-controller.png
+      image: src/assets/soni-jain.png
     - name: Harmeet Kohli
       role: Sr. Manager Sales
       dept: System Integration
-      image: src/assets/harmeet-kohli-2.jpeg
+      image: src/assets/harmeet-kohli.png
     - name: Rajeev Sharma
       role: Manager Sales
       dept: System Integration
