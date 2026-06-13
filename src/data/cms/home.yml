@@ -53,6 +53,8 @@ hero:
       alt: D-link
     - image: src/assets/eaton-1.png
       alt: Eaton
+    - image: src/assets/epson-1.png
+      alt: Epson
 journey:
   titlePrefix: Our
   titleHighlight: Journey
