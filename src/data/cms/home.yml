@@ -49,6 +49,8 @@ hero:
       alt: DELTA
     - image: src/assets/derwiser-2.png
       alt: Derwiser
+    - image: src/assets/d-link-2.png
+      alt: D-link
 journey:
   titlePrefix: Our
   titleHighlight: Journey
