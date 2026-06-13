@@ -2,8 +2,8 @@ hero:
   backgroundImage: src/assets/hero-bg.png
   titlePrefix: Delivering Excellence in
   rotatingWords:
-    - System Integration
     - Telecommunication
+    - System Integration
     - Software Development
     - Workforce Management
   subtitle: 16+ years of proven solutions. Delivered through people. Driven by
