@@ -51,7 +51,7 @@ team:
     - name: "Amit Dhingra "
       role: "Sr. Vice President "
       dept: System Integration
-      image: src/assets/amit-dhingrasrvice-president-sales-and-marketing.jpeg
+      image: src/assets/amit-dhingra.png
     - name: Kuldeep Singh
       role: Head of Department
       dept: Software Development
@@ -67,11 +67,11 @@ team:
     - name: Munish Aggarwal
       role: Sr. General Manager
       dept: Adminstration
-      image: src/assets/munish-aggarwal.jpeg
+      image: src/assets/munish-aggarwal.png
     - name: Parveen Arya
       role: General Manager Sales
       dept: Telecom
-      image: src/assets/parveen-arya.jpg
+      image: src/assets/parveen-arya.png
     - name: Soni Jain
       role: General Manager
       dept: Finance
