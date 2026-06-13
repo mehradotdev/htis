@@ -80,13 +80,13 @@ team:
       role: Sr. Manager Sales
       dept: System Integration
       image: src/assets/tm_John_Doe10.png
-    - name: William Jackson
-      role: Cloud Operations Lead
-      dept: Technology
+    - name: Rajeev Sharma
+      role: Manager Sales
+      dept: System Integration
       image: src/assets/tm_John_Doe11.png
-    - name: Mia White
-      role: QA Lead
-      dept: Software Quality
+    - name: Rohit Gupta
+      role: Delivery Head
+      dept: Operations
       image: src/assets/tm_John_Doe12.png
 principles:
   image: src/assets/about-principles.png
