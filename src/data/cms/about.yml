@@ -52,9 +52,9 @@ team:
       role: "Sr. Vice President "
       dept: System Integration
       image: src/assets/tm_John_Doe3.png
-    - name: Emily Davis
-      role: Operations Manager
-      dept: System Integration
+    - name: Kuldeep Singh
+      role: Head of Department
+      dept: Software Development
       image: src/assets/tm_John_Doe4.png
     - name: Michael Brown
       role: Technical Specialist
