@@ -101,6 +101,8 @@ hero:
       alt: Schneider Electric
     - image: src/assets/sonicwall.png
       alt: Sonic wall
+    - image: src/assets/samsung.png
+      alt: Samsung
     - image: src/assets/sophos.png
       alt: Sophos
     - image: src/assets/trendmicro.png
