@@ -8,7 +8,7 @@ hero:
   ctaLabel: Contact Us
   ctaUrl: /#contact
 mission:
-  image: src/assets/about-mission.png
+  image: src/assets/1776007843793.jpg
   imageAlt: Writing vision on boards
   cards:
     - title: Our Vision
