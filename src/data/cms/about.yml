@@ -64,21 +64,21 @@ team:
       role: General Manager Sales
       dept: System Integration
       image: src/assets/tm_John_Doe6.png
-    - name: David Taylor
-      role: Financial Controller
-      dept: Operations
+    - name: Munish Aggarwal
+      role: Sr. General Manager
+      dept: Adminstration
       image: src/assets/tm_John_Doe7.png
-    - name: Olivia Martinez
-      role: HR & Culture Lead
-      dept: People Operations
-      image: src/assets/tm_John_Doe8.png
-    - name: James Anderson
-      role: Security Operations Lead
-      dept: Cyber Defense
-      image: src/assets/tm_John_Doe9.png
-    - name: Isabella Thomas
-      role: Senior Project Manager
+    - name: Parveen Arya
+      role: General Manager Sales
       dept: Telecom
+      image: src/assets/tm_John_Doe8.png
+    - name: Soni Jain
+      role: General Manager
+      dept: Finance
+      image: src/assets/tm_John_Doe9.png
+    - name: Harmeet Kohli
+      role: Sr. Manager Sales
+      dept: System Integration
       image: src/assets/tm_John_Doe10.png
     - name: William Jackson
       role: Cloud Operations Lead
