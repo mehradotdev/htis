@@ -39,6 +39,8 @@ hero:
       alt: "Cisco "
     - image: src/assets/commscope.png
       alt: Commscope
+    - image: src/assets/cpplus-1.png
+      alt: cpplus
 journey:
   titlePrefix: Our
   titleHighlight: Journey
