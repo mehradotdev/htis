@@ -83,6 +83,8 @@ hero:
       alt: Microsoft
     - image: src/assets/molex.png
       alt: molex
+    - image: src/assets/netgear-1.png
+      alt: Netgear
 journey:
   titlePrefix: Our
   titleHighlight: Journey
