@@ -89,6 +89,16 @@ hero:
       alt: Panasonic
     - image: src/assets/peoplelink.png
       alt: People link
+    - image: src/assets/poly-1.png
+      alt: Poly
+    - image: src/assets/polycom.png
+      alt: Polycom
+    - image: src/assets/randm.png
+      alt: R&M
+    - image: src/assets/ruckus-networks.png
+      alt: Ruckus networks
+    - image: src/assets/schneider-electric.png
+      alt: Schneider Electric
 journey:
   titlePrefix: Our
   titleHighlight: Journey
