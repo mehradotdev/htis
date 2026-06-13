@@ -41,6 +41,8 @@ hero:
       alt: Commscope
     - image: src/assets/cpplus-1.png
       alt: cpplus
+    - image: src/assets/crestron-2.png
+      alt: Crestron
 journey:
   titlePrefix: Our
   titleHighlight: Journey
