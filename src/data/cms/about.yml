@@ -47,7 +47,7 @@ team:
     - name: "Sandeep Aswal "
       role: Chief Operating Officer
       dept: HTIS
-      image: src/assets/sandeep-aswalv2.jpg
+      image: src/assets/sandeep-aswal.png
     - name: "Amit Dhingra "
       role: "Sr. Vice President "
       dept: System Integration
@@ -55,7 +55,7 @@ team:
     - name: Kuldeep Singh
       role: Head of Department
       dept: Software Development
-      image: src/assets/kuldeep-singhhod-software-development.png
+      image: src/assets/kuldeep-singh.png
     - name: Arvind Sharma
       role: Center of Excellence
       dept: "HTIS "
@@ -83,11 +83,11 @@ team:
     - name: Rajeev Sharma
       role: Manager Sales
       dept: System Integration
-      image: src/assets/tm_John_Doe11.png
+      image: src/assets/rajeev-sharma.png
     - name: Rohit Gupta
       role: Delivery Head
       dept: Operations
-      image: src/assets/rohit-guptahod-projects-2.jpeg
+      image: src/assets/rohit-gupta.png
     - name: Ram Pal
       role: General Manager
       dept: Human Resource
