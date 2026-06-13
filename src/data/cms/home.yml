@@ -73,6 +73,10 @@ hero:
       alt: Juniper Networks
     - image: src/assets/lenovo.png
       alt: Lenovo
+    - image: src/assets/lg.png
+      alt: LG
+    - image: src/assets/logitech.png
+      alt: Logitech
 journey:
   titlePrefix: Our
   titleHighlight: Journey
