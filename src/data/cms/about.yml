@@ -91,7 +91,7 @@ team:
     - name: Ram Pal
       role: General Manager
       dept: Human Resource
-      image: src/assets/ram-palhod-human-resource.jpeg
+      image: src/assets/ram-pal-2.png
 principles:
   image: src/assets/about-principles.png
   imageAlt: Telecom tower and architectural technology elements
