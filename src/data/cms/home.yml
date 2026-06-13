@@ -61,6 +61,10 @@ hero:
       alt: Fortinet
     - image: src/assets/harman-kardon-1.png
       alt: Harman kardon
+    - image: src/assets/hikvision-1.png
+      alt: Hik vision
+    - image: src/assets/hp.png
+      alt: hp
 journey:
   titlePrefix: Our
   titleHighlight: Journey
