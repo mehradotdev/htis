@@ -69,6 +69,10 @@ hero:
       alt: HPE
     - image: src/assets/ibm.png
       alt: IBM
+    - image: src/assets/juniper-1.png
+      alt: Juniper Networks
+    - image: src/assets/lenovo.png
+      alt: Lenovo
 journey:
   titlePrefix: Our
   titleHighlight: Journey
