@@ -67,6 +67,8 @@ hero:
       alt: hp
     - image: src/assets/hpe-1.png
       alt: HPE
+    - image: src/assets/ibm.png
+      alt: IBM
 journey:
   titlePrefix: Our
   titleHighlight: Journey
