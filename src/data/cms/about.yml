@@ -43,23 +43,23 @@ team:
     - name: "Aditya Kaushik "
       role: Managing Director
       dept: "HTIS "
-      image: src/assets/tm_John_Doe1.png
+      image: src/assets/aditya-kaushik-frontmanaging-director.png
     - name: "Sandeep Aswal "
       role: Chief Operating Officer
       dept: HTIS
-      image: src/assets/tm_John_Doe2.png
+      image: src/assets/sandeep-aswalv2.jpg
     - name: "Amit Dhingra "
       role: "Sr. Vice President "
       dept: System Integration
-      image: src/assets/tm_John_Doe3.png
+      image: src/assets/amit-dhingrasrvice-president-sales-and-marketing.jpeg
     - name: Kuldeep Singh
       role: Head of Department
       dept: Software Development
-      image: src/assets/tm_John_Doe4.png
+      image: src/assets/kuldeep-singhhod-software-development.png
     - name: Arvind Sharma
       role: Center of Excellence
       dept: "HTIS "
-      image: src/assets/tm_John_Doe5.png
+      image: src/assets/arvind-sharmahod-centre-of-excellence.jpeg
     - name: Satender Singh
       role: General Manager Sales
       dept: System Integration
@@ -67,15 +67,15 @@ team:
     - name: Munish Aggarwal
       role: Sr. General Manager
       dept: Adminstration
-      image: src/assets/tm_John_Doe7.png
+      image: src/assets/munish-aggarwal.jpeg
     - name: Parveen Arya
       role: General Manager Sales
       dept: Telecom
-      image: src/assets/tm_John_Doe8.png
+      image: src/assets/parveen-arya.jpg
     - name: Soni Jain
       role: General Manager
       dept: Finance
-      image: src/assets/tm_John_Doe9.png
+      image: src/assets/soni-jainfinance-controller.png
     - name: Harmeet Kohli
       role: Sr. Manager Sales
       dept: System Integration
