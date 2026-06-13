@@ -56,13 +56,13 @@ team:
       role: Head of Department
       dept: Software Development
       image: src/assets/tm_John_Doe4.png
-    - name: Michael Brown
-      role: Technical Specialist
-      dept: Infrastructure
+    - name: Arvind Sharma
+      role: Center of Excellence
+      dept: "HTIS "
       image: src/assets/tm_John_Doe5.png
-    - name: Sophia Wilson
-      role: Client Relations
-      dept: Project Management
+    - name: Satender Singh
+      role: General Manager Sales
+      dept: System Integration
       image: src/assets/tm_John_Doe6.png
     - name: David Taylor
       role: Financial Controller
