@@ -47,7 +47,7 @@ hero:
       alt: DELL
     - image: src/assets/delta-2.png
       alt: DELTA
-    - image: src/assets/derwiser-2.png
+    - image: src/assets/derwiser.webp
       alt: Derwiser
     - image: src/assets/d-link-2.png
       alt: D-link
@@ -101,7 +101,7 @@ hero:
       alt: Schneider Electric
     - image: src/assets/sonicwall.png
       alt: Sonic wall
-    - image: src/assets/samsung.png
+    - image: src/assets/samsung-1.png
       alt: Samsung
     - image: src/assets/sophos.png
       alt: Sophos
