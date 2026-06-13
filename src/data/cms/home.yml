@@ -77,6 +77,12 @@ hero:
       alt: LG
     - image: src/assets/logitech.png
       alt: Logitech
+    - image: src/assets/matrix-1.png
+      alt: Matrix
+    - image: src/assets/microsoft.png
+      alt: Microsoft
+    - image: src/assets/molex.png
+      alt: molex
 journey:
   titlePrefix: Our
   titleHighlight: Journey
