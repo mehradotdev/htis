@@ -79,7 +79,7 @@ team:
     - name: Harmeet Kohli
       role: Sr. Manager Sales
       dept: System Integration
-      image: src/assets/tm_John_Doe10.png
+      image: src/assets/harmeet-kohli-2.jpeg
     - name: Rajeev Sharma
       role: Manager Sales
       dept: System Integration
@@ -87,7 +87,7 @@ team:
     - name: Rohit Gupta
       role: Delivery Head
       dept: Operations
-      image: src/assets/tm_John_Doe12.png
+      image: src/assets/rohit-guptahod-projects-2.jpeg
     - name: Ram Pal
       role: General Manager
       dept: Human Resource
