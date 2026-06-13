@@ -51,6 +51,8 @@ hero:
       alt: Derwiser
     - image: src/assets/d-link-2.png
       alt: D-link
+    - image: src/assets/eaton-1.png
+      alt: Eaton
 journey:
   titlePrefix: Our
   titleHighlight: Journey
