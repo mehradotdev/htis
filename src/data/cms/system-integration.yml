@@ -38,11 +38,11 @@ partnerEcosystem:
         keeps your business connected.
       partners:
         - name: Cisco
-          logo: src/assets/logo-Cisco.webp
+          logo: src/assets/cisco-2.png
         - name: Aruba (HPE)
-          logo: src/assets/logo-Aruba.png
+          logo: src/assets/aruba-3.png
         - name: Juniper Networks
-          logo: src/assets/logo-Juniper-Networks.png
+          logo: src/assets/juniper-2.png
         - name: Ruckus
           logo: src/assets/logo-ruckus-networks.png
     - title: Cybersecurity
