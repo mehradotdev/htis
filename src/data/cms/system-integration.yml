@@ -26,9 +26,9 @@ partnerEcosystem:
         - name: Dell
           logo: src/assets/logo-dell.png
         - name: HP
-          logo: src/assets/logo-HP.png
+          logo: src/assets/hp.webp
         - name: Lenovo
-          logo: src/assets/lenovo-2.png
+          logo: src/assets/lenovo.webp
         - name: MSi
           logo: src/assets/oip-3.webp
         - name: Apple (Enterprise)
