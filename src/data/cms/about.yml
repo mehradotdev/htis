@@ -48,18 +48,42 @@ team:
       role: Chief Operating Officer
       dept: HTIS
       image: src/assets/sandeep-aswal.png
-    - name: Arvind Sharma
-      role: Center of Excellence
-      dept: "HTIS "
-      image: src/assets/arvind-sharma.png
     - name: "Amit Dhingra "
       role: "Sr. Vice President "
       dept: System Integration
       image: src/assets/amit-dhingra.png
+    - name: Arvind Sharma
+      role: Center of Excellence
+      dept: "HTIS "
+      image: src/assets/arvind-sharma.png
+    - name: Soni Jain
+      role: General Manager
+      dept: Finance
+      image: src/assets/soni-jain.png
+    - name: Kuldeep Singh
+      role: Head of Department
+      dept: Software Development
+      image: src/assets/kuldeep-singh.png
     - name: Satender Singh
       role: General Manager Sales
       dept: System Integration
       image: src/assets/satender-singh.png
+    - name: Parveen Arya
+      role: General Manager Sales
+      dept: Telecom
+      image: src/assets/parveen-arya.png
+    - name: Rohit Gupta
+      role: Delivery Head
+      dept: Operations
+      image: src/assets/rohit-gupta.png
+    - name: Ram Pal
+      role: General Manager
+      dept: Human Resource
+      image: src/assets/ram-pal-2.png
+    - name: Munish Aggarwal
+      role: Sr. General Manager
+      dept: Adminstration
+      image: src/assets/munish-aggarwal.png
     - name: Harmeet Kohli
       role: Sr. Manager Sales
       dept: System Integration
@@ -68,30 +92,6 @@ team:
       role: Manager Sales
       dept: System Integration
       image: src/assets/rajeev-sharma.png
-    - name: Kuldeep Singh
-      role: Head of Department
-      dept: Software Development
-      image: src/assets/kuldeep-singh.png
-    - name: Munish Aggarwal
-      role: Sr. General Manager
-      dept: Adminstration
-      image: src/assets/munish-aggarwal.png
-    - name: Rohit Gupta
-      role: Delivery Head
-      dept: Operations
-      image: src/assets/rohit-gupta.png
-    - name: Parveen Arya
-      role: General Manager Sales
-      dept: Telecom
-      image: src/assets/parveen-arya.png
-    - name: Soni Jain
-      role: General Manager
-      dept: Finance
-      image: src/assets/soni-jain.png
-    - name: Ram Pal
-      role: General Manager
-      dept: Human Resource
-      image: src/assets/ram-pal-2.png
 principles:
   image: src/assets/about-principles.png
   imageAlt: Telecom tower and architectural technology elements
