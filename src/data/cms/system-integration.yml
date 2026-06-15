@@ -58,7 +58,7 @@ partnerEcosystem:
         - name: SonicWall
           logo: src/assets/logo-Sonicwall.png
         - name: Sophos
-          logo: src/assets/sophos-1.png
+          logo: src/assets/sophos.webp
     - title: Cloud & Virtualization
       subtitle: Hybrid Cloud, VDI, Hyperconverged (HCI)
       description: Seamless hybrid cloud migration, secure virtual desktops, and
