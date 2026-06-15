@@ -102,7 +102,7 @@
   let expandedIndex = $state<number | null>(null);
 
   // Label refs for direct DOM manipulation (avoids $state per-frame reactivity cost)
-  let labelEls: HTMLElement[] = [];
+  let labelEls = $state<HTMLElement[]>([]);
 
   /**
    * Project lat/lng to 2D using cobe's EXACT coordinate system.

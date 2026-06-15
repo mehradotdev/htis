@@ -120,10 +120,10 @@
               <span class="text-lg font-bold text-base-content leading-tight truncate"
                 >{member.name}</span
               >
-              <span class="text-sm font-semibold text-primary mt-1 leading-none truncate"
+              <span class="text-sm font-semibold text-primary mt-1 leading-tight truncate"
                 >{member.role}</span
               >
-              <span class="text-xs text-base-content/60 mt-1 leading-none truncate"
+              <span class="text-xs text-base-content/60 mt-1 leading-tight truncate"
                 >{member.dept}</span
               >
             </div>

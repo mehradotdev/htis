@@ -19,11 +19,11 @@ sections:
       - label: About us
         url: /about
       - label: Services
-        url: "#"
+        url: /#services
       - label: Community
-        url: "#"
+        url: "/about"
       - label: Testimonial
-        url: "#"
+        url: /#testimonials
 socials:
   heading: Socials
   links:
@@ -38,10 +38,10 @@ socials:
       icon: LinkedIn
     - label: Facebook
       url: https://www.facebook.com/htistelecomindia
-      icon: Instagram
+      icon: Facebook
     - label: Youtube
       url: https://www.youtube.com/@HTISTelecom
-      icon: Twitter
+      icon: Youtube
 contact:
   heading: Contact
   phone: +91 86999 54005

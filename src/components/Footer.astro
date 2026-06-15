@@ -4,6 +4,8 @@ import { footer, getCmsAsset } from '~/data/cms';
 import TwitterIcon from './icons/TwitterIcon.astro';
 import InstagramIcon from './icons/InstagramIcon.astro';
 import LinkedInIcon from './icons/LinkedInIcon.astro';
+import FacebookIcon from './icons/FacebookIcon.astro';
+import YoutubeIcon from './icons/YoutubeIcon.astro';
 import PhoneIcon from './icons/PhoneIcon.astro';
 import EnvelopeIcon from './icons/EnvelopeIcon.astro';
 
@@ -18,6 +20,8 @@ const socialIconMap = {
   Twitter: TwitterIcon,
   Instagram: InstagramIcon,
   LinkedIn: LinkedInIcon,
+  Facebook: FacebookIcon,
+  Youtube: YoutubeIcon,
 } as const;
 
 const resolveSocialIcon = (iconName: string) =>

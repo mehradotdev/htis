@@ -53,24 +53,44 @@
             </a>
           </div>
 
-          <!-- Accordion Content (Stats) -->
+          <!-- Accordion Content (Features Grid & Metrics Grid) -->
           <div
             class="flex flex-col overflow-hidden transition-all duration-500 ease-in-out {active ===
             service.id
-              ? 'max-h-[1000px] opacity-100'
+              ? 'max-h-[1500px] opacity-100'
               : 'max-h-0 opacity-0'}"
             aria-hidden={active !== service.id}
           >
-            {#each service.stats as stat}
-              <div
-                class="flex flex-col items-center justify-center border-t border-solid border-base-content/20 bg-base-100/40 py-6 px-4 text-center"
-              >
-                <span class="mb-1 text-4xl font-bold text-primary">{stat.val}</span>
-                <span class="text-sm lg:text-base font-semibold text-base-content/80"
-                  >{@html stat.label}</span
+            <!-- Features Grid (6 items: 3 columns x 2 rows) -->
+            <div class="grid grid-cols-3 border-t border-solid border-base-content/30 bg-base-100/10">
+              {#each service.icons as icon, idx}
+                {@const Icon = icon.icon}
+                <div
+                  class="flex flex-col items-center justify-center p-3 text-center bg-base-100/40 border-solid border-base-content/30 {idx % 3 !== 2 ? 'border-r' : ''} {idx < 3 ? 'border-b' : ''}"
                 >
-              </div>
-            {/each}
+                  <div class="mb-2 text-primary">
+                    <Icon size={32} />
+                  </div>
+                  <span class="text-xs font-semibold leading-tight text-base-content/80"
+                    >{@html icon.label}</span
+                  >
+                </div>
+              {/each}
+            </div>
+
+            <!-- Metrics Grid (4 items: 2 columns x 2 rows) -->
+            <div class="grid grid-cols-2 border-t border-solid border-base-content/30 bg-base-100/20">
+              {#each service.stats as stat, idx}
+                <div
+                  class="flex flex-col items-center justify-center py-5 px-4 text-center border-solid border-base-content/30 {idx % 2 !== 1 ? 'border-r' : ''} {idx < 2 ? 'border-b' : ''}"
+                >
+                  <span class="mb-1 text-2xl font-bold text-primary">{stat.val}</span>
+                  <span class="text-xs font-semibold leading-tight text-base-content/80"
+                    >{@html stat.label}</span
+                  >
+                </div>
+              {/each}
+            </div>
           </div>
         </div>
       {/each}
