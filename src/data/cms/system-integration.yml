@@ -2,11 +2,14 @@ title: System Integration & IT Infrastructure - HTIS
 hero:
   backgroundImage: src/assets/hero-bg.png
   title: System Integration & IT Infrastructure
-  subtitle: We don't just deploy hardware; we architect the digital nervous systems of modern enterprises. Our System Integration vertical bridges the gap between high-performance physical infrastructure and cognitive digital operations.
+  subtitle: We don't just deploy hardware; we architect the digital nervous
+    systems of modern enterprises. Our System Integration vertical bridges the
+    gap between high-performance physical infrastructure and cognitive digital
+    operations.
   ctaLabel: Contact Us
-  ctaUrl: '#contact'
+  ctaUrl: "#contact"
   carouselImages:
-    - src/assets/lob-system-hero-carousel-1.png
+    - src/assets/web-analysis-programming-system-with-cloud-server-free-vector.jpg
     - src/assets/lob-system-hero-carousel-2.png
     - src/assets/lob-system-hero-carousel-3.png
     - src/assets/lob-system-hero-carousel-4.png
@@ -18,7 +21,8 @@ partnerEcosystem:
   tabs:
     - title: Compute & Mobility
       subtitle: Laptops, Servers, High-End Workstations
-      description: High-performance, secure, and scalable client systems, servers, and workspace solutions.
+      description: High-performance, secure, and scalable client systems, servers, and
+        workspace solutions.
       partners:
         - name: Dell
           logo: src/assets/logo-dell.png
@@ -29,7 +33,8 @@ partnerEcosystem:
         - name: Apple (Enterprise)
     - title: Networking & Fabric
       subtitle: Active Switches, Routers, Wireless, SD-WAN
-      description: High-performance, secure and scalable network infrastructure that keeps your business connected.
+      description: High-performance, secure and scalable network infrastructure that
+        keeps your business connected.
       partners:
         - name: Cisco
           logo: src/assets/logo-Cisco.webp
@@ -41,7 +46,8 @@ partnerEcosystem:
           logo: src/assets/logo-ruckus-networks.png
     - title: Cybersecurity
       subtitle: Firewalls, EDR/XDR, Identity Management
-      description: Perimeter-to-endpoint security frameworks designed to mitigate threats and protect critical assets.
+      description: Perimeter-to-endpoint security frameworks designed to mitigate
+        threats and protect critical assets.
       partners:
         - name: Palo Alto
         - name: Fortinet
@@ -53,7 +59,8 @@ partnerEcosystem:
         - name: Sophos
     - title: Cloud & Virtualization
       subtitle: Hybrid Cloud, VDI, Hyperconverged (HCI)
-      description: Seamless hybrid cloud migration, secure virtual desktops, and scalable virtual environments.
+      description: Seamless hybrid cloud migration, secure virtual desktops, and
+        scalable virtual environments.
       partners:
         - name: AWS
         - name: Microsoft Azure
@@ -61,7 +68,8 @@ partnerEcosystem:
         - name: Nutanix
     - title: Storage & Backup
       subtitle: Enterprise Storage, Data Protection
-      description: Enterprise-grade storage systems and resilient data protection to guarantee business continuity.
+      description: Enterprise-grade storage systems and resilient data protection to
+        guarantee business continuity.
       partners:
         - name: NetApp
         - name: Pure Storage
@@ -69,7 +77,8 @@ partnerEcosystem:
         - name: Commvault
     - title: Infra & Power
       subtitle: Data Centre Racks, UPS, Precision Cooling
-      description: Mission-critical power backup, cooling systems, and racks ensuring maximum datacenter uptime.
+      description: Mission-critical power backup, cooling systems, and racks ensuring
+        maximum datacenter uptime.
       partners:
         - name: Schneider Electric
           logo: src/assets/logo-Schneider-Electric.png
@@ -80,7 +89,8 @@ partnerEcosystem:
           logo: src/assets/logo-Eaton.jpg
     - title: Surveillance & AV
       subtitle: Physical Security, LED Walls, VC
-      description: Integrated physical security, CCTV surveillance, and high-impact visual communication systems.
+      description: Integrated physical security, CCTV surveillance, and high-impact
+        visual communication systems.
       partners:
         - name: Hikvision
           logo: src/assets/logo-Hikvision.png
@@ -98,22 +108,34 @@ execution:
       title: |-
         Core Telecom
         and Network Operations
-      description: Scaling the Experts of Next-Gen Connectivity. Mobilizing mission-critical field and core engineering teams for 4G/5G rollouts and network evolution. We provide the specialized riggers, CCNA/ACI engineers, and operations coordinators required to ensure carrier-grade stability and high-performance network execution.
-      url: '#'
+      description: Scaling the Experts of Next-Gen Connectivity. Mobilizing
+        mission-critical field and core engineering teams for 4G/5G rollouts and
+        network evolution. We provide the specialized riggers, CCNA/ACI
+        engineers, and operations coordinators required to ensure carrier-grade
+        stability and high-performance network execution.
+      url: "#"
       ariaLabel: View more details
     - iconName: Users
       title: |-
         Specialized Technical Resourcing
         and Deployment
-      description: Scalable L1-L6 talent solutions engineered for complex, multi-region telecom rollouts. We bridge the technical skill gap by deploying a domain-expert workforce. From high-niche technical architects (L6) to scalable field engineering units (L1), we provide the human capital required for operational excellence.
-      url: '#'
+      description: Scalable L1-L6 talent solutions engineered for complex,
+        multi-region telecom rollouts. We bridge the technical skill gap by
+        deploying a domain-expert workforce. From high-niche technical
+        architects (L6) to scalable field engineering units (L1), we provide the
+        human capital required for operational excellence.
+      url: "#"
       ariaLabel: View more details
     - iconName: Code
       title: |-
         Enterprise Software Engineering
         and On-Demand Solutions
-      description: Bespoke digital assets and SaaS platforms tailored for government and corporate scale. We build the intelligence that drives connectivity. Specializing in on-demand software development, we deliver secure, high-compliance digital assets-including our proprietary ERP systems-designed for the most demanding regulatory environments.
-      url: '#'
+      description: Bespoke digital assets and SaaS platforms tailored for government
+        and corporate scale. We build the intelligence that drives connectivity.
+        Specializing in on-demand software development, we deliver secure,
+        high-compliance digital assets-including our proprietary ERP
+        systems-designed for the most demanding regulatory environments.
+      url: "#"
       ariaLabel: View more details
 deployments:
   heading: Integrated Infrastructure Deployments
@@ -121,14 +143,17 @@ deployments:
   imageAlt: Enterprise Network Infrastructure
   featured:
     title: Enterprise Network Infrastructure
-    description: From structured cabling to active network systems, we build reliable connectivity foundations that power enterprise communication and data flow.
+    description: From structured cabling to active network systems, we build
+      reliable connectivity foundations that power enterprise communication and
+      data flow.
     ctaLabel: Read Case Study
-    ctaUrl: '#'
+    ctaUrl: "#"
   items:
     - title: Surveillance & Security Integration
-      description: Integrated CCTV, access control, and monitoring infrastructure designed to improve security visibility and operational oversight.
+      description: Integrated CCTV, access control, and monitoring infrastructure
+        designed to improve security visibility and operational oversight.
       ctaLabel: Read Case Study
-      ctaUrl: '#'
+      ctaUrl: "#"
     - title: Data Center & Server Integration
       ctaLabel: Read Case Study
-      ctaUrl: '#'
+      ctaUrl: "#"
