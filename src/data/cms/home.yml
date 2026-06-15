@@ -111,108 +111,125 @@ hero:
     - image: src/assets/vertiv.png
       alt: Vertiv
 services:
-  headingHtml: 'Our<br/>Services'
+  headingHtml: Our<br/>Services
   items:
     - id: telecom
-      titleHtml: 'Tele&shy;communica&shy;tions'
+      titleHtml: Tele&shy;communica&shy;tions
       href: /telecom
       features:
         - iconName: Wifi
           label: 5G Core & IMS
-          description: Service-Based Architecture (SBA) and VoLTE/VoNR cloud-native deployment.
+          description: Service-Based Architecture (SBA) and VoLTE/VoNR cloud-native
+            deployment.
         - iconName: ShieldCheck
           label: Packet Core Ops
-          description: Management of EPC, PCRF, and GI-LAN for high-throughput user-plane traffic.
+          description: Management of EPC, PCRF, and GI-LAN for high-throughput user-plane
+            traffic.
         - iconName: Cable
           label: IP/MPLS Transport
-          description: Advanced routing, segment routing (SRv6), and high-capacity backhaul engineering.
+          description: Advanced routing, segment routing (SRv6), and high-capacity
+            backhaul engineering.
         - iconName: Radio
           label: RF & Wireless Design
-          description: Precision radio frequency planning, 4G/5G site surveys, and coverage optimization.
+          description: Precision radio frequency planning, 4G/5G site surveys, and
+            coverage optimization.
         - iconName: Headset
           label: Compliance & IPDR
-          description: Automated IP Detail Record generation and regulatory data retention systems.
+          description: Automated IP Detail Record generation and regulatory data retention
+            systems.
         - iconName: Wrench
           label: Managed Maintenance
-          description: 24/7 proactive NOC support and comprehensive AMC for multi-vendor hardware.
+          description: 24/7 proactive NOC support and comprehensive AMC for multi-vendor
+            hardware.
       metrics:
-        - value: '100+'
-          label: 'Network<br/>Deployment'
-        - value: '11+'
-          label: 'Years of<br/>Experience'
-        - value: '99%'
-          label: 'Guaranteed<br/>Network<br/>Uptime'
-        - value: '500+'
-          label: 'Critical Network<br/>Nodes Managed'
+        - value: 100+
+          label: Network<br/>Deployment
+        - value: 11+
+          label: Years of<br/>Experience
+        - value: 99%
+          label: Guaranteed<br/>Network<br/>Uptime
+        - value: 500+
+          label: Critical Network<br/>Nodes Managed
     - id: resourcing
       titleHtml: Resourcing
       href: /resourcing
       features:
         - iconName: Users
           label: L1-L6 Talent Hub
-          description: Full-spectrum resourcing from field technicians to senior system architects.
+          description: Full-spectrum resourcing from field technicians to senior system
+            architects.
         - iconName: Clock
           label: Niche Engineering
-          description: Sourcing specialized experts for Packet Core, Cybersecurity, and Cloud migration.
+          description: Sourcing specialized experts for Packet Core, Cybersecurity, and
+            Cloud migration.
         - iconName: UserSearch
           label: Project-Task Units
-          description: Ready-to-deploy technical teams for task-based execution and site rollouts.
+          description: Ready-to-deploy technical teams for task-based execution and site
+            rollouts.
         - iconName: FileSignature
           label: Executive Search
-          description: Targeted leadership hiring for high-stakes digital transformation projects.
+          description: Targeted leadership hiring for high-stakes digital transformation
+            projects.
         - iconName: CircleDollarSign
           label: Staff Augmentation
           description: Flexible, scalable technical manpower to bridge immediate skill gaps.
         - iconName: Network
           label: Managed Compliance
-          description: End-to-end payroll, insurance, and regulatory management for workforce stability.
+          description: End-to-end payroll, insurance, and regulatory management for
+            workforce stability.
       metrics:
-        - value: '500+'
-          label: 'Technical Professionals<br/>Deployed'
-        - value: '50+'
-          label: 'Tier-1<br /> Corporate Partners'
-        - value: '98%'
-          label: 'Resource<br /> Retention Rate'
-        - value: '10K+'
-          label: 'Technical Man-Hours<br/>Managed Monthly'
+        - value: 500+
+          label: Technical Professionals<br/>Deployed
+        - value: 50+
+          label: Tier-1<br /> Corporate Partners
+        - value: 98%
+          label: Resource<br /> Retention Rate
+        - value: 10K+
+          label: Technical Man-Hours<br/>Managed Monthly
     - id: software
-      titleHtml: 'Software<br class="hidden md:block" /> Development'
+      titleHtml: Software<br class="hidden md:block" /> Development
       href: /software
       features:
         - iconName: Code
           label: UI/UX Strategy
-          description: Human-centric interface design for high-complexity enterprise systems.
+          description: Human-centric interface design for high-complexity enterprise
+            systems.
         - iconName: Smartphone
           label: Backend & API
-          description: Scalable, high-performance architectures for real-time data processing.
+          description: Scalable, high-performance architectures for real-time data
+            processing.
         - iconName: Cloud
           label: Enterprise ERP
-          description: Integrated resource planning ecosystems (wfms) for operational control.
+          description: Integrated resource planning ecosystems (wfms) for operational
+            control.
         - iconName: Database
           label: On-Demand SaaS
           description: Cloud-native, multi-tenant platforms built for industrial scale.
         - iconName: Monitor
           label: Sovereign Portals
-          description: High-compliance digital assets tailored for Government & Public Sector.
+          description: High-compliance digital assets tailored for Government & Public
+            Sector.
         - iconName: CheckSquare
           label: DevSecOps
-          description: Automated QA and secure deployment pipelines for zero-vulnerability code.
+          description: Automated QA and secure deployment pipelines for zero-vulnerability
+            code.
       metrics:
-        - value: '500+'
-          label: 'Technical Modules<br/>Deployed'
-        - value: '1.2M+'
+        - value: 500+
+          label: Technical Modules<br/>Deployed
+        - value: 1.2M+
           label: End-Users Supported
-        - value: '99.99%'
+        - value: 99.99%
           label: System Availability
-        - value: '20+'
-          label: 'Dedicated<br/>Govt/Public Sector Platforms'
+        - value: 20+
+          label: Dedicated<br/>Govt/Public Sector Platforms
     - id: system
-      titleHtml: 'System<br class="hidden md:block" /> Integrations'
+      titleHtml: System<br class="hidden md:block" /> Integrations
       href: /system-integration
       features:
         - iconName: Blocks
           label: Hybrid Cloud
-          description: Orchestrating elastic workloads across private and public cloud fabrics.
+          description: Orchestrating elastic workloads across private and public cloud
+            fabrics.
         - iconName: Cpu
           label: Cyber-Defense
           description: Next-gen perimeter security, XDR, and Zero-Trust architectures.
@@ -227,15 +244,16 @@ services:
           description: Mission-critical fire suppression and UPS/Power backup ecosystems.
         - iconName: Building2
           label: Sovereign Security
-          description: National-level compliance and data residency infrastructure solutions.
+          description: National-level compliance and data residency infrastructure
+            solutions.
       metrics:
-        - value: '50+'
-          label: 'High-Density Data Centers<br/>Integrated'
-        - value: '10 PB+'
-          label: 'Data Managed<br/>& Orchestrated'
-        - value: '24/7'
-          label: 'Proactive SOC/NOC<br/>Monitoring'
-        - value: '100%'
+        - value: 50+
+          label: High-Density Data Centers<br/>Integrated
+        - value: 10 PB+
+          label: Data Managed<br/>& Orchestrated
+        - value: 24/7
+          label: Proactive SOC/NOC<br/>Monitoring
+        - value: 100%
           label: Compliance with Regulatory Standards
 journey:
   titlePrefix: Our
@@ -345,7 +363,7 @@ team:
       role: Managing Director
       desc: Sets the company’s long-term goals and ensures we stay a leader in the
         technology industry.
-      image: src/assets/screenshot-2026-06-15-135940.png
+      image: src/assets/ak-2.png
     - name: Sandeep Aswal
       role: Chief Operating Officer
       desc: Manages daily business tasks to make sure all large projects are completed
