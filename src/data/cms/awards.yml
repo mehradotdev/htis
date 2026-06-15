@@ -9,54 +9,54 @@ items:
     title: Aarohan Job & Internship Fair Excellence Award
     organization: SGT University
     date: May 7, 2026
-    image: src/assets/ac-award1.JPG
+    image: src/assets/ac-award11.jpg
   - type: award
     title: SGT University Remembrance & Recognition Award
     organization: SGT University
     date: May 7, 2026
-    image: src/assets/ac-award2.JPG
+    image: src/assets/ac-award22.jpg
   - type: award
     title: Certificate of Recognition (Distinguished Sales Performance)
     organization: Cisco & Inflow Technologies
     date: September 15, 2022
-    image: src/assets/ac-award3.jpg
+    image: src/assets/ac-award33.jpg
   - type: award
     title: 'Certificate of Appreciation (Think : Create : Exhibit)'
     organization: Janki Devi Vocational Centre
     date: March 12, 2024
-    image: src/assets/ac-award4.jpg
+    image: src/assets/ac-award44.jpg
   - type: award
     title: Airtel 98,000 Sites Deployment Recognition
     organization: Airtel
     date: November 20, 2023
-    image: src/assets/ac-award5.jpg
+    image: src/assets/ac-award55.jpg
   - type: certificate
     title: ISO 27001 Information Security Management System
     organization: Global Certification Services
     date: January 10, 2025
-    image: src/assets/ac-certificate1.JPG
+    image: src/assets/ac-certificate11.jpg
   - type: certificate
     title: MSME Udyam Registration Certificate
     organization: Ministry of Micro, Small & Medium Enterprises
     date: April 1, 2025
-    image: src/assets/ac-certificate2.PNG
+    image: src/assets/ac-certificate22.png
   - type: certificate
     title: CMMI Maturity Level 5 Certification
     organization: British Columbia Inspection & Certification
     date: April 3, 2026
-    image: src/assets/ac-certificate3.PNG
+    image: src/assets/ac-certificate33.png
   - type: certificate
     title: 'ISO 22301:2019 BCMS Certification'
     organization: British Columbia Inspection & Certification
     date: April 3, 2026
-    image: src/assets/ac-certificate4.PNG
+    image: src/assets/ac-certificate44.png
   - type: certificate
     title: 'ISO 45001:2018 OH&SMS Certification'
     organization: Global Standards
     date: April 8, 2026
-    image: src/assets/ac-certificate5.PNG
+    image: src/assets/ac-certificate55.png
   - type: certificate
     title: 'ISO 9001:2015 QMS Certification'
     organization: Royal Stancert B.V.
     date: December 3, 2019
-    image: src/assets/ac-certificate6.JPG
+    image: src/assets/ac-certificate66.jpg
