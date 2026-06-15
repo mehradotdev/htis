@@ -28,7 +28,7 @@ partnerEcosystem:
         - name: HP
           logo: src/assets/logo-HP.png
         - name: Lenovo
-          logo: src/assets/lenovo-1.png
+          logo: src/assets/lenovo-2.png
         - name: MSi
         - name: Apple (Enterprise)
     - title: Networking & Fabric
