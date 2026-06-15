@@ -10,9 +10,9 @@ hero:
   ctaUrl: "#contact"
   carouselImages:
     - src/assets/web-analysis-programming-system-with-cloud-server-free-vector.jpg
-    - src/assets/oip-1.webp
-    - src/assets/istockphoto-1355286706-170667a.jpg
+    - src/assets/fff.jpg
     - src/assets/bt-wholesale-2.jpg
+    - src/assets/oip-1.webp
 strategicPillars:
   backgroundImage: src/assets/team-member-bg.png
   centerImage: src/assets/lob-system-tech-pillars.png
