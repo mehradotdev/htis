@@ -1,13 +1,8 @@
 <script>
-  import { servicesData as services } from '~/data/pageData';
   import { ArrowRight } from '@lucide/svelte';
+  import { serviceIconComponents } from './serviceIcons';
 
-  const serviceHrefs = {
-    telecom: '/telecom',
-    resourcing: '/resourcing',
-    system: '/system-integration',
-    software: '/software',
-  };
+  let { services = [] } = $props();
 
   // Open 'telecom' by default on mobile
   let active = $state('telecom');
@@ -42,7 +37,7 @@
             </button>
 
             <a
-              href={serviceHrefs[service.id]}
+              href={service.href}
               class="ml-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-primary bg-primary/10 text-primary transition-transform duration-300 hover:bg-primary/20 {active ===
               service.id
                 ? '-rotate-45'
@@ -63,8 +58,9 @@
           >
             <!-- Features Grid (6 items: 3 columns x 2 rows) -->
             <div class="grid grid-cols-3 border-t border-solid border-base-content/30 bg-base-100/10">
-              {#each service.icons as icon, idx}
-                {@const Icon = icon.icon}
+              {#each service.features as feature, idx}
+                {@const Icon =
+                  serviceIconComponents[feature.iconName] ?? serviceIconComponents.CircleHelp}
                 <div
                   class="flex flex-col items-center justify-center p-3 text-center bg-base-100/40 border-solid border-base-content/30 {idx % 3 !== 2 ? 'border-r' : ''} {idx < 3 ? 'border-b' : ''}"
                 >
@@ -72,7 +68,7 @@
                     <Icon size={32} />
                   </div>
                   <span class="text-xs font-semibold leading-tight text-base-content/80"
-                    >{@html icon.label}</span
+                    >{@html feature.label}</span
                   >
                 </div>
               {/each}
@@ -80,13 +76,13 @@
 
             <!-- Metrics Grid (4 items: 2 columns x 2 rows) -->
             <div class="grid grid-cols-2 border-t border-solid border-base-content/30 bg-base-100/20">
-              {#each service.stats as stat, idx}
+              {#each service.metrics as metric, idx}
                 <div
                   class="flex flex-col items-center justify-center py-5 px-4 text-center border-solid border-base-content/30 {idx % 2 !== 1 ? 'border-r' : ''} {idx < 2 ? 'border-b' : ''}"
                 >
-                  <span class="mb-1 text-2xl font-bold text-primary">{stat.val}</span>
+                  <span class="mb-1 text-2xl font-bold text-primary">{metric.value}</span>
                   <span class="text-xs font-semibold leading-tight text-base-content/80"
-                    >{@html stat.label}</span
+                    >{@html metric.label}</span
                   >
                 </div>
               {/each}

@@ -18,7 +18,7 @@ import { home } from '~/data/cms';
   <div class="relative w-full overflow-hidden">
     <Navbar />
     <Hero />
-    <Services />
+    <Services services={home.services} />
     <div class="bg-linear-to-b from-transparent to-base-200/50">
       <Journey
         milestones={home.journey.milestones}

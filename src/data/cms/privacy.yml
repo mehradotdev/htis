@@ -1,0 +1,169 @@
+title: Privacy Policy
+metaTitle: Privacy Policy - HTIS
+lastUpdated: May 28, 2026
+backLink:
+  label: Back to Home
+  url: /
+intro:
+  companyName: HTIS Telecom
+  websiteLabel: htis.in
+  websiteUrl: https://htis.in
+  openingTextBeforeCompany: Welcome to
+  openingTextAfterCompany: '("Company", "we", "our", or "us").'
+  websiteTextBeforeLink: This Privacy Policy explains how we collect, use,
+    disclose, and protect your information when you visit our website,
+  websiteTextAfterLink: .
+  consentText: By using our website, you consent to the practices described in
+    this Privacy Policy.
+sections:
+  - heading: 1. Information We Collect
+    paragraphs:
+      - "We may collect the following categories of information:"
+    subsections:
+      - heading: A. Personal Information
+        paragraphs:
+          - "When you interact with our website, we may collect:"
+        bullets:
+          - Full name
+          - Email address
+          - Phone number
+          - Company name
+          - Job title
+          - Any information submitted through contact forms
+          - Information shared during newsletter subscriptions
+          - Resume/CV and employment-related information submitted during job
+            applications
+      - heading: B. Uploaded Files and Documents
+        paragraphs:
+          - Users may voluntarily upload files/documents through forms available
+            on the website. These may include resumes, project documents,
+            business requirements, or related materials.
+      - heading: C. Technical & Usage Information
+        paragraphs:
+          - "We may automatically collect:"
+        bullets:
+          - IP address
+          - Browser type
+          - Device information
+          - Operating system
+          - Website usage statistics
+          - Referral source
+          - Cookies and tracking data
+
+  - heading: 2. How We Use Your Information
+    paragraphs:
+      - "We use collected information for purposes including:"
+    bullets:
+      - Responding to inquiries and support requests
+      - Providing information about our services
+      - Processing recruitment applications
+      - Sending newsletters and marketing communications
+      - Improving website functionality and user experience
+      - Analytics and performance monitoring
+      - CRM and sales follow-up activities
+      - Internal reporting and business operations
+      - Legal and compliance requirements
+
+  - heading: 3. Third-Party Services
+    paragraphs:
+      - "We may share or process information through trusted third-party platforms and service providers including:"
+    bullets:
+      - Google Analytics
+      - Meta/Facebook tools
+      - CRM platforms
+      - Recruitment and HR tools
+      - Marketing automation platforms
+      - Cloud hosting and IT infrastructure providers
+    note: These third parties may process data in accordance with their own
+      privacy policies.
+
+  - heading: 4. Cookies & Tracking Technologies
+    paragraphs:
+      - "Our website may use cookies and similar tracking technologies to:"
+    bullets:
+      - Improve website performance
+      - Understand user behaviour
+      - Analyse traffic patterns
+      - Support marketing and advertising campaigns
+      - Remember user preferences
+    afterParagraphs:
+      - Users may disable cookies through browser settings; however, some
+        website features may not function properly.
+
+  - heading: 5. Data Retention
+    paragraphs:
+      - "We retain personal information only for as long as necessary for:"
+    bullets:
+      - Business operations
+      - Recruitment processes
+      - Legal obligations
+      - Dispute resolution
+      - Security and fraud prevention
+    afterParagraphs:
+      - When data is no longer required, we take reasonable steps to securely
+        delete or anonymize it.
+
+  - heading: 6. Data Security
+    paragraphs:
+      - "We implement commercially reasonable technical and organizational safeguards to protect personal information against:"
+    bullets:
+      - Unauthorized access
+      - Misuse
+      - Loss
+      - Disclosure
+      - Alteration
+      - Destruction
+    note: However, no method of internet transmission or electronic storage is
+      completely secure, and we cannot guarantee absolute security.
+
+  - heading: 7. User Rights
+    paragraphs:
+      - "Subject to applicable laws, including India's Digital Personal Data Protection Act (DPDP Act), users may have the right to:"
+    bullets:
+      - Access their personal information
+      - Request correction of inaccurate data
+      - Request deletion of personal data
+      - Withdraw consent
+      - Opt out of marketing communications
+      - Request information regarding processing activities
+    contactPrompt: "To exercise these rights, contact us at:"
+
+  - heading: 8. International Data Handling
+    paragraphs:
+      - While our primary operations are based in India, some third-party
+        service providers may process or store information outside India. We
+        take reasonable measures to ensure appropriate data protection standards
+        are maintained.
+
+  - heading: 9. Third-Party Links
+    paragraphs:
+      - Our website may contain links to external websites or third-party
+        platforms. We are not responsible for the privacy practices, content, or
+        policies of such external websites.
+      - Users are encouraged to review the privacy policies of third-party sites
+        before providing personal information.
+
+  - heading: 10. Children's Privacy
+    paragraphs:
+      - Our website and services are not directed toward individuals under the
+        age of 18. We do not knowingly collect personal information from
+        children.
+      - If we become aware that a child has provided personal information, we
+        will take reasonable steps to delete such information.
+
+  - heading: 11. Changes to This Privacy Policy
+    paragraphs:
+      - We reserve the right to modify or update this Privacy Policy at any time
+        without prior notice. Updated versions will be posted on this page along
+        with the revised effective date.
+      - We encourage users to periodically review this Privacy Policy.
+
+  - heading: 12. Contact Us
+    paragraphs:
+      - "If you have questions, concerns, privacy-related requests, or data deletion requests, please contact:"
+    contactCard: true
+contact:
+  companyName: HTIS Telecom
+  websiteLabel: htis.in
+  websiteUrl: https://htis.in
+  email: help@htis.in

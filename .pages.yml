@@ -308,6 +308,92 @@ content:
                   - name: alt
                     type: string
                     required: true
+          - name: services
+            type: object
+            fields:
+              - name: headingHtml
+                label: Heading HTML
+                type: string
+                required: true
+              - name: items
+                label: Services
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{id}'
+                fields:
+                  - name: id
+                    type: select
+                    required: true
+                    options:
+                      values: [telecom, resourcing, software, system]
+                  - name: titleHtml
+                    label: Title HTML
+                    type: string
+                    required: true
+                  - name: href
+                    label: Link URL
+                    type: string
+                    required: true
+                  - name: features
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{label}'
+                    fields:
+                      - name: iconName
+                        label: Icon (theme-colored SVG)
+                        type: select
+                        required: true
+                        options:
+                          values:
+                            [
+                              Blocks,
+                              Building2,
+                              Cable,
+                              CheckSquare,
+                              CircleDollarSign,
+                              Clock,
+                              Cloud,
+                              Code,
+                              Cpu,
+                              Database,
+                              FileSignature,
+                              Headset,
+                              Monitor,
+                              Network,
+                              Radio,
+                              RefreshCw,
+                              Server,
+                              Shield,
+                              ShieldCheck,
+                              Smartphone,
+                              UserSearch,
+                              Users,
+                              Wifi,
+                              Wrench,
+                            ]
+                      - name: label
+                        type: string
+                        required: true
+                      - name: description
+                        type: text
+                        required: true
+                  - name: metrics
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{value} - {label}'
+                    fields:
+                      - name: value
+                        type: string
+                        required: true
+                      - name: label
+                        type: string
+                        required: true
           - name: journey
             type: object
             fields:
@@ -882,6 +968,135 @@ content:
                     type: boolean
                     required: false
 
+      - name: privacy
+        label: Privacy Policy
+        type: file
+        path: src/data/cms/privacy.yml
+        format: yaml
+        operations:
+          delete: false
+        fields:
+          - name: title
+            type: string
+            required: true
+          - name: metaTitle
+            label: Meta title
+            type: string
+            required: true
+          - name: lastUpdated
+            label: Last updated
+            type: string
+            required: true
+          - name: backLink
+            label: Back link
+            type: object
+            fields: *footer_link_fields
+          - name: intro
+            type: object
+            fields:
+              - name: companyName
+                label: Company name
+                type: string
+                required: true
+              - name: websiteLabel
+                label: Website label
+                type: string
+                required: true
+              - name: websiteUrl
+                label: Website URL
+                type: string
+                required: true
+              - name: openingTextBeforeCompany
+                label: Opening text before company
+                type: string
+                required: true
+              - name: openingTextAfterCompany
+                label: Opening text after company
+                type: string
+                required: true
+              - name: websiteTextBeforeLink
+                label: Website text before link
+                type: text
+                required: true
+              - name: websiteTextAfterLink
+                label: Website text after link
+                type: string
+                required: true
+              - name: consentText
+                label: Consent text
+                type: text
+                required: true
+          - name: sections
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: '{heading}'
+            fields: &privacy_section_fields
+              - name: heading
+                type: string
+                required: true
+              - name: paragraphs
+                type: text
+                list: true
+                required: false
+              - name: bullets
+                type: string
+                list: true
+                required: false
+              - name: afterParagraphs
+                label: After paragraphs
+                type: text
+                list: true
+                required: false
+              - name: note
+                type: text
+                required: false
+              - name: contactPrompt
+                label: Contact prompt
+                type: string
+                required: false
+              - name: contactCard
+                label: Show contact card
+                type: boolean
+                required: false
+              - name: subsections
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{heading}'
+                fields:
+                  - name: heading
+                    type: string
+                    required: true
+                  - name: paragraphs
+                    type: text
+                    list: true
+                    required: false
+                  - name: bullets
+                    type: string
+                    list: true
+                    required: false
+          - name: contact
+            type: object
+            fields:
+              - name: companyName
+                label: Company name
+                type: string
+                required: true
+              - name: websiteLabel
+                label: Website label
+                type: string
+                required: true
+              - name: websiteUrl
+                label: Website URL
+                type: string
+                required: true
+              - name: email
+                type: string
+                required: true
+
       - name: industries
         label: Industries
         type: collection
@@ -955,3 +1170,142 @@ content:
                 type: string
                 list: true
                 required: true
+
+      - name: case-studies
+        label: Case Studies
+        type: collection
+        path: src/data/cms/case-studies
+        format: yaml
+        filename:
+          template: '{slug}.yml'
+          field: create
+        view:
+          primary: title
+          fields: [title, slug, solution, industry]
+          sort: [id, title]
+        fields:
+          - name: id
+            type: number
+            required: true
+          - name: slug
+            type: string
+            required: true
+            pattern:
+              regex: '^[a-z0-9-]+$'
+              message: Use lowercase letters, numbers, and hyphens only.
+          - name: title
+            type: string
+            required: true
+          - name: description
+            type: text
+            required: true
+          - name: solution
+            type: select
+            required: true
+            options:
+              values:
+                [
+                  Telecom Services,
+                  System Integration,
+                  Software Development,
+                  Resource Management,
+                ]
+          - name: industry
+            type: select
+            required: true
+            options:
+              values:
+                [
+                  Telecom,
+                  Government,
+                  Banking,
+                  Manufacturing,
+                  Healthcare & Edu,
+                  Smart Spaces,
+                ]
+          - name: tags
+            type: string
+            list: true
+            required: true
+          - name: clientLabel
+            label: Client label
+            type: string
+            required: true
+          - name: heroTitle
+            label: Hero title
+            type: string
+            required: true
+          - name: heroSummary
+            label: Hero summary
+            type: text
+            required: true
+          - name: heroMetrics
+            label: Hero metrics
+            type: string
+            list: true
+            required: true
+          - name: clientContext
+            label: Client context
+            type: object
+            fields:
+              - name: clientType
+                label: Client type
+                type: string
+                required: true
+              - name: industryScale
+                label: Industry scale
+                type: string
+                required: true
+              - name: environment
+                type: text
+                required: true
+              - name: bullets
+                type: string
+                list: true
+                required: true
+          - name: challenge
+            type: object
+            fields:
+              - name: paragraph
+                type: text
+                required: true
+              - name: bullets
+                type: string
+                list: true
+                required: true
+          - name: solutionDetails
+            label: Solution details
+            type: object
+            fields:
+              - name: paragraph
+                type: text
+                required: true
+              - name: bullets
+                type: string
+                list: true
+                required: true
+          - name: outcomes
+            type: object
+            fields:
+              - name: metrics
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{value} - {label}'
+                fields:
+                  - name: value
+                    type: string
+                    required: true
+                  - name: label
+                    type: string
+                    required: true
+              - name: bullets
+                type: string
+                list: true
+                required: true
+          - name: whyHTIS
+            label: Why HTIS
+            type: string
+            list: true
+            required: true

@@ -3,9 +3,16 @@ import { Image } from 'astro:assets';
 import ServicesGrid from './ServicesGrid.svelte';
 import ServicesGridMobile from './ServicesGridMobile.svelte';
 import serviceBg from '~/assets/our-services-bg.png';
+
+const { services } = Astro.props;
+const serviceItems = services?.items ?? [];
+const headingHtml = services?.headingHtml ?? 'Our<br/>Services';
 ---
 
-<section id="services" class="relative mx-auto max-w-7xl px-4 pt-28 pb-12 lg:pt-32 lg:pb-16">
+<section
+  id="services"
+  class="relative mx-auto max-w-7xl px-4 pt-28 pb-12 lg:pt-32 lg:pb-16"
+>
   <div
     class="flex flex-col gap-0 overflow-hidden rounded-lg border border-base-content/30 bg-base-200/30 shadow-sm lg:flex-row"
   >
@@ -22,16 +29,14 @@ import serviceBg from '~/assets/our-services-bg.png';
       />
       <h2
         class="relative z-10 flex flex-col text-5xl leading-tight font-bold text-base-content md:text-6xl"
-      >
-        <span>Our</span>
-        <span>Services</span>
-      </h2>
+        set:html={headingHtml}
+      />
     </div>
 
     <!-- Right SIDE Desktop -->
-    <ServicesGrid client:media="(min-width: 768px)" />
+    <ServicesGrid services={serviceItems} client:media="(min-width: 768px)" />
 
     <!-- Right SIDE Mobile -->
-    <ServicesGridMobile client:media="(max-width: 767px)" />
+    <ServicesGridMobile services={serviceItems} client:media="(max-width: 767px)" />
   </div>
 </section>

@@ -1,0 +1,53 @@
+id: 4
+slug: smart-city-infrastructure
+title: Smart City Infrastructure
+description: Implemented IoT sensors and connected public transport systems to optimize city traffic and energy consumption.
+solution: Software Development
+industry: Smart Spaces
+tags:
+  - Smart City
+  - Smart Spaces
+  - IoT
+clientLabel: Metropolitan Development Authority
+heroTitle: LoRaWAN IoT Sensor Grid & Adaptive Traffic Software Engineering
+heroSummary: Synchronized thousands of city streetlights, environmental sensors, and public transit nodes onto a centralized smart dashboard, saving millions in municipal utility costs.
+heroMetrics:
+  - 5000+ IoT Nodes
+  - 25% Energy Savings
+  - 30% Less Congestion
+clientContext:
+  clientType: Smart City Municipal Corporation
+  industryScale: Metropolitan Smart Infrastructure
+  environment: Dense urban commercial corridors and public transit pathways with high traffic volumes
+  bullets:
+    - Aiming to transition standard city services into automated, eco-friendly systems.
+    - Needed a single software system capable of handling concurrent streams from multiple sensor types.
+    - Required hardware to survive extreme heat, moisture, and high electromagnetic dust.
+challenge:
+  paragraph: Static municipal schedules led to enormous municipal electricity waste, while uncoordinated traffic lights caused massive rush-hour gridlock without any central oversight.
+  bullets:
+    - 'Severe lighting waste: Streetlights burned at full capacity during clear moonlight nights, wasting millions.'
+    - "Gridlocked commutes: Standard timer signals couldn't adjust to traffic spikes, causing long queues."
+    - 'Data silos: Ambient air quality, municipal buses, and traffic signals operated on disjointed platforms.'
+solutionDetails:
+  paragraph: HTIS coded a scalable, custom IoT tracking dashboard and deployed ruggedized LoRaWAN edge sensor networks across key city pathways.
+  bullets:
+    - 'LoRaWAN sensor deployment: Installed 5,000+ rugged telemetry nodes (lighting, environment, transit).'
+    - 'Adaptive signaling software: Built custom scheduling algorithms that adjust signal times based on live sensor data.'
+    - 'Unified Web Platform: Crafted an enterprise dashboard with live GIS mappings showing all municipal stats.'
+outcomes:
+  metrics:
+    - value: 5,000+
+      label: Active edge IoT sensors
+    - value: 25%
+      label: Reduction in streetlighting power use
+    - value: 30%
+      label: Reduction in peak transit delays
+  bullets:
+    - Reduced city-wide carbon footprint and electricity bills via automatic smart-dimming rules.
+    - Decreased response times for emergency vehicles by automatically clearing signal paths during distress alerts.
+    - Empowered local citizens with public web apps featuring real-time bus arrivals and ambient air monitors.
+whyHTIS:
+  - Proven expertise in massive IoT systems and robust software telemetry architectures.
+  - Sleek software engineering skills delivering highly responsive web platforms.
+  - Agile integration practices managing multi-department municipal requirements.

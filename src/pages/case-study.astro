@@ -3,6 +3,7 @@ import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import CaseStudyList from '~/components/case-study/CaseStudyList.svelte';
+import { caseStudiesData } from '~/data/cms';
 
 import caseStudyImg from '~/assets/case-study-1.png';
 ---
@@ -27,7 +28,11 @@ import caseStudyImg from '~/assets/case-study-1.png';
 
     <!-- Main Content Section -->
     <section class="mx-auto w-full max-w-7xl px-6 pb-24">
-      <CaseStudyList imgSrc={caseStudyImg.src} client:load />
+      <CaseStudyList
+        imgSrc={caseStudyImg.src}
+        caseStudies={caseStudiesData}
+        client:load
+      />
     </section>
 
     <!-- Footer block -->

@@ -1,0 +1,53 @@
+id: 2
+slug: national-broadband-rollout
+title: National Broadband Rollout
+description: Deployed high-speed broadband network across rural communities, bridging the digital divide with scalable infrastructure.
+solution: Telecom Services
+industry: Telecom
+tags:
+  - 500+ miles fiber
+  - Telecom
+  - Connectivity
+clientLabel: 'Tier-1 Telecom Operator – Pan-India Rollout'
+heroTitle: High-Density Armored Optical Backhaul & Rural Node Commissioning
+heroSummary: Bridged the remote digital divide by engineering and laying over 500 miles of high-durability fiber backbones, bringing high-speed broadband to 200+ rural villages.
+heroMetrics:
+  - 500+ Miles
+  - 200+ Villages
+  - 10 Gbps Active Links
+clientContext:
+  clientType: National Telecom Infrastructure Operator
+  industryScale: Pan-India High-Capacity Telecommunication
+  environment: Rugged rural districts with harsh climates, high-elevation zones, and low existing infrastructure
+  bullets:
+    - Aims to deploy scalable rural optical paths compatible with future 5G Standalone (SA) services.
+    - Required coordinating deep clearance permits across municipal, state, and environmental agencies.
+    - Needed custom high-durability passive shelters capable of surviving intense seasonal monsoons.
+challenge:
+  paragraph: The target communities were entirely isolated from modern digital grids, relying on erratic satellite links. Deploying traditional optical cables faced severe geographical barriers and regulatory delays.
+  bullets:
+    - 'Extreme terrains: Mountainous, rocky, and forested paths prohibited standard trenching machinery.'
+    - 'Right-of-way bottlenecks: Delayed permits from multiple local forest, road, and river authorities.'
+    - 'Weather constraints: Landslides and monsoon seasons limited physical work schedules to brief quarterly windows.'
+solutionDetails:
+  paragraph: HTIS deployed a hybrid routing strategy, combining specialized underground micro-trenching with robust aerial cable poles and solar-backed active cabinets.
+  bullets:
+    - 'Advanced optical engineering: Laid 500+ miles of high-count armored fiber cables resilient to water and physical impacts.'
+    - 'Hybrid laying models: Executed high-tension aerial line systems across gorges while micro-trenching roadside routes.'
+    - 'Sovereign exchange node grids: Built and powered passive environmental shelters using localized solar arrays.'
+outcomes:
+  metrics:
+    - value: 500+
+      label: Miles of armored optical fiber active
+    - value: 200+
+      label: Rural communities connected to broadband
+    - value: 30%
+      label: Reduction in overall backhaul latency
+  bullets:
+    - Enabled instant digital school curriculums and high-definition village telemedicine connections.
+    - Supplied rural commerce centers with instant digital payments and online crop market access.
+    - Delivered 10 Gbps backhaul capacity to support future cellular and network grid expansions.
+whyHTIS:
+  - Comprehensive telecom capacity spanning OSP (Outside Plant) engineering to dynamic node configuration.
+  - Adept legal permit navigation, ensuring swift Right-of-Way clearances.
+  - Resilient field force equipped and trained to deploy in high-altitude environments.

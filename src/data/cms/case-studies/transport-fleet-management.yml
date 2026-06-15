@@ -1,0 +1,53 @@
+id: 5
+slug: transport-fleet-management
+title: Transport Fleet Management
+description: Developed custom software for real-time tracking of logistics fleet, reducing operational delays by 30%.
+solution: Software Development
+industry: Manufacturing
+tags:
+  - Logistics
+  - Manufacturing
+  - Software
+clientLabel: National Logistics & Supply Chain Enterprise
+heroTitle: Custom Web-Based Dispatch Portal & GPS Fleet Telemetry Integration
+heroSummary: Created a highly responsive fleet monitoring system for 2,000+ logistics trucks, maximizing routing efficiency and driving down fuel overheads.
+heroMetrics:
+  - 2000+ Vehicles
+  - 30% Delay Reduction
+  - 15% Fuel Efficiency
+clientContext:
+  clientType: Multi-State Heavy Logistics Enterprise
+  industryScale: Enterprise-Grade Supply Chain Systems
+  environment: Interstate trucking networks covering varying cellular network zones and difficult terrains
+  bullets:
+    - Coordinates daily transits for thousands of valuable retail cargo runs.
+    - Requires exact arrival estimations to prevent warehouse loading jams.
+    - Needs strict security paths to protect cargo against highway thefts.
+challenge:
+  paragraph: The client operated with manual driver reports and phone-based tracking, resulting in massive cargo delays, cargo theft risks, and high fuel waste from bad route choices.
+  bullets:
+    - 'Complete tracking blindness: Dispatchers had no real-time coordinates for high-value trucks.'
+    - 'Fuel waste: Drivers selected paths manually, ignoring optimal highway updates or construction zones.'
+    - 'Warehouse congestion: Slow delivery updates created huge truck queues at loading docks.'
+solutionDetails:
+  paragraph: HTIS developed an offline-first mobile app for field drivers, configured smart GPS trackers, and programmed a rich, central tracking portal.
+  bullets:
+    - 'Web tracking portal: Developed a real-time React/Svelte-based interface featuring dynamic leaflet maps.'
+    - 'Offline-first app: Built a lightweight driver utility that saves tracking points during network losses.'
+    - 'Route optimization: Coded automated path recommendations that avoid high-traffic and low-clearance roads.'
+outcomes:
+  metrics:
+    - value: 2,000+
+      label: Interstate trucks actively tracked
+    - value: 30%
+      label: Reduction in delivery transit delays
+    - value: 15%
+      label: Increase in overall fuel efficiency
+  bullets:
+    - Prevented cargo thefts by implementing automated real-time alarms for any geofence route deviations.
+    - Maximized warehouse dock throughput using automated SMS alerts when trucks approach.
+    - Improved vehicle health using automatic telemetry warnings for engine overheating or tire pressure drops.
+whyHTIS:
+  - Tailored custom software development capabilities surpassing generic pre-built packages.
+  - Deep skills in integrating active hardware telematics with reliable cloud databases.
+  - Intuitive UX/UI designs ensuring rapid, error-free adoption by truck drivers.

@@ -3,6 +3,7 @@ import awardsYaml from './awards.yml';
 import footerYaml from './footer.yml';
 import homeYaml from './home.yml';
 import navigationYaml from './navigation.yml';
+import privacyYaml from './privacy.yml';
 import resourcingYaml from './resourcing.yml';
 import siteYaml from './site.yml';
 import softwareYaml from './software.yml';
@@ -23,7 +24,11 @@ const assets = Object.fromEntries(
 );
 
 export function getCmsAsset(filename: string): ImageMetadata {
-  const assetName = filename.replace(/^src\/assets\//, '').split('/').pop() ?? filename;
+  const assetName =
+    filename
+      .replace(/^src\/assets\//, '')
+      .split('/')
+      .pop() ?? filename;
   const asset = assets[assetName];
   if (!asset) {
     throw new Error(`CMS asset not found: ${filename}`);
@@ -71,6 +76,44 @@ export interface IndustryData {
   capabilities: IndustryCapability[];
 }
 
+export interface CaseStudyMetric {
+  value: string;
+  label: string;
+}
+
+export interface CaseStudyData {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  solution: string;
+  industry: string;
+  tags: string[];
+  clientLabel: string;
+  heroTitle: string;
+  heroSummary: string;
+  heroMetrics: string[];
+  clientContext: {
+    clientType: string;
+    industryScale: string;
+    environment: string;
+    bullets: string[];
+  };
+  challenge: {
+    paragraph: string;
+    bullets: string[];
+  };
+  solutionDetails: {
+    paragraph: string;
+    bullets: string[];
+  };
+  outcomes: {
+    metrics: CaseStudyMetric[];
+    bullets: string[];
+  };
+  whyHTIS: string[];
+}
+
 export interface Milestone {
   year: string;
   title: string;
@@ -94,6 +137,27 @@ export interface AwardGalleryItem {
   src: string;
 }
 
+type HomeServiceId = 'telecom' | 'resourcing' | 'software' | 'system';
+
+export interface HomeServiceMetric {
+  value: string;
+  label: string;
+}
+
+export interface HomeServiceFeature {
+  iconName: string;
+  label: string;
+  description: string;
+}
+
+export interface HomeService {
+  id: HomeServiceId;
+  titleHtml: string;
+  href: string;
+  features: HomeServiceFeature[];
+  metrics: HomeServiceMetric[];
+}
+
 interface HomeYaml {
   hero: {
     backgroundImage: string;
@@ -104,6 +168,10 @@ interface HomeYaml {
     ctaUrl: string;
     trustedByLabel: string;
     partnerLogos: Array<{ image: string; alt: string }>;
+  };
+  services: {
+    headingHtml: string;
+    items: HomeService[];
   };
   journey: {
     titlePrefix: string;
@@ -288,7 +356,53 @@ interface ResourcingYaml {
   };
 }
 
+interface PrivacySubsectionYaml {
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+}
+
+interface PrivacySectionYaml {
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  afterParagraphs?: string[];
+  note?: string;
+  contactPrompt?: string;
+  contactCard?: boolean;
+  subsections?: PrivacySubsectionYaml[];
+}
+
+interface PrivacyYaml {
+  title: string;
+  metaTitle: string;
+  lastUpdated: string;
+  backLink: CmsLink;
+  intro: {
+    companyName: string;
+    websiteLabel: string;
+    websiteUrl: string;
+    openingTextBeforeCompany: string;
+    openingTextAfterCompany: string;
+    websiteTextBeforeLink: string;
+    websiteTextAfterLink: string;
+    consentText: string;
+  };
+  sections: PrivacySectionYaml[];
+  contact: {
+    companyName: string;
+    websiteLabel: string;
+    websiteUrl: string;
+    email: string;
+  };
+}
+
 const industryModules = import.meta.glob<IndustryData>('./industries/*.yml', {
+  eager: true,
+  import: 'default',
+});
+
+const caseStudyModules = import.meta.glob<CaseStudyData>('./case-studies/*.yml', {
   eager: true,
   import: 'default',
 });
@@ -371,6 +485,7 @@ export const home = (() => {
         imageSrc: getCmsAssetSrc(image),
       })),
     },
+    services: validateHomeServices(data.services),
     team: {
       ...data.team,
       backgroundImageSrc: getCmsAssetSrc(data.team.backgroundImage),
@@ -455,6 +570,42 @@ function resolveHero(hero: PageHeroYaml) {
   };
 }
 
+function validateHomeServices(services: HomeYaml['services']) {
+  const expectedIds: HomeServiceId[] = ['telecom', 'resourcing', 'software', 'system'];
+
+  if (services.items.length !== 4) {
+    throw new Error(
+      `Home services: expected exactly 4 services, received ${services.items.length}`,
+    );
+  }
+
+  const seenIds = new Set<string>();
+  for (const service of services.items) {
+    if (!expectedIds.includes(service.id)) {
+      throw new Error(`Home services: unsupported service id "${service.id}"`);
+    }
+
+    if (seenIds.has(service.id)) {
+      throw new Error(`Home services: duplicate service id "${service.id}"`);
+    }
+    seenIds.add(service.id);
+
+    if (service.features.length !== 6) {
+      throw new Error(
+        `Home services: "${service.id}" must have exactly 6 features, received ${service.features.length}`,
+      );
+    }
+
+    if (service.metrics.length !== 4) {
+      throw new Error(
+        `Home services: "${service.id}" must have exactly 4 metrics, received ${service.metrics.length}`,
+      );
+    }
+  }
+
+  return services;
+}
+
 function resolveExecution(execution: ExecutionYaml) {
   return {
     ...execution,
@@ -535,8 +686,14 @@ export const resourcing = (() => {
   };
 })();
 
+export const privacy = privacyYaml as PrivacyYaml;
+
 export const industriesData = Object.values(industryModules).sort((a, b) =>
   a.slug.localeCompare(b.slug),
+);
+
+export const caseStudiesData = Object.values(caseStudyModules).sort(
+  (a, b) => a.id - b.id || a.slug.localeCompare(b.slug),
 );
 
 const industryOrder = [

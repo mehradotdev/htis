@@ -1,17 +1,12 @@
 <script>
-  import { servicesData as services } from '~/data/pageData';
   import { ArrowRight } from '@lucide/svelte';
+  import { serviceIconComponents } from './serviceIcons';
+
+  let { services = [] } = $props();
 
   let active = $state('collapsed');
   let gridRef = $state();
   let activeTooltip = $state(null);
-
-  const serviceHrefs = {
-    telecom: '/telecom',
-    resourcing: '/resourcing',
-    system: '/system-integration',
-    software: '/software',
-  };
 
   // 5x5 geometric grid mapping - Perfect 4x4 Expanded Square
   const stateLayouts = {
@@ -190,7 +185,7 @@
   {#each services as service}
     {@const pos = stateLayouts[active].titles[service.id]}
     <a
-      href={serviceHrefs[service.id]}
+      href={service.href}
       class="grid-block flex cursor-pointer no-underline transition-all duration-700 ease-in-out hover:bg-base-100/90 hover:shadow-lg hover:outline-2 hover:-outline-offset-2 hover:outline-primary bg-base-100/70 backdrop-blur-md p-6 md:p-8 {mobileOrder[
         service.id
       ]} {getBorders(pos.c, pos.r, pos.cs, pos.rs, 'title', 0)} {active === service.id
@@ -240,9 +235,10 @@
           ? 'opacity-100 z-10 pointer-events-auto'
           : 'opacity-0 z-0 pointer-events-none md:opacity-100'}"
       >
-        {#each service.icons as icon, idx}
+        {#each service.features as feature, idx}
           {@const pos = stateLayouts[active].icons[idx]}
-          {@const Icon = icon.icon}
+          {@const Icon =
+            serviceIconComponents[feature.iconName] ?? serviceIconComponents.CircleHelp}
           <button
             type="button"
             onclick={(e) => {
@@ -270,13 +266,13 @@
               ? 'tooltip-open'
               : ''}"
             style={getStyle(pos.c, pos.r)}
-            data-tip={icon.description}
+            data-tip={feature.description}
           >
             <div class="mb-2 text-primary">
               <Icon size={40} />
             </div>
             <span class="text-xs lg:text-sm font-semibold text-base-content/80"
-              >{@html icon.label}</span
+              >{@html feature.label}</span
             >
           </button>
         {/each}
@@ -294,7 +290,7 @@
           ? 'opacity-100 z-10 pointer-events-auto'
           : 'opacity-0 z-0 pointer-events-none md:opacity-100'}"
       >
-        {#each service.stats as stat, idx}
+        {#each service.metrics as metric, idx}
           {@const pos = stateLayouts[active].stats[idx]}
           <div
             class="grid-block flex flex-1 flex-col items-center justify-center space-y-1 p-2 lg:p-3 text-center bg-base-100/70 backdrop-blur-md hover:bg-primary/5 hover:outline-2 hover:-outline-offset-2 hover:outline-primary md:transition-all md:duration-700 ease-in-out {getBorders(
@@ -309,9 +305,9 @@
               : 'md:opacity-0 md:pointer-events-none'}"
             style={getStyle(pos.c, pos.r, pos.cs || 1, pos.rs || 1)}
           >
-            <span class="text-2xl lg:text-3xl font-bold text-primary">{stat.val}</span>
+            <span class="text-2xl lg:text-3xl font-bold text-primary">{metric.value}</span>
             <span class="text-xs lg:text-sm font-semibold text-base-content/80"
-              >{@html stat.label}</span
+              >{@html metric.label}</span
             >
           </div>
         {/each}

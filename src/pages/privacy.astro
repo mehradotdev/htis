@@ -2,354 +2,155 @@
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
+import { privacy } from '~/data/cms';
 ---
 
-<Layout title="Privacy Policy - HTIS">
+<Layout title={privacy.metaTitle}>
   <div class="relative w-full overflow-clip">
     <Navbar />
 
-    <!-- Main Content Container -->
     <main class="relative bg-base-100 pt-36 pb-24">
       <div class="mx-auto max-w-3xl px-6 font-sans">
-        <!-- Back Link -->
         <a
-          href="/"
+          href={privacy.backLink.url}
           class="group mb-8 inline-flex items-center gap-2 text-sm font-semibold text-primary/80 transition-colors hover:text-primary"
         >
-          <span class="transition-transform duration-200 group-hover:-translate-x-1"
-            >←</span
-          > Back to Home
+          <span class="transition-transform duration-200 group-hover:-translate-x-1">
+            &larr;
+          </span>
+          {privacy.backLink.label}
         </a>
 
-        <!-- Title Block -->
         <div class="mb-8 border-b border-base-content/10 pb-6">
           <h1 class="mb-2 text-4xl font-extrabold tracking-tight text-base-content">
-            Privacy Policy
+            {privacy.title}
           </h1>
           <p class="text-sm font-medium text-base-content/60">
-            Last updated: May 28, 2026
+            Last updated: {privacy.lastUpdated}
           </p>
         </div>
 
-        <!-- Document Content -->
         <div class="max-w-none space-y-8 leading-relaxed text-base-content/80">
           <p>
-            Welcome to <strong>HTIS Telecom</strong> (“Company”, “we”, “our”, or “us”).
+            {privacy.intro.openingTextBeforeCompany}
+            <strong> {privacy.intro.companyName}</strong>{' '}
+            {privacy.intro.openingTextAfterCompany}
           </p>
           <p>
-            This Privacy Policy explains how we collect, use, disclose, and protect your
-            information when you visit our website, <a
-              href="https://htis.in"
+            {privacy.intro.websiteTextBeforeLink}{' '}
+            <a
+              href={privacy.intro.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="font-semibold text-primary hover:underline">htis.in</a
-            >.
-          </p>
-          <p class="pb-4">
-            By using our website, you consent to the practices described in this Privacy
-            Policy.
-          </p>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 1 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              1. Information We Collect
-            </h2>
-            <p class="mb-4">We may collect the following categories of information:</p>
-
-            <div class="space-y-4 border-l-2 border-primary/25 pl-4">
-              <div>
-                <h3 class="mb-2 font-bold text-base-content">A. Personal Information</h3>
-                <p class="mb-2">When you interact with our website, we may collect:</p>
-                <ul class="list-disc space-y-1 pl-6">
-                  <li>Full name</li>
-                  <li>Email address</li>
-                  <li>Phone number</li>
-                  <li>Company name</li>
-                  <li>Job title</li>
-                  <li>Any information submitted through contact forms</li>
-                  <li>Information shared during newsletter subscriptions</li>
-                  <li>
-                    Resume/CV and employment-related information submitted during job
-                    applications
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 class="mb-2 font-bold text-base-content">
-                  B. Uploaded Files and Documents
-                </h3>
-                <p>
-                  Users may voluntarily upload files/documents through forms available on
-                  the website. These may include resumes, project documents, business
-                  requirements, or related materials.
-                </p>
-              </div>
-
-              <div>
-                <h3 class="mb-2 font-bold text-base-content">
-                  C. Technical &amp; Usage Information
-                </h3>
-                <p class="mb-2">We may automatically collect:</p>
-                <ul class="list-disc space-y-1 pl-6">
-                  <li>IP address</li>
-                  <li>Browser type</li>
-                  <li>Device information</li>
-                  <li>Operating system</li>
-                  <li>Website usage statistics</li>
-                  <li>Referral source</li>
-                  <li>Cookies and tracking data</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 2 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              2. How We Use Your Information
-            </h2>
-            <p class="mb-3">We use collected information for purposes including:</p>
-            <ul class="list-disc space-y-2 pl-6">
-              <li>Responding to inquiries and support requests</li>
-              <li>Providing information about our services</li>
-              <li>Processing recruitment applications</li>
-              <li>Sending newsletters and marketing communications</li>
-              <li>Improving website functionality and user experience</li>
-              <li>Analytics and performance monitoring</li>
-              <li>CRM and sales follow-up activities</li>
-              <li>Internal reporting and business operations</li>
-              <li>Legal and compliance requirements</li>
-            </ul>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 3 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              3. Third-Party Services
-            </h2>
-            <p class="mb-3">
-              We may share or process information through trusted third-party platforms
-              and service providers including:
-            </p>
-            <ul class="mb-3 list-disc space-y-1.5 pl-6">
-              <li>Google Analytics</li>
-              <li>Meta/Facebook tools</li>
-              <li>CRM platforms</li>
-              <li>Recruitment and HR tools</li>
-              <li>Marketing automation platforms</li>
-              <li>Cloud hosting and IT infrastructure providers</li>
-            </ul>
-            <p class="text-sm text-base-content/60 italic">
-              These third parties may process data in accordance with their own privacy
-              policies.
-            </p>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 4 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              4. Cookies &amp; Tracking Technologies
-            </h2>
-            <p class="mb-3">
-              Our website may use cookies and similar tracking technologies to:
-            </p>
-            <ul class="mb-4 list-disc space-y-1.5 pl-6">
-              <li>Improve website performance</li>
-              <li>Understand user behaviour</li>
-              <li>Analyse traffic patterns</li>
-              <li>Support marketing and advertising campaigns</li>
-              <li>Remember user preferences</li>
-            </ul>
-            <p>
-              Users may disable cookies through browser settings; however, some website
-              features may not function properly.
-            </p>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 5 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              5. Data Retention
-            </h2>
-            <p class="mb-3">
-              We retain personal information only for as long as necessary for:
-            </p>
-            <ul class="mb-4 list-disc space-y-1.5 pl-6">
-              <li>Business operations</li>
-              <li>Recruitment processes</li>
-              <li>Legal obligations</li>
-              <li>Dispute resolution</li>
-              <li>Security and fraud prevention</li>
-            </ul>
-            <p>
-              When data is no longer required, we take reasonable steps to securely delete
-              or anonymize it.
-            </p>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 6 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              6. Data Security
-            </h2>
-            <p class="mb-3">
-              We implement commercially reasonable technical and organizational safeguards
-              to protect personal information against:
-            </p>
-            <ul class="mb-4 list-disc space-y-1 pl-6">
-              <li>Unauthorized access</li>
-              <li>Misuse</li>
-              <li>Loss</li>
-              <li>Disclosure</li>
-              <li>Alteration</li>
-              <li>Destruction</li>
-            </ul>
-            <p class="text-sm text-base-content/65 italic">
-              However, no method of internet transmission or electronic storage is
-              completely secure, and we cannot guarantee absolute security.
-            </p>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 7 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              7. User Rights
-            </h2>
-            <p class="mb-3">
-              Subject to applicable laws, including India’s Digital Personal Data
-              Protection Act (DPDP Act), users may have the right to:
-            </p>
-            <ul class="mb-4 list-disc space-y-1.5 pl-6">
-              <li>Access their personal information</li>
-              <li>Request correction of inaccurate data</li>
-              <li>Request deletion of personal data</li>
-              <li>Withdraw consent</li>
-              <li>Opt out of marketing communications</li>
-              <li>Request information regarding processing activities</li>
-            </ul>
-            <p>
-              To exercise these rights, contact us at: <a
-                href="mailto:help@htis.in"
-                class="font-semibold text-primary hover:underline">help@htis.in</a
-              >
-            </p>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 8 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              8. International Data Handling
-            </h2>
-            <p>
-              While our primary operations are based in India, some third-party service
-              providers may process or store information outside India. We take reasonable
-              measures to ensure appropriate data protection standards are maintained.
-            </p>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 9 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              9. Third-Party Links
-            </h2>
-            <p class="mb-3">
-              Our website may contain links to external websites or third-party platforms.
-              We are not responsible for the privacy practices, content, or policies of
-              such external websites.
-            </p>
-            <p>
-              Users are encouraged to review the privacy policies of third-party sites
-              before providing personal information.
-            </p>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 10 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              10. Children’s Privacy
-            </h2>
-            <p class="mb-3">
-              Our website and services are not directed toward individuals under the age
-              of 18. We do not knowingly collect personal information from children.
-            </p>
-            <p>
-              If we become aware that a child has provided personal information, we will
-              take reasonable steps to delete such information.
-            </p>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 11 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              11. Changes to This Privacy Policy
-            </h2>
-            <p class="mb-3">
-              We reserve the right to modify or update this Privacy Policy at any time
-              without prior notice. Updated versions will be posted on this page along
-              with the revised effective date.
-            </p>
-            <p>We encourage users to periodically review this Privacy Policy.</p>
-          </div>
-
-          <hr class="border-base-content/10" />
-
-          <!-- Section 12 -->
-          <div>
-            <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
-              12. Contact Us
-            </h2>
-            <p class="mb-4">
-              If you have questions, concerns, privacy-related requests, or data deletion
-              requests, please contact:
-            </p>
-            <div
-              class="space-y-2 rounded-2xl border border-base-content/5 bg-base-200/50 p-6"
+              class="font-semibold text-primary hover:underline"
             >
-              <p class="font-bold text-base-content">HTIS Telecom</p>
-              <p>
-                Website: <a
-                  href="https://htis.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-primary hover:underline">htis.in</a>
-              </p>
-              <p>
-                Email: <a href="mailto:help@htis.in" class="text-primary hover:underline"
-                  >help@htis.in</a>
-              </p>
-            </div>
-          </div>
+              {privacy.intro.websiteLabel}
+            </a>
+            {privacy.intro.websiteTextAfterLink}
+          </p>
+          <p class="pb-4">{privacy.intro.consentText}</p>
+
+          {
+            privacy.sections.map((section) => (
+              <>
+                <hr class="border-base-content/10" />
+
+                <section>
+                  <h2 class="mb-4 text-2xl font-bold tracking-tight text-base-content">
+                    {section.heading}
+                  </h2>
+
+                  {section.paragraphs?.map((paragraph) => (
+                    <p class="mb-3">{paragraph}</p>
+                  ))}
+
+                  {section.subsections && (
+                    <div class="space-y-4 border-l-2 border-primary/25 pl-4">
+                      {section.subsections.map((subsection) => (
+                        <div>
+                          <h3 class="mb-2 font-bold text-base-content">
+                            {subsection.heading}
+                          </h3>
+                          {subsection.paragraphs?.map((paragraph) => (
+                            <p class="mb-2">{paragraph}</p>
+                          ))}
+                          {subsection.bullets && (
+                            <ul class="list-disc space-y-1 pl-6">
+                              {subsection.bullets.map((bullet) => (
+                                <li>{bullet}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {section.bullets && (
+                    <ul class="mb-4 list-disc space-y-1.5 pl-6">
+                      {section.bullets.map((bullet) => (
+                        <li>{bullet}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {section.afterParagraphs?.map((paragraph) => (
+                    <p>{paragraph}</p>
+                  ))}
+
+                  {section.note && (
+                    <p class="text-sm text-base-content/65 italic">{section.note}</p>
+                  )}
+
+                  {section.contactPrompt && (
+                    <p>
+                      {section.contactPrompt}{' '}
+                      <a
+                        href={`mailto:${privacy.contact.email}`}
+                        class="font-semibold text-primary hover:underline"
+                      >
+                        {privacy.contact.email}
+                      </a>
+                    </p>
+                  )}
+
+                  {section.contactCard && (
+                    <div class="space-y-2 rounded-2xl border border-base-content/5 bg-base-200/50 p-6">
+                      <p class="font-bold text-base-content">
+                        {privacy.contact.companyName}
+                      </p>
+                      <p>
+                        Website:{' '}
+                        <a
+                          href={privacy.contact.websiteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-primary hover:underline"
+                        >
+                          {privacy.contact.websiteLabel}
+                        </a>
+                      </p>
+                      <p>
+                        Email:{' '}
+                        <a
+                          href={`mailto:${privacy.contact.email}`}
+                          class="text-primary hover:underline"
+                        >
+                          {privacy.contact.email}
+                        </a>
+                      </p>
+                    </div>
+                  )}
+                </section>
+              </>
+            ))
+          }
         </div>
       </div>
     </main>
 
-    <!-- Footer container -->
-    <!-- <div class="bg-base-200/50">
+    <div class="bg-base-200/50">
       <Footer />
-    </div> -->
+    </div>
   </div>
 </Layout>

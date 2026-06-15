@@ -1,0 +1,53 @@
+id: 1
+slug: data-center-modernisation
+title: Data center Modernisation
+description: Modernized backbone infrastructure with redundant fiber connectivity.
+solution: System Integration
+industry: Government
+tags:
+  - 750+ locations
+  - Telecom
+  - Government
+clientLabel: 'State Govt – Manpower & Hardware'
+heroTitle: Virtualized Hyperconverged Compute & Dual-Ring Fiber Loop Integration
+heroSummary: Migrated legacy administrative systems into an ultra-resilient hyperconverged infrastructure across 750+ government offices, completely eliminating data corruption and application timeouts.
+heroMetrics:
+  - 750+ Offices
+  - 99.99% Uptime
+  - 50% Faster Response
+clientContext:
+  clientType: State IT & Administrative Department
+  industryScale: State-Wide Administrative Services
+  environment: Decentralized public registries and tax offices crossing multiple remote districts
+  bullets:
+    - Acts as the primary processing node for public land registries, vehicle licensing, and state treasury programs.
+    - Supports daily digital operations and transaction queues for millions of citizens.
+    - Operates within strict security guidelines and high concurrent request profiles.
+challenge:
+  paragraph: Before HTIS engaged, the administrative departments struggled with outdated server hardware, erratic power grids, and manual backups, leading to frequent regional outages and lost productivity.
+  bullets:
+    - 'Single points of failure: Legacy routing networks had no active path redundancy, meaning a single fiber cut offline entire districts.'
+    - 'Downtime & latency: Servers regularly buckled under the load of peak morning administrative queues, leading to transaction losses.'
+    - 'High administrative lag: Manual records processing was heavily delayed due to disjointed software and physical hard drive failures.'
+solutionDetails:
+  paragraph: HTIS deployed a unified modernization framework, virtualizing local servers and rolling out resilient fiber loops with automated backup path switching.
+  bullets:
+    - 'Hyperconverged Infrastructure (HCI): Consolidated legacy hardware into highly virtualized, self-healing compute nodes.'
+    - 'Active-passive fiber ring: Engineered dynamic path routing utilizing BGP/OSPF topologies across 750+ sites.'
+    - 'Data migration: Successfully migrated millions of critical citizen records with zero midday service interruption.'
+outcomes:
+  metrics:
+    - value: 50%
+      label: Faster registry response times
+    - value: 99.99%
+      label: Active system uptime achieved
+    - value: 750+
+      label: Administrative offices modernized
+  bullets:
+    - Eliminated unscheduled network drops and database corruptions, creating high administrative continuity.
+    - Allowed staff to handle twice the volume of citizen files without experiencing system lags.
+    - Implemented modern AES-256 standard VPN encryption for secure administrative data transmission.
+whyHTIS:
+  - Proven experience scaling government systems with complex multi-agency compliance needs.
+  - Flexible deployment resources capable of concurrent execution across remote regions.
+  - Turnkey lifecycle capabilities ranging from initial fiber laying to active virtualization support.

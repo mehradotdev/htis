@@ -11,9 +11,12 @@
     Info,
     ChevronDown,
   } from '@lucide/svelte';
-  import { caseStudiesData as caseStudies } from '~/data/case-studies';
+  import type { CaseStudyData } from '~/data/cms';
 
-  let { imgSrc } = $props();
+  let {
+    imgSrc,
+    caseStudies,
+  }: { imgSrc: string; caseStudies: CaseStudyData[] } = $props();
 
   const solutions = [
     'Telecom Services',

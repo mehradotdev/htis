@@ -110,6 +110,133 @@ hero:
       alt: Trend Micro
     - image: src/assets/vertiv.png
       alt: Vertiv
+services:
+  headingHtml: 'Our<br/>Services'
+  items:
+    - id: telecom
+      titleHtml: 'Tele&shy;communica&shy;tions'
+      href: /telecom
+      features:
+        - iconName: Wifi
+          label: 5G Core & IMS
+          description: Service-Based Architecture (SBA) and VoLTE/VoNR cloud-native deployment.
+        - iconName: ShieldCheck
+          label: Packet Core Ops
+          description: Management of EPC, PCRF, and GI-LAN for high-throughput user-plane traffic.
+        - iconName: Cable
+          label: IP/MPLS Transport
+          description: Advanced routing, segment routing (SRv6), and high-capacity backhaul engineering.
+        - iconName: Radio
+          label: RF & Wireless Design
+          description: Precision radio frequency planning, 4G/5G site surveys, and coverage optimization.
+        - iconName: Headset
+          label: Compliance & IPDR
+          description: Automated IP Detail Record generation and regulatory data retention systems.
+        - iconName: Wrench
+          label: Managed Maintenance
+          description: 24/7 proactive NOC support and comprehensive AMC for multi-vendor hardware.
+      metrics:
+        - value: '100+'
+          label: 'Network<br/>Deployment'
+        - value: '11+'
+          label: 'Years of<br/>Experience'
+        - value: '99%'
+          label: 'Guaranteed<br/>Network<br/>Uptime'
+        - value: '500+'
+          label: 'Critical Network<br/>Nodes Managed'
+    - id: resourcing
+      titleHtml: Resourcing
+      href: /resourcing
+      features:
+        - iconName: Users
+          label: L1-L6 Talent Hub
+          description: Full-spectrum resourcing from field technicians to senior system architects.
+        - iconName: Clock
+          label: Niche Engineering
+          description: Sourcing specialized experts for Packet Core, Cybersecurity, and Cloud migration.
+        - iconName: UserSearch
+          label: Project-Task Units
+          description: Ready-to-deploy technical teams for task-based execution and site rollouts.
+        - iconName: FileSignature
+          label: Executive Search
+          description: Targeted leadership hiring for high-stakes digital transformation projects.
+        - iconName: CircleDollarSign
+          label: Staff Augmentation
+          description: Flexible, scalable technical manpower to bridge immediate skill gaps.
+        - iconName: Network
+          label: Managed Compliance
+          description: End-to-end payroll, insurance, and regulatory management for workforce stability.
+      metrics:
+        - value: '500+'
+          label: 'Technical Professionals<br/>Deployed'
+        - value: '50+'
+          label: 'Tier-1<br /> Corporate Partners'
+        - value: '98%'
+          label: 'Resource<br /> Retention Rate'
+        - value: '10K+'
+          label: 'Technical Man-Hours<br/>Managed Monthly'
+    - id: software
+      titleHtml: 'Software<br class="hidden md:block" /> Development'
+      href: /software
+      features:
+        - iconName: Code
+          label: UI/UX Strategy
+          description: Human-centric interface design for high-complexity enterprise systems.
+        - iconName: Smartphone
+          label: Backend & API
+          description: Scalable, high-performance architectures for real-time data processing.
+        - iconName: Cloud
+          label: Enterprise ERP
+          description: Integrated resource planning ecosystems (wfms) for operational control.
+        - iconName: Database
+          label: On-Demand SaaS
+          description: Cloud-native, multi-tenant platforms built for industrial scale.
+        - iconName: Monitor
+          label: Sovereign Portals
+          description: High-compliance digital assets tailored for Government & Public Sector.
+        - iconName: CheckSquare
+          label: DevSecOps
+          description: Automated QA and secure deployment pipelines for zero-vulnerability code.
+      metrics:
+        - value: '500+'
+          label: 'Technical Modules<br/>Deployed'
+        - value: '1.2M+'
+          label: End-Users Supported
+        - value: '99.99%'
+          label: System Availability
+        - value: '20+'
+          label: 'Dedicated<br/>Govt/Public Sector Platforms'
+    - id: system
+      titleHtml: 'System<br class="hidden md:block" /> Integrations'
+      href: /system-integration
+      features:
+        - iconName: Blocks
+          label: Hybrid Cloud
+          description: Orchestrating elastic workloads across private and public cloud fabrics.
+        - iconName: Cpu
+          label: Cyber-Defense
+          description: Next-gen perimeter security, XDR, and Zero-Trust architectures.
+        - iconName: RefreshCw
+          label: Data Center Stack
+          description: End-to-end turnkey engineering from compute to virtualization.
+        - iconName: Server
+          label: IP Surveillance
+          description: Integrated high-definition monitoring and AI-driven access control.
+        - iconName: Shield
+          label: Fire & Power
+          description: Mission-critical fire suppression and UPS/Power backup ecosystems.
+        - iconName: Building2
+          label: Sovereign Security
+          description: National-level compliance and data residency infrastructure solutions.
+      metrics:
+        - value: '50+'
+          label: 'High-Density Data Centers<br/>Integrated'
+        - value: '10 PB+'
+          label: 'Data Managed<br/>& Orchestrated'
+        - value: '24/7'
+          label: 'Proactive SOC/NOC<br/>Monitoring'
+        - value: '100%'
+          label: Compliance with Regulatory Standards
 journey:
   titlePrefix: Our
   titleHighlight: Journey
