@@ -347,9 +347,11 @@ journey:
       description: Achieved Dell Titanium Partner accreditation, one of the highest
         levels of recognition within Dell's partner ecosystem.
       image: src/assets/our-journey-6.png
-    - year: "2024"
-      title: Samsung Award
-      description: Received a prestigious award from Samsung.
+    - year: 2022-24
+      title: Jio 5G Swap Program
+      description: Contributed as a key partner in Jio's nationwide 5G Swap Program,
+        supporting deployment and modernization across thousands of telecom
+        sites throughout India.
       image: src/assets/our-journey-7.png
     - year: "2024"
       title: Cisco Award
