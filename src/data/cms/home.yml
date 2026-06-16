@@ -272,9 +272,11 @@ journey:
         Added major telecom customers including Idea Cellular and Ericsson,
         strengthening HTIS's position as a trusted telecom deployment partner.
       image: src/assets/our-journey-2.png
-    - year: "2008"
-      title: Second Customer - Bharti
-      description: Expanded our early portfolio with Bharti as our second customer.
+    - year: "2012"
+      title: HTIS Telecom Pvt. Ltd. Incorporated
+      description: The company was formally incorporated as HTIS Telecom Private
+        Limited, creating a strong foundation for structured growth and
+        nationwide expansion.
       image: src/assets/our-journey-3.png
     - year: "2012"
       title: Firmed HTIS Telecom
