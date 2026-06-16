@@ -60,3 +60,8 @@ items:
     organization: Royal Stancert B.V.
     date: December 3, 2019
     image: src/assets/ac-certificate66.jpg
+  - type: certificate
+    title: ISO 20000-1:2018 IT Service Management System
+    organization: Egyptian Accreditation Council
+    date: September 19, 2025
+    image: src/assets/iso-20001.jpg
