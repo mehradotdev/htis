@@ -278,9 +278,10 @@ journey:
         Limited, creating a strong foundation for structured growth and
         nationwide expansion.
       image: src/assets/our-journey-3.png
-    - year: "2012"
-      title: Firmed HTIS Telecom
-      description: Officially firmed as HTIS Telecom Private Limited.
+    - year: "2013"
+      title: Cisco Service Partner
+      description: Empanelled as a Cisco Service Partner, enabling HTIS to participate
+        in large-scale enterprise networking and service provider projects.
       image: src/assets/our-journey-4.png
     - year: "2013"
       title: Cisco Service Partner
