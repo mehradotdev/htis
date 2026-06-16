@@ -70,3 +70,8 @@ items:
     organization: Registrar of Companies
     date: October 17, 2012
     image: src/assets/incorporation-certificate-htis.jpg
+  - type: certificate
+    title: MSME Certificate
+    organization: Ministry of Micro, Small & Medium Enterprises
+    date: October 17, 2012
+    image: src/assets/msme-certificate.jpg
