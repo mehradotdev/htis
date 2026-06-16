@@ -1,18 +1,23 @@
 title: Software Development & SaaS - HTIS
 hero:
   backgroundImage: src/assets/lob-software-hero-bg.png
-  foregroundImage: src/assets/lob-software-hero-img.png
-  title: 'Digital Intelligence:'
+  foregroundImage: src/assets/saas-product-design.png
+  title: "Digital Intelligence:"
   highlight: Enterprise SaaS
-  subtitle: We architect the resilient software ecosystems that drive modern enterprise and government operations. By merging the agility of on-demand engineering with the stability of our flagship SaaS products, we deliver secure, high-compliance digital assets tailored to the most demanding regulatory environments.
+  subtitle: We architect the resilient software ecosystems that drive modern
+    enterprise and government operations. By merging the agility of on-demand
+    engineering with the stability of our flagship SaaS products, we deliver
+    secure, high-compliance digital assets tailored to the most demanding
+    regulatory environments.
   ctaLabel: Contact Us
   ctaUrl: /#contact
   secondaryCtaLabel: Explore Portfolio
-  secondaryCtaUrl: '#portfolio'
+  secondaryCtaUrl: "#portfolio"
 portfolio:
   backgroundImage: src/assets/team-member-bg.png
   heading: Converged Software Portfolio
-  description: Enterprise SaaS & Bespoke Engineering - An interactive look at our proprietary products and requirement-driven engineering capabilities.
+  description: Enterprise SaaS & Bespoke Engineering - An interactive look at our
+    proprietary products and requirement-driven engineering capabilities.
   saasImages:
     - src/assets/lob-software-sw-port-saas-1.png
     - src/assets/lob-software-sw-port-saas-2.png
@@ -33,17 +38,27 @@ execution:
   pillars:
     - iconName: RadioTower
       title: Carrier-Grade Network Automation
-      description: We engineer custom AMC and Complaint Management Dashboards that convert complex network telemetry into actionable insights. By bridging the gap between software logic and physical layer execution, our tools optimize field workflows, streamline maintenance tracking, and maximize operational continuity.
+      description: We engineer custom AMC and Complaint Management Dashboards that
+        convert complex network telemetry into actionable insights. By bridging
+        the gap between software logic and physical layer execution, our tools
+        optimize field workflows, streamline maintenance tracking, and maximize
+        operational continuity.
       url: /telecom
       ariaLabel: Explore Telecom Services
     - iconName: Server
       title: Secure Infrastructure Orchestration
-      description: We bridge the gap between enterprise hardware and cloud software. Built for seamless deployment on secure AWS cloud servers, our custom applications feature strict Role-Based Access Control (RBAC) to integrate perfectly into zero-trust data centre architectures.
+      description: We bridge the gap between enterprise hardware and cloud software.
+        Built for seamless deployment on secure AWS cloud servers, our custom
+        applications feature strict Role-Based Access Control (RBAC) to
+        integrate perfectly into zero-trust data centre architectures.
       url: /system-integration
       ariaLabel: Explore System Integration
     - iconName: Users
       title: High-Volume Human Capital Automation
-      description: Our proprietary wfms ERP effortlessly supports 3,000 daily active users, fully automating Attendance, Claims, Tasks, and Payroll Engines via web and mobile. By digitizing compliance, we eliminate operational risk and drive long-term workforce retention.
+      description: Our proprietary wfms ERP effortlessly supports 3,000 daily active
+        users, fully automating Attendance, Claims, Tasks, and Payroll Engines
+        via web and mobile. By digitizing compliance, we eliminate operational
+        risk and drive long-term workforce retention.
       url: /resourcing
       ariaLabel: Explore Resource Management
 caseStudyImages:
