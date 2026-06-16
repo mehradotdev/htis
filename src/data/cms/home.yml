@@ -262,10 +262,11 @@ journey:
     path forward.
   milestones:
     - year: "2008"
-      title: Establishment
-      description: HTIS was officially established.
+      title: HTIS Founded
+      description: Established Horizon Telecom Infrastructure Services and secured
+        initial telecom infrastructure projects with Vodafone and Bharti.
       image: src/assets/our-journey-1.png
-    - year: "2008"
+    - year: "2010"
       title: First Customer - Vodafone
       description: Secured Vodafone as our very first customer.
       image: src/assets/our-journey-2.png
