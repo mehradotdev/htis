@@ -306,10 +306,10 @@ journey:
         an enterprise platform designed to digitize workforce, project, and
         operational management.
       image: src/assets/our-journey-8.png
-    - year: 2018-19
-      title: NTT Data Partnership
-      description: Signed a global partnership with NTT data in the UK and deployed
-        15+ resources based in London for BTS testing.
+    - year: "2018"
+      title: NTT Data UK Partnership
+      description: Partnered with NTT Data UK and deployed dedicated resources in
+        London to support telecom testing and network service programs.
       image: src/assets/our-journey-9.png
     - year: "2019"
       title: UN Peace Keeping Project
