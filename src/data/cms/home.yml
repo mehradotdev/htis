@@ -289,10 +289,11 @@ journey:
         India, supporting large-scale network deployments and infrastructure
         implementation.
       image: src/assets/our-journey-5.png
-    - year: "2014"
-      title: Jio 4G Roll-out
-      description: Cisco Delivery Jio 4G Roll-out started, delivering over half of
-        India North and West, and deploying lacs of routers until 2019.
+    - year: "2017"
+      title: Cisco Global Partnership
+      description: Signed a Global PSSA agreement with Cisco as a niche category
+        partner in the Service Provider domain, reinforcing HTIS's technical
+        expertise and delivery capabilities.
       image: src/assets/our-journey-6.png
     - year: "2017"
       title: Global PSSA with Cisco
