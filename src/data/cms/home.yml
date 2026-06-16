@@ -312,14 +312,16 @@ journey:
         London to support telecom testing and network service programs.
       image: src/assets/our-journey-9.png
     - year: "2019"
-      title: UN Peace Keeping Project
-      description: Delivered a United Nations Peace Keeping Project in the Central
-        African Republic in partnership with Cisco.
+      title: United Nations Peacekeeping Project
+      description: Successfully delivered critical infrastructure solutions for a
+        United Nations Peacekeeping Mission in the Central African Republic in
+        collaboration with Cisco.
       image: src/assets/our-journey-1.png
     - year: "2020"
-      title: WFMS Foundation
-      description: Laid the foundation of wfms during the COVID lockdown, evolving
-        into a Line of Business for Software Development.
+      title: System Integration (SI) Business Launch
+      description: Recognizing the accelerating digital transformation landscape, HTIS
+        expanded into System Integration and IT Infrastructure solutions,
+        establishing dedicated sales and delivery teams across North India.
       image: src/assets/our-journey-2.png
     - year: "2020"
       title: System Integration
