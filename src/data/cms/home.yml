@@ -337,9 +337,10 @@ journey:
         critical public health services.
       image: src/assets/our-journey-4.png
     - year: "2021"
-      title: NHM Primary Health Centres
-      description: IT-fied 400 NHM Primary Health Centres in Himachal Pradesh during
-        the 2020 lockdown.
+      title: Employee Development Initiative (OBT)
+      description: Launched the annual Outbound Training (OBT) program to strengthen
+        leadership, collaboration, employee engagement, and organizational
+        culture.
       image: src/assets/our-journey-5.png
     - year: 2022-24
       title: 5G Swap for Jio
