@@ -65,3 +65,8 @@ items:
     organization: Egyptian Accreditation Council
     date: September 19, 2025
     image: src/assets/iso-20001.jpg
+  - type: certificate
+    title: Certificate of Incorporation
+    organization: Registrar of Companies
+    date: October 17, 2012
+    image: src/assets/incorporation-certificate-htis.jpg
