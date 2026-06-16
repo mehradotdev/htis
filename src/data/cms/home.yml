@@ -267,8 +267,10 @@ journey:
         initial telecom infrastructure projects with Vodafone and Bharti.
       image: src/assets/our-journey-1.png
     - year: "2010"
-      title: First Customer - Vodafone
-      description: Secured Vodafone as our very first customer.
+      title: Major Telecom Customer Expansion
+      description: >
+        Added major telecom customers including Idea Cellular and Ericsson,
+        strengthening HTIS's position as a trusted telecom deployment partner.
       image: src/assets/our-journey-2.png
     - year: "2008"
       title: Second Customer - Bharti
