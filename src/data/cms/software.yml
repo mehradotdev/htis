@@ -21,7 +21,7 @@ portfolio:
   saasImages:
     - src/assets/laptop-img-1.png
     - src/assets/kolkataerp2-3.jpg
-    - src/assets/lob-software-sw-port-saas-3.png
+    - src/assets/hrms-payroll.webp
   enterpriseImages:
     - src/assets/lob-software-sw-port-enterprise-1.png
     - src/assets/lob-software-sw-port-enterprise-2.png
