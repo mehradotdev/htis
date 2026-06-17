@@ -561,6 +561,12 @@ articles:
   ctaUrl: https://www.linkedin.com/company/htis-telecom/posts/
   posts:
     - embedCode: <iframe
+        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7472671513486184448?collapsed=1"
+        height="567" width="504" frameborder="0" allowfullscreen=""
+        title="Embedded post"></iframe>
+      fallbackTitle: 𝐖𝐨𝐮𝐥𝐝 𝐲𝐨𝐮𝐫 𝐨𝐫𝐠𝐚𝐧𝐢𝐬𝐚𝐭𝐢𝐨𝐧 𝐫𝐞𝐜𝐨𝐠𝐧𝐢𝐬𝐞
+        𝐚 𝐩𝐡𝐢𝐬𝐡𝐢𝐧𝐠 𝐞𝐦𝐚𝐢𝐥 𝐛𝐞𝐟𝐨𝐫𝐞 𝐢𝐭'𝐬 𝐭𝐨𝐨 𝐥𝐚𝐭𝐞?
+    - embedCode: <iframe
         src="https://www.linkedin.com/embed/feed/update/urn:li:share:7461429421330182144?collapsed=1"
         height="670" width="504" frameborder="0" allowfullscreen=""
         title="Embedded post"></iframe>
@@ -577,9 +583,3 @@ articles:
         title="Embedded post"></iframe>
       fallbackTitle: Is your telecom and IT infrastructure aligned where enterprises
         are heading in 2026?
-    - embedCode: <iframe
-        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7472671513486184448?collapsed=1"
-        height="567" width="504" frameborder="0" allowfullscreen=""
-        title="Embedded post"></iframe>
-      fallbackTitle: 𝐖𝐨𝐮𝐥𝐝 𝐲𝐨𝐮𝐫 𝐨𝐫𝐠𝐚𝐧𝐢𝐬𝐚𝐭𝐢𝐨𝐧 𝐫𝐞𝐜𝐨𝐠𝐧𝐢𝐬𝐞
-        𝐚 𝐩𝐡𝐢𝐬𝐡𝐢𝐧𝐠 𝐞𝐦𝐚𝐢𝐥 𝐛𝐞𝐟𝐨𝐫𝐞 𝐢𝐭'𝐬 𝐭𝐨𝐨 𝐥𝐚𝐭𝐞?
