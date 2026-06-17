@@ -8,17 +8,21 @@
     location: [number, number];
     size: number;
     name: string;
-    detail: string;
+    detail?: string;
   }
 
   let {
     className = '',
     config,
     expandable = true,
+    markers,
+    ariaLabel = 'Interactive globe showing HTIS office locations',
   }: {
     className?: string;
     config?: GlobeConfig;
     expandable?: boolean;
+    markers?: MarkerLabel[];
+    ariaLabel?: string;
   } = $props();
 
   let wrapperRef = $state<HTMLDivElement | undefined>(undefined);
@@ -31,7 +35,7 @@
   const INTERNAL_SCALE = 2;
 
   // Marker data with labels
-  const LABELED_MARKERS: MarkerLabel[] = [
+  const DEFAULT_MARKERS: MarkerLabel[] = [
     {
       location: [28.4595, 77.0266],
       size: 0.07,
@@ -69,6 +73,8 @@
       detail: 'Victoria Island, Lagos 101241',
     },
   ];
+
+  const labeledMarkers = $derived(markers?.length ? markers : DEFAULT_MARKERS);
 
   const GLOBE_CONFIG: COBEOptions = {
     width: 800,
@@ -271,11 +277,11 @@
       });
 
       // Update label positions via direct DOM manipulation (no $state per frame)
-      for (let i = 0; i < LABELED_MARKERS.length; i++) {
+      for (let i = 0; i < labeledMarkers.length; i++) {
         const el = labelEls[i];
         if (!el) continue;
 
-        const marker = LABELED_MARKERS[i];
+        const marker = labeledMarkers[i];
         const pos = projectMarkerCobe(
           marker.location[0],
           marker.location[1],
@@ -317,7 +323,7 @@
   class={`absolute inset-0 m-auto cursor-grab touch-none ${className}`}
   style={`width: ${size}px; height: ${size}px;`}
   role="img"
-  aria-label="Interactive globe showing HTIS office locations"
+  aria-label={ariaLabel}
   onpointerdown={(e) => {
     pointerInteracting = e.clientX;
     updatePointerInteraction(e.clientX);
@@ -334,7 +340,7 @@
   ></canvas>
 
   <!-- Interactive marker labels -->
-  {#each LABELED_MARKERS as marker, i}
+  {#each labeledMarkers as marker, i}
     {@const isExpanded = expandedIndex === i}
     <button
       bind:this={labelEls[i]}
@@ -342,7 +348,7 @@
       class:expanded={isExpanded}
       style="display: none;"
       onclick={() => toggleLabel(i)}
-      aria-label={`${marker.name}: ${marker.detail}`}
+      aria-label={marker.detail ? `${marker.name}: ${marker.detail}` : marker.name}
       aria-expanded={isExpanded}
     >
       <!-- Small connecting dot -->
@@ -354,7 +360,7 @@
       </span>
 
       <!-- Expanded detail panel -->
-      {#if isExpanded}
+      {#if isExpanded && marker.detail}
         <span class="marker-detail">
           {marker.detail}
         </span>

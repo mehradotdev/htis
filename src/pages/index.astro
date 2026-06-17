@@ -38,12 +38,12 @@ import { home } from '~/data/cms';
         ctaUrl={home.team.ctaUrl}
         client:visible
       />
-      <Footprint />
-      <Clients />
-      <Testimonials />
+      <Footprint {...home.footprint} />
+      <Clients {...home.clients} />
+      <Testimonials {...home.testimonials} />
     </div>
     <div class="bg-base-200/50">
-      <Articles />
+      <Articles {...home.articles} />
       <div class="pt-16 md:pt-24">
         <Contact />
         <Footer overlap={true} />

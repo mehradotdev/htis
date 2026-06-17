@@ -1,5 +1,6 @@
 import aboutYaml from './about.yml';
 import awardsYaml from './awards.yml';
+import contactFormYaml from './contact-form.yml';
 import footerYaml from './footer.yml';
 import homeYaml from './home.yml';
 import navigationYaml from './navigation.yml';
@@ -128,6 +129,41 @@ export interface TeamMember {
   desc: string;
 }
 
+export interface FootprintMetric {
+  value: string;
+  suffix?: string;
+  label: string;
+}
+
+export interface GlobeMarker {
+  name: string;
+  detail?: string;
+  latitude: number;
+  longitude: number;
+  size: number;
+}
+
+export interface ClientLogo {
+  image: ImageMetadata;
+  alt: string;
+}
+
+export interface TestimonialItem {
+  quote: string;
+  name: string;
+  title: string;
+}
+
+export interface ArticlePost {
+  embedCode: string;
+  src: string;
+  url: string;
+  height: number;
+  width: number;
+  title: string;
+  fallbackTitle: string;
+}
+
 export interface AwardGalleryItem {
   id: number;
   type: 'award' | 'certificate';
@@ -212,6 +248,39 @@ interface HomeYaml {
     ctaLabel: string;
     ctaUrl: string;
     members: Array<{ name: string; role: string; desc: string; image: string }>;
+  };
+  footprint: {
+    heading: string;
+    metrics: FootprintMetric[];
+    globe: {
+      ariaLabel: string;
+      markers: GlobeMarker[];
+    };
+  };
+  clients: {
+    heading: string;
+    ctaUrl: string;
+    ctaLabel: string;
+    logos: Array<{ image: string; alt: string }>;
+  };
+  testimonials: {
+    headingPrefix: string;
+    clientsHighlight: string;
+    headingMiddle: string;
+    awardsHighlight: string;
+    headingSuffix: string;
+    ctaUrl: string;
+    ctaLabel: string;
+    awardsImage: string;
+    awardsImageAlt: string;
+    items: TestimonialItem[];
+  };
+  articles: {
+    eyebrow: string;
+    heading: string;
+    ctaLabel: string;
+    ctaUrl: string;
+    posts: Array<{ embedCode: string; fallbackTitle?: string }>;
   };
 }
 
@@ -495,6 +564,11 @@ export const footer = footerYaml as {
   legalLinks: CmsLink[];
 };
 
+export const contactForm = contactFormYaml as {
+  postUrl: string;
+  categories: string[];
+};
+
 export const home = (() => {
   const data = homeYaml as HomeYaml;
 
@@ -526,8 +600,68 @@ export const home = (() => {
         desc: member.desc,
       })),
     },
+    footprint: data.footprint,
+    clients: {
+      ...data.clients,
+      logos: data.clients.logos.map((logo) => ({
+        ...logo,
+        image: getCmsAsset(logo.image),
+      })),
+    },
+    testimonials: {
+      ...data.testimonials,
+      awardsImage: getCmsAsset(data.testimonials.awardsImage),
+    },
+    articles: {
+      ...data.articles,
+      posts: data.articles.posts.map(resolveLinkedInEmbed),
+    },
   };
 })();
+
+function getIframeAttribute(embedCode: string, attributeName: string) {
+  const pattern = new RegExp(`${attributeName}\\s*=\\s*["']([^"']+)["']`, 'i');
+  return embedCode.match(pattern)?.[1];
+}
+
+function resolveLinkedInEmbed(post: {
+  embedCode: string;
+  fallbackTitle?: string;
+}): ArticlePost {
+  const src = getIframeAttribute(post.embedCode, 'src');
+  if (!src) {
+    throw new Error('Home articles: LinkedIn iframe embed is missing a src attribute.');
+  }
+
+  const embedUrl = new URL(src);
+  if (
+    embedUrl.hostname !== 'www.linkedin.com' ||
+    !embedUrl.pathname.startsWith('/embed/feed/update/')
+  ) {
+    throw new Error(`Home articles: unsupported LinkedIn embed URL "${src}"`);
+  }
+
+  const heightValue = Number(getIframeAttribute(post.embedCode, 'height'));
+  const widthValue = Number(getIframeAttribute(post.embedCode, 'width'));
+  const title = getIframeAttribute(post.embedCode, 'title') || 'Embedded LinkedIn post';
+  const fallbackTitle =
+    post.fallbackTitle?.trim() && post.fallbackTitle.trim() !== 'Embedded post'
+      ? post.fallbackTitle.trim()
+      : 'View this update from HTIS Telecom on LinkedIn.';
+
+  return {
+    embedCode: post.embedCode,
+    src: embedUrl.toString(),
+    url: `https://www.linkedin.com${embedUrl.pathname.replace(
+      '/embed/feed/update/',
+      '/feed/update/',
+    )}`,
+    height: Number.isFinite(heightValue) && heightValue > 0 ? heightValue : 670,
+    width: Number.isFinite(widthValue) && widthValue > 0 ? widthValue : 504,
+    title,
+    fallbackTitle,
+  };
+}
 
 export const about = (() => {
   const data = aboutYaml as AboutYaml;

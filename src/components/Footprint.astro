@@ -1,6 +1,23 @@
 ---
 import CurvedLineIcon from './icons/CurvedLineIcon.astro';
 import Globe from './Globe.svelte';
+import type { FootprintMetric, GlobeMarker } from '~/data/cms';
+
+interface Props {
+  heading: string;
+  metrics: FootprintMetric[];
+  globe: {
+    ariaLabel: string;
+    markers: GlobeMarker[];
+  };
+}
+
+const { heading, metrics, globe } = Astro.props;
+const globeMarkers = globe.markers.map((marker) => ({
+  name: marker.name,
+  size: marker.size,
+  location: [marker.latitude, marker.longitude] as [number, number],
+}));
 ---
 
 <section class="relative mx-auto max-w-6xl overflow-hidden px-4 py-24">
@@ -20,40 +37,36 @@ import Globe from './Globe.svelte';
       <div class="w-full space-y-12 md:w-1/2">
         <div>
           <h2 class="mb-10 text-4xl font-bold text-base-content md:text-5xl">
-            Global Footprint
+            {heading}
           </h2>
         </div>
 
         <div class="grid gap-10">
-          <div>
-            <div class="flex items-baseline text-5xl font-light text-primary">
-              40 <span class="ml-1 text-4xl">+</span>
-            </div>
-            <p class="mt-1 text-lg text-base-content/70">Global Markets Served</p>
-          </div>
-
-          <div>
-            <div class="flex items-baseline text-5xl font-light text-primary">
-              310 <span class="ml-1 text-4xl">+</span>
-            </div>
-            <p class="mt-1 text-lg text-base-content/70">
-              Operational Cities Across India
-            </p>
-          </div>
-
-          <div>
-            <div class="flex items-baseline text-5xl font-light text-primary">
-              25 <span class="ml-1 text-4xl">+</span>
-            </div>
-            <p class="mt-1 text-lg text-base-content/70">Regional Offices</p>
-          </div>
+          {
+            metrics.map((metric) => (
+              <div>
+                <div class="flex items-baseline text-5xl font-light text-primary">
+                  {metric.value}
+                  {metric.suffix && <span class="ml-1 text-4xl">{metric.suffix}</span>}
+                </div>
+                <p class="mt-1 text-lg text-base-content/70">{metric.label}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
 
       <!-- Globe Column (Right Side) -->
       <div class="flex w-full items-center justify-center md:w-1/2">
         <div class="relative aspect-square w-full max-w-[500px] overflow-visible">
-          <Globe client:visible config={{ width: 500 }} expandable={false} className="" />
+          <Globe
+            client:visible
+            config={{ width: 500 }}
+            expandable={false}
+            className=""
+            markers={globeMarkers}
+            ariaLabel={globe.ariaLabel}
+          />
         </div>
       </div>
     </div>

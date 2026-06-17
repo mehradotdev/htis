@@ -160,6 +160,24 @@ content:
             type: object
             fields: *nav_group_fields
 
+      - name: contactForm
+        label: Contact form
+        type: file
+        path: src/data/cms/contact-form.yml
+        format: yaml
+        operations:
+          delete: false
+        fields:
+          - name: postUrl
+            label: POST API call URL
+            type: string
+            required: true
+          - name: categories
+            label: Dropdown menu options
+            type: string
+            list: true
+            required: true
+
       - name: footer
         label: Footer
         type: file
@@ -468,6 +486,173 @@ content:
                   - name: image
                     type: image
                     required: true
+          - name: footprint
+            type: object
+            fields:
+              - name: heading
+                type: string
+                required: true
+              - name: metrics
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{value}{suffix} - {label}'
+                fields:
+                  - name: value
+                    type: string
+                    required: true
+                  - name: suffix
+                    type: string
+                    required: false
+                  - name: label
+                    type: string
+                    required: true
+              - name: globe
+                type: object
+                fields:
+                  - name: ariaLabel
+                    label: ARIA label
+                    type: string
+                    required: true
+                  - name: markers
+                    label: Globe markers
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{name}'
+                    fields:
+                      - name: name
+                        type: string
+                        required: true
+                      - name: latitude
+                        type: number
+                        required: true
+                      - name: longitude
+                        type: number
+                        required: true
+                      - name: size
+                        label: Marker size
+                        type: number
+                        required: true
+          - name: clients
+            type: object
+            fields:
+              - name: heading
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: logos
+                label: Client logos
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{alt}'
+                fields:
+                  - name: image
+                    type: image
+                    required: true
+                  - name: alt
+                    type: string
+                    required: true
+          - name: testimonials
+            type: object
+            fields:
+              - name: headingPrefix
+                label: Heading prefix
+                type: string
+                required: true
+              - name: clientsHighlight
+                label: Clients highlight
+                type: string
+                required: true
+              - name: headingMiddle
+                label: Heading middle
+                type: string
+                required: true
+              - name: awardsHighlight
+                label: Awards highlight
+                type: string
+                required: true
+              - name: headingSuffix
+                label: Heading suffix
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: awardsImage
+                label: Awards image
+                type: image
+                required: true
+              - name: awardsImageAlt
+                label: Awards image alt
+                type: string
+                required: true
+              - name: items
+                label: Testimonials
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{name} - {title}'
+                fields:
+                  - name: quote
+                    type: text
+                    required: true
+                  - name: name
+                    type: string
+                    required: true
+                  - name: title
+                    type: string
+                    required: true
+          - name: articles
+            type: object
+            fields:
+              - name: eyebrow
+                type: string
+                required: true
+              - name: heading
+                type: string
+                required: true
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
+              - name: posts
+                label: LinkedIn posts
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{fallbackTitle}'
+                fields:
+                  - name: embedCode
+                    label: LinkedIn iframe embed code
+                    type: text
+                    required: true
+                  - name: fallbackTitle
+                    label: Fallback title
+                    type: text
+                    required: false
 
       - name: about
         label: About

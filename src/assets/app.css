@@ -239,6 +239,24 @@ body {
   animation: whatsappPulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+@keyframes marqueeVertical {
+  0% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@utility animate-marquee-vertical-slow {
+  animation: marqueeVertical 40s linear infinite;
+}
+
+@utility animate-marquee-vertical-fast {
+  animation: marqueeVertical 25s linear infinite;
+}
+
 
 /* ──────────────────────────────────────
  * GLOBAL FIXES & PSEUDO-ELEMENT STYLES

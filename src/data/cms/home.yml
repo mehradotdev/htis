@@ -406,3 +406,172 @@ team:
       desc: Sets the high technical standards for our services and finds new ways to
         solve technology problems.
       image: src/assets/arvind-sharma-1.png
+footprint:
+  heading: Global Footprint
+  metrics:
+    - value: "40"
+      suffix: +
+      label: Global Markets Served
+    - value: "310"
+      suffix: +
+      label: Operational Cities Across India
+    - value: "25"
+      suffix: +
+      label: Regional Offices
+  globe:
+    ariaLabel: Interactive globe showing HTIS office locations
+    markers:
+      - name: India
+        latitude: 28.4595
+        longitude: 77.0266
+        size: 0.07
+      - name: Bangladesh
+        latitude: 23.8103
+        longitude: 90.4125
+        size: 0.04
+      - name: Sri Lanka
+        latitude: 6.9271
+        longitude: 79.8612
+        size: 0.04
+      - name: South Africa
+        latitude: -26.2041
+        longitude: 28.0473
+        size: 0.05
+      - name: United Kingdom
+        latitude: 51.5074
+        longitude: -0.1278
+        size: 0.05
+      - name: Nigeria
+        latitude: 6.5244
+        longitude: 3.3792
+        size: 0.04
+clients:
+  heading: Some of our valuable Clients
+  ctaUrl: "#contact"
+  ctaLabel: Contact Us
+  logos:
+    - image: src/assets/logo-hartron.png
+      alt: Hartron
+    - image: src/assets/logo-aiims.png
+      alt: AIIMS
+    - image: src/assets/logo-airtel.png
+      alt: Airtel
+    - image: src/assets/logo-ceasefire-industries.jpeg
+      alt: Ceasefire Industries
+    - image: src/assets/logo-cisco.png
+      alt: Cisco
+    - image: src/assets/logo-dda.png
+      alt: DDA
+    - image: src/assets/logo-dgtahc.jpg
+      alt: Directorate General of Training
+    - image: src/assets/logo-dite.jpeg
+      alt: DITE
+    - image: src/assets/logo-fccb.png
+      alt: FCCB
+    - image: src/assets/logo-gmrl.png
+      alt: GMRL
+    - image: src/assets/logo-hpgic.jpg
+      alt: HPGIC
+    - image: src/assets/logo-hpsedc.png
+      alt: HPSEDC
+    - image: src/assets/logo-hpsldc.jpg
+      alt: HPSLDC
+    - image: src/assets/logo-hvpn.jpeg
+      alt: HVPN
+    - image: src/assets/logo-immacule-lifesciences.png
+      alt: Immacule Lifesciences
+    - image: src/assets/logo-indus-towers.jpeg
+      alt: Indus Towers
+    - image: src/assets/logo-kuantum_papers.jpeg
+      alt: Kuantum Papers
+    - image: src/assets/logo-lovely-international-trust.jpeg
+      alt: Lovely International Trust
+    - image: src/assets/logo-new-India-assurance.png
+      alt: New India Assurance
+    - image: src/assets/logo-punjab_and_haryana_high_court_logo.png
+      alt: Punjab & Haryana High Court
+    - image: src/assets/logo-radisys-india.jpeg
+      alt: Radisys India
+    - image: src/assets/logo-reliance-industries-limited.png
+      alt: Reliance Industries Limited
+    - image: src/assets/logo-rhef.png
+      alt: RHEF
+    - image: src/assets/logo-ropar-central-cooperative-bank.png
+      alt: Ropar Central Cooperative Bank
+    - image: src/assets/logo-SANGRUR-CENTRAL-COOPERATIVE-BANK.jpeg
+      alt: Sangrur Central Cooperative Bank
+    - image: src/assets/logo-supreme-industries.jpeg
+      alt: Supreme Industries
+    - image: src/assets/logo-tech-mahindra.jpg
+      alt: Tech Mahindra
+    - image: src/assets/logo-thapar-institute-of-engineering-&-technology.png
+      alt: Thapar Institute
+    - image: src/assets/logo-UJVN.png
+      alt: UJVN
+    - image: src/assets/logo-vodafone-Idea.png
+      alt: Vodafone Idea
+testimonials:
+  headingPrefix: "Loved by "
+  clientsHighlight: 100+
+  headingMiddle: " Clients,"
+  awardsHighlight: 100+
+  headingSuffix: " awards and certificates"
+  ctaUrl: /awards
+  ctaLabel: View awards
+  awardsImage: src/assets/lob-telecom-awards.png
+  awardsImageAlt: Awards and Certificates
+  items:
+    - quote: HTIS handled our telecom hardware deployment across multiple sites
+        with precision. Everything was delivered on time without disrupting live
+        operations.
+      name: Jhon Doe
+      title: Cisco | HOD
+    - quote: Coordinating multi-location deployments was effortless with HTIS.
+        Their execution was consistent and met all our technical standards.
+      name: Jhon Doe
+      title: Cisco | HOD
+    - quote: We deploy trained field engineers and technical teams tailored to
+        project requirements. Our manpower model is built for flexibility.
+      name: Sarah Jenkins
+      title: TechCorp | VP Engineering
+    - quote: The system architecture provided by HTIS gave us the edge we needed.
+        Exceptional performance and zero downtime during the switch.
+      name: David Kim
+      title: Streamline IT | Lead Architect
+    - quote: Their network solutions transformed our infrastructure. Highly
+        reliable and scalable systems that grew with our business needs.
+      name: Michael Chen
+      title: GlobalNet | CTO
+    - quote: A true partner in digital transformation. They understood our complex
+        requirements and delivered a custom solution perfectly.
+      name: Amanda Foster
+      title: DataFlow | Operations
+    - quote: Outstanding support and seamless integration. The team demonstrated
+        deep technical expertise throughout the entire project lifecycle.
+      name: Emily Rodriguez
+      title: Nexus Systems | Director
+    - quote: From planning to execution, their professionalism is unmatched. The
+        customized network deployment exceeded all our expectations.
+      name: Robert Taylor
+      title: InnovaTech | CEO
+articles:
+  eyebrow: Insights
+  heading: Latest from our LinkedIn
+  ctaLabel: View all posts
+  ctaUrl: https://www.linkedin.com/company/htis-telecom/posts/
+  posts:
+    - embedCode: <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7461429421330182144?collapsed=1"
+        height="670" width="504" frameborder="0" allowfullscreen="" title="Embedded
+        post"></iframe>
+      fallbackTitle: Why does your network work perfectly at 11 AM... and
+        struggle by 3 PM?
+    - embedCode: <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7458505761942319104?collapsed=1"
+        height="670" width="504" frameborder="0" allowfullscreen="" title="Embedded
+        post"></iframe>
+      fallbackTitle: How often do your teams struggle with slow systems or
+        inconsistent performance?
+    - embedCode: <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7454530227554361344?collapsed=1"
+        height="567" width="504" frameborder="0" allowfullscreen="" title="Embedded
+        post"></iframe>
+      fallbackTitle: Is your telecom and IT infrastructure aligned where
+        enterprises are heading in 2026?
