@@ -77,33 +77,6 @@ function getCardWidth(img: any) {
 }
 ---
 
-<style>
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  @keyframes marquee-reverse {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0%);
-    }
-  }
-  .animate-marquee {
-    animation: marquee 60s linear infinite;
-  }
-  .animate-marquee-reverse {
-    animation: marquee-reverse 60s linear infinite;
-  }
-
-
-</style>
-
 <section class="relative mx-auto max-w-6xl overflow-hidden px-4 pb-24">
   <div class="mb-10 flex items-center justify-between">
     <h2 class="text-3xl font-bold text-base-content md:text-5xl">
@@ -123,9 +96,10 @@ function getCardWidth(img: any) {
     class="flex w-full flex-col gap-4 mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
   >
     <!-- Row 1: Right to Left (order 1...30) -->
-    <div class="group flex w-max transition-opacity duration-500 hover:opacity-100">
+    <div class="marquee-group group flex w-max transition-opacity duration-500 hover:opacity-100">
       <div
-        class="animate-marquee flex shrink-0 items-center gap-4 pr-4 group-hover:[animation-play-state:paused]"
+        class="marquee-track flex shrink-0 items-center gap-4 pr-4"
+        data-direction="left"
       >
         {
           clients.map((logo) => (
@@ -144,7 +118,8 @@ function getCardWidth(img: any) {
       </div>
       <!-- Duplicate list for seamless infinite scroll -->
       <div
-        class="animate-marquee flex shrink-0 items-center gap-4 pr-4 group-hover:[animation-play-state:paused]"
+        class="marquee-track flex shrink-0 items-center gap-4 pr-4"
+        data-direction="left"
         aria-hidden="true"
       >
         {
@@ -165,9 +140,10 @@ function getCardWidth(img: any) {
     </div>
 
     <!-- Row 2: Left to Right (order 30...1) -->
-    <div class="group flex w-max transition-opacity duration-500 hover:opacity-100">
+    <div class="marquee-group group flex w-max transition-opacity duration-500 hover:opacity-100">
       <div
-        class="animate-marquee-reverse flex shrink-0 items-center gap-4 pr-4 group-hover:[animation-play-state:paused]"
+        class="marquee-track flex shrink-0 items-center gap-4 pr-4"
+        data-direction="right"
       >
         {
           reversedClients.map((logo) => (
@@ -186,7 +162,8 @@ function getCardWidth(img: any) {
       </div>
       <!-- Duplicate list for seamless infinite scroll -->
       <div
-        class="animate-marquee-reverse flex shrink-0 items-center gap-4 pr-4 group-hover:[animation-play-state:paused]"
+        class="marquee-track flex shrink-0 items-center gap-4 pr-4"
+        data-direction="right"
         aria-hidden="true"
       >
         {
@@ -207,3 +184,76 @@ function getCardWidth(img: any) {
     </div>
   </div>
 </section>
+
+<script>
+  function setupClientsMarquees() {
+    const groups = document.querySelectorAll('.marquee-group');
+
+    groups.forEach((group) => {
+      const tracks = group.querySelectorAll('.marquee-track');
+      if (!tracks.length) return;
+
+      const firstTrack = tracks[0] as HTMLElement;
+      // Get the width of one single track copy
+      const trackWidth = firstTrack.offsetWidth;
+      if (!trackWidth) return;
+
+      // Target constant speed: 80 pixels per second
+      const speed = 80;
+      const duration = (trackWidth / speed) * 1000; // in milliseconds
+
+      const animations: Animation[] = [];
+
+      tracks.forEach((track) => {
+        const direction = track.getAttribute('data-direction');
+        const keyframes = direction === 'right'
+          ? [{ transform: 'translateX(-100%)' }, { transform: 'translateX(0)' }]
+          : [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }];
+
+        const animation = track.animate(keyframes, {
+          duration: duration,
+          iterations: Infinity,
+          easing: 'linear'
+        });
+
+        animations.push(animation);
+      });
+
+      // Mouse events on the parent group container for slowing down
+      const onMouseEnter = () => {
+        animations.forEach((anim) => {
+          anim.playbackRate = 0.35; // Slow down to 35% speed
+        });
+      };
+
+      const onMouseLeave = () => {
+        animations.forEach((anim) => {
+          anim.playbackRate = 1.0; // Return to full speed
+        });
+      };
+
+      group.addEventListener('mouseenter', onMouseEnter);
+      group.addEventListener('mouseleave', onMouseLeave);
+
+      // Store cleanup function on the element for View Transitions
+      (group as any)._marqueeCleanup = () => {
+        group.removeEventListener('mouseenter', onMouseEnter);
+        group.removeEventListener('mouseleave', onMouseLeave);
+        animations.forEach((anim) => anim.cancel());
+      };
+    });
+  }
+
+  // Set up on page load (handles initial render and View Transitions)
+  document.addEventListener('astro:page-load', setupClientsMarquees);
+
+  // Clean up before swap to prevent memory leaks
+  document.addEventListener('astro:before-swap', () => {
+    const groups = document.querySelectorAll('.marquee-group');
+    groups.forEach((group) => {
+      if ((group as any)._marqueeCleanup) {
+        (group as any)._marqueeCleanup();
+      }
+    });
+  }, { once: true });
+</script>

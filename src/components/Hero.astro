@@ -6,20 +6,6 @@ import { home } from '~/data/cms';
 const { hero } = home;
 ---
 
-<style>
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  .animate-marquee {
-    animation: marquee 30s linear infinite;
-  }
-</style>
-
 <section
   class="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden pt-28 pb-10"
 >
@@ -35,7 +21,7 @@ const { hero } = home;
     />
 
     <LightRays
-      className="z-[1] opacity-100"
+      className="z-1 opacity-100"
       color="rgba(138, 255, 199, 0.52)"
       blur={54}
       count={13}
@@ -70,7 +56,8 @@ const { hero } = home;
     <h1
       class="mb-6 text-4xl leading-[1.1] font-bold tracking-tight text-base-content sm:text-5xl md:text-6xl lg:text-[4.5rem]"
     >
-      {hero.titlePrefix} <br />
+      {hero.titlePrefix}
+      <br />
       <span
         id="word-carousel"
         class="-mt-2 -mb-4 inline-grid overflow-hidden pt-2 pb-4 align-bottom text-primary"
@@ -102,42 +89,64 @@ const { hero } = home;
     </a>
   </div>
 
-  <div
-    class="relative z-10 mt-auto hidden w-full max-w-full overflow-hidden pt-24 pb-8 md:block"
-  >
-    <p class="mb-6 text-center text-base font-semibold text-base-content/60 md:text-lg">
+  <div class="relative z-10 mt-auto hidden w-full max-w-full md:block">
+    <p
+      class="relative mb-6 text-center text-base font-semibold text-base-content/60 md:text-lg"
+    >
       {hero.trustedByLabel}
     </p>
 
-    <!-- Marquee Wrapper with Fade -->
+    <!-- Rectangular strip for logos: distinct background in dark mode to ensure all logos are visible -->
     <div
-      class="flex w-full mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
+      class="relative w-full overflow-hidden py-20 dark:bg-linear-to-b dark:from-transparent dark:via-secondary/50 dark:to-transparent"
     >
-      <!-- Marquee Container -->
+      <!-- Marquee Wrapper with Fade -->
       <div
-        class="group flex w-max opacity-70 transition-opacity duration-500 hover:opacity-100"
+        class="relative flex w-full mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
       >
-        {
-          Array.from({ length: 8 }).map((_, i) => (
-            <div
-              class="animate-marquee flex shrink-0 items-center gap-16 pr-16 group-hover:[animation-play-state:paused]"
-              aria-hidden={i > 0 ? 'true' : undefined}
-            >
-              {hero.partnerLogos.map((logo) => (
-                <Image src={logo.image} alt={logo.alt} width={110} class="object-contain" />
-              ))}
-            </div>
-          ))
-        }
+        <!--
+        Marquee Container — only 2 track copies needed.
+        The wrapper scrolls by exactly 50% (= one track width) then loops,
+        creating a seamless infinite scroll with a single animation.
+      -->
+        <div
+          id="partner-marquee"
+          class="group flex w-max opacity-70 transition-opacity duration-500 hover:opacity-100"
+        >
+          {
+            [0, 1].map((i) => (
+              <div
+                class="flex shrink-0 items-center gap-16 pr-16"
+                aria-hidden={i > 0 ? 'true' : undefined}
+              >
+                {hero.partnerLogos.map((logo) => (
+                  <Image
+                    src={logo.image}
+                    alt={logo.alt}
+                    width={110}
+                    class="max-h-16 w-auto object-contain"
+                  />
+                ))}
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <script>
+  // ── Shared cleanup controller ────────────────────────────────────────
+  // AbortController centralises all event-listener and animation cleanup
+  // for View Transitions. Calling `ac.abort()` removes every listener
+  // registered with `{ signal: ac.signal }` in one shot.
+  let ac: AbortController;
   let carouselInterval: ReturnType<typeof setInterval> | undefined;
+  let marqueeAnimation: Animation | undefined;
 
-  const setupWordCarousel = () => {
+  // ── Word Carousel ────────────────────────────────────────────────────
+  function setupWordCarousel() {
     const parent = document.getElementById('word-carousel');
     if (!parent) return;
 
@@ -145,8 +154,6 @@ const { hero } = home;
     if (!items.length) return;
 
     let currentIndex = 0;
-
-    if (carouselInterval) clearInterval(carouselInterval);
 
     carouselInterval = setInterval(() => {
       const currentItem = items[currentIndex];
@@ -161,24 +168,76 @@ const { hero } = home;
       nextItem.classList.remove('-translate-y-full');
       nextItem.classList.add('translate-y-full');
 
-      void nextItem.offsetWidth;
+      void nextItem.offsetWidth; // force reflow
 
       nextItem.style.transition = '';
       nextItem.classList.remove('translate-y-full', 'opacity-0');
       nextItem.classList.add('translate-y-0', 'opacity-100');
       nextItem.removeAttribute('aria-hidden');
     }, 3000);
-  };
+  }
 
-  document.addEventListener('astro:page-load', setupWordCarousel);
+  // ── Partner Marquee ──────────────────────────────────────────────────
+  // Single animation on the wrapper element (not per-track) eliminates
+  // sync drift that caused abrupt jumps with the old 8-track approach.
+  function setupPartnerMarquee() {
+    const wrapper = document.getElementById('partner-marquee');
+    if (!wrapper) return;
 
-  // Cleanup on page leave (for view transitions)
-  document.addEventListener(
-    'astro:before-swap', // or before-preparation, both work, but before-swap is when DOM is about to change
-    () => {
-      if (carouselInterval) clearInterval(carouselInterval);
-      document.removeEventListener('astro:page-load', setupWordCarousel);
-    },
-    { once: true },
-  );
+    // The wrapper contains exactly 2 identical track copies.
+    // scrollWidth / 2 = one track's pixel width.
+    const halfWidth = wrapper.scrollWidth / 2;
+    if (!halfWidth) return;
+
+    // Constant speed: 80 px/s → duration scales with content width
+    const speed = 80;
+    const duration = (halfWidth / speed) * 1000;
+
+    marqueeAnimation = wrapper.animate(
+      [{ transform: 'translateX(0)' }, { transform: `translateX(-${halfWidth}px)` }],
+      { duration, iterations: Infinity, easing: 'linear' },
+    );
+
+    // Smooth hover slow-down on the single animation
+    wrapper.addEventListener(
+      'mouseenter',
+      () => {
+        if (marqueeAnimation) marqueeAnimation.playbackRate = 0.35;
+      },
+      { signal: ac.signal },
+    );
+
+    wrapper.addEventListener(
+      'mouseleave',
+      () => {
+        if (marqueeAnimation) marqueeAnimation.playbackRate = 1.0;
+      },
+      { signal: ac.signal },
+    );
+  }
+
+  // ── Lifecycle ────────────────────────────────────────────────────────
+  function cleanup() {
+    if (carouselInterval) {
+      clearInterval(carouselInterval);
+      carouselInterval = undefined;
+    }
+    if (marqueeAnimation) {
+      marqueeAnimation.cancel();
+      marqueeAnimation = undefined;
+    }
+    ac?.abort(); // removes all listeners registered with ac.signal
+  }
+
+  function init() {
+    // Tear down any previous instance (idempotent re-init)
+    cleanup();
+    ac = new AbortController();
+
+    setupWordCarousel();
+    setupPartnerMarquee();
+  }
+
+  document.addEventListener('astro:page-load', init);
+  document.addEventListener('astro:before-swap', cleanup, { once: true });
 </script>

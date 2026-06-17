@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @plugin 'daisyui';
+
 @plugin 'daisyui/theme' {
   name: 'htis-theme';
   default: true;
@@ -11,7 +12,8 @@
   --logo-filter: grayscale(100%);
   --filter-invert-dark: none;
   --bg-blend: multiply;
-  --color-base-content: oklch(0.4315 0.0489 167.98); /* ##77988B  ##34594B */
+  --color-base-content: oklch(0.4315 0.0489 167.98);
+  /* ##77988B  ##34594B */
   --color-primary: oklch(0.5988 0.1585 150.66);
   --color-primary-content: oklch(98% 0.01 160);
   --color-secondary: oklch(47% 0.11 160);
@@ -42,6 +44,7 @@
   --challenge-bg: oklch(98% 0.015 60);
   --challenge-border: oklch(93% 0.03 60);
 }
+
 @plugin 'daisyui/theme' {
   name: 'htis-theme-dark';
   default: false;
@@ -114,6 +117,7 @@ body {
 [data-magicui-theme-vt='active']::view-transition-old(root) {
   z-index: 1;
 }
+
 [data-magicui-theme-vt='active']::view-transition-new(root) {
   z-index: 9999;
 }
@@ -146,6 +150,7 @@ body {
 @utility no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -157,10 +162,12 @@ body {
   from {
     width: 0%;
   }
+
   to {
     width: 100%;
   }
 }
+
 @utility animate-progress {
   animation: htis-progress var(--duration, 6s) linear forwards;
 }
@@ -170,14 +177,17 @@ body {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 @utility animate-fade-in-up {
   opacity: 0;
   animation: fadeInUp 0.5s ease-out forwards;
+
   @media (prefers-reduced-motion: reduce) {
     opacity: 1;
     animation: none;
@@ -188,10 +198,12 @@ body {
   from {
     width: 0%;
   }
+
   to {
     width: 100%;
   }
 }
+
 @utility animate-fill-bg {
   animation: fillBg 5s linear forwards;
 }
@@ -216,14 +228,17 @@ body {
     transform: scale(1);
     opacity: 0.5;
   }
+
   100% {
     transform: scale(1.4);
     opacity: 0;
   }
 }
+
 @utility animate-whatsapp-pulse {
   animation: whatsappPulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
 
 /* ──────────────────────────────────────
  * GLOBAL FIXES & PSEUDO-ELEMENT STYLES
@@ -233,10 +248,11 @@ body {
  * ────────────────────────────────────── */
 
 /* Fix daisyUI details dropdown marker on Safari/Chrome */
-details > summary {
+details>summary {
   list-style: none;
 }
-details > summary::-webkit-details-marker {
+
+details>summary::-webkit-details-marker {
   display: none;
 }
 
@@ -266,16 +282,19 @@ details > summary::-webkit-details-marker {
     opacity: 0;
     transform: translateY(-40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 @keyframes slideUp {
   from {
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -295,6 +314,7 @@ details > summary::-webkit-details-marker {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-top: none;
 }
+
 .team-member-card.active {
   flex: 6 1 0;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -303,31 +323,38 @@ details > summary::-webkit-details-marker {
     0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+
 .team-member-card:not(.active) .card-content {
   opacity: 0;
   pointer-events: none;
 }
+
 .team-member-card:not(.active) .team-img {
   filter: grayscale(100%) contrast(1.1) brightness(0.9);
   transform: scale(1.1) translateY(2%);
   opacity: 0.8;
 }
+
 .team-member-card.active .card-content {
   opacity: 1;
   pointer-events: auto;
 }
+
 .team-member-card.active .team-img {
   filter: grayscale(0%) contrast(1) brightness(1);
   transform: scale(1) translateY(0);
   opacity: 1;
 }
+
 .team-member-card:focus-visible {
   outline: 2px solid var(--color-primary, #2a6b56);
   outline-offset: 2px;
 }
+
 .team-member-card:not(.active):hover .inactive-icon {
   transform: scale(1.1);
 }
+
 .team-member-card:not(.active) .inactive-icon {
   transition: transform 0.4s ease;
 }
@@ -339,6 +366,7 @@ details > summary::-webkit-details-marker {
     bottom: 4.5rem;
     height: 58%;
   }
+
   .team-member-card.active .team-desc {
     border-top: 1px solid oklch(0.6 0.16 150 / 0.15);
   }
@@ -359,6 +387,7 @@ details > summary::-webkit-details-marker {
   perspective: 800px;
   perspective-origin: 50% -15%;
 }
+
 @media (min-width: 768px) {
   .carousel-container {
     --w: 320px;
@@ -367,6 +396,7 @@ details > summary::-webkit-details-marker {
     perspective-origin: 50% -35%;
   }
 }
+
 .carousel-scene {
   width: 100%;
   height: 100%;
@@ -374,6 +404,7 @@ details > summary::-webkit-details-marker {
   transform-style: preserve-3d;
   transition: transform 1s cubic-bezier(0.25, 1, 0.4, 1);
 }
+
 .glow-effect {
   position: absolute;
   bottom: 0;
@@ -382,16 +413,15 @@ details > summary::-webkit-details-marker {
   max-width: 800px;
   height: 100px;
   transform: translateX(-50%);
-  background: radial-gradient(
-    ellipse at center,
-    rgba(32, 178, 112, 0.35) 0%,
-    rgba(32, 178, 112, 0.1) 40%,
-    transparent 70%
-  );
+  background: radial-gradient(ellipse at center,
+      rgba(32, 178, 112, 0.35) 0%,
+      rgba(32, 178, 112, 0.1) 40%,
+      transparent 70%);
   filter: blur(20px);
   pointer-events: none;
   z-index: 0;
 }
+
 .film-frame {
   width: var(--w);
   height: calc(var(--w) * 0.65);
@@ -408,34 +438,33 @@ details > summary::-webkit-details-marker {
   z-index: 1;
   cursor: pointer;
 }
+
 .film-border {
   height: 24px;
   width: 100%;
   background-color: transparent;
   background-image:
     linear-gradient(to bottom, #111 7px, transparent 7px, transparent 17px, #111 17px),
-    repeating-linear-gradient(
-      to right,
+    repeating-linear-gradient(to right,
       #111 0px,
       #111 12px,
       transparent 12px,
-      transparent 18px
-    );
+      transparent 18px);
 }
+
 @media (min-width: 768px) {
   .film-border {
     height: 32px;
     background-image:
       linear-gradient(to bottom, #111 9px, transparent 9px, transparent 23px, #111 23px),
-      repeating-linear-gradient(
-        to right,
+      repeating-linear-gradient(to right,
         #111 0px,
         #111 16px,
         transparent 16px,
-        transparent 24px
-      );
+        transparent 24px);
   }
 }
+
 .film-content {
   flex: 1;
   width: 100%;
@@ -446,6 +475,7 @@ details > summary::-webkit-details-marker {
   border-right: 2px solid #111;
   box-sizing: border-box;
 }
+
 .film-image {
   width: 100%;
   height: 100%;
@@ -456,28 +486,31 @@ details > summary::-webkit-details-marker {
     transform 1s ease;
   transform: scale(1.02);
 }
+
 .film-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.3),
-    transparent,
-    rgba(0, 0, 0, 0.3)
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.3),
+      transparent,
+      rgba(0, 0, 0, 0.3));
   pointer-events: none;
   transition: opacity 1s ease;
   opacity: 1;
 }
+
 .film-frame.active .film-image {
   filter: grayscale(0%) contrast(1) brightness(1);
 }
+
 .film-frame.active .film-overlay {
   opacity: 0;
 }
+
 .film-frame.active {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
 }
+
 .film-frame:not(.active):hover .film-image {
   filter: grayscale(50%) contrast(1.1) brightness(0.9);
 }
@@ -494,6 +527,7 @@ details > summary::-webkit-details-marker {
   width: 100%;
   height: auto;
 }
+
 @media (min-width: 768px) {
   .grid-block {
     position: absolute !important;
@@ -503,6 +537,7 @@ details > summary::-webkit-details-marker {
     height: var(--md-h);
     z-index: var(--md-z, 10);
   }
+
   button.grid-block:hover {
     z-index: 40 !important;
   }
@@ -522,6 +557,7 @@ details > summary::-webkit-details-marker {
   scroll-padding-left: 1.5rem;
   scroll-padding-right: 1.5rem;
 }
+
 @media (min-width: 768px) {
   .case-studies-scroll-container {
     padding-left: calc((100vw - 768px) / 2 + 1.5rem);
@@ -530,6 +566,7 @@ details > summary::-webkit-details-marker {
     scroll-padding-right: calc((100vw - 768px) / 2 + 1.5rem);
   }
 }
+
 @media (min-width: 1024px) {
   .case-studies-scroll-container {
     padding-left: calc((100vw - 1024px) / 2 + 1.5rem);
@@ -538,6 +575,7 @@ details > summary::-webkit-details-marker {
     scroll-padding-right: calc((100vw - 1024px) / 2 + 1.5rem);
   }
 }
+
 @media (min-width: 1280px) {
   .case-studies-scroll-container {
     padding-left: calc((100vw - 1280px) / 2 + 1.5rem);
@@ -546,6 +584,7 @@ details > summary::-webkit-details-marker {
     scroll-padding-right: calc((100vw - 1280px) / 2 + 1.5rem);
   }
 }
+
 @media (min-width: 1536px) {
   .case-studies-scroll-container {
     padding-left: calc((100vw - 1536px) / 2 + 1.5rem);
@@ -578,6 +617,7 @@ details > summary::-webkit-details-marker {
   white-space: nowrap;
   transition: opacity 0.2s ease;
 }
+
 .marker-dot {
   width: 6px;
   height: 6px;
@@ -589,10 +629,12 @@ details > summary::-webkit-details-marker {
   transition: all 0.25s ease;
   pointer-events: auto;
 }
+
 .expanded .marker-dot {
   background: oklch(0.588 0.158 241.966);
   box-shadow: 0 0 8px oklch(0.588 0.158 241.966 / 0.5);
 }
+
 .marker-badge {
   display: flex;
   align-items: center;
@@ -606,10 +648,12 @@ details > summary::-webkit-details-marker {
   transition: all 0.25s ease;
   pointer-events: auto;
 }
+
 .expanded .marker-badge {
   background: oklch(0.588 0.158 241.966 / 0.92);
   border-radius: 4px 4px 0 0;
 }
+
 .marker-name {
   font-size: 10px;
   font-weight: 700;
@@ -622,6 +666,7 @@ details > summary::-webkit-details-marker {
     -apple-system,
     sans-serif;
 }
+
 .marker-detail {
   display: block;
   padding: 4px 8px 5px;
@@ -639,11 +684,13 @@ details > summary::-webkit-details-marker {
   box-shadow: 0 3px 8px oklch(0 0 0 / 0.1);
   animation: label-expand 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
 @keyframes label-expand {
   from {
     opacity: 0;
     transform: translateY(-4px) scaleY(0.6);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scaleY(1);
