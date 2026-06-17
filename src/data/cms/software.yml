@@ -40,7 +40,7 @@ portfolio:
           desc: A specialized platform engineered exclusively for the education sector,
             delivering integrated academic content management and seamless
             administrative control for institutions.
-          image: src/assets/edu-care-1.png
+          image: src/assets/edu-care-2.png
         - title: HRMS & Payroll Engines
           desc: Proprietary, in-house developed software solutions designed to automate
             complex salary structures, recruitment workflows, and the complete
@@ -57,7 +57,7 @@ portfolio:
         - title: Corporate Web & Portal Design
           desc: Development of high-performance, immersive corporate websites and secure
             internal web portals designed for scalability and brand authority.
-          image: src/assets/enterprise-sol-1.jpeg
+          image: src/assets/enterprise-sol-1-1.jpg
         - title: Mobile Application Development
           desc: Cross-platform and native mobile solutions bridging the gap between field
             operations and administrative management, ensuring real-time data
