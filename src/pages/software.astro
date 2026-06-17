@@ -7,9 +7,6 @@ import SoftwarePortfolio from '~/components/software/SoftwarePortfolio.svelte';
 import SoftwareEngineeringStack from '~/components/software/SoftwareEngineeringStack.astro';
 import SoftwareArchitecturalPrinciples from '~/components/software/SoftwareArchitecturalPrinciples.svelte';
 
-// Structured data
-import { softwareCapabilities } from '~/data/pageDataSoftware';
-
 import { RadioTower, Server, Users, ArrowRight } from '@lucide/astro';
 
 // New Section Imports
@@ -165,10 +162,7 @@ const iconMap = { RadioTower, Server, Users };
 
         <!-- Svelte 5 Interactive Tabbed Showcase Island -->
         <SoftwarePortfolio
-          capabilities={softwareCapabilities}
-          saasImages={software.portfolio.saasImages}
-          enterpriseImages={software.portfolio.enterpriseImages}
-          publicImages={software.portfolio.publicImages}
+          capabilities={software.portfolio.capabilities}
           client:visible
         />
       </div>
@@ -243,7 +237,11 @@ const iconMap = { RadioTower, Server, Users };
     <SoftwareOnboarding />
 
     <!-- 7th Section: Strategic Case Studies & Technical Impact -->
-    <SoftwareCaseStudies images={software.caseStudyImages} client:visible />
+    <SoftwareCaseStudies
+      heading={software.caseStudies.heading}
+      items={software.caseStudies.items}
+      client:visible
+    />
 
     <!-- Footer Section -->
     <div class="bg-base-200/50">

@@ -82,7 +82,7 @@ export interface CaseStudyMetric {
 }
 
 export interface CaseStudyData {
-  id: number;
+  id: number; // Dynamically assigned based on array index
   slug: string;
   title: string;
   description: string;
@@ -135,6 +135,30 @@ export interface AwardGalleryItem {
   organization: string;
   date: string;
   src: string;
+}
+
+export interface SoftwarePortfolioItem {
+  title: string;
+  desc: string;
+  image: string;
+  ctaLabel?: string;
+  ctaUrl?: string;
+}
+
+export interface SoftwarePortfolioTab {
+  id: string;
+  label: string;
+  shortLabel?: string;
+  description: string;
+  items: SoftwarePortfolioItem[];
+}
+
+export interface SoftwareCaseStudyItem {
+  title: string;
+  solution: string;
+  impact: string;
+  image: string;
+  url?: string;
 }
 
 type HomeServiceId = 'telecom' | 'resourcing' | 'software' | 'system';
@@ -332,12 +356,17 @@ interface SoftwareYaml {
     backgroundImage: string;
     heading: string;
     description: string;
-    saasImages: string[];
-    enterpriseImages: string[];
-    publicImages: string[];
+    capabilities: Array<
+      Omit<SoftwarePortfolioTab, 'items'> & {
+        items: Array<Omit<SoftwarePortfolioItem, 'image'> & { image: string }>;
+      }
+    >;
   };
   execution: ExecutionYaml;
-  caseStudyImages: string[];
+  caseStudies: {
+    heading: string;
+    items: Array<Omit<SoftwareCaseStudyItem, 'image'> & { image: string }>;
+  };
 }
 
 interface ResourcingYaml {
@@ -664,12 +693,22 @@ export const software = (() => {
     portfolio: {
       ...data.portfolio,
       backgroundImage: getCmsAsset(data.portfolio.backgroundImage),
-      saasImages: data.portfolio.saasImages.map(getCmsAssetSrc),
-      enterpriseImages: data.portfolio.enterpriseImages.map(getCmsAssetSrc),
-      publicImages: data.portfolio.publicImages.map(getCmsAssetSrc),
+      capabilities: data.portfolio.capabilities.map((tab) => ({
+        ...tab,
+        items: tab.items.map((item) => ({
+          ...item,
+          image: getCmsAssetSrc(item.image),
+        })),
+      })),
     },
     execution: resolveExecution(data.execution),
-    caseStudyImages: data.caseStudyImages.map(getCmsAssetSrc),
+    caseStudies: {
+      ...data.caseStudies,
+      items: data.caseStudies.items.map((item) => ({
+        ...item,
+        image: getCmsAssetSrc(item.image),
+      })),
+    },
   };
 })();
 
@@ -692,9 +731,9 @@ export const industriesData = Object.values(industryModules).sort((a, b) =>
   a.slug.localeCompare(b.slug),
 );
 
-export const caseStudiesData = Object.values(caseStudyModules).sort(
-  (a, b) => a.id - b.id || a.slug.localeCompare(b.slug),
-);
+export const caseStudiesData = Object.values(caseStudyModules)
+  .sort((a, b) => a.slug.localeCompare(b.slug))
+  .map((study, index) => ({ ...study, id: index }));
 
 const industryOrder = [
   'telcos-and-isps',

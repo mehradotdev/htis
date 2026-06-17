@@ -6,38 +6,15 @@
     FileText,
     TrendingUp,
   } from '@lucide/svelte';
+  import type { SoftwareCaseStudyItem } from '~/data/cms';
 
-  // Svelte 5 Runes Syntax
-  const { images } = $props<{ images: string[] }>();
+  const { heading = 'Strategic Case Studies & Technical Impact', items = [] } = $props<{
+    heading?: string;
+    items?: SoftwareCaseStudyItem[];
+  }>();
 
   let scrollContainer = $state<HTMLDivElement | null>(null);
 
-  // Case study structured data
-  const caseStudies = [
-    {
-      title: 'Public Utility & Citizen Services',
-      solution: 'Street Vendor Management System & Digital Utility Portals.',
-      impact:
-        'Digitized urban governance and public utility workflows for municipal corporations. The system handles complex revenue collections, real-time tracking, and automated billing modules while ensuring role-based data isolation across departments.',
-      imageIdx: 0,
-    },
-    {
-      title: 'Enterprise Resource Planning (wfms™)',
-      solution: 'High-Volume Workforce & Logistics Management System.',
-      impact:
-        'Supports over 3,000 daily active users, automating attendance, claim submissions, field task assignments, and payroll calculations. Real-time geofencing and offline synchronization reduced operational payroll overhead by 18%.',
-      imageIdx: 1,
-    },
-    {
-      title: 'Telecom Workflow Automation',
-      solution: 'Carrier-Grade AMC & Complaint Management Engine.',
-      impact:
-        'Bridges software telemetry with physical telecom nodes. Field maintenance riggers and L1-L6 coordinators gain real-time network fault alerts, routing optimization, and automated ticketing, decreasing MTTR (Mean Time to Repair) by 32%.',
-      imageIdx: 2,
-    },
-  ];
-
-  // Function to programmatically scroll horizontal container
   function scroll(direction: 'left' | 'right') {
     if (!scrollContainer) return;
 
@@ -83,15 +60,11 @@
       currentIndex = 0;
     }
 
-    // Determine target index
-    let targetIndex = currentIndex;
-    if (direction === 'left') {
-      targetIndex = Math.max(currentIndex - 1, 0);
-    } else {
-      targetIndex = Math.min(currentIndex + 1, cards.length - 1);
-    }
+    const targetIndex =
+      direction === 'left'
+        ? Math.max(currentIndex - 1, 0)
+        : Math.min(currentIndex + 1, cards.length - 1);
 
-    // Scroll smoothly to the target snap position
     container.scrollTo({
       left: snapPositions[targetIndex],
       behavior: 'smooth',
@@ -99,18 +72,14 @@
   }
 </script>
 
-<section class="relative bg-base-200/50 py-24 overflow-hidden">
+<section class="relative overflow-hidden bg-base-200/50 py-24">
   <div class="container mx-auto px-6">
-    <!-- Section Header with Next/Prev navigation buttons -->
     <div
-      class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6"
+      class="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
     >
       <div class="max-w-3xl text-left">
-        <!-- <span class="mb-3 block text-xs font-bold tracking-widest text-primary uppercase">
-          Proven Success & Deployment Metrics
-        </span> -->
         <h2 class="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl">
-          Strategic Case Studies & Technical Impact
+          {heading}
         </h2>
       </div>
 
@@ -119,14 +88,14 @@
         <button
           onclick={() => scroll('left')}
           aria-label="Previous Case Study"
-          class="flex h-12 w-12 items-center justify-center rounded-full border border-base-content/15 bg-base-200 text-base-content shadow-sm transition-all duration-300 hover:bg-primary hover:text-primary-content hover:border-primary active:scale-95"
+          class="flex h-12 w-12 items-center justify-center rounded-full border border-base-content/15 bg-base-200 text-base-content shadow-sm transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-content active:scale-95"
         >
           <ChevronLeft class="h-5 w-5" strokeWidth={2.5} />
         </button>
         <button
           onclick={() => scroll('right')}
           aria-label="Next Case Study"
-          class="flex h-12 w-12 items-center justify-center rounded-full border border-base-content/15 bg-base-200 text-base-content shadow-sm transition-all duration-300 hover:bg-primary hover:text-primary-content hover:border-primary active:scale-95"
+          class="flex h-12 w-12 items-center justify-center rounded-full border border-base-content/15 bg-base-200 text-base-content shadow-sm transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-content active:scale-95"
         >
           <ChevronRight class="h-5 w-5" strokeWidth={2.5} />
         </button>
@@ -137,71 +106,67 @@
   <!-- Horizontal scrollable container -->
   <div
     bind:this={scrollContainer}
-    class="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory scroll-smooth no-scrollbar case-studies-scroll-container"
+    class="case-studies-scroll-container no-scrollbar flex snap-x snap-mandatory gap-8 overflow-x-auto pb-8 scroll-smooth"
   >
-    {#each caseStudies as study}
+    {#each items as study}
       <div
-        class="flex-none w-[90vw] md:w-[780px] bg-base-100 rounded-3xl p-8 md:p-12 border border-base-content/10 shadow-lg snap-start flex flex-col md:flex-row items-center gap-8 relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-primary/20"
+        class="relative flex w-[90vw] flex-none snap-start flex-col items-center gap-8 overflow-hidden rounded-3xl border border-base-content/10 bg-base-100 p-8 shadow-lg transition-all duration-300 hover:border-primary/20 hover:shadow-xl md:w-[780px] md:flex-row md:p-12"
       >
-        <!-- Link Icon Circle (Top-Right) -->
-        <a
-          href="/case-study"
-          aria-label={`Explore ${study.title} Case Study`}
-          class="absolute top-6 right-6 md:top-8 md:right-8 h-10 w-10 flex items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 hover:bg-primary hover:text-primary-content z-20"
-        >
-          <ArrowUpRight class="w-5 h-5" strokeWidth={2.5} />
-        </a>
+        {#if study.url}
+          <a
+            href={study.url}
+            aria-label={`Explore ${study.title} Case Study`}
+            class="absolute top-6 right-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 hover:bg-primary hover:text-primary-content md:top-8 md:right-8"
+          >
+            <ArrowUpRight class="h-5 w-5" strokeWidth={2.5} />
+          </a>
+        {/if}
 
-        <!-- Content Column (Left on desktop) -->
-        <div class="w-full md:w-[55%] flex flex-col items-start text-left gap-6 z-10">
+        <div class="z-10 flex w-full flex-col items-start gap-6 text-left md:w-[55%]">
           <h3
-            class="text-xl md:text-2xl font-medium text-base-content tracking-tight leading-tight uppercase font-sans"
+            class="font-sans text-xl leading-tight font-medium tracking-tight text-base-content uppercase md:text-2xl"
           >
             {study.title}
           </h3>
 
-          <div class="w-12 h-1 bg-primary rounded-full"></div>
+          <div class="h-1 w-12 rounded-full bg-primary"></div>
 
-          <!-- The Solution -->
           <div class="flex flex-col gap-2">
             <span
-              class="text-xs font-black tracking-widest text-primary uppercase flex items-center gap-2 font-mono"
+              class="font-mono flex items-center gap-2 text-xs font-black tracking-widest text-primary uppercase"
             >
-              <FileText class="w-4 h-4" strokeWidth={2} />
+              <FileText class="h-4 w-4" strokeWidth={2} />
               The Solution:
             </span>
-            <p class="text-base md:text-lg font-medium text-base-content leading-snug">
+            <p class="text-base leading-snug font-medium text-base-content md:text-lg">
               {study.solution}
             </p>
           </div>
 
-          <!-- The Impact -->
           <div class="flex flex-col gap-2">
             <span
-              class="text-xs font-black tracking-widest text-primary uppercase flex items-center gap-2 font-mono"
+              class="font-mono flex items-center gap-2 text-xs font-black tracking-widest text-primary uppercase"
             >
-              <TrendingUp class="w-4 h-4" strokeWidth={2} />
+              <TrendingUp class="h-4 w-4" strokeWidth={2} />
               The Impact:
             </span>
             <p
-              class="text-sm md:text-base text-base-content/80 leading-relaxed text-justify font-medium"
+              class="text-justify text-sm leading-relaxed font-medium text-base-content/80 md:text-base"
             >
               {study.impact}
             </p>
           </div>
         </div>
 
-        <!-- Mockup Column (Right on desktop) -->
         <div
-          class="w-full md:w-[45%] flex items-center justify-center relative overflow-hidden"
+          class="relative flex w-full items-center justify-center overflow-hidden md:w-[45%]"
         >
-          <!-- Subtle decorative radial background flare -->
-          <div class="absolute h-48 w-48 rounded-full bg-primary/5 blur-2xl z-0"></div>
+          <div class="absolute z-0 h-48 w-48 rounded-full bg-primary/5 blur-2xl"></div>
 
           <img
-            src={images[study.imageIdx]}
+            src={study.image}
             alt={study.title}
-            class="h-[280px] md:h-[380px] w-auto object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105 z-10"
+            class="z-10 h-[280px] w-auto object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105 md:h-[380px]"
             loading="lazy"
           />
         </div>

@@ -883,29 +883,86 @@ content:
               - name: description
                 type: text
                 required: true
-              - name: saasImages
-                label: SaaS images
-                type: image
-                list: true
-                required: true
-              - name: enterpriseImages
-                label: Enterprise images
-                type: image
-                list: true
-                required: true
-              - name: publicImages
-                label: Public-sector images
-                type: image
-                list: true
-                required: true
+              - name: capabilities
+                label: Portfolio tabs
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{label}'
+                fields:
+                  - name: id
+                    type: string
+                    required: true
+                  - name: label
+                    type: string
+                    required: true
+                  - name: shortLabel
+                    label: Short label
+                    type: string
+                    required: false
+                  - name: description
+                    type: text
+                    required: true
+                  - name: items
+                    label: Portfolio items
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{title}'
+                    fields:
+                      - name: title
+                        type: string
+                        required: true
+                      - name: desc
+                        label: Description
+                        type: text
+                        required: true
+                      - name: image
+                        type: image
+                        required: true
+                      - name: ctaLabel
+                        label: CTA label
+                        type: string
+                        required: false
+                      - name: ctaUrl
+                        label: CTA URL
+                        type: string
+                        required: false
           - name: execution
             type: object
             fields: *execution_fields
-          - name: caseStudyImages
-            label: Case study images
-            type: image
-            list: true
-            required: true
+          - name: caseStudies
+            label: Case studies
+            type: object
+            fields:
+              - name: heading
+                type: string
+                required: true
+              - name: items
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{title}'
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: solution
+                    type: text
+                    required: true
+                  - name: impact
+                    type: text
+                    required: true
+                  - name: image
+                    type: image
+                    required: true
+                  - name: url
+                    label: URL
+                    type: string
+                    required: false
 
       - name: resourcing
         label: Resourcing
@@ -1182,11 +1239,8 @@ content:
         view:
           primary: title
           fields: [title, slug, solution, industry]
-          sort: [id, title]
+          sort: [title, slug]
         fields:
-          - name: id
-            type: number
-            required: true
           - name: slug
             type: string
             required: true

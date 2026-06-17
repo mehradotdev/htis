@@ -2,7 +2,7 @@ title: Software Development & SaaS - HTIS
 hero:
   backgroundImage: src/assets/lob-software-hero-bg.png
   foregroundImage: src/assets/webp-01-scaled.webp
-  title: "Digital Intelligence:"
+  title: 'Digital Intelligence:'
   highlight: Enterprise SaaS
   subtitle: We architect the resilient software ecosystems that drive modern
     enterprise and government operations. By merging the agility of on-demand
@@ -12,25 +12,87 @@ hero:
   ctaLabel: Contact Us
   ctaUrl: /#contact
   secondaryCtaLabel: Explore Portfolio
-  secondaryCtaUrl: "#portfolio"
+  secondaryCtaUrl: '#portfolio'
 portfolio:
   backgroundImage: src/assets/team-member-bg.png
   heading: Converged Software Portfolio
   description: Enterprise SaaS & Bespoke Engineering - An interactive look at our
     proprietary products and requirement-driven engineering capabilities.
-  saasImages:
-    - src/assets/laptop-img-1.png
-    - src/assets/edu-care-1.png
-    - src/assets/hrms-payroll.webp
-  enterpriseImages:
-    - src/assets/lob-software-sw-port-enterprise-1.png
-    - src/assets/lob-software-sw-port-enterprise-2.png
-    - src/assets/lob-software-sw-port-enterprise-3.png
-    - src/assets/lob-software-sw-port-enterprise-4.png
-  publicImages:
-    - src/assets/lob-software-sw-port-public-1.png
-    - src/assets/lob-software-sw-port-public-2.png
-    - src/assets/lob-software-sw-port-public-3.png
+  capabilities:
+    - id: saas-products
+      label: Standalone SaaS Products
+      shortLabel: Standalone SaaS Products
+      description: Our proprietary SaaS platforms are mature, cloud-hosted ecosystems
+        designed for immediate deployment. They provide large-scale organizations
+        with out-of-the-box digital control over complex operational and
+        administrative workflows.
+      items:
+        - title: wfms™ (Workforce Management System)
+          desc: Our flagship ERP provides centralized operational control through a
+            high-performance web portal and mobile applications for Android and iOS.
+            Designed to handle thousands of daily users, it features a comprehensive
+            suite of modules including Attendance, Payroll, Finance, and AMC
+            Management.
+          image: src/assets/laptop-img-1.png
+          ctaLabel: Know more
+          ctaUrl: /software
+        - title: Educare™ School ERP
+          desc: A specialized platform engineered exclusively for the education
+            sector, delivering integrated academic content management and seamless
+            administrative control for institutions.
+          image: src/assets/edu-care-1.png
+        - title: HRMS & Payroll Engines
+          desc: Proprietary, in-house developed software solutions designed to
+            automate complex salary structures, recruitment workflows, and the
+            complete employee lifecycle.
+          image: src/assets/hrms-payroll.webp
+    - id: enterprise-solutions
+      label: Enterprise Solutions
+      shortLabel: Enterprise Solutions
+      description: We architect custom digital assets tailored to the unique
+        operational challenges of enterprise and sovereign clients. From front-end
+        digital experiences to hardcore backend workflow automation, our engineering
+        methodology is entirely requirement-driven.
+      items:
+        - title: Corporate Web & Portal Design
+          desc: Development of high-performance, immersive corporate websites and
+            secure internal web portals designed for scalability and brand authority.
+          image: src/assets/lob-software-sw-port-enterprise-1.png
+        - title: Mobile Application Development
+          desc: Cross-platform and native mobile solutions bridging the gap between
+            field operations and administrative management, ensuring real-time data
+            sync on the go.
+          image: src/assets/lob-software-sw-port-enterprise-2.png
+        - title: eCommerce & Retail Platforms
+          desc: Secure, high-volume transactional architectures built with robust
+            payment gateways, inventory management, and intuitive user experiences.
+          image: src/assets/lob-software-sw-port-enterprise-3.png
+        - title: Hardcore Digitalization & Workflow Automation
+          desc: Transforming legacy, manual processes into intelligent, automated
+            digital workflows. We build integrated reporting systems and dashboards
+            to provide real-time monitoring of productivity, tasks, and claims.
+          image: src/assets/lob-software-sw-port-enterprise-4.png
+    - id: public-sector
+      label: Public Sector Digitalization
+      shortLabel: Public Sector Digitalization
+      description: With a majority of our bespoke portfolio dedicated to government
+        clients, we are a trusted partner for high-compliance digital
+        infrastructure.
+      items:
+        - title: Municipal Utility & Revenue Systems
+          desc: Secure digital platforms engineered for managing public utilities,
+            vendor administration, and municipal billing operations.
+          image: src/assets/lob-software-sw-port-public-1.png
+        - title: State-Level Workforce & Governance Portals
+          desc: Architecting vast manpower management systems and rural digital
+            governance networks that provide administrative oversight at a
+            state-wide scale.
+          image: src/assets/lob-software-sw-port-public-2.png
+        - title: Specialized State Assets & Taxation
+          desc: Resilient, high-traffic portals built to manage complex regional
+            ecosystems, including commercial transit taxation, state ecotourism
+            reservations, and agricultural administration.
+          image: src/assets/lob-software-sw-port-public-3.png
 execution:
   heading: |-
     Built to Execute.
@@ -61,7 +123,30 @@ execution:
         risk and drive long-term workforce retention.
       url: /resourcing
       ariaLabel: Explore Resource Management
-caseStudyImages:
-  - src/assets/lob-software-case-study-1.png
-  - src/assets/lob-software-case-study-2.png
-  - src/assets/lob-software-case-study-3.png
+caseStudies:
+  heading: Strategic Case Studies & Technical Impact
+  items:
+    - title: Public Utility & Citizen Services
+      solution: Street Vendor Management System & Digital Utility Portals.
+      impact: Digitized urban governance and public utility workflows for municipal
+        corporations. The system handles complex revenue collections, real-time
+        tracking, and automated billing modules while ensuring role-based data
+        isolation across departments.
+      image: src/assets/lob-software-case-study-1.png
+      url: /case-study
+    - title: Enterprise Resource Planning (wfms™)
+      solution: High-Volume Workforce & Logistics Management System.
+      impact: Supports over 3,000 daily active users, automating attendance, claim
+        submissions, field task assignments, and payroll calculations. Real-time
+        geofencing and offline synchronization reduced operational payroll overhead
+        by 18%.
+      image: src/assets/lob-software-case-study-2.png
+      url: /case-study
+    - title: Telecom Workflow Automation
+      solution: Carrier-Grade AMC & Complaint Management Engine.
+      impact: Bridges software telemetry with physical telecom nodes. Field
+        maintenance riggers and L1-L6 coordinators gain real-time network fault
+        alerts, routing optimization, and automated ticketing, decreasing MTTR
+        (Mean Time to Repair) by 32%.
+      image: src/assets/lob-software-case-study-3.png
+      url: /case-study

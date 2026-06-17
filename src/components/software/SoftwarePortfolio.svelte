@@ -9,18 +9,12 @@
     ShieldCheck,
     ArrowUpRight,
   } from '@lucide/svelte';
-  import type { CapabilityTab } from '~/data/pageDataSoftware';
+  import type { SoftwarePortfolioTab } from '~/data/cms';
 
   let {
     capabilities = [],
-    saasImages = [],
-    enterpriseImages = [],
-    publicImages = [],
   }: {
-    capabilities?: CapabilityTab[];
-    saasImages?: string[];
-    enterpriseImages?: string[];
-    publicImages?: string[];
+    capabilities?: SoftwarePortfolioTab[];
   } = $props();
 
   let activeTab = $state(
@@ -34,15 +28,11 @@
     capabilities.find((t) => t.id === activeTab) || capabilities[0],
   );
 
-  // Derive the active image based on tab and activeItemIndex
+  let currentItem = $derived(currentTabObj?.items[activeItemIndex]);
+
+  // Derive the active image from the active CMS item.
   let currentImage = $derived(
-    activeTab === 'saas-products'
-      ? saasImages[activeItemIndex % saasImages.length] || ''
-      : activeTab === 'enterprise-solutions'
-        ? enterpriseImages[activeItemIndex % enterpriseImages.length] || ''
-        : activeTab === 'public-sector'
-          ? publicImages[activeItemIndex % publicImages.length] || ''
-          : '',
+    currentItem?.image || '',
   );
 
   const AUTOPLAY_INTERVAL_MS = 5000;
@@ -173,16 +163,16 @@
               <div transition:slide={{ duration: 300 }} class="relative z-10 mt-3 pl-9">
                 <p class="text-base-content/75 text-sm md:text-base leading-relaxed pb-1">
                   {item.desc}
-                  <a
-                    href="https://example.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-0.5 text-primary hover:underline font-semibold ml-1.5 align-baseline"
-                    onclick={(e) => e.stopPropagation()}
-                  >
-                    Know more
-                    <ArrowUpRight size={14} class="translate-y-[1px]" />
-                  </a>
+                  {#if item.ctaUrl}
+                    <a
+                      href={item.ctaUrl}
+                      class="ml-1.5 inline-flex items-center gap-0.5 align-baseline font-semibold text-primary hover:underline"
+                      onclick={(e) => e.stopPropagation()}
+                    >
+                      {item.ctaLabel || 'Know more'}
+                      <ArrowUpRight size={14} class="translate-y-[1px]" />
+                    </a>
+                  {/if}
                 </p>
               </div>
             {/if}
