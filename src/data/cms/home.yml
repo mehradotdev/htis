@@ -521,33 +521,33 @@ testimonials:
   awardsImage: src/assets/lob-telecom-awards.png
   awardsImageAlt: Awards and Certificates
   items:
-    - quote: HTIS handled our telecom hardware deployment across multiple sites
-        with precision. Everything was delivered on time without disrupting live
+    - quote: HTIS handled our telecom hardware deployment across multiple sites with
+        precision. Everything was delivered on time without disrupting live
         operations.
       name: Jhon Doe
       title: Cisco | HOD
-    - quote: Coordinating multi-location deployments was effortless with HTIS.
-        Their execution was consistent and met all our technical standards.
+    - quote: Coordinating multi-location deployments was effortless with HTIS. Their
+        execution was consistent and met all our technical standards.
       name: Jhon Doe
       title: Cisco | HOD
-    - quote: We deploy trained field engineers and technical teams tailored to
-        project requirements. Our manpower model is built for flexibility.
+    - quote: We deploy trained field engineers and technical teams tailored to project
+        requirements. Our manpower model is built for flexibility.
       name: Sarah Jenkins
       title: TechCorp | VP Engineering
     - quote: The system architecture provided by HTIS gave us the edge we needed.
         Exceptional performance and zero downtime during the switch.
       name: David Kim
       title: Streamline IT | Lead Architect
-    - quote: Their network solutions transformed our infrastructure. Highly
-        reliable and scalable systems that grew with our business needs.
+    - quote: Their network solutions transformed our infrastructure. Highly reliable
+        and scalable systems that grew with our business needs.
       name: Michael Chen
       title: GlobalNet | CTO
     - quote: A true partner in digital transformation. They understood our complex
         requirements and delivered a custom solution perfectly.
       name: Amanda Foster
       title: DataFlow | Operations
-    - quote: Outstanding support and seamless integration. The team demonstrated
-        deep technical expertise throughout the entire project lifecycle.
+    - quote: Outstanding support and seamless integration. The team demonstrated deep
+        technical expertise throughout the entire project lifecycle.
       name: Emily Rodriguez
       title: Nexus Systems | Director
     - quote: From planning to execution, their professionalism is unmatched. The
@@ -560,18 +560,26 @@ articles:
   ctaLabel: View all posts
   ctaUrl: https://www.linkedin.com/company/htis-telecom/posts/
   posts:
-    - embedCode: <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7461429421330182144?collapsed=1"
-        height="670" width="504" frameborder="0" allowfullscreen="" title="Embedded
-        post"></iframe>
-      fallbackTitle: Why does your network work perfectly at 11 AM... and
-        struggle by 3 PM?
-    - embedCode: <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7458505761942319104?collapsed=1"
-        height="670" width="504" frameborder="0" allowfullscreen="" title="Embedded
-        post"></iframe>
+    - embedCode: <iframe
+        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7461429421330182144?collapsed=1"
+        height="670" width="504" frameborder="0" allowfullscreen=""
+        title="Embedded post"></iframe>
+      fallbackTitle: Why does your network work perfectly at 11 AM... and struggle by 3 PM?
+    - embedCode: <iframe
+        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7458505761942319104?collapsed=1"
+        height="670" width="504" frameborder="0" allowfullscreen=""
+        title="Embedded post"></iframe>
       fallbackTitle: How often do your teams struggle with slow systems or
         inconsistent performance?
-    - embedCode: <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7454530227554361344?collapsed=1"
-        height="567" width="504" frameborder="0" allowfullscreen="" title="Embedded
-        post"></iframe>
-      fallbackTitle: Is your telecom and IT infrastructure aligned where
-        enterprises are heading in 2026?
+    - embedCode: <iframe
+        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7454530227554361344?collapsed=1"
+        height="567" width="504" frameborder="0" allowfullscreen=""
+        title="Embedded post"></iframe>
+      fallbackTitle: Is your telecom and IT infrastructure aligned where enterprises
+        are heading in 2026?
+    - embedCode: <iframe
+        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7472671513486184448?collapsed=1"
+        height="567" width="504" frameborder="0" allowfullscreen=""
+        title="Embedded post"></iframe>
+      fallbackTitle: 𝐖𝐨𝐮𝐥𝐝 𝐲𝐨𝐮𝐫 𝐨𝐫𝐠𝐚𝐧𝐢𝐬𝐚𝐭𝐢𝐨𝐧 𝐫𝐞𝐜𝐨𝐠𝐧𝐢𝐬𝐞
+        𝐚 𝐩𝐡𝐢𝐬𝐡𝐢𝐧𝐠 𝐞𝐦𝐚𝐢𝐥 𝐛𝐞𝐟𝐨𝐫𝐞 𝐢𝐭'𝐬 𝐭𝐨𝐨 𝐥𝐚𝐭𝐞?
