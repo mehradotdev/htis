@@ -1210,6 +1210,31 @@ content:
                     type: boolean
                     required: false
 
+      - name: jobs
+        label: Jobs
+        type: file
+        path: src/data/cms/jobs.yml
+        format: yaml
+        operations:
+          delete: false
+        fields:
+          - name: api
+            label: API endpoints
+            type: object
+            fields:
+              - name: jobListEndpoint
+                label: Job list endpoint
+                type: string
+                required: true
+              - name: jobDetailEndpoint
+                label: Job detail endpoint
+                type: string
+                required: true
+              - name: applyJobEndpoint
+                label: Apply job endpoint
+                type: string
+                required: true
+
       - name: privacy
         label: Privacy Policy
         type: file

@@ -1,7 +1,8 @@
-export const JOB_LIST_ENDPOINT = 'https://wfmsv2api.htistelecom.in/api/Hiring/JobList';
-export const JOB_DETAIL_ENDPOINT =
-  'https://wfmsv2api.htistelecom.in/api/Hiring/JobDetail';
-export const APPLY_JOB_ENDPOINT = 'https://wfmsv2api.htistelecom.in/api/Hiring/ApplyJob';
+import { jobs } from './cms';
+
+export const JOB_LIST_ENDPOINT = jobs.api.jobListEndpoint;
+export const JOB_DETAIL_ENDPOINT = jobs.api.jobDetailEndpoint;
+export const APPLY_JOB_ENDPOINT = jobs.api.applyJobEndpoint;
 
 export interface HiringApiJob {
   // Astro route props normalize IDs to strings even though the upstream API returns integers.

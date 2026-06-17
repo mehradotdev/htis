@@ -1,0 +1,4 @@
+api:
+  jobListEndpoint: https://wfmsv2api.htistelecom.in/api/Hiring/JobList
+  jobDetailEndpoint: https://wfmsv2api.htistelecom.in/api/Hiring/JobDetail
+  applyJobEndpoint: https://wfmsv2api.htistelecom.in/api/Hiring/ApplyJob

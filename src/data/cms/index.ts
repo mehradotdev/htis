@@ -3,6 +3,7 @@ import awardsYaml from './awards.yml';
 import contactFormYaml from './contact-form.yml';
 import footerYaml from './footer.yml';
 import homeYaml from './home.yml';
+import jobsYaml from './jobs.yml';
 import navigationYaml from './navigation.yml';
 import privacyYaml from './privacy.yml';
 import resourcingYaml from './resourcing.yml';
@@ -495,6 +496,14 @@ interface PrivacyYaml {
   };
 }
 
+interface JobsYaml {
+  api: {
+    jobListEndpoint: string;
+    jobDetailEndpoint: string;
+    applyJobEndpoint: string;
+  };
+}
+
 const industryModules = import.meta.glob<IndustryData>('./industries/*.yml', {
   eager: true,
   import: 'default',
@@ -860,6 +869,8 @@ export const resourcing = (() => {
 })();
 
 export const privacy = privacyYaml as PrivacyYaml;
+
+export const jobs = jobsYaml as JobsYaml;
 
 export const industriesData = Object.values(industryModules).sort((a, b) =>
   a.slug.localeCompare(b.slug),
