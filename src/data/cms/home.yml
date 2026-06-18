@@ -518,7 +518,7 @@ testimonials:
   headingSuffix: " awards and certificates"
   ctaUrl: /awards
   ctaLabel: View awards
-  awardsImage: src/assets/lob-telecom-awards.png
+  awardsImage: src/assets/1-1.png
   awardsImageAlt: Awards and Certificates
   items:
     - quote: HTIS handled our telecom hardware deployment across multiple sites with
