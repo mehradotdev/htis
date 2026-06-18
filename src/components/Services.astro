@@ -2,11 +2,12 @@
 import { Image } from 'astro:assets';
 import ServicesGrid from './ServicesGrid.svelte';
 import ServicesGridMobile from './ServicesGridMobile.svelte';
-import serviceBg from '~/assets/our-services-bg.png';
+import defaultServiceBg from '~/assets/our-services-bg.png';
 
 const { services } = Astro.props;
 const serviceItems = services?.items ?? [];
 const headingHtml = services?.headingHtml ?? 'Our<br/>Services';
+const backgroundImage = services?.backgroundImage ?? defaultServiceBg;
 ---
 
 <section
@@ -21,7 +22,7 @@ const headingHtml = services?.headingHtml ?? 'Our<br/>Services';
       class="relative flex items-start border-b border-base-content/30 bg-primary/30 p-10 md:p-14 lg:w-[40%] lg:border-r lg:border-b-0"
     >
       <Image
-        src={serviceBg}
+        src={backgroundImage}
         alt=""
         aria-hidden="true"
         class="absolute inset-0 z-0 h-full w-full object-cover opacity-70"

@@ -37,6 +37,18 @@ content:
             label: Contact anchor
             type: string
             required: true
+          - name: globalToast
+            label: Global site toast
+            type: object
+            fields:
+              - name: enabled
+                label: Show toast
+                type: boolean
+                required: true
+              - name: message
+                label: Message
+                type: text
+                required: true
 
       - name: navigation
         label: Navigation
@@ -332,6 +344,10 @@ content:
               - name: headingHtml
                 label: Heading HTML
                 type: string
+                required: true
+              - name: backgroundImage
+                label: Background image
+                type: image
                 required: true
               - name: items
                 label: Services

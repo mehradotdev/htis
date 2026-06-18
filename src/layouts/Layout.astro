@@ -65,8 +65,97 @@ const { title = site.defaultTitle } = Astro.props;
     </script>
   </head>
   <body class="bg-base-100 text-base-content antialiased">
+    {
+      site.globalToast.enabled && site.globalToast.message && (
+        <div
+          id="global-site-toast"
+          class="fixed right-4 top-4 z-70 w-[min(26rem,calc(100vw-2rem))] transition duration-200 ease-out motion-reduce:transition-none"
+          aria-live="polite"
+          role="status"
+        >
+          <div class="rounded-3xl border border-primary/20 bg-base-100 px-5 py-4 text-base-content shadow-sm backdrop-blur-sm">
+            <div class="flex w-full items-start gap-3">
+              <div class="min-w-0 flex-1 text-sm font-medium leading-6">
+                {site.globalToast.message}
+              </div>
+              <button
+                type="button"
+                class="grid h-7 w-7 shrink-0 place-items-center rounded-full text-base-content/70 transition-colors hover:bg-base-200 hover:text-base-content"
+                aria-label="Dismiss site notice"
+                data-toast-close
+              >
+                X
+              </button>
+            </div>
+          </div>
+        </div>
+      )
+    }
     <slot />
     <WhatsAppButton />
+    <script is:inline>
+      const TOAST_ELEMENT_ID = 'global-site-toast';
+      const TOAST_DISMISSED_KEY = '__htisGlobalToastDismissed';
+      const TOAST_ABORT_KEY = '__htisGlobalToastAbortController';
+
+      const initGlobalSiteToast = () => {
+        const toast = document.getElementById(TOAST_ELEMENT_ID);
+        if (!toast) {
+          return;
+        }
+
+        window[TOAST_ABORT_KEY]?.abort?.();
+
+        if (window[TOAST_DISMISSED_KEY]) {
+          toast.hidden = true;
+          return;
+        }
+
+        toast.hidden = false;
+
+        const controller = new AbortController();
+        window[TOAST_ABORT_KEY] = controller;
+
+        const dismiss = () => {
+          if (toast.hidden) {
+            return;
+          }
+
+          window[TOAST_DISMISSED_KEY] = true;
+          controller.abort();
+          window[TOAST_ABORT_KEY] = undefined;
+          toast.classList.add('pointer-events-none', 'translate-y-[-0.5rem]', 'opacity-0');
+
+          window.setTimeout(() => {
+            toast.hidden = true;
+            toast.classList.remove('pointer-events-none', 'translate-y-[-0.5rem]', 'opacity-0');
+          }, 200);
+        };
+
+        toast
+          .querySelector('[data-toast-close]')
+          ?.addEventListener('click', dismiss, { signal: controller.signal });
+
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener(
+          'scroll',
+          () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY) {
+              dismiss();
+            }
+
+            lastScrollY = currentScrollY;
+          },
+          { passive: true, signal: controller.signal },
+        );
+      };
+
+      initGlobalSiteToast();
+      document.addEventListener('astro:page-load', initGlobalSiteToast);
+    </script>
   </body>
 </html>
 

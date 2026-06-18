@@ -112,6 +112,7 @@ hero:
       alt: Vertiv
 services:
   headingHtml: Our<br/>Services
+  backgroundImage: src/assets/our-services-bg.png
   items:
     - id: telecom
       titleHtml: Tele&shy;communica&shy;tions

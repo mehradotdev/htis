@@ -236,6 +236,7 @@ interface HomeYaml {
   };
   services: {
     headingHtml: string;
+    backgroundImage: string;
     items: HomeService[];
   };
   journey: {
@@ -531,6 +532,10 @@ export const site = siteYaml as {
   darkTheme: string;
   favicon: string;
   contactAnchor: string;
+  globalToast: {
+    enabled: boolean;
+    message: string;
+  };
 };
 
 export const navigation = navigationYaml as {
@@ -607,7 +612,10 @@ export const home = (() => {
         imageSrc: getCmsAssetSrc(image),
       })),
     },
-    services: validateHomeServices(data.services),
+    services: {
+      ...validateHomeServices(data.services),
+      backgroundImage: getCmsAsset(data.services.backgroundImage),
+    },
     team: {
       ...data.team,
       backgroundImageSrc: getCmsAssetSrc(data.team.backgroundImage),

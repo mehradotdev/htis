@@ -4,4 +4,6 @@ theme: htis-theme
 darkTheme: htis-theme-dark
 favicon: /favicon.png
 contactAnchor: "#contact"
-
+globalToast:
+  enabled: true
+  message: We are currently under development. Some info might not be true.
