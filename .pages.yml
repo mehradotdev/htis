@@ -838,9 +838,25 @@ content:
               - name: date
                 type: string
                 required: true
-              - name: image
+              - name: thumbnail
+                label: Display thumbnail
                 type: image
                 required: true
+              - name: images
+                label: Popup carousel photos
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{alt}'
+                fields:
+                  - name: image
+                    type: image
+                    required: true
+                  - name: alt
+                    label: Image alt
+                    type: string
+                    required: true
 
       - name: telecom
         label: Telecom

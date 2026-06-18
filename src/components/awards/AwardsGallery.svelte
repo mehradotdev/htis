@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ChevronDown, ChevronUp, Calendar } from '@lucide/svelte';
+  import { Calendar, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, X } from '@lucide/svelte';
   import { tick } from 'svelte';
 
   type ItemType = 'award' | 'certificate';
@@ -10,7 +10,11 @@
     title: string;
     organization: string;
     date: string;
-    src: string;
+    thumbnailSrc: string;
+    images: Array<{
+      src: string;
+      alt: string;
+    }>;
   }
 
   let { items = [] }: { items: AwardItem[] } = $props();
@@ -21,10 +25,11 @@
   let animDirection = $state<'down' | 'up'>('down');
   let gridEl = $state<HTMLDivElement>();
   let selectedItem = $state<AwardItem | null>(null);
+  let selectedImageIndex = $state(0);
   let dialogEl = $state<HTMLDialogElement>();
 
   $effect(() => {
-    animKey; // subscribe
+    animKey;
     tick().then(() => {
       if (!gridEl) return;
       gridEl.style.animation = 'none';
@@ -49,7 +54,7 @@
   const visibleItems = $derived.by(() => {
     const res = [];
     const len = filteredItems.length;
-    // Show 6 items (2 rows of 3)
+
     for (let i = 0; i < 6; i++) {
       if (len > 0) {
         res.push(filteredItems[(startIndex + i) % len]);
@@ -78,13 +83,45 @@
     startIndex = (startIndex + 3) % filteredItems.length;
     animKey++;
   }
+
+  function openItem(item: AwardItem) {
+    selectedItem = item;
+    selectedImageIndex = 0;
+  }
+
+  function closeItem() {
+    selectedItem = null;
+    selectedImageIndex = 0;
+  }
+
+  function showPreviousImage() {
+    if (!selectedItem?.images.length) return;
+    selectedImageIndex =
+      (selectedImageIndex - 1 + selectedItem.images.length) % selectedItem.images.length;
+  }
+
+  function showNextImage() {
+    if (!selectedItem?.images.length) return;
+    selectedImageIndex = (selectedImageIndex + 1) % selectedItem.images.length;
+  }
+
+  function handleDialogKeydown(event: KeyboardEvent) {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      showPreviousImage();
+    }
+
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      showNextImage();
+    }
+  }
 </script>
 
-<div class="flex flex-col gap-4 max-w-6xl mx-auto">
-  <!-- Tabs -->
+<div class="mx-auto flex max-w-6xl flex-col gap-3">
   <div class="flex border-b border-base-300">
     <button
-      class="px-8 py-3 text-base font-medium transition-colors relative cursor-pointer {activeTab ===
+      class="relative cursor-pointer px-6 py-2.5 text-sm font-semibold transition-colors sm:px-8 {activeTab ===
       'all'
         ? 'text-primary'
         : 'text-base-content/60 hover:text-base-content'}"
@@ -92,11 +129,11 @@
     >
       All
       {#if activeTab === 'all'}
-        <div class="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-primary"></div>
+        <div class="absolute right-0 bottom-[-1px] left-0 h-0.5 bg-primary"></div>
       {/if}
     </button>
     <button
-      class="px-8 py-3 text-base font-medium transition-colors relative cursor-pointer {activeTab ===
+      class="relative cursor-pointer px-6 py-2.5 text-sm font-semibold transition-colors sm:px-8 {activeTab ===
       'award'
         ? 'text-primary'
         : 'text-base-content/60 hover:text-base-content'}"
@@ -104,11 +141,11 @@
     >
       Awards
       {#if activeTab === 'award'}
-        <div class="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-primary"></div>
+        <div class="absolute right-0 bottom-[-1px] left-0 h-0.5 bg-primary"></div>
       {/if}
     </button>
     <button
-      class="px-8 py-3 text-base font-medium transition-colors relative cursor-pointer {activeTab ===
+      class="relative cursor-pointer px-6 py-2.5 text-sm font-semibold transition-colors sm:px-8 {activeTab ===
       'certificate'
         ? 'text-primary'
         : 'text-base-content/60 hover:text-base-content'}"
@@ -116,36 +153,34 @@
     >
       Certificates
       {#if activeTab === 'certificate'}
-        <div class="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-primary"></div>
+        <div class="absolute right-0 bottom-[-1px] left-0 h-0.5 bg-primary"></div>
       {/if}
     </button>
   </div>
 
-  <!-- Grid -->
-  <div
-    bind:this={gridEl}
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4"
-  >
+  <div bind:this={gridEl} class="grid grid-cols-1 gap-x-5 gap-y-3 md:grid-cols-2 lg:grid-cols-3">
     {#each visibleItems as item}
       <button
-        class="bg-base-100 rounded-xl shadow-xs border border-base-200 overflow-hidden cursor-pointer hover:shadow-md hover:border-primary/20 transition-all duration-300 flex flex-col text-left w-full outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-        onclick={() => selectedItem = item}
+        class="flex w-full cursor-pointer flex-col overflow-hidden rounded-lg border border-base-200 bg-base-100 text-left shadow-xs outline-hidden transition-all duration-300 hover:border-primary/20 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        onclick={() => openItem(item)}
         aria-haspopup="dialog"
       >
-        <div class="p-2.5 pb-0 w-full">
+        <div class="w-full p-2 pb-0">
           <img
-            src={item.src}
+            src={item.thumbnailSrc}
             alt={item.title}
-            class="w-full aspect-square object-cover rounded-lg bg-base-200/30 transition-transform duration-500 hover:scale-[1.02]"
+            class="aspect-[16/10] w-full rounded-md bg-base-200/30 object-cover transition-transform duration-500 hover:scale-[1.02]"
           />
         </div>
-        <div class="px-3 pt-3 pb-3 flex-1 flex flex-col justify-between">
+        <div class="flex flex-1 flex-col justify-between px-3 pt-2.5 pb-2.5">
           <div>
-            <h3 class="text-sm font-bold text-base-content leading-snug line-clamp-2">{item.title}</h3>
-            <p class="text-primary font-medium text-xs mt-1">{item.organization}</p>
+            <h3 class="line-clamp-2 text-sm leading-snug font-bold text-base-content">
+              {item.title}
+            </h3>
+            <p class="mt-0.5 text-xs font-semibold text-primary">{item.organization}</p>
           </div>
-          <div class="flex items-center text-base-content/50 text-xs font-medium mt-3">
-            <Calendar size={14} class="mr-1.5" />
+          <div class="mt-2 flex items-center text-xs font-medium text-base-content/50">
+            <Calendar size={13} class="mr-1.5" />
             {item.date}
           </div>
         </div>
@@ -153,10 +188,9 @@
     {/each}
   </div>
 
-  <!-- Pagination / Navigation -->
-  <div class="flex justify-between items-center bg-base-200/60 rounded-xl p-2.5">
+  <div class="flex items-center justify-between rounded-lg bg-base-200/60 p-2">
     <button
-      class="btn btn-circle btn-sm bg-primary/20 text-primary hover:bg-primary/30 border-none cursor-pointer"
+      class="btn btn-circle btn-sm cursor-pointer border-none bg-primary/20 text-primary hover:bg-primary/30"
       onclick={goUp}
       aria-label="Go up a row"
     >
@@ -164,9 +198,9 @@
     </button>
 
     <div class="flex items-center gap-4">
-      <span class="text-base-content/60 font-medium">load more</span>
+      <span class="text-sm font-medium text-base-content/60">load more</span>
       <button
-        class="btn btn-circle btn-sm btn-primary border-none text-white hover:bg-primary/90 cursor-pointer"
+        class="btn btn-circle btn-sm btn-primary cursor-pointer border-none text-primary-content hover:bg-primary/90"
         onclick={goDown}
         aria-label="Go down a row"
       >
@@ -176,44 +210,74 @@
   </div>
 </div>
 
-<!-- Modal Popup for Full Image View -->
-<dialog bind:this={dialogEl} class="modal" onclose={() => selectedItem = null}>
+<dialog bind:this={dialogEl} class="modal" onclose={closeItem} onkeydown={handleDialogKeydown}>
   {#if selectedItem}
     <div
-      class="modal-box max-w-4xl bg-base-100 p-0 overflow-hidden relative flex flex-col items-center justify-center border border-base-300 shadow-2xl"
+      class="modal-box relative flex max-w-5xl flex-col items-center justify-center overflow-hidden border border-base-300 bg-base-100 p-0 shadow-2xl"
     >
       <button
-        class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3 z-50 text-base-content hover:bg-base-300/40 cursor-pointer"
-        onclick={() => selectedItem = null}
+        class="btn btn-circle btn-sm btn-ghost absolute top-3 right-3 z-50 cursor-pointer text-base-content hover:bg-base-300/40"
+        onclick={closeItem}
         aria-label="Close modal"
       >
-        ✕
+        <X size={18} />
       </button>
-      
-      <div class="w-full max-h-[70vh] md:max-h-[75vh] overflow-hidden flex items-center justify-center p-4 bg-black/5">
+
+      <div
+        class="relative flex max-h-[70vh] w-full items-center justify-center overflow-hidden bg-black/5 p-4 md:max-h-[75vh]"
+      >
+        {#if selectedItem.images.length > 1}
+          <button
+            class="btn btn-circle btn-sm absolute top-1/2 left-3 z-40 -translate-y-1/2 border-none bg-base-100/90 text-base-content shadow-md hover:bg-base-100"
+            onclick={showPreviousImage}
+            aria-label="Previous photo"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            class="btn btn-circle btn-sm absolute top-1/2 right-3 z-40 -translate-y-1/2 border-none bg-base-100/90 text-base-content shadow-md hover:bg-base-100"
+            onclick={showNextImage}
+            aria-label="Next photo"
+          >
+            <ChevronRight size={20} />
+          </button>
+        {/if}
+
         <img
-          src={selectedItem.src}
-          alt={selectedItem.title}
-          class="max-w-full max-h-[65vh] md:max-h-[70vh] object-contain rounded-md shadow-md"
+          src={selectedItem.images[selectedImageIndex]?.src}
+          alt={selectedItem.images[selectedImageIndex]?.alt}
+          class="max-h-[65vh] max-w-full rounded-md object-contain shadow-md md:max-h-[70vh]"
         />
       </div>
-      
-      <div class="w-full p-5 bg-base-200/70 border-t border-base-200 text-left">
-        <span class="badge badge-primary badge-outline text-[10px] font-semibold tracking-wider uppercase mb-2">
+
+      <div class="w-full border-t border-base-200 bg-base-200/70 p-4 text-left">
+        <span
+          class="badge badge-primary badge-outline mb-2 text-[10px] font-semibold tracking-wider uppercase"
+        >
           {selectedItem.type}
         </span>
-        <h3 class="text-lg font-bold text-base-content leading-snug">{selectedItem.title}</h3>
-        <p class="text-primary font-semibold text-xs mt-1">{selectedItem.organization}</p>
-        <div class="flex items-center text-base-content/60 text-xs font-medium mt-3.5">
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h3 class="text-base leading-snug font-bold text-base-content">
+              {selectedItem.title}
+            </h3>
+            <p class="mt-1 text-xs font-semibold text-primary">{selectedItem.organization}</p>
+          </div>
+          {#if selectedItem.images.length > 1}
+            <p class="text-xs font-medium text-base-content/50">
+              {selectedImageIndex + 1} / {selectedItem.images.length}
+            </p>
+          {/if}
+        </div>
+        <div class="mt-3 flex items-center text-xs font-medium text-base-content/60">
           <Calendar size={14} class="mr-2" />
           {selectedItem.date}
         </div>
       </div>
     </div>
-    
+
     <form method="dialog" class="modal-backdrop bg-black/60 backdrop-blur-xs">
-      <button onclick={() => selectedItem = null}>close</button>
+      <button onclick={closeItem}>close</button>
     </form>
   {/if}
 </dialog>
-

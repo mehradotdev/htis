@@ -12,9 +12,9 @@ import { awards } from '~/data/cms';
     <Navbar />
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-16">
+    <section class="relative pt-28 pb-10">
       <div class="container mx-auto px-6">
-        <div class="relative w-full overflow-hidden rounded-[2rem] bg-base-200">
+        <div class="relative w-full overflow-hidden rounded-3xl bg-base-200">
           <div class="absolute inset-0 z-0 opacity-80">
             <Image
               src={awards.hero.backgroundImage}
@@ -29,14 +29,14 @@ import { awards } from '~/data/cms';
           >
           </div>
           <div
-            class="relative z-10 w-full max-w-2xl px-8 py-16 md:px-12 lg:px-16 lg:py-24"
+            class="relative z-10 w-full max-w-2xl px-8 py-12 md:px-12 lg:px-16 lg:py-16"
           >
             <h1
-              class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-[54px]"
+              class="mb-4 text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-[54px]"
             >
               {awards.hero.title}
             </h1>
-            <p class="text-xl font-medium text-base-content/70">
+            <p class="text-lg font-medium text-base-content/70 md:text-xl">
               {awards.hero.subtitle}
             </p>
           </div>
@@ -45,7 +45,7 @@ import { awards } from '~/data/cms';
     </section>
 
     <!-- Gallery Section -->
-    <section class="pt-4 pb-8">
+    <section class="pt-2 pb-8">
       <div class="container mx-auto px-6">
         <AwardsGallery items={awards.items} client:load />
       </div>

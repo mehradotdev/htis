@@ -171,7 +171,11 @@ export interface AwardGalleryItem {
   title: string;
   organization: string;
   date: string;
-  src: string;
+  thumbnailSrc: string;
+  images: Array<{
+    src: string;
+    alt: string;
+  }>;
 }
 
 export interface SoftwarePortfolioItem {
@@ -343,7 +347,13 @@ interface AwardsYaml {
     title: string;
     organization: string;
     date: string;
-    image: string;
+    thumbnail?: string;
+    image?: string;
+    imageAlt?: string;
+    images?: Array<{
+      image: string;
+      alt: string;
+    }>;
   }>;
 }
 
@@ -722,14 +732,31 @@ export const awards: {
       ...data.hero,
       backgroundImage: getCmsAsset(data.hero.backgroundImage),
     },
-    items: data.items.map((item, index) => ({
-      id: index + 1,
-      type: item.type,
-      title: item.title,
-      organization: item.organization,
-      date: item.date,
-      src: getCmsAssetSrc(item.image),
-    })),
+    items: data.items.map((item, index) => {
+      const fallbackImage = item.image ?? item.thumbnail;
+      if (!fallbackImage) {
+        throw new Error(`Awards: "${item.title}" is missing a thumbnail or image.`);
+      }
+
+      const fallbackAlt = item.imageAlt ?? item.title;
+      const images = item.images?.length
+        ? item.images
+        : [{ image: fallbackImage, alt: fallbackAlt }];
+      const thumbnail = item.thumbnail ?? fallbackImage;
+
+      return {
+        id: index + 1,
+        type: item.type,
+        title: item.title,
+        organization: item.organization,
+        date: item.date,
+        thumbnailSrc: getCmsAssetSrc(thumbnail),
+        images: images.map((image) => ({
+          src: getCmsAssetSrc(image.image),
+          alt: image.alt,
+        })),
+      };
+    }),
   };
 })();
 
