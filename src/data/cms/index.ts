@@ -583,12 +583,35 @@ export const navigation = navigationYaml as {
   };
 };
 
+export interface OfficeItem {
+  name: string;
+  companyName: string;
+  address: string;
+  phone: string;
+  email: string;
+}
+
+export interface CountryItem {
+  name: string;
+  code: string;
+}
+
 export const footer = footerYaml as {
   logo: { image: string; alt: string };
   description: string;
-  sections: Array<{ heading: string; links: CmsLink[] }>;
+  company: { heading: string; links: CmsLink[] };
+  services: { heading: string; links: CmsLink[] };
   socials: { heading: string; links: Array<CmsLink & { icon: string }> };
   contact: { heading: string; phone: string; email: string };
+  offices: {
+    heading: string;
+    indiaFlagCode: string;
+    list: OfficeItem[];
+  };
+  globalPresence: {
+    heading: string;
+    countries: CountryItem[];
+  };
   copyright: string;
   legalLinks: CmsLink[];
 };

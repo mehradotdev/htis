@@ -3,49 +3,94 @@ logo:
   alt: HTIS Logo
 description: HTIS is a thriving community where innovators, professionals, and
   enthusiasts come together to share knowledge, collaborate, and grow.
-sections:
-  - heading: Services
-    links:
-      - label: Telecom
-        url: /telecom
-      - label: System Integration
-        url: /system-integration
-      - label: Software Development
-        url: /software
-      - label: Resource Management
-        url: /resourcing
-  - heading: Company
-    links:
-      - label: About us
-        url: /about
-      - label: Services
-        url: /#services
-      - label: Community
-        url: "/about"
-      - label: Testimonial
-        url: /#testimonials
+company:
+  heading: Company
+  links:
+    - label: About us
+      url: /about
+    - label: Services
+      url: /#services
+    - label: Community
+      url: "/about"
+    - label: Testimonial
+      url: /#testimonials
+services:
+  heading: Services
+  links:
+    - label: Telecom
+      url: /telecom
+    - label: System Integration
+      url: /system-integration
+    - label: Software Development
+      url: /software
+    - label: Resource Management
+      url: /resourcing
 socials:
   heading: Socials
   links:
-    - label: Twitter
-      url: https://x.com/Htis_Telecom
-      icon: Twitter
-    - label: Instagram
-      url: https://www.instagram.com/htis_telecom/
-      icon: Instagram
-    - label: LinkedIn
-      url: https://www.linkedin.com/company/htis-telecom/
-      icon: LinkedIn
     - label: Facebook
       url: https://www.facebook.com/htistelecomindia
       icon: Facebook
+    - label: Instagram
+      url: https://www.instagram.com/htis_telecom/
+      icon: Instagram
     - label: Youtube
       url: https://www.youtube.com/@HTISTelecom
       icon: Youtube
+    - label: Twitter
+      url: https://x.com/Htis_Telecom
+      icon: Twitter
+    - label: LinkedIn
+      url: https://www.linkedin.com/company/htis-telecom/
+      icon: LinkedIn
 contact:
   heading: Contact
-  phone: +91 86999 54005
-  email: info@htis.com
+  phone: "+91 9871312345"
+  email: Info@htis.in
+offices:
+  heading: Our offices
+  indiaFlagCode: in
+  list:
+    - name: Mohali
+      companyName: HTIS Telecom Private Limited
+      address: E 94, First Floor, Eltop Area, Phase 8 Industrial Area, Mohali - 160055, Punjab, India
+      phone: 0172-5096134
+      email: info@htis.in
+    - name: Chennai
+      companyName: HTIS Telecom Private Limited
+      address: New No. 24, 2nd Floor, Canal Bank Road, Chennai - 600028, Tamil Nadu, India
+      phone: 044-24956789
+      email: chennai@htis.in
+    - name: Shimla
+      companyName: HTIS Telecom Private Limited
+      address: Block No. 24, SDA Complex, Kasumpti, Shimla - 171009, Himachal Pradesh, India
+      phone: 0177-2621234
+      email: shimla@htis.in
+    - name: Mumbai
+      companyName: HTIS Telecom Private Limited
+      address: Suite 508, 5th Floor, Sahar Plaza, Andheri East, Mumbai - 400059, Maharashtra, India
+      phone: 022-66954321
+      email: mumbai@htis.in
+    - name: Gurgaon
+      companyName: HTIS Telecom Private Limited
+      address: 4th Floor, DLF Cyber City, Phase III, Gurgaon - 122002, Haryana, India
+      phone: 0124-4059876
+      email: gurgaon@htis.in
+globalPresence:
+  heading: Global presence
+  countries:
+    - name: UAE
+      code: ae
+    - name: UK
+      code: gb
+    - name: South Africa
+      code: za
+    - name: Sri Lanka
+      code: lk
+    - name: Bangladesh
+      code: bd
+    - name: Nigeria
+      code: ng
 copyright: © 2026. All rights reserved.
 legalLinks:
   - label: Privacy Policy
