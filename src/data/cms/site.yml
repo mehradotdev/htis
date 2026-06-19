@@ -3,7 +3,7 @@ language: en
 defaultTheme: system default
 favicon: src/assets/favicon.png
 seo:
-  description: HTIS delivers telecom infrastructure, system integration, software development, and resource management solutions for enterprises and public-sector organizations.
+  description: HTIS delivers telecom infrastructure, system integration, software development, and resource management solutions.
   siteUrl: https://htis.in
   siteName: HTIS
   ogImage: src/assets/og_image.png

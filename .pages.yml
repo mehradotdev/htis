@@ -231,13 +231,9 @@ content:
           - name: description
             type: text
             required: true
-          - name: sections
+          - name: company
             type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: '{heading}'
-            fields:
+            fields: &footer_section_fields
               - name: heading
                 type: string
                 required: true
@@ -254,6 +250,9 @@ content:
                   - name: url
                     type: string
                     required: true
+          - name: services
+            type: object
+            fields: *footer_section_fields
           - name: socials
             type: object
             fields:
@@ -277,7 +276,7 @@ content:
                     type: select
                     required: true
                     options:
-                      values: [Twitter, Instagram, LinkedIn]
+                      values: [Facebook, Instagram, Youtube, Twitter, LinkedIn]
           - name: contact
             type: object
             fields:
@@ -290,6 +289,61 @@ content:
               - name: email
                 type: string
                 required: true
+          - name: offices
+            label: Offices
+            type: object
+            fields:
+              - name: heading
+                type: string
+                required: true
+              - name: indiaFlagCode
+                label: India flag code
+                type: string
+                required: true
+              - name: list
+                label: Office list
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{name}'
+                fields:
+                  - name: name
+                    type: string
+                    required: true
+                  - name: companyName
+                    label: Company name
+                    type: string
+                    required: true
+                  - name: address
+                    type: text
+                    required: true
+                  - name: phone
+                    type: string
+                    required: true
+                  - name: email
+                    type: string
+                    required: true
+          - name: globalPresence
+            label: Global presence
+            type: object
+            fields:
+              - name: heading
+                type: string
+                required: true
+              - name: countries
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{name}'
+                fields:
+                  - name: name
+                    type: string
+                    required: true
+                  - name: code
+                    type: string
+                    required: true
           - name: copyright
             type: string
             required: true
