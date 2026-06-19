@@ -256,9 +256,6 @@ content:
           - name: socials
             type: object
             fields:
-              - name: heading
-                type: string
-                required: true
               - name: links
                 type: object
                 list:
@@ -1481,8 +1478,8 @@ content:
           field: create
         view:
           primary: title
-          fields: [title, slug, shortTitle]
-          sort: [title, slug]
+          fields: [navOrder, title, slug, shortTitle]
+          sort: [navOrder, title, slug]
         fields:
           - name: slug
             type: string
@@ -1496,6 +1493,10 @@ content:
           - name: shortTitle
             type: string
             required: true
+          - name: navOrder
+            label: Navbar order
+            type: number
+            required: false
           - name: summary
             type: text
             required: true

@@ -1,6 +1,7 @@
 slug: healthcare-education
 title: Healthcare & Education
 shortTitle: Healthcare & Edu
+navOrder: 5
 summary: Hospitals and academic institutions
 heroSubtitle: Bridging distances with high-capacity telemedicine networks, cloud-managed clinical platforms, and interactive smart classroom environments.
 iconName: HeartPulse

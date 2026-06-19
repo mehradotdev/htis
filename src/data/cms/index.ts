@@ -70,6 +70,7 @@ export interface IndustryData {
   slug: string;
   title: string;
   shortTitle: string;
+  navOrder?: number;
   summary: string;
   heroSubtitle: string;
   iconName: string;
@@ -601,7 +602,7 @@ export const footer = footerYaml as {
   description: string;
   company: { heading: string; links: CmsLink[] };
   services: { heading: string; links: CmsLink[] };
-  socials: { heading: string; links: Array<CmsLink & { icon: string }> };
+  socials: { links: Array<CmsLink & { icon: string }> };
   contact: { heading: string; phone: string; email: string };
   offices: {
     heading: string;
@@ -935,32 +936,18 @@ export const privacy = privacyYaml as PrivacyYaml;
 
 export const jobs = jobsYaml as JobsYaml;
 
-export const industriesData = Object.values(industryModules).sort((a, b) =>
-  a.slug.localeCompare(b.slug),
+export const industriesData = Object.values(industryModules).sort(
+  (a, b) =>
+    (a.navOrder ?? Number.MAX_SAFE_INTEGER) - (b.navOrder ?? Number.MAX_SAFE_INTEGER) ||
+    a.title.localeCompare(b.title) ||
+    a.slug.localeCompare(b.slug),
 );
 
 export const caseStudiesData = Object.values(caseStudyModules)
   .sort((a, b) => a.slug.localeCompare(b.slug))
   .map((study, index) => ({ ...study, id: index }));
 
-const industryOrder = [
-  'telcos-and-isps',
-  'public-sector-ministries-defence',
-  'bfsi',
-  'manufacturing-automobile-fmcg',
-  'healthcare-education',
-  'real-estate-infrastructure-smart-spaces',
-];
-
-export const orderedIndustriesData = [...industriesData].sort((a, b) => {
-  const aIndex = industryOrder.indexOf(a.slug);
-  const bIndex = industryOrder.indexOf(b.slug);
-
-  return (
-    (aIndex === -1 ? Number.MAX_SAFE_INTEGER : aIndex) -
-      (bIndex === -1 ? Number.MAX_SAFE_INTEGER : bIndex) || a.title.localeCompare(b.title)
-  );
-});
+export const orderedIndustriesData = industriesData;
 
 export const industryNavItems: CmsNavItem[] = orderedIndustriesData.map((industry) => ({
   title: industry.title,

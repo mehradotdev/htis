@@ -1,6 +1,7 @@
 slug: bfsi
 title: BFSI (Banking, Financial Services & Insurance)
 shortTitle: Banking
+navOrder: 3
 summary: Banking and financial services
 heroSubtitle: Driving ultra-secure digital banking transformation with zero-trust networking, low-latency transaction routing, and high-availability backup systems.
 iconName: Building2

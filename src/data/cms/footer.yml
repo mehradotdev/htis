@@ -26,7 +26,6 @@ services:
     - label: Resource Management
       url: /resourcing
 socials:
-  heading: Socials
   links:
     - label: Facebook
       url: https://www.facebook.com/htistelecomindia

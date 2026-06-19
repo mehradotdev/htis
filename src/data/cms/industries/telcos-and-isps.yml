@@ -1,6 +1,7 @@
 slug: telcos-and-isps
 title: Telcos and ISPs
 shortTitle: Telecom
+navOrder: 1
 summary: Network providers and ISPs
 heroSubtitle: Powering national-scale connectivity with high-capacity optical backhaul, virtualized cores, and robust active/passive infrastructure.
 iconName: RadioTower
