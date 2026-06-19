@@ -528,10 +528,15 @@ const caseStudyModules = import.meta.glob<CaseStudyData>('./case-studies/*.yml',
 export const site = siteYaml as {
   defaultTitle: string;
   language: string;
-  theme: string;
-  darkTheme: string;
+  defaultTheme: 'light' | 'dark' | 'system default';
   favicon: string;
-  contactAnchor: string;
+  seo: {
+    description: string;
+    siteUrl: string;
+    siteName: string;
+    ogImage: string;
+    robots: string;
+  };
   globalToast: {
     enabled: boolean;
     message: string;

@@ -24,19 +24,40 @@ content:
           - name: language
             type: string
             required: true
-          - name: theme
-            type: string
+          - name: defaultTheme
+            label: Default theme
+            type: select
             required: true
-          - name: darkTheme
-            type: string
-            required: true
+            options:
+              values: [light, dark, system default]
           - name: favicon
-            type: string
+            label: Favicon image
+            type: image
             required: true
-          - name: contactAnchor
-            label: Contact anchor
-            type: string
-            required: true
+          - name: seo
+            label: SEO defaults
+            type: object
+            fields:
+              - name: description
+                label: Meta description
+                type: text
+                required: true
+              - name: siteUrl
+                label: Site URL
+                type: string
+                required: true
+              - name: siteName
+                label: Site name
+                type: string
+                required: true
+              - name: ogImage
+                label: Open Graph image
+                type: image
+                required: true
+              - name: robots
+                label: Robots directive
+                type: string
+                required: true
           - name: globalToast
             label: Global site toast
             type: object
