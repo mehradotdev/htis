@@ -31,7 +31,6 @@ partnerEcosystem:
           logo: src/assets/lenovo.webp
         - name: MSi
           logo: src/assets/oip-3.webp
-        - name: Apple (Enterprise)
     - title: Networking & Fabric
       subtitle: Active Switches, Routers, Wireless, SD-WAN
       description: High-performance, secure and scalable network infrastructure that
