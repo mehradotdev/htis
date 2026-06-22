@@ -410,15 +410,14 @@ team:
 footprint:
   heading: Global Footprint
   metrics:
-    - value: "40"
+    - value: "8"
       suffix: +
-      label: Global Markets Served
-    - value: "310"
+      label: Countries Served
+    - value: "28"
       suffix: +
-      label: Operational Cities Across India
-    - value: "25"
-      suffix: +
-      label: Regional Offices
+      label: States & Union Territories Served
+    - value: Pan-India
+      label: Delivery Network
   globe:
     ariaLabel: Interactive globe showing HTIS office locations
     markers:
