@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
+import Contact from '~/components/Contact.astro';
 import TelecomCapabilities from '~/components/telecom/TelecomCapabilities.svelte';
 import TelecomExtraSections from '~/components/telecom/TelecomExtraSections.astro';
 
@@ -98,7 +99,10 @@ import { telecom } from '~/data/cms';
     <TelecomExtraSections />
 
     <div class="bg-base-200/50">
-      <Footer />
+      <div class="pt-0">
+        <Contact />
+        <Footer overlap={true} />
+      </div>
     </div>
   </div>
 </Layout>

@@ -37,11 +37,11 @@ const { eyebrow, heading, ctaLabel, ctaUrl, posts } = Astro.props;
     </div>
 
     <!-- LinkedIn embeds -->
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div class="articles-scroll-container flex gap-6 overflow-x-auto pb-6 scroll-smooth snap-x snap-mandatory">
       {
         posts.map((post, i) => (
           <div
-            class="li-embed-wrapper relative overflow-hidden rounded-xl"
+            class="li-embed-wrapper relative overflow-hidden rounded-xl w-[85vw] sm:w-[380px] md:w-[400px] shrink-0 snap-start"
             style={`min-height:${post.height}px;`}
           >
             {/* Fallback card - shown by default, hidden via JS once iframe loads */}

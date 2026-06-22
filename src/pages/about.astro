@@ -4,6 +4,7 @@ import { CircleCheck } from '@lucide/astro';
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
+import Contact from '~/components/Contact.astro';
 import AboutTeam from '~/components/AboutTeam.svelte';
 import { about } from '~/data/cms';
 ---
@@ -37,7 +38,8 @@ import { about } from '~/data/cms';
         <h1
           class="mb-6 text-4xl leading-tight font-extrabold tracking-tight text-base-content md:text-5xl lg:text-[56px]"
         >
-          {about.hero.title} <span class="text-primary">{about.hero.highlight}</span>
+          {about.hero.title}
+          <span class="text-primary">{about.hero.highlight}</span>
         </h1>
         <p
           class="mx-auto mb-10 max-w-2xl text-lg leading-relaxed font-medium text-base-content/85 md:text-xl"
@@ -131,7 +133,8 @@ import { about } from '~/data/cms';
             <h2
               class="text-3xl font-extrabold tracking-tight text-base-content md:text-4xl"
             >
-              {about.lifeAtHtis.title} <span class="text-primary">{about.lifeAtHtis.highlight}</span>
+              {about.lifeAtHtis.title}
+              <span class="text-primary">{about.lifeAtHtis.highlight}</span>
             </h2>
             <div class="h-1.5 w-20 rounded-full bg-primary"></div>
             {
@@ -160,7 +163,7 @@ import { about } from '~/data/cms';
     </section>
 
     <!-- Section: Team Section -->
-  <AboutTeam team={about.team.members} client:visible />
+    <AboutTeam team={about.team.members} client:visible />
 
     <!-- Section 4: Principles Section -->
     <section class="bg-base-200/50 py-16 md:py-24">
@@ -218,7 +221,10 @@ import { about } from '~/data/cms';
 
     <!-- Footer block -->
     <div class="bg-base-200/50">
-      <Footer />
+      <div class="pt-0">
+        <Contact />
+        <Footer overlap={true} />
+      </div>
     </div>
   </div>
 </Layout>

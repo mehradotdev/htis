@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
+import Contact from '~/components/Contact.astro';
 import { caseStudiesData, type CaseStudyData } from '~/data/cms';
 import heroBg from '~/assets/industry-hero-bg.png';
 import teamBg from '~/assets/team-member-bg.png';
@@ -540,7 +541,10 @@ const { study } = Astro.props as { study: CaseStudyData };
 
     <!-- Footer Block -->
     <div class="mt-auto bg-base-200/50">
-      <Footer />
+      <div class="pt-8 md:pt-16">
+        <Contact />
+        <Footer overlap={true} />
+      </div>
     </div>
   </div>
 </Layout>

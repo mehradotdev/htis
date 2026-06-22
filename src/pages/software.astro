@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
+import Contact from '~/components/Contact.astro';
 import SoftwarePortfolio from '~/components/software/SoftwarePortfolio.svelte';
 import SoftwareEngineeringStack from '~/components/software/SoftwareEngineeringStack.astro';
 import SoftwareArchitecturalPrinciples from '~/components/software/SoftwareArchitecturalPrinciples.svelte';
@@ -245,7 +246,10 @@ const iconMap = { RadioTower, Server, Users };
 
     <!-- Footer Section -->
     <div class="bg-base-200/50">
-      <Footer />
+      <div class="pt-8 md:pt-16">
+        <Contact />
+        <Footer overlap={true} />
+      </div>
     </div>
   </div>
 </Layout>

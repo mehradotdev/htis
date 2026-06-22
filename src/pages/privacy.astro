@@ -2,6 +2,7 @@
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
+import Contact from '~/components/Contact.astro';
 import { privacy } from '~/data/cms';
 ---
 
@@ -149,8 +150,9 @@ import { privacy } from '~/data/cms';
       </div>
     </main>
 
-    <div class="bg-base-200/50">
-      <Footer />
+    <div class="pt-16 md:pt-24">
+      <Contact />
+      <Footer overlap={true} />
     </div>
   </div>
 </Layout>

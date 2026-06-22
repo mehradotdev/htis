@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
+import Contact from '~/components/Contact.astro';
 import ResourcingCapabilities from '~/components/resourcing/ResourcingCapabilities.astro';
 
 import ResourcingExtraSections from '~/components/resourcing/ResourcingExtraSections.astro';
@@ -93,8 +94,11 @@ import { resourcing } from '~/data/cms';
 
     <ResourcingExtraSections />
 
-    <div class="bg-base-200/50">
-      <Footer />
+    <div class="bg-base-200/40">
+      <div class="pt-8 md:pt-16">
+        <Contact />
+        <Footer overlap={true} />
+      </div>
     </div>
   </div>
 </Layout>

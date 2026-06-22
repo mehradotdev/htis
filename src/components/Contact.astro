@@ -71,34 +71,44 @@ const contactFormPostUrl = JSON.stringify(contactForm.postUrl);
   }`}
 >
   <div
-    class="flex flex-col rounded-t-3xl bg-[#2a453d] p-6 shadow-xl md:flex-row md:rounded-3xl md:px-10 md:py-6"
+    class="relative flex flex-col overflow-visible rounded-t-3xl bg-[#2a453d] p-6 shadow-xl md:flex-row md:rounded-3xl md:px-10 md:py-6"
   >
-    <!-- Image Side -->
+    <!-- Desktop ONLY absolute wrapper for clipping card edges -->
     <div
-      class="relative flex min-h-[220px] items-end justify-center md:min-h-full md:w-5/12 md:justify-start"
+      class="z-10 hidden md:pointer-events-none md:absolute md:bottom-0 md:left-0 md:block md:h-[calc(100%+180px)] md:w-full md:overflow-hidden md:rounded-3xl"
     >
       <Image
         src={customerSupportImg}
         alt="Customer Support"
-        class="absolute -bottom-6 z-10 h-auto w-[90%] max-w-[400px] object-contain md:-bottom-6 md:-left-8 md:w-[140%] md:max-w-[600px] lg:-left-12 lg:w-[150%]"
+        class="absolute object-contain md:-bottom-8 md:-left-8 md:w-[150%] md:max-w-[680px] lg:-left-12 lg:w-[160%] lg:max-w-[680px] xl:max-w-[760px]"
+      />
+    </div>
+
+    <!-- Desktop placeholder to push Form Side to the right -->
+    <div class="pointer-events-none hidden md:block md:w-5/12"></div>
+
+    <!-- Mobile ONLY image container -->
+    <div class="relative -mt-16 block flex w-full justify-center sm:-mt-20 md:hidden">
+      <Image
+        src={customerSupportImg}
+        alt="Customer Support"
+        class="relative z-10 h-auto w-[90%] max-w-[340px] object-contain"
       />
     </div>
 
     <!-- Form Side -->
-    <div class="z-20 mt-48 pt-4 md:mt-0 md:w-7/12 md:pt-0">
+    <div class="z-20 mt-6 pt-0 md:mt-0 md:w-7/12 md:pt-0">
       <h2 class="mb-6 text-2xl font-bold text-white md:text-[28px] md:leading-tight">
         Have a question or need assistance? Send us a message.
       </h2>
 
-      <form
-        id="contact-form"
-        class="space-y-4"
-        @submit.prevent="submitForm"
-      >
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <form id="contact-form" class="space-y-4" @submit.prevent="submitForm">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
           <!-- Full Name -->
           <div class="relative w-full">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <div
+              class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+            >
               <User class="h-5 w-5 text-white/50" />
             </div>
             <input
@@ -107,35 +117,16 @@ const contactFormPostUrl = JSON.stringify(contactForm.postUrl);
               placeholder="Full Name"
               required
               x-model="fullName"
-              class="input input-bordered h-11 w-full border-white/30 bg-transparent pl-10 text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+              class="input-bordered input h-11 w-full border-white/30 bg-transparent pl-10 text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
               style="color: white; border-color: rgba(255, 255, 255, 0.3); background-color: transparent;"
             />
           </div>
 
-          <!-- Phone Number -->
-          <div class="relative w-full">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <Phone class="h-5 w-5 text-white/50" />
-            </div>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number (10 digits)"
-              required
-              x-model="phone"
-              x-on:input="validatePhone"
-              pattern="[0-9]{10}"
-              maxlength="10"
-              class="input input-bordered h-11 w-full border-white/30 bg-transparent pl-10 text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
-              style="color: white; border-color: rgba(255, 255, 255, 0.3); background-color: transparent;"
-            />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           <!-- Email ID -->
           <div class="relative w-full">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <div
+              class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+            >
               <Mail class="h-5 w-5 text-white/50" />
             </div>
             <input
@@ -144,33 +135,58 @@ const contactFormPostUrl = JSON.stringify(contactForm.postUrl);
               placeholder="Email ID"
               required
               x-model="email"
-              class="input input-bordered h-11 w-full border-white/30 bg-transparent pl-10 text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+              class="input-bordered input h-11 w-full border-white/30 bg-transparent pl-10 text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
               style="color: white; border-color: rgba(255, 255, 255, 0.3); background-color: transparent;"
             />
           </div>
 
-          <!-- Category List -->
+          <!-- Phone Number -->
           <div class="relative w-full">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <Briefcase class="h-5 w-5 text-white/50" />
-            </div>
-            <select
-              name="category"
-              required
-              x-model="category"
-              :style="category === '' ? 'color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.3); background-color: transparent;' : 'color: white; border-color: rgba(255,255,255,0.3); background-color: transparent;'"
-              class="select select-bordered h-11 min-h-[44px] w-full border-white/30 bg-transparent pl-10 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+            <div
+              class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
             >
-              <option value="" disabled selected style="background-color: #2a453d; color: rgba(255, 255, 255, 0.5);">Select Category</option>
-              {
-                contactForm.categories.map((category) => (
-                  <option value={category} style="background-color: #2a453d; color: white;">
-                    {category}
-                  </option>
-                ))
-              }
-            </select>
+              <Phone class="h-5 w-5 text-white/50" />
+            </div>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              required
+              x-model="phone"
+              x-on:input="validatePhone"
+              pattern="[0-9]{10}"
+              maxlength="10"
+              class="input-bordered input h-11 w-full border-white/30 bg-transparent pl-10 text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+              style="color: white; border-color: rgba(255, 255, 255, 0.3); background-color: transparent;"
+            />
           </div>
+        </div>
+
+        <!-- Category List -->
+        <div class="relative w-full">
+          <div
+            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+          >
+            <Briefcase class="h-5 w-5 text-white/50" />
+          </div>
+          <select
+            name="category"
+            required
+            x-model="category"
+            :style="category === '' ? 'color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.3); background-color: #2a453d;' : 'color: white; border-color: rgba(255,255,255,0.3); background-color: #2a453d;'"
+            class="select-bordered select h-11 min-h-[44px] w-full border-white/30 bg-[#2a453d] pl-10 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+          >
+            <option value="" disabled selected style="color: rgba(255, 255, 255, 0.5);"
+              >Select Category</option
+            >
+            {
+              contactForm.categories.map((category) => (
+                <option value={category} style="color: white;">
+                  {category}
+                </option>
+              ))
+            }
+          </select>
         </div>
 
         <!-- Message -->
@@ -183,7 +199,7 @@ const contactFormPostUrl = JSON.stringify(contactForm.postUrl);
             required
             x-model="message"
             rows="4"
-            class="textarea textarea-bordered w-full border-white/30 bg-transparent pl-10 pt-2.5 text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none min-h-[100px]"
+            class="textarea-bordered textarea min-h-[100px] w-full border-white/30 bg-transparent pt-2.5 pl-10 text-white placeholder:text-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
             placeholder="Your Message"
             style="color: white; border-color: rgba(255, 255, 255, 0.3); background-color: transparent;"
           ></textarea>
@@ -193,14 +209,19 @@ const contactFormPostUrl = JSON.stringify(contactForm.postUrl);
         <button
           type="submit"
           :disabled="isSubmitting"
-          class="btn mx-auto mt-4 flex w-full items-center justify-center gap-2 rounded-xl border-none font-bold md:w-2/3 h-12"
+          class="btn mx-auto mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl border-none font-bold md:w-2/3"
           style="background-color: #00B970; color: white;"
         >
-          <span x-show="isSubmitting" class="loading loading-spinner loading-sm text-white" style="display: none;"></span>
+          <span
+            x-show="isSubmitting"
+            class="loading loading-sm loading-spinner text-white"
+            style="display: none;"></span>
           <span x-show="!isSubmitting" class="flex items-center gap-2">
             <Send class="h-4 w-4 text-white" />
           </span>
-          <span x-text="isSubmitting ? 'Sending...' : 'Submit'" class="text-white">Submit</span>
+          <span x-text="isSubmitting ? 'Sending...' : 'Submit'" class="text-white"
+            >Submit</span
+          >
         </button>
       </form>
     </div>
@@ -215,23 +236,43 @@ const contactFormPostUrl = JSON.stringify(contactForm.postUrl);
     x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100 translate-y-0"
     x-transition:leave-end="opacity-0 translate-y-4"
-    class="toast toast-end toast-bottom fixed z-50 p-4"
+    class="toast fixed toast-end toast-bottom z-50 p-4"
     style="display: none;"
   >
-    <div :class="toastType === 'success' ? 'alert alert-success shadow-lg' : 'alert alert-error shadow-lg'" class="flex items-center gap-2">
+    <div
+      :class="toastType === 'success' ? 'alert alert-success shadow-lg' : 'alert alert-error shadow-lg'"
+      class="flex items-center gap-2"
+    >
       <template x-if="toastType === 'success'">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current text-white" fill="none" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 shrink-0 stroke-current text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
       </template>
       <template x-if="toastType === 'error'">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current text-white" fill="none" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 shrink-0 stroke-current text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
         </svg>
       </template>
-      <span class="text-white font-medium" x-text="toastMessage"></span>
+      <span class="font-medium text-white" x-text="toastMessage"></span>
     </div>
   </div>
 </section>
-
-
