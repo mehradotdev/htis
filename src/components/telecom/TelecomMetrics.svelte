@@ -1,7 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  const metrics = [
+  interface TelecomMetric {
+    target: number;
+    isFloat?: boolean;
+    unit?: string;
+    suffix?: string;
+    label: string;
+    subLabel?: string;
+  }
+
+  const defaultMetrics: TelecomMetric[] = [
     {
       target: 1.2,
       isFloat: true,
@@ -44,9 +53,17 @@
     },
   ];
 
-  let currentValues = $state(metrics.map(() => 0));
+  let { metrics = defaultMetrics }: { metrics?: TelecomMetric[] } = $props();
+
+  let currentValues = $state<number[]>([]);
   let sectionRef: HTMLElement;
   let isVisible = false;
+
+  $effect(() => {
+    if (!isVisible && currentValues.length !== metrics.length) {
+      currentValues = metrics.map(() => 0);
+    }
+  });
 
   onMount(() => {
     const observer = new IntersectionObserver(
@@ -69,6 +86,8 @@
   });
 
   function animateValues() {
+    currentValues = metrics.map(() => 0);
+
     const duration = 2000;
     const steps = 60;
     const interval = duration / steps;

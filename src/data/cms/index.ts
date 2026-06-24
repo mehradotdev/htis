@@ -385,6 +385,36 @@ interface ExecutionYaml {
   pillars: ExecutionPillarYaml[];
 }
 
+interface TelecomMetricYaml {
+  target: number;
+  isFloat?: boolean;
+  unit?: string;
+  suffix?: string;
+  label: string;
+  subLabel?: string;
+}
+
+interface TelecomProcessYaml {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  details: Array<{
+    name: string;
+    desc: string;
+  }>;
+}
+
+interface TelecomDeploymentYaml {
+  title: string;
+  description: string;
+  badges: string[];
+}
+
+interface TelecomExecutionYaml extends ExecutionYaml {
+  metrics: TelecomMetricYaml[];
+}
+
 interface PartnerTabYaml {
   title: string;
   subtitle: string;
@@ -406,8 +436,27 @@ interface TelecomYaml {
     backgroundImage: string;
     heading: string;
     description: string;
-    images: string[];
+    items: Array<{
+      id: string;
+      label: string;
+      shortLabel?: string;
+      image: string;
+      items: Array<{
+        title: string;
+        desc: string;
+      }>;
+    }>;
   };
+  processes: {
+    heading: string;
+    items: TelecomProcessYaml[];
+  };
+  deployments: {
+    heading: string;
+    description: string;
+    items: TelecomDeploymentYaml[];
+  };
+  execution: TelecomExecutionYaml;
 }
 
 interface SystemIntegrationYaml {
@@ -860,8 +909,19 @@ export const telecom = (() => {
     capabilities: {
       ...data.capabilities,
       backgroundImage: getCmsAsset(data.capabilities.backgroundImage),
-      images: data.capabilities.images.map(getCmsAssetSrc),
+      items: data.capabilities.items.map((tab) => ({
+        ...tab,
+        image: getCmsAssetSrc(tab.image),
+      })),
     },
+    processes: {
+      ...data.processes,
+      items: data.processes.items.map((process) => ({
+        ...process,
+        image: getCmsAssetSrc(process.image),
+      })),
+    },
+    execution: resolveExecution(data.execution),
   };
 })();
 

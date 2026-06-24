@@ -967,6 +967,227 @@ content:
             required: true
           - name: hero
             type: object
+            fields:
+              - name: backgroundImage
+                label: Background image
+                type: image
+                required: true
+              - name: foregroundImage
+                label: Foreground image
+                type: image
+                required: false
+              - name: title
+                type: text
+                required: true
+              - name: subtitle
+                type: text
+                required: true
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
+          - name: capabilities
+            type: object
+            fields:
+              - name: backgroundImage
+                label: Background image
+                type: image
+                required: true
+              - name: heading
+                type: string
+                required: true
+              - name: description
+                type: text
+                required: true
+              - name: items
+                label: Capability tabs
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{shortLabel} - {label}'
+                fields:
+                  - name: id
+                    type: string
+                    required: true
+                  - name: label
+                    type: string
+                    required: true
+                  - name: shortLabel
+                    label: Short tab label
+                    type: string
+                    required: false
+                  - name: image
+                    type: image
+                    required: true
+                  - name: items
+                    label: Accordion items
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{title}'
+                    fields:
+                      - name: title
+                        type: string
+                        required: true
+                      - name: desc
+                        label: Description
+                        type: text
+                        required: true
+                required: true
+          - name: processes
+            label: Telecom processes
+            type: object
+            fields:
+              - name: heading
+                type: text
+                required: true
+              - name: items
+                label: Process steps
+                type: object
+                required: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{id} - {title}'
+                fields:
+                  - name: id
+                    type: string
+                    required: true
+                  - name: title
+                    type: string
+                    required: true
+                  - name: description
+                    type: text
+                    required: true
+                  - name: image
+                    type: image
+                    required: true
+                  - name: details
+                    type: object
+                    required: true
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{name}'
+                    fields:
+                      - name: name
+                        type: string
+                        required: true
+                      - name: desc
+                        label: Description
+                        type: text
+                        required: true
+          - name: deployments
+            label: Network deployments
+            type: object
+            fields:
+              - name: heading
+                type: string
+                required: true
+              - name: description
+                type: text
+                required: true
+              - name: items
+                label: Deployment cards
+                type: object
+                required: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{title}'
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: description
+                    type: text
+                    required: true
+                  - name: badges
+                    type: string
+                    list: true
+                    required: true
+          - name: execution
+            label: Execution section
+            type: object
+            fields:
+              - name: heading
+                type: text
+                required: true
+              - name: metrics
+                type: object
+                required: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{label}'
+                fields:
+                  - name: target
+                    type: number
+                    required: true
+                  - name: isFloat
+                    label: Allow decimal value
+                    type: boolean
+                    required: false
+                  - name: unit
+                    type: string
+                    required: false
+                  - name: suffix
+                    type: string
+                    required: false
+                  - name: label
+                    type: string
+                    required: true
+                  - name: subLabel
+                    label: Sub-label
+                    type: text
+                    required: false
+              - name: pillars
+                type: object
+                required: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{title}'
+                fields:
+                  - name: iconName
+                    label: Icon
+                    type: select
+                    required: true
+                    options:
+                      values: [Code, Network, Users]
+                  - name: title
+                    type: text
+                    required: true
+                  - name: description
+                    type: text
+                    required: true
+                  - name: url
+                    type: string
+                    required: false
+                  - name: ariaLabel
+                    label: ARIA label
+                    type: string
+                    required: false
+
+      - name: systemIntegration
+        label: System Integration
+        type: file
+        path: src/data/cms/system-integration.yml
+        format: yaml
+        operations:
+          delete: false
+        fields:
+          - name: title
+            type: string
+            required: true
+          - name: hero
+            type: object
             fields: &split_hero_fields
               - name: backgroundImage
                 label: Background image
@@ -1006,38 +1227,6 @@ content:
                 type: image
                 list: true
                 required: false
-          - name: capabilities
-            type: object
-            fields:
-              - name: backgroundImage
-                label: Background image
-                type: image
-                required: true
-              - name: heading
-                type: string
-                required: true
-              - name: description
-                type: text
-                required: true
-              - name: images
-                type: image
-                list: true
-                required: true
-
-      - name: systemIntegration
-        label: System Integration
-        type: file
-        path: src/data/cms/system-integration.yml
-        format: yaml
-        operations:
-          delete: false
-        fields:
-          - name: title
-            type: string
-            required: true
-          - name: hero
-            type: object
-            fields: *split_hero_fields
           - name: strategicPillars
             label: Strategic pillars
             type: object

@@ -1,126 +1,81 @@
 ---
-import { Image } from 'astro:assets';
-import infoImg1 from '~/assets/lob-telecom-info-1.png';
-import infoImg2 from '~/assets/lob-telecom-info-2.png';
-import infoImg3 from '~/assets/lob-telecom-info-3.png';
-import infoImg4 from '~/assets/lob-telecom-info-4.png';
-import infoImg5 from '~/assets/lob-telecom-info-5.png';
-import infoImg6 from '~/assets/lob-telecom-info-6.png';
-import infoImg7 from '~/assets/lob-telecom-info-7.png';
-import { telecomProcesses } from '~/data/pageDataTelecom';
-import { ArrowUpRight, Network, Users, Code, ArrowRight } from '@lucide/astro';
+import { Network, Users, Code, ArrowRight } from '@lucide/astro';
 import TelecomProcesses from './TelecomProcesses.svelte';
 import TelecomDeployments from './TelecomDeployments.svelte';
 import TelecomMetrics from './TelecomMetrics.svelte';
+import { telecom } from '~/data/cms';
 
-const processImages = [
-  infoImg1.src,
-  infoImg2.src,
-  infoImg3.src,
-  infoImg4.src,
-  infoImg5.src,
-  infoImg6.src,
-  infoImg7.src,
-];
+const iconMap = { Network, Users, Code };
 ---
 
 <!-- 1. Telecom Processes - Blueprint to Reality -->
-<TelecomProcesses processes={telecomProcesses} images={processImages} client:visible />
+<TelecomProcesses
+  heading={telecom.processes.heading}
+  processes={telecom.processes.items}
+  client:visible
+/>
 
 <!-- 2. Proven Network Deployments -->
-<TelecomDeployments client:visible />
+<TelecomDeployments
+  heading={telecom.deployments.heading}
+  description={telecom.deployments.description}
+  deployments={telecom.deployments.items}
+  client:visible
+/>
 
 <!-- 3. Built to Execute. Scaled to Deliver. -->
 <section class="relative bg-base-200/50 py-24">
   <div class="container mx-auto px-6">
     <div class="mb-10 max-w-2xl">
       <h2 class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl">
-        Built to Execute.<br />Scaled to Deliver.
+        <Fragment set:html={telecom.execution.headingHtml} />
       </h2>
     </div>
 
     <!-- Stats -->
-    <TelecomMetrics client:visible />
+    <TelecomMetrics metrics={telecom.execution.metrics} client:visible />
 
     <!-- Pillars -->
     <div
       class="mt-16 flex flex-col border-t-2 border-base-content/20 py-12 md:flex-row md:gap-x-6 lg:mt-20 lg:gap-x-10 lg:py-16"
     >
-      <div class="flex flex-1 flex-col gap-4 pb-12 md:pb-0">
-        <div class="mb-2 flex items-start justify-between">
-          <Network class="h-12 w-12 text-[#60B68C]" />
-          <a
-            href="#"
-            aria-label="View more details"
-            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
-          >
-            <ArrowRight class="h-5 w-5" stroke-width="2.5" />
-          </a>
-        </div>
-        <h3 class="text-2xl font-medium">
-          Converged IT Infrastructure & Systems Integration
-        </h3>
-        <p class="text-justify text-lg text-base-content/70">
-          Architecting the high-availability IT fabrics that power mission-critical
-          network operations. We provide the end-to-end IT backbone for modern Telcos,
-          ranging from Tier III/IV Data Center engineering and virtualization to
-          software-defined networking (SDN) and high-density compute environments.
-        </p>
-      </div>
-
-      <!-- Divider -->
-      <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
-
-      <div
-        class="flex flex-1 flex-col gap-4 border-y-2 border-base-content/20 py-12 md:border-y-0 md:py-0"
-      >
-        <div class="mb-2 flex items-start justify-between">
-          <Users class="h-12 w-12 text-[#60B68C]" />
-          <a
-            href="#"
-            aria-label="View more details"
-            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
-          >
-            <ArrowRight class="h-5 w-5" stroke-width="2.5" />
-          </a>
-        </div>
-        <h3 class="text-2xl font-medium">
-          Specialized Technical Resourcing & Deployment
-        </h3>
-        <p class="text-justify text-lg text-base-content/70">
-          Scalable L1–L6 talent solutions engineered for complex, multi-region telecom
-          rollouts. We bridge the technical skill gap by deploying a domain-expert
-          workforce. From high-niche technical architects (L6) to scalable field
-          engineering units (L1), we provide the human capital required for operational
-          excellence.
-        </p>
-      </div>
-
-      <!-- Divider -->
-      <div class="hidden w-[2px] bg-base-content/20 md:block"></div>
-
-      <div class="flex flex-1 flex-col gap-4 pt-12 md:pt-0">
-        <div class="mb-2 flex items-start justify-between">
-          <Code class="h-12 w-12 text-[#60B68C]" />
-          <a
-            href="#"
-            aria-label="View more details"
-            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
-          >
-            <ArrowRight class="h-5 w-5" stroke-width="2.5" />
-          </a>
-        </div>
-        <h3 class="text-2xl font-medium">
-          Enterprise Software Engineering & On-Demand Solutions
-        </h3>
-        <p class="text-justify text-lg text-base-content/70">
-          Bespoke digital assets and SaaS platforms tailored for government and corporate
-          scale. We build the intelligence that drives connectivity. Specializing in
-          on-demand software development, we deliver secure, high-compliance digital
-          assets—including our proprietary ERP systems—designed for the most demanding
-          regulatory environments.
-        </p>
-      </div>
+      {
+        telecom.execution.pillars.map((pillar, index) => {
+          const Icon = iconMap[pillar.iconName as keyof typeof iconMap];
+          return (
+            <>
+              {index > 0 && <div class="hidden w-[2px] bg-base-content/20 md:block" />}
+              <div
+                class:list={[
+                  'flex flex-1 flex-col gap-4',
+                  index === 0 && 'pb-12 md:pb-0',
+                  index > 0 &&
+                    index < telecom.execution.pillars.length - 1 &&
+                    'border-y-2 border-base-content/20 py-12 md:border-y-0 md:py-0',
+                  index === telecom.execution.pillars.length - 1 && 'pt-12 md:pt-0',
+                ]}
+              >
+                <div class="mb-2 flex items-start justify-between">
+                  {Icon && <Icon class="h-12 w-12 text-primary" />}
+                  <a
+                    href={pillar.url ?? '#'}
+                    aria-label={pillar.ariaLabel ?? pillar.title}
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+                  >
+                    <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+                  </a>
+                </div>
+                <h3 class="text-2xl font-medium">
+                  <Fragment set:html={pillar.title.replace(/\n/g, '<br />')} />
+                </h3>
+                <p class="text-justify text-lg text-base-content/70">
+                  {pillar.description}
+                </p>
+              </div>
+            </>
+          );
+        })
+      }
     </div>
   </div>
 </section>

@@ -7,7 +7,6 @@ import Contact from '~/components/Contact.astro';
 import TelecomCapabilities from '~/components/telecom/TelecomCapabilities.svelte';
 import TelecomExtraSections from '~/components/telecom/TelecomExtraSections.astro';
 
-import { telecomCapabilities } from '~/data/pageDataTelecom';
 import { telecom } from '~/data/cms';
 ---
 
@@ -89,8 +88,7 @@ import { telecom } from '~/data/cms';
         </div>
 
         <TelecomCapabilities
-          capabilities={telecomCapabilities}
-          images={telecom.capabilities.images}
+          capabilities={telecom.capabilities.items}
           client:visible
         />
       </div>

@@ -1,8 +1,26 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
-  import type { TelecomProcess } from '~/data/pageDataTelecom';
 
-  let { processes, images }: { processes: TelecomProcess[]; images: string[] } = $props();
+  interface TelecomProcessStep {
+    name: string;
+    desc: string;
+  }
+
+  interface TelecomProcess {
+    id: string;
+    title: string;
+    description: string;
+    image: string;
+    details: TelecomProcessStep[];
+  }
+
+  let {
+    heading = 'Telecom Processes —\nBlueprint to Reality.',
+    processes = [],
+  }: {
+    heading?: string;
+    processes?: TelecomProcess[];
+  } = $props();
 
   let activeIndex = $state(0);
   let progressWidth = $state(0);
@@ -18,6 +36,7 @@
     activeIndex; // dependency to trigger reset
 
     const intervalId = setInterval(() => {
+      if (processes.length === 0) return;
       activeIndex = (activeIndex + 1) % processes.length;
     }, AUTOPLAY_INTERVAL);
 
@@ -57,12 +76,12 @@
     <h2
       class="mb-10 text-center text-4xl leading-tight font-medium tracking-tight text-base-content md:mb-16 md:text-5xl max-w-5xl mx-auto"
     >
-      Telecom Processes &mdash; <br class="md:hidden" />
-      <span>Blueprint to Reality.</span>
+      {@html heading.replace(/\n/g, '<br class="md:hidden" />')}
     </h2>
 
     <!-- Two Column Layout -->
-    <div class="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
+    {#if processes.length > 0}
+      <div class="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
       <!-- Left: Vertical Stepper -->
       <div class="w-full lg:w-[336px] shrink-0">
         <nav
@@ -78,12 +97,16 @@
             <!-- Timeline progress fill (Mobile: horizontal) -->
             <div
               class="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-500 ease-out lg:hidden"
-              style="width: {(activeIndex / (processes.length - 1)) * 100}%"
+              style="width: {processes.length > 1
+                ? (activeIndex / (processes.length - 1)) * 100
+                : 100}%"
             ></div>
             <!-- Timeline progress fill (Desktop: vertical) -->
             <div
               class="absolute top-0 left-0 w-full bg-primary rounded-full transition-all duration-500 ease-out hidden lg:block"
-              style="height: {(activeIndex / (processes.length - 1)) * 100}%"
+              style="height: {processes.length > 1
+                ? (activeIndex / (processes.length - 1)) * 100
+                : 100}%"
             ></div>
           </div>
 
@@ -203,7 +226,7 @@
                 {#key activeIndex}
                   <img
                     in:fade={{ duration: 500, delay: 100 }}
-                    src={images[activeIndex]}
+                    src={processes[activeIndex].image}
                     alt={processes[activeIndex].title}
                     class="h-full w-full object-cover object-center"
                   />
@@ -213,6 +236,7 @@
           </div>
         {/key}
       </div>
-    </div>
+      </div>
+    {/if}
   </div>
 </section>

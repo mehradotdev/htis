@@ -2,12 +2,21 @@
   import { untrack } from 'svelte';
   import { slide, fly, fade } from 'svelte/transition';
   import { CirclePlus, CircleMinus, ChevronLeft, ChevronRight } from '@lucide/svelte';
-  import type { CapabilityTab } from '~/data/pageDataTelecom';
 
-  let {
-    capabilities = [],
-    images = [],
-  }: { capabilities?: CapabilityTab[]; images?: string[] } = $props();
+  interface CapabilityItem {
+    title: string;
+    desc: string;
+  }
+
+  interface CapabilityTab {
+    id: string;
+    label: string;
+    shortLabel?: string;
+    image: string;
+    items: CapabilityItem[];
+  }
+
+  let { capabilities = [] }: { capabilities?: CapabilityTab[] } = $props();
 
   let activeTab = $state(
     untrack(() => (capabilities.length > 0 ? capabilities[0].id : '')),
@@ -18,11 +27,8 @@
   let canScrollLeft = $state(false);
   let canScrollRight = $state(false);
 
-  let currentImage = $derived(
-    images.length > 0 && capabilities.length > 0
-      ? images[capabilities.findIndex((c) => c.id === activeTab) % images.length] ||
-          images[0]
-      : '',
+  let activeCapability = $derived(
+    capabilities.find((t) => t.id === activeTab) || capabilities[0],
   );
 
   // -- Constants --
@@ -158,17 +164,17 @@
   <div
     class="bg-base-100/50 backdrop-blur-md rounded-3xl border border-base-content/10 shadow-lg overflow-hidden p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-6"
   >
-    {#if capabilities.find((t) => t.id === activeTab)}
+    {#if activeCapability}
       <h3
         class="lg:col-span-2 text-2xl md:text-3xl font-medium text-base-content tracking-tight mb-2 md:mb-4"
       >
-        {capabilities.find((t) => t.id === activeTab)?.label}
+        {activeCapability.label}
       </h3>
     {/if}
 
     <!-- Left: Accordion -->
     <div class="flex flex-col gap-3">
-      {#each capabilities.find((t) => t.id === activeTab)?.items || [] as item, index}
+      {#each activeCapability?.items || [] as item, index}
         <div
           role="button"
           tabindex="0"
@@ -214,10 +220,10 @@
       class="relative w-full aspect-square md:aspect-auto md:h-full min-h-[300px] rounded-2xl overflow-hidden flex items-center justify-center bg-base-100"
     >
       {#key activeTab}
-        {#if currentImage}
+        {#if activeCapability?.image}
           <img
-            src={currentImage}
-            alt={capabilities.find((t) => t.id === activeTab)?.label}
+            src={activeCapability.image}
+            alt={activeCapability.label}
             class="w-full h-full object-contain object-center p-4"
             in:fly={{ y: 10, duration: 400 }}
           />
