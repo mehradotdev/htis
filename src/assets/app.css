@@ -747,3 +747,14 @@ details>summary::-webkit-details-marker {
   border: 1px solid transparent;
   background-clip: padding-box;
 }
+
+/* Hide native scrollbar on mobile screens, using the custom progress bar instead */
+@media (max-width: 768px) {
+  .articles-scroll-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .articles-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+}

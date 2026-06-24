@@ -8,6 +8,7 @@ import FacebookIcon from './icons/FacebookIcon.astro';
 import YoutubeIcon from './icons/YoutubeIcon.astro';
 import PhoneIcon from './icons/PhoneIcon.astro';
 import EnvelopeIcon from './icons/EnvelopeIcon.astro';
+import ArrowRightIcon from './icons/ArrowRightIcon.astro';
 
 interface Props {
   overlap?: boolean;
@@ -43,7 +44,7 @@ const servicesSection = footer.services;
         class="grid grid-cols-1 gap-8 pb-10 text-base-content/80 md:grid-cols-6 lg:grid-cols-12"
       >
         <!-- Logo and Description -->
-        <aside class="col-span-1 space-y-6 md:col-span-6 lg:col-span-3">
+        <aside class="col-span-1 flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:col-span-6 lg:col-span-3">
           <Image
             src={footerLogo}
             alt={footer.logo.alt}
@@ -80,43 +81,45 @@ const servicesSection = footer.services;
         <div
           class="col-span-1 flex flex-col justify-between gap-8 sm:flex-row sm:gap-4 md:col-span-6 lg:col-span-6 lg:gap-8"
         >
-          <!-- Company Column -->
-          {
-            companySection && (
-              <nav>
-                <h6 class="mb-5 text-[17px] font-semibold text-base-content">
-                  {companySection.heading}
-                </h6>
-                {companySection.links.map((link) => (
-                  <a
-                    href={link.url}
-                    class="mb-3.5 block text-[15px] text-base-content/80 transition-all duration-200 hover:translate-x-1 hover:text-primary"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-            )
-          }
+          <div class="grid grid-cols-2 gap-4 sm:contents">
+            <!-- Company Column -->
+            {
+              companySection && (
+                <nav>
+                  <h6 class="mb-5 text-[17px] font-semibold text-base-content">
+                    {companySection.heading}
+                  </h6>
+                  {companySection.links.map((link) => (
+                    <a
+                      href={link.url}
+                      class="mb-3.5 block text-[15px] text-base-content/80 transition-all duration-200 hover:translate-x-1 hover:text-primary"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </nav>
+              )
+            }
 
-          <!-- Services Column -->
-          {
-            servicesSection && (
-              <nav>
-                <h6 class="mb-5 text-[17px] font-semibold text-base-content">
-                  {servicesSection.heading}
-                </h6>
-                {servicesSection.links.map((link) => (
-                  <a
-                    href={link.url}
-                    class="mb-3.5 block text-[15px] text-base-content/80 transition-all duration-200 hover:translate-x-1 hover:text-primary"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-            )
-          }
+            <!-- Services Column -->
+            {
+              servicesSection && (
+                <nav>
+                  <h6 class="mb-5 text-[17px] font-semibold text-base-content">
+                    {servicesSection.heading}
+                  </h6>
+                  {servicesSection.links.map((link) => (
+                    <a
+                      href={link.url}
+                      class="mb-3.5 block text-[15px] text-base-content/80 transition-all duration-200 hover:translate-x-1 hover:text-primary"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </nav>
+              )
+            }
+          </div>
 
           <!-- Contact Links -->
           <nav class="shrink-0">
@@ -259,9 +262,22 @@ const servicesSection = footer.services;
 
           <!-- Global Presence -->
           <div>
-            <h6 class="mb-3 text-[17px] font-semibold text-base-content">
-              {footer.globalPresence.heading}
-            </h6>
+            <div class="mb-3 flex items-center justify-between gap-3">
+              <h6 class="text-[17px] font-semibold text-base-content">
+                {footer.globalPresence.heading}
+              </h6>
+              {
+                footer.globalPresence.ctaLabel && footer.globalPresence.ctaUrl && (
+                  <a
+                    href={footer.globalPresence.ctaUrl}
+                    class="flex items-center text-sm font-medium text-primary decoration-2 hover:underline"
+                  >
+                    {footer.globalPresence.ctaLabel}
+                    <ArrowRightIcon class="ml-1 h-4 w-4" />
+                  </a>
+                )
+              }
+            </div>
             <div class="flex items-center gap-3">
               {
                 footer.globalPresence.countries.map((country) => (

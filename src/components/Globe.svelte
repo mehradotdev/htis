@@ -30,7 +30,7 @@
 
   const MOVEMENT_DAMPING = 400;
   const FALLBACK_SIZE = 400;
-  const ROTATION_STEP = 0.005;
+  const ROTATION_SPEED = 0.25;
   const SPRING_DAMPING = 0.15;
   const INTERNAL_SCALE = 2;
 
@@ -98,6 +98,7 @@
   let pointerInteracting: number | null = null;
   let phi = 0;
   let size = $state(FALLBACK_SIZE);
+  const currentScale = $derived(size < 480 ? 1.18 : (config?.scale ?? 1));
 
   // Spring-like value for smooth drag interaction
   let r = 0;
@@ -132,6 +133,7 @@
     currentPhi: number,
     theta: number,
     globeSize: number,
+    scaleVal: number,
   ): { x: number; y: number; visible: boolean } {
     // Step 1: cobe's U() — convert lat/lng to 3D point on unit sphere
     const latRad = (lat * Math.PI) / 180;
@@ -158,9 +160,9 @@
     const c = cosPhi * ex + sinPhi * ez;
     const s = sinPhi * sinTheta * ex + cosTheta * ey - cosPhi * sinTheta * ez;
 
-    // Scale=1, offset=0, aspect ratio = 1 (square canvas)
-    const screenX = (c + 1) / 2;
-    const screenY = (-s + 1) / 2;
+    // Scale, offset=0, aspect ratio = 1 (square canvas)
+    const screenX = (c * scaleVal + 1) / 2;
+    const screenY = (-s * scaleVal + 1) / 2;
 
     // Visibility: front-hemisphere check from cobe
     const zCheck = -sinPhi * cosTheta * ex + sinTheta * ey + cosPhi * cosTheta * ez;
@@ -248,6 +250,7 @@
       ...actualConfig,
       width: untrack(() => size) * INTERNAL_SCALE,
       height: untrack(() => size) * INTERNAL_SCALE,
+      scale: currentScale,
     });
 
     const resizeObserver = new ResizeObserver(updateSize);
@@ -259,10 +262,14 @@
     resizeObserver.observe(observerTarget ?? wrapper);
 
     let frameId = 0;
+    let lastTime = performance.now();
 
-    const render = () => {
+    const render = (now: number) => {
+      const dt = (now - lastTime) / 1000; // seconds since last frame
+      lastTime = now;
+
       if (pointerInteracting === null) {
-        phi += ROTATION_STEP;
+        phi += ROTATION_SPEED * dt;
       }
 
       springR += (r - springR) * SPRING_DAMPING;
@@ -274,6 +281,7 @@
         width: size * INTERNAL_SCALE,
         height: size * INTERNAL_SCALE,
         dark: config?.dark ?? (isDarkMode ? 1 : 0),
+        scale: currentScale,
       });
 
       // Update label positions via direct DOM manipulation (no $state per frame)
@@ -288,6 +296,7 @@
           currentPhi,
           thetaVal,
           size,
+          currentScale,
         );
 
         if (pos.visible) {
@@ -304,7 +313,7 @@
       frameId = requestAnimationFrame(render);
     };
 
-    render();
+    render(performance.now());
 
     setTimeout(() => {
       if (canvas) canvas.style.opacity = '1';

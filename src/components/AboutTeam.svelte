@@ -134,7 +134,7 @@
       <!-- Custom Scroll Progress Bar -->
       {#if hasScrollableContent}
         <div transition:fade={{ duration: 200 }} class="mt-8 flex justify-center">
-          <div class="relative h-1 w-48 rounded-full bg-base-200/60 overflow-hidden">
+          <div class="relative h-1 w-48 rounded-full bg-base-content/20 overflow-hidden">
             <div
               class="absolute top-0 bottom-0 bg-primary rounded-full transition-all duration-75"
               style="width: 30%; left: {scrollProgress * (100 - 30)}%"

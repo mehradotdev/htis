@@ -328,6 +328,14 @@ content:
               - name: heading
                 type: string
                 required: true
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
               - name: countries
                 type: object
                 list:

@@ -147,7 +147,7 @@
 
     <!-- Active Milestone Info -->
     <div
-      class="mt-4 flex h-[140px] flex-col items-center justify-end text-center md:mt-8"
+      class="mt-8 flex h-[140px] flex-col items-center justify-end text-center md:mt-8"
     >
       {#key activeIndex}
         <div class="animate-fade-in-up flex flex-col items-center px-4">

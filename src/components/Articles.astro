@@ -13,10 +13,32 @@ interface Props {
 const { eyebrow, heading, ctaLabel, ctaUrl, posts } = Astro.props;
 ---
 
-<section class="relative mx-auto max-w-6xl px-4 py-20" id="articles">
-  <div class="border-t border-b border-base-content/20 py-16">
+<section class="relative mx-auto max-w-6xl px-4 py-12 md:py-20" id="articles">
+  <div
+    class="border-t border-b border-base-content/20 py-16"
+    x-data="{
+      scrollProgress: 0,
+      hasScrollable: false,
+      updateScrollState() {
+        const container = this.$refs.scrollContainer;
+        if (!container) return;
+        const { scrollLeft, scrollWidth, clientWidth } = container;
+        const maxScroll = scrollWidth - clientWidth;
+        this.hasScrollable = maxScroll > 0;
+        this.scrollProgress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+      }
+    }"
+    x-init="
+      updateScrollState();
+      const resizeObserver = new ResizeObserver(() => updateScrollState());
+      resizeObserver.observe($refs.scrollContainer);
+    "
+    @resize.window="updateScrollState()"
+  >
     <!-- Section header -->
-    <div class="mb-12 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+    <div
+      class="mb-4 flex flex-col gap-2 md:mb-12 md:flex-row md:items-end md:justify-between"
+    >
       <div>
         <p class="mb-1 text-sm font-semibold tracking-widest text-primary uppercase">
           {eyebrow}
@@ -37,11 +59,15 @@ const { eyebrow, heading, ctaLabel, ctaUrl, posts } = Astro.props;
     </div>
 
     <!-- LinkedIn embeds -->
-    <div class="articles-scroll-container flex gap-6 overflow-x-auto pb-6 scroll-smooth snap-x snap-mandatory">
+    <div
+      x-ref="scrollContainer"
+      @scroll.passive="updateScrollState()"
+      class="articles-scroll-container flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 md:pb-6"
+    >
       {
         posts.map((post, i) => (
           <div
-            class="li-embed-wrapper relative overflow-hidden rounded-xl w-[85vw] sm:w-[380px] md:w-[400px] shrink-0 snap-start"
+            class="li-embed-wrapper relative w-[85vw] shrink-0 snap-start overflow-hidden rounded-xl sm:w-[380px] md:w-[400px]"
             style={`min-height:${post.height}px;`}
           >
             {/* Fallback card - shown by default, hidden via JS once iframe loads */}
@@ -109,6 +135,17 @@ const { eyebrow, heading, ctaLabel, ctaUrl, posts } = Astro.props;
           </div>
         ))
       }
+    </div>
+
+    <!-- Custom Scroll Progress Bar -->
+    <div x-show="hasScrollable" class="mt-2 flex justify-center md:hidden">
+      <div class="relative h-1 w-48 overflow-hidden rounded-full bg-base-content/20">
+        <div
+          class="absolute top-0 bottom-0 rounded-full bg-primary transition-all duration-75"
+          :style="`width: 30%; left: ${scrollProgress * (100 - 30)}%`"
+        >
+        </div>
+      </div>
     </div>
   </div>
 </section>

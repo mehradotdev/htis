@@ -611,6 +611,8 @@ export const footer = footerYaml as {
   };
   globalPresence: {
     heading: string;
+    ctaLabel?: string;
+    ctaUrl?: string;
     countries: CountryItem[];
   };
   copyright: string;

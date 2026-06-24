@@ -26,7 +26,7 @@
   let activeIndex = $state(0);
 </script>
 
-<section id="team" class="relative w-full overflow-hidden pt-32 pb-24 md:pt-40">
+<section id="team" class="relative w-full overflow-hidden pt-12 pb-24 md:pt-20">
   <!-- Background Image Layer -->
   <div class="absolute inset-0 z-0 bg-base-100">
     <img
@@ -141,16 +141,16 @@
         <div
           class="absolute inset-0 z-0 transition-opacity duration-700 ease-in-out {activeIndex ===
           team.length
-            ? 'opacity-30'
-            : 'opacity-10'} pointer-events-none"
+            ? 'opacity-60 dark:opacity-30'
+            : 'opacity-20 dark:opacity-10'} pointer-events-none"
         >
           <img
             src={meetTeamImageSrc}
             alt=""
-            class="h-full w-full object-cover filter grayscale scale-105"
+            class="h-full w-full object-cover filter grayscale contrast-115 scale-105"
           />
           <div
-            class="absolute inset-0 bg-linear-to-t from-base-100/80 via-transparent to-transparent"
+            class="absolute inset-0 bg-linear-to-t from-base-300/50 via-transparent to-transparent"
           ></div>
         </div>
 
