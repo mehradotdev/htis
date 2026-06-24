@@ -519,32 +519,31 @@ testimonials:
   awardsImage: src/assets/edited-photo.png
   awardsImageAlt: Awards and Certificates
   items:
-    - quote: '"Thanks to Ankush Ji and the entire team for their outstanding efforts.
-        Your dedication and hard work are truly inspiring."'
+    - quote: Thanks to Ankush Ji and the entire team for their outstanding efforts.
+        Your dedication and hard work are truly inspiring.
       name: Bharat Sharma
       title: HP Para Veterinary Council
-    - quote: '"The Dashboard/Reports Menu is exceptionally well-designed and visually
+    - quote: The Dashboard/Reports Menu is exceptionally well-designed and visually
         appealing. It comprehensively covers all key reporting parameters and
-        demonstrates remarkable attention to detail. Great work by the team."'
+        demonstrates remarkable attention to detail. Great work by the team.
       name: Vinod
       title: IT Head | Municipal Corporation Shimla
-    - quote: "\"The website is getting better day by day. On behalf of the Principal,
-        we are thankful to the team. The data was submitted and updated
-        perfectly as per our requirements, reflecting the team's excellent work,
-        commitment, and dedication.\""
+    - quote: The website is getting better day by day. On behalf of the Principal, we
+        are thankful to the team. The data was submitted and updated perfectly
+        as per our requirements, reflecting the team's excellent work,
+        commitment, and dedication.
       name: Kushal Kumar Bansal
       title: Government College Sulah
-    - quote: '"The team was well prepared, demonstrated strong compliance, and no real
+    - quote: The team was well prepared, demonstrated strong compliance, and no real
         areas of concern were identified during the assessment. Thank you for
         your unwavering commitment to Health & Safety. Your support has been
-        great—please keep up the good work."'
+        great—please keep up the good work.
       name: Ralf Schmidt
       title: CX Delivery – Vodafone & UKI Service Providers, Cisco
-    - quote: "\"HTIS Telecom's Health & Safety Management System was found to be
-        aligned with Vodafone's Absolute Rules and Cisco Health & Safety
-        standards. The maturity of processes, consistency of records, and
-        visible management commitment reflect a strong foundation for a robust
-        safety culture.\""
+    - quote: HTIS Telecom's Health & Safety Management System was found to be aligned
+        with Vodafone's Absolute Rules and Cisco Health & Safety standards. The
+        maturity of processes, consistency of records, and visible management
+        commitment reflect a strong foundation for a robust safety culture.
       name: Cyril G.
       title: Health & Safety Assessor | Avacend Solutions India Pvt. Ltd.
     - quote: A true partner in digital transformation. They understood our complex
