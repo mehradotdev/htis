@@ -528,10 +528,12 @@ testimonials:
         demonstrates remarkable attention to detail. Great work by the team."'
       name: Vinod
       title: IT Head, Municipal Corporation Shimla
-    - quote: We deploy trained field engineers and technical teams tailored to project
-        requirements. Our manpower model is built for flexibility.
-      name: Sarah Jenkins
-      title: TechCorp | VP Engineering
+    - quote: "\"The website is getting better day by day. On behalf of the Principal,
+        we are thankful to the team. The data was submitted and updated
+        perfectly as per our requirements, reflecting the team's excellent work,
+        commitment, and dedication.\""
+      name: Kushal Kumar Bansal
+      title: Government College Sulah
     - quote: The system architecture provided by HTIS gave us the edge we needed.
         Exceptional performance and zero downtime during the switch.
       name: David Kim
