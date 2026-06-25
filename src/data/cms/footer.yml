@@ -11,7 +11,7 @@ company:
     - label: Services
       url: /#services
     - label: Community
-      url: "/about"
+      url: /about
     - label: Testimonial
       url: /#testimonials
 services:
@@ -44,7 +44,7 @@ socials:
       icon: LinkedIn
 contact:
   heading: Contact
-  phone: "+91 9871312345"
+  phone: +91 9871312345
   email: Info@htis.in
 offices:
   heading: Our offices
@@ -52,27 +52,33 @@ offices:
   list:
     - name: Mohali
       companyName: HTIS Telecom Private Limited
-      address: E 94, First Floor, Eltop Area, Phase 8 Industrial Area, Mohali - 160055, Punjab, India
+      address: E 94, First Floor, Eltop Area, Phase 8 Industrial Area, Mohali -
+        160055, Punjab, India
       phone: 0172-5096134
       email: info@htis.in
     - name: Chennai
       companyName: HTIS Telecom Private Limited
-      address: New No. 24, 2nd Floor, Canal Bank Road, Chennai - 600028, Tamil Nadu, India
+      address: New No. 24, 2nd Floor, Canal Bank Road, Chennai - 600028, Tamil Nadu,
+        India
       phone: 044-24956789
       email: chennai@htis.in
     - name: Shimla
       companyName: HTIS Telecom Private Limited
-      address: Block No. 24, SDA Complex, Kasumpti, Shimla - 171009, Himachal Pradesh, India
+      address: Block No. 24, SDA Complex, Kasumpti, Shimla - 171009, Himachal Pradesh,
+        India
       phone: 0177-2621234
       email: shimla@htis.in
     - name: Mumbai
       companyName: HTIS Telecom Private Limited
-      address: Suite 508, 5th Floor, Sahar Plaza, Andheri East, Mumbai - 400059, Maharashtra, India
+      address: Suite 508, 5th Floor, Sahar Plaza, Andheri East, Mumbai - 400059,
+        Maharashtra, India
       phone: 022-66954321
       email: mumbai@htis.in
     - name: Gurgaon
       companyName: HTIS Telecom Private Limited
-      address: 4th Floor, DLF Cyber City, Phase III, Gurgaon - 122002, Haryana, India
+      address: |-
+        PHS Business Center, 353/18, Civil Lines
+        Near Rajiv Chowk, Gurgaon - 122001 Haryana, India.
       phone: 0124-4059876
       email: gurgaon@htis.in
 globalPresence:
