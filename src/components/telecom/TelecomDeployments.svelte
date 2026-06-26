@@ -5,15 +5,18 @@
     title: string;
     badges: string[];
     description: string;
+    href?: string;
   }
 
   let {
     heading = 'Proven Network Deployments',
     description = '',
+    href,
     deployments = [],
   }: {
     heading?: string;
     description?: string;
+    href?: string;
     deployments?: Deployment[];
   } = $props();
 
@@ -22,7 +25,7 @@
   /** Currently centered card index */
   let activeIndex = $state(0);
 
-  /** Whether transition is animating (prevent rapid clicks) */
+  /** Whether transition is animating (prevent rapid pagination clicks) */
   let isAnimating = $state(false);
 
   /** Card dimensions */
@@ -30,6 +33,11 @@
   const GAP = 24; // px gap between cards
   const SCALE_ACTIVE = 1.08;
   const SCALE_INACTIVE = 0.92;
+  const SWIPE_THRESHOLD = 48;
+  const SWIPE_AXIS_RATIO = 1.25;
+
+  let swipeStartX: number | null = null;
+  let swipeStartY: number | null = null;
 
   /** Modular wrap helper: always returns 0..count-1 */
   function mod(n: number, m: number): number {
@@ -71,42 +79,77 @@
   function prev() {
     goTo(mod(activeIndex - 1, count));
   }
+
+  function handleSwipeStart(event: PointerEvent) {
+    if (event.pointerType !== 'touch') return;
+    swipeStartX = event.clientX;
+    swipeStartY = event.clientY;
+  }
+
+  function handleSwipeEnd(event: PointerEvent) {
+    if (event.pointerType !== 'touch' || swipeStartX === null || swipeStartY === null) return;
+
+    const deltaX = event.clientX - swipeStartX;
+    const deltaY = event.clientY - swipeStartY;
+    swipeStartX = null;
+    swipeStartY = null;
+
+    if (
+      Math.abs(deltaX) < SWIPE_THRESHOLD ||
+      Math.abs(deltaX) < Math.abs(deltaY) * SWIPE_AXIS_RATIO
+    ) {
+      return;
+    }
+
+    if (deltaX < 0) next();
+    else prev();
+  }
+
+  function cancelSwipe() {
+    swipeStartX = null;
+    swipeStartY = null;
+  }
 </script>
 
 <section class="relative bg-base-100 py-24 overflow-hidden">
   <div class="container mx-auto px-6">
-    <div
-      class="mb-10 flex flex-col items-end justify-between gap-8 md:flex-row md:items-start"
-    >
-      <div class="max-w-3xl">
-        <h2
-          class="mb-6 text-4xl font-bold tracking-tight text-base-content md:text-5xl"
-        >
+    <div class="mb-10">
+      <div class="flex items-center justify-between gap-4 {description ? 'mb-6' : ''}">
+        <h2 class="text-4xl font-bold tracking-tight text-base-content md:text-5xl">
           {heading}
         </h2>
-        {#if description}
-          <p class="text-lg text-base-content/70 md:text-xl">
-            {description}
-          </p>
+
+        {#if href}
+          <div class="flex shrink-0 items-center pl-4 md:pl-0">
+            <a
+              href={href}
+              class="group flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary shadow-sm transition-all hover:border-primary/30 hover:bg-primary/20 active:scale-95"
+              aria-label="View all network deployments"
+            >
+              <ArrowRight class="h-6 w-6 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
         {/if}
       </div>
 
-      {#if count > 1}
-        <div class="flex gap-4">
-        <button
-          onclick={next}
-          class="group flex h-16 w-16 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary shadow-sm transition-all hover:bg-primary hover:text-primary-content hover:shadow-lg hover:shadow-primary/20 active:scale-95"
-          aria-label="Next deployment"
-        >
-          <ArrowRight class="h-7 w-7 transition-transform group-hover:translate-x-0.5" />
-        </button>
-        </div>
+      {#if description}
+        <p class="text-lg text-base-content/70 md:text-xl max-w-3xl">
+          {description}
+        </p>
       {/if}
     </div>
 
     <!-- Carousel track -->
     {#if count > 0}
-      <div class="carousel-viewport relative" style="height: {CARD_W * 1.4}px;">
+      <div
+        class="carousel-viewport relative touch-pan-y"
+        style="height: {CARD_W * 1.4}px;"
+        role="region"
+        aria-label="Network deployments carousel"
+        onpointerdown={handleSwipeStart}
+        onpointerup={handleSwipeEnd}
+        onpointercancel={cancelSwipe}
+      >
         {#each slots as slot (slot.index)}
           {@const isActive = slot.offset === 0}
           {@const scale = isActive ? SCALE_ACTIVE : SCALE_INACTIVE}
@@ -115,44 +158,48 @@
           {@const opacity = Math.abs(slot.offset) <= 1 ? 1 : 0.5}
           {@const project = deployments[slot.index]}
 
-          <button
-            type="button"
-            onclick={() => goTo(slot.index)}
-            class="carousel-card absolute left-1/2 top-1/2 flex flex-col gap-5 rounded-2xl border p-6 text-left cursor-pointer
-            {isActive
-            ? 'border-primary/30 bg-primary/5 shadow-xl shadow-primary/10 h-[340px]'
-            : 'border-base-content/10 bg-base-100/50 hover:border-base-content/20 h-[300px]'}"
+          <div
+            class="carousel-card absolute left-1/2 top-1/2"
             style="
             width: {CARD_W}px;
             transform: translate(-50%, -50%) translateX({translateX}px) scale({scale});
             z-index: {zIndex};
             opacity: {opacity};
           "
-            aria-label="View {project.title} deployment"
           >
-            <div class="flex items-start justify-between">
+            <button
+              type="button"
+              onclick={() => goTo(slot.index)}
+              class="flex w-full flex-col gap-5 rounded-2xl border p-6 pr-20 text-left cursor-pointer
+              {isActive
+              ? 'border-primary/30 bg-primary/5 shadow-xl shadow-primary/10 h-[340px]'
+              : 'border-base-content/10 bg-base-100/50 hover:border-base-content/20 h-[300px]'}"
+              aria-label="Select {project.title} deployment"
+            >
               <h3 class="text-xl font-medium tracking-tight md:text-2xl">
                 {project.title}
               </h3>
-              <div
-                class="flex h-10 w-10 items-center justify-center rounded-full border border-base-content/5 bg-base-200 text-primary transition-colors"
-              >
-                <ArrowUpRight class="h-5 w-5" />
+              <p class="max-w-[200px] flex-1 text-base leading-relaxed text-base-content/70">
+                {project.description}
+              </p>
+              <div class="mt-auto flex max-w-[220px] flex-wrap gap-2">
+                {#each project.badges as badge}
+                  <span
+                    class="px-2.5 py-1 text-[10px] font-semibold tracking-tight text-secondary bg-secondary/10 border border-secondary/20 dark:text-base-content dark:bg-primary/15 dark:border-primary/25 rounded-md uppercase transition-colors hover:bg-secondary/20 dark:hover:bg-primary/25"
+                  >
+                    {badge}
+                  </span>
+                {/each}
               </div>
-            </div>
-            <p class="max-w-[200px] flex-1 text-base leading-relaxed text-base-content/70">
-              {project.description}
-            </p>
-            <div class="mt-auto flex max-w-[220px] flex-wrap gap-2">
-              {#each project.badges as badge}
-                <span
-                  class="px-2.5 py-1 text-[10px] font-semibold tracking-tight text-secondary bg-secondary/10 border border-secondary/20 dark:text-base-content dark:bg-primary/15 dark:border-primary/25 rounded-md uppercase transition-colors hover:bg-secondary/20 dark:hover:bg-primary/25"
-                >
-                  {badge}
-                </span>
-              {/each}
-            </div>
-          </button>
+            </button>
+            <a
+              href={project.href ?? href ?? '#'}
+              aria-label="View {project.title} deployment"
+              class="group absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-all hover:bg-primary hover:text-primary-content hover:shadow-lg hover:shadow-primary/20 active:scale-95"
+            >
+              <ArrowUpRight class="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          </div>
         {/each}
       </div>
 

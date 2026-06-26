@@ -19,6 +19,7 @@ const iconMap = { Network, Users, Code };
 <TelecomDeployments
   heading={telecom.deployments.heading}
   description={telecom.deployments.description}
+  href={telecom.deployments.href}
   deployments={telecom.deployments.items}
   client:visible
 />
@@ -44,7 +45,7 @@ const iconMap = { Network, Users, Code };
           const Icon = iconMap[pillar.iconName as keyof typeof iconMap];
           return (
             <>
-              {index > 0 && <div class="hidden w-[2px] bg-base-content/20 md:block" />}
+              {index > 0 && <div class="hidden w-0.5 bg-base-content/20 md:block" />}
               <div
                 class:list={[
                   'flex flex-1 flex-col gap-4',
@@ -59,10 +60,10 @@ const iconMap = { Network, Users, Code };
                   {Icon && <Icon class="h-12 w-12 text-primary" />}
                   <a
                     href={pillar.url ?? '#'}
-                    aria-label={pillar.ariaLabel ?? pillar.title}
-                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+                    aria-label={`View more details about ${pillar.title.replace(/\s+/g, ' ')}`}
+                    class="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-all hover:bg-primary hover:text-primary-content hover:shadow-lg hover:shadow-primary/20 active:scale-95"
                   >
-                    <ArrowRight class="h-5 w-5" stroke-width="2.5" />
+                    <ArrowRight class="h-5 w-5 transition-transform group-hover:translate-x-0.5" stroke-width="2.5" />
                   </a>
                 </div>
                 <h3 class="text-2xl font-medium">

@@ -30,9 +30,9 @@ const { heading, image, imageAlt, featured, items } = Astro.props;
       <a
         href="#"
         aria-label="View all integrated infrastructure deployments"
-        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-base-200 text-primary transition-colors hover:bg-primary/5"
+        class="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-all hover:bg-primary hover:text-primary-content hover:shadow-lg hover:shadow-primary/20 active:scale-95"
       >
-        <ArrowRight class="h-6 w-6" stroke-width="2.5" />
+        <ArrowRight class="h-6 w-6 transition-transform group-hover:translate-x-0.5" stroke-width="2.5" />
       </a>
     </div>
 

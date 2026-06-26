@@ -106,7 +106,6 @@ execution:
         optimize field workflows, streamline maintenance tracking, and maximize
         operational continuity.
       url: /telecom
-      ariaLabel: Explore Telecom Services
     - iconName: Server
       title: Secure Infrastructure Orchestration
       description: We bridge the gap between enterprise hardware and cloud software.
@@ -114,7 +113,6 @@ execution:
         applications feature strict Role-Based Access Control (RBAC) to
         integrate perfectly into zero-trust data centre architectures.
       url: /system-integration
-      ariaLabel: Explore System Integration
     - iconName: Users
       title: High-Volume Human Capital Automation
       description: Our proprietary wfms ERP effortlessly supports 3,000 daily active
@@ -122,7 +120,6 @@ execution:
         via web and mobile. By digitizing compliance, we eliminate operational
         risk and drive long-term workforce retention.
       url: /resourcing
-      ariaLabel: Explore Resource Management
 caseStudies:
   heading: Strategic Case Studies & Technical Impact
   items:

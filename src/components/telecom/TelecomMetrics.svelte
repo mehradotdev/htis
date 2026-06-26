@@ -3,7 +3,7 @@
 
   interface TelecomMetric {
     target: number;
-    isFloat?: boolean;
+    showDecimalAnimation?: boolean;
     unit?: string;
     suffix?: string;
     label: string;
@@ -13,7 +13,7 @@
   const defaultMetrics: TelecomMetric[] = [
     {
       target: 1.2,
-      isFloat: true,
+      showDecimalAnimation: true,
       unit: 'M',
       suffix: '+',
       label: 'Sites Deployed',
@@ -21,7 +21,7 @@
     },
     {
       target: 250,
-      isFloat: false,
+      showDecimalAnimation: false,
       unit: 'K',
       suffix: '+',
       label: 'Routers Deployed',
@@ -29,7 +29,7 @@
     },
     {
       target: 16,
-      isFloat: false,
+      showDecimalAnimation: false,
       unit: '',
       suffix: '+',
       label: 'Telecom Circles (India)',
@@ -37,7 +37,7 @@
     },
     {
       target: 8,
-      isFloat: false,
+      showDecimalAnimation: false,
       unit: '',
       suffix: '+',
       label: 'Countries Served',
@@ -45,7 +45,7 @@
     },
     {
       target: 3,
-      isFloat: false,
+      showDecimalAnimation: false,
       unit: '',
       suffix: '/4',
       label: 'Major Indian Operators Served',
@@ -100,7 +100,7 @@
 
       currentValues = metrics.map((m) => {
         const val = m.target * easeOutQuart;
-        return m.isFloat
+        return m.showDecimalAnimation
           ? Number(Math.min(val, m.target).toFixed(1))
           : Math.min(Math.floor(val), m.target);
       });

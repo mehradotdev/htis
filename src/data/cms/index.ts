@@ -43,6 +43,32 @@ export function getCmsAssetSrc(filename: string): string {
   return getCmsAsset(filename).src;
 }
 
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function uniqueSlug(value: string, usedSlugs: Set<string>): string {
+  const baseSlug = slugify(value) || 'item';
+  let slug = baseSlug;
+  let suffix = 2;
+
+  while (usedSlugs.has(slug)) {
+    slug = `${baseSlug}-${suffix}`;
+    suffix += 1;
+  }
+
+  usedSlugs.add(slug);
+  return slug;
+}
+
+function formatStepNumber(index: number): string {
+  return String(index + 1).padStart(2, '0');
+}
+
 export interface CmsLink {
   label: string;
   url: string;
@@ -260,7 +286,6 @@ interface HomeYaml {
     heading: string;
     metrics: FootprintMetric[];
     globe: {
-      ariaLabel: string;
       markers: GlobeMarker[];
     };
   };
@@ -377,7 +402,6 @@ interface ExecutionPillarYaml {
   title: string;
   description: string;
   url?: string;
-  ariaLabel?: string;
 }
 
 interface ExecutionYaml {
@@ -387,7 +411,7 @@ interface ExecutionYaml {
 
 interface TelecomMetricYaml {
   target: number;
-  isFloat?: boolean;
+  showDecimalAnimation?: boolean;
   unit?: string;
   suffix?: string;
   label: string;
@@ -395,7 +419,6 @@ interface TelecomMetricYaml {
 }
 
 interface TelecomProcessYaml {
-  id: string;
   title: string;
   description: string;
   image: string;
@@ -408,6 +431,7 @@ interface TelecomProcessYaml {
 interface TelecomDeploymentYaml {
   title: string;
   description: string;
+  href?: string;
   badges: string[];
 }
 
@@ -437,10 +461,10 @@ interface TelecomYaml {
     heading: string;
     description: string;
     items: Array<{
-      id: string;
       label: string;
       shortLabel?: string;
       image: string;
+      invertImageInDarkMode?: boolean;
       items: Array<{
         title: string;
         desc: string;
@@ -454,6 +478,7 @@ interface TelecomYaml {
   deployments: {
     heading: string;
     description: string;
+    href?: string;
     items: TelecomDeploymentYaml[];
   };
   execution: TelecomExecutionYaml;
@@ -893,7 +918,7 @@ function validateHomeServices(services: HomeYaml['services']) {
   return services;
 }
 
-function resolveExecution(execution: ExecutionYaml) {
+function resolveExecution<T extends ExecutionYaml>(execution: T) {
   return {
     ...execution,
     headingHtml: execution.heading.replace(/\n/g, '<br />'),
@@ -902,6 +927,7 @@ function resolveExecution(execution: ExecutionYaml) {
 
 export const telecom = (() => {
   const data = telecomYaml as TelecomYaml;
+  const capabilityIds = new Set<string>();
 
   return {
     ...data,
@@ -911,13 +937,15 @@ export const telecom = (() => {
       backgroundImage: getCmsAsset(data.capabilities.backgroundImage),
       items: data.capabilities.items.map((tab) => ({
         ...tab,
+        id: uniqueSlug(tab.label, capabilityIds),
         image: getCmsAssetSrc(tab.image),
       })),
     },
     processes: {
       ...data.processes,
-      items: data.processes.items.map((process) => ({
+      items: data.processes.items.map((process, index) => ({
         ...process,
+        id: formatStepNumber(index),
         image: getCmsAssetSrc(process.image),
       })),
     },

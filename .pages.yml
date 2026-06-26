@@ -607,10 +607,6 @@ content:
               - name: globe
                 type: object
                 fields:
-                  - name: ariaLabel
-                    label: ARIA label
-                    type: string
-                    required: true
                   - name: markers
                     label: Globe markers
                     type: object
@@ -1011,9 +1007,6 @@ content:
                     collapsed: true
                     summary: '{shortLabel} - {label}'
                 fields:
-                  - name: id
-                    type: string
-                    required: true
                   - name: label
                     type: string
                     required: true
@@ -1024,6 +1017,10 @@ content:
                   - name: image
                     type: image
                     required: true
+                  - name: invertImageInDarkMode
+                    label: Invert image in dark mode
+                    type: boolean
+                    required: false
                   - name: items
                     label: Accordion items
                     type: object
@@ -1054,11 +1051,8 @@ content:
                 list:
                   collapsible:
                     collapsed: true
-                    summary: '{id} - {title}'
+                    summary: '{title}'
                 fields:
-                  - name: id
-                    type: string
-                    required: true
                   - name: title
                     type: string
                     required: true
@@ -1093,6 +1087,10 @@ content:
               - name: description
                 type: text
                 required: true
+              - name: href
+                label: Section button URL
+                type: string
+                required: false
               - name: items
                 label: Deployment cards
                 type: object
@@ -1108,6 +1106,10 @@ content:
                   - name: description
                     type: text
                     required: true
+                  - name: href
+                    label: Card button URL
+                    type: string
+                    required: false
                   - name: badges
                     type: string
                     list: true
@@ -1130,8 +1132,8 @@ content:
                   - name: target
                     type: number
                     required: true
-                  - name: isFloat
-                    label: Allow decimal value
+                  - name: showDecimalAnimation
+                    label: Show decimal animation
                     type: boolean
                     required: false
                   - name: unit
@@ -1168,10 +1170,6 @@ content:
                     type: text
                     required: true
                   - name: url
-                    type: string
-                    required: false
-                  - name: ariaLabel
-                    label: ARIA label
                     type: string
                     required: false
 
@@ -1299,10 +1297,6 @@ content:
                     type: text
                     required: true
                   - name: url
-                    type: string
-                    required: false
-                  - name: ariaLabel
-                    label: ARIA label
                     type: string
                     required: false
           - name: deployments

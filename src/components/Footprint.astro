@@ -7,7 +7,6 @@ interface Props {
   heading: string;
   metrics: FootprintMetric[];
   globe: {
-    ariaLabel: string;
     markers: GlobeMarker[];
   };
 }
@@ -65,7 +64,7 @@ const globeMarkers = globe.markers.map((marker) => ({
             expandable={false}
             className=""
             markers={globeMarkers}
-            ariaLabel={globe.ariaLabel}
+            ariaLabel="Interactive globe showing HTIS office locations"
           />
         </div>
       </div>

@@ -417,7 +417,6 @@ footprint:
     - value: Pan-India
       label: Delivery Network
   globe:
-    ariaLabel: Interactive globe showing HTIS office locations
     markers:
       - name: India
         latitude: 28.4595

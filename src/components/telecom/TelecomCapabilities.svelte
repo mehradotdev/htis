@@ -13,6 +13,7 @@
     label: string;
     shortLabel?: string;
     image: string;
+    invertImageInDarkMode?: boolean;
     items: CapabilityItem[];
   }
 
@@ -97,7 +98,7 @@
   >
     {#if canScrollLeft}
       <button
-        class="absolute left-1 top-1 bottom-1 z-10 px-2 flex items-center justify-center bg-gradient-to-r from-base-100 via-base-100/90 to-transparent transition-opacity rounded-l-xl"
+        class="absolute left-1 top-1 bottom-1 z-10 px-2 flex items-center justify-center bg-linear-to-r from-base-100 via-base-100/90 to-transparent transition-opacity rounded-l-xl"
         onclick={() => {
           if (tabsContainer) tabsContainer.scrollBy({ left: -200, behavior: 'smooth' });
         }}
@@ -113,16 +114,16 @@
     {/if}
 
     <div
-      class="w-full overflow-x-auto no-scrollbar relative"
+      class="w-full overflow-x-auto overflow-y-hidden no-scrollbar relative"
       bind:this={tabsContainer}
       onscroll={checkScroll}
     >
-      <div class="flex flex-nowrap gap-2 w-max lg:w-full min-w-full justify-start px-1">
+      <div class="flex flex-nowrap gap-2 w-max lg:w-full min-w-full justify-start px-1 py-1">
         {#each capabilities as tab, index}
           <button
             class="tab-button cursor-pointer flex-1 min-w-[140px] md:min-w-[160px] lg:min-w-0 px-6 py-4 rounded-xl font-medium transition-all duration-300 text-sm md:text-xl text-center select-none overflow-hidden relative
               {activeTab === tab.id
-              ? 'bg-primary text-primary-content shadow-lg shadow-primary/20 scale-[1.02]'
+              ? 'bg-primary text-primary-content scale-[1.02]'
               : 'text-base-content/70 hover:text-base-content hover:bg-base-200/50'}"
             onclick={() => {
               activeTab = tab.id;
@@ -166,14 +167,14 @@
   >
     {#if activeCapability}
       <h3
-        class="lg:col-span-2 text-2xl md:text-3xl font-medium text-base-content tracking-tight mb-2 md:mb-4"
+        class="order-1 lg:col-span-2 text-2xl md:text-3xl font-medium text-base-content tracking-tight mb-2 md:mb-4"
       >
         {activeCapability.label}
       </h3>
     {/if}
 
     <!-- Left: Accordion -->
-    <div class="flex flex-col gap-3">
+    <div class="order-3 lg:order-2 flex flex-col gap-3">
       {#each activeCapability?.items || [] as item, index}
         <div
           role="button"
@@ -217,14 +218,16 @@
 
     <!-- Right: Image -->
     <div
-      class="relative w-full aspect-square md:aspect-auto md:h-full min-h-[300px] rounded-2xl overflow-hidden flex items-center justify-center bg-base-100"
+      class="order-2 lg:order-3 relative w-full aspect-square md:aspect-auto md:h-full min-h-[300px] rounded-2xl overflow-hidden flex items-center justify-center bg-base-100"
     >
       {#key activeTab}
         {#if activeCapability?.image}
           <img
             src={activeCapability.image}
             alt={activeCapability.label}
-            class="w-full h-full object-contain object-center p-4"
+            class="w-full h-full object-contain object-center p-4 {activeCapability.invertImageInDarkMode
+              ? 'filter-invert-dark'
+              : ''}"
             in:fly={{ y: 10, duration: 400 }}
           />
         {/if}

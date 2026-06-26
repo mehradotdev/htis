@@ -257,6 +257,10 @@ body {
   animation: marqueeVertical 25s linear infinite;
 }
 
+@utility filter-invert-dark {
+  filter: var(--filter-invert-dark);
+}
+
 
 /* ──────────────────────────────────────
  * GLOBAL FIXES & PSEUDO-ELEMENT STYLES

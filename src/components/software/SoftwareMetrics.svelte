@@ -1,7 +1,7 @@
 <script lang="ts">
   const metrics = [
     { target: 3000, suffix: '+', label: 'Daily Active Users' },
-    { target: 99.9, suffix: '%', label: 'SLA Uptime', isFloat: true },
+    { target: 99.9, suffix: '%', label: 'SLA Uptime', showDecimalAnimation: true },
     { target: 18, suffix: '', label: 'Core Software Engineers' },
     { target: 150, suffix: '+', label: 'Production Deployments' },
   ];
@@ -43,7 +43,7 @@
 
       currentValues = metrics.map((m) => {
         const val = m.target * easeOutQuart;
-        return m.isFloat
+        return m.showDecimalAnimation
           ? Number(Math.min(val, m.target).toFixed(1))
           : Math.min(Math.floor(val), m.target);
       });

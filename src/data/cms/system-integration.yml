@@ -115,7 +115,6 @@ execution:
         engineers, and operations coordinators required to ensure carrier-grade
         stability and high-performance network execution.
       url: "#"
-      ariaLabel: View more details
     - iconName: Users
       title: |-
         Specialized Technical Resourcing
@@ -126,7 +125,6 @@ execution:
         architects (L6) to scalable field engineering units (L1), we provide the
         human capital required for operational excellence.
       url: "#"
-      ariaLabel: View more details
     - iconName: Code
       title: |-
         Enterprise Software Engineering
@@ -137,7 +135,6 @@ execution:
         high-compliance digital assets-including our proprietary ERP
         systems-designed for the most demanding regulatory environments.
       url: "#"
-      ariaLabel: View more details
 deployments:
   heading: Integrated Infrastructure Deployments
   image: src/assets/bt-wholesale-2-1.jpg
