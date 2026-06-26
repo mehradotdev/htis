@@ -1,14 +1,37 @@
 <script lang="ts">
-  const metrics = [
-    { target: 3000, suffix: '+', label: 'Daily Active Users' },
-    { target: 99.9, suffix: '%', label: 'SLA Uptime', showDecimalAnimation: true },
-    { target: 18, suffix: '', label: 'Core Software Engineers' },
-    { target: 150, suffix: '+', label: 'Production Deployments' },
+  interface SoftwareMetric {
+    target: number;
+    showDecimalAnimation?: boolean;
+    unit?: string;
+    suffix?: string;
+    label: string;
+    subLabel?: string;
+  }
+
+  const defaultMetrics: SoftwareMetric[] = [
+    { target: 3000, unit: '', suffix: '+', label: 'Daily Active Users' },
+    {
+      target: 99.9,
+      unit: '',
+      suffix: '%',
+      label: 'SLA Uptime',
+      showDecimalAnimation: true,
+    },
+    { target: 18, unit: '', suffix: '', label: 'Core Software Engineers' },
+    { target: 150, unit: '', suffix: '+', label: 'Production Deployments' },
   ];
 
-  let currentValues = $state(metrics.map(() => 0));
+  let { metrics = defaultMetrics }: { metrics?: SoftwareMetric[] } = $props();
+
+  let currentValues = $state<number[]>([]);
   let sectionRef: HTMLElement | undefined = $state();
   let isVisible = $state(false);
+
+  $effect(() => {
+    if (!isVisible && currentValues.length !== metrics.length) {
+      currentValues = metrics.map(() => 0);
+    }
+  });
 
   $effect(() => {
     const observer = new IntersectionObserver(
@@ -64,13 +87,18 @@
           >{#if metric.target >= 1000 && currentValues[i] >= 1000}{currentValues[
               i
             ].toLocaleString()}{:else}{currentValues[i]}{/if}<span
-            class="text-4xl md:text-5xl font-light">{metric.suffix}</span
+            class="text-4xl md:text-5xl font-light">{metric.unit}{metric.suffix}</span
           ></span
         >
       </div>
       <span class="text-sm md:text-base font-medium text-base-content/70"
         >{metric.label}</span
       >
+      {#if metric.subLabel}
+        <span class="text-xs leading-relaxed text-base-content/60">
+          {metric.subLabel}
+        </span>
+      {/if}
     </div>
   {/each}
 </div>

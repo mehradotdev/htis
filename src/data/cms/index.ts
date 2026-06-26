@@ -397,6 +397,16 @@ interface PageHeroYaml {
   carouselImages?: string[];
 }
 
+interface SystemIntegrationHeroYaml {
+  backgroundImage: string;
+  foregroundImage?: string;
+  title: string;
+  subtitle: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  carouselImages?: string[];
+}
+
 interface ExecutionPillarYaml {
   iconName: string;
   title: string;
@@ -404,18 +414,19 @@ interface ExecutionPillarYaml {
   url?: string;
 }
 
-interface ExecutionYaml {
-  heading: string;
-  pillars: ExecutionPillarYaml[];
-}
-
-interface TelecomMetricYaml {
+interface ExecutionMetricYaml {
   target: number;
   showDecimalAnimation?: boolean;
   unit?: string;
   suffix?: string;
   label: string;
   subLabel?: string;
+}
+
+interface ExecutionYaml {
+  heading: string;
+  metrics: ExecutionMetricYaml[];
+  pillars: ExecutionPillarYaml[];
 }
 
 interface TelecomProcessYaml {
@@ -435,15 +446,26 @@ interface TelecomDeploymentYaml {
   badges: string[];
 }
 
-interface TelecomExecutionYaml extends ExecutionYaml {
-  metrics: TelecomMetricYaml[];
-}
-
 interface PartnerTabYaml {
+  iconName: string;
   title: string;
   subtitle: string;
   description: string;
   partners: Array<{ name: string; logo?: string }>;
+}
+
+interface PartnerEcosystemYaml {
+  heading: string;
+  description: string;
+  tabs: PartnerTabYaml[];
+}
+
+interface StrategicPillarCardYaml {
+  iconName: string;
+  title: string;
+  description: string;
+  content: string;
+  column: 'left' | 'center' | 'right';
 }
 
 interface CaseStudyYaml {
@@ -481,20 +503,19 @@ interface TelecomYaml {
     href?: string;
     items: TelecomDeploymentYaml[];
   };
-  execution: TelecomExecutionYaml;
+  execution: ExecutionYaml;
 }
 
 interface SystemIntegrationYaml {
   title: string;
-  hero: PageHeroYaml;
+  hero: SystemIntegrationHeroYaml;
   strategicPillars: {
     backgroundImage: string;
     centerImage: string;
     heading: string;
+    cards: StrategicPillarCardYaml[];
   };
-  partnerEcosystem: {
-    tabs: PartnerTabYaml[];
-  };
+  partnerEcosystem: PartnerEcosystemYaml;
   execution: ExecutionYaml;
   deployments: {
     heading: string;
@@ -873,7 +894,7 @@ export const awards: {
   };
 })();
 
-function resolveHero(hero: PageHeroYaml) {
+function resolveHero(hero: PageHeroYaml | SystemIntegrationHeroYaml) {
   return {
     ...hero,
     backgroundImage: getCmsAsset(hero.backgroundImage),
@@ -965,6 +986,7 @@ export const systemIntegration = (() => {
       centerImageSrc: getCmsAssetSrc(data.strategicPillars.centerImage),
     },
     partnerEcosystem: {
+      ...data.partnerEcosystem,
       tabs: data.partnerEcosystem.tabs.map((tab) => ({
         ...tab,
         partners: tab.partners.map((partner) => ({

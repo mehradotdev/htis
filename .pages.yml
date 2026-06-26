@@ -1186,7 +1186,7 @@ content:
             required: true
           - name: hero
             type: object
-            fields: &split_hero_fields
+            fields: &system_integration_hero_fields
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1198,9 +1198,6 @@ content:
               - name: title
                 type: text
                 required: true
-              - name: highlight
-                type: string
-                required: false
               - name: subtitle
                 type: text
                 required: true
@@ -1212,14 +1209,6 @@ content:
                 label: CTA URL
                 type: string
                 required: true
-              - name: secondaryCtaLabel
-                label: Secondary CTA label
-                type: string
-                required: false
-              - name: secondaryCtaUrl
-                label: Secondary CTA URL
-                type: string
-                required: false
               - name: carouselImages
                 label: Carousel images
                 type: image
@@ -1238,10 +1227,55 @@ content:
               - name: heading
                 type: string
                 required: true
+              - name: cards
+                label: Pillar cards
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{title}'
+                fields:
+                  - name: iconName
+                    label: Icon
+                    type: select
+                    required: true
+                    options:
+                      values:
+                        [
+                          Briefcase,
+                          Cctv,
+                          Cloud,
+                          Monitor,
+                          Network,
+                          Server,
+                          ShieldCheck,
+                        ]
+                  - name: title
+                    type: string
+                    required: true
+                  - name: description
+                    type: text
+                    required: true
+                  - name: content
+                    type: text
+                    required: true
+                  - name: column
+                    type: select
+                    required: true
+                    options:
+                      values: [left, center, right]
           - name: partnerEcosystem
             label: Partner ecosystem
             type: object
             fields:
+              - name: heading
+                label: Main title
+                type: text
+                required: true
+              - name: description
+                label: Main description
+                type: text
+                required: true
               - name: tabs
                 type: object
                 list:
@@ -1249,6 +1283,21 @@ content:
                     collapsed: true
                     summary: '{title}'
                 fields: &partner_tab_fields
+                  - name: iconName
+                    label: Icon
+                    type: select
+                    required: true
+                    options:
+                      values:
+                        [
+                          Cctv,
+                          Cloud,
+                          Database,
+                          Laptop,
+                          Network,
+                          ShieldCheck,
+                          Zap,
+                        ]
                   - name: title
                     type: string
                     required: true
@@ -1272,11 +1321,40 @@ content:
                         type: image
                         required: false
           - name: execution
+            label: Execution section
             type: object
-            fields: &execution_fields
+            fields:
               - name: heading
                 type: text
                 required: true
+              - name: metrics
+                type: object
+                required: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{label}'
+                fields:
+                  - name: target
+                    type: number
+                    required: true
+                  - name: showDecimalAnimation
+                    label: Show decimal animation
+                    type: boolean
+                    required: false
+                  - name: unit
+                    type: string
+                    required: false
+                  - name: suffix
+                    type: string
+                    required: false
+                  - name: label
+                    type: string
+                    required: true
+                  - name: subLabel
+                    label: Sub-label
+                    type: text
+                    required: false
               - name: pillars
                 type: object
                 list:
@@ -1350,7 +1428,45 @@ content:
             required: true
           - name: hero
             type: object
-            fields: *split_hero_fields
+            fields: &split_hero_fields
+              - name: backgroundImage
+                label: Background image
+                type: image
+                required: true
+              - name: foregroundImage
+                label: Foreground image
+                type: image
+                required: false
+              - name: title
+                type: text
+                required: true
+              - name: highlight
+                type: string
+                required: false
+              - name: subtitle
+                type: text
+                required: true
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
+              - name: secondaryCtaLabel
+                label: Secondary CTA label
+                type: string
+                required: false
+              - name: secondaryCtaUrl
+                label: Secondary CTA URL
+                type: string
+                required: false
+              - name: carouselImages
+                label: Carousel images
+                type: image
+                list: true
+                required: false
           - name: portfolio
             type: object
             fields:
@@ -1411,8 +1527,62 @@ content:
                         type: string
                         required: false
           - name: execution
+            label: Execution section
             type: object
-            fields: *execution_fields
+            fields: &execution_fields
+              - name: heading
+                type: text
+                required: true
+              - name: metrics
+                type: object
+                required: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{label}'
+                fields:
+                  - name: target
+                    type: number
+                    required: true
+                  - name: showDecimalAnimation
+                    label: Show decimal animation
+                    type: boolean
+                    required: false
+                  - name: unit
+                    type: string
+                    required: false
+                  - name: suffix
+                    type: string
+                    required: false
+                  - name: label
+                    type: string
+                    required: true
+                  - name: subLabel
+                    label: Sub-label
+                    type: text
+                    required: false
+              - name: pillars
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{title}'
+                fields:
+                  - name: iconName
+                    label: Icon
+                    type: select
+                    required: true
+                    options:
+                      values: [Code, Network, RadioTower, Server, Users]
+                  - name: title
+                    type: text
+                    required: true
+                  - name: description
+                    type: text
+                    required: true
+                  - name: url
+                    type: string
+                    required: false
           - name: caseStudies
             label: Case studies
             type: object

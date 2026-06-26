@@ -18,13 +18,26 @@
   }
 
   interface EcosystemTab {
+    iconName: string;
     title: string;
     subtitle: string;
     description?: string;
     partners: Partner[];
   }
 
-  let { tabs = [] }: { tabs: EcosystemTab[] } = $props();
+  interface PartnerEcosystem {
+    heading: string;
+    description: string;
+    tabs: EcosystemTab[];
+  }
+
+  let {
+    partnerEcosystem,
+  }: {
+    partnerEcosystem: PartnerEcosystem;
+  } = $props();
+
+  const tabs = $derived(partnerEcosystem.tabs ?? []);
 
   let activeIndex = $state(0);
   let interval: ReturnType<typeof setInterval>;
@@ -78,6 +91,13 @@
   }
 
   const iconMap: Record<string, any> = {
+    Cctv,
+    Cloud,
+    Database,
+    Laptop,
+    Network,
+    ShieldCheck,
+    Zap,
     'Compute & Mobility': Laptop,
     'Networking & Fabric': Network,
     Cybersecurity: ShieldCheck,
@@ -87,7 +107,9 @@
     'Surveillance & AV': Cctv,
   };
 
-  let ActiveIcon = $derived(iconMap[tabs[activeIndex]?.title] || Laptop);
+  let ActiveIcon = $derived(
+    iconMap[tabs[activeIndex]?.iconName] || iconMap[tabs[activeIndex]?.title] || Laptop,
+  );
 
   function startInterval() {
     clearInterval(interval);
@@ -131,13 +153,10 @@
 <div class="w-full">
   <div class="max-w-4xl mb-12">
     <h2 class="mb-6 text-3xl font-bold md:text-4xl lg:text-5xl text-base-content">
-      <span class="text-2xl md:text-3xl lg:text-4xl font-medium">The</span>
-      <span class="text-primary">HTIS Partner</span> Ecosystem
+      {@html partnerEcosystem.heading}
     </h2>
     <p class="text-lg md:text-xl text-base-content/70 leading-relaxed">
-      We collaborate with a specialized list of global OEMs to deliver end-to-end IT
-      excellence. This ecosystem ensures that every layer of your infrastructure, from the
-      endpoint to the cloud, is powered by industry-leading technology.
+      {partnerEcosystem.description}
     </p>
   </div>
 
@@ -151,7 +170,7 @@
       class="flex flex-nowrap gap-2.5 pb-6 border-b border-base-content/10 mb-8 overflow-x-auto no-scrollbar scroll-smooth w-full"
     >
       {#each tabs as tab, i}
-        {@const TabIcon = iconMap[tab.title] || Laptop}
+        {@const TabIcon = iconMap[tab.iconName] || iconMap[tab.title] || Laptop}
         <button
           onclick={() => selectTab(i)}
           class="flex items-center gap-2 px-4.5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer border shrink-0 relative

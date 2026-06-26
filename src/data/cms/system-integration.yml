@@ -16,9 +16,77 @@ strategicPillars:
   backgroundImage: src/assets/team-member-bg.png
   centerImage: src/assets/lob-system-tech-pillars.png
   heading: Strategic Technical Pillars
+  cards:
+    - iconName: Server
+      title: Converged Infrastructure & Data Centre Stack
+      description: High-availability compute and storage architectures from the core
+        to the edge.
+      content: We deliver end-to-end infrastructure resilience through Hyperconverged
+        Infrastructure (HCI), enterprise-grade server clusters, and scalable storage
+        solutions, ensuring your Data Center stack remains future-ready and
+        virtualization-optimized.
+      column: left
+    - iconName: Network
+      title: Adaptive Networking & Secure Connectivity
+      description: Intelligent LAN, WAN, and Campus fabrics designed for seamless,
+        high-speed data flow.
+      content: Our networking expertise covers the full spectrum of Active
+        (Switches, Routers, IPABX) and Passive (OFC, Rack, Structured Cabling)
+        components, integrated with SD-WAN and SDN technologies for
+        software-defined agility.
+      column: left
+    - iconName: Cloud
+      title: Hybrid Cloud & Digital Workspace
+      description: Transitioning traditional environments into elastic, cloud-native
+        modern workplaces.
+      content: From complex Cloud Migrations (AWS/Azure) to Hybrid Cloud deployments
+        and Virtual Desktop Infrastructure (VDI), we ensure your workforce stays
+        connected and productive through secure, scalable cloud ecosystems.
+      column: left
+    - iconName: Briefcase
+      title: Managed Lifecycle & ICT Projects
+      description: Comprehensive service models ensuring long-term operational
+        continuity.
+      content: Our managed services provide strategic stability through specialized
+        Manpower (L1-L6), customized AMC/CAMC models, and end-to-end ICT project
+        management tailored for large-scale government and private sector rollouts.
+      column: center
+    - iconName: ShieldCheck
+      title: Unified Cyber-Defence & Resilience
+      description: Perimeter-to-Endpoint security frameworks to mitigate modern threat
+        landscapes.
+      content: We deploy robust security architectures including Next-Gen Firewalls,
+        Identity & Access Management (IAM), and advanced EDR/XDR/Email Security
+        solutions to ensure 360-degree data protection and regulatory compliance.
+      column: right
+    - iconName: Cctv
+      title: Environmental Control & Physical Security
+      description: Critical infrastructure protection including surveillance, power,
+        and thermal management.
+      content: We secure the physical layer through integrated Surveillance (CCTV)
+        and Access Control, supported by mission-critical power backups (UPS), fire
+        suppression systems, and specialized refrigeration for high-density IT
+        environments.
+      column: right
+    - iconName: Monitor
+      title: Professional Compute & Visual Systems
+      description: Specialized hardware and immersive AV/VC solutions for the modern
+        enterprise.
+      content: We provide a full suite of high-performance compute, including
+        workstations, notebooks, and peripherals, alongside advanced AV/VC
+        integrations like LED Walls and professional projection systems for
+        high-impact communication.
+      column: right
 partnerEcosystem:
+  heading: <span class="text-2xl md:text-3xl lg:text-4xl font-medium">The</span>
+    <span class="text-primary">HTIS Partner</span> Ecosystem
+  description: We collaborate with a specialized list of global OEMs to deliver
+    end-to-end IT excellence. This ecosystem ensures that every layer of your
+    infrastructure, from the endpoint to the cloud, is powered by industry-leading
+    technology.
   tabs:
-    - title: Compute & Mobility
+    - iconName: Laptop
+      title: Compute & Mobility
       subtitle: Laptops, Servers, High-End Workstations
       description: High-performance, secure, and scalable client systems, servers, and
         workspace solutions.
@@ -31,7 +99,8 @@ partnerEcosystem:
           logo: src/assets/lenovo.webp
         - name: MSi
           logo: src/assets/oip-3.webp
-    - title: Networking & Fabric
+    - iconName: Network
+      title: Networking & Fabric
       subtitle: Active Switches, Routers, Wireless, SD-WAN
       description: High-performance, secure and scalable network infrastructure that
         keeps your business connected.
@@ -44,7 +113,8 @@ partnerEcosystem:
           logo: src/assets/juniper-2.png
         - name: Ruckus
           logo: src/assets/logo-ruckus-networks.png
-    - title: Cybersecurity
+    - iconName: ShieldCheck
+      title: Cybersecurity
       subtitle: Firewalls, EDR/XDR, Identity Management
       description: Perimeter-to-endpoint security frameworks designed to mitigate
         threats and protect critical assets.
@@ -58,7 +128,8 @@ partnerEcosystem:
           logo: src/assets/logo-Sonicwall.png
         - name: Sophos
           logo: src/assets/sophos.webp
-    - title: Cloud & Virtualization
+    - iconName: Cloud
+      title: Cloud & Virtualization
       subtitle: Hybrid Cloud, VDI, Hyperconverged (HCI)
       description: Seamless hybrid cloud migration, secure virtual desktops, and
         scalable virtual environments.
@@ -67,7 +138,8 @@ partnerEcosystem:
         - name: Microsoft Azure
         - name: VMware
         - name: Nutanix
-    - title: Storage & Backup
+    - iconName: Database
+      title: Storage & Backup
       subtitle: Enterprise Storage, Data Protection
       description: Enterprise-grade storage systems and resilient data protection to
         guarantee business continuity.
@@ -76,7 +148,8 @@ partnerEcosystem:
         - name: Pure Storage
         - name: Veeam
         - name: Commvault
-    - title: Infra & Power
+    - iconName: Zap
+      title: Infra & Power
       subtitle: Data Centre Racks, UPS, Precision Cooling
       description: Mission-critical power backup, cooling systems, and racks ensuring
         maximum datacenter uptime.
@@ -88,7 +161,8 @@ partnerEcosystem:
           logo: src/assets/logo-Vertiv.png
         - name: Eaton
           logo: src/assets/logo-Eaton.jpg
-    - title: Surveillance & AV
+    - iconName: Cctv
+      title: Surveillance & AV
       subtitle: Physical Security, LED Walls, VC
       description: Integrated physical security, CCTV surveillance, and high-impact
         visual communication systems.
@@ -104,6 +178,37 @@ execution:
   heading: |-
     Built to Execute.
     Scaled to Deliver.
+  metrics:
+    - target: 1.2
+      showDecimalAnimation: true
+      unit: M
+      suffix: +
+      label: Sites Deployed
+      subLabel: ""
+    - target: 250
+      showDecimalAnimation: false
+      unit: K
+      suffix: +
+      label: Routers Deployed
+      subLabel: ""
+    - target: 16
+      showDecimalAnimation: false
+      unit: ""
+      suffix: +
+      label: Telecom Circles (India)
+      subLabel: ""
+    - target: 8
+      showDecimalAnimation: false
+      unit: ""
+      suffix: +
+      label: Countries Served
+      subLabel: India, Bangladesh, Nepal, Sri Lanka, South Africa, UK, Nigeria, CAR
+    - target: 3
+      showDecimalAnimation: false
+      unit: ""
+      suffix: /4
+      label: Major Indian Operators Served
+      subLabel: ""
   pillars:
     - iconName: Network
       title: |-

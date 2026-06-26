@@ -57,6 +57,7 @@ const iconMap = { Network, Users, Code };
 
         <StrategicPillars
           centerImageSrc={systemIntegration.strategicPillars.centerImageSrc}
+          cards={systemIntegration.strategicPillars.cards}
           client:visible
         />
       </div>
@@ -65,7 +66,10 @@ const iconMap = { Network, Users, Code };
     <!-- The HTIS Partner Ecosystem Section -->
     <section class="relative bg-base-100 py-16 md:py-24">
       <div class="container mx-auto px-6">
-        <PartnerEcosystem tabs={systemIntegration.partnerEcosystem.tabs} client:visible />
+        <PartnerEcosystem
+          partnerEcosystem={systemIntegration.partnerEcosystem}
+          client:visible
+        />
       </div>
     </section>
 
@@ -79,7 +83,7 @@ const iconMap = { Network, Users, Code };
         </div>
 
         <!-- Stats -->
-        <TelecomMetrics client:visible />
+        <TelecomMetrics metrics={systemIntegration.execution.metrics} client:visible />
 
         <!-- Pillars -->
         <div

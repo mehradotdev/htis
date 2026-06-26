@@ -97,6 +97,31 @@ execution:
   heading: |-
     Built to Execute.
     Scaled to Deliver.
+  metrics:
+    - target: 3000
+      showDecimalAnimation: false
+      unit: ""
+      suffix: +
+      label: Daily Active Users
+      subLabel: ""
+    - target: 99.9
+      showDecimalAnimation: true
+      unit: ""
+      suffix: "%"
+      label: SLA Uptime
+      subLabel: ""
+    - target: 18
+      showDecimalAnimation: false
+      unit: ""
+      suffix: ""
+      label: Core Software Engineers
+      subLabel: ""
+    - target: 150
+      showDecimalAnimation: false
+      unit: ""
+      suffix: +
+      label: Production Deployments
+      subLabel: ""
   pillars:
     - iconName: RadioTower
       title: Carrier-Grade Network Automation
