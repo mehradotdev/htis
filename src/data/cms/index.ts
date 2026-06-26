@@ -229,6 +229,45 @@ export interface SoftwareCaseStudyItem {
   url?: string;
 }
 
+export interface SoftwareEngineeringStackCard {
+  title: string;
+  description: string;
+  image: ImageMetadata;
+  alt: string;
+}
+
+export interface SoftwareEngineeringStackSection {
+  backgroundImage: ImageMetadata;
+  heading: string;
+  description: string;
+  cards: SoftwareEngineeringStackCard[];
+}
+
+export interface SoftwareArchitecturalPrincipleItem {
+  title: string;
+  description: string;
+}
+
+export interface SoftwareArchitecturalPrinciplesSection {
+  backgroundImageSrc: string;
+  heading: string;
+  description: string;
+  items: SoftwareArchitecturalPrincipleItem[];
+}
+
+export interface SoftwareOnboardingStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface SoftwareOnboardingSection {
+  backgroundImage: ImageMetadata;
+  eyebrow: string;
+  heading: string;
+  steps: SoftwareOnboardingStep[];
+}
+
 type HomeServiceId = 'telecom' | 'resourcing' | 'software' | 'system';
 
 export interface HomeServiceMetric {
@@ -528,7 +567,7 @@ interface SystemIntegrationYaml {
 
 interface SoftwareYaml {
   title: string;
-  hero: PageHeroYaml;
+  hero: Omit<PageHeroYaml, 'carouselImages'>;
   portfolio: {
     backgroundImage: string;
     heading: string;
@@ -538,6 +577,19 @@ interface SoftwareYaml {
         items: Array<Omit<SoftwarePortfolioItem, 'image'> & { image: string }>;
       }
     >;
+  };
+  engineeringStack: Omit<SoftwareEngineeringStackSection, 'backgroundImage' | 'cards'> & {
+    backgroundImage: string;
+    cards: Array<Omit<SoftwareEngineeringStackCard, 'image'> & { image: string }>;
+  };
+  architecturalPrinciples: Omit<
+    SoftwareArchitecturalPrinciplesSection,
+    'backgroundImageSrc'
+  > & {
+    backgroundImage: string;
+  };
+  onboarding: Omit<SoftwareOnboardingSection, 'backgroundImage'> & {
+    backgroundImage: string;
   };
   execution: ExecutionYaml;
   caseStudies: {
@@ -894,11 +946,17 @@ export const awards: {
   };
 })();
 
-function resolveHero(hero: PageHeroYaml | SystemIntegrationHeroYaml) {
+function resolveSplitHero(hero: PageHeroYaml | SystemIntegrationHeroYaml) {
   return {
     ...hero,
     backgroundImage: getCmsAsset(hero.backgroundImage),
     foregroundImage: hero.foregroundImage ? getCmsAsset(hero.foregroundImage) : undefined,
+  };
+}
+
+function resolveHero(hero: PageHeroYaml | SystemIntegrationHeroYaml) {
+  return {
+    ...resolveSplitHero(hero),
     carouselImages: hero.carouselImages?.map(getCmsAssetSrc) ?? [],
   };
 }
@@ -1008,7 +1066,7 @@ export const software = (() => {
 
   return {
     ...data,
-    hero: resolveHero(data.hero),
+    hero: resolveSplitHero(data.hero),
     portfolio: {
       ...data.portfolio,
       backgroundImage: getCmsAsset(data.portfolio.backgroundImage),
@@ -1019,6 +1077,22 @@ export const software = (() => {
           image: getCmsAssetSrc(item.image),
         })),
       })),
+    },
+    engineeringStack: {
+      ...data.engineeringStack,
+      backgroundImage: getCmsAsset(data.engineeringStack.backgroundImage),
+      cards: data.engineeringStack.cards.map((card) => ({
+        ...card,
+        image: getCmsAsset(card.image),
+      })),
+    },
+    architecturalPrinciples: {
+      ...data.architecturalPrinciples,
+      backgroundImageSrc: getCmsAssetSrc(data.architecturalPrinciples.backgroundImage),
+    },
+    onboarding: {
+      ...data.onboarding,
+      backgroundImage: getCmsAsset(data.onboarding.backgroundImage),
     },
     execution: resolveExecution(data.execution),
     caseStudies: {

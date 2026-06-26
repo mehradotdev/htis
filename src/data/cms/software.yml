@@ -2,7 +2,7 @@ title: Software Development & SaaS - HTIS
 hero:
   backgroundImage: src/assets/lob-software-hero-bg.png
   foregroundImage: src/assets/webp-01-scaled.webp
-  title: "Digital Intelligence:"
+  title: 'Digital Intelligence:'
   highlight: Enterprise SaaS
   subtitle: We architect the resilient software ecosystems that drive modern
     enterprise and government operations. By merging the agility of on-demand
@@ -12,7 +12,7 @@ hero:
   ctaLabel: Contact Us
   ctaUrl: /#contact
   secondaryCtaLabel: Explore Portfolio
-  secondaryCtaUrl: "#portfolio"
+  secondaryCtaUrl: '#portfolio'
 portfolio:
   backgroundImage: src/assets/team-member-bg.png
   heading: Converged Software Portfolio
@@ -93,6 +93,102 @@ portfolio:
             ecosystems, including commercial transit taxation, state ecotourism
             reservations, and agricultural administration.
           image: src/assets/lob-software-sw-port-public-3.png
+engineeringStack:
+  backgroundImage: src/assets/team-member-bg.png
+  heading: |-
+    Modern Engineering Stack &
+    Adaptive Architecture
+  description: We utilize state-of-the-art architectures and cutting-edge software
+    paradigms to build secure, robust, and highly scalable digital ecosystems.
+  cards:
+    - title: Web & Interactive UI
+      description: High-performance interfaces architected with React JS, Bootstrap 5,
+        and Alpine.js to ensure responsive, modular, and fast-loading web
+        applications.
+      image: src/assets/lob-software-web-ui.png
+      alt: Web & Interactive UI Mockup
+    - title: Cross-Platform Mobile
+      description: Utilizing React Native to deploy native-quality experiences for
+        Android and iOS from a single codebase, powering our 1,800+ daily active
+        field users.
+      image: src/assets/lob-software-mobile-ui.png
+      alt: Cross-Platform Mobile Mockup
+    - title: Distributed API Gateways
+      description: Secure, low-latency microservices built with Node.js and Go,
+        handling seamless real-time data flow between field agents and cloud
+        databases.
+      image: src/assets/lob-software-web-ui.png
+      alt: Distributed API Gateways Mockup
+    - title: Offline-First Capabilities
+      description: Engineered with smart SQLite caching and automatic conflict
+        resolution, enabling field operators to work uninterrupted even in
+        zero-connectivity zones.
+      image: src/assets/lob-software-mobile-ui.png
+      alt: Offline-First Capabilities Mockup
+    - title: Cloud-Native Infrastructure
+      description: Orchestrated with AWS, Docker, and autoscaling groups, ensuring
+        high availability, robust load-balancing, and 99.9% operational uptime
+        under peak demand.
+      image: src/assets/lob-software-web-ui.png
+      alt: Cloud-Native Infrastructure Mockup
+    - title: Zero-Trust Security
+      description: Fortified with advanced RBAC, secure JWT authentication, and
+        municipal-grade data privacy compliance to shield critical enterprise
+        workflows.
+      image: src/assets/lob-software-mobile-ui.png
+      alt: Zero-Trust Security Mockup
+architecturalPrinciples:
+  backgroundImage: src/assets/team-member-bg.png
+  heading: Architectural Principles
+  description: Our core engineering philosophies designed to build secure, scalable,
+    and high-performance digital ecosystems.
+  items:
+    - title: Intelligent Operational Flow
+      description: We design systems that streamline processes, reduce manual effort,
+        and enable real-time decision making through automation, orchestration,
+        and data-driven insights.
+    - title: Omni-Channel Deployment
+      description: Our shift toward React-based architectures allows us to maintain
+        visual and functional consistency across web, mobile, and TV, ensuring a
+        unified user experience for both government and corporate stakeholders.
+    - title: Cloud-Native Scalability
+      description: Leveraging AWS cloud servers, we provide the resilient
+        infrastructure necessary to host high-compliance government portals and
+        large-scale enterprise SaaS products with zero performance compromise.
+    - title: Security & Integrity (RBAC)
+      description: Every application, from mobile field tools to TV-based dashboards,
+        implements rigorous Role-Based Access Control (RBAC) to safeguard
+        sensitive data across all endpoints.
+    - title: Modular Engineering Reuse
+      description: By maintaining a library of common technical components, our
+        18-member core team accelerates delivery timelines while ensuring every
+        line of code meets our strict quality benchmarks.
+onboarding:
+  backgroundImage: src/assets/lob-software-onboarding-bg.png
+  eyebrow: Engagement Lifecycle & Deployment Roadmap
+  heading: A structured commercial framework for project onboarding and lifecycle
+    governance.
+  steps:
+    - number: '01'
+      title: Consultative Alignment & Pre-Study
+      description: We begin with direct stakeholder discussions and use-case analysis
+        to map out your functional goals, third-party integration needs, and
+        scope boundaries before a commercial commitment is made.
+    - number: '02'
+      title: Milestone & Timeline Benchmarking
+      description: Project timelines and delivery gates are mathematically planned
+        out based on architectural complexity, necessary testing cycles, and your
+        internal approval constraints.
+    - number: '03'
+      title: Core Engineering Mobilization
+      description: We allocate a dedicated pod from our 18-member core engineering
+        team, keeping the same developers and testers locked into your project
+        lifecycle to preserve absolute knowledge continuity.
+    - number: '04'
+      title: Continuous Scope Governance
+      description: As requirements evolve, updates are seamlessly managed via
+        structured documentation amendments and direct stakeholder review
+        meetings, ensuring project timelines remain completely undisturbed.
 execution:
   heading: |-
     Built to Execute.
@@ -100,28 +196,28 @@ execution:
   metrics:
     - target: 3000
       showDecimalAnimation: false
-      unit: ""
+      unit: ''
       suffix: +
       label: Daily Active Users
-      subLabel: ""
+      subLabel: ''
     - target: 99.9
       showDecimalAnimation: true
-      unit: ""
-      suffix: "%"
+      unit: ''
+      suffix: '%'
       label: SLA Uptime
-      subLabel: ""
+      subLabel: ''
     - target: 18
       showDecimalAnimation: false
-      unit: ""
-      suffix: ""
+      unit: ''
+      suffix: ''
       label: Core Software Engineers
-      subLabel: ""
+      subLabel: ''
     - target: 150
       showDecimalAnimation: false
-      unit: ""
+      unit: ''
       suffix: +
       label: Production Deployments
-      subLabel: ""
+      subLabel: ''
   pillars:
     - iconName: RadioTower
       title: Carrier-Grade Network Automation

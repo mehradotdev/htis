@@ -1,54 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import bgImage from '~/assets/team-member-bg.png';
-import webUi from '~/assets/lob-software-web-ui.png';
-import mobileUi from '~/assets/lob-software-mobile-ui.png';
-// import { Cpu, ShieldCheck } from '@lucide/astro';
+import type { SoftwareEngineeringStackSection } from '~/data/cms';
 
-const cards = [
-  {
-    title: 'Web & Interactive UI',
-    description:
-      'High-performance interfaces architected with React JS, Bootstrap 5, and Alpine.js to ensure responsive, modular, and fast-loading web applications.',
-    image: webUi,
-    alt: 'Web & Interactive UI Mockup',
-  },
-  {
-    title: 'Cross-Platform Mobile',
-    description:
-      'Utilizing React Native to deploy native-quality experiences for Android and iOS from a single codebase, powering our 1,800+ daily active field users.',
-    image: mobileUi,
-    alt: 'Cross-Platform Mobile Mockup',
-  },
-  {
-    title: 'Distributed API Gateways',
-    description:
-      'Secure, low-latency microservices built with Node.js and Go, handling seamless real-time data flow between field agents and cloud databases.',
-    image: webUi,
-    alt: 'Distributed API Gateways Mockup',
-  },
-  {
-    title: 'Offline-First Capabilities',
-    description:
-      'Engineered with smart SQLite caching and automatic conflict resolution, enabling field operators to work uninterrupted even in zero-connectivity zones.',
-    image: mobileUi,
-    alt: 'Offline-First Capabilities Mockup',
-  },
-  {
-    title: 'Cloud-Native Infrastructure',
-    description:
-      'Orchestrated with AWS, Docker, and autoscaling groups, ensuring high availability, robust load-balancing, and 99.9% operational uptime under peak demand.',
-    image: webUi,
-    alt: 'Cloud-Native Infrastructure Mockup',
-  },
-  {
-    title: 'Zero-Trust Security',
-    description:
-      'Fortified with advanced RBAC, secure JWT authentication, and municipal-grade data privacy compliance to shield critical enterprise workflows.',
-    image: mobileUi,
-    alt: 'Zero-Trust Security Mockup',
-  },
-];
+type Props = SoftwareEngineeringStackSection;
+
+const { backgroundImage, heading, description, cards } = Astro.props as Props;
 ---
 
 <section
@@ -57,7 +13,7 @@ const cards = [
   <!-- Background Image with mix-blend-mode / luminosity masking -->
   <div class="pointer-events-none absolute inset-0 z-0 opacity-50">
     <Image
-      src={bgImage}
+      src={backgroundImage}
       alt=""
       aria-hidden="true"
       class="h-full w-full object-cover object-center"
@@ -76,13 +32,12 @@ const cards = [
         Engineering Excellence
       </span> -->
       <h2
-        class="mb-6 text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
+        class="mb-6 text-4xl font-extrabold tracking-tight whitespace-pre-line text-base-content md:text-5xl"
       >
-        Modern Engineering Stack &<br class="hidden sm:inline" /> Adaptive Architecture
+        {heading}
       </h2>
       <p class="text-lg font-medium text-base-content/70">
-        We utilize state-of-the-art architectures and cutting-edge software paradigms to
-        build secure, robust, and highly scalable digital ecosystems.
+        {description}
       </p>
     </div>
 
