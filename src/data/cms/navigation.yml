@@ -20,7 +20,7 @@ solutions:
     title: Build the future
     description: Discover our full range of enterprise solutions tailored for scale.
     ctaLabel: Explore Solutions
-    ctaUrl: /our-services
+    ctaUrl: /services
   items:
     - title: Telecom Services
       desc: Connectivity and network operations
