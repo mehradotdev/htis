@@ -14,7 +14,7 @@ capabilities:
   items:
     - label: Turnkey Data Centre Infrastructure (Physical Layer)
       shortLabel: Physical Layer
-      image: src/assets/geminigeneratedimagezdiqfmzdiqfmzdiq.png
+      image: src/assets/geminigeneratedimaget6nv1st6nv1st6nv.png
       invertImageInDarkMode: false
       items:
         - title: End-to-end engineering
