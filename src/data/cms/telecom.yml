@@ -2,35 +2,41 @@ title: Telecom - HTIS
 hero:
   backgroundImage: src/assets/lob-telecom-hero-bg.png
   title: Connecting the next billion-intelligent Network for tomorrow
-  subtitle: Seamlessly integrating turnkey physical infrastructure and cognitive network intelligence to build hyper-scale, future-ready networks.
+  subtitle: Seamlessly integrating turnkey physical infrastructure and cognitive
+    network intelligence to build hyper-scale, future-ready networks.
   ctaLabel: Contact Us
   ctaUrl: /#contact
 capabilities:
   backgroundImage: src/assets/team-member-bg.png
   heading: Our Capabilities
-  description: A structured approach to deploying, optimizing, and supporting telecom networks across every stage.
+  description: A structured approach to deploying, optimizing, and supporting
+    telecom networks across every stage.
   items:
     - label: Turnkey Data Centre Infrastructure (Physical Layer)
       shortLabel: Physical Layer
-      image: src/assets/lob-telecom-capability-1.png
+      image: src/assets/geminigeneratedimagezdiqfmzdiqfmzdiq.png
       invertImageInDarkMode: false
       items:
         - title: End-to-end engineering
           desc: From site acquisition to facility commissioning.
         - title: Civil & Structural Works
-          desc: Site preparation, specialized floor loading, and internal architectural fit outs.
+          desc: Site preparation, specialized floor loading, and internal architectural
+            fit outs.
         - title: Power & Electrical Distribution
           desc: High-availability UPS systems, DG sets, and intelligent PDU deployment.
         - title: Precision Cooling & Refrigeration
-          desc: Cold-aisle/Hot-aisle containment and high-density liquid cooling solutions.
+          desc: Cold-aisle/Hot-aisle containment and high-density liquid cooling
+            solutions.
         - title: Fire Detection & Suppression
           desc: VESDA (Very Early Smoke Detection) and Novec 1230/FM200 gas-based systems.
         - title: Cable Containment & Management
-          desc: Overhead/under-floor fibre raceways, intelligent Racking and high-density cable tray engineering.
+          desc: Overhead/under-floor fibre raceways, intelligent Racking and high-density
+            cable tray engineering.
         - title: Building Management Systems (BMS)
           desc: Centralized IoT monitoring for temperature, humidity, and power leakage.
         - title: Physical Security & Access Control
-          desc: Multi-tier biometric security, IP-CCTV surveillance, and perimeter protection.
+          desc: Multi-tier biometric security, IP-CCTV surveillance, and perimeter
+            protection.
     - label: Telco Cloud & Virtualized Infrastructure (NFVi)
       shortLabel: NFVi
       image: src/assets/lob-telecom-capability-2.png
@@ -58,7 +64,8 @@ capabilities:
       invertImageInDarkMode: false
       items:
         - title: Mobile connectivity foundation
-          desc: Deploying the heart of mobile connectivity for 4G and 5G Standalone (SA) environments.
+          desc: Deploying the heart of mobile connectivity for 4G and 5G Standalone (SA)
+            environments.
         - title: 5G Standalone (SA) Core
           desc: Service-Based Architecture (SBA) deployment and UPF optimization.
         - title: Evolved Packet Core (EPC)
@@ -112,7 +119,8 @@ capabilities:
         - title: Private LTE/5G Networks
           desc: Dedicated on-premises cellular infrastructure for mission-critical apps.
         - title: Structured Cabling (I&C)
-          desc: International standard Cat6A/Fiber-to-the-Desk installation and certification.
+          desc: International standard Cat6A/Fiber-to-the-Desk installation and
+            certification.
         - title: Multi-site VPN & SASE Edge
           desc: Secure site-to-site connectivity for distributed enterprise offices.
     - label: Packet Core Specialized Services & Compliance
@@ -123,7 +131,8 @@ capabilities:
         - title: Optimization and regulatory services
           desc: Tailored for the Indian Telecom landscape.
         - title: GI-LAN & Traffic Steering
-          desc: Advanced steering of user-plane traffic through specialized service chains.
+          desc: Advanced steering of user-plane traffic through specialized service
+            chains.
         - title: Deep Packet Inspection (DPI)
           desc: Granular traffic analysis for QoS management and content filtering.
         - title: Regulatory IPDR Management
@@ -131,7 +140,8 @@ capabilities:
         - title: Lawful Interception (LI) Systems
           desc: Integration of regulatory-mandated monitoring and capture systems.
         - title: DC Gateway & VPCDI
-          desc: High-throughput gateway management for virtualized packet core data interfaces.
+          desc: High-throughput gateway management for virtualized packet core data
+            interfaces.
         - title: Video & Header Enrichment
           desc: Optimization techniques for video delivery and billing transparency.
         - title: AAA & Identity Management
@@ -163,37 +173,47 @@ processes:
     Blueprint to Reality.
   items:
     - title: Strategic Planning & Site Acquisition (SAQ)
-      description: The foundational phase where the network's physical and regulatory footprint is defined.
+      description: The foundational phase where the network's physical and regulatory
+        footprint is defined.
       image: src/assets/lob-telecom-info-1.png
       details:
         - name: RF Nominal Planning
           desc: Defining coverage targets and capacity requirements for 4G/5G rollout.
         - name: Technical Feasibility & TSSR
-          desc: Conducting Technical Site Survey Reports to evaluate structural and power readiness.
+          desc: Conducting Technical Site Survey Reports to evaluate structural and power
+            readiness.
         - name: Regulatory & Compliance
-          desc: Managing SACFA clearances, spectrum coordination, and local authority permissions.
+          desc: Managing SACFA clearances, spectrum coordination, and local authority
+            permissions.
         - name: Site Acquisition
-          desc: Negotiating and securing land, rooftops, or tower space for the Points of Presence (PoP).
+          desc: Negotiating and securing land, rooftops, or tower space for the Points of
+            Presence (PoP).
     - title: Network Architecture & Detailed Engineering (HLD/LLD)
       description: Translating the blueprint into granular, executable technical designs.
       image: src/assets/lob-telecom-info-2.png
       details:
         - name: High-Level Design (HLD)
-          desc: Defining end-to-end topology, including core integration and backhaul strategy.
+          desc: Defining end-to-end topology, including core integration and backhaul
+            strategy.
         - name: Low-Level Design (LLD)
-          desc: Detailed port mapping, IP addressing schemes, and rack layouts for the Data Center.
+          desc: Detailed port mapping, IP addressing schemes, and rack layouts for the
+            Data Center.
         - name: Link Budgeting
-          desc: Calculation of signal gains and losses to ensure seamless transmission quality.
+          desc: Calculation of signal gains and losses to ensure seamless transmission
+            quality.
         - name: Fiber Route Engineering
-          desc: Designing the path for high-capacity backhaul through trenching or aerial fiber.
+          desc: Designing the path for high-capacity backhaul through trenching or aerial
+            fiber.
     - title: Technical Procurement & BoQ Management (BOQ)
-      description: Ensuring the right multi-vendor hardware is sourced according to engineering specs.
+      description: Ensuring the right multi-vendor hardware is sourced according to
+        engineering specs.
       image: src/assets/lob-telecom-info-3.png
       details:
         - name: BoQ (Bill of Quantities) Finalization
           desc: Detailed listing of every active and passive component needed.
         - name: Vendor Ecosystem Integration
-          desc: Coordinating with OEMs like Ericsson, Nokia, or Cisco for specialized hardware.
+          desc: Coordinating with OEMs like Ericsson, Nokia, or Cisco for specialized
+            hardware.
         - name: Logistics & Spares Management
           desc: Ensuring "Just-in-Time" delivery of critical components to remote sites.
     - title: Passive & Active Installation & Commissioning (I&C)
@@ -201,11 +221,14 @@ processes:
       image: src/assets/lob-telecom-info-4.png
       details:
         - name: Civil & Structural Works
-          desc: Execution of tower foundations, earthing systems, and Data Center civil fit-outs.
+          desc: Execution of tower foundations, earthing systems, and Data Center civil
+            fit-outs.
         - name: Active Equipment I&C
-          desc: Mounting antennas, installing RRUs (Remote Radio Units), and configuring Core routers.
+          desc: Mounting antennas, installing RRUs (Remote Radio Units), and configuring
+            Core routers.
         - name: Power & Utility Setup
-          desc: Integration of Rectifiers, Battery Banks, and Green Energy (Solar/DG) solutions.
+          desc: Integration of Rectifiers, Battery Banks, and Green Energy (Solar/DG)
+            solutions.
     - title: Network Integration & Core Connectivity
       description: Connecting the physical site to the global telecom heartbeat.
       image: src/assets/lob-telecom-info-5.png
@@ -213,32 +236,41 @@ processes:
         - name: Core Network Integration
           desc: Mapping the local site into the operator's PCRF, EPC, or 5G Core.
         - name: Call Flow Testing
-          desc: Verifying end-to-end voice and data paths (VoLTE/VoNR) through the newly deployed nodes.
+          desc: Verifying end-to-end voice and data paths (VoLTE/VoNR) through the newly
+            deployed nodes.
         - name: Cross-Connect Management
-          desc: Establishing high-speed fiber interconnects between the DC and the Telco backbone.
+          desc: Establishing high-speed fiber interconnects between the DC and the Telco
+            backbone.
     - title: Quality Assurance & Acceptance Testing (ATP)
-      description: Rigorous benchmarking to ensure the network meets Tier-1 performance standards.
+      description: Rigorous benchmarking to ensure the network meets Tier-1
+        performance standards.
       image: src/assets/lob-telecom-info-6.png
       details:
         - name: ATP (Acceptance Test Procedure)
-          desc: Executing client-approved test cases to ensure the site is ready for traffic.
+          desc: Executing client-approved test cases to ensure the site is ready for
+            traffic.
         - name: KPI Benchmarking
-          desc: Measuring Latency, Throughput, and Handover success rates against target thresholds.
+          desc: Measuring Latency, Throughput, and Handover success rates against target
+            thresholds.
         - name: Regulatory Compliance Audit
-          desc: Final verification of EMF (Electromagnetic Field) radiation and safety standards.
+          desc: Final verification of EMF (Electromagnetic Field) radiation and safety
+            standards.
     - title: Lifecycle Managed Services & NOC Operations
       description: Shifting from deployment to 24/7 proactive stability and optimization.
       image: src/assets/lob-telecom-info-7.png
       details:
         - name: NOC Operations
-          desc: Real-time monitoring of network health through a centralized Network Operations Centre.
+          desc: Real-time monitoring of network health through a centralized Network
+            Operations Centre.
         - name: Preventive & Corrective Maintenance
           desc: Managing MTTR (Mean Time to Repair) through skilled field technical teams.
         - name: Ongoing Optimization
-          desc: Continuous tuning of RF parameters and software patches to maintain peak performance.
+          desc: Continuous tuning of RF parameters and software patches to maintain peak
+            performance.
 deployments:
   heading: Proven Network Deployments
-  description: Explore how we design, deploy, and transform networks across hundreds of sites and thousands of devices.
+  description: Explore how we design, deploy, and transform networks across
+    hundreds of sites and thousands of devices.
   href: /case-study
   items:
     - title: PACO
@@ -286,41 +318,46 @@ execution:
       unit: M
       suffix: +
       label: Sites Deployed
-      subLabel: ""
     - target: 250
       showDecimalAnimation: false
       unit: K
       suffix: +
       label: Routers Deployed
-      subLabel: ""
     - target: 16
       showDecimalAnimation: false
-      unit: ""
       suffix: +
       label: Telecom Circles (India)
-      subLabel: ""
     - target: 8
       showDecimalAnimation: false
-      unit: ""
       suffix: +
       label: Countries Served
       subLabel: India, Bangladesh, Nepal, Sri Lanka, South Africa, UK, Nigeria, CAR
     - target: 3
       showDecimalAnimation: false
-      unit: ""
       suffix: /4
       label: Major Indian Operators Served
-      subLabel: ""
   pillars:
     - iconName: Network
       title: Converged IT Infrastructure & Systems Integration
-      description: Architecting the high-availability IT fabrics that power mission-critical network operations. We provide the end-to-end IT backbone for modern Telcos, ranging from Tier III/IV Data Center engineering and virtualization to software-defined networking (SDN) and high-density compute environments.
+      description: Architecting the high-availability IT fabrics that power
+        mission-critical network operations. We provide the end-to-end IT
+        backbone for modern Telcos, ranging from Tier III/IV Data Center
+        engineering and virtualization to software-defined networking (SDN) and
+        high-density compute environments.
       url: "#"
     - iconName: Users
       title: Specialized Technical Resourcing & Deployment
-      description: Scalable L1-L6 talent solutions engineered for complex, multi-region telecom rollouts. We bridge the technical skill gap by deploying a domain-expert workforce. From high-niche technical architects (L6) to scalable field engineering units (L1), we provide the human capital required for operational excellence.
+      description: Scalable L1-L6 talent solutions engineered for complex,
+        multi-region telecom rollouts. We bridge the technical skill gap by
+        deploying a domain-expert workforce. From high-niche technical
+        architects (L6) to scalable field engineering units (L1), we provide the
+        human capital required for operational excellence.
       url: "#"
     - iconName: Code
       title: Enterprise Software Engineering & On-Demand Solutions
-      description: Bespoke digital assets and SaaS platforms tailored for government and corporate scale. We build the intelligence that drives connectivity. Specializing in on-demand software development, we deliver secure, high-compliance digital assets-including our proprietary ERP systems-designed for the most demanding regulatory environments.
+      description: Bespoke digital assets and SaaS platforms tailored for government
+        and corporate scale. We build the intelligence that drives connectivity.
+        Specializing in on-demand software development, we deliver secure,
+        high-compliance digital assets-including our proprietary ERP
+        systems-designed for the most demanding regulatory environments.
       url: "#"
