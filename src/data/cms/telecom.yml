@@ -190,7 +190,7 @@ processes:
             Presence (PoP).
     - title: Network Architecture & Detailed Engineering (HLD/LLD)
       description: Translating the blueprint into granular, executable technical designs.
-      image: src/assets/lob-telecom-info-2.png
+      image: src/assets/geminigeneratedimagelblfyflblfyflblf.png
       details:
         - name: High-Level Design (HLD)
           desc: Defining end-to-end topology, including core integration and backhaul
