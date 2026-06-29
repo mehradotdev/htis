@@ -88,14 +88,14 @@
         <button
           onclick={() => scroll('left')}
           aria-label="Previous Case Study"
-          class="flex h-12 w-12 items-center justify-center rounded-full border border-base-content/15 bg-base-200 text-base-content shadow-sm transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-content active:scale-95"
+          class="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary shadow-sm transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-content hover:shadow-lg hover:shadow-primary/20 active:scale-95"
         >
           <ChevronLeft class="h-5 w-5" strokeWidth={2.5} />
         </button>
         <button
           onclick={() => scroll('right')}
           aria-label="Next Case Study"
-          class="flex h-12 w-12 items-center justify-center rounded-full border border-base-content/15 bg-base-200 text-base-content shadow-sm transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-content active:scale-95"
+          class="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary shadow-sm transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-content hover:shadow-lg hover:shadow-primary/20 active:scale-95"
         >
           <ChevronRight class="h-5 w-5" strokeWidth={2.5} />
         </button>
@@ -109,12 +109,13 @@
     class="case-studies-scroll-container no-scrollbar flex snap-x snap-mandatory gap-8 overflow-x-auto pb-8 scroll-smooth"
   >
     {#each items as study}
+      {@const ctaUrl = study.ctaUrl ?? study.url}
       <div
         class="relative flex w-[90vw] flex-none snap-start flex-col items-center gap-8 overflow-hidden rounded-3xl border border-base-content/10 bg-base-100 p-8 shadow-lg transition-all duration-300 hover:border-primary/20 hover:shadow-xl md:w-[780px] md:flex-row md:p-12"
       >
-        {#if study.url}
+        {#if ctaUrl}
           <a
-            href={study.url}
+            href={ctaUrl}
             aria-label={`Explore ${study.title} Case Study`}
             class="absolute top-6 right-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 hover:bg-primary hover:text-primary-content md:top-8 md:right-8"
           >

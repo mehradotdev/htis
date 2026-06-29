@@ -68,7 +68,9 @@
   }
 </script>
 
-<section class="relative overflow-hidden border-t border-base-content/10 bg-base-100 py-24">
+<section
+  class="relative overflow-hidden border-t border-base-content/10 bg-base-100 py-24"
+>
   {#if backgroundImageSrc}
     <div class="pointer-events-none absolute inset-0 z-0 opacity-20">
       <img
@@ -98,36 +100,38 @@
           class="no-scrollbar relative flex w-full flex-nowrap gap-3 overflow-x-auto scroll-smooth pb-5 md:gap-4 lg:grid lg:grid-cols-5"
         >
           {#each principles as principle, i}
-            <button
-              onclick={() => selectTab(i)}
-              class="relative flex min-h-[96px] w-[185px] shrink-0 cursor-pointer items-center justify-center rounded-2xl border px-3.5 pt-8 pb-6 text-center transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:min-h-[108px] md:w-[240px] md:px-6 md:pt-10 md:pb-8 lg:w-auto
-                {activeIndex === i
-                ? 'border-primary bg-primary/5 dark:bg-primary/10 text-primary font-semibold shadow-md'
-                : 'border-base-content/10 bg-base-200/30 text-base-content/70 hover:bg-base-200/60 hover:border-base-content/20 hover:text-base-content'}"
-            >
-              <div
-                class="absolute top-0 right-0 left-0 h-[6px] overflow-hidden rounded-t-[14px] bg-primary/10"
+            <div class="relative shrink-0 w-[185px] md:w-[240px] lg:w-auto">
+              <button
+                onclick={() => selectTab(i)}
+                class="relative flex min-h-[96px] w-full cursor-pointer items-center justify-center rounded-2xl border px-3.5 pt-8 pb-6 text-center transition-all duration-300 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:min-h-[108px] md:px-6 md:pt-10 md:pb-8
+                  {activeIndex === i
+                  ? 'border-primary bg-primary/5 dark:bg-primary/10 text-primary font-semibold shadow-md'
+                  : 'border-base-content/10 bg-base-200/30 text-base-content/70 hover:bg-base-200/60 hover:border-base-content/20 hover:text-base-content'}"
               >
-                {#if activeIndex === i}
-                  <div
-                    class="h-full animate-progress bg-primary"
-                    style="--duration: 6000ms;"
-                  ></div>
-                {:else}
-                  <div class="h-full bg-primary/30"></div>
-                {/if}
-              </div>
+                <div
+                  class="absolute top-0 right-0 left-0 h-[6px] overflow-hidden bg-primary/10"
+                >
+                  {#if activeIndex === i}
+                    <div
+                      class="h-full animate-progress bg-primary"
+                      style="--duration: 6000ms;"
+                    ></div>
+                  {:else}
+                    <div class="h-full bg-primary/30"></div>
+                  {/if}
+                </div>
 
-              <span class="text-sm leading-snug font-medium md:text-lg lg:text-xl">
-                {principle.title}
-              </span>
+                <span class="text-sm leading-snug font-medium md:text-lg lg:text-xl">
+                  {principle.title}
+                </span>
+              </button>
 
               {#if activeIndex === i}
                 <div
                   class="absolute top-full left-1/2 z-10 mt-[-1px] h-0 w-0 -translate-x-1/2 border-t-[12px] border-r-[14px] border-l-[14px] border-t-primary border-r-transparent border-l-transparent"
                 ></div>
               {/if}
-            </button>
+            </div>
           {/each}
         </div>
 
@@ -137,7 +141,12 @@
           <div
             class="pointer-events-none absolute top-0 right-0 bottom-0 w-1/3 overflow-hidden rounded-r-3xl opacity-25 dark:opacity-10"
           >
-            <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="100%"
+              height="100%"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <defs>
                 <pattern
                   id="dot-grid-principles"
@@ -147,7 +156,13 @@
                   height="16"
                   patternUnits="userSpaceOnUse"
                 >
-                  <circle cx="2" cy="2" r="1.5" fill="currentColor" class="text-primary" />
+                  <circle
+                    cx="2"
+                    cy="2"
+                    r="1.5"
+                    fill="currentColor"
+                    class="text-primary"
+                  />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#dot-grid-principles)" />

@@ -217,6 +217,7 @@ export interface SoftwarePortfolioTab {
   id: string;
   label: string;
   shortLabel?: string;
+  iconName?: 'Laptop' | 'Smartphone' | 'ShieldCheck';
   description: string;
   items: SoftwarePortfolioItem[];
 }
@@ -226,6 +227,7 @@ export interface SoftwareCaseStudyItem {
   solution: string;
   impact: string;
   image: string;
+  ctaUrl?: string;
   url?: string;
 }
 
@@ -443,6 +445,8 @@ interface SystemIntegrationHeroYaml {
   subtitle: string;
   ctaLabel: string;
   ctaUrl: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaUrl?: string;
   carouselImages?: string[];
 }
 
@@ -573,7 +577,7 @@ interface SoftwareYaml {
     heading: string;
     description: string;
     capabilities: Array<
-      Omit<SoftwarePortfolioTab, 'items'> & {
+      Omit<SoftwarePortfolioTab, 'id' | 'items'> & {
         items: Array<Omit<SoftwarePortfolioItem, 'image'> & { image: string }>;
       }
     >;
@@ -946,7 +950,7 @@ export const awards: {
   };
 })();
 
-function resolveSplitHero(hero: PageHeroYaml | SystemIntegrationHeroYaml) {
+function resolveSplitHero<T extends PageHeroYaml | SystemIntegrationHeroYaml>(hero: T) {
   return {
     ...hero,
     backgroundImage: getCmsAsset(hero.backgroundImage),
@@ -1063,6 +1067,7 @@ export const systemIntegration = (() => {
 
 export const software = (() => {
   const data = softwareYaml as SoftwareYaml;
+  const usedPortfolioTabIds = new Set<string>();
 
   return {
     ...data,
@@ -1072,6 +1077,7 @@ export const software = (() => {
       backgroundImage: getCmsAsset(data.portfolio.backgroundImage),
       capabilities: data.portfolio.capabilities.map((tab) => ({
         ...tab,
+        id: uniqueSlug(tab.label, usedPortfolioTabIds),
         items: tab.items.map((item) => ({
           ...item,
           image: getCmsAssetSrc(item.image),

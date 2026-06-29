@@ -19,9 +19,9 @@ portfolio:
   description: Enterprise SaaS & Bespoke Engineering - An interactive look at our
     proprietary products and requirement-driven engineering capabilities.
   capabilities:
-    - id: saas-products
-      label: Standalone SaaS Products
+    - label: Standalone SaaS Products
       shortLabel: Standalone SaaS Products
+      iconName: Laptop
       description: Our proprietary SaaS platforms are mature, cloud-hosted ecosystems
         designed for immediate deployment. They provide large-scale
         organizations with out-of-the-box digital control over complex
@@ -46,9 +46,9 @@ portfolio:
             complex salary structures, recruitment workflows, and the complete
             employee lifecycle.
           image: src/assets/hrms-payroll.webp
-    - id: enterprise-solutions
-      label: Enterprise Solutions
+    - label: Enterprise Solutions
       shortLabel: Enterprise Solutions
+      iconName: Smartphone
       description: We architect custom digital assets tailored to the unique
         operational challenges of enterprise and sovereign clients. From
         front-end digital experiences to hardcore backend workflow automation,
@@ -72,9 +72,9 @@ portfolio:
             workflows. We build integrated reporting systems and dashboards to
             provide real-time monitoring of productivity, tasks, and claims.
           image: src/assets/enterprise-sol-4.webp
-    - id: public-sector
-      label: Public Sector Digitalization
+    - label: Public Sector Digitalization
       shortLabel: Public Sector Digitalization
+      iconName: ShieldCheck
       description: With a majority of our bespoke portfolio dedicated to government
         clients, we are a trusted partner for high-compliance digital
         infrastructure.
@@ -251,7 +251,7 @@ caseStudies:
         tracking, and automated billing modules while ensuring role-based data
         isolation across departments.
       image: src/assets/lob-software-case-study-1.png
-      url: /case-study
+      ctaUrl: /case-study
     - title: Enterprise Resource Planning (wfms™)
       solution: High-Volume Workforce & Logistics Management System.
       impact: Supports over 3,000 daily active users, automating attendance, claim
@@ -259,7 +259,7 @@ caseStudies:
         geofencing and offline synchronization reduced operational payroll
         overhead by 18%.
       image: src/assets/lob-software-case-study-2.png
-      url: /case-study
+      ctaUrl: /case-study
     - title: Telecom Workflow Automation
       solution: Carrier-Grade AMC & Complaint Management Engine.
       impact: Bridges software telemetry with physical telecom nodes. Field
@@ -267,4 +267,4 @@ caseStudies:
         alerts, routing optimization, and automated ticketing, decreasing MTTR
         (Mean Time to Repair) by 32%.
       image: src/assets/lob-software-case-study-3.png
-      url: /case-study
+      ctaUrl: /case-study

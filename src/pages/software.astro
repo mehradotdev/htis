@@ -23,8 +23,9 @@ const iconMap = { RadioTower, Server, Users };
   <div class="relative w-full overflow-clip">
     <Navbar />
 
-    <!-- Hero Section -->
-    <section class="relative flex min-h-[85vh] items-center pt-32 pb-16 lg:pt-36 lg:pb-0">
+    <section
+      class="relative flex min-h-[85vh] items-start pt-32 pb-16 lg:items-center lg:pt-36 lg:pb-0"
+    >
       <!-- Background Graphic Layer -->
       <div class="absolute inset-0 z-0">
         <Image
@@ -46,11 +47,25 @@ const iconMap = { RadioTower, Server, Users };
         </div> -->
       </div>
 
+      <!-- Mobile-only Background Foreground Image -->
+      <div
+        class="pointer-events-none absolute inset-0 z-1 flex items-center justify-center opacity-30 lg:hidden"
+      >
+        <Image
+          src={software.hero.foregroundImage!}
+          alt="HTIS Software Mockup Showcase background"
+          class="animate-float h-auto w-full max-w-md object-contain drop-shadow-2xl"
+          loading="eager"
+        />
+      </div>
+
       <!-- Core Content -->
       <div class="relative z-10 container mx-auto w-full px-6">
         <div class="flex flex-col gap-12 lg:flex-row lg:items-center">
           <!-- Text Column -->
-          <div class="flex flex-col items-start gap-6 text-left lg:w-1/2 lg:pr-8">
+          <div
+            class="z-20 flex flex-col items-start gap-6 text-left max-lg:rounded-2xl max-lg:bg-base-100/20 max-lg:backdrop-blur-sm lg:w-1/2 lg:pr-8"
+          >
             <!-- <span
               class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wider text-primary uppercase"
             >
@@ -73,30 +88,20 @@ const iconMap = { RadioTower, Server, Users };
               {software.hero.subtitle}
             </p>
 
-            <div class="mt-4 flex flex-wrap gap-4">
+            <div class="mt-4 flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
               <a
                 href={software.hero.ctaUrl}
-                class="btn rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
+                class="btn w-full rounded-lg px-6 text-xl whitespace-nowrap text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary sm:w-60"
               >
                 {software.hero.ctaLabel}
               </a>
               <a
                 href={software.hero.secondaryCtaUrl}
-                class="btn rounded-lg border-base-content/50 px-12 text-xl font-semibold tracking-wide text-base-content btn-ghost btn-lg hover:bg-base-200/50"
+                class="btn w-full rounded-lg border-base-content/50 px-6 text-xl font-semibold tracking-wide whitespace-nowrap text-base-content btn-ghost btn-lg hover:bg-base-200/50 sm:w-60"
               >
                 {software.hero.secondaryCtaLabel}
               </a>
             </div>
-          </div>
-
-          <!-- Mobile-only image (inside flow) -->
-          <div class="flex items-center justify-center lg:hidden">
-            <Image
-              src={software.hero.foregroundImage!}
-              alt="HTIS Software Mockup Showcase"
-              class="animate-float h-auto w-full max-w-md object-contain drop-shadow-2xl"
-              loading="eager"
-            />
           </div>
         </div>
       </div>
