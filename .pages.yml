@@ -1714,9 +1714,6 @@ content:
               - name: title
                 type: text
                 required: true
-              - name: highlight
-                type: string
-                required: false
               - name: subtitle
                 type: text
                 required: true
@@ -1728,14 +1725,6 @@ content:
                 label: CTA URL
                 type: string
                 required: true
-              - name: secondaryCtaLabel
-                label: Secondary CTA label
-                type: string
-                required: false
-              - name: secondaryCtaUrl
-                label: Secondary CTA URL
-                type: string
-                required: false
               - name: carouselImages
                 label: Carousel images
                 type: image
@@ -1787,6 +1776,128 @@ content:
                     label: Span two desktop columns
                     type: boolean
                     required: false
+          - name: standard
+            label: 'Engineered Human Capital: The HTIS Standard'
+            type: object
+            fields:
+              - name: heading
+                type: string
+                required: true
+              - name: description
+                type: text
+                required: true
+              - name: items
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{title}'
+                fields:
+                  - name: iconName
+                    label: Icon
+                    type: select
+                    required: true
+                    options:
+                      values: [Users, Wrench, Maximize, UserCheck]
+                  - name: title
+                    type: string
+                    required: true
+                  - name: desc
+                    label: Description
+                    type: text
+                    required: true
+              - name: images
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{alt}'
+                fields:
+                  - name: image
+                    type: image
+                    required: true
+                  - name: alt
+                    label: Alt text
+                    type: string
+                    required: true
+          - name: workforce
+            label: Resourcing workforce
+            type: object
+            fields:
+              - name: heading
+                type: string
+                required: true
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
+              - name: tabs
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{title}'
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: description
+                    type: text
+                    required: true
+                  - name: image
+                    type: image
+                    required: true
+                  - name: tools
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{name}'
+                    fields:
+                      - name: iconName
+                        label: Icon
+                        type: select
+                        required: true
+                        options:
+                          values:
+                            [
+                              Activity,
+                              Award,
+                              Banknote,
+                              BookOpen,
+                              Building,
+                              Cable,
+                              ClipboardList,
+                              Cloud,
+                              Database,
+                              FileCheck,
+                              FileCode,
+                              Fingerprint,
+                              HardDrive,
+                              Headset,
+                              Layout,
+                              Lock,
+                              MapPin,
+                              MonitorSmartphone,
+                              Network,
+                              Plug,
+                              Radio,
+                              Route,
+                              Scale,
+                              Server,
+                              Shield,
+                              ShieldCheck,
+                              Signal,
+                              Users,
+                              Wrench,
+                            ]
+                      - name: name
+                        type: string
+                        required: true
 
       - name: jobs
         label: Jobs

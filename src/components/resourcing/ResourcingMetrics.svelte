@@ -1,16 +1,37 @@
 <script lang="ts">
-  const metrics = [
+  interface ResourcingMetric {
+    target: number;
+    showDecimalAnimation?: boolean;
+    unit?: string;
+    suffix?: string;
+    label: string;
+    subLabel?: string;
+  }
+
+  const defaultMetrics: ResourcingMetric[] = [
     { target: 1200, suffix: '+', label: 'Sites Deployed' },
     { target: 98, suffix: '%', label: 'On-Time Delivery' },
     { target: 3, suffix: 'x', label: 'Faster Rollouts' },
     { target: 54, suffix: '+', label: 'Industries Served' },
   ];
 
-  let currentValues = $state(metrics.map(() => 0));
+  let {
+    headingHtml = 'Built to Execute.<br />Scaled to Deliver.',
+    metrics = defaultMetrics,
+  }: {
+    headingHtml?: string;
+    metrics?: ResourcingMetric[];
+  } = $props();
+
+  let currentValues = $state<number[]>([]);
   let sectionRef: HTMLElement | undefined = $state();
   let isVisible = $state(false);
 
   $effect(() => {
+    if (!isVisible && currentValues.length !== metrics.length) {
+      currentValues = metrics.map(() => 0);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !isVisible) {
@@ -31,6 +52,8 @@
   });
 
   function animateValues() {
+    currentValues = metrics.map(() => 0);
+
     const duration = 2000;
     const steps = 60;
     const interval = duration / steps;
@@ -41,9 +64,12 @@
       const progress = step / steps;
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
 
-      currentValues = metrics.map((m) =>
-        Math.min(Math.floor(m.target * easeOutQuart), m.target),
-      );
+      currentValues = metrics.map((m) => {
+        const val = m.target * easeOutQuart;
+        return m.showDecimalAnimation
+          ? Number(Math.min(val, m.target).toFixed(1))
+          : Math.min(Math.floor(val), m.target);
+      });
 
       if (step >= steps) {
         clearInterval(timer);
@@ -55,27 +81,29 @@
 
 <div bind:this={sectionRef} class="pt-0 pb-16">
   <div class="mb-12">
-    <h2 class="text-4xl md:text-5xl font-bold text-base-content leading-tight">
-      Built to Execute.<br />
-      Scaled to Deliver.
+    <h2 class="text-4xl leading-tight font-bold text-base-content md:text-5xl">
+      {@html headingHtml}
     </h2>
   </div>
 
-  <div
-    class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12 border-b border-base-content/10"
-  >
+  <div class="grid grid-cols-2 gap-8 border-b border-base-content/10 pb-12 md:grid-cols-4">
     {#each metrics as metric, i}
       <div class="flex flex-col gap-2">
         <div class="flex items-baseline text-primary">
-          <span class="text-5xl md:text-6xl font-bold"
-            >{currentValues[i]}<span class="text-4xl md:text-5xl font-light"
-              >{metric.suffix}</span
+          <span class="text-5xl font-bold md:text-6xl"
+            >{currentValues[i]}{metric.unit ?? ''}<span
+              class="text-4xl font-light md:text-5xl">{metric.suffix}</span
             ></span
           >
         </div>
-        <span class="text-sm md:text-base font-medium text-base-content/70"
-          >{metric.label}</span
-        >
+        <span class="text-sm font-medium text-base-content/70 md:text-base">
+          {metric.label}
+        </span>
+        {#if metric.subLabel}
+          <span class="text-xs leading-relaxed text-base-content/60">
+            {metric.subLabel}
+          </span>
+        {/if}
       </div>
     {/each}
   </div>

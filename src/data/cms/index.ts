@@ -472,6 +472,11 @@ interface ExecutionYaml {
   pillars: ExecutionPillarYaml[];
 }
 
+interface MetricsOnlyExecutionYaml {
+  heading: string;
+  metrics: ExecutionMetricYaml[];
+}
+
 interface TelecomProcessYaml {
   title: string;
   description: string;
@@ -604,7 +609,15 @@ interface SoftwareYaml {
 
 interface ResourcingYaml {
   title: string;
-  hero: PageHeroYaml;
+  hero: {
+    backgroundImage: string;
+    foregroundImage?: string;
+    title: string;
+    subtitle: string;
+    ctaLabel: string;
+    ctaUrl: string;
+    carouselImages?: string[];
+  };
   capabilities: {
     backgroundImage: string;
     heading: string;
@@ -614,6 +627,44 @@ interface ResourcingYaml {
       title: string;
       desc: string;
       colSpan?: boolean;
+    }>;
+  };
+  standard: {
+    heading: string;
+    description: string;
+    items: Array<{
+      iconName: string;
+      title: string;
+      desc: string;
+    }>;
+    images: Array<{
+      image: string;
+      alt: string;
+    }>;
+  };
+  workforce: {
+    heading: string;
+    ctaLabel: string;
+    ctaUrl: string;
+    tabs: Array<{
+      title: string;
+      description: string;
+      image: string;
+      tools: Array<{
+        iconName: string;
+        name: string;
+      }>;
+    }>;
+  };
+  execution: MetricsOnlyExecutionYaml;
+  caseStudies: {
+    heading: string;
+    items: Array<{
+      image: string;
+      imageAlt: string;
+      description: string;
+      ctaLabel: string;
+      ctaUrl: string;
     }>;
   };
 }
@@ -1120,6 +1171,28 @@ export const resourcing = (() => {
     capabilities: {
       ...data.capabilities,
       backgroundImage: getCmsAsset(data.capabilities.backgroundImage),
+    },
+    standard: {
+      ...data.standard,
+      images: data.standard.images.map((item) => ({
+        ...item,
+        image: getCmsAsset(item.image),
+      })),
+    },
+    workforce: {
+      ...data.workforce,
+      tabs: data.workforce.tabs.map((tab) => ({
+        ...tab,
+        image: getCmsAssetSrc(tab.image),
+      })),
+    },
+    execution: resolveExecution(data.execution),
+    caseStudies: {
+      ...data.caseStudies,
+      items: data.caseStudies.items.map((item) => ({
+        ...item,
+        image: getCmsAsset(item.image),
+      })),
     },
   };
 })();
