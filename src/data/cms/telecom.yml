@@ -125,7 +125,7 @@ capabilities:
           desc: Secure site-to-site connectivity for distributed enterprise offices.
     - label: Packet Core Specialized Services & Compliance
       shortLabel: PACO
-      image: src/assets/lob-telecom-capability-3.png
+      image: src/assets/geminigeneratedimageuq8d9juq8d9juq8d.png
       invertImageInDarkMode: false
       items:
         - title: Optimization and regulatory services
