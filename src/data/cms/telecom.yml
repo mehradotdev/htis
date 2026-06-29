@@ -218,7 +218,7 @@ processes:
           desc: Ensuring "Just-in-Time" delivery of critical components to remote sites.
     - title: Passive & Active Installation & Commissioning (I&C)
       description: The ground-level execution where the physical network is built.
-      image: src/assets/geminigeneratedimage2sq47m2sq47m2sq4.png
+      image: src/assets/geminigeneratedimagepjf5ckpjf5ckpjf5.png
       details:
         - name: Civil & Structural Works
           desc: Execution of tower foundations, earthing systems, and Data Center civil
