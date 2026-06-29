@@ -2,7 +2,7 @@ title: Software Development & SaaS - HTIS
 hero:
   backgroundImage: src/assets/lob-software-hero-bg.png
   foregroundImage: src/assets/webp-01-scaled.webp
-  title: 'Digital Intelligence:'
+  title: "Digital Intelligence:"
   highlight: Enterprise SaaS
   subtitle: We architect the resilient software ecosystems that drive modern
     enterprise and government operations. By merging the agility of on-demand
@@ -12,7 +12,7 @@ hero:
   ctaLabel: Contact Us
   ctaUrl: /#contact
   secondaryCtaLabel: Explore Portfolio
-  secondaryCtaUrl: '#portfolio'
+  secondaryCtaUrl: "#portfolio"
 portfolio:
   backgroundImage: src/assets/team-member-bg.png
   heading: Converged Software Portfolio
@@ -35,7 +35,7 @@ portfolio:
             Finance, and AMC Management.
           image: src/assets/laptop-img-1.png
           ctaLabel: Know more
-          ctaUrl: /software
+          ctaUrl: https://wfms.htistelecom.in/
         - title: Educare™ School ERP
           desc: A specialized platform engineered exclusively for the education sector,
             delivering integrated academic content management and seamless
@@ -140,8 +140,8 @@ engineeringStack:
 architecturalPrinciples:
   backgroundImage: src/assets/team-member-bg.png
   heading: Architectural Principles
-  description: Our core engineering philosophies designed to build secure, scalable,
-    and high-performance digital ecosystems.
+  description: Our core engineering philosophies designed to build secure,
+    scalable, and high-performance digital ecosystems.
   items:
     - title: Intelligent Operational Flow
       description: We design systems that streamline processes, reduce manual effort,
@@ -163,32 +163,6 @@ architecturalPrinciples:
       description: By maintaining a library of common technical components, our
         18-member core team accelerates delivery timelines while ensuring every
         line of code meets our strict quality benchmarks.
-onboarding:
-  backgroundImage: src/assets/lob-software-onboarding-bg.png
-  eyebrow: Engagement Lifecycle & Deployment Roadmap
-  heading: A structured commercial framework for project onboarding and lifecycle
-    governance.
-  steps:
-    - number: '01'
-      title: Consultative Alignment & Pre-Study
-      description: We begin with direct stakeholder discussions and use-case analysis
-        to map out your functional goals, third-party integration needs, and
-        scope boundaries before a commercial commitment is made.
-    - number: '02'
-      title: Milestone & Timeline Benchmarking
-      description: Project timelines and delivery gates are mathematically planned
-        out based on architectural complexity, necessary testing cycles, and your
-        internal approval constraints.
-    - number: '03'
-      title: Core Engineering Mobilization
-      description: We allocate a dedicated pod from our 18-member core engineering
-        team, keeping the same developers and testers locked into your project
-        lifecycle to preserve absolute knowledge continuity.
-    - number: '04'
-      title: Continuous Scope Governance
-      description: As requirements evolve, updates are seamlessly managed via
-        structured documentation amendments and direct stakeholder review
-        meetings, ensuring project timelines remain completely undisturbed.
 execution:
   heading: |-
     Built to Execute.
@@ -196,28 +170,19 @@ execution:
   metrics:
     - target: 3000
       showDecimalAnimation: false
-      unit: ''
       suffix: +
       label: Daily Active Users
-      subLabel: ''
     - target: 99.9
       showDecimalAnimation: true
-      unit: ''
-      suffix: '%'
+      suffix: "%"
       label: SLA Uptime
-      subLabel: ''
     - target: 18
       showDecimalAnimation: false
-      unit: ''
-      suffix: ''
       label: Core Software Engineers
-      subLabel: ''
     - target: 150
       showDecimalAnimation: false
-      unit: ''
       suffix: +
       label: Production Deployments
-      subLabel: ''
   pillars:
     - iconName: RadioTower
       title: Carrier-Grade Network Automation
@@ -241,6 +206,32 @@ execution:
         via web and mobile. By digitizing compliance, we eliminate operational
         risk and drive long-term workforce retention.
       url: /resourcing
+onboarding:
+  backgroundImage: src/assets/lob-software-onboarding-bg.png
+  eyebrow: Engagement Lifecycle & Deployment Roadmap
+  heading: A structured commercial framework for project onboarding and lifecycle
+    governance.
+  steps:
+    - number: "01"
+      title: Consultative Alignment & Pre-Study
+      description: We begin with direct stakeholder discussions and use-case analysis
+        to map out your functional goals, third-party integration needs, and
+        scope boundaries before a commercial commitment is made.
+    - number: "02"
+      title: Milestone & Timeline Benchmarking
+      description: Project timelines and delivery gates are mathematically planned out
+        based on architectural complexity, necessary testing cycles, and your
+        internal approval constraints.
+    - number: "03"
+      title: Core Engineering Mobilization
+      description: We allocate a dedicated pod from our 18-member core engineering
+        team, keeping the same developers and testers locked into your project
+        lifecycle to preserve absolute knowledge continuity.
+    - number: "04"
+      title: Continuous Scope Governance
+      description: As requirements evolve, updates are seamlessly managed via
+        structured documentation amendments and direct stakeholder review
+        meetings, ensuring project timelines remain completely undisturbed.
 caseStudies:
   heading: Strategic Case Studies & Technical Impact
   items:
