@@ -148,7 +148,7 @@ capabilities:
           desc: RADIUS/Diameter-based authentication and subscriber accounting.
     - label: Managed Services & Strategic Support (AMC)
       shortLabel: Managed Services
-      image: src/assets/lob-telecom-capability-1.png
+      image: src/assets/geminigeneratedimagegcxf97gcxf97gcxf.png
       invertImageInDarkMode: false
       items:
         - title: Operational excellence
