@@ -259,8 +259,7 @@ services:
 journey:
   titlePrefix: Our
   titleHighlight: Journey
-  subtitle: A timeline of innovation, milestones, and achievements that shaped our
-    path forward.
+  subtitle: A timeline of innovation, milestones, and achievements that shaped
   milestones:
     - year: "2008"
       title: HTIS Founded
