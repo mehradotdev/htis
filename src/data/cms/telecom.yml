@@ -231,7 +231,7 @@ processes:
             solutions.
     - title: Network Integration & Core Connectivity
       description: Connecting the physical site to the global telecom heartbeat.
-      image: src/assets/lob-telecom-info-5.png
+      image: src/assets/geminigeneratedimage7goezc7goezc7goe.png
       details:
         - name: Core Network Integration
           desc: Mapping the local site into the operator's PCRF, EPC, or 5G Core.
@@ -244,7 +244,7 @@ processes:
     - title: Quality Assurance & Acceptance Testing (ATP)
       description: Rigorous benchmarking to ensure the network meets Tier-1
         performance standards.
-      image: src/assets/lob-telecom-info-6.png
+      image: src/assets/geminigeneratedimagemy5ptumy5ptumy5p.png
       details:
         - name: ATP (Acceptance Test Procedure)
           desc: Executing client-approved test cases to ensure the site is ready for
