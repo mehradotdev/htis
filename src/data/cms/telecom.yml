@@ -207,7 +207,7 @@ processes:
     - title: Technical Procurement & BoQ Management (BOQ)
       description: Ensuring the right multi-vendor hardware is sourced according to
         engineering specs.
-      image: src/assets/lob-telecom-info-3.png
+      image: src/assets/geminigeneratedimage7dnd1x7dnd1x7dnd.png
       details:
         - name: BoQ (Bill of Quantities) Finalization
           desc: Detailed listing of every active and passive component needed.
