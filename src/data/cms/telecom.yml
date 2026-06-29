@@ -103,7 +103,7 @@ capabilities:
           desc: Real-time path computation and bandwidth-on-demand services.
     - label: Enterprise Connectivity & LAN/WAN Services
       shortLabel: Connectivity
-      image: src/assets/lob-telecom-capability-2.png
+      image: src/assets/geminigeneratedimaget7yifgt7yifgt7yi.png
       invertImageInDarkMode: false
       items:
         - title: Professional deployment services
