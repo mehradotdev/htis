@@ -82,7 +82,7 @@ capabilities:
           desc: Seamless interworking and mobility management between network generations.
     - label: High-Capacity Transport & Transmission
       shortLabel: T&T
-      image: src/assets/lob-telecom-capability-1.png
+      image: src/assets/geminigeneratedimageo6zzwwo6zzwwo6zz.png
       invertImageInDarkMode: false
       items:
         - title: Backbone engineering
