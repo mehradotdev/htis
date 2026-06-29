@@ -41,6 +41,7 @@ portfolio:
             delivering integrated academic content management and seamless
             administrative control for institutions.
           image: src/assets/edu-care-2.png
+          ctaLabel: Know more
           ctaUrl: https://schooleducare.com/
         - title: HRMS & Payroll Engines
           desc: Proprietary, in-house developed software solutions designed to automate
