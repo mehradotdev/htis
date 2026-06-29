@@ -493,10 +493,8 @@ clients:
       alt: Reliance Industries Limited
     - image: src/assets/logo-rhef.png
       alt: RHEF
-    - image: src/assets/logo-ropar-central-cooperative-bank.png
+    - image: src/assets/cooperative-bank.jpg
       alt: Ropar Central Cooperative Bank
-    - image: src/assets/logo-SANGRUR-CENTRAL-COOPERATIVE-BANK.jpeg
-      alt: Sangrur Central Cooperative Bank
     - image: src/assets/logo-supreme-industries.jpeg
       alt: Supreme Industries
     - image: src/assets/logo-tech-mahindra.jpg
