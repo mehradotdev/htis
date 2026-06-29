@@ -184,9 +184,13 @@
           {#if activeIndex === i}
             <!-- Progress bar loader effect -->
             <div
-              class="absolute bottom-0 left-0 h-[4px] bg-primary-content/85 animate-progress"
-              style="--duration: 6000ms;"
-            ></div>
+              class="absolute inset-0 overflow-hidden rounded-full pointer-events-none"
+            >
+              <div
+                class="absolute bottom-0 left-0 h-1 bg-primary-content/85 animate-progress"
+                style="--duration: 6000ms;"
+              ></div>
+            </div>
             <!-- Downward pointing indicator arrow -->
             <div
               class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-primary z-10"
