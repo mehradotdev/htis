@@ -175,7 +175,7 @@ processes:
     - title: Strategic Planning & Site Acquisition (SAQ)
       description: The foundational phase where the network's physical and regulatory
         footprint is defined.
-      image: src/assets/physical-layer-2.png
+      image: src/assets/strategic-planning-and-site-acquisition-saq.png
       details:
         - name: RF Nominal Planning
           desc: Defining coverage targets and capacity requirements for 4G/5G rollout.
