@@ -14,7 +14,7 @@ capabilities:
   items:
     - label: Turnkey Data Centre Infrastructure (Physical Layer)
       shortLabel: Physical Layer
-      image: src/assets/untitled-29-june-2026-at-113412.png
+      image: src/assets/physical-layer.png
       invertImageInDarkMode: false
       items:
         - title: End-to-end engineering
