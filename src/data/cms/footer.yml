@@ -43,7 +43,7 @@ socials:
       url: https://www.linkedin.com/company/htis-telecom/
       icon: LinkedIn
 contact:
-  heading: Contact
+  heading: Helpline
   phone: +91 9871312345
   email: Info@htis.in
 offices:
@@ -79,8 +79,8 @@ offices:
       address: |-
         PHS Business Center, 353/18, Civil Lines
         Near Rajiv Chowk, Gurgaon - 122001 Haryana, India.
-      phone: 0124-4059876
-      email: gurgaon@htis.in
+      phone: " 0124-27243598"
+      email: info@htis.in
 globalPresence:
   heading: Global presence
   ctaLabel: Know more
