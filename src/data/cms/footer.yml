@@ -63,32 +63,32 @@ offices:
         Near Rajiv Chowk, Gurgaon - 122001 Haryana, India.
       phone: " 0124-27243598"
       email: info@htis.in
+    - name: Shimla
+      companyName: HTIS Telecom Private Limited
+      address: Flat A-01, Verma Apartment, near ISBT Tutikandi, Shimla - 171004
+      phone: "9817038008"
+      email: SML@htis.in
+    - name: J&K
+      companyName: HTIS Telecom Private Limited
+      address: Rather Complex, Baba Dharam Dass, Munwarabad, Srinagar - 190001
+      phone: "7006520020"
+      email: J&K@htis.in
+    - name: Dehradun
+      companyName: HTIS Telecom Private Limited
+      address: S-6, Tula Palace Araghar Chowk, Haridwar Road, Dehradun - 248001
+      phone: "9639194590"
+      email: DDN@htis.in
     - name: Chennai
       companyName: HTIS Telecom Private Limited
       address: 2F, 1st FLOOR, RAJARAJAN STREET, NAVARATHNA GARDEN MAIN ROAD,
         EKKATTUTHANGAL, CHENNAI - 600032
       phone: "9894010885"
-      email: chn@htis.in
-    - name: Shimla
-      companyName: HTIS Telecom Private Limited
-      address: Flat A-01, Verma Apartment, near ISBT Tutikandi, Shimla - 171004
-      phone: "9817038008"
-      email: shim@htis.in
+      email: CHN@htis.in
     - name: Mumbai
       companyName: HTIS Telecom Private Limited
       address: UPCOMING
       phone: ..
-      email: mmb@htis.in
-    - name: Dehradun
-      companyName: HTIS Telecom Private Limited
-      address: S-6, Tula Palace Araghar Chowk, Haridwar Road, Dehradun - 248001
-      phone: "9639194590"
-      email: ddn@htis.in
-    - name: J&K
-      companyName: HTIS Telecom Private Limited
-      address: Rather Complex, Baba Dharam Dass, Munwarabad, Srinagar - 190001
-      phone: "7006520020"
-      email: j&k@htis.in
+      email: MUM@htis.in
 globalPresence:
   heading: Global presence
   ctaLabel: Know more
