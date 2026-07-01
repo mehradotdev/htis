@@ -309,8 +309,7 @@ deployments:
         - 5G Swap
         - Jio
     - title: United Nations Peace Keeping Project
-      description: Delivered a United Nation Peace Keeping Project in Central Africa
-        Republic partnered with Cisco.
+      description: Delivered Project in Central Africa Republic partnered with Cisco.
       href: /case-study/united-nation-peace-keeping-project
       badges:
         - Central Africa Republic
