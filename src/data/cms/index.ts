@@ -115,13 +115,18 @@ export interface CaseStudyData {
   slug: string;
   title: string;
   description: string;
+  thumbnailImage: string;
+  thumbnailSrc: string;
   solution: string;
   industry: string;
   tags: string[];
-  clientLabel: string;
+  heroEyebrow?: string;
+  heroBackgroundImage: ImageMetadata;
   heroTitle: string;
   heroSummary: string;
-  heroMetrics: string[];
+  heroMetrics?: string[];
+  heroCtaLabel: string;
+  heroCtaUrl: string;
   clientContext: {
     clientType: string;
     industryScale: string;
@@ -138,7 +143,6 @@ export interface CaseStudyData {
   };
   outcomes: {
     metrics: CaseStudyMetric[];
-    bullets: string[];
   };
   whyHTIS: string[];
 }
@@ -523,6 +527,32 @@ interface CaseStudyYaml {
   ctaUrl: string;
 }
 
+interface CaseStudyContentYaml {
+  metadata: {
+    slug: string;
+    title: string;
+    description: string;
+    thumbnailImage: string;
+    solution: string;
+    industry: string;
+    tags: string[];
+  };
+  hero: {
+    eyebrow?: string;
+    backgroundImage: string;
+    title: string;
+    summary: string;
+    metrics?: string[];
+    ctaLabel: string;
+    ctaUrl: string;
+  };
+  clientContext: CaseStudyData['clientContext'];
+  challenge: CaseStudyData['challenge'];
+  solutionDetails: CaseStudyData['solutionDetails'];
+  outcomes: CaseStudyData['outcomes'];
+  whyHTIS: string[];
+}
+
 interface TelecomYaml {
   title: string;
   hero: PageHeroYaml;
@@ -723,7 +753,7 @@ const industryModules = import.meta.glob<IndustryData>('./industries/*.yml', {
   import: 'default',
 });
 
-const caseStudyModules = import.meta.glob<CaseStudyData>('./case-studies/*.yml', {
+const caseStudyModules = import.meta.glob<CaseStudyContentYaml>('./case-studies/*.yml', {
   eager: true,
   import: 'default',
 });
@@ -1209,8 +1239,24 @@ export const industriesData = Object.values(industryModules).sort(
 );
 
 export const caseStudiesData = Object.values(caseStudyModules)
-  .sort((a, b) => a.slug.localeCompare(b.slug))
-  .map((study, index) => ({ ...study, id: index }));
+  .sort((a, b) => a.metadata.slug.localeCompare(b.metadata.slug))
+  .map((study, index): CaseStudyData => ({
+    ...study.metadata,
+    id: index,
+    thumbnailSrc: getCmsAssetSrc(study.metadata.thumbnailImage),
+    heroEyebrow: study.hero.eyebrow,
+    heroBackgroundImage: getCmsAsset(study.hero.backgroundImage),
+    heroTitle: study.hero.title,
+    heroSummary: study.hero.summary,
+    heroMetrics: study.hero.metrics,
+    heroCtaLabel: study.hero.ctaLabel,
+    heroCtaUrl: study.hero.ctaUrl,
+    clientContext: study.clientContext,
+    challenge: study.challenge,
+    solutionDetails: study.solutionDetails,
+    outcomes: study.outcomes,
+    whyHTIS: study.whyHTIS,
+  }));
 
 export const orderedIndustriesData = industriesData;
 

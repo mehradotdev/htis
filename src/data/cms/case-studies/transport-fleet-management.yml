@@ -1,19 +1,25 @@
-slug: transport-fleet-management
-title: Transport Fleet Management
-description: Developed custom software for real-time tracking of logistics fleet, reducing operational delays by 30%.
-solution: Software Development
-industry: Manufacturing
-tags:
-  - Logistics
-  - Manufacturing
-  - Software
-clientLabel: National Logistics & Supply Chain Enterprise
-heroTitle: Custom Web-Based Dispatch Portal & GPS Fleet Telemetry Integration
-heroSummary: Created a highly responsive fleet monitoring system for 2,000+ logistics trucks, maximizing routing efficiency and driving down fuel overheads.
-heroMetrics:
-  - 2000+ Vehicles
-  - 30% Delay Reduction
-  - 15% Fuel Efficiency
+metadata:
+  slug: transport-fleet-management
+  title: Transport Fleet Management
+  description: Developed custom software for real-time tracking of logistics fleet, reducing operational delays by 30%.
+  thumbnailImage: src/assets/lob-software-case-study-1.png
+  solution: Software Development
+  industry: Manufacturing
+  tags:
+    - Logistics
+    - Manufacturing
+    - Software
+hero:
+  eyebrow: National Logistics & Supply Chain Enterprise
+  backgroundImage: src/assets/lob-software-hero-bg.png
+  title: Custom Web-Based Dispatch Portal & GPS Fleet Telemetry Integration
+  summary: Created a highly responsive fleet monitoring system for 2,000+ logistics trucks, maximizing routing efficiency and driving down fuel overheads.
+  metrics:
+    - 2000+ Vehicles
+    - 30% Delay Reduction
+    - 15% Fuel Efficiency
+  ctaLabel: Talk to our team
+  ctaUrl: '#contact-row'
 clientContext:
   clientType: Multi-State Heavy Logistics Enterprise
   industryScale: Enterprise-Grade Supply Chain Systems
@@ -42,10 +48,6 @@ outcomes:
       label: Reduction in delivery transit delays
     - value: 15%
       label: Increase in overall fuel efficiency
-  bullets:
-    - Prevented cargo thefts by implementing automated real-time alarms for any geofence route deviations.
-    - Maximized warehouse dock throughput using automated SMS alerts when trucks approach.
-    - Improved vehicle health using automatic telemetry warnings for engine overheating or tire pressure drops.
 whyHTIS:
   - Tailored custom software development capabilities surpassing generic pre-built packages.
   - Deep skills in integrating active hardware telematics with reliable cloud databases.

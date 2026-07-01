@@ -1,19 +1,25 @@
-slug: renewable-energy-grid
-title: Renewable Energy Grid
-description: Integrated smart grid technology for solar and wind power distribution, improving grid resilience and uptime.
-solution: System Integration
-industry: Smart Spaces
-tags:
-  - Green Energy
-  - Smart Spaces
-  - Smart Grid
-clientLabel: Green Power Infrastructure Consortium
-heroTitle: SCADA Telemetry System & High-Speed Solar-Wind Farm Fiber Rings
-heroSummary: Synchronized remote wind and solar generation centers using sub-millisecond fiber loops, balancing energy loads and preventing grid overload failures.
-heroMetrics:
-  - 3.5 GW Monitored
-  - 99.9% Resilience
-  - 20% Load Efficiency
+metadata:
+  slug: renewable-energy-grid
+  title: Renewable Energy Grid
+  description: Integrated smart grid technology for solar and wind power distribution, improving grid resilience and uptime.
+  thumbnailImage: src/assets/lob-system-case-study-1.png
+  solution: System Integration
+  industry: Smart Spaces
+  tags:
+    - Green Energy
+    - Smart Spaces
+    - Smart Grid
+hero:
+  eyebrow: Green Power Infrastructure Consortium
+  backgroundImage: src/assets/hero-bg.png
+  title: SCADA Telemetry System & High-Speed Solar-Wind Farm Fiber Rings
+  summary: Synchronized remote wind and solar generation centers using sub-millisecond fiber loops, balancing energy loads and preventing grid overload failures.
+  metrics:
+    - 3.5 GW Monitored
+    - 99.9% Resilience
+    - 20% Load Efficiency
+  ctaLabel: Talk to our team
+  ctaUrl: '#contact-row'
 clientContext:
   clientType: Renewable Energy Generation Consortium
   industryScale: Utility-Scale Clean Power Generation
@@ -42,10 +48,6 @@ outcomes:
       label: Active grid resilience and uptime
     - value: 20%
       label: Improvement in load routing efficiency
-  bullets:
-    - Completely prevented grid-overload drops using automated real-time power redirection.
-    - Delivered sub-millisecond telemetry feeds to command rooms, improving network reaction times.
-    - Optimized battery grid bank storage systems, reducing wasted excess energy.
 whyHTIS:
   - Superior capacity in industrial fiber deployment and heavy electrical interface protocols.
   - Rigorous attention to sub-millisecond data transit times in safety-critical networks.

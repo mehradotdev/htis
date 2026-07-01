@@ -2204,70 +2204,94 @@ content:
         path: src/data/cms/case-studies
         format: yaml
         filename:
-          template: '{slug}.yml'
+          template: '{metadata.slug}.yml'
           field: create
         view:
-          primary: title
-          fields: [title, slug, solution, industry]
-          sort: [title, slug]
+          primary: metadata.title
+          fields: [metadata.title, metadata.slug, metadata.solution, metadata.industry]
+          sort: [metadata.title, metadata.slug]
         fields:
-          - name: slug
-            type: string
-            required: true
-            pattern:
-              regex: '^[a-z0-9-]+$'
-              message: Use lowercase letters, numbers, and hyphens only.
-          - name: title
-            type: string
-            required: true
-          - name: description
-            type: text
-            required: true
-          - name: solution
-            type: select
-            required: true
-            options:
-              values:
-                [
-                  Telecom Services,
-                  System Integration,
-                  Software Development,
-                  Resource Management,
-                ]
-          - name: industry
-            type: select
-            required: true
-            options:
-              values:
-                [
-                  Telecom,
-                  Government,
-                  Banking,
-                  Manufacturing,
-                  Healthcare & Edu,
-                  Smart Spaces,
-                ]
-          - name: tags
-            type: string
-            list: true
-            required: true
-          - name: clientLabel
-            label: Client label
-            type: string
-            required: true
-          - name: heroTitle
-            label: Hero title
-            type: string
-            required: true
-          - name: heroSummary
-            label: Hero summary
-            type: text
-            required: true
-          - name: heroMetrics
-            label: Hero metrics
-            type: string
-            list: true
-            required: true
+          - name: metadata
+            label: Metadata
+            type: object
+            fields:
+              - name: slug
+                type: string
+                required: true
+                pattern:
+                  regex: '^[a-z0-9-]+$'
+                  message: Use lowercase letters, numbers, and hyphens only.
+              - name: title
+                type: string
+                required: true
+              - name: description
+                type: text
+                required: true
+              - name: thumbnailImage
+                label: Thumbnail image
+                type: image
+                required: true
+              - name: solution
+                type: select
+                required: true
+                options:
+                  values:
+                    [
+                      Telecom Services,
+                      System Integration,
+                      Software Development,
+                      Resource Management,
+                    ]
+              - name: industry
+                type: select
+                required: true
+                options:
+                  values:
+                    [
+                      Telecom,
+                      Government,
+                      Banking,
+                      Manufacturing,
+                      Healthcare & Edu,
+                      Smart Spaces,
+                    ]
+              - name: tags
+                type: string
+                list: true
+                required: true
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - name: eyebrow
+                label: Hero eyebrow
+                type: string
+                required: false
+              - name: backgroundImage
+                label: Hero background image
+                type: image
+                required: true
+              - name: title
+                label: Hero title
+                type: string
+                required: true
+              - name: summary
+                label: Hero summary
+                type: text
+                required: true
+              - name: metrics
+                label: Hero metrics
+                type: string
+                list: true
+                required: false
+              - name: ctaLabel
+                label: CTA label
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
           - name: clientContext
             label: Client context
             type: object
@@ -2324,10 +2348,6 @@ content:
                   - name: label
                     type: string
                     required: true
-              - name: bullets
-                type: string
-                list: true
-                required: true
           - name: whyHTIS
             label: Why HTIS
             type: string

@@ -1,19 +1,25 @@
-slug: smart-city-infrastructure
-title: Smart City Infrastructure
-description: Implemented IoT sensors and connected public transport systems to optimize city traffic and energy consumption.
-solution: Software Development
-industry: Smart Spaces
-tags:
-  - Smart City
-  - Smart Spaces
-  - IoT
-clientLabel: Metropolitan Development Authority
-heroTitle: LoRaWAN IoT Sensor Grid & Adaptive Traffic Software Engineering
-heroSummary: Synchronized thousands of city streetlights, environmental sensors, and public transit nodes onto a centralized smart dashboard, saving millions in municipal utility costs.
-heroMetrics:
-  - 5000+ IoT Nodes
-  - 25% Energy Savings
-  - 30% Less Congestion
+metadata:
+  slug: smart-city-infrastructure
+  title: Smart City Infrastructure
+  description: Implemented IoT sensors and connected public transport systems to optimize city traffic and energy consumption.
+  thumbnailImage: src/assets/lob-software-case-study-2.png
+  solution: Software Development
+  industry: Smart Spaces
+  tags:
+    - Smart City
+    - Smart Spaces
+    - IoT
+hero:
+  eyebrow: Metropolitan Development Authority
+  backgroundImage: src/assets/lob-software-hero-bg.png
+  title: LoRaWAN IoT Sensor Grid & Adaptive Traffic Software Engineering
+  summary: Synchronized thousands of city streetlights, environmental sensors, and public transit nodes onto a centralized smart dashboard, saving millions in municipal utility costs.
+  metrics:
+    - 5000+ IoT Nodes
+    - 25% Energy Savings
+    - 30% Less Congestion
+  ctaLabel: Talk to our team
+  ctaUrl: '#contact-row'
 clientContext:
   clientType: Smart City Municipal Corporation
   industryScale: Metropolitan Smart Infrastructure
@@ -42,10 +48,6 @@ outcomes:
       label: Reduction in streetlighting power use
     - value: 30%
       label: Reduction in peak transit delays
-  bullets:
-    - Reduced city-wide carbon footprint and electricity bills via automatic smart-dimming rules.
-    - Decreased response times for emergency vehicles by automatically clearing signal paths during distress alerts.
-    - Empowered local citizens with public web apps featuring real-time bus arrivals and ambient air monitors.
 whyHTIS:
   - Proven expertise in massive IoT systems and robust software telemetry architectures.
   - Sleek software engineering skills delivering highly responsive web platforms.

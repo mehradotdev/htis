@@ -5,8 +5,6 @@ import Footer from '~/components/Footer.astro';
 import Contact from '~/components/Contact.astro';
 import CaseStudyList from '~/components/case-study/CaseStudyList.svelte';
 import { caseStudiesData } from '~/data/cms';
-
-import caseStudyImg from '~/assets/case-study-1.png';
 ---
 
 <Layout title="Case Studies - HTIS">
@@ -29,11 +27,7 @@ import caseStudyImg from '~/assets/case-study-1.png';
 
     <!-- Main Content Section -->
     <section class="mx-auto w-full max-w-7xl px-6 pb-24">
-      <CaseStudyList
-        imgSrc={caseStudyImg.src}
-        caseStudies={caseStudiesData}
-        client:load
-      />
+      <CaseStudyList caseStudies={caseStudiesData} client:load />
     </section>
 
     <!-- Footer block -->

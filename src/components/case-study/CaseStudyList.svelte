@@ -13,10 +13,7 @@
   } from '@lucide/svelte';
   import type { CaseStudyData } from '~/data/cms';
 
-  let {
-    imgSrc,
-    caseStudies,
-  }: { imgSrc: string; caseStudies: CaseStudyData[] } = $props();
+  let { caseStudies }: { caseStudies: CaseStudyData[] } = $props();
 
   const solutions = [
     'Telecom Services',
@@ -142,10 +139,15 @@
     <h2 class="text-xl font-bold mb-6 text-base-content tracking-tight">Filter</h2>
 
     <div class="mb-6 relative">
-      <Search
-        class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-base-content/40"
-      />
+      <label
+        for="search-input"
+        class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer z-10 flex items-center justify-center"
+        aria-label="Search"
+      >
+        <Search class="w-4 h-4 text-base-content/40" />
+      </label>
       <input
+        id="search-input"
         type="text"
         placeholder="Search"
         bind:value={draftSearch}
@@ -156,7 +158,7 @@
     <!-- Solution Dropdown (Multiselect) -->
     <details class="dropdown w-full mb-6" bind:this={solutionDetailsRef}>
       <summary
-        class="btn btn-outline border-base-300 w-full justify-between font-normal bg-base-100 hover:bg-base-200 text-base-content/80 hover:border-base-300 rounded-xl transition-all duration-300 h-12 min-h-12 px-4"
+        class="btn btn-outline border-base-content/20 w-full justify-between font-normal bg-base-100 hover:bg-base-200 text-base-content/80 hover:border-base-content/20 rounded-xl transition-all duration-300 h-12 min-h-12 px-4"
       >
         <span class="truncate">
           {draftSolutions.length > 0
@@ -175,7 +177,7 @@
             >
               <input
                 type="checkbox"
-                class="checkbox checkbox-primary checkbox-sm border-base-300 rounded focus:ring-primary focus:ring-offset-1 transition-all duration-200 shrink-0"
+                class="checkbox checkbox-primary checkbox-sm border-base-content/20 rounded focus:ring-primary focus:ring-offset-1 transition-all duration-200 shrink-0"
                 checked={draftSolutions.includes(sol)}
                 onchange={() => toggleSolution(sol)}
               />
@@ -201,7 +203,7 @@
               type="checkbox"
               checked={draftIndustries.includes(ind.name)}
               onchange={() => toggleIndustry(ind.name)}
-              class="checkbox checkbox-primary checkbox-sm border-base-300 rounded focus:ring-primary focus:ring-offset-1 transition-all duration-200 shrink-0"
+              class="checkbox checkbox-primary checkbox-sm border-base-content/20 rounded focus:ring-primary focus:ring-offset-1 transition-all duration-200 shrink-0"
             />
             <ind.icon
               class="w-4 h-4 text-base-content/70 group-hover:text-primary transition-colors shrink-0"
@@ -257,7 +259,7 @@
           class="w-full sm:w-[140px] lg:w-[160px] aspect-square shrink-0 rounded-xl overflow-hidden bg-base-200 relative"
         >
           <img
-            src={imgSrc}
+            src={study.thumbnailSrc}
             alt={study.title}
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />

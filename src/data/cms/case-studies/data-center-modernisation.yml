@@ -1,19 +1,25 @@
-slug: data-center-modernisation
-title: Data center Modernisation
-description: Modernized backbone infrastructure with redundant fiber connectivity.
-solution: System Integration
-industry: Government
-tags:
-  - 750+ locations
-  - Telecom
-  - Government
-clientLabel: 'State Govt – Manpower & Hardware'
-heroTitle: Virtualized Hyperconverged Compute & Dual-Ring Fiber Loop Integration
-heroSummary: Migrated legacy administrative systems into an ultra-resilient hyperconverged infrastructure across 750+ government offices, completely eliminating data corruption and application timeouts.
-heroMetrics:
-  - 750+ Offices
-  - 99.99% Uptime
-  - 50% Faster Response
+metadata:
+  slug: data-center-modernisation
+  title: Data center Modernisation
+  description: Modernized backbone infrastructure with redundant fiber connectivity.
+  thumbnailImage: src/assets/lob-system-hero-carousel-1.png
+  solution: System Integration
+  industry: Government
+  tags:
+    - 750+ locations
+    - Telecom
+    - Government
+hero:
+  eyebrow: State Govt - Manpower & Hardware
+  backgroundImage: src/assets/hero-bg.png
+  title: Virtualized Hyperconverged Compute & Dual-Ring Fiber Loop Integration
+  summary: Migrated legacy administrative systems into an ultra-resilient hyperconverged infrastructure across 750+ government offices, completely eliminating data corruption and application timeouts.
+  metrics:
+    - 750+ Offices
+    - 99.99% Uptime
+    - 50% Faster Response
+  ctaLabel: Talk to our team
+  ctaUrl: '#contact-row'
 clientContext:
   clientType: State IT & Administrative Department
   industryScale: State-Wide Administrative Services
@@ -42,10 +48,6 @@ outcomes:
       label: Active system uptime achieved
     - value: 750+
       label: Administrative offices modernized
-  bullets:
-    - Eliminated unscheduled network drops and database corruptions, creating high administrative continuity.
-    - Allowed staff to handle twice the volume of citizen files without experiencing system lags.
-    - Implemented modern AES-256 standard VPN encryption for secure administrative data transmission.
 whyHTIS:
   - Proven experience scaling government systems with complex multi-agency compliance needs.
   - Flexible deployment resources capable of concurrent execution across remote regions.

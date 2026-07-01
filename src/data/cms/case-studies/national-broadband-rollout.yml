@@ -1,19 +1,25 @@
-slug: national-broadband-rollout
-title: National Broadband Rollout
-description: Deployed high-speed broadband network across rural communities, bridging the digital divide with scalable infrastructure.
-solution: Telecom Services
-industry: Telecom
-tags:
-  - 500+ miles fiber
-  - Telecom
-  - Connectivity
-clientLabel: 'Tier-1 Telecom Operator – Pan-India Rollout'
-heroTitle: High-Density Armored Optical Backhaul & Rural Node Commissioning
-heroSummary: Bridged the remote digital divide by engineering and laying over 500 miles of high-durability fiber backbones, bringing high-speed broadband to 200+ rural villages.
-heroMetrics:
-  - 500+ Miles
-  - 200+ Villages
-  - 10 Gbps Active Links
+metadata:
+  slug: national-broadband-rollout
+  title: National Broadband Rollout
+  description: Deployed high-speed broadband network across rural communities, bridging the digital divide with scalable infrastructure.
+  thumbnailImage: src/assets/lob-telecom-hero-bg.png
+  solution: Telecom Services
+  industry: Telecom
+  tags:
+    - 500+ miles fiber
+    - Telecom
+    - Connectivity
+hero:
+  eyebrow: Tier-1 Telecom Operator - Pan-India Rollout
+  backgroundImage: src/assets/lob-telecom-hero-bg.png
+  title: High-Density Armored Optical Backhaul & Rural Node Commissioning
+  summary: Bridged the remote digital divide by engineering and laying over 500 miles of high-durability fiber backbones, bringing high-speed broadband to 200+ rural villages.
+  metrics:
+    - 500+ Miles
+    - 200+ Villages
+    - 10 Gbps Active Links
+  ctaLabel: Talk to our team
+  ctaUrl: '#contact-row'
 clientContext:
   clientType: National Telecom Infrastructure Operator
   industryScale: Pan-India High-Capacity Telecommunication
@@ -42,10 +48,6 @@ outcomes:
       label: Rural communities connected to broadband
     - value: 30%
       label: Reduction in overall backhaul latency
-  bullets:
-    - Enabled instant digital school curriculums and high-definition village telemedicine connections.
-    - Supplied rural commerce centers with instant digital payments and online crop market access.
-    - Delivered 10 Gbps backhaul capacity to support future cellular and network grid expansions.
 whyHTIS:
   - Comprehensive telecom capacity spanning OSP (Outside Plant) engineering to dynamic node configuration.
   - Adept legal permit navigation, ensuring swift Right-of-Way clearances.
