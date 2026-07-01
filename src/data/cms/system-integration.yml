@@ -124,11 +124,11 @@ partnerEcosystem:
         - name: Fortinet
           logo: src/assets/logo-Fortinet.png
         - name: Check Point
-          logo: src/assets/logo-CheckPoint.png
+          logo: src/assets/check-point-1.png
         - name: SonicWall
-          logo: src/assets/logo-Sonicwall.png
+          logo: src/assets/sonicwall-1.png
         - name: Sophos
-          logo: src/assets/sophos.webp
+          logo: src/assets/sophos-2.png
     - iconName: Cloud
       title: Cloud & Virtualization
       subtitle: Hybrid Cloud, VDI, Hyperconverged (HCI)
