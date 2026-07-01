@@ -273,20 +273,19 @@ deployments:
     hundreds of sites and thousands of devices.
   href: /case-study
   items:
-    - title: PACO
-      description: Nationwide government network transformation project.
-      href: /case-study/national-broadband-rollout
+    - title: Vodafone Idea Packet Core Rollout
+      description: Fastest rollout of 3TB Packet Core Solution for Vodafone Idea in 2023.
       badges:
-        - 750+ locations
-        - SD-WAN
-        - MPLS hybrid architecture
-    - title: PACO
-      description: Nationwide government network transformation project.
-      href: /case-study/smart-city-infrastructure
+        - 20+ Core Hubs PAN India
+        - 3TB Packet Core Solution
+        - 2023 Rollout
+    - title: VIL CEN Transport
+      description: CEN Transport 15K+ router deployed for 5G Network VIL in 2025.
+      href: /case-study/vil-cen-transport
       badges:
-        - 750+ locations
-        - SD-WAN
-        - MPLS hybrid architecture
+        - 15K+ Routers
+        - 5G Network
+        - "2025"
     - title: Taxnet 2.0
       description: Nationwide government network transformation project.
       href: /case-study/data-center-modernisation
@@ -294,20 +293,28 @@ deployments:
         - 750+ locations
         - SD-WAN
         - MPLS hybrid architecture
-    - title: PACO
-      description: Nationwide government network transformation project.
+    - title: Jio 4G Roll-out
+      description: Cisco Delivery Jio 4G Roll-out started, delivering across over half
+        of North and West India.
       href: /case-study/airport-security-enhancement
       badges:
-        - 750+ locations
-        - SD-WAN
-        - MPLS hybrid architecture
-    - title: PACO
-      description: Nationwide government network transformation project.
-      href: /case-study/transport-fleet-management
+        - Cisco Delivery
+        - Half India North & West
+        - Lacs of Routers till 2019
+    - title: Jio 5G Swap
+      description: 5G Swap for Jio.
+      href: /case-study/jio-5g-swap
       badges:
-        - 750+ locations
-        - SD-WAN
-        - MPLS hybrid architecture
+        - 25K+ Sites
+        - 5G Swap
+        - Jio
+    - title: United Nations Peace Keeping Project
+      description: Delivered a United Nation Peace Keeping Project in Central Africa
+        Republic partnered with Cisco.
+      href: /case-study/united-nation-peace-keeping-project
+      badges:
+        - Central Africa Republic
+        - Partnered with Cisco
 execution:
   heading: |-
     Built to Execute.
