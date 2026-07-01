@@ -298,7 +298,6 @@ deployments:
       badges:
         - Cisco Delivery
         - Half India North & West
-        - Lacs of Routers till 2019
     - title: Jio 5G Swap
       description: Successfully executed the Jio 5G Swap project.
       href: /case-study/jio-5g-swap
@@ -310,7 +309,6 @@ deployments:
       description: Delivered Project in Central Africa Republic partnered with Cisco.
       href: /case-study/united-nation-peace-keeping-project
       badges:
-        - Central Africa Republic
         - Partnered with Cisco
 execution:
   heading: |-
