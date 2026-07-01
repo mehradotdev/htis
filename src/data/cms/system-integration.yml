@@ -121,6 +121,7 @@ partnerEcosystem:
         threats and protect critical assets.
       partners:
         - name: Palo Alto
+          logo: src/assets/paloalto.webp
         - name: Fortinet
           logo: src/assets/logo-Fortinet.png
         - name: Check Point
