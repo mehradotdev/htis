@@ -123,7 +123,7 @@ partnerEcosystem:
         - name: Palo Alto
           logo: src/assets/paloalto.webp
         - name: Fortinet
-          logo: src/assets/logo-Fortinet.png
+          logo: src/assets/fortinet-2.png
         - name: Check Point
           logo: src/assets/check-point-1.png
         - name: SonicWall
