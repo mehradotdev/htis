@@ -277,7 +277,6 @@ deployments:
       description: Fastest rollout of 3TB Packet Core Solution for Vodafone Idea in 2023.
       badges:
         - 20+ Core Hubs PAN India
-        - 3TB Packet Core Solution
     - title: VIL CEN Transport
       description: CEN Transport 15K+ router deployed for 5G Network VIL in 2025.
       href: /case-study/vil-cen-transport
