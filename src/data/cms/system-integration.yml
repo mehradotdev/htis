@@ -14,7 +14,7 @@ hero:
     - src/assets/fff-1.jpg
 strategicPillars:
   backgroundImage: src/assets/team-member-bg.png
-  centerImage: src/assets/geminigeneratedimageypjw9bypjw9bypjw.png
+  centerImage: src/assets/geminigeneratedimage8ndeq08ndeq08nde.png
   heading: Strategic Technical Pillars
   cards:
     - iconName: Server
