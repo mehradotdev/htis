@@ -95,11 +95,11 @@ partnerEcosystem:
         - name: Dell
           logo: src/assets/logo-dell.png
         - name: HP
-          logo: src/assets/hp.webp
+          logo: src/assets/hp-1.png
         - name: Lenovo
-          logo: src/assets/lenovo.webp
+          logo: src/assets/lenovo-3.png
         - name: MSi
-          logo: src/assets/oip-3.webp
+          logo: src/assets/msi-logo-removebg-preview.png
     - iconName: Network
       title: Networking & Fabric
       subtitle: Active Switches, Routers, Wireless, SD-WAN
