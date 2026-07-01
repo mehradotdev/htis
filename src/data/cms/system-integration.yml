@@ -14,7 +14,7 @@ hero:
     - src/assets/fff-1.jpg
 strategicPillars:
   backgroundImage: src/assets/team-member-bg.png
-  centerImage: src/assets/lob-system-tech-pillars.png
+  centerImage: src/assets/geminigeneratedimaged561c7d561c7d561.png
   heading: Strategic Technical Pillars
   cards:
     - iconName: Server
@@ -22,18 +22,18 @@ strategicPillars:
       description: High-availability compute and storage architectures from the core
         to the edge.
       content: We deliver end-to-end infrastructure resilience through Hyperconverged
-        Infrastructure (HCI), enterprise-grade server clusters, and scalable storage
-        solutions, ensuring your Data Center stack remains future-ready and
-        virtualization-optimized.
+        Infrastructure (HCI), enterprise-grade server clusters, and scalable
+        storage solutions, ensuring your Data Center stack remains future-ready
+        and virtualization-optimized.
       column: left
     - iconName: Network
       title: Adaptive Networking & Secure Connectivity
       description: Intelligent LAN, WAN, and Campus fabrics designed for seamless,
         high-speed data flow.
-      content: Our networking expertise covers the full spectrum of Active
-        (Switches, Routers, IPABX) and Passive (OFC, Rack, Structured Cabling)
-        components, integrated with SD-WAN and SDN technologies for
-        software-defined agility.
+      content: Our networking expertise covers the full spectrum of Active (Switches,
+        Routers, IPABX) and Passive (OFC, Rack, Structured Cabling) components,
+        integrated with SD-WAN and SDN technologies for software-defined
+        agility.
       column: left
     - iconName: Cloud
       title: Hybrid Cloud & Digital Workspace
@@ -45,11 +45,11 @@ strategicPillars:
       column: left
     - iconName: Briefcase
       title: Managed Lifecycle & ICT Projects
-      description: Comprehensive service models ensuring long-term operational
-        continuity.
+      description: Comprehensive service models ensuring long-term operational continuity.
       content: Our managed services provide strategic stability through specialized
         Manpower (L1-L6), customized AMC/CAMC models, and end-to-end ICT project
-        management tailored for large-scale government and private sector rollouts.
+        management tailored for large-scale government and private sector
+        rollouts.
       column: center
     - iconName: ShieldCheck
       title: Unified Cyber-Defence & Resilience
@@ -57,14 +57,15 @@ strategicPillars:
         landscapes.
       content: We deploy robust security architectures including Next-Gen Firewalls,
         Identity & Access Management (IAM), and advanced EDR/XDR/Email Security
-        solutions to ensure 360-degree data protection and regulatory compliance.
+        solutions to ensure 360-degree data protection and regulatory
+        compliance.
       column: right
     - iconName: Cctv
       title: Environmental Control & Physical Security
       description: Critical infrastructure protection including surveillance, power,
         and thermal management.
-      content: We secure the physical layer through integrated Surveillance (CCTV)
-        and Access Control, supported by mission-critical power backups (UPS), fire
+      content: We secure the physical layer through integrated Surveillance (CCTV) and
+        Access Control, supported by mission-critical power backups (UPS), fire
         suppression systems, and specialized refrigeration for high-density IT
         environments.
       column: right
@@ -82,8 +83,8 @@ partnerEcosystem:
     <span class="text-primary">HTIS Partner</span> Ecosystem
   description: We collaborate with a specialized list of global OEMs to deliver
     end-to-end IT excellence. This ecosystem ensures that every layer of your
-    infrastructure, from the endpoint to the cloud, is powered by industry-leading
-    technology.
+    infrastructure, from the endpoint to the cloud, is powered by
+    industry-leading technology.
   tabs:
     - iconName: Laptop
       title: Compute & Mobility
@@ -184,31 +185,24 @@ execution:
       unit: M
       suffix: +
       label: Sites Deployed
-      subLabel: ""
     - target: 250
       showDecimalAnimation: false
       unit: K
       suffix: +
       label: Routers Deployed
-      subLabel: ""
     - target: 16
       showDecimalAnimation: false
-      unit: ""
       suffix: +
       label: Telecom Circles (India)
-      subLabel: ""
     - target: 8
       showDecimalAnimation: false
-      unit: ""
       suffix: +
       label: Countries Served
       subLabel: India, Bangladesh, Nepal, Sri Lanka, South Africa, UK, Nigeria, CAR
     - target: 3
       showDecimalAnimation: false
-      unit: ""
       suffix: /4
       label: Major Indian Operators Served
-      subLabel: ""
   pillars:
     - iconName: Network
       title: |-
