@@ -138,8 +138,6 @@ partnerEcosystem:
       partners:
         - name: AWS
         - name: Microsoft Azure
-        - name: VMware
-        - name: Nutanix
     - iconName: Database
       title: Storage & Backup
       subtitle: Enterprise Storage, Data Protection
