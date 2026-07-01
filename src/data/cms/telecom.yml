@@ -284,7 +284,6 @@ deployments:
       badges:
         - 15K+ Routers
         - 5G Network
-        - "2025"
     - title: Taxnet 2.0
       description: Nationwide government network transformation project.
       href: /case-study/data-center-modernisation
