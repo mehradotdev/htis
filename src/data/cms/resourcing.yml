@@ -66,12 +66,12 @@ standard:
       alt: Team Discussion
 workforce:
   heading: One modern experience for today's workforce
-  ctaLabel: View more
-  ctaUrl: /#tools
   tabs:
     - title: Digital Intelligence & Software Talent
       description: Powered by our proprietary wfms ERP, Educare School ERP, and HRMS/Payroll engines to deliver secure, high-compliance digital assets and bespoke enterprise solutions.
       image: src/assets/lob-resourcing-workforce-1.png
+      ctaLabel: View more
+      ctaUrl: /#tools
       tools:
         - iconName: Database
           name: wfms ERP
@@ -96,6 +96,8 @@ workforce:
     - title: Infrastructure & Systems Specialists
       description: Delivering mission-critical technical talent for Data Center stacks and converged IT environments, supported by rigorous HSW safety audits and turnkey facility management.
       image: src/assets/lob-resourcing-workforce-2.png
+      ctaLabel: View more
+      ctaUrl: /#tools
       tools:
         - iconName: Network
           name: ACI Engineers
@@ -120,6 +122,8 @@ workforce:
     - title: Core Telecom & Network Operations
       description: Scaling specialized technical workforces for next-gen network rollouts, backed by automated IPDR systems, RF engineering expertise, and 100% statutory compliance.
       image: src/assets/lob-resourcing-workforce-3.png
+      ctaLabel: View more
+      ctaUrl: /#tools
       tools:
         - iconName: Award
           name: CCNA Specialists

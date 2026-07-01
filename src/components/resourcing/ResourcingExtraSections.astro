@@ -16,12 +16,12 @@ type StandardIconName = keyof typeof standardIcons;
 
 type Workforce = {
   heading: string;
-  ctaLabel: string;
-  ctaUrl: string;
   tabs: Array<{
     title: string;
     description: string;
     image: string;
+    ctaLabel: string;
+    ctaUrl: string;
     tools: Array<{
       iconName: string;
       name: string;
@@ -96,7 +96,7 @@ const resolveStandardIcon = (iconName: string) =>
     </div>
 
     <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-      <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-2 order-2 lg:order-1">
         {
           standard.items.map((item) => {
             const Icon = resolveStandardIcon(item.iconName);
@@ -111,7 +111,7 @@ const resolveStandardIcon = (iconName: string) =>
         }
       </div>
 
-      <div class="relative mt-10 h-[400px] w-full md:h-[500px] lg:mt-0">
+      <div class="relative h-[400px] w-full md:h-[500px] order-1 lg:order-2">
         {
           standardImages.slice(0, 3).map((item, index) => (
             <div class={imageFrames[index]}>
@@ -141,7 +141,6 @@ const resolveStandardIcon = (iconName: string) =>
     />
 
     <div
-      class="mt-16"
       x-data="{
         scrollProgress: 0,
         hasScrollable: false,

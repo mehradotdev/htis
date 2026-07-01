@@ -1827,14 +1827,6 @@ content:
               - name: heading
                 type: string
                 required: true
-              - name: ctaLabel
-                label: CTA label
-                type: string
-                required: true
-              - name: ctaUrl
-                label: CTA URL
-                type: string
-                required: true
               - name: tabs
                 type: object
                 list:
@@ -1850,6 +1842,14 @@ content:
                     required: true
                   - name: image
                     type: image
+                    required: true
+                  - name: ctaLabel
+                    label: CTA label
+                    type: string
+                    required: true
+                  - name: ctaUrl
+                    label: CTA URL
+                    type: string
                     required: true
                   - name: tools
                     type: object
@@ -1898,6 +1898,73 @@ content:
                       - name: name
                         type: string
                         required: true
+          - name: execution
+            label: Execution section
+            type: object
+            fields:
+              - name: heading
+                type: text
+                required: true
+              - name: metrics
+                type: object
+                required: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{label}'
+                fields:
+                  - name: target
+                    type: number
+                    required: true
+                  - name: showDecimalAnimation
+                    label: Show decimal animation
+                    type: boolean
+                    required: false
+                  - name: unit
+                    type: string
+                    required: false
+                  - name: suffix
+                    type: string
+                    required: false
+                  - name: label
+                    type: string
+                    required: true
+                  - name: subLabel
+                    label: Sub-label
+                    type: text
+                    required: false
+          - name: caseStudies
+            label: Case studies
+            type: object
+            fields:
+              - name: heading
+                type: string
+                required: true
+              - name: items
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{imageAlt}'
+                fields:
+                  - name: image
+                    type: image
+                    required: true
+                  - name: imageAlt
+                    label: Image alt text
+                    type: string
+                    required: true
+                  - name: description
+                    type: text
+                    required: true
+                  - name: ctaLabel
+                    label: CTA label
+                    type: string
+                    required: true
+                  - name: ctaUrl
+                    label: CTA URL
+                    type: string
+                    required: true
 
       - name: jobs
         label: Jobs

@@ -223,6 +223,29 @@ body {
     box-shadow 0.3s ease;
 }
 
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ResourcingWorkforce mobile — 2-row horizontally scrollable badge grid */
+@utility rw-mobile-badges {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  overflow-x: auto;
+  gap: 0.5rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @keyframes whatsappPulse {
   0% {
     transform: scale(1);

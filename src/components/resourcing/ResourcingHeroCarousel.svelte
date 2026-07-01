@@ -27,17 +27,12 @@
 </script>
 
 <div
-  class="relative min-h-[400px] w-full overflow-hidden rounded-[2rem] bg-base-200 lg:min-h-[600px] lg:w-1/2"
+  class="relative hidden min-h-[400px] w-full overflow-hidden rounded-4xl bg-base-200 lg:block lg:min-h-[600px] lg:w-1/2"
 >
   {#each images as image, index}
     {#if index === currentIndex}
       <div class="absolute inset-0 z-0" transition:fade={{ duration: 500 }}>
-        <img
-          src={image}
-          alt=""
-          aria-hidden="true"
-          class="h-full w-full object-cover"
-        />
+        <img src={image} alt="" aria-hidden="true" class="h-full w-full object-cover" />
       </div>
     {/if}
   {/each}

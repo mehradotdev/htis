@@ -100,10 +100,10 @@
           class="no-scrollbar relative flex w-full flex-nowrap gap-3 overflow-x-auto scroll-smooth pb-5 md:gap-4 lg:grid lg:grid-cols-5"
         >
           {#each principles as principle, i}
-            <div class="relative shrink-0 w-[185px] md:w-[240px] lg:w-auto">
+            <div class="relative shrink-0 w-[185px] md:w-[240px] lg:w-auto flex flex-col">
               <button
                 onclick={() => selectTab(i)}
-                class="relative flex min-h-[96px] w-full cursor-pointer items-center justify-center rounded-2xl border px-3.5 pt-8 pb-6 text-center transition-all duration-300 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:min-h-[108px] md:px-6 md:pt-10 md:pb-8
+                class="relative flex flex-1 min-h-[96px] w-full cursor-pointer items-center justify-center rounded-2xl border px-3.5 pt-8 pb-6 text-center transition-all duration-300 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:min-h-[108px] md:px-6 md:pt-10 md:pb-8
                   {activeIndex === i
                   ? 'border-primary bg-primary/5 dark:bg-primary/10 text-primary font-semibold shadow-md'
                   : 'border-base-content/10 bg-base-200/30 text-base-content/70 hover:bg-base-200/60 hover:border-base-content/20 hover:text-base-content'}"

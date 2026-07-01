@@ -644,12 +644,12 @@ interface ResourcingYaml {
   };
   workforce: {
     heading: string;
-    ctaLabel: string;
-    ctaUrl: string;
     tabs: Array<{
       title: string;
       description: string;
       image: string;
+      ctaLabel: string;
+      ctaUrl: string;
       tools: Array<{
         iconName: string;
         name: string;
