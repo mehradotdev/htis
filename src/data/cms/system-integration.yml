@@ -113,7 +113,7 @@ partnerEcosystem:
         - name: Juniper Networks
           logo: src/assets/juniper-2.png
         - name: Ruckus
-          logo: src/assets/logo-ruckus-networks.png
+          logo: src/assets/ruckus-networks-1.png
     - iconName: ShieldCheck
       title: Cybersecurity
       subtitle: Firewalls, EDR/XDR, Identity Management
