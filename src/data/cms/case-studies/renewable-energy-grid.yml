@@ -20,26 +20,61 @@ hero:
     - 20% Load Efficiency
   ctaLabel: Talk to our team
   ctaUrl: '#contact-row'
-clientContext:
-  clientType: Renewable Energy Generation Consortium
-  industryScale: Utility-Scale Clean Power Generation
-  environment: Expansive desert solar arrays and remote coastal wind turbine zones
-  bullets:
-    - Aggregates electricity outputs from multiple far-flung clean energy hubs.
-    - Supplies electricity directly to high-voltage national distribution grids.
-    - Must maintain rigorous safety parameters to avoid transformer burnouts.
-challenge:
-  paragraph: Unstable solar and wind generation created intense voltage fluctuations, making distribution dangerous and risking major regional blackouts.
-  bullets:
-    - 'Volatile power generation: Rapid cloud covers or shifting winds triggered sudden, unpredictable voltage spikes.'
-    - 'Isolated telemetry hubs: Wind and solar systems used distinct, incompatible data collectors.'
-    - 'High latency risks: Slow data reporting prevented grid operators from rerouting power before overloads.'
-solutionDetails:
-  paragraph: HTIS deployed highly ruggedized fiber ring infrastructures and integrated centralized SCADA monitors to automate power load management.
-  bullets:
-    - 'Rugged fiber rings: Engineered high-durability fiber pathways connecting all remote farms.'
-    - 'SCADA telemetry link: Combined solar and wind collectors into a single SCADA control dashboard.'
-    - 'Dynamic balancing loops: Programmed automated load shedding and distribution control scripts.'
+sections:
+  - id: client-context
+    layout: no-image
+    iconName: Building2
+    eyebrow: Client & Context
+    title: Operational Profile
+    description: Business Context Overview
+    content:
+      variant: list-card
+      description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
+      items:
+        - eyebrow: Sector / Client Type
+          title: Renewable Energy Generation Consortium
+          text: Clean power consortium managing distributed generation assets.
+        - eyebrow: Deployment Scale
+          title: Utility-Scale Clean Power Generation
+          text: Multi-site power generation environment feeding national grids.
+        - eyebrow: Operating Environment
+          title: Expansive desert solar arrays and remote coastal wind turbine zones
+          text: Remote generation zones needed resilient telemetry and rugged connectivity.
+        - text: Aggregates electricity outputs from multiple far-flung clean energy hubs.
+        - text: Supplies electricity directly to high-voltage national distribution grids.
+        - text: Must maintain rigorous safety parameters to avoid transformer burnouts.
+  - id: challenge
+    layout: no-image
+    iconName: AlertTriangle
+    eyebrow: The Challenge
+    title: Operational Headwinds & Operational Pain
+    description: The legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.
+    content:
+      variant: card
+      description: Unstable solar and wind generation created intense voltage fluctuations, making distribution dangerous and risking major regional blackouts.
+      items:
+        - title: Volatile power generation
+          text: Rapid cloud covers or shifting winds triggered sudden, unpredictable voltage spikes.
+        - title: Isolated telemetry hubs
+          text: Wind and solar systems used distinct, incompatible data collectors.
+        - title: High latency risks
+          text: Slow data reporting prevented grid operators from rerouting power before overloads.
+  - id: solution-details
+    layout: no-image
+    iconName: ShieldCheck
+    eyebrow: The Solution
+    title: Precision Engineering & Delivery
+    description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
+    content:
+      variant: card
+      description: HTIS deployed highly ruggedized fiber ring infrastructures and integrated centralized SCADA monitors to automate power load management.
+      items:
+        - title: Rugged fiber rings
+          text: Engineered high-durability fiber pathways connecting all remote farms.
+        - title: SCADA telemetry link
+          text: Combined solar and wind collectors into a single SCADA control dashboard.
+        - title: Dynamic balancing loops
+          text: Programmed automated load shedding and distribution control scripts.
 outcomes:
   metrics:
     - value: 3.5 GW

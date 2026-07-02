@@ -20,26 +20,61 @@ hero:
     - 15% Fuel Efficiency
   ctaLabel: Talk to our team
   ctaUrl: '#contact-row'
-clientContext:
-  clientType: Multi-State Heavy Logistics Enterprise
-  industryScale: Enterprise-Grade Supply Chain Systems
-  environment: Interstate trucking networks covering varying cellular network zones and difficult terrains
-  bullets:
-    - Coordinates daily transits for thousands of valuable retail cargo runs.
-    - Requires exact arrival estimations to prevent warehouse loading jams.
-    - Needs strict security paths to protect cargo against highway thefts.
-challenge:
-  paragraph: The client operated with manual driver reports and phone-based tracking, resulting in massive cargo delays, cargo theft risks, and high fuel waste from bad route choices.
-  bullets:
-    - 'Complete tracking blindness: Dispatchers had no real-time coordinates for high-value trucks.'
-    - 'Fuel waste: Drivers selected paths manually, ignoring optimal highway updates or construction zones.'
-    - 'Warehouse congestion: Slow delivery updates created huge truck queues at loading docks.'
-solutionDetails:
-  paragraph: HTIS developed an offline-first mobile app for field drivers, configured smart GPS trackers, and programmed a rich, central tracking portal.
-  bullets:
-    - 'Web tracking portal: Developed a real-time React/Svelte-based interface featuring dynamic leaflet maps.'
-    - 'Offline-first app: Built a lightweight driver utility that saves tracking points during network losses.'
-    - 'Route optimization: Coded automated path recommendations that avoid high-traffic and low-clearance roads.'
+sections:
+  - id: client-context
+    layout: no-image
+    iconName: Building2
+    eyebrow: Client & Context
+    title: Operational Profile
+    description: Business Context Overview
+    content:
+      variant: list-card
+      description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
+      items:
+        - eyebrow: Sector / Client Type
+          title: Multi-State Heavy Logistics Enterprise
+          text: Logistics organization managing high-value transport routes.
+        - eyebrow: Deployment Scale
+          title: Enterprise-Grade Supply Chain Systems
+          text: Fleet operations depended on coordinated dispatch, tracking, and route intelligence.
+        - eyebrow: Operating Environment
+          title: Interstate trucking networks covering varying cellular network zones and difficult terrains
+          text: Tracking continuity needed to survive inconsistent coverage and complex road conditions.
+        - text: Coordinates daily transits for thousands of valuable retail cargo runs.
+        - text: Requires exact arrival estimations to prevent warehouse loading jams.
+        - text: Needs strict security paths to protect cargo against highway thefts.
+  - id: challenge
+    layout: no-image
+    iconName: AlertTriangle
+    eyebrow: The Challenge
+    title: Operational Headwinds & Operational Pain
+    description: The legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.
+    content:
+      variant: card
+      description: The client operated with manual driver reports and phone-based tracking, resulting in massive cargo delays, cargo theft risks, and high fuel waste from bad route choices.
+      items:
+        - title: Complete tracking blindness
+          text: Dispatchers had no real-time coordinates for high-value trucks.
+        - title: Fuel waste
+          text: Drivers selected paths manually, ignoring optimal highway updates or construction zones.
+        - title: Warehouse congestion
+          text: Slow delivery updates created huge truck queues at loading docks.
+  - id: solution-details
+    layout: no-image
+    iconName: ShieldCheck
+    eyebrow: The Solution
+    title: Precision Engineering & Delivery
+    description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
+    content:
+      variant: card
+      description: HTIS developed an offline-first mobile app for field drivers, configured smart GPS trackers, and programmed a rich, central tracking portal.
+      items:
+        - title: Web tracking portal
+          text: Developed a real-time React/Svelte-based interface featuring dynamic leaflet maps.
+        - title: Offline-first app
+          text: Built a lightweight driver utility that saves tracking points during network losses.
+        - title: Route optimization
+          text: Coded automated path recommendations that avoid high-traffic and low-clearance roads.
 outcomes:
   metrics:
     - value: 2,000+

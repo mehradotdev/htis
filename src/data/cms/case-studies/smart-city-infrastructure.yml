@@ -20,26 +20,61 @@ hero:
     - 30% Less Congestion
   ctaLabel: Talk to our team
   ctaUrl: '#contact-row'
-clientContext:
-  clientType: Smart City Municipal Corporation
-  industryScale: Metropolitan Smart Infrastructure
-  environment: Dense urban commercial corridors and public transit pathways with high traffic volumes
-  bullets:
-    - Aiming to transition standard city services into automated, eco-friendly systems.
-    - Needed a single software system capable of handling concurrent streams from multiple sensor types.
-    - Required hardware to survive extreme heat, moisture, and high electromagnetic dust.
-challenge:
-  paragraph: Static municipal schedules led to enormous municipal electricity waste, while uncoordinated traffic lights caused massive rush-hour gridlock without any central oversight.
-  bullets:
-    - 'Severe lighting waste: Streetlights burned at full capacity during clear moonlight nights, wasting millions.'
-    - "Gridlocked commutes: Standard timer signals couldn't adjust to traffic spikes, causing long queues."
-    - 'Data silos: Ambient air quality, municipal buses, and traffic signals operated on disjointed platforms.'
-solutionDetails:
-  paragraph: HTIS coded a scalable, custom IoT tracking dashboard and deployed ruggedized LoRaWAN edge sensor networks across key city pathways.
-  bullets:
-    - 'LoRaWAN sensor deployment: Installed 5,000+ rugged telemetry nodes (lighting, environment, transit).'
-    - 'Adaptive signaling software: Built custom scheduling algorithms that adjust signal times based on live sensor data.'
-    - 'Unified Web Platform: Crafted an enterprise dashboard with live GIS mappings showing all municipal stats.'
+sections:
+  - id: client-context
+    layout: no-image
+    iconName: Building2
+    eyebrow: Client & Context
+    title: Operational Profile
+    description: Business Context Overview
+    content:
+      variant: list-card
+      description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
+      items:
+        - eyebrow: Sector / Client Type
+          title: Smart City Municipal Corporation
+          text: Municipal body digitizing city-scale services and infrastructure.
+        - eyebrow: Deployment Scale
+          title: Metropolitan Smart Infrastructure
+          text: Connected public systems spanning roads, lighting, transit, and environmental telemetry.
+        - eyebrow: Operating Environment
+          title: Dense urban commercial corridors and public transit pathways with high traffic volumes
+          text: High-traffic city corridors demanded durable hardware and real-time data handling.
+        - text: Aiming to transition standard city services into automated, eco-friendly systems.
+        - text: Needed a single software system capable of handling concurrent streams from multiple sensor types.
+        - text: Required hardware to survive extreme heat, moisture, and high electromagnetic dust.
+  - id: challenge
+    layout: no-image
+    iconName: AlertTriangle
+    eyebrow: The Challenge
+    title: Operational Headwinds & Operational Pain
+    description: The legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.
+    content:
+      variant: card
+      description: Static municipal schedules led to enormous municipal electricity waste, while uncoordinated traffic lights caused massive rush-hour gridlock without any central oversight.
+      items:
+        - title: Severe lighting waste
+          text: Streetlights burned at full capacity during clear moonlight nights, wasting millions.
+        - title: Gridlocked commutes
+          text: Standard timer signals couldn't adjust to traffic spikes, causing long queues.
+        - title: Data silos
+          text: Ambient air quality, municipal buses, and traffic signals operated on disjointed platforms.
+  - id: solution-details
+    layout: no-image
+    iconName: ShieldCheck
+    eyebrow: The Solution
+    title: Precision Engineering & Delivery
+    description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
+    content:
+      variant: card
+      description: HTIS coded a scalable, custom IoT tracking dashboard and deployed ruggedized LoRaWAN edge sensor networks across key city pathways.
+      items:
+        - title: LoRaWAN sensor deployment
+          text: Installed 5,000+ rugged telemetry nodes (lighting, environment, transit).
+        - title: Adaptive signaling software
+          text: Built custom scheduling algorithms that adjust signal times based on live sensor data.
+        - title: Unified Web Platform
+          text: Crafted an enterprise dashboard with live GIS mappings showing all municipal stats.
 outcomes:
   metrics:
     - value: 5,000+

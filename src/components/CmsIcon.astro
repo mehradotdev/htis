@@ -1,9 +1,11 @@
 ---
 import {
+  AlertTriangle,
   ArrowRight,
   Award,
   Briefcase,
   Building2,
+  CheckCircle2,
   CircleQuestionMark,
   Code,
   Factory,
@@ -14,7 +16,10 @@ import {
   Phone,
   RadioTower,
   Server,
+  ShieldCheck,
+  TrendingUp,
   Users,
+  Zap,
 } from '@lucide/astro';
 
 interface Props {
@@ -25,10 +30,12 @@ interface Props {
 const { name, className } = Astro.props;
 
 const iconMap = {
+  AlertTriangle,
   ArrowRight,
   Award,
   Briefcase,
   Building2,
+  CheckCircle2,
   Code,
   Factory,
   HardHat,
@@ -38,7 +45,10 @@ const iconMap = {
   Phone,
   RadioTower,
   Server,
+  ShieldCheck,
+  TrendingUp,
   Users,
+  Zap,
 } as const;
 
 const Icon =

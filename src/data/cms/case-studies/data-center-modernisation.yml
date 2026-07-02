@@ -20,26 +20,61 @@ hero:
     - 50% Faster Response
   ctaLabel: Talk to our team
   ctaUrl: '#contact-row'
-clientContext:
-  clientType: State IT & Administrative Department
-  industryScale: State-Wide Administrative Services
-  environment: Decentralized public registries and tax offices crossing multiple remote districts
-  bullets:
-    - Acts as the primary processing node for public land registries, vehicle licensing, and state treasury programs.
-    - Supports daily digital operations and transaction queues for millions of citizens.
-    - Operates within strict security guidelines and high concurrent request profiles.
-challenge:
-  paragraph: Before HTIS engaged, the administrative departments struggled with outdated server hardware, erratic power grids, and manual backups, leading to frequent regional outages and lost productivity.
-  bullets:
-    - 'Single points of failure: Legacy routing networks had no active path redundancy, meaning a single fiber cut offline entire districts.'
-    - 'Downtime & latency: Servers regularly buckled under the load of peak morning administrative queues, leading to transaction losses.'
-    - 'High administrative lag: Manual records processing was heavily delayed due to disjointed software and physical hard drive failures.'
-solutionDetails:
-  paragraph: HTIS deployed a unified modernization framework, virtualizing local servers and rolling out resilient fiber loops with automated backup path switching.
-  bullets:
-    - 'Hyperconverged Infrastructure (HCI): Consolidated legacy hardware into highly virtualized, self-healing compute nodes.'
-    - 'Active-passive fiber ring: Engineered dynamic path routing utilizing BGP/OSPF topologies across 750+ sites.'
-    - 'Data migration: Successfully migrated millions of critical citizen records with zero midday service interruption.'
+sections:
+  - id: client-context
+    layout: no-image
+    iconName: Building2
+    eyebrow: Client & Context
+    title: Operational Profile
+    description: Business Context Overview
+    content:
+      variant: list-card
+      description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
+      items:
+        - eyebrow: Sector / Client Type
+          title: State IT & Administrative Department
+          text: Public-sector department responsible for critical citizen service systems.
+        - eyebrow: Deployment Scale
+          title: State-Wide Administrative Services
+          text: Distributed service network spanning administrative offices and digital registries.
+        - eyebrow: Operating Environment
+          title: Decentralized public registries and tax offices crossing multiple remote districts
+          text: Remote offices required consistent uptime and reliable data synchronization.
+        - text: Acts as the primary processing node for public land registries, vehicle licensing, and state treasury programs.
+        - text: Supports daily digital operations and transaction queues for millions of citizens.
+        - text: Operates within strict security guidelines and high concurrent request profiles.
+  - id: challenge
+    layout: no-image
+    iconName: AlertTriangle
+    eyebrow: The Challenge
+    title: Operational Headwinds & Operational Pain
+    description: The legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.
+    content:
+      variant: card
+      description: Before HTIS engaged, the administrative departments struggled with outdated server hardware, erratic power grids, and manual backups, leading to frequent regional outages and lost productivity.
+      items:
+        - title: Single points of failure
+          text: Legacy routing networks had no active path redundancy, meaning a single fiber cut offline entire districts.
+        - title: Downtime & latency
+          text: Servers regularly buckled under the load of peak morning administrative queues, leading to transaction losses.
+        - title: High administrative lag
+          text: Manual records processing was heavily delayed due to disjointed software and physical hard drive failures.
+  - id: solution-details
+    layout: no-image
+    iconName: ShieldCheck
+    eyebrow: The Solution
+    title: Precision Engineering & Delivery
+    description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
+    content:
+      variant: card
+      description: HTIS deployed a unified modernization framework, virtualizing local servers and rolling out resilient fiber loops with automated backup path switching.
+      items:
+        - title: Hyperconverged Infrastructure (HCI)
+          text: Consolidated legacy hardware into highly virtualized, self-healing compute nodes.
+        - title: Active-passive fiber ring
+          text: Engineered dynamic path routing utilizing BGP/OSPF topologies across 750+ sites.
+        - title: Data migration
+          text: Successfully migrated millions of critical citizen records with zero midday service interruption.
 outcomes:
   metrics:
     - value: 50%

@@ -20,26 +20,61 @@ hero:
     - 40% Less Gate Queue Time
   ctaLabel: Talk to our team
   ctaUrl: '#contact-row'
-clientContext:
-  clientType: Metro Airport Infrastructure Authority
-  industryScale: International Air Hub & Public Transit Space
-  environment: Vast, multi-terminal airport zones spanning commercial passenger halls and high-security airfields
-  bullets:
-    - Processes upwards of 30 million domestic and international passenger movements yearly.
-    - Under strict surveillance supervision from national defense agencies and international flight boards.
-    - Requires continuous system availability with absolutely zero operational maintenance windows.
-challenge:
-  paragraph: The existing security structure utilized disconnected analog CCTV feeds and slow paper-based terminal logs, leading to long traveler delays and significant visibility blind spots.
-  bullets:
-    - 'Perimeter security gaps: Analog setups lacked automated motion detections along dark runway fences.'
-    - 'Terminal bottlenecks: Slow physical credential checks at staff gates created long security queues.'
-    - 'Data compartmentalization: Control centers could not match real-time video feeds with swipe-card logs.'
-solutionDetails:
-  paragraph: HTIS architected a unified smart space framework, laying a high-performance Cat6A structured cable grid and deploying biometric locks alongside AI camera arrays.
-  bullets:
-    - 'AI camera deployments: Upgraded and calibrated over 1,000 smart IP nodes with built-in perimeter crossline analytics.'
-    - 'Biometric access nodes: Installed fast facial recognition gates for crew transitions and boarding zones.'
-    - 'Unified security NOC: Engineered centralized command consoles linking biometric access alerts directly to CCTV cameras.'
+sections:
+  - id: client-context
+    layout: no-image
+    iconName: Building2
+    eyebrow: Client & Context
+    title: Operational Profile
+    description: Business Context Overview
+    content:
+      variant: list-card
+      description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
+      items:
+        - eyebrow: Sector / Client Type
+          title: Metro Airport Infrastructure Authority
+          text: Public infrastructure authority responsible for airport security modernization.
+        - eyebrow: Deployment Scale
+          title: International Air Hub & Public Transit Space
+          text: Multi-terminal passenger, commercial, and airfield security environment.
+        - eyebrow: Operating Environment
+          title: Vast, multi-terminal airport zones spanning commercial passenger halls and high-security airfields
+          text: Security coverage needed to remain consistent across public and restricted areas.
+        - text: Processes upwards of 30 million domestic and international passenger movements yearly.
+        - text: Under strict surveillance supervision from national defense agencies and international flight boards.
+        - text: Requires continuous system availability with absolutely zero operational maintenance windows.
+  - id: challenge
+    layout: no-image
+    iconName: AlertTriangle
+    eyebrow: The Challenge
+    title: Operational Headwinds & Operational Pain
+    description: The legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.
+    content:
+      variant: card
+      description: The existing security structure utilized disconnected analog CCTV feeds and slow paper-based terminal logs, leading to long traveler delays and significant visibility blind spots.
+      items:
+        - title: Perimeter security gaps
+          text: Analog setups lacked automated motion detections along dark runway fences.
+        - title: Terminal bottlenecks
+          text: Slow physical credential checks at staff gates created long security queues.
+        - title: Data compartmentalization
+          text: Control centers could not match real-time video feeds with swipe-card logs.
+  - id: solution-details
+    layout: no-image
+    iconName: ShieldCheck
+    eyebrow: The Solution
+    title: Precision Engineering & Delivery
+    description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
+    content:
+      variant: card
+      description: HTIS architected a unified smart space framework, laying a high-performance Cat6A structured cable grid and deploying biometric locks alongside AI camera arrays.
+      items:
+        - title: AI camera deployments
+          text: Upgraded and calibrated over 1,000 smart IP nodes with built-in perimeter crossline analytics.
+        - title: Biometric access nodes
+          text: Installed fast facial recognition gates for crew transitions and boarding zones.
+        - title: Unified security NOC
+          text: Engineered centralized command consoles linking biometric access alerts directly to CCTV cameras.
 outcomes:
   metrics:
     - value: 1,000+

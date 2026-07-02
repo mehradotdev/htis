@@ -2292,46 +2292,102 @@ content:
                 label: CTA URL
                 type: string
                 required: true
-          - name: clientContext
-            label: Client context
+          - name: sections
+            label: Dynamic sections
             type: object
+            required: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: '{eyebrow} - {title}'
             fields:
-              - name: clientType
-                label: Client type
+              - name: id
+                label: Section ID
+                type: string
+                required: false
+                pattern:
+                  regex: '^[a-z0-9-]+$'
+                  message: Use lowercase letters, numbers, and hyphens only.
+              - name: layout
+                label: Section layout
+                type: select
+                required: true
+                options:
+                  values:
+                    - image-left
+                    - image-right
+                    - no-image
+              - name: heroImage
+                label: Hero image
+                type: image
+                required: false
+              - name: heroImageAlt
+                label: Hero image alt text
+                type: string
+                required: false
+              - name: iconName
+                label: Icon
+                type: select
+                required: false
+                options:
+                  values:
+                    - AlertTriangle
+                    - Building2
+                    - CheckCircle2
+                    - ShieldCheck
+                    - TrendingUp
+                    - Zap
+              - name: eyebrow
+                label: Eyebrow
+                type: string
+                required: false
+              - name: title
+                label: Section title
                 type: string
                 required: true
-              - name: industryScale
-                label: Industry scale
-                type: string
-                required: true
-              - name: environment
+              - name: description
+                label: Section description
                 type: text
+                required: false
+              - name: content
+                label: Content
+                type: object
                 required: true
-              - name: bullets
-                type: string
-                list: true
-                required: true
-          - name: challenge
-            type: object
-            fields:
-              - name: paragraph
-                type: text
-                required: true
-              - name: bullets
-                type: string
-                list: true
-                required: true
-          - name: solutionDetails
-            label: Solution details
-            type: object
-            fields:
-              - name: paragraph
-                type: text
-                required: true
-              - name: bullets
-                type: string
-                list: true
-                required: true
+                fields:
+                  - name: variant
+                    label: Content variant
+                    type: select
+                    required: true
+                    options:
+                      values:
+                        - card
+                        - list
+                        - list-card
+                  - name: description
+                    label: Content description
+                    type: text
+                    required: false
+                  - name: items
+                    label: Bullet items
+                    type: object
+                    required: true
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{eyebrow} {title}'
+                    fields:
+                      - name: eyebrow
+                        label: Item eyebrow
+                        type: string
+                        required: false
+                      - name: title
+                        label: Item title
+                        type: string
+                        required: false
+                      - name: text
+                        label: Item text
+                        type: text
+                        required: true
           - name: outcomes
             type: object
             fields:

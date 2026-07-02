@@ -110,6 +110,28 @@ export interface CaseStudyMetric {
   label: string;
 }
 
+export interface CaseStudySectionItem {
+  eyebrow?: string;
+  title?: string;
+  text: string;
+}
+
+export interface CaseStudySection {
+  id?: string;
+  layout: 'image-left' | 'image-right' | 'no-image';
+  heroImage?: ImageMetadata;
+  heroImageAlt?: string;
+  iconName?: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  content: {
+    variant: 'card' | 'list' | 'list-card';
+    description?: string;
+    items: CaseStudySectionItem[];
+  };
+}
+
 export interface CaseStudyData {
   id: number; // Dynamically assigned based on array index
   slug: string;
@@ -127,20 +149,7 @@ export interface CaseStudyData {
   heroMetrics?: string[];
   heroCtaLabel: string;
   heroCtaUrl: string;
-  clientContext: {
-    clientType: string;
-    industryScale: string;
-    environment: string;
-    bullets: string[];
-  };
-  challenge: {
-    paragraph: string;
-    bullets: string[];
-  };
-  solutionDetails: {
-    paragraph: string;
-    bullets: string[];
-  };
+  sections: CaseStudySection[];
   outcomes: {
     metrics: CaseStudyMetric[];
   };
@@ -546,9 +555,11 @@ interface CaseStudyContentYaml {
     ctaLabel: string;
     ctaUrl: string;
   };
-  clientContext: CaseStudyData['clientContext'];
-  challenge: CaseStudyData['challenge'];
-  solutionDetails: CaseStudyData['solutionDetails'];
+  sections: Array<
+    Omit<CaseStudySection, 'heroImage'> & {
+      heroImage?: string;
+    }
+  >;
   outcomes: CaseStudyData['outcomes'];
   whyHTIS: string[];
 }
@@ -1082,7 +1093,7 @@ function validateHomeServices(services: HomeYaml['services']) {
   return services;
 }
 
-function resolveExecution<T extends ExecutionYaml>(execution: T) {
+function resolveExecution<T extends MetricsOnlyExecutionYaml>(execution: T) {
   return {
     ...execution,
     headingHtml: execution.heading.replace(/\n/g, '<br />'),
@@ -1251,9 +1262,10 @@ export const caseStudiesData = Object.values(caseStudyModules)
     heroMetrics: study.hero.metrics,
     heroCtaLabel: study.hero.ctaLabel,
     heroCtaUrl: study.hero.ctaUrl,
-    clientContext: study.clientContext,
-    challenge: study.challenge,
-    solutionDetails: study.solutionDetails,
+    sections: study.sections.map((section) => ({
+      ...section,
+      heroImage: section.heroImage ? getCmsAsset(section.heroImage) : undefined,
+    })),
     outcomes: study.outcomes,
     whyHTIS: study.whyHTIS,
   }));
