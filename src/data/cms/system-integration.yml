@@ -163,6 +163,7 @@ partnerEcosystem:
         - name: Schneider Electric
           logo: src/assets/schneider-electric-2.png
         - name: APC
+          logo: src/assets/apc.png
         - name: Vertiv
           logo: src/assets/vertiv-1.png
         - name: Eaton
