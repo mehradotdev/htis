@@ -2204,23 +2204,23 @@ content:
         path: src/data/cms/case-studies
         format: yaml
         filename:
-          template: '{metadata.slug}.yml'
-          field: create
+          template: '{slug}.yml'
+          field: false
         view:
           primary: metadata.title
-          fields: [metadata.title, metadata.slug, metadata.solution, metadata.industry]
-          sort: [metadata.title, metadata.slug]
+          fields: [metadata.title, slug, metadata.solution, metadata.industry]
+          sort: [metadata.title, slug]
         fields:
+          - name: slug
+            type: string
+            required: true
+            pattern:
+              regex: '^[a-z0-9-]+$'
+              message: Use lowercase letters, numbers, and hyphens only.
           - name: metadata
             label: Metadata
             type: object
             fields:
-              - name: slug
-                type: string
-                required: true
-                pattern:
-                  regex: '^[a-z0-9-]+$'
-                  message: Use lowercase letters, numbers, and hyphens only.
               - name: title
                 type: string
                 required: true
@@ -2263,6 +2263,13 @@ content:
             label: Hero
             type: object
             fields:
+              - name: id
+                label: Section ID
+                type: string
+                required: false
+                pattern:
+                  regex: '^[a-z0-9-]+$'
+                  message: Use lowercase letters, numbers, and hyphens only.
               - name: eyebrow
                 label: Hero eyebrow
                 type: string
@@ -2295,7 +2302,7 @@ content:
           - name: sections
             label: Dynamic sections
             type: object
-            required: true
+            required: false
             list:
               collapsible:
                 collapsed: true
@@ -2325,6 +2332,17 @@ content:
                 label: Hero image alt text
                 type: string
                 required: false
+              - name: accentColor
+                label: Accent color
+                type: select
+                required: false
+                default: green
+                options:
+                  values:
+                    - green
+                    - blue
+                    - yellow
+                    - red
               - name: iconName
                 label: Icon
                 type: select
@@ -2389,10 +2407,36 @@ content:
                         type: text
                         required: true
           - name: outcomes
+            label: Outcomes
             type: object
+            required: false
             fields:
+              - name: enabled
+                label: Show outcomes section
+                type: boolean
+                required: false
+              - name: id
+                label: Section ID
+                type: string
+                required: false
+                pattern:
+                  regex: '^[a-z0-9-]+$'
+                  message: Use lowercase letters, numbers, and hyphens only.
+              - name: eyebrow
+                label: Outcome eyebrow
+                type: string
+                required: false
+              - name: title
+                label: Outcome title
+                type: string
+                required: false
+              - name: description
+                label: Outcome description
+                type: text
+                required: false
               - name: metrics
                 type: object
+                required: false
                 list:
                   collapsible:
                     collapsed: true
@@ -2406,6 +2450,58 @@ content:
                     required: true
           - name: whyHTIS
             label: Why HTIS
-            type: string
-            list: true
-            required: true
+            type: object
+            required: false
+            fields:
+              - name: enabled
+                label: Show Why HTIS section
+                type: boolean
+                required: false
+              - name: id
+                label: Section ID
+                type: string
+                required: false
+                pattern:
+                  regex: '^[a-z0-9-]+$'
+                  message: Use lowercase letters, numbers, and hyphens only.
+              - name: eyebrow
+                label: Eyebrow
+                type: string
+                required: false
+              - name: title
+                label: Title
+                type: string
+                required: false
+              - name: description
+                label: Description
+                type: text
+                required: false
+              - name: cards
+                label: Cards
+                type: object
+                required: false
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{title}'
+                fields:
+                  - name: iconName
+                    label: Icon
+                    type: select
+                    required: false
+                    options:
+                      values:
+                        - AlertTriangle
+                        - Building2
+                        - CheckCircle2
+                        - ShieldCheck
+                        - TrendingUp
+                        - Zap
+                  - name: title
+                    label: Card title
+                    type: string
+                    required: false
+                  - name: description
+                    label: Card description
+                    type: text
+                    required: true

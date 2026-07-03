@@ -1,5 +1,5 @@
+slug: renewable-energy-grid
 metadata:
-  slug: renewable-energy-grid
   title: Renewable Energy Grid
   description: Integrated smart grid technology for solar and wind power distribution, improving grid resilience and uptime.
   thumbnailImage: src/assets/lob-system-case-study-1.png
@@ -23,6 +23,7 @@ hero:
 sections:
   - id: client-context
     layout: no-image
+    accentColor: green
     iconName: Building2
     eyebrow: Client & Context
     title: Operational Profile
@@ -45,6 +46,7 @@ sections:
         - text: Must maintain rigorous safety parameters to avoid transformer burnouts.
   - id: challenge
     layout: no-image
+    accentColor: yellow
     iconName: AlertTriangle
     eyebrow: The Challenge
     title: Operational Headwinds & Operational Pain
@@ -61,6 +63,7 @@ sections:
           text: Slow data reporting prevented grid operators from rerouting power before overloads.
   - id: solution-details
     layout: no-image
+    accentColor: green
     iconName: ShieldCheck
     eyebrow: The Solution
     title: Precision Engineering & Delivery
@@ -76,6 +79,11 @@ sections:
         - title: Dynamic balancing loops
           text: Programmed automated load shedding and distribution control scripts.
 outcomes:
+  enabled: true
+  id: outcomes
+  eyebrow: Outcomes & Impact
+  title: Quantifiable Success & Results
+  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
   metrics:
     - value: 3.5 GW
       label: Of renewable energy actively managed
@@ -84,6 +92,18 @@ outcomes:
     - value: 20%
       label: Improvement in load routing efficiency
 whyHTIS:
-  - Superior capacity in industrial fiber deployment and heavy electrical interface protocols.
-  - Rigorous attention to sub-millisecond data transit times in safety-critical networks.
-  - End-to-end telemetry system integration including rugged hardware setup and custom dashboards.
+  enabled: true
+  id: why-htis
+  eyebrow: Proven Capability
+  title: Why Partner with HTIS?
+  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
+  cards:
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Superior capacity in industrial fiber deployment and heavy electrical interface protocols.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Rigorous attention to sub-millisecond data transit times in safety-critical networks.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: End-to-end telemetry system integration including rugged hardware setup and custom dashboards.

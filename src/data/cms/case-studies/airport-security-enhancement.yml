@@ -1,5 +1,5 @@
+slug: airport-security-enhancement
 metadata:
-  slug: airport-security-enhancement
   title: Airport Security Enhancement
   description: Upgraded surveillance and access control systems for a major international airport to comply with modern security standards.
   thumbnailImage: src/assets/case-study-1.png
@@ -13,7 +13,7 @@ hero:
   eyebrow: International Airport Authority
   backgroundImage: src/assets/industry-hero-bg.png
   title: Unified Smart Space Access Controls & 1000+ AI-Powered IP Camera Array
-  summary: Upgraded a major air hub to a unified high-density PoE network fabric with over 1,000 smart surveillance nodes, accelerating traveler flows while maintaining zero security gaps.
+  summary: Upgraded a major air hub to a unified high-density PoE network fabric with over 1,000 smart surveillance nodes, accelerating traveler flows while maintaining zero security gaps. [View more](https://example.com)
   metrics:
     - 1000+ Cameras
     - Zero Blind Spots
@@ -23,10 +23,11 @@ hero:
 sections:
   - id: client-context
     layout: no-image
+    accentColor: green
     iconName: Building2
     eyebrow: Client & Context
     title: Operational Profile
-    description: Business Context Overview
+    description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
     content:
       variant: list-card
       description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
@@ -44,38 +45,49 @@ sections:
         - text: Under strict surveillance supervision from national defense agencies and international flight boards.
         - text: Requires continuous system availability with absolutely zero operational maintenance windows.
   - id: challenge
-    layout: no-image
+    layout: image-left
+    heroImage: src/assets/case-study-1.png
+    heroImageAlt: Airport security monitoring and surveillance infrastructure
+    accentColor: yellow
     iconName: AlertTriangle
     eyebrow: The Challenge
     title: Operational Headwinds & Operational Pain
-    description: The legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.
+    description: '[View the modernization brief](https://example.com) for how legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.'
     content:
       variant: card
-      description: The existing security structure utilized disconnected analog CCTV feeds and slow paper-based terminal logs, leading to long traveler delays and significant visibility blind spots.
+      description: The existing security structure utilized disconnected analog CCTV feeds and [slow paper-based terminal logs](https://example.com), leading to long traveler delays and significant visibility blind spots.
       items:
         - title: Perimeter security gaps
-          text: Analog setups lacked automated motion detections along dark runway fences.
+          text: Analog setups lacked automated motion detections along dark runway fences. [View more](https://example.com)
         - title: Terminal bottlenecks
           text: Slow physical credential checks at staff gates created long security queues.
         - title: Data compartmentalization
           text: Control centers could not match real-time video feeds with swipe-card logs.
   - id: solution-details
-    layout: no-image
+    layout: image-right
+    heroImage: src/assets/lob-system-case-study-1.png
+    heroImageAlt: Integrated security control room and smart space systems
+    accentColor: green
     iconName: ShieldCheck
     eyebrow: The Solution
     title: Precision Engineering & Delivery
     description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
     content:
-      variant: card
-      description: HTIS architected a unified smart space framework, laying a high-performance Cat6A structured cable grid and deploying biometric locks alongside AI camera arrays.
+      variant: list
+      description: HTIS architected a unified smart space framework, laying a high-performance Cat6A structured cable grid and deploying biometric locks alongside AI camera arrays. [View more](https://example.com)
       items:
         - title: AI camera deployments
-          text: Upgraded and calibrated over 1,000 smart IP nodes with built-in perimeter crossline analytics.
+          text: Upgraded and calibrated over 1,000 smart IP nodes with built-in perimeter crossline analytics. [View more](https://example.com)
         - title: Biometric access nodes
           text: Installed fast facial recognition gates for crew transitions and boarding zones.
         - title: Unified security NOC
           text: Engineered centralized command consoles linking biometric access alerts directly to CCTV cameras.
 outcomes:
+  enabled: true
+  id: outcomes
+  eyebrow: Outcomes & Impact
+  title: Quantifiable Success & Results
+  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics. [View more](https://example.com)
   metrics:
     - value: 1,000+
       label: High-definition AI cameras
@@ -84,6 +96,18 @@ outcomes:
     - value: 100%
       label: Coverage of airfield perimeter zones
 whyHTIS:
-  - Superior capabilities in high-density structural cabling and specialized active network arrays.
-  - Proven track record in high-security, zero-downtime public infrastructures.
-  - Unique hardware-software convergence capability for instant alarms and unified NOC interfaces.
+  enabled: true
+  id: why-htis
+  eyebrow: Proven Capability
+  title: Why Partner with HTIS?
+  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale. [View more](https://example.com)
+  cards:
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Superior capabilities in high-density structural cabling and specialized active network arrays.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Proven track record in high-security, zero-downtime public infrastructures.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Unique hardware-software convergence capability for instant alarms and unified NOC interfaces.

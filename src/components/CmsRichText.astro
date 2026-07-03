@@ -1,0 +1,14 @@
+---
+import { renderCmsInlineMarkdown } from '~/utils/cmsMarkdown';
+
+interface Props {
+  value: string;
+  tag?: 'p' | 'span';
+  className?: string;
+  linkClassName?: string;
+}
+
+const { value, tag: Tag = 'span', className, linkClassName } = Astro.props;
+---
+
+<Tag class={className} set:html={renderCmsInlineMarkdown(value, linkClassName)} />

@@ -1,5 +1,5 @@
+slug: smart-city-infrastructure
 metadata:
-  slug: smart-city-infrastructure
   title: Smart City Infrastructure
   description: Implemented IoT sensors and connected public transport systems to optimize city traffic and energy consumption.
   thumbnailImage: src/assets/lob-software-case-study-2.png
@@ -23,6 +23,7 @@ hero:
 sections:
   - id: client-context
     layout: no-image
+    accentColor: green
     iconName: Building2
     eyebrow: Client & Context
     title: Operational Profile
@@ -45,6 +46,7 @@ sections:
         - text: Required hardware to survive extreme heat, moisture, and high electromagnetic dust.
   - id: challenge
     layout: no-image
+    accentColor: yellow
     iconName: AlertTriangle
     eyebrow: The Challenge
     title: Operational Headwinds & Operational Pain
@@ -61,6 +63,7 @@ sections:
           text: Ambient air quality, municipal buses, and traffic signals operated on disjointed platforms.
   - id: solution-details
     layout: no-image
+    accentColor: green
     iconName: ShieldCheck
     eyebrow: The Solution
     title: Precision Engineering & Delivery
@@ -76,6 +79,11 @@ sections:
         - title: Unified Web Platform
           text: Crafted an enterprise dashboard with live GIS mappings showing all municipal stats.
 outcomes:
+  enabled: true
+  id: outcomes
+  eyebrow: Outcomes & Impact
+  title: Quantifiable Success & Results
+  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
   metrics:
     - value: 5,000+
       label: Active edge IoT sensors
@@ -84,6 +92,18 @@ outcomes:
     - value: 30%
       label: Reduction in peak transit delays
 whyHTIS:
-  - Proven expertise in massive IoT systems and robust software telemetry architectures.
-  - Sleek software engineering skills delivering highly responsive web platforms.
-  - Agile integration practices managing multi-department municipal requirements.
+  enabled: true
+  id: why-htis
+  eyebrow: Proven Capability
+  title: Why Partner with HTIS?
+  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
+  cards:
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Proven expertise in massive IoT systems and robust software telemetry architectures.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Sleek software engineering skills delivering highly responsive web platforms.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Agile integration practices managing multi-department municipal requirements.

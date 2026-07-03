@@ -1,5 +1,5 @@
+slug: data-center-modernisation
 metadata:
-  slug: data-center-modernisation
   title: Data center Modernisation
   description: Modernized backbone infrastructure with redundant fiber connectivity.
   thumbnailImage: src/assets/lob-system-hero-carousel-1.png
@@ -23,6 +23,7 @@ hero:
 sections:
   - id: client-context
     layout: no-image
+    accentColor: green
     iconName: Building2
     eyebrow: Client & Context
     title: Operational Profile
@@ -45,6 +46,7 @@ sections:
         - text: Operates within strict security guidelines and high concurrent request profiles.
   - id: challenge
     layout: no-image
+    accentColor: yellow
     iconName: AlertTriangle
     eyebrow: The Challenge
     title: Operational Headwinds & Operational Pain
@@ -61,6 +63,7 @@ sections:
           text: Manual records processing was heavily delayed due to disjointed software and physical hard drive failures.
   - id: solution-details
     layout: no-image
+    accentColor: green
     iconName: ShieldCheck
     eyebrow: The Solution
     title: Precision Engineering & Delivery
@@ -76,6 +79,11 @@ sections:
         - title: Data migration
           text: Successfully migrated millions of critical citizen records with zero midday service interruption.
 outcomes:
+  enabled: true
+  id: outcomes
+  eyebrow: Outcomes & Impact
+  title: Quantifiable Success & Results
+  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
   metrics:
     - value: 50%
       label: Faster registry response times
@@ -84,6 +92,18 @@ outcomes:
     - value: 750+
       label: Administrative offices modernized
 whyHTIS:
-  - Proven experience scaling government systems with complex multi-agency compliance needs.
-  - Flexible deployment resources capable of concurrent execution across remote regions.
-  - Turnkey lifecycle capabilities ranging from initial fiber laying to active virtualization support.
+  enabled: true
+  id: why-htis
+  eyebrow: Proven Capability
+  title: Why Partner with HTIS?
+  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
+  cards:
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Proven experience scaling government systems with complex multi-agency compliance needs.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Flexible deployment resources capable of concurrent execution across remote regions.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Turnkey lifecycle capabilities ranging from initial fiber laying to active virtualization support.

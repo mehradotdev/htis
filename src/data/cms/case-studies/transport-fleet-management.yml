@@ -1,5 +1,5 @@
+slug: transport-fleet-management
 metadata:
-  slug: transport-fleet-management
   title: Transport Fleet Management
   description: Developed custom software for real-time tracking of logistics fleet, reducing operational delays by 30%.
   thumbnailImage: src/assets/lob-software-case-study-1.png
@@ -23,6 +23,7 @@ hero:
 sections:
   - id: client-context
     layout: no-image
+    accentColor: green
     iconName: Building2
     eyebrow: Client & Context
     title: Operational Profile
@@ -45,6 +46,7 @@ sections:
         - text: Needs strict security paths to protect cargo against highway thefts.
   - id: challenge
     layout: no-image
+    accentColor: yellow
     iconName: AlertTriangle
     eyebrow: The Challenge
     title: Operational Headwinds & Operational Pain
@@ -61,6 +63,7 @@ sections:
           text: Slow delivery updates created huge truck queues at loading docks.
   - id: solution-details
     layout: no-image
+    accentColor: green
     iconName: ShieldCheck
     eyebrow: The Solution
     title: Precision Engineering & Delivery
@@ -76,6 +79,11 @@ sections:
         - title: Route optimization
           text: Coded automated path recommendations that avoid high-traffic and low-clearance roads.
 outcomes:
+  enabled: true
+  id: outcomes
+  eyebrow: Outcomes & Impact
+  title: Quantifiable Success & Results
+  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
   metrics:
     - value: 2,000+
       label: Interstate trucks actively tracked
@@ -84,6 +92,18 @@ outcomes:
     - value: 15%
       label: Increase in overall fuel efficiency
 whyHTIS:
-  - Tailored custom software development capabilities surpassing generic pre-built packages.
-  - Deep skills in integrating active hardware telematics with reliable cloud databases.
-  - Intuitive UX/UI designs ensuring rapid, error-free adoption by truck drivers.
+  enabled: true
+  id: why-htis
+  eyebrow: Proven Capability
+  title: Why Partner with HTIS?
+  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
+  cards:
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Tailored custom software development capabilities surpassing generic pre-built packages.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Deep skills in integrating active hardware telematics with reliable cloud databases.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Intuitive UX/UI designs ensuring rapid, error-free adoption by truck drivers.

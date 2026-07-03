@@ -1,5 +1,5 @@
+slug: national-broadband-rollout
 metadata:
-  slug: national-broadband-rollout
   title: National Broadband Rollout
   description: Deployed high-speed broadband network across rural communities, bridging the digital divide with scalable infrastructure.
   thumbnailImage: src/assets/lob-telecom-hero-bg.png
@@ -23,6 +23,7 @@ hero:
 sections:
   - id: client-context
     layout: no-image
+    accentColor: green
     iconName: Building2
     eyebrow: Client & Context
     title: Operational Profile
@@ -45,6 +46,7 @@ sections:
         - text: Needed custom high-durability passive shelters capable of surviving intense seasonal monsoons.
   - id: challenge
     layout: no-image
+    accentColor: yellow
     iconName: AlertTriangle
     eyebrow: The Challenge
     title: Operational Headwinds & Operational Pain
@@ -61,6 +63,7 @@ sections:
           text: Landslides and monsoon seasons limited physical work schedules to brief quarterly windows.
   - id: solution-details
     layout: no-image
+    accentColor: green
     iconName: ShieldCheck
     eyebrow: The Solution
     title: Precision Engineering & Delivery
@@ -76,6 +79,11 @@ sections:
         - title: Sovereign exchange node grids
           text: Built and powered passive environmental shelters using localized solar arrays.
 outcomes:
+  enabled: true
+  id: outcomes
+  eyebrow: Outcomes & Impact
+  title: Quantifiable Success & Results
+  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
   metrics:
     - value: 500+
       label: Miles of armored optical fiber active
@@ -84,6 +92,18 @@ outcomes:
     - value: 30%
       label: Reduction in overall backhaul latency
 whyHTIS:
-  - Comprehensive telecom capacity spanning OSP (Outside Plant) engineering to dynamic node configuration.
-  - Adept legal permit navigation, ensuring swift Right-of-Way clearances.
-  - Resilient field force equipped and trained to deploy in high-altitude environments.
+  enabled: true
+  id: why-htis
+  eyebrow: Proven Capability
+  title: Why Partner with HTIS?
+  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
+  cards:
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Comprehensive telecom capacity spanning OSP (Outside Plant) engineering to dynamic node configuration.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Adept legal permit navigation, ensuring swift Right-of-Way clearances.
+    - iconName: ShieldCheck
+      title: Key Strengths
+      description: Resilient field force equipped and trained to deploy in high-altitude environments.
