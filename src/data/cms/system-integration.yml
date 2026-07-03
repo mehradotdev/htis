@@ -161,12 +161,12 @@ partnerEcosystem:
         maximum datacenter uptime.
       partners:
         - name: Schneider Electric
-          logo: src/assets/logo-Schneider-Electric.png
+          logo: src/assets/schneider-electric-2.png
         - name: APC
         - name: Vertiv
-          logo: src/assets/logo-Vertiv.png
+          logo: src/assets/vertiv-1.png
         - name: Eaton
-          logo: src/assets/logo-Eaton.jpg
+          logo: src/assets/eaton-2.png
     - iconName: Cctv
       title: Surveillance & AV
       subtitle: Physical Security, LED Walls, VC
