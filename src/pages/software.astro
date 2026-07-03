@@ -4,19 +4,18 @@ import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import Contact from '~/components/Contact.astro';
+import CmsIcon from '~/components/CmsIcon.astro';
 import SoftwarePortfolio from '~/components/software/SoftwarePortfolio.svelte';
 import SoftwareEngineeringStack from '~/components/software/SoftwareEngineeringStack.astro';
 import SoftwareArchitecturalPrinciples from '~/components/software/SoftwareArchitecturalPrinciples.svelte';
 
-import { RadioTower, Server, Users, ArrowRight } from '@lucide/astro';
+import { ArrowRight } from '@lucide/astro';
 
 // New Section Imports
 import SoftwareOnboarding from '~/components/software/SoftwareOnboarding.astro';
 import SoftwareCaseStudies from '~/components/software/SoftwareCaseStudies.svelte';
 import SoftwareMetrics from '~/components/software/SoftwareMetrics.svelte';
 import { software } from '~/data/cms';
-
-const iconMap = { RadioTower, Server, Users };
 ---
 
 <Layout title={software.title}>
@@ -200,7 +199,6 @@ const iconMap = { RadioTower, Server, Users };
         >
           {
             software.execution.pillars.map((pillar, index) => {
-              const Icon = iconMap[pillar.iconName as keyof typeof iconMap];
               return (
                 <>
                   {index > 0 && (
@@ -217,7 +215,7 @@ const iconMap = { RadioTower, Server, Users };
                     ]}
                   >
                     <div class="mb-2 flex items-start justify-between">
-                      {Icon && <Icon class="h-12 w-12 text-primary" />}
+                      <CmsIcon name={pillar.iconName} className="h-12 w-12 text-primary" />
                       <a
                         href={pillar.url ?? '#'}
                         aria-label={`View more details about ${pillar.title}`}

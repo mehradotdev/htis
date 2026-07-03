@@ -254,7 +254,7 @@ export interface SoftwarePortfolioTab {
   id: string;
   label: string;
   shortLabel?: string;
-  iconName?: 'Laptop' | 'Smartphone' | 'ShieldCheck';
+  iconName?: string;
   description: string;
   items: SoftwarePortfolioItem[];
 }

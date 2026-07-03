@@ -1,14 +1,6 @@
 <script lang="ts">
   import { slide } from 'svelte/transition';
-  import {
-    Server,
-    Network,
-    Cloud,
-    Briefcase,
-    ShieldCheck,
-    Cctv,
-    Monitor,
-  } from '@lucide/svelte';
+  import CmsIconSvelte from '~/components/CmsIconSvelte.svelte';
 
   interface PillarCard {
     iconName: string;
@@ -18,25 +10,10 @@
     column: 'left' | 'center' | 'right';
   }
 
-  const iconMap = {
-    Briefcase,
-    Cctv,
-    Cloud,
-    Monitor,
-    Network,
-    Server,
-    ShieldCheck,
-  };
-
   let { centerImageSrc, cards }: { centerImageSrc: string; cards: PillarCard[] } =
     $props();
 
-  const pillars = $derived(
-    cards.map((card) => ({
-      ...card,
-      icon: iconMap[card.iconName as keyof typeof iconMap] ?? Server,
-    })),
-  );
+  const pillars = $derived(cards);
 
   let activeIndex = $state(0);
   const AUTOPLAY_INTERVAL = 7000;
@@ -82,7 +59,6 @@
 
 {#snippet pillarCard(pillar: (typeof pillars)[0])}
   {@const globalIndex = pillars.indexOf(pillar)}
-  {@const Icon = pillar.icon}
   <div class="relative w-full pt-4 lg:pt-0">
     <!-- Overlapping icon button on mobile view -->
     <div class="pointer-events-none absolute -top-1 left-6 z-20 lg:hidden">
@@ -92,7 +68,7 @@
           ? 'border-primary bg-base-100 text-primary'
           : 'border-base-content/15 bg-base-100 text-base-content/60'}"
       >
-        <Icon class="h-5 w-5" strokeWidth={2.5} />
+        <CmsIconSvelte name={pillar.iconName} class="h-5 w-5" strokeWidth={2.5} />
       </div>
     </div>
 
@@ -173,7 +149,6 @@
           style="-webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 70%); filter: var(--filter-invert-dark)"
         />
         {#each pillars as pillar, i}
-          {@const Icon = pillar.icon}
           <button
             class="absolute z-10 flex h-12 w-12 cursor-pointer items-center justify-center overflow-hidden rounded-full border shadow-sm transition-all duration-300 md:h-14 md:w-14 {activeIndex ===
             i
@@ -186,7 +161,11 @@
             {#if activeIndex === i}
               <div class="pointer-events-none absolute inset-0 bg-primary/15"></div>
             {/if}
-            <Icon class="relative z-10 h-5 w-5 md:h-6 md:w-6" strokeWidth={2.5} />
+            <CmsIconSvelte
+              name={pillar.iconName}
+              class="relative z-10 h-5 w-5 md:h-6 md:w-6"
+              strokeWidth={2.5}
+            />
           </button>
         {/each}
       </div>

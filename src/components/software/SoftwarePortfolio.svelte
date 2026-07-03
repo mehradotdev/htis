@@ -4,11 +4,9 @@
   import {
     CirclePlus,
     CircleMinus,
-    Laptop,
-    Smartphone,
-    ShieldCheck,
     ArrowUpRight,
   } from '@lucide/svelte';
+  import CmsIconSvelte from '~/components/CmsIconSvelte.svelte';
   import type { SoftwarePortfolioTab } from '~/data/cms';
 
   let {
@@ -69,11 +67,6 @@
     activeItemIndex = 0; // Reset active item index on tab swap
   }
 
-  function getTabIcon(iconName: SoftwarePortfolioTab['iconName']) {
-    if (iconName === 'Laptop') return Laptop;
-    if (iconName === 'Smartphone') return Smartphone;
-    return ShieldCheck;
-  }
 </script>
 
 <div class="w-full" role="region" aria-label="Software Portfolio">
@@ -82,7 +75,6 @@
     class="w-full flex flex-col sm:flex-row justify-center items-stretch gap-2 bg-base-100/60 backdrop-blur-md rounded-2xl border border-base-content/10 p-2 mb-6"
   >
     {#each capabilities as tab}
-      {@const TabIcon = getTabIcon(tab.iconName)}
       <button
         class="flex-1 px-6 py-4 rounded-xl font-medium transition-all duration-300 text-base md:text-xl text-center cursor-pointer select-none
           {activeTab === tab.id
@@ -91,7 +83,7 @@
         onclick={() => selectTab(tab.id)}
       >
         <span class="flex items-center justify-center gap-2">
-          <TabIcon size={18} />
+          <CmsIconSvelte name={tab.iconName} size={18} />
           {tab.shortLabel || tab.label}
         </span>
       </button>

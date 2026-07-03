@@ -7,13 +7,12 @@ import SystemIntegrationHero from '~/components/system-integration/SystemIntegra
 import StrategicPillars from '~/components/system-integration/StrategicPillars.svelte';
 import PartnerEcosystem from '~/components/system-integration/PartnerEcosystem.svelte';
 import IntegratedDeployments from '~/components/system-integration/IntegratedDeployments.astro';
+import CmsIcon from '~/components/CmsIcon.astro';
 
 import { Image } from 'astro:assets';
-import { Network, Users, Code, ArrowRight } from '@lucide/astro';
+import { ArrowRight } from '@lucide/astro';
 import TelecomMetrics from '~/components/telecom/TelecomMetrics.svelte';
 import { systemIntegration } from '~/data/cms';
-
-const iconMap = { Network, Users, Code };
 ---
 
 <Layout title={systemIntegration.title}>
@@ -91,7 +90,6 @@ const iconMap = { Network, Users, Code };
         >
           {
             systemIntegration.execution.pillars.map((pillar, index) => {
-              const Icon = iconMap[pillar.iconName as keyof typeof iconMap];
               return (
                 <>
                   {index > 0 && (
@@ -109,7 +107,7 @@ const iconMap = { Network, Users, Code };
                     ]}
                   >
                     <div class="mb-2 flex items-start justify-between">
-                      {Icon && <Icon class="h-12 w-12 text-primary" />}
+                      <CmsIcon name={pillar.iconName} className="h-12 w-12 text-primary" />
                       <a
                         href={pillar.url ?? '#'}
                         aria-label={`View more details about ${pillar.title.replace(/\s+/g, ' ')}`}

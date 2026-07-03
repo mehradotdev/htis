@@ -280,7 +280,13 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                   ) : null}
 
                   {section.content.variant === 'list' ? (
-                    <div class="space-y-5 text-left">
+                    <div
+                      class={`space-y-5 text-left ${
+                        section.description && section.content.description
+                          ? 'border-t border-base-content/20 pt-6'
+                          : ''
+                      }`}
+                    >
                       {section.content.description ? (
                         <CmsRichText
                           tag="p"
@@ -308,7 +314,13 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                   ) : null}
 
                   {section.content.variant === 'list-card' ? (
-                    <div class="space-y-5 text-left">
+                    <div
+                      class={`space-y-5 text-left ${
+                        section.description && section.content.description
+                          ? 'border-t border-base-content/20 pt-6'
+                          : ''
+                      }`}
+                    >
                       {section.content.description ? (
                         <CmsRichText
                           tag="p"
@@ -380,11 +392,11 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
               ) : null}
             </div>
 
-            <!-- Metrics Cards Grid -->
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <!-- Metrics Cards -->
+            <div class="flex flex-wrap justify-center gap-8">
               {outcomes.metrics.map((metric, index) => (
                 <div
-                  class="group relative flex min-h-[180px] flex-col justify-center rounded-3xl border border-base-content/10 bg-base-100 p-8 text-center transition-all duration-300 hover:border-primary/20 hover:shadow-lg"
+                  class="group relative flex min-h-[180px] w-full flex-none flex-col justify-center rounded-3xl border border-base-content/10 bg-base-100 p-8 text-center transition-all duration-300 hover:border-primary/20 hover:shadow-lg md:w-[calc((100%_-_2rem)/2)] lg:w-[calc((100%_-_4rem)/3)]"
                   id={`outcome-metric-${index}`}
                 >
                   <div class="absolute -inset-0.5 rounded-3xl bg-linear-to-r from-primary to-secondary opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-10" />

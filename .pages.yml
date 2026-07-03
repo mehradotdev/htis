@@ -462,32 +462,67 @@ content:
                         type: select
                         required: true
                         options:
-                          values:
+                          values: &icon_name_values
                             [
+                              Activity,
+                              AlertTriangle,
+                              Award,
+                              Banknote,
                               Blocks,
+                              BookOpen,
+                              Briefcase,
+                              Building,
                               Building2,
                               Cable,
+                              Cctv,
+                              CheckCircle2,
                               CheckSquare,
                               CircleDollarSign,
                               Clock,
                               Cloud,
                               Code,
+                              ClipboardList,
                               Cpu,
                               Database,
+                              Factory,
+                              FileCheck,
+                              FileCode,
                               FileSignature,
+                              Fingerprint,
+                              HardDrive,
+                              HardHat,
                               Headset,
+                              HeartPulse,
+                              Info,
+                              Landmark,
+                              Laptop,
+                              Layout,
+                              Lock,
+                              MapPin,
+                              Maximize,
                               Monitor,
+                              MonitorSmartphone,
                               Network,
+                              Phone,
+                              Plug,
                               Radio,
+                              RadioTower,
                               RefreshCw,
+                              Route,
+                              Scale,
                               Server,
                               Shield,
                               ShieldCheck,
+                              Signal,
                               Smartphone,
+                              TrendingUp,
+                              UserCheck,
+                              UserPlus,
                               UserSearch,
                               Users,
                               Wifi,
                               Wrench,
+                              Zap,
                             ]
                       - name: label
                         type: string
@@ -1162,7 +1197,7 @@ content:
                     type: select
                     required: true
                     options:
-                      values: [Code, Network, Users]
+                      values: *icon_name_values
                   - name: title
                     type: text
                     required: true
@@ -1240,8 +1275,7 @@ content:
                     type: select
                     required: true
                     options:
-                      values:
-                        [Briefcase, Cctv, Cloud, Monitor, Network, Server, ShieldCheck]
+                      values: *icon_name_values
                   - name: title
                     type: string
                     required: true
@@ -1280,7 +1314,7 @@ content:
                     type: select
                     required: true
                     options:
-                      values: [Cctv, Cloud, Database, Laptop, Network, ShieldCheck, Zap]
+                      values: *icon_name_values
                   - name: title
                     type: string
                     required: true
@@ -1350,7 +1384,7 @@ content:
                     type: select
                     required: true
                     options:
-                      values: [Code, Network, RadioTower, Server, Users]
+                      values: *icon_name_values
                   - name: title
                     type: text
                     required: true
@@ -1477,7 +1511,7 @@ content:
                     type: select
                     required: false
                     options:
-                      values: [Laptop, Smartphone, ShieldCheck]
+                      values: *icon_name_values
                   - name: description
                     type: text
                     required: true
@@ -1617,7 +1651,7 @@ content:
                     type: select
                     required: true
                     options:
-                      values: [Code, Network, RadioTower, Server, Users]
+                      values: *icon_name_values
                   - name: title
                     type: text
                     required: true
@@ -1754,17 +1788,7 @@ content:
                     type: select
                     required: true
                     options:
-                      values:
-                        [
-                          Briefcase,
-                          Cctv,
-                          Cloud,
-                          Monitor,
-                          Network,
-                          Server,
-                          ShieldCheck,
-                          UserPlus,
-                        ]
+                      values: *icon_name_values
                   - name: title
                     type: string
                     required: true
@@ -1798,7 +1822,7 @@ content:
                     type: select
                     required: true
                     options:
-                      values: [Users, Wrench, Maximize, UserCheck]
+                      values: *icon_name_values
                   - name: title
                     type: string
                     required: true
@@ -1863,38 +1887,7 @@ content:
                         type: select
                         required: true
                         options:
-                          values:
-                            [
-                              Activity,
-                              Award,
-                              Banknote,
-                              BookOpen,
-                              Building,
-                              Cable,
-                              ClipboardList,
-                              Cloud,
-                              Database,
-                              FileCheck,
-                              FileCode,
-                              Fingerprint,
-                              HardDrive,
-                              Headset,
-                              Layout,
-                              Lock,
-                              MapPin,
-                              MonitorSmartphone,
-                              Network,
-                              Plug,
-                              Radio,
-                              Route,
-                              Scale,
-                              Server,
-                              Shield,
-                              ShieldCheck,
-                              Signal,
-                              Users,
-                              Wrench,
-                            ]
+                          values: *icon_name_values
                       - name: name
                         type: string
                         required: true
@@ -2160,7 +2153,7 @@ content:
             type: select
             required: true
             options:
-              values: [Building2, Factory, HardHat, HeartPulse, Landmark, RadioTower]
+              values: *icon_name_values
           - name: techStack
             label: Tech stack
             type: string
@@ -2348,13 +2341,7 @@ content:
                 type: select
                 required: false
                 options:
-                  values:
-                    - AlertTriangle
-                    - Building2
-                    - CheckCircle2
-                    - ShieldCheck
-                    - TrendingUp
-                    - Zap
+                  values: *icon_name_values
               - name: eyebrow
                 label: Eyebrow
                 type: string
@@ -2490,13 +2477,7 @@ content:
                     type: select
                     required: false
                     options:
-                      values:
-                        - AlertTriangle
-                        - Building2
-                        - CheckCircle2
-                        - ShieldCheck
-                        - TrendingUp
-                        - Zap
+                      values: *icon_name_values
                   - name: title
                     label: Card title
                     type: string

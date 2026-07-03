@@ -1,16 +1,10 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
   import {
-    Laptop,
-    Network,
-    ShieldCheck,
-    Cloud,
-    Database,
-    Zap,
-    Cctv,
     ChevronLeft,
     ChevronRight,
   } from '@lucide/svelte';
+  import CmsIconSvelte from '~/components/CmsIconSvelte.svelte';
 
   interface Partner {
     name: string;
@@ -90,27 +84,6 @@
     tabsContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }
 
-  const iconMap: Record<string, any> = {
-    Cctv,
-    Cloud,
-    Database,
-    Laptop,
-    Network,
-    ShieldCheck,
-    Zap,
-    'Compute & Mobility': Laptop,
-    'Networking & Fabric': Network,
-    Cybersecurity: ShieldCheck,
-    'Cloud & Virtualization': Cloud,
-    'Storage & Backup': Database,
-    'Infra & Power': Zap,
-    'Surveillance & AV': Cctv,
-  };
-
-  let ActiveIcon = $derived(
-    iconMap[tabs[activeIndex]?.iconName] || iconMap[tabs[activeIndex]?.title] || Laptop,
-  );
-
   function startInterval() {
     clearInterval(interval);
     interval = setInterval(() => {
@@ -170,7 +143,6 @@
       class="flex flex-nowrap gap-2.5 pb-6 border-b border-base-content/10 mb-8 overflow-x-auto no-scrollbar scroll-smooth w-full"
     >
       {#each tabs as tab, i}
-        {@const TabIcon = iconMap[tab.iconName] || iconMap[tab.title] || Laptop}
         <button
           onclick={() => selectTab(i)}
           class="flex items-center gap-2 px-4.5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer border shrink-0 relative
@@ -178,7 +150,7 @@
             ? 'border-transparent shadow-md bg-primary text-primary-content'
             : 'bg-base-200/50 text-base-content/80 hover:bg-base-200 border-base-content/5'}"
         >
-          <TabIcon class="h-4 w-4 shrink-0" />
+          <CmsIconSvelte name={tab.iconName} class="h-4 w-4 shrink-0" />
           <span>{tab.title}</span>
 
           {#if activeIndex === i}
@@ -210,7 +182,10 @@
             <div
               class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center bg-primary/10 border border-primary/20 text-primary shrink-0 shadow-inner"
             >
-              <ActiveIcon class="h-7 w-7 md:h-8 md:w-8" />
+              <CmsIconSvelte
+                name={tabs[activeIndex]?.iconName}
+                class="h-7 w-7 md:h-8 md:w-8"
+              />
             </div>
 
             <!-- Title & Description -->

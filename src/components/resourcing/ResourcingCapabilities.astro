@@ -1,14 +1,5 @@
 ---
-import {
-  Server,
-  Network,
-  Cloud,
-  ShieldCheck,
-  Cctv,
-  Monitor,
-  Briefcase,
-  UserPlus,
-} from '@lucide/astro';
+import CmsIcon from '~/components/CmsIcon.astro';
 
 interface CapabilityItem {
   iconName: string;
@@ -21,24 +12,12 @@ interface Props {
   capabilities: CapabilityItem[];
 }
 
-const iconMap = {
-  Briefcase,
-  Cctv,
-  Cloud,
-  Monitor,
-  Network,
-  Server,
-  ShieldCheck,
-  UserPlus,
-};
-
 const { capabilities } = Astro.props;
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
   {
     capabilities.map((cap, idx) => {
-      const Icon = iconMap[cap.iconName as keyof typeof iconMap];
       return (
         <div
           class:list={[
@@ -46,11 +25,9 @@ const { capabilities } = Astro.props;
             cap.colSpan && 'lg:col-span-2',
           ]}
         >
-          {Icon && (
-            <div class="mb-4 rounded-xl bg-primary/10 p-3 text-primary">
-              <Icon class="h-8 w-8" />
-            </div>
-          )}
+          <div class="mb-4 rounded-xl bg-primary/10 p-3 text-primary">
+            <CmsIcon name={cap.iconName} className="h-8 w-8" />
+          </div>
           <h3 class="mb-2 text-2xl font-medium text-base-content">{cap.title}</h3>
           <p class="text-base leading-relaxed text-base-content">{cap.desc}</p>
         </div>

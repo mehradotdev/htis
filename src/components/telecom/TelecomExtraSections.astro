@@ -1,11 +1,10 @@
 ---
-import { Network, Users, Code, ArrowRight } from '@lucide/astro';
+import { ArrowRight } from '@lucide/astro';
+import CmsIcon from '~/components/CmsIcon.astro';
 import TelecomProcesses from './TelecomProcesses.svelte';
 import TelecomDeployments from './TelecomDeployments.svelte';
 import TelecomMetrics from './TelecomMetrics.svelte';
 import { telecom } from '~/data/cms';
-
-const iconMap = { Network, Users, Code };
 ---
 
 <!-- 1. Telecom Processes - Blueprint to Reality -->
@@ -42,7 +41,6 @@ const iconMap = { Network, Users, Code };
     >
       {
         telecom.execution.pillars.map((pillar, index) => {
-          const Icon = iconMap[pillar.iconName as keyof typeof iconMap];
           return (
             <>
               {index > 0 && <div class="hidden w-0.5 bg-base-content/20 md:block" />}
@@ -57,7 +55,7 @@ const iconMap = { Network, Users, Code };
                 ]}
               >
                 <div class="mb-2 flex items-start justify-between">
-                  {Icon && <Icon class="h-12 w-12 text-primary" />}
+                  <CmsIcon name={pillar.iconName} className="h-12 w-12 text-primary" />
                   <a
                     href={pillar.url ?? '#'}
                     aria-label={`View more details about ${pillar.title.replace(/\s+/g, ' ')}`}

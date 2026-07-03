@@ -1,6 +1,6 @@
 <script>
   import { ArrowRight } from '@lucide/svelte';
-  import { serviceIconComponents } from './serviceIcons';
+  import CmsIconSvelte from './CmsIconSvelte.svelte';
 
   let { services = [] } = $props();
 
@@ -59,13 +59,11 @@
             <!-- Features Grid (6 items: 3 columns x 2 rows) -->
             <div class="grid grid-cols-3 border-t border-solid border-base-content/30 bg-base-100/10">
               {#each service.features as feature, idx}
-                {@const Icon =
-                  serviceIconComponents[feature.iconName] ?? serviceIconComponents.CircleHelp}
                 <div
                   class="flex flex-col items-center justify-center p-3 text-center bg-base-100/40 border-solid border-base-content/30 {idx % 3 !== 2 ? 'border-r' : ''} {idx < 3 ? 'border-b' : ''}"
                 >
                   <div class="mb-2 text-primary">
-                    <Icon size={32} />
+                    <CmsIconSvelte name={feature.iconName} size={32} />
                   </div>
                   <span class="text-xs font-semibold leading-tight text-base-content/80"
                     >{@html feature.label}</span

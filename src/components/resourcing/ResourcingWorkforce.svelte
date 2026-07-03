@@ -1,38 +1,10 @@
 <script lang="ts">
   import { fade, slide } from 'svelte/transition';
   import {
-    Database,
-    BookOpen,
-    Users,
-    Banknote,
-    Cloud,
-    Layout,
-    ShieldCheck,
-    Plug,
-    FileCheck,
-    Activity,
-    Network,
-    Server,
-    Shield,
-    ClipboardList,
-    MonitorSmartphone,
-    Fingerprint,
-    Building,
-    Lock,
-    HardDrive,
-    Award,
-    Radio,
-    Signal,
-    Cable,
-    FileCode,
-    Headset,
-    Scale,
-    Wrench,
-    MapPin,
-    Route,
     ArrowRight,
     ChevronDown,
   } from '@lucide/svelte';
+  import CmsIconSvelte from '~/components/CmsIconSvelte.svelte';
 
   type WorkforceTool = {
     iconName: string;
@@ -51,38 +23,6 @@
   type Workforce = {
     heading: string;
     tabs: WorkforceTab[];
-  };
-
-  const iconMap = {
-    Database,
-    BookOpen,
-    Users,
-    Banknote,
-    Cloud,
-    Layout,
-    ShieldCheck,
-    Plug,
-    FileCheck,
-    Activity,
-    Network,
-    Server,
-    Shield,
-    ClipboardList,
-    MonitorSmartphone,
-    Fingerprint,
-    Building,
-    Lock,
-    HardDrive,
-    Award,
-    Radio,
-    Signal,
-    Cable,
-    FileCode,
-    Headset,
-    Scale,
-    Wrench,
-    MapPin,
-    Route,
   };
 
   const iconColors = [
@@ -110,10 +50,6 @@
 
   // --- Mobile state (user-driven accordion, first open) ---
   let mobileOpenIndex = $state(0);
-
-  function resolveIcon(iconName: string) {
-    return iconMap[iconName as keyof typeof iconMap] ?? Database;
-  }
 
   function startInterval() {
     clearInterval(interval);
@@ -222,11 +158,14 @@
               in:fade={{ duration: 300 }}
             >
               {#each activeTab.tools as tool, toolIndex}
-                {@const Icon = resolveIcon(tool.iconName)}
                 <div
                   class="flex cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-black/50 px-4 py-2.5 text-xs font-medium text-white/90 backdrop-blur-md transition-colors hover:bg-white/10 md:text-sm"
                 >
-                  <Icon size={16} class={iconColors[toolIndex % iconColors.length]} />
+                  <CmsIconSvelte
+                    name={tool.iconName}
+                    size={16}
+                    class={iconColors[toolIndex % iconColors.length]}
+                  />
                   {tool.name}
                 </div>
               {/each}
@@ -285,11 +224,14 @@
               <!-- Badges: 2-row horizontal scroll -->
               <div class="rw-mobile-badges -mx-1 px-1 py-1">
                 {#each tab.tools as tool, toolIndex}
-                  {@const Icon = resolveIcon(tool.iconName)}
                   <div
                     class="flex items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-black/50 px-3.5 py-2 text-xs font-medium text-white/90 backdrop-blur-md"
                   >
-                    <Icon size={14} class={iconColors[toolIndex % iconColors.length]} />
+                    <CmsIconSvelte
+                      name={tool.iconName}
+                      size={14}
+                      class={iconColors[toolIndex % iconColors.length]}
+                    />
                     {tool.name}
                   </div>
                 {/each}

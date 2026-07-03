@@ -1,18 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import { Users, Wrench, Maximize, UserCheck } from '@lucide/astro';
+import CmsIcon from '~/components/CmsIcon.astro';
 import type { ImageMetadata } from 'astro';
 import ResourcingWorkforce from './ResourcingWorkforce.svelte';
 import ResourcingMetrics from './ResourcingMetrics.svelte';
-
-const standardIcons = {
-  Users,
-  Wrench,
-  Maximize,
-  UserCheck,
-};
-
-type StandardIconName = keyof typeof standardIcons;
 
 type Workforce = {
   heading: string;
@@ -79,8 +70,6 @@ const imageFrames = [
   'absolute top-24 left-0 z-20 h-48 w-2/3 overflow-hidden rounded-xl border-4 border-base-100 shadow-md md:top-32 md:h-64',
 ];
 
-const resolveStandardIcon = (iconName: string) =>
-  standardIcons[iconName as StandardIconName] ?? Users;
 ---
 
 <!-- 1. Build Amazing Teams, On Demand -->
@@ -97,12 +86,11 @@ const resolveStandardIcon = (iconName: string) =>
 
     <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
       <div class="grid grid-cols-1 gap-10 md:grid-cols-2 order-2 lg:order-1">
-        {
-          standard.items.map((item) => {
-            const Icon = resolveStandardIcon(item.iconName);
-            return (
-              <div class="flex flex-col gap-4">
-                <Icon class="h-12 w-12 text-primary" />
+      {
+        standard.items.map((item) => {
+          return (
+            <div class="flex flex-col gap-4">
+                <CmsIcon name={item.iconName} className="h-12 w-12 text-primary" />
                 <h3 class="text-2xl font-medium text-base-content">{item.title}</h3>
                 <p class="text-base-content/90">{item.desc}</p>
               </div>

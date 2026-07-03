@@ -1,6 +1,6 @@
 <script>
   import { ArrowRight } from '@lucide/svelte';
-  import { serviceIconComponents } from './serviceIcons';
+  import CmsIconSvelte from './CmsIconSvelte.svelte';
 
   let { services = [] } = $props();
 
@@ -237,8 +237,6 @@
       >
         {#each service.features as feature, idx}
           {@const pos = stateLayouts[active].icons[idx]}
-          {@const Icon =
-            serviceIconComponents[feature.iconName] ?? serviceIconComponents.CircleHelp}
           <button
             type="button"
             onclick={(e) => {
@@ -269,7 +267,7 @@
             data-tip={feature.description}
           >
             <div class="mb-2 text-primary">
-              <Icon size={40} />
+              <CmsIconSvelte name={feature.iconName} size={40} />
             </div>
             <span class="text-xs lg:text-sm font-semibold text-base-content/80"
               >{@html feature.label}</span
