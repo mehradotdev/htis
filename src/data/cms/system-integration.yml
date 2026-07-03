@@ -181,6 +181,7 @@ partnerEcosystem:
         - name: Samsung
           logo: src/assets/logo-Samsung.png
         - name: Crestron
+          logo: src/assets/crestron-3.png
 execution:
   heading: |-
     Built to Execute.
