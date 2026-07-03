@@ -137,7 +137,9 @@ partnerEcosystem:
         scalable virtual environments.
       partners:
         - name: AWS
+          logo: src/assets/aws.png
         - name: Microsoft Azure
+          logo: src/assets/microsoft-azure.webp
     - iconName: Database
       title: Storage & Backup
       subtitle: Enterprise Storage, Data Protection
