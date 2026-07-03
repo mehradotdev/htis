@@ -147,9 +147,13 @@ partnerEcosystem:
         guarantee business continuity.
       partners:
         - name: NetApp
+          logo: src/assets/netapp.webp
         - name: Pure Storage
+          logo: src/assets/pure-storage.webp
         - name: Veeam
+          logo: src/assets/veeam.png
         - name: Commvault
+          logo: src/assets/commvault.png
     - iconName: Zap
       title: Infra & Power
       subtitle: Data Centre Racks, UPS, Precision Cooling
