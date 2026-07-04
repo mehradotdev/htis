@@ -182,6 +182,7 @@ partnerEcosystem:
           logo: src/assets/bosch-1.png
         - name: Hikvision
           logo: src/assets/hik-vision.png
+        - name: Panasonic
         - name: Prama
           logo: src/assets/prama.webp
         - name: Honeywell
