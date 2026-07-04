@@ -117,7 +117,7 @@ partnerEcosystem:
         - name: Ruckus
           logo: src/assets/ruckus-networks-1.png
         - name: D-Link
-          logo: src/assets/d-link-3.png
+          logo: src/assets/d-link-4.png
     - iconName: ShieldCheck
       title: Cybersecurity
       subtitle: Firewalls, EDR/XDR, Identity Management
