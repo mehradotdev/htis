@@ -193,10 +193,15 @@ partnerEcosystem:
         high-impact visual communication systems.
       partners:
         - name: Samsung
+          logo: src/assets/samsung-2.png
         - name: LG
+          logo: src/assets/lg-1.png
         - name: Sony
+          logo: src/assets/sony.svg
         - name: JBL
+          logo: src/assets/jbl.webp
         - name: Crestron
+          logo: src/assets/crestron-4.png
 execution:
   heading: |-
     Built to Execute.
