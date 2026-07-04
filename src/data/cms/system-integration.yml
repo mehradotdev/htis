@@ -9,8 +9,8 @@ hero:
   ctaLabel: Contact Us
   ctaUrl: "#contact"
   carouselImages:
-    - src/assets/web-analysis-programming-system-with-cloud-server-free-vector.jpg
     - src/assets/oip-2.webp
+    - src/assets/web-analysis-programming-system-with-cloud-server-free-vector.jpg
     - src/assets/fff-1.jpg
 strategicPillars:
   backgroundImage: src/assets/team-member-bg.png
@@ -169,19 +169,18 @@ partnerEcosystem:
         - name: Eaton
           logo: src/assets/eaton-2.png
     - iconName: Cctv
-      title: Surveillance & AV
-      subtitle: Physical Security, LED Walls, VC
-      description: Integrated physical security, CCTV surveillance, and high-impact
-        visual communication systems.
+      title: "Surveillance "
+      subtitle: Physical Security & Surveillance
+      description: Integrated physical security, CCTV surveillance, access control,
+        and intelligent monitoring systems.
       partners:
         - name: Hikvision
           logo: src/assets/logo-Hikvision.png
-        - name: Axis
-        - name: Milestone
-        - name: Samsung
-          logo: src/assets/logo-Samsung.png
-        - name: Crestron
-          logo: src/assets/crestron-3.png
+        - name: Prama
+        - name: Sparsh
+        - name: Bosch
+        - name: CP Plus
+        - name: Da Hua
 execution:
   heading: |-
     Built to Execute.
