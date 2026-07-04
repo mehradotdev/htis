@@ -175,12 +175,17 @@ partnerEcosystem:
         and intelligent monitoring systems.
       partners:
         - name: Hikvision
-          logo: src/assets/logo-Hikvision.png
+          logo: src/assets/hik-vision.png
         - name: Prama
+          logo: src/assets/prama.webp
         - name: Sparsh
+          logo: src/assets/sparsh.png
         - name: Bosch
+          logo: src/assets/bosch-1.png
         - name: CP Plus
+          logo: src/assets/cp-plus.png
         - name: Da Hua
+          logo: src/assets/dahua.webp
     - iconName: Monitor
       title: Audio Video (AV)
       subtitle: LED Walls, Displays & VC
