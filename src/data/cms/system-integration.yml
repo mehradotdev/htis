@@ -181,6 +181,17 @@ partnerEcosystem:
         - name: Bosch
         - name: CP Plus
         - name: Da Hua
+    - iconName: Monitor
+      title: Audio Video (AV)
+      subtitle: LED Walls, Displays & VC
+      description: Enterprise LED walls, digital displays, conferencing, and
+        high-impact visual communication systems.
+      partners:
+        - name: Samsung
+        - name: LG
+        - name: Sony
+        - name: JBL
+        - name: Crestron
 execution:
   heading: |-
     Built to Execute.
