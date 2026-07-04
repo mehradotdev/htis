@@ -93,13 +93,15 @@ partnerEcosystem:
         workspace solutions.
       partners:
         - name: Dell
-          logo: src/assets/logo-dell.png
+          logo: src/assets/dell-2.png
         - name: HP
           logo: src/assets/hp-1.png
         - name: Lenovo
           logo: src/assets/lenovo-3.png
         - name: MSi
           logo: src/assets/msi-logo-removebg-preview.png
+        - name: Acer
+          logo: src/assets/acer.jpg
     - iconName: Network
       title: Networking & Fabric
       subtitle: Active Switches, Routers, Wireless, SD-WAN
@@ -114,6 +116,8 @@ partnerEcosystem:
           logo: src/assets/juniper-2.png
         - name: Ruckus
           logo: src/assets/ruckus-networks-1.png
+        - name: D-Link
+          logo: src/assets/d-link-3.png
     - iconName: ShieldCheck
       title: Cybersecurity
       subtitle: Firewalls, EDR/XDR, Identity Management
