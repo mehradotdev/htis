@@ -1,3 +1,4 @@
+---
 slug: airport-security-enhancement
 metadata:
   title: Airport Security Enhancement
@@ -10,12 +11,12 @@ metadata:
     - Security
     - Surveillance
 hero:
-  eyebrow: International Airport Authority
+  eyebrow: International Airport Authority [Hello world]{color=#ff4500}
   backgroundImage: src/assets/industry-hero-bg.png
-  title: Unified Smart Space Access Controls & 1000+ AI-Powered IP Camera Array
-  summary: Migrated legacy administrative systems into an ultra-resilient hyperconverged infrastructure across 750+ government offices, completely eliminating data corruption and application timeouts.
+  title: Unified Smart Space Access Controls & 1000+ AI-Powered IP Camera Array [Hello world]{color=#ff4500}
+  summary: Migrated legacy administrative systems into an ultra-resilient hyperconverged infrastructure across 750+ government offices, completely eliminating data corruption and application timeouts. [Hello world]{color=#ff4500}
   metrics:
-    - 1000+ Cameras
+    - 1000+ Cameras [Hello world]{color=#ff4500}
     - Zero Blind Spots
     - 40% Less Gate Queue Time
   ctaLabel: Talk to our team
@@ -138,3 +139,33 @@ sections:
         - iconName: CheckCircle2
           title: Handover Validation
           text: Complete acceptance checks, documentation, and support readiness before operational handover.
+---
+
+## Executive overview
+
+The airport authority needed a unified security backbone that could cover public terminals, restricted staff areas, service corridors, and airfield perimeters without slowing passenger movement. HTIS proposed a phased modernization program that combined **AI-enabled surveillance**, biometric access control, and a centralized command workflow.
+
+This sample narrative is intentionally written as loose Markdown. Editors can use paragraphs, **bold emphasis**, lists, blockquotes, and [external reference links](https://example.com) without changing the structured case-study sections below.
+
+## Discovery and planning
+
+During the initial audit, the project team mapped camera blind spots, access-control delays, cable routing constraints, and control-room escalation paths. The biggest issue was not a single device failure, but the lack of a connected operational picture across terminals.
+
+- Reviewed high-risk passenger and staff movement zones
+- Tagged legacy analog cameras for phased replacement
+- Prioritized gates, baggage corridors, and perimeter roads
+- Defined handover checkpoints for airport security teams
+
+## Implementation approach
+
+HTIS staged the rollout around live airport operations so that security coverage remained active throughout the transition. New IP cameras were commissioned in clusters, while biometric checkpoints were introduced first in staff-only routes before expanding into broader controlled zones.
+
+> The goal was not only to add more devices, but to make alerts, identity events, and live video easier for operators to act on.
+
+The final command-room workflow connected access events with matching camera feeds, helping operators move from passive monitoring to faster incident verification.
+
+## Sample impact narrative
+
+After deployment, the airport team gained a single operational view across passenger halls, staff gates, service corridors, and perimeter areas. This reduced manual cross-checking between systems and helped the security team respond faster during peak movement windows.
+
+For a production case study, this section could include a richer story around stakeholder alignment, rollout phases, lessons learned, or a link to a downloadable [modernization brief](https://example.com).

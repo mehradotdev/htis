@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, tick } from 'svelte';
+  import { tick } from 'svelte';
   import { Sun, Moon } from '@lucide/svelte';
 
   let {
@@ -15,7 +15,7 @@
   const DARK_THEME = 'htis-theme-dark';
   const STORAGE_KEY = 'theme';
 
-  onMount(() => {
+  $effect(() => {
     const updateTheme = () => {
       isDark = document.documentElement.getAttribute('data-theme') === DARK_THEME;
     };

@@ -1,3 +1,4 @@
+---
 slug: renewable-energy-grid
 metadata:
   title: Renewable Energy Grid
@@ -111,3 +112,4 @@ sections:
         - iconName: ShieldCheck
           title: Key Strengths
           text: End-to-end telemetry system integration including rugged hardware setup and custom dashboards.
+---

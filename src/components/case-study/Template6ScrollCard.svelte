@@ -4,6 +4,7 @@
   interface ScrollCardItem {
     iconName?: string;
     title: string;
+    titleHtml?: string;
     text?: string;
     textHtml?: string;
   }
@@ -11,54 +12,81 @@
   let {
     items = [],
     ariaLabel = 'Scrollable cards',
-    eyebrow,
-    title,
+    eyebrowHtml,
+    titleHtml,
     descriptionHtml,
     eyebrowClass = 'text-primary',
   }: {
     items?: ScrollCardItem[];
     ariaLabel?: string;
-    eyebrow?: string;
-    title?: string;
+    eyebrowHtml?: string;
+    titleHtml?: string;
     descriptionHtml?: string;
     eyebrowClass?: string;
   } = $props();
 
   const MIN_CARD_W = 240;
   const MAX_CARD_W = 320;
+  const MIN_CARD_H = 300;
+  const MAX_CARD_H = 340;
+  const MIN_CARD_SCALE = 0.92;
+  const MAX_CARD_SCALE = 1.08;
   const GAP = 24;
-  const STICKY_TOP = 96;
+  const MIN_STICKY_TOP = 96;
+  const DESKTOP_BREAKPOINT = 1024;
 
   let sectionEl = $state<HTMLElement>();
   let stickyEl = $state<HTMLElement>();
   let stageEl = $state<HTMLElement>();
   let viewportWidth = $state(0);
   let stickyHeight = $state(360);
+  let stickyTop = $state(MIN_STICKY_TOP);
   let progress = $state(0);
+  let isMeasured = $state(false);
 
   let count = $derived(items.length);
   let cardWidth = $derived(
     Math.round(Math.min(MAX_CARD_W, Math.max(MIN_CARD_W, viewportWidth * 0.72))),
   );
   let travel = $derived(Math.max(0, (count - 1) * (cardWidth + GAP)));
-  let sectionHeight = $derived(`${stickyHeight + travel}px`);
-  let trackX = $derived(viewportWidth / 2 - cardWidth / 2 - progress * travel);
+  let sectionHeight = $derived(isMeasured ? `${stickyHeight + travel}px` : 'auto');
+  let trackX = $derived(
+    isMeasured ? viewportWidth / 2 - cardWidth / 2 - progress * travel : 0,
+  );
+  let currentCardPosition = $derived(progress * Math.max(0, count - 1));
   let activeIndex = $derived(count <= 1 ? 0 : Math.round(progress * (count - 1)));
 
   function clamp(value: number, min: number, max: number) {
     return Math.min(max, Math.max(min, value));
   }
 
+  function lerp(start: number, end: number, amount: number) {
+    return start + (end - start) * amount;
+  }
+
+  function smoothstep(value: number) {
+    return value * value * (3 - 2 * value);
+  }
+
+  function getCardFocus(cardIndex: number) {
+    return smoothstep(clamp(1 - Math.abs(currentCardPosition - cardIndex), 0, 1));
+  }
+
   function measure() {
     viewportWidth = stageEl?.clientWidth ?? 0;
     stickyHeight = stickyEl?.offsetHeight ?? stickyHeight;
+    stickyTop =
+      window.innerWidth >= DESKTOP_BREAKPOINT
+        ? Math.max(MIN_STICKY_TOP, Math.round((window.innerHeight - stickyHeight) / 2))
+        : MIN_STICKY_TOP;
+    isMeasured = Boolean(stageEl && stickyEl);
   }
 
   function updateProgress() {
     if (!sectionEl) return;
 
     const rect = sectionEl.getBoundingClientRect();
-    progress = travel > 0 ? clamp((STICKY_TOP - rect.top) / travel, 0, 1) : 0;
+    progress = travel > 0 ? clamp((stickyTop - rect.top) / travel, 0, 1) : 0;
   }
 
   $effect(() => {
@@ -83,23 +111,27 @@
     role="region"
     aria-label={ariaLabel}
   >
-    <div bind:this={stickyEl} class="sticky top-24 overflow-hidden pt-2 pb-8">
+    <div
+      bind:this={stickyEl}
+      class="{isMeasured ? 'sticky' : 'relative'} overflow-hidden pt-2 pb-8"
+      style:top={isMeasured ? `${stickyTop}px` : undefined}
+    >
       <div
         class="mx-auto mb-6 flex max-w-4xl flex-col items-center gap-4 px-6 text-center"
       >
-        {#if eyebrow}
+        {#if eyebrowHtml}
           <div
             class="text-xs font-bold tracking-widest uppercase md:text-sm {eyebrowClass}"
           >
-            {eyebrow}
+            {@html eyebrowHtml}
           </div>
         {/if}
 
-        {#if title}
+        {#if titleHtml}
           <h2
             class="max-w-3xl text-3xl font-extrabold tracking-tight text-base-content md:text-4xl"
           >
-            {title}
+            {@html titleHtml}
           </h2>
         {/if}
 
@@ -112,17 +144,29 @@
 
       <div bind:this={stageEl} class="relative w-full overflow-hidden pt-6 pb-4">
         <div
-          class="t6-scroll-track flex items-center gap-6 will-change-transform"
+          class="t6-scroll-track flex items-center gap-6 will-change-transform {isMeasured
+            ? ''
+            : 'overflow-x-auto px-6'}"
           style:transform={`translate3d(${trackX}px, 0, 0)`}
         >
           {#each items as card, cardIndex}
             {@const isActive = activeIndex === cardIndex}
+            {@const cardFocus = getCardFocus(cardIndex)}
+            {@const cardHeight = Math.round(lerp(MIN_CARD_H, MAX_CARD_H, cardFocus))}
+            {@const cardScale = lerp(MIN_CARD_SCALE, MAX_CARD_SCALE, cardFocus)}
+            {@const glowOpacity = lerp(0, 0.14, cardFocus)}
+            {@const borderMix = Math.round(lerp(8, 30, cardFocus))}
+            {@const bgMix = Math.round(lerp(0, 5, cardFocus))}
+            {@const glowMix = Math.round(glowOpacity * 100)}
             <article
-              class="group relative flex shrink-0 flex-col items-center justify-center overflow-hidden rounded-2xl border p-7 text-center transition-all duration-300 md:p-8 {isActive
-                ? 'z-10 h-[340px] border-primary/30 bg-primary/5 shadow-xl shadow-primary/10'
-                : 'z-0 h-[300px] border-base-content/10 bg-base-100/50 shadow-sm hover:border-base-content/20'}"
+              class="group relative flex shrink-0 flex-col items-center justify-center overflow-hidden rounded-2xl border p-7 text-center transition-[height,transform,border-color,background-color,box-shadow] duration-100 md:p-8"
               style:width={`${cardWidth}px`}
-              style:transform={isActive ? 'scale(1.08)' : 'scale(0.92)'}
+              style:height={`${cardHeight}px`}
+              style:transform={`scale(${cardScale})`}
+              style:z-index={Math.round(10 + cardFocus * 10)}
+              style:border-color={`color-mix(in oklch, var(--color-primary) ${borderMix}%, transparent)`}
+              style:background-color={`color-mix(in oklch, var(--color-primary) ${bgMix}%, var(--color-base-100))`}
+              style:box-shadow={`0 22px 60px -24px color-mix(in oklch, var(--color-primary) ${glowMix}%, transparent)`}
               aria-current={isActive ? 'true' : undefined}
             >
               <div class="flex h-full flex-col items-center justify-center gap-5">
@@ -138,7 +182,11 @@
                   <h3
                     class="max-w-[15rem] text-xl font-medium tracking-tight text-base-content md:text-2xl"
                   >
-                    {card.title}
+                    {#if card.titleHtml}
+                      {@html card.titleHtml}
+                    {:else}
+                      {card.title}
+                    {/if}
                   </h3>
                 {/if}
 
@@ -146,7 +194,11 @@
                   <p
                     class="max-w-[15rem] text-sm leading-relaxed text-base-content/70 md:text-base"
                   >
-                    {@html card.textHtml ?? card.text}
+                    {#if card.textHtml}
+                      {@html card.textHtml}
+                    {:else}
+                      {card.text}
+                    {/if}
                   </p>
                 {/if}
               </div>

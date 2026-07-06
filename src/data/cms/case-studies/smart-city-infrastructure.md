@@ -1,3 +1,4 @@
+---
 slug: smart-city-infrastructure
 metadata:
   title: Smart City Infrastructure
@@ -111,3 +112,4 @@ sections:
         - iconName: ShieldCheck
           title: Key Strengths
           text: Agile integration practices managing multi-department municipal requirements.
+---

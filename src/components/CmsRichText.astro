@@ -2,8 +2,8 @@
 import { renderCmsInlineMarkdown } from '~/utils/cmsMarkdown';
 
 interface Props {
-  value: string;
-  tag?: 'p' | 'span';
+  value?: string | null;
+  tag?: 'div' | 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'strong';
   className?: string;
   linkClassName?: string;
 }

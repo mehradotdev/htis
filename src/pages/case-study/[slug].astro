@@ -10,10 +10,7 @@ import Template6ScrollCard from '~/components/case-study/Template6ScrollCard.sve
 import { caseStudiesData, type CaseStudyData } from '~/data/cms';
 import { renderCmsInlineMarkdown } from '~/utils/cmsMarkdown';
 
-import {
-  ArrowLeft,
-  Zap,
-} from '@lucide/astro';
+import { ArrowLeft, Zap } from '@lucide/astro';
 
 // Generate static routes at build time for all case studies
 export async function getStaticPaths() {
@@ -24,6 +21,7 @@ export async function getStaticPaths() {
 }
 
 const { study } = Astro.props as { study: CaseStudyData };
+const MarkdownContent = study.MarkdownContent;
 
 function getSectionTone(studySection: CaseStudyData['sections'][number]) {
   const tones = {
@@ -115,24 +113,26 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
           <div
             class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-primary uppercase md:text-sm"
           >
-            Case Study: {study.solution}
+            Case Study: <CmsRichText value={study.solution} />
           </div>
 
           <!-- Client / project label -->
           {
-              study.heroEyebrow && (
-                <div class="text-xs font-bold tracking-widest text-base-content/50 uppercase md:text-sm">
-                  {study.heroEyebrow}
-                </div>
-              )
-            }
+            study.heroEyebrow && (
+              <CmsRichText
+                tag="div"
+                value={study.heroEyebrow}
+                className="text-xs font-bold tracking-widest text-base-content/50 uppercase md:text-sm"
+              />
+            )
+          }
 
           <!-- Outcome-focused Title -->
-          <h1
-            class="text-3xl leading-tight font-extrabold tracking-tight text-base-content md:text-4xl lg:text-5xl"
-          >
-            {study.heroTitle}
-          </h1>
+          <CmsRichText
+            tag="h1"
+            value={study.heroTitle}
+            className="text-3xl leading-tight font-extrabold tracking-tight text-base-content md:text-4xl lg:text-5xl"
+          />
 
           <!-- 1-2 line summary -->
           <div x-data="{ expanded: false }" class="max-w-2xl">
@@ -140,8 +140,7 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
               x-ref="summary"
               class="line-clamp-2 text-justify text-lg leading-relaxed font-medium text-base-content/85 md:line-clamp-none md:text-left md:text-xl"
               set:html={renderCmsInlineMarkdown(study.heroSummary)}
-            >
-            </p>
+            />
             <button
               type="button"
               class="mt-1 inline-flex text-base font-bold text-primary underline underline-offset-4 md:hidden"
@@ -162,7 +161,7 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                     id={`hero-metric-chip-${idx}`}
                   >
                     <Zap class="h-3.5 w-3.5 shrink-0" />
-                    {metric}
+                    <CmsRichText value={metric} />
                   </div>
                 ))}
               </div>
@@ -176,16 +175,16 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
               class="btn w-full rounded-lg px-8 text-base font-semibold shadow-lg transition-all duration-300 btn-primary hover:shadow-primary/30 sm:w-auto"
               id="hero-cta-btn"
             >
-              {study.heroCtaLabel}
+              <CmsRichText value={study.heroCtaLabel} />
             </a>
             {
               study.heroSecondaryCtaLabel && study.heroSecondaryCtaUrl ? (
                 <a
                   href={study.heroSecondaryCtaUrl}
-                  class="btn w-full rounded-lg border-base-content/20 px-8 text-base font-semibold transition-all duration-300 btn-outline hover:border-primary sm:w-auto"
+                  class="btn w-full rounded-lg border-base-content/20 btn-outline px-8 text-base font-semibold transition-all duration-300 hover:border-primary sm:w-auto"
                   id="hero-secondary-cta-btn"
                 >
-                  {study.heroSecondaryCtaLabel}
+                  <CmsRichText value={study.heroSecondaryCtaLabel} />
                 </a>
               ) : null
             }
@@ -193,6 +192,18 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
         </div>
       </div>
     </section>
+
+    {
+      MarkdownContent ? (
+        <section class="border-y border-base-content/5 bg-base-100 pt-0 pb-16 md:pb-20">
+          <div class="container mx-auto px-6">
+            <div class="cms-markdown mx-auto max-w-4xl">
+              <MarkdownContent />
+            </div>
+          </div>
+        </section>
+      ) : null
+    }
 
     {
       study.sections.map((section, sectionIndex) => {
@@ -263,16 +274,20 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                       ) : null}
 
                       {section.eyebrow ? (
-                        <div
-                          class={`text-xs font-bold tracking-widest uppercase md:text-sm ${tone.eyebrow}`}
-                        >
-                          {section.eyebrow}
-                        </div>
+                        <CmsRichText
+                          tag="div"
+                          value={section.eyebrow}
+                          className={`text-xs font-bold tracking-widest uppercase md:text-sm ${tone.eyebrow}`}
+                          linkClassName={tone.link}
+                        />
                       ) : null}
 
-                      <h2 class="max-w-3xl text-3xl font-extrabold tracking-tight text-base-content md:text-4xl">
-                        {section.title}
-                      </h2>
+                      <CmsRichText
+                        tag="h2"
+                        value={section.title}
+                        className="max-w-3xl text-3xl font-extrabold tracking-tight text-base-content md:text-4xl"
+                        linkClassName={tone.link}
+                      />
 
                       {section.description ? (
                         <CmsRichText
@@ -314,13 +329,20 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                               class={`mt-2 h-2 w-2 shrink-0 rounded-full ${tone.bullet}`}
                             />
                             <span>
-                              <strong>
-                                {item.title}
-                                {item.text ? <span class="hidden md:inline">: </span> : null}
-                              </strong>
+                              <CmsRichText
+                                tag="strong"
+                                value={item.title}
+                                linkClassName={tone.link}
+                              />
+                              {item.text ? (
+                                <span class="hidden md:inline">: </span>
+                              ) : null}
                               {item.text ? (
                                 <span class="hidden md:inline">
-                                  <CmsRichText value={item.text} linkClassName={tone.link} />
+                                  <CmsRichText
+                                    value={item.text}
+                                    linkClassName={tone.link}
+                                  />
                                 </span>
                               ) : null}
                             </span>
@@ -357,13 +379,20 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                               class={`mt-2 h-2 w-2 shrink-0 rounded-full ${tone.bullet}`}
                             />
                             <span>
-                              <strong>
-                                {item.title}
-                                {item.text ? <span class="hidden md:inline">: </span> : null}
-                              </strong>
+                              <CmsRichText
+                                tag="strong"
+                                value={item.title}
+                                linkClassName={tone.link}
+                              />
+                              {item.text ? (
+                                <span class="hidden md:inline">: </span>
+                              ) : null}
                               {item.text ? (
                                 <span class="hidden md:inline">
-                                  <CmsRichText value={item.text} linkClassName={tone.link} />
+                                  <CmsRichText
+                                    value={item.text}
+                                    linkClassName={tone.link}
+                                  />
                                 </span>
                               ) : null}
                             </span>
@@ -401,13 +430,19 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                             />
                             <div class="space-y-1">
                               {item.eyebrow ? (
-                                <div class="hidden text-xs font-bold tracking-widest text-base-content/45 uppercase md:block">
-                                  {item.eyebrow}
-                                </div>
+                                <CmsRichText
+                                  tag="div"
+                                  value={item.eyebrow}
+                                  className="hidden text-xs font-bold tracking-widest text-base-content/45 uppercase md:block"
+                                  linkClassName={tone.link}
+                                />
                               ) : null}
-                              <h3 class="text-base font-bold text-base-content md:text-lg">
-                                {item.title}
-                              </h3>
+                              <CmsRichText
+                                tag="h3"
+                                value={item.title}
+                                className="text-base font-bold text-base-content md:text-lg"
+                                linkClassName={tone.link}
+                              />
                               {item.text ? (
                                 <div class="hidden md:block">
                                   <CmsRichText
@@ -434,11 +469,19 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                         >
                           <div class="absolute -inset-0.5 rounded-3xl bg-linear-to-r from-primary to-secondary opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-10" />
                           <div class="relative z-10">
-                            <div class="mb-3 bg-linear-to-r from-primary to-secondary bg-clip-text text-4xl font-black tracking-tight text-transparent md:text-5xl">
-                              {metric.title}
-                            </div>
+                            <CmsRichText
+                              tag="div"
+                              value={metric.title}
+                              className="mb-3 bg-linear-to-r from-primary to-secondary bg-clip-text text-4xl font-black tracking-tight text-transparent md:text-5xl"
+                              linkClassName={tone.link}
+                            />
                             <div class="text-sm font-bold text-base-content/70 md:text-base">
-                              {metric.text ? metric.text : null}
+                              {metric.text ? (
+                                <CmsRichText
+                                  value={metric.text}
+                                  linkClassName={tone.link}
+                                />
+                              ) : null}
                             </div>
                           </div>
                         </div>
@@ -455,12 +498,18 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                         >
                           <div class="flex flex-col items-center space-y-6">
                             <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-105">
-                              <CmsIcon name={card.iconName ?? 'ShieldCheck'} className="h-6 w-6" />
+                              <CmsIcon
+                                name={card.iconName ?? 'ShieldCheck'}
+                                className="h-6 w-6"
+                              />
                             </div>
                             {card.title ? (
-                              <h3 class="text-lg leading-snug font-bold tracking-tight text-base-content">
-                                {card.title}
-                              </h3>
+                              <CmsRichText
+                                tag="h3"
+                                value={card.title}
+                                className="text-lg leading-snug font-bold tracking-tight text-base-content"
+                                linkClassName={tone.link}
+                              />
                             ) : null}
                             {card.text ? (
                               <CmsRichText
@@ -480,13 +529,18 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
                     <Template6ScrollCard
                       items={section.content.items.map((card) => ({
                         ...card,
+                        titleHtml: renderCmsInlineMarkdown(card.title, tone.link),
                         textHtml: card.text
                           ? renderCmsInlineMarkdown(card.text, tone.link)
                           : undefined,
                       }))}
                       ariaLabel={`${section.title} cards`}
-                      eyebrow={section.eyebrow}
-                      title={section.title}
+                      eyebrowHtml={
+                        section.eyebrow
+                          ? renderCmsInlineMarkdown(section.eyebrow, tone.link)
+                          : undefined
+                      }
+                      titleHtml={renderCmsInlineMarkdown(section.title, tone.link)}
                       descriptionHtml={
                         section.description
                           ? renderCmsInlineMarkdown(section.description, tone.link)

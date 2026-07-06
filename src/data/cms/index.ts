@@ -156,6 +156,7 @@ export interface CaseStudyData {
   heroCtaUrl: string;
   heroSecondaryCtaLabel?: string;
   heroSecondaryCtaUrl?: string;
+  MarkdownContent?: any;
   sections: CaseStudySection[];
 }
 
@@ -781,9 +782,12 @@ const industryModules = import.meta.glob<IndustryData>('./industries/*.yml', {
   import: 'default',
 });
 
-const caseStudyModules = import.meta.glob<CaseStudyContentYaml>('./case-studies/*.yml', {
+const caseStudyMarkdownModules = import.meta.glob<{
+  frontmatter: CaseStudyContentYaml;
+  Content: any;
+  rawContent?: () => string;
+}>('./case-studies/*.md', {
   eager: true,
-  import: 'default',
 });
 
 export const site = siteYaml as {
@@ -1278,9 +1282,17 @@ export const industriesData = Object.values(industryModules).sort(
     a.slug.localeCompare(b.slug),
 );
 
-export const caseStudiesData = Object.values(caseStudyModules)
-  .sort((a, b) => a.slug.localeCompare(b.slug))
-  .map((study, index): CaseStudyData => ({
+function resolveCaseStudy(
+  study: CaseStudyContentYaml,
+  index: number,
+  markdown?: {
+    Content: any;
+    rawContent?: () => string;
+  },
+): CaseStudyData {
+  const markdownBody = markdown?.rawContent?.().trim() ?? '';
+
+  return {
     ...study.metadata,
     slug: study.slug,
     id: index,
@@ -1295,12 +1307,18 @@ export const caseStudiesData = Object.values(caseStudyModules)
     heroCtaUrl: study.hero.ctaUrl,
     heroSecondaryCtaLabel: study.hero.secondaryCtaLabel,
     heroSecondaryCtaUrl: study.hero.secondaryCtaUrl,
+    MarkdownContent: markdownBody ? markdown?.Content : undefined,
     sections: (study.sections ?? []).map((section) => ({
       ...section,
       accentColor: section.accentColor ?? 'green',
       heroImage: section.heroImage ? getCmsAsset(section.heroImage) : undefined,
     })),
-  }));
+  };
+}
+
+export const caseStudiesData = Object.values(caseStudyMarkdownModules)
+  .sort((a, b) => a.frontmatter.slug.localeCompare(b.frontmatter.slug))
+  .map((markdown, index) => resolveCaseStudy(markdown.frontmatter, index, markdown));
 
 export const industryNavItems: CmsNavItem[] = industriesData.map((industry) => ({
   title: industry.title,

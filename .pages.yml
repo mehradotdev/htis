@@ -2100,7 +2100,7 @@ content:
                 required: true
 
       - name: industry
-        label: Industry
+        label: Industry Hero
         type: file
         path: src/data/cms/industry.yml
         format: yaml
@@ -2220,9 +2220,9 @@ content:
         label: Case Studies
         type: collection
         path: src/data/cms/case-studies
-        format: yaml
+        format: markdown
         filename:
-          template: '{slug}.yml'
+          template: '{slug}.md'
           field: false
         view:
           primary: metadata.title
