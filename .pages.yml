@@ -2099,8 +2099,47 @@ content:
                 type: string
                 required: true
 
+      - name: industry
+        label: Industry
+        type: file
+        path: src/data/cms/industry.yml
+        format: yaml
+        operations:
+          delete: false
+        fields:
+          - name: hero
+            label: Hero section
+            type: object
+            fields:
+              - name: sectionID
+                label: Section ID
+                type: string
+                required: true
+              - name: title
+                type: string
+                required: true
+              - name: heroImage
+                label: Hero image
+                type: image
+                required: true
+              - name: heroBackground
+                label: Hero background
+                type: image
+                required: true
+              - name: description
+                type: text
+                required: true
+              - name: ctaBtn
+                label: CTA button
+                type: string
+                required: true
+              - name: ctaUrl
+                label: CTA URL
+                type: string
+                required: true
+
       - name: industries
-        label: Industries
+        label: Industries List
         type: collection
         path: src/data/cms/industries
         format: yaml

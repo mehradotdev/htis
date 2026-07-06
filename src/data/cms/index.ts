@@ -3,6 +3,7 @@ import awardsYaml from './awards.yml';
 import contactFormYaml from './contact-form.yml';
 import footerYaml from './footer.yml';
 import homeYaml from './home.yml';
+import industryYaml from './industry.yml';
 import jobsYaml from './jobs.yml';
 import navigationYaml from './navigation.yml';
 import privacyYaml from './privacy.yml';
@@ -438,6 +439,18 @@ interface AwardsYaml {
       alt: string;
     }>;
   }>;
+}
+
+interface IndustryPageYaml {
+  hero: {
+    sectionID: string;
+    title: string;
+    heroImage: string;
+    heroBackground: string;
+    description: string;
+    ctaBtn: string;
+    ctaUrl: string;
+  };
 }
 
 interface PageHeroYaml {
@@ -1046,6 +1059,18 @@ export const awards: {
   };
 })();
 
+export const industry = (() => {
+  const data = industryYaml as IndustryPageYaml;
+
+  return {
+    hero: {
+      ...data.hero,
+      heroImage: getCmsAsset(data.hero.heroImage),
+      heroBackground: getCmsAsset(data.hero.heroBackground),
+    },
+  };
+})();
+
 function resolveSplitHero<T extends PageHeroYaml | SystemIntegrationHeroYaml>(hero: T) {
   return {
     ...hero,
@@ -1277,9 +1302,7 @@ export const caseStudiesData = Object.values(caseStudyModules)
     })),
   }));
 
-export const orderedIndustriesData = industriesData;
-
-export const industryNavItems: CmsNavItem[] = orderedIndustriesData.map((industry) => ({
+export const industryNavItems: CmsNavItem[] = industriesData.map((industry) => ({
   title: industry.title,
   desc: industry.summary,
   url: `/industry/${industry.slug}`,

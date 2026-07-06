@@ -6,9 +6,7 @@ import Footer from '~/components/Footer.astro';
 import Contact from '~/components/Contact.astro';
 import CmsIcon from '~/components/CmsIcon.astro';
 
-import heroBg from '~/assets/industry-hero-bg.png';
-import heroImg from '~/assets/industry-hero-img.png';
-import { orderedIndustriesData } from '~/data/cms';
+import { industriesData, industry } from '~/data/cms';
 
 import { ArrowUpRight } from '@lucide/astro';
 ---
@@ -19,12 +17,13 @@ import { ArrowUpRight } from '@lucide/astro';
 
     <!-- Section 1: Hero Section -->
     <section
-      class="relative flex min-h-[500px] w-full items-center overflow-hidden bg-base-100 pt-32 pb-20 md:min-h-[600px]"
+      id={industry.hero.sectionID}
+      class="relative flex min-h-[760px] w-full items-start overflow-hidden bg-base-100 pt-32 pb-20 sm:min-h-[85vh] lg:min-h-[600px] lg:items-center lg:pb-20"
     >
       <!-- Background -->
-      <div class="absolute inset-0 z-0 opacity-100">
+      <div class="absolute inset-0 z-0 opacity-35 lg:opacity-100">
         <Image
-          src={heroBg}
+          src={industry.hero.heroBackground}
           alt=""
           aria-hidden="true"
           class="h-full w-full object-cover object-center"
@@ -33,40 +32,62 @@ import { ArrowUpRight } from '@lucide/astro';
       </div>
       <!-- Radial overlay for text readability -->
       <!-- <div class="absolute inset-0 z-0 bg-gradient-to-r from-base-100/35 via-base-100/80 to-transparent"></div> -->
+      <div
+        class="absolute inset-0 z-0 bg-linear-to-b from-base-100/95 via-base-100/70 to-base-100/95 lg:hidden"
+      >
+      </div>
+
+      <!-- Mobile-only Background Foreground Image -->
+      <div
+        class="pointer-events-none absolute inset-x-0 top-1/2 z-1 flex -translate-y-1/2 justify-center opacity-35 lg:hidden"
+      >
+        <Image
+          src={industry.hero.heroImage}
+          alt=""
+          aria-hidden="true"
+          class="h-auto w-[115%] max-w-lg object-contain drop-shadow-2xl"
+          loading="eager"
+        />
+      </div>
+      <div
+        class="absolute inset-x-0 bottom-0 z-1 h-56 bg-linear-to-t from-base-200/80 via-base-100/80 to-transparent lg:hidden"
+      >
+      </div>
 
       <!-- Hero Content -->
-      <div class="relative z-10 container mx-auto px-6">
+      <div
+        class="absolute inset-x-0 top-1/2 z-10 container mx-auto w-full -translate-y-1/2 px-6 lg:relative lg:top-auto lg:translate-y-0"
+      >
         <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <!-- Text Content -->
-          <div class="space-y-6 text-left md:pr-10">
+          <div
+            class="z-20 mx-auto max-w-md space-y-5 rounded-2xl border border-base-content/10 bg-base-100/35 p-6 text-left shadow-2xl shadow-base-content/10 backdrop-blur-lg lg:mx-0 lg:max-w-none lg:space-y-6 lg:border-0 lg:bg-transparent lg:p-0 lg:pr-10 lg:shadow-none lg:backdrop-blur-0"
+          >
             <h1
               class="text-4xl leading-tight font-extrabold tracking-tight text-base-content md:text-5xl lg:text-[56px]"
             >
-              Industries we <br class="hidden lg:block" /><span class="text-primary"
-                >Empower</span
-              >
+              {industry.hero.title}
             </h1>
             <p
-              class="max-w-xl text-lg leading-relaxed font-medium text-base-content/85 md:text-xl"
+              class="max-w-xl text-base leading-relaxed font-medium text-base-content/80 md:text-xl"
             >
-              We deliver tailored solutions across a wide range of industries, helping
-              businesses innovate, optimize, and grow in a rapidly changing world.
+              {industry.hero.description}
             </p>
-            <div class="pt-4">
+            <div class="pt-2 lg:pt-4">
               <a
-                href="#contact"
-                class="btn rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
+                href={industry.hero.ctaUrl}
+                class="btn w-full rounded-lg border-primary/70 bg-primary/95 px-6 text-lg whitespace-nowrap text-primary-content shadow-lg shadow-primary/25 backdrop-blur-sm btn-lg hover:bg-primary sm:w-auto sm:px-12 lg:text-xl"
               >
-                Contact Us
+                {industry.hero.ctaBtn}
               </a>
             </div>
           </div>
 
           <!-- Image -->
-          <div class="relative flex justify-center lg:justify-end">
+          <div class="relative hidden justify-center lg:flex lg:justify-end">
             <Image
-              src={heroImg}
-              alt="Industries Collage"
+              src={industry.hero.heroImage}
+              alt={industry.hero.title}
               class="relative z-10 w-full max-w-lg object-contain transition-transform duration-500 hover:scale-[1.02] lg:max-w-xl"
             />
           </div>
@@ -79,7 +100,7 @@ import { ArrowUpRight } from '@lucide/astro';
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {
-            orderedIndustriesData.map((item) => (
+            industriesData.map((item) => (
               <a
                 href={`/industry/${item.slug}`}
                 class="group relative flex flex-col rounded-4xl border border-base-content/30 bg-base-100 p-8 transition-all duration-500 hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
