@@ -183,10 +183,13 @@ partnerEcosystem:
         - name: Hikvision
           logo: src/assets/hik-vision.png
         - name: Panasonic
+          logo: src/assets/panasonic-2.png
         - name: Prama
           logo: src/assets/prama.webp
         - name: Honeywell
+          logo: src/assets/honeywell.webp
         - name: Matrix Comsec
+          logo: src/assets/matrix-comsec.jpg
         - name: CP Plus
           logo: src/assets/cp-plus.png
         - name: Sparsh
