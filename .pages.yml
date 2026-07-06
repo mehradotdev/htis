@@ -157,24 +157,71 @@ content:
                     required: true
                   - name: icon
                     type: select
-                    required: true
+                    required: false
                     options:
-                      values:
+                      values: &icon_name_values
                         [
+                          None,
+                          Activity,
+                          AlertTriangle,
                           ArrowRight,
                           Award,
+                          Banknote,
+                          Blocks,
+                          BookOpen,
                           Briefcase,
+                          Building,
                           Building2,
+                          Cable,
+                          Cctv,
+                          CheckCircle2,
+                          CheckSquare,
+                          CircleDollarSign,
+                          Clock,
+                          Cloud,
                           Code,
+                          ClipboardList,
+                          Cpu,
+                          Database,
                           Factory,
+                          FileCheck,
+                          FileCode,
+                          FileSignature,
+                          Fingerprint,
+                          HardDrive,
                           HardHat,
+                          Headset,
                           HeartPulse,
                           Info,
                           Landmark,
+                          Laptop,
+                          Layout,
+                          Lock,
+                          MapPin,
+                          Maximize,
+                          Monitor,
+                          MonitorSmartphone,
+                          Network,
                           Phone,
+                          Plug,
+                          Radio,
                           RadioTower,
+                          RefreshCw,
+                          Route,
+                          Scale,
                           Server,
+                          Shield,
+                          ShieldCheck,
+                          Signal,
+                          Smartphone,
+                          TrendingUp,
+                          UserCheck,
+                          UserPlus,
+                          UserSearch,
                           Users,
+                          Wifi,
+                          Wrench,
+                          Zap,
                         ]
           - name: industries
             type: object
@@ -460,70 +507,9 @@ content:
                       - name: iconName
                         label: Icon (theme-colored SVG)
                         type: select
-                        required: true
+                        required: false
                         options:
-                          values: &icon_name_values
-                            [
-                              Activity,
-                              AlertTriangle,
-                              Award,
-                              Banknote,
-                              Blocks,
-                              BookOpen,
-                              Briefcase,
-                              Building,
-                              Building2,
-                              Cable,
-                              Cctv,
-                              CheckCircle2,
-                              CheckSquare,
-                              CircleDollarSign,
-                              Clock,
-                              Cloud,
-                              Code,
-                              ClipboardList,
-                              Cpu,
-                              Database,
-                              Factory,
-                              FileCheck,
-                              FileCode,
-                              FileSignature,
-                              Fingerprint,
-                              HardDrive,
-                              HardHat,
-                              Headset,
-                              HeartPulse,
-                              Info,
-                              Landmark,
-                              Laptop,
-                              Layout,
-                              Lock,
-                              MapPin,
-                              Maximize,
-                              Monitor,
-                              MonitorSmartphone,
-                              Network,
-                              Phone,
-                              Plug,
-                              Radio,
-                              RadioTower,
-                              RefreshCw,
-                              Route,
-                              Scale,
-                              Server,
-                              Shield,
-                              ShieldCheck,
-                              Signal,
-                              Smartphone,
-                              TrendingUp,
-                              UserCheck,
-                              UserPlus,
-                              UserSearch,
-                              Users,
-                              Wifi,
-                              Wrench,
-                              Zap,
-                            ]
+                          values: *icon_name_values
                       - name: label
                         type: string
                         required: true
@@ -1195,7 +1181,7 @@ content:
                   - name: iconName
                     label: Icon
                     type: select
-                    required: true
+                    required: false
                     options:
                       values: *icon_name_values
                   - name: title
@@ -1273,7 +1259,7 @@ content:
                   - name: iconName
                     label: Icon
                     type: select
-                    required: true
+                    required: false
                     options:
                       values: *icon_name_values
                   - name: title
@@ -1312,7 +1298,7 @@ content:
                   - name: iconName
                     label: Icon
                     type: select
-                    required: true
+                    required: false
                     options:
                       values: *icon_name_values
                   - name: title
@@ -1382,7 +1368,7 @@ content:
                   - name: iconName
                     label: Icon
                     type: select
-                    required: true
+                    required: false
                     options:
                       values: *icon_name_values
                   - name: title
@@ -1649,7 +1635,7 @@ content:
                   - name: iconName
                     label: Icon
                     type: select
-                    required: true
+                    required: false
                     options:
                       values: *icon_name_values
                   - name: title
@@ -1786,7 +1772,7 @@ content:
                   - name: iconName
                     label: Icon
                     type: select
-                    required: true
+                    required: false
                     options:
                       values: *icon_name_values
                   - name: title
@@ -1820,7 +1806,7 @@ content:
                   - name: iconName
                     label: Icon
                     type: select
-                    required: true
+                    required: false
                     options:
                       values: *icon_name_values
                   - name: title
@@ -1885,7 +1871,7 @@ content:
                       - name: iconName
                         label: Icon
                         type: select
-                        required: true
+                        required: false
                         options:
                           values: *icon_name_values
                       - name: name
@@ -2151,7 +2137,7 @@ content:
           - name: iconName
             label: Icon
             type: select
-            required: true
+            required: false
             options:
               values: *icon_name_values
           - name: techStack
@@ -2292,6 +2278,14 @@ content:
                 label: CTA URL
                 type: string
                 required: true
+              - name: secondaryCtaLabel
+                label: Secondary CTA label
+                type: string
+                required: false
+              - name: secondaryCtaUrl
+                label: Secondary CTA URL
+                type: string
+                required: false
           - name: sections
             label: Dynamic sections
             type: object
@@ -2365,15 +2359,18 @@ content:
                     required: true
                     options:
                       values:
-                        - card
-                        - list
-                        - list-card
+                        - template1-card
+                        - template2-list
+                        - template3-list-card
+                        - template4-metrics
+                        - template5-icon-card
+                        - template6-scroll-card
                   - name: description
                     label: Content description
                     type: text
                     required: false
                   - name: items
-                    label: Bullet items
+                    label: Content items
                     type: object
                     required: true
                     list:
@@ -2385,104 +2382,17 @@ content:
                         label: Item eyebrow
                         type: string
                         required: false
+                      - name: iconName
+                        label: Item icon
+                        type: select
+                        required: false
+                        options:
+                          values: *icon_name_values
                       - name: title
                         label: Item title
                         type: string
-                        required: false
+                        required: true
                       - name: text
                         label: Item text
                         type: text
-                        required: true
-          - name: outcomes
-            label: Outcomes
-            type: object
-            required: false
-            fields:
-              - name: enabled
-                label: Show outcomes section
-                type: boolean
-                required: false
-              - name: id
-                label: Section ID
-                type: string
-                required: false
-                pattern:
-                  regex: '^[a-z0-9-]+$'
-                  message: Use lowercase letters, numbers, and hyphens only.
-              - name: eyebrow
-                label: Outcome eyebrow
-                type: string
-                required: false
-              - name: title
-                label: Outcome title
-                type: string
-                required: false
-              - name: description
-                label: Outcome description
-                type: text
-                required: false
-              - name: metrics
-                type: object
-                required: false
-                list:
-                  collapsible:
-                    collapsed: true
-                    summary: '{value} - {label}'
-                fields:
-                  - name: value
-                    type: string
-                    required: true
-                  - name: label
-                    type: string
-                    required: true
-          - name: whyHTIS
-            label: Why HTIS
-            type: object
-            required: false
-            fields:
-              - name: enabled
-                label: Show Why HTIS section
-                type: boolean
-                required: false
-              - name: id
-                label: Section ID
-                type: string
-                required: false
-                pattern:
-                  regex: '^[a-z0-9-]+$'
-                  message: Use lowercase letters, numbers, and hyphens only.
-              - name: eyebrow
-                label: Eyebrow
-                type: string
-                required: false
-              - name: title
-                label: Title
-                type: string
-                required: false
-              - name: description
-                label: Description
-                type: text
-                required: false
-              - name: cards
-                label: Cards
-                type: object
-                required: false
-                list:
-                  collapsible:
-                    collapsed: true
-                    summary: '{title}'
-                fields:
-                  - name: iconName
-                    label: Icon
-                    type: select
-                    required: false
-                    options:
-                      values: *icon_name_values
-                  - name: title
-                    label: Card title
-                    type: string
-                    required: false
-                  - name: description
-                    label: Card description
-                    type: text
-                    required: true
+                        required: false

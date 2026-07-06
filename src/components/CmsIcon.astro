@@ -133,9 +133,14 @@ const iconMap = {
   Zap,
 } as const;
 
+const normalizedName = name?.trim();
 const Icon =
-  name && name in iconMap ? iconMap[name as keyof typeof iconMap] : CircleQuestionMark;
+  !normalizedName || normalizedName === 'None'
+    ? null
+    : normalizedName in iconMap
+      ? iconMap[normalizedName as keyof typeof iconMap]
+      : CircleQuestionMark;
 ---
 
-<Icon class={className} />
+{Icon && <Icon class={className} />}
 

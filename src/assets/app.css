@@ -223,6 +223,16 @@ body {
     box-shadow 0.3s ease;
 }
 
+/* Template6ScrollCard uses sticky scroll-driven transforms from Svelte.
+   Global CSS keeps the transform behavior intact across Astro view transitions. */
+@utility t6-scroll-track {
+  transition: transform 80ms linear;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
 @utility no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;

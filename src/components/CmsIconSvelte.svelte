@@ -139,9 +139,16 @@
     [key: string]: unknown;
   } = $props();
 
+  const normalizedName = $derived(name?.trim());
   const Icon = $derived(
-    name && name in iconMap ? iconMap[name as keyof typeof iconMap] : CircleHelp,
+    !normalizedName || normalizedName === 'None'
+      ? null
+      : normalizedName in iconMap
+        ? iconMap[normalizedName as keyof typeof iconMap]
+        : CircleHelp,
   );
 </script>
 
-<Icon class={className} {size} {strokeWidth} {...rest} />
+{#if Icon}
+  <Icon class={className} {size} {strokeWidth} {...rest} />
+{/if}

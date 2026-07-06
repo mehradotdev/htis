@@ -105,15 +105,11 @@ export interface IndustryData {
   capabilities: IndustryCapability[];
 }
 
-export interface CaseStudyMetric {
-  value: string;
-  label: string;
-}
-
 export interface CaseStudySectionItem {
   eyebrow?: string;
-  title?: string;
-  text: string;
+  iconName?: string;
+  title: string;
+  text?: string;
 }
 
 export interface CaseStudySection {
@@ -127,34 +123,16 @@ export interface CaseStudySection {
   title: string;
   description?: string;
   content: {
-    variant: 'card' | 'list' | 'list-card';
+    variant:
+      | 'template1-card'
+      | 'template2-list'
+      | 'template3-list-card'
+      | 'template4-metrics'
+      | 'template5-icon-card'
+      | 'template6-scroll-card';
     description?: string;
     items: CaseStudySectionItem[];
   };
-}
-
-export interface CaseStudyOutcomes {
-  enabled?: boolean;
-  id?: string;
-  eyebrow?: string;
-  title?: string;
-  description?: string;
-  metrics: CaseStudyMetric[];
-}
-
-export interface CaseStudyWhyHTISCard {
-  iconName?: string;
-  title?: string;
-  description: string;
-}
-
-export interface CaseStudyWhyHTIS {
-  enabled?: boolean;
-  id?: string;
-  eyebrow?: string;
-  title?: string;
-  description?: string;
-  cards: CaseStudyWhyHTISCard[];
 }
 
 export interface CaseStudyData {
@@ -175,9 +153,9 @@ export interface CaseStudyData {
   heroMetrics?: string[];
   heroCtaLabel: string;
   heroCtaUrl: string;
+  heroSecondaryCtaLabel?: string;
+  heroSecondaryCtaUrl?: string;
   sections: CaseStudySection[];
-  outcomes?: CaseStudyOutcomes;
-  whyHTIS?: CaseStudyWhyHTIS;
 }
 
 export interface Milestone {
@@ -579,6 +557,8 @@ interface CaseStudyContentYaml {
     metrics?: string[];
     ctaLabel: string;
     ctaUrl: string;
+    secondaryCtaLabel?: string;
+    secondaryCtaUrl?: string;
   };
   sections?: Array<
     Omit<CaseStudySection, 'heroImage' | 'accentColor'> & {
@@ -586,12 +566,6 @@ interface CaseStudyContentYaml {
       accentColor?: CaseStudySection['accentColor'];
     }
   >;
-  outcomes?: Omit<CaseStudyOutcomes, 'metrics'> & {
-    metrics?: CaseStudyMetric[];
-  };
-  whyHTIS?: Omit<CaseStudyWhyHTIS, 'cards'> & {
-    cards?: CaseStudyWhyHTISCard[];
-  };
 }
 
 interface TelecomYaml {
@@ -1294,23 +1268,13 @@ export const caseStudiesData = Object.values(caseStudyModules)
     heroMetrics: study.hero.metrics,
     heroCtaLabel: study.hero.ctaLabel,
     heroCtaUrl: study.hero.ctaUrl,
+    heroSecondaryCtaLabel: study.hero.secondaryCtaLabel,
+    heroSecondaryCtaUrl: study.hero.secondaryCtaUrl,
     sections: (study.sections ?? []).map((section) => ({
       ...section,
       accentColor: section.accentColor ?? 'green',
       heroImage: section.heroImage ? getCmsAsset(section.heroImage) : undefined,
     })),
-    outcomes: study.outcomes
-      ? {
-          ...study.outcomes,
-          metrics: study.outcomes.metrics ?? [],
-        }
-      : undefined,
-    whyHTIS: study.whyHTIS
-      ? {
-          ...study.whyHTIS,
-          cards: study.whyHTIS.cards ?? [],
-        }
-      : undefined,
   }));
 
 export const orderedIndustriesData = industriesData;

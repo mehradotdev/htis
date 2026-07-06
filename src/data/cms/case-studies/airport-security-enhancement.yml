@@ -13,13 +13,15 @@ hero:
   eyebrow: International Airport Authority
   backgroundImage: src/assets/industry-hero-bg.png
   title: Unified Smart Space Access Controls & 1000+ AI-Powered IP Camera Array
-  summary: Upgraded a major air hub to a unified high-density PoE network fabric with over 1,000 smart surveillance nodes, accelerating traveler flows while maintaining zero security gaps. [View more](https://example.com)
+  summary: Migrated legacy administrative systems into an ultra-resilient hyperconverged infrastructure across 750+ government offices, completely eliminating data corruption and application timeouts.
   metrics:
     - 1000+ Cameras
     - Zero Blind Spots
     - 40% Less Gate Queue Time
   ctaLabel: Talk to our team
   ctaUrl: '#contact-row'
+  secondaryCtaLabel: Contact Experts
+  secondaryCtaUrl: /#contact
 sections:
   - id: client-context
     layout: no-image
@@ -29,7 +31,7 @@ sections:
     title: Operational Profile
     description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
     content:
-      variant: list-card
+      variant: template3-list-card
       description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
       items:
         - eyebrow: Sector / Client Type
@@ -41,9 +43,6 @@ sections:
         - eyebrow: Operating Environment
           title: Vast, multi-terminal airport zones spanning commercial passenger halls and high-security airfields
           text: Security coverage needed to remain consistent across public and restricted areas.
-        - text: Processes upwards of 30 million domestic and international passenger movements yearly.
-        - text: Under strict surveillance supervision from national defense agencies and international flight boards.
-        - text: Requires continuous system availability with absolutely zero operational maintenance windows.
   - id: challenge
     layout: image-left
     heroImage: src/assets/case-study-1.png
@@ -54,11 +53,11 @@ sections:
     title: Operational Headwinds & Operational Pain
     description: '[View the modernization brief](https://example.com) for how legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.'
     content:
-      variant: card
+      variant: template1-card
       description: The existing security structure utilized disconnected analog CCTV feeds and [slow paper-based terminal logs](https://example.com), leading to long traveler delays and significant visibility blind spots.
       items:
         - title: Perimeter security gaps
-          text: Analog setups lacked automated motion detections along dark runway fences. [View more](https://example.com)
+          text: Analog setups lacked automated motion detections along dark runway fences. [Click here](https://example.com)
         - title: Terminal bottlenecks
           text: Slow physical credential checks at staff gates created long security queues.
         - title: Data compartmentalization
@@ -73,41 +72,69 @@ sections:
     title: Precision Engineering & Delivery
     description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
     content:
-      variant: list
-      description: HTIS architected a unified smart space framework, laying a high-performance Cat6A structured cable grid and deploying biometric locks alongside AI camera arrays. [View more](https://example.com)
+      variant: template2-list
+      description: HTIS architected a unified smart space framework, laying a high-performance Cat6A structured cable grid and deploying biometric locks alongside AI camera arrays. [Click here](https://example.com)
       items:
         - title: AI camera deployments
-          text: Upgraded and calibrated over 1,000 smart IP nodes with built-in perimeter crossline analytics. [View more](https://example.com)
+          text: Upgraded and calibrated over 1,000 smart IP nodes with built-in perimeter crossline analytics. [Click here](https://example.com)
         - title: Biometric access nodes
           text: Installed fast facial recognition gates for crew transitions and boarding zones.
         - title: Unified security NOC
           text: Engineered centralized command consoles linking biometric access alerts directly to CCTV cameras.
-outcomes:
-  enabled: true
-  id: outcomes
-  eyebrow: Outcomes & Impact
-  title: Quantifiable Success & Results
-  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics. [View more](https://example.com)
-  metrics:
-    - value: 1,000+
-      label: High-definition AI cameras
-    - value: 40%
-      label: Reduction in staff gate queue times
-    - value: 100%
-      label: Coverage of airfield perimeter zones
-whyHTIS:
-  enabled: true
-  id: why-htis
-  eyebrow: Proven Capability
-  title: Why Partner with HTIS?
-  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale. [View more](https://example.com)
-  cards:
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Superior capabilities in high-density structural cabling and specialized active network arrays.
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Proven track record in high-security, zero-downtime public infrastructures.
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Unique hardware-software convergence capability for instant alarms and unified NOC interfaces.
+  - id: outcomes
+    layout: no-image
+    accentColor: green
+    eyebrow: Outcomes & Impact
+    title: Quantifiable Success & Results
+    description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics. [Click here](https://example.com)
+    content:
+      variant: template4-metrics
+      items:
+        - title: 1,000+
+          text: High-definition AI cameras
+        - title: 40%
+          text: Reduction in staff gate queue times
+        - title: 100%
+          text: Coverage of airfield perimeter zones
+  - id: why-htis
+    layout: no-image
+    accentColor: green
+    eyebrow: Proven Capability
+    title: Why Partner with HTIS?
+    description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale. [Click here](https://example.com)
+    content:
+      variant: template5-icon-card
+      items:
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Superior capabilities in high-density structural cabling and specialized active network arrays.
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Proven track record in high-security, zero-downtime public infrastructures.
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Unique hardware-software convergence capability for instant alarms and unified NOC interfaces.
+  - id: scroll-card-demo
+    layout: no-image
+    accentColor: green
+    eyebrow: Scroll Card Demo
+    title: Template 6 Scroll Card Mockup
+    description: Dummy content to preview the sticky left-to-right scroll card variant.
+    content:
+      variant: template6-scroll-card
+      items:
+        - iconName: ShieldCheck
+          title: Site Readiness
+          text: Validate locations, access routes, power availability, and mounting points before field execution begins.
+        - iconName: Network
+          title: Network Staging
+          text: Prepare active equipment, cabling plans, and configuration baselines for a faster rollout window.
+        - iconName: Cctv
+          title: Device Deployment
+          text: Install, align, and test edge devices across critical checkpoints with centralized progress tracking.
+        - iconName: Monitor
+          title: Command Integration
+          text: Connect alerts, camera feeds, and operator workflows into a unified monitoring environment.
+        - iconName: CheckCircle2
+          title: Handover Validation
+          text: Complete acceptance checks, documentation, and support readiness before operational handover.

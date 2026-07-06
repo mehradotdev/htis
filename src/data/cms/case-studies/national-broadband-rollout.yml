@@ -29,7 +29,7 @@ sections:
     title: Operational Profile
     description: Business Context Overview
     content:
-      variant: list-card
+      variant: template3-list-card
       description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
       items:
         - eyebrow: Sector / Client Type
@@ -52,7 +52,7 @@ sections:
     title: Operational Headwinds & Operational Pain
     description: The legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.
     content:
-      variant: card
+      variant: template1-card
       description: The target communities were entirely isolated from modern digital grids, relying on erratic satellite links. Deploying traditional optical cables faced severe geographical barriers and regulatory delays.
       items:
         - title: Extreme terrains
@@ -69,7 +69,7 @@ sections:
     title: Precision Engineering & Delivery
     description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
     content:
-      variant: card
+      variant: template1-card
       description: HTIS deployed a hybrid routing strategy, combining specialized underground micro-trenching with robust aerial cable poles and solar-backed active cabinets.
       items:
         - title: Advanced optical engineering
@@ -78,32 +78,36 @@ sections:
           text: Executed high-tension aerial line systems across gorges while micro-trenching roadside routes.
         - title: Sovereign exchange node grids
           text: Built and powered passive environmental shelters using localized solar arrays.
-outcomes:
-  enabled: true
-  id: outcomes
-  eyebrow: Outcomes & Impact
-  title: Quantifiable Success & Results
-  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
-  metrics:
-    - value: 500+
-      label: Miles of armored optical fiber active
-    - value: 200+
-      label: Rural communities connected to broadband
-    - value: 30%
-      label: Reduction in overall backhaul latency
-whyHTIS:
-  enabled: true
-  id: why-htis
-  eyebrow: Proven Capability
-  title: Why Partner with HTIS?
-  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
-  cards:
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Comprehensive telecom capacity spanning OSP (Outside Plant) engineering to dynamic node configuration.
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Adept legal permit navigation, ensuring swift Right-of-Way clearances.
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Resilient field force equipped and trained to deploy in high-altitude environments.
+  - id: outcomes
+    layout: no-image
+    accentColor: green
+    eyebrow: Outcomes & Impact
+    title: Quantifiable Success & Results
+    description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
+    content:
+      variant: template4-metrics
+      items:
+        - title: 500+
+          text: Miles of armored optical fiber active
+        - title: 200+
+          text: Rural communities connected to broadband
+        - title: 30%
+          text: Reduction in overall backhaul latency
+  - id: why-htis
+    layout: no-image
+    accentColor: green
+    eyebrow: Proven Capability
+    title: Why Partner with HTIS?
+    description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
+    content:
+      variant: template5-icon-card
+      items:
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Comprehensive telecom capacity spanning OSP (Outside Plant) engineering to dynamic node configuration.
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Adept legal permit navigation, ensuring swift Right-of-Way clearances.
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Resilient field force equipped and trained to deploy in high-altitude environments.

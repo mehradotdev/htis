@@ -29,7 +29,7 @@ sections:
     title: Operational Profile
     description: Business Context Overview
     content:
-      variant: list-card
+      variant: template3-list-card
       description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
       items:
         - eyebrow: Sector / Client Type
@@ -52,7 +52,7 @@ sections:
     title: Operational Headwinds & Operational Pain
     description: The legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.
     content:
-      variant: card
+      variant: template1-card
       description: Before HTIS engaged, the administrative departments struggled with outdated server hardware, erratic power grids, and manual backups, leading to frequent regional outages and lost productivity.
       items:
         - title: Single points of failure
@@ -69,7 +69,7 @@ sections:
     title: Precision Engineering & Delivery
     description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
     content:
-      variant: card
+      variant: template1-card
       description: HTIS deployed a unified modernization framework, virtualizing local servers and rolling out resilient fiber loops with automated backup path switching.
       items:
         - title: Hyperconverged Infrastructure (HCI)
@@ -78,32 +78,36 @@ sections:
           text: Engineered dynamic path routing utilizing BGP/OSPF topologies across 750+ sites.
         - title: Data migration
           text: Successfully migrated millions of critical citizen records with zero midday service interruption.
-outcomes:
-  enabled: true
-  id: outcomes
-  eyebrow: Outcomes & Impact
-  title: Quantifiable Success & Results
-  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
-  metrics:
-    - value: 50%
-      label: Faster registry response times
-    - value: 99.99%
-      label: Active system uptime achieved
-    - value: 750+
-      label: Administrative offices modernized
-whyHTIS:
-  enabled: true
-  id: why-htis
-  eyebrow: Proven Capability
-  title: Why Partner with HTIS?
-  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
-  cards:
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Proven experience scaling government systems with complex multi-agency compliance needs.
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Flexible deployment resources capable of concurrent execution across remote regions.
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Turnkey lifecycle capabilities ranging from initial fiber laying to active virtualization support.
+  - id: outcomes
+    layout: no-image
+    accentColor: green
+    eyebrow: Outcomes & Impact
+    title: Quantifiable Success & Results
+    description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
+    content:
+      variant: template4-metrics
+      items:
+        - title: 50%
+          text: Faster registry response times
+        - title: 99.99%
+          text: Active system uptime achieved
+        - title: 750+
+          text: Administrative offices modernized
+  - id: why-htis
+    layout: no-image
+    accentColor: green
+    eyebrow: Proven Capability
+    title: Why Partner with HTIS?
+    description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
+    content:
+      variant: template5-icon-card
+      items:
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Proven experience scaling government systems with complex multi-agency compliance needs.
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Flexible deployment resources capable of concurrent execution across remote regions.
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Turnkey lifecycle capabilities ranging from initial fiber laying to active virtualization support.

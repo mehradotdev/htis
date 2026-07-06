@@ -29,7 +29,7 @@ sections:
     title: Operational Profile
     description: Business Context Overview
     content:
-      variant: list-card
+      variant: template3-list-card
       description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
       items:
         - eyebrow: Sector / Client Type
@@ -52,7 +52,7 @@ sections:
     title: Operational Headwinds & Operational Pain
     description: The legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.
     content:
-      variant: card
+      variant: template1-card
       description: Static municipal schedules led to enormous municipal electricity waste, while uncoordinated traffic lights caused massive rush-hour gridlock without any central oversight.
       items:
         - title: Severe lighting waste
@@ -69,7 +69,7 @@ sections:
     title: Precision Engineering & Delivery
     description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
     content:
-      variant: card
+      variant: template1-card
       description: HTIS coded a scalable, custom IoT tracking dashboard and deployed ruggedized LoRaWAN edge sensor networks across key city pathways.
       items:
         - title: LoRaWAN sensor deployment
@@ -78,32 +78,36 @@ sections:
           text: Built custom scheduling algorithms that adjust signal times based on live sensor data.
         - title: Unified Web Platform
           text: Crafted an enterprise dashboard with live GIS mappings showing all municipal stats.
-outcomes:
-  enabled: true
-  id: outcomes
-  eyebrow: Outcomes & Impact
-  title: Quantifiable Success & Results
-  description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
-  metrics:
-    - value: 5,000+
-      label: Active edge IoT sensors
-    - value: 25%
-      label: Reduction in streetlighting power use
-    - value: 30%
-      label: Reduction in peak transit delays
-whyHTIS:
-  enabled: true
-  id: why-htis
-  eyebrow: Proven Capability
-  title: Why Partner with HTIS?
-  description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
-  cards:
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Proven expertise in massive IoT systems and robust software telemetry architectures.
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Sleek software engineering skills delivering highly responsive web platforms.
-    - iconName: ShieldCheck
-      title: Key Strengths
-      description: Agile integration practices managing multi-department municipal requirements.
+  - id: outcomes
+    layout: no-image
+    accentColor: green
+    eyebrow: Outcomes & Impact
+    title: Quantifiable Success & Results
+    description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics.
+    content:
+      variant: template4-metrics
+      items:
+        - title: 5,000+
+          text: Active edge IoT sensors
+        - title: 25%
+          text: Reduction in streetlighting power use
+        - title: 30%
+          text: Reduction in peak transit delays
+  - id: why-htis
+    layout: no-image
+    accentColor: green
+    eyebrow: Proven Capability
+    title: Why Partner with HTIS?
+    description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale.
+    content:
+      variant: template5-icon-card
+      items:
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Proven expertise in massive IoT systems and robust software telemetry architectures.
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Sleek software engineering skills delivering highly responsive web platforms.
+        - iconName: ShieldCheck
+          title: Key Strengths
+          text: Agile integration practices managing multi-department municipal requirements.
