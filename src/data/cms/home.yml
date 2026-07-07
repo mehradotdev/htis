@@ -327,9 +327,8 @@ journey:
       image: src/assets/2021-2.png
     - year: "2021"
       title: Employee Development Initiative (OBT)
-      description: Launched the annual Outbound Training (OBT) program to strengthen
-        leadership, collaboration, employee engagement, and organizational
-        culture.
+      description: Launched annual Outbound Training (OBT) programs focused on
+        leadership and team development.
       image: src/assets/htis-team-1.jpg
     - year: "2022"
       title: Dell Titanium Partner
