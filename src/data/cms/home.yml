@@ -268,15 +268,13 @@ journey:
       image: src/assets/untitled-22-june-2026-at-151852-2.png
     - year: "2010"
       title: Major Telecom Customer Expansion
-      description: >
-        Added major telecom customers including Idea Cellular and Ericsson,
-        strengthening HTIS's position as a trusted telecom deployment partner.
+      description: Added major customers including Idea and Ericsson, expanding
+        nationwide telecom delivery capabilities.
       image: src/assets/geminigeneratedimageno004jno004jno00.png
     - year: "2012"
       title: HTIS Telecom Pvt. Ltd. Incorporated
-      description: The company was formally incorporated as HTIS Telecom Private
-        Limited, creating a strong foundation for structured growth and
-        nationwide expansion.
+      description: Formal incorporation of HTIS Telecom Private Limited, laying the
+        foundation for future growth.
       image: src/assets/geminigeneratedimage8k8gkr8k8gkr8k8g.png
     - year: "2013"
       title: Cisco Service Partner
