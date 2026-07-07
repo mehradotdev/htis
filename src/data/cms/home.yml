@@ -356,9 +356,8 @@ journey:
       image: src/assets/2025.png
     - year: "2026"
       title: WFMS 2.0 AI Launch
-      description: Launching the next generation of WFMS with AI-powered automation,
-        predictive analytics, intelligent workforce management, and enhanced
-        decision support capabilities.
+      description: Introducing AI-powered automation, analytics, and intelligent
+        workforce management capabilities.
       image: src/assets/img-20260331-wa0037.jpg
 team:
   backgroundImage: src/assets/team-member-bg.png
