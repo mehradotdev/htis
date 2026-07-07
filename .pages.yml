@@ -2220,7 +2220,7 @@ content:
         label: Case Studies
         type: collection
         path: src/data/cms/case-studies
-        format: markdown
+        format: yaml-frontmatter
         filename:
           template: '{slug}.md'
           field: false
@@ -2435,3 +2435,7 @@ content:
                         label: Item text
                         type: text
                         required: false
+          - name: body
+            label: Body
+            type: rich-text
+            required: false

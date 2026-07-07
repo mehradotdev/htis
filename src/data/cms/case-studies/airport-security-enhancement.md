@@ -119,8 +119,8 @@ sections:
     layout: no-image
     accentColor: green
     eyebrow: Scroll Card Demo
-    title: Template 6 Scroll Card Mockup
-    description: Dummy content to preview the sticky left-to-right scroll card variant.
+    title: Template 6 Scroll Card Mockup [Heli]{color=#ff4500}
+    description: Dummy content to preview the sticky [Heli]{color=#ff4500} left-to-right scroll card variant.
     content:
       variant: template6-scroll-card
       items:
@@ -128,8 +128,8 @@ sections:
           title: Site Readiness
           text: Validate locations, access routes, power availability, and mounting points before field execution begins.
         - iconName: Network
-          title: Network Staging
-          text: Prepare active equipment, cabling plans, and configuration baselines for a faster rollout window.
+          title: Network Staging [Heli]{color=#ff4500}
+          text: Prepare active equipment, cabling plans, [Hello world]{color=#ff4500} and configuration baselines for a faster rollout window.
         - iconName: Cctv
           title: Device Deployment
           text: Install, align, and test edge devices across critical checkpoints with centralized progress tracking.
@@ -141,11 +141,13 @@ sections:
           text: Complete acceptance checks, documentation, and support readiness before operational handover.
 ---
 
-## Executive overview
+## Executive Case Study overview
 
-The airport authority needed a unified security backbone that could cover public terminals, restricted staff areas, service corridors, and airfield perimeters without slowing passenger movement. HTIS proposed a phased modernization program that combined **AI-enabled surveillance**, biometric access control, and a centralized command workflow.
+The airport authority needed a unified security backbone that could cover public terminals, restricted staff areas, service corridors, and airfield perimeters without slowing passenger movement. HTIS proposed a phased modernization program that combined **AI-enabled surveillance**, biometric access control, and a centralized <span style="color:#ff4500;">command workflow.</span>
 
 This sample narrative is intentionally written as loose Markdown. Editors can use paragraphs, **bold emphasis**, lists, blockquotes, and [external reference links](https://example.com) without changing the structured case-study sections below.
+
+![HTIS system integration milestone team review](../../../assets/2020.png)
 
 ## Discovery and planning
 
@@ -156,6 +158,8 @@ During the initial audit, the project team mapped camera blind spots, access-con
 - Prioritized gates, baggage corridors, and perimeter roads
 - Defined handover checkpoints for airport security teams
 
+![HTIS field deployment milestone](../../../assets/2021-2.png)
+
 ## Implementation approach
 
 HTIS staged the rollout around live airport operations so that security coverage remained active throughout the transition. New IP cameras were commissioned in clusters, while biometric checkpoints were introduced first in staff-only routes before expanding into broader controlled zones.
@@ -163,6 +167,8 @@ HTIS staged the rollout around live airport operations so that security coverage
 > The goal was not only to add more devices, but to make alerts, identity events, and live video easier for operators to act on.
 
 The final command-room workflow connected access events with matching camera feeds, helping operators move from passive monitoring to faster incident verification.
+
+![HTIS smart classroom and infrastructure milestone](../../../assets/2024.png)
 
 ## Sample impact narrative
 

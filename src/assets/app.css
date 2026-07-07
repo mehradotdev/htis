@@ -376,6 +376,15 @@ details > summary::-webkit-details-marker {
   margin-top: 0.5rem;
 }
 
+.cms-markdown img {
+  display: block;
+  width: 100%;
+  max-height: 30rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 1.25rem 3rem color-mix(in oklch, var(--color-base-content) 12%, transparent);
+}
+
 .cms-markdown blockquote {
   border-left: 4px solid var(--color-primary);
   padding-left: 1rem;

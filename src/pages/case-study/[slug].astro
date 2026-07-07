@@ -74,7 +74,7 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
     <!-- Section 1: Hero Block (Top) -->
     <section
       id={study.heroId}
-      class="relative flex min-h-[70vh] w-full items-center overflow-hidden pt-32 pb-20"
+      class="relative flex min-h-[70vh] w-full items-center overflow-hidden pt-32 pb-20 border-b border-base-content/20"
     >
       <!-- Background Image -->
       <div class="pointer-events-none absolute inset-0 z-0">
@@ -527,26 +527,13 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
 
                   {section.content.variant === 'template6-scroll-card' ? (
                     <Template6ScrollCard
-                      items={section.content.items.map((card) => ({
-                        ...card,
-                        titleHtml: renderCmsInlineMarkdown(card.title, tone.link),
-                        textHtml: card.text
-                          ? renderCmsInlineMarkdown(card.text, tone.link)
-                          : undefined,
-                      }))}
+                      items={section.content.items}
                       ariaLabel={`${section.title} cards`}
-                      eyebrowHtml={
-                        section.eyebrow
-                          ? renderCmsInlineMarkdown(section.eyebrow, tone.link)
-                          : undefined
-                      }
-                      titleHtml={renderCmsInlineMarkdown(section.title, tone.link)}
-                      descriptionHtml={
-                        section.description
-                          ? renderCmsInlineMarkdown(section.description, tone.link)
-                          : undefined
-                      }
+                      eyebrow={section.eyebrow}
+                      title={section.title}
+                      description={section.description}
                       eyebrowClass={tone.eyebrow}
+                      linkClassName={tone.link}
                       client:visible
                     />
                   ) : null}

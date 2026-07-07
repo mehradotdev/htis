@@ -1,28 +1,29 @@
 <script lang="ts">
   import CmsIconSvelte from '~/components/CmsIconSvelte.svelte';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
 
   interface ScrollCardItem {
     iconName?: string;
     title: string;
-    titleHtml?: string;
     text?: string;
-    textHtml?: string;
   }
 
   let {
     items = [],
     ariaLabel = 'Scrollable cards',
-    eyebrowHtml,
-    titleHtml,
-    descriptionHtml,
+    eyebrow,
+    title,
+    description,
     eyebrowClass = 'text-primary',
+    linkClassName,
   }: {
     items?: ScrollCardItem[];
     ariaLabel?: string;
-    eyebrowHtml?: string;
-    titleHtml?: string;
-    descriptionHtml?: string;
+    eyebrow?: string;
+    title?: string;
+    description?: string;
     eyebrowClass?: string;
+    linkClassName?: string;
   } = $props();
 
   const MIN_CARD_W = 240;
@@ -119,26 +120,31 @@
       <div
         class="mx-auto mb-6 flex max-w-4xl flex-col items-center gap-4 px-6 text-center"
       >
-        {#if eyebrowHtml}
-          <div
-            class="text-xs font-bold tracking-widest uppercase md:text-sm {eyebrowClass}"
-          >
-            {@html eyebrowHtml}
-          </div>
+        {#if eyebrow}
+          <CmsRichTextSvelte
+            tag="div"
+            value={eyebrow}
+            className={`text-xs font-bold tracking-widest uppercase md:text-sm ${eyebrowClass}`}
+            {linkClassName}
+          />
         {/if}
 
-        {#if titleHtml}
-          <h2
-            class="max-w-3xl text-3xl font-extrabold tracking-tight text-base-content md:text-4xl"
-          >
-            {@html titleHtml}
-          </h2>
+        {#if title}
+          <CmsRichTextSvelte
+            tag="h2"
+            value={title}
+            className="max-w-3xl text-3xl font-extrabold tracking-tight text-base-content md:text-4xl"
+            {linkClassName}
+          />
         {/if}
 
-        {#if descriptionHtml}
-          <p class="max-w-3xl text-sm leading-relaxed text-base-content/75 md:text-base">
-            {@html descriptionHtml}
-          </p>
+        {#if description}
+          <CmsRichTextSvelte
+            tag="p"
+            value={description}
+            className="max-w-3xl text-sm leading-relaxed text-base-content/75 md:text-base"
+            {linkClassName}
+          />
         {/if}
       </div>
 
@@ -179,27 +185,21 @@
                 </div>
 
                 {#if card.title}
-                  <h3
-                    class="max-w-[15rem] text-xl font-medium tracking-tight text-base-content md:text-2xl"
-                  >
-                    {#if card.titleHtml}
-                      {@html card.titleHtml}
-                    {:else}
-                      {card.title}
-                    {/if}
-                  </h3>
+                  <CmsRichTextSvelte
+                    tag="h3"
+                    value={card.title}
+                    className="max-w-[15rem] text-xl font-medium tracking-tight text-base-content md:text-2xl"
+                    {linkClassName}
+                  />
                 {/if}
 
-                {#if card.textHtml || card.text}
-                  <p
-                    class="max-w-[15rem] text-sm leading-relaxed text-base-content/70 md:text-base"
-                  >
-                    {#if card.textHtml}
-                      {@html card.textHtml}
-                    {:else}
-                      {card.text}
-                    {/if}
-                  </p>
+                {#if card.text}
+                  <CmsRichTextSvelte
+                    tag="p"
+                    value={card.text}
+                    className="max-w-[15rem] text-sm leading-relaxed text-base-content/70 md:text-base"
+                    {linkClassName}
+                  />
                 {/if}
               </div>
             </article>
