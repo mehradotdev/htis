@@ -307,21 +307,18 @@ journey:
       image: src/assets/2018-2.png
     - year: "2019"
       title: United Nations Peacekeeping Project
-      description: Successfully delivered critical infrastructure solutions for a
-        United Nations Peacekeeping Mission in the Central African Republic in
-        collaboration with Cisco.
+      description: Delivered critical infrastructure solutions for a UN Peacekeeping
+        Mission in the Central African Republic.
       image: src/assets/chatgpt-image-jun-24-2026-114757-am.png
     - year: "2020"
       title: System Integration (SI) Business Launch
-      description: Recognizing the accelerating digital transformation landscape, HTIS
-        expanded into System Integration and IT Infrastructure solutions,
-        establishing dedicated sales and delivery teams across North India.
+      description: Expanded into System Integration and IT Infrastructure solutions
+        across North India.
       image: src/assets/2020.png
     - year: "2021"
       title: ₹100 Crore Business Milestone
-      description: Within a year of entering the System Integration business, HTIS
-        surpassed ₹100 Crore in annual business turnover, validating its
-        strategic diversification.
+      description: Crossed ₹100 Crore business revenue within a year of entering
+        System Integration.
       image: src/assets/geminigeneratedimageb1i47ob1i47ob1i4.png
     - year: "2021"
       title: 400+ NHM Health Centres Digitized
