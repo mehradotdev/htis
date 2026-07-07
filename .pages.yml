@@ -2325,6 +2325,13 @@ content:
                 label: Secondary CTA URL
                 type: string
                 required: false
+          - name: body
+            label: Body
+            type: rich-text
+            required: false
+            options:
+              format: markdown
+              switcher: true
           - name: sections
             label: Dynamic sections
             type: object
@@ -2435,7 +2442,3 @@ content:
                         label: Item text
                         type: text
                         required: false
-          - name: body
-            label: Body
-            type: rich-text
-            required: false
