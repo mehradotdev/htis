@@ -297,9 +297,8 @@ journey:
       image: src/assets/geminigeneratedimagexq8lrxq8lrxq8lrx.png
     - year: "2018"
       title: WFMS Foundation
-      description: Initiated development of HTIS Workforce Management System (WFMS),
-        an enterprise platform designed to digitize workforce, project, and
-        operational management.
+      description: Initiated development of WFMS, HTIS's proprietary workforce
+        management platform.
       image: src/assets/geminigeneratedimagev7jy8bv7jy8bv7jy.png
     - year: "2018"
       title: NTT Data UK Partnership
