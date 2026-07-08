@@ -39,7 +39,9 @@ import { telecom } from '~/data/cms';
 
       <!-- Content -->
       <div class="relative z-10 container mx-auto w-full px-6">
-        <div class="mx-auto flex max-w-2xl flex-col items-center text-center md:mx-0 md:items-start md:text-left">
+        <div
+          class="mx-auto flex max-w-2xl flex-col items-center text-center md:mx-0 md:items-start md:text-left"
+        >
           <h1
             class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-6xl"
           >
@@ -87,10 +89,7 @@ import { telecom } from '~/data/cms';
           </p>
         </div>
 
-        <TelecomCapabilities
-          capabilities={telecom.capabilities.items}
-          client:visible
-        />
+        <TelecomCapabilities capabilities={telecom.capabilities.items} client:visible />
       </div>
     </section>
 

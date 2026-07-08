@@ -1,6 +1,28 @@
 const CMS_LINK_BASE_CLASS =
   'font-semibold underline underline-offset-4 decoration-current transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current';
 const CMS_LINK_DEFAULT_COLOR_CLASS = 'text-primary hover:text-secondary';
+const CMS_SAFE_COLOR_TOKENS = new Set([
+  'base-100',
+  'base-200',
+  'base-300',
+  'base-content',
+  'primary',
+  'primary-content',
+  'secondary',
+  'secondary-content',
+  'accent',
+  'accent-content',
+  'neutral',
+  'neutral-content',
+  'info',
+  'info-content',
+  'success',
+  'success-content',
+  'warning',
+  'warning-content',
+  'error',
+  'error-content',
+]);
 
 function escapeHtml(value: string): string {
   return value
@@ -33,12 +55,29 @@ function getSafeHref(href: string): string | null {
   }
 }
 
-function getSafeHexColor(color: string): string | null {
+function getSafeColorValue(color: string): string | null {
   const trimmedColor = color.trim().toLowerCase();
 
-  return /^#[0-9a-f]{3}([0-9a-f]{3})?$/i.test(trimmedColor) ? trimmedColor : null;
+  if (/^#[0-9a-f]{3}([0-9a-f]{3})?$/i.test(trimmedColor)) {
+    return trimmedColor;
+  }
+
+  return CMS_SAFE_COLOR_TOKENS.has(trimmedColor) ? `var(--color-${trimmedColor})` : null;
 }
 
+/**
+ * Renders inline markdown for CMS content, supporting links and color formatting.
+ *
+ * Supported syntax:
+ * - Links: [Link text](URL)
+ * - Color formatting: [Text]{color=ColorValue}
+ *
+ * Examples:
+ * [Click here](https://example.com)
+ * [Hello world]{color=primary}
+ * [Readable label]{color=primary-content}
+ * [Still hex]{color=#ff4500}
+ */
 export function renderCmsInlineMarkdown(
   value: string | null | undefined,
   linkClassName = '',
@@ -75,7 +114,7 @@ export function renderCmsInlineMarkdown(
 
       rendered += `<a href="${escapeHtml(safeHref)}" class="${escapeHtml(linkClass)}"${externalAttributes}>${escapeHtml(linkLabel)}</a>`;
     } else {
-      const safeColor = getSafeHexColor(color);
+      const safeColor = getSafeColorValue(color);
 
       if (!safeColor) {
         rendered += escapeHtml(rawMatch);

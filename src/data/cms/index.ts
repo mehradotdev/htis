@@ -82,18 +82,15 @@ export interface CmsNavItem {
   icon: string;
 }
 
-export interface IndustryChallenge {
+export interface IndustryTechStackSection {
+  id?: string;
   title: string;
   description: string;
-}
-
-export interface IndustryCapability {
-  title: string;
-  description: string;
-  bulletPoints: string[];
+  items: string[];
 }
 
 export interface IndustryData {
+  id: number;
   slug: string;
   title: string;
   shortTitle: string;
@@ -101,9 +98,19 @@ export interface IndustryData {
   summary: string;
   heroSubtitle: string;
   iconName: string;
-  techStack: string[];
-  challenges: IndustryChallenge[];
-  capabilities: IndustryCapability[];
+  techStack: IndustryTechStackSection;
+  heroId?: string;
+  heroEyebrow?: string;
+  heroBackgroundImage: ImageMetadata;
+  heroTitle: string;
+  heroSummary: string;
+  heroMetrics?: string[];
+  heroCtaLabel: string;
+  heroCtaUrl: string;
+  heroSecondaryCtaLabel?: string;
+  heroSecondaryCtaUrl?: string;
+  MarkdownContent?: any;
+  sections: CaseStudySection[];
 }
 
 export interface CaseStudySectionItem {
@@ -582,6 +589,36 @@ interface CaseStudyContentYaml {
   >;
 }
 
+interface IndustryContentYaml {
+  slug: string;
+  metadata: {
+    title: string;
+    description: string;
+    shortTitle: string;
+    navOrder?: number;
+    iconName: string;
+  };
+  hero: {
+    id?: string;
+    eyebrow?: string;
+    backgroundImage: string;
+    title: string;
+    summary: string;
+    metrics?: string[];
+    ctaLabel: string;
+    ctaUrl: string;
+    secondaryCtaLabel?: string;
+    secondaryCtaUrl?: string;
+  };
+  techStack?: IndustryTechStackSection;
+  sections?: Array<
+    Omit<CaseStudySection, 'heroImage' | 'accentColor'> & {
+      heroImage?: string;
+      accentColor?: CaseStudySection['accentColor'];
+    }
+  >;
+}
+
 interface TelecomYaml {
   title: string;
   hero: PageHeroYaml;
@@ -777,9 +814,12 @@ interface JobsYaml {
   };
 }
 
-const industryModules = import.meta.glob<IndustryData>('./industries/*.yml', {
+const industryMarkdownModules = import.meta.glob<{
+  frontmatter: IndustryContentYaml;
+  Content: any;
+  rawContent?: () => string;
+}>('./industries/*.md', {
   eager: true,
-  import: 'default',
 });
 
 const caseStudyMarkdownModules = import.meta.glob<{
@@ -1275,12 +1315,68 @@ export const privacy = privacyYaml as PrivacyYaml;
 
 export const jobs = jobsYaml as JobsYaml;
 
-export const industriesData = Object.values(industryModules).sort(
-  (a, b) =>
-    (a.navOrder ?? Number.MAX_SAFE_INTEGER) - (b.navOrder ?? Number.MAX_SAFE_INTEGER) ||
-    a.title.localeCompare(b.title) ||
-    a.slug.localeCompare(b.slug),
-);
+function resolveDynamicSections(
+  sections?: IndustryContentYaml['sections'] | CaseStudyContentYaml['sections'],
+) {
+  return (sections ?? []).map((section) => ({
+    ...section,
+    accentColor: section.accentColor ?? 'green',
+    heroImage: section.heroImage ? getCmsAsset(section.heroImage) : undefined,
+  }));
+}
+
+function resolveIndustry(
+  industry: IndustryContentYaml,
+  index: number,
+  markdown?: {
+    Content: any;
+    rawContent?: () => string;
+  },
+): IndustryData {
+  const markdownBody = markdown?.rawContent?.().trim() ?? '';
+
+  return {
+    slug: industry.slug,
+    id: index,
+    title: industry.metadata.title,
+    shortTitle: industry.metadata.shortTitle,
+    navOrder: industry.metadata.navOrder,
+    summary: industry.metadata.description,
+    heroSubtitle: industry.hero.summary,
+    iconName: industry.metadata.iconName,
+    techStack: industry.techStack ?? {
+      title: 'Technologies & Frameworks',
+      description:
+        'We architect secure infrastructures matching international compliance standards and state-of-the-art tech platforms.',
+      items: [],
+    },
+    heroId: industry.hero.id,
+    heroEyebrow: industry.hero.eyebrow,
+    heroBackgroundImage: getCmsAsset(industry.hero.backgroundImage),
+    heroTitle: industry.hero.title,
+    heroSummary: industry.hero.summary,
+    heroMetrics: industry.hero.metrics,
+    heroCtaLabel: industry.hero.ctaLabel,
+    heroCtaUrl: industry.hero.ctaUrl,
+    heroSecondaryCtaLabel: industry.hero.secondaryCtaLabel,
+    heroSecondaryCtaUrl: industry.hero.secondaryCtaUrl,
+    MarkdownContent: markdownBody ? markdown?.Content : undefined,
+    sections: resolveDynamicSections(industry.sections),
+  };
+}
+
+export const industriesData = Object.values(industryMarkdownModules)
+  .sort((a, b) => {
+    const navOrderA = a.frontmatter.metadata.navOrder ?? Number.MAX_SAFE_INTEGER;
+    const navOrderB = b.frontmatter.metadata.navOrder ?? Number.MAX_SAFE_INTEGER;
+
+    return (
+      navOrderA - navOrderB ||
+      a.frontmatter.metadata.title.localeCompare(b.frontmatter.metadata.title) ||
+      a.frontmatter.slug.localeCompare(b.frontmatter.slug)
+    );
+  })
+  .map((markdown, index) => resolveIndustry(markdown.frontmatter, index, markdown));
 
 function resolveCaseStudy(
   study: CaseStudyContentYaml,
@@ -1308,11 +1404,7 @@ function resolveCaseStudy(
     heroSecondaryCtaLabel: study.hero.secondaryCtaLabel,
     heroSecondaryCtaUrl: study.hero.secondaryCtaUrl,
     MarkdownContent: markdownBody ? markdown?.Content : undefined,
-    sections: (study.sections ?? []).map((section) => ({
-      ...section,
-      accentColor: section.accentColor ?? 'green',
-      heroImage: section.heroImage ? getCmsAsset(section.heroImage) : undefined,
-    })),
+    sections: resolveDynamicSections(study.sections),
   };
 }
 
