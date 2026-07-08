@@ -6,7 +6,6 @@ import homeYaml from './home.yml';
 import industryYaml from './industry.yml';
 import jobsYaml from './jobs.yml';
 import navigationYaml from './navigation.yml';
-import privacyYaml from './privacy.yml';
 import resourcingYaml from './resourcing.yml';
 import siteYaml from './site.yml';
 import softwareYaml from './software.yml';
@@ -767,45 +766,16 @@ interface ResourcingYaml {
   };
 }
 
-interface PrivacySubsectionYaml {
-  heading: string;
-  paragraphs?: string[];
-  bullets?: string[];
-}
-
-interface PrivacySectionYaml {
-  heading: string;
-  paragraphs?: string[];
-  bullets?: string[];
-  afterParagraphs?: string[];
-  note?: string;
-  contactPrompt?: string;
-  contactCard?: boolean;
-  subsections?: PrivacySubsectionYaml[];
-}
-
-interface PrivacyYaml {
-  title: string;
-  metaTitle: string;
-  lastUpdated: string;
-  backLink: CmsLink;
-  intro: {
-    companyName: string;
-    websiteLabel: string;
-    websiteUrl: string;
-    openingTextBeforeCompany: string;
-    openingTextAfterCompany: string;
-    websiteTextBeforeLink: string;
-    websiteTextAfterLink: string;
-    consentText: string;
+interface LegalPageYaml {
+  metadata: {
+    title: string;
+    metaTitle: string;
+    lastUpdated: string;
   };
-  sections: PrivacySectionYaml[];
-  contact: {
-    companyName: string;
-    websiteLabel: string;
-    websiteUrl: string;
-    email: string;
+  pageHeader: {
+    backLink: CmsLink;
   };
+  MarkdownContent?: any;
 }
 
 interface JobsYaml {
@@ -829,6 +799,22 @@ const caseStudyMarkdownModules = import.meta.glob<{
   Content: any;
   rawContent?: () => string;
 }>('./case-studies/*.md', {
+  eager: true,
+});
+
+const privacyMarkdownModules = import.meta.glob<{
+  frontmatter: LegalPageYaml;
+  Content: any;
+  rawContent?: () => string;
+}>('./privacy.md', {
+  eager: true,
+});
+
+const termsMarkdownModules = import.meta.glob<{
+  frontmatter: LegalPageYaml;
+  Content: any;
+  rawContent?: () => string;
+}>('./terms.md', {
   eager: true,
 });
 
@@ -1313,7 +1299,29 @@ export const resourcing = (() => {
   };
 })();
 
-export const privacy = privacyYaml as PrivacyYaml;
+const privacyMarkdown = Object.values(privacyMarkdownModules)[0];
+const privacyMarkdownBody = privacyMarkdown?.rawContent?.().trim() ?? '';
+
+if (!privacyMarkdown) {
+  throw new Error('Privacy markdown file not found: src/data/cms/privacy.md');
+}
+
+export const privacy: LegalPageYaml = {
+  ...privacyMarkdown.frontmatter,
+  MarkdownContent: privacyMarkdownBody ? privacyMarkdown.Content : undefined,
+};
+
+const termsMarkdown = Object.values(termsMarkdownModules)[0];
+const termsMarkdownBody = termsMarkdown?.rawContent?.().trim() ?? '';
+
+if (!termsMarkdown) {
+  throw new Error('Terms markdown file not found: src/data/cms/terms.md');
+}
+
+export const terms: LegalPageYaml = {
+  ...termsMarkdown.frontmatter,
+  MarkdownContent: termsMarkdownBody ? termsMarkdown.Content : undefined,
+};
 
 export const jobs = jobsYaml as JobsYaml;
 

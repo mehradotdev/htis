@@ -1973,131 +1973,50 @@ content:
       - name: privacy
         label: Privacy Policy
         type: file
-        path: src/data/cms/privacy.yml
-        format: yaml
+        path: src/data/cms/privacy.md
+        format: yaml-frontmatter
         operations:
           delete: false
-        fields:
-          - name: title
-            type: string
-            required: true
-          - name: metaTitle
-            label: Meta title
-            type: string
-            required: true
-          - name: lastUpdated
-            label: Last updated
-            type: string
-            required: true
-          - name: backLink
-            label: Back link
-            type: object
-            fields: *footer_link_fields
-          - name: intro
+        fields: &legal_page_fields
+          - name: metadata
+            label: Metadata
             type: object
             fields:
-              - name: companyName
-                label: Company name
+              - name: title
                 type: string
                 required: true
-              - name: websiteLabel
-                label: Website label
+              - name: metaTitle
+                label: Meta title
                 type: string
                 required: true
-              - name: websiteUrl
-                label: Website URL
+              - name: lastUpdated
+                label: Last updated
                 type: string
                 required: true
-              - name: openingTextBeforeCompany
-                label: Opening text before company
-                type: string
-                required: true
-              - name: openingTextAfterCompany
-                label: Opening text after company
-                type: string
-                required: true
-              - name: websiteTextBeforeLink
-                label: Website text before link
-                type: text
-                required: true
-              - name: websiteTextAfterLink
-                label: Website text after link
-                type: string
-                required: true
-              - name: consentText
-                label: Consent text
-                type: text
-                required: true
-          - name: sections
+          - name: pageHeader
+            label: Page header
             type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: '{heading}'
-            fields: &privacy_section_fields
-              - name: heading
-                type: string
-                required: true
-              - name: paragraphs
-                type: text
-                list: true
-                required: false
-              - name: bullets
-                type: string
-                list: true
-                required: false
-              - name: afterParagraphs
-                label: After paragraphs
-                type: text
-                list: true
-                required: false
-              - name: note
-                type: text
-                required: false
-              - name: contactPrompt
-                label: Contact prompt
-                type: string
-                required: false
-              - name: contactCard
-                label: Show contact card
-                type: boolean
-                required: false
-              - name: subsections
+            fields:
+              - name: backLink
+                label: Back link
                 type: object
-                list:
-                  collapsible:
-                    collapsed: true
-                    summary: '{heading}'
-                fields:
-                  - name: heading
-                    type: string
-                    required: true
-                  - name: paragraphs
-                    type: text
-                    list: true
-                    required: false
-                  - name: bullets
-                    type: string
-                    list: true
-                    required: false
-          - name: contact
-            type: object
-            fields:
-              - name: companyName
-                label: Company name
-                type: string
-                required: true
-              - name: websiteLabel
-                label: Website label
-                type: string
-                required: true
-              - name: websiteUrl
-                label: Website URL
-                type: string
-                required: true
-              - name: email
-                type: string
-                required: true
+                fields: *footer_link_fields
+          - name: body
+            label: Body
+            type: rich-text
+            required: true
+            options:
+              format: markdown
+              switcher: true
+
+      - name: terms
+        label: Terms & Conditions
+        type: file
+        path: src/data/cms/terms.md
+        format: yaml-frontmatter
+        operations:
+          delete: false
+        fields: *legal_page_fields
 
       - name: industry
         label: Industry Hero
