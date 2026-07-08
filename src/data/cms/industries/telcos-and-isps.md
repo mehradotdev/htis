@@ -8,7 +8,8 @@ metadata:
   iconName: RadioTower
 hero:
   id: hero
-  eyebrow: HTIS Industry Solutions
+  heroEyebrowPill: 'Industry Solution: Telecom'
+  heroEyebrowMuted: HTIS Industry Solutions
   backgroundImage: src/assets/industry-hero-bg.png
   title: Empowering Telcos and ISPs
   summary: Powering national-scale connectivity with high-capacity optical backhaul, virtualized cores, and robust active/passive infrastructure.
@@ -25,12 +26,18 @@ techStack:
   title: Technologies & Frameworks
   description: We architect secure infrastructures matching international compliance standards and state-of-the-art tech platforms.
   items:
-    - 5G Standalone (SA)
-    - SRv6 Segment Routing
-    - DWDM / OTN
-    - Containerized NFVi
-    - Regulatory IPDR
-    - Unified NOC Operations
+    - label: 5G Standalone (SA)
+      url: '#contact'
+    - label: SRv6 Segment Routing
+      url: '#contact'
+    - label: DWDM / OTN
+      url: '#contact'
+    - label: Containerized NFVi
+      url: '#contact'
+    - label: Regulatory IPDR
+      url: '#contact'
+    - label: Unified NOC Operations
+      url: '#contact'
 sections:
   - id: challenges
     layout: no-image

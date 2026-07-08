@@ -8,7 +8,8 @@ metadata:
   iconName: Factory
 hero:
   id: hero
-  eyebrow: HTIS Industry Solutions
+  heroEyebrowPill: 'Industry Solution: Manufacturing'
+  heroEyebrowMuted: HTIS Industry Solutions
   backgroundImage: src/assets/industry-hero-bg.png
   title: Empowering Manufacturing, Automobile & FMCG
   summary: Accelerating Industry 4.0 with resilient industrial Wi-Fi networks, IoT-driven automation grids, and high-performance supply chain software.
@@ -25,12 +26,18 @@ techStack:
   title: Technologies & Frameworks
   description: We architect secure infrastructures matching international compliance standards and state-of-the-art tech platforms.
   items:
-    - Industrial Wi-Fi 7
-    - Private LTE/5G Cores
-    - Ruggedized Switches
-    - OT/IT Convergence
-    - Real-Time GPS Fleet
-    - Telemetry Processing
+    - label: Industrial Wi-Fi 7
+      url: '#contact'
+    - label: Private LTE/5G Cores
+      url: '#contact'
+    - label: Ruggedized Switches
+      url: '#contact'
+    - label: OT/IT Convergence
+      url: '#contact'
+    - label: Real-Time GPS Fleet
+      url: '#contact'
+    - label: Telemetry Processing
+      url: '#contact'
 sections:
   - id: challenges
     layout: no-image

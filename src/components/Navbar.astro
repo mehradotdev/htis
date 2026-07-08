@@ -12,10 +12,9 @@ const solutionsImg = getCmsAsset(navigation.solutions.card.image);
 const resourcesImg = getCmsAsset(navigation.resources.card.image);
 
 const solutions = navigation.solutions.items;
-const industryItems = industryNavItems;
-const industriesCol1 = industryItems.slice(0, 5);
+const industriesCol1 = industryNavItems.slice(0, 5);
 const industriesCol2 = [
-  ...industryItems.slice(5),
+  ...industryNavItems.slice(5, 9),
   navigation.industries.viewAll,
 ];
 const resources = navigation.resources.items;

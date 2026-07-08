@@ -8,7 +8,8 @@ metadata:
   iconName: Landmark
 hero:
   id: hero
-  eyebrow: HTIS Industry Solutions
+  heroEyebrowPill: 'Industry Solution: Government'
+  heroEyebrowMuted: HTIS Industry Solutions
   backgroundImage: src/assets/industry-hero-bg.png
   title: Empowering Public Sector, Ministries & Defence
   summary: Providing highly secure, sovereign IT infrastructure, national defense network backbones, and smart governance platforms.
@@ -25,12 +26,18 @@ techStack:
   title: Technologies & Frameworks
   description: We architect secure infrastructures matching international compliance standards and state-of-the-art tech platforms.
   items:
-    - Sovereign Data Centers
-    - Zero-Trust Networks
-    - Secure Web Portals
-    - Novec 1230 Suppression
-    - IPsec Encryption
-    - Military-Grade SLA
+    - label: Sovereign Data Centers
+      url: '#contact'
+    - label: Zero-Trust Networks
+      url: '#contact'
+    - label: Secure Web Portals
+      url: '#contact'
+    - label: Novec 1230 Suppression
+      url: '#contact'
+    - label: IPsec Encryption
+      url: '#contact'
+    - label: Military-Grade SLA
+      url: '#contact'
 sections:
   - id: challenges
     layout: no-image

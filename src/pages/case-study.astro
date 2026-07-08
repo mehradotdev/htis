@@ -4,7 +4,13 @@ import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import Contact from '~/components/Contact.astro';
 import CaseStudyList from '~/components/case-study/CaseStudyList.svelte';
-import { caseStudiesData } from '~/data/cms';
+import { caseStudiesData, industriesData } from '~/data/cms';
+
+const caseStudyIndustryFilters = industriesData.map(({ shortTitle, title, iconName }) => ({
+  shortTitle,
+  title,
+  iconName,
+}));
 ---
 
 <Layout title="Case Studies - HTIS">
@@ -27,7 +33,11 @@ import { caseStudiesData } from '~/data/cms';
 
     <!-- Main Content Section -->
     <section class="mx-auto w-full max-w-7xl px-6 pb-24">
-      <CaseStudyList caseStudies={caseStudiesData} client:load />
+      <CaseStudyList
+        caseStudies={caseStudiesData}
+        industries={caseStudyIndustryFilters}
+        client:load
+      />
     </section>
 
     <!-- Footer block -->

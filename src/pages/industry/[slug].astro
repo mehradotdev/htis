@@ -106,17 +106,19 @@ function getSectionTone(industrySection: IndustryData['sections'][number]) {
         </div>
 
         <div class="max-w-3xl space-y-6 text-left">
-          <div
-            class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-primary uppercase md:text-sm"
-          >
-            Industry Solution: <CmsRichText value={industry.shortTitle} />
-          </div>
+          {
+            industry.heroEyebrowPill && (
+              <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-primary uppercase md:text-sm">
+                <CmsRichText value={industry.heroEyebrowPill} />
+              </div>
+            )
+          }
 
           {
-            industry.heroEyebrow && (
+            industry.heroEyebrowMuted && (
               <CmsRichText
                 tag="div"
-                value={industry.heroEyebrow}
+                value={industry.heroEyebrowMuted}
                 className="text-xs font-bold tracking-widest text-base-content/50 uppercase md:text-sm"
               />
             )
@@ -555,11 +557,14 @@ function getSectionTone(industrySection: IndustryData['sections'][number]) {
                 />
               </div>
 
-              <div class="flex max-w-2xl flex-wrap justify-center gap-3 lg:justify-end">
+              <div class="flex w-full max-w-[40rem] flex-wrap justify-end gap-3 lg:ml-auto">
                 {industry.techStack.items.map((tech) => (
-                  <div class="badge cursor-default rounded-full border border-primary/20 bg-primary/5 px-6 py-5 badge-lg font-bold text-primary transition-all duration-300 select-none hover:bg-primary hover:text-primary-content">
-                    <CmsRichText value={tech} />
-                  </div>
+                  <a
+                    href={tech.url}
+                    class="badge cursor-pointer rounded-full border border-primary/20 bg-primary/5 px-6 py-5 badge-lg font-bold whitespace-nowrap text-primary transition-all duration-300 select-none hover:bg-primary hover:text-primary-content focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-base-200"
+                  >
+                    <CmsRichText value={tech.label} />
+                  </a>
                 ))}
               </div>
             </div>

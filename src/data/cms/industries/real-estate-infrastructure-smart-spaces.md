@@ -8,7 +8,8 @@ metadata:
   iconName: HardHat
 hero:
   id: hero
-  eyebrow: HTIS Industry Solutions
+  heroEyebrowPill: 'Industry Solution: Smart Spaces'
+  heroEyebrowMuted: HTIS Industry Solutions
   backgroundImage: src/assets/industry-hero-bg.png
   title: Empowering Real Estate, Infrastructure & Smart Spaces
   summary: Transforming physical buildings into highly efficient, future-ready smart spaces with centralized IoT controls and unified network fabrics.
@@ -25,12 +26,18 @@ techStack:
   title: Technologies & Frameworks
   description: We architect secure infrastructures matching international compliance standards and state-of-the-art tech platforms.
   items:
-    - Centralized IoT BMS
-    - Cat6A Cabling Systems
-    - PoE Switch Networks
-    - IP Camera Arrays
-    - Access Control Systems
-    - Smart HVAC Systems
+    - label: Centralized IoT BMS
+      url: '#contact'
+    - label: Cat6A Cabling Systems
+      url: '#contact'
+    - label: PoE Switch Networks
+      url: '#contact'
+    - label: IP Camera Arrays
+      url: '#contact'
+    - label: Access Control Systems
+      url: '#contact'
+    - label: Smart HVAC Systems
+      url: '#contact'
 sections:
   - id: challenges
     layout: no-image

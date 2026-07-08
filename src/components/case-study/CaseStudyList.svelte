@@ -1,50 +1,20 @@
 <script lang="ts">
-  import {
-    Search,
-    RadioTower,
-    Landmark,
-    Building2,
-    Factory,
-    HeartPulse,
-    HardHat,
-    ArrowUpRight,
-    Info,
-    ChevronDown,
-  } from '@lucide/svelte';
-  import type { CaseStudyData } from '~/data/cms';
+  import { Search, ArrowUpRight, Info, ChevronDown } from '@lucide/svelte';
+  import CmsIconSvelte from '~/components/CmsIconSvelte.svelte';
+  import type { CaseStudyData, IndustryData } from '~/data/cms';
 
-  let { caseStudies }: { caseStudies: CaseStudyData[] } = $props();
+  type IndustryFilterOption = Pick<IndustryData, 'shortTitle' | 'title' | 'iconName'>;
+
+  let {
+    caseStudies,
+    industries,
+  }: { caseStudies: CaseStudyData[]; industries: IndustryFilterOption[] } = $props();
 
   const solutions = [
     'Telecom Services',
     'System Integration',
     'Software Development',
     'Resource Management',
-  ];
-
-  const industries = [
-    { name: 'Telecom', fullName: 'Telcos and ISPs', icon: RadioTower },
-    {
-      name: 'Government',
-      fullName: 'Public Sector, Ministries & Defence',
-      icon: Landmark,
-    },
-    {
-      name: 'Banking',
-      fullName: 'BFSI (Banking, Financial Services & Insurance)',
-      icon: Building2,
-    },
-    {
-      name: 'Manufacturing',
-      fullName: 'Manufacturing, Automobile & FMCG',
-      icon: Factory,
-    },
-    { name: 'Healthcare & Edu', fullName: 'Healthcare & Education', icon: HeartPulse },
-    {
-      name: 'Smart Spaces',
-      fullName: 'Real Estate, Infrastructure & Smart Spaces',
-      icon: HardHat,
-    },
   ];
 
   let draftSearch = $state('');
@@ -56,6 +26,11 @@
   let selectedIndustries = $state<string[]>([]);
 
   let solutionDetailsRef = $state<HTMLDetailsElement | null>(null);
+  let industryTooltip = $state<{
+    text: string;
+    left: number;
+    top: number;
+  } | null>(null);
 
   function handleWindowClick(event: MouseEvent) {
     const target = event.target as Node;
@@ -127,6 +102,25 @@
       draftIndustries = [...draftIndustries, ind];
     }
   }
+
+  function showIndustryTooltip(event: MouseEvent | FocusEvent, text: string) {
+    const target = event.currentTarget;
+    if (!(target instanceof HTMLElement)) return;
+
+    const rect = target.getBoundingClientRect();
+    const tooltipWidth = Math.min(256, window.innerWidth - 32);
+    const preferredLeft = rect.right + 10;
+
+    industryTooltip = {
+      text,
+      left: Math.min(Math.max(16, preferredLeft), window.innerWidth - tooltipWidth - 16),
+      top: rect.top + rect.height / 2,
+    };
+  }
+
+  function hideIndustryTooltip() {
+    industryTooltip = null;
+  }
 </script>
 
 <svelte:window onclick={handleWindowClick} />
@@ -196,31 +190,46 @@
       >
         Industries
       </h3>
-      <div class="space-y-4">
+      <div
+        class="flex max-h-50 flex-col gap-4 overflow-x-hidden overflow-y-auto pr-3"
+        onscroll={hideIndustryTooltip}
+      >
         {#each industries as ind}
-          <label class="w-full flex items-center gap-3 cursor-pointer group text-left">
-            <input
-              type="checkbox"
-              checked={draftIndustries.includes(ind.name)}
-              onchange={() => toggleIndustry(ind.name)}
-              class="checkbox checkbox-primary checkbox-sm border-base-content/20 rounded focus:ring-primary focus:ring-offset-1 transition-all duration-200 shrink-0"
-            />
-            <ind.icon
-              class="w-4 h-4 text-base-content/70 group-hover:text-primary transition-colors shrink-0"
-            />
-            <span
-              class="text-sm font-medium text-base-content/80 group-hover:text-primary transition-colors select-none"
-              >{ind.name}</span
+          <div class="flex min-h-5 w-full min-w-0 items-center gap-3 text-left group">
+            <label
+              class="flex min-w-0 flex-1 cursor-pointer items-center gap-3 text-left"
             >
-            <span
-              class="tooltip tooltip-right before:max-w-none after:max-w-none before:z-50 after:z-50 ml-1.5 shrink-0 flex items-center whitespace-nowrap"
-              data-tip={ind.fullName}
+              <input
+                type="checkbox"
+                checked={draftIndustries.includes(ind.shortTitle)}
+                onchange={() => toggleIndustry(ind.shortTitle)}
+                class="checkbox checkbox-primary checkbox-sm border-base-content/20 rounded focus:ring-primary focus:ring-offset-1 transition-all duration-200 shrink-0"
+              />
+              <CmsIconSvelte
+                name={ind.iconName}
+                class="w-4 h-4 text-base-content/70 group-hover:text-primary transition-colors shrink-0"
+              />
+              <span
+                class="min-w-0 truncate text-sm font-medium text-base-content/80 transition-colors select-none group-hover:text-primary"
+                >{ind.shortTitle}</span
+              >
+            </label>
+            <button
+              type="button"
+              class="flex shrink-0 cursor-help items-center justify-center"
+              aria-label={`About ${ind.shortTitle}`}
+              aria-describedby="industry-filter-tooltip"
+              onmouseenter={(event) => showIndustryTooltip(event, ind.title)}
+              onfocus={(event) => showIndustryTooltip(event, ind.title)}
+              onmouseleave={hideIndustryTooltip}
+              onblur={hideIndustryTooltip}
+              onclick={(event) => event.stopPropagation()}
             >
               <Info
                 class="w-3.5 h-3.5 text-base-content/70 group-hover:text-primary/70 hover:text-primary! transition-colors cursor-help"
               />
-            </span>
-          </label>
+            </button>
+          </div>
         {/each}
       </div>
     </div>
@@ -322,3 +331,14 @@
     {/each}
   </div>
 </div>
+
+{#if industryTooltip}
+  <div
+    id="industry-filter-tooltip"
+    role="tooltip"
+    class="pointer-events-none fixed z-[9999] max-w-64 -translate-y-1/2 rounded-md bg-neutral px-2.5 py-1.5 text-xs font-semibold leading-snug text-neutral-content shadow-lg"
+    style={`left: ${industryTooltip.left}px; top: ${industryTooltip.top}px;`}
+  >
+    {industryTooltip.text}
+  </div>
+{/if}

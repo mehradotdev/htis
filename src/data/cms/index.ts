@@ -86,7 +86,7 @@ export interface IndustryTechStackSection {
   id?: string;
   title: string;
   description: string;
-  items: string[];
+  items: CmsLink[];
 }
 
 export interface IndustryData {
@@ -100,7 +100,8 @@ export interface IndustryData {
   iconName: string;
   techStack: IndustryTechStackSection;
   heroId?: string;
-  heroEyebrow?: string;
+  heroEyebrowPill?: string;
+  heroEyebrowMuted?: string;
   heroBackgroundImage: ImageMetadata;
   heroTitle: string;
   heroSummary: string;
@@ -600,7 +601,8 @@ interface IndustryContentYaml {
   };
   hero: {
     id?: string;
-    eyebrow?: string;
+    heroEyebrowPill?: string;
+    heroEyebrowMuted?: string;
     backgroundImage: string;
     title: string;
     summary: string;
@@ -1351,7 +1353,8 @@ function resolveIndustry(
       items: [],
     },
     heroId: industry.hero.id,
-    heroEyebrow: industry.hero.eyebrow,
+    heroEyebrowPill: industry.hero.heroEyebrowPill,
+    heroEyebrowMuted: industry.hero.heroEyebrowMuted,
     heroBackgroundImage: getCmsAsset(industry.hero.backgroundImage),
     heroTitle: industry.hero.title,
     heroSummary: industry.hero.summary,

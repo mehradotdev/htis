@@ -2193,8 +2193,12 @@ content:
                 pattern:
                   regex: '^[a-z0-9-]+$'
                   message: Use lowercase letters, numbers, and hyphens only.
-              - name: eyebrow
-                label: Hero eyebrow
+              - name: heroEyebrowPill
+                label: Hero eyebrow pill
+                type: string
+                required: false
+              - name: heroEyebrowMuted
+                label: Hero eyebrow muted
                 type: string
                 required: false
               - name: backgroundImage
@@ -2230,6 +2234,13 @@ content:
                 label: Secondary CTA URL
                 type: string
                 required: false
+          - name: body
+            label: Body
+            type: rich-text
+            required: false
+            options:
+              format: markdown
+              switcher: true
           - name: techStack
             label: Tech stack highlights
             type: object
@@ -2252,16 +2263,21 @@ content:
                 required: true
               - name: items
                 label: Technologies
-                type: string
-                list: true
-                required: true
-          - name: body
-            label: Body
-            type: rich-text
-            required: false
-            options:
-              format: markdown
-              switcher: true
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{label}'
+                required: false
+                fields:
+                  - name: label
+                    label: Badge label
+                    type: string
+                    required: true
+                  - name: url
+                    label: Badge URL
+                    type: string
+                    required: true
           - name: sections
             label: Dynamic sections
             type: object
@@ -2418,18 +2434,13 @@ content:
                       Resource Management,
                     ]
               - name: industry
-                type: select
+                type: reference
                 required: true
                 options:
-                  values:
-                    [
-                      Telecom,
-                      Government,
-                      Banking,
-                      Manufacturing,
-                      Healthcare & Edu,
-                      Smart Spaces,
-                    ]
+                  collection: industries
+                  search: metadata.title,metadata.shortTitle,slug
+                  value: '{metadata.shortTitle}'
+                  label: '{metadata.shortTitle}'
               - name: tags
                 type: string
                 list: true

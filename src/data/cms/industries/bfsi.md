@@ -8,7 +8,8 @@ metadata:
   iconName: Building2
 hero:
   id: hero
-  eyebrow: HTIS Industry Solutions
+  heroEyebrowPill: 'Industry Solution: Banking'
+  heroEyebrowMuted: HTIS Industry Solutions
   backgroundImage: src/assets/industry-hero-bg.png
   title: Empowering BFSI (Banking, Financial Services & Insurance)
   summary: Driving ultra-secure digital banking transformation with zero-trust networking, low-latency transaction routing, and high-availability backup systems.
@@ -25,12 +26,18 @@ techStack:
   title: Technologies & Frameworks
   description: We architect secure infrastructures matching international compliance standards and state-of-the-art tech platforms.
   items:
-    - Zero-Trust Architecture
-    - Next-Gen Firewalls
-    - HSM Integrations
-    - Active-Active DR
-    - Micro-segmentation
-    - Low-Latency Fabrics
+    - label: Zero-Trust Arch
+      url: '#contact'
+    - label: Next-Gen Firewalls
+      url: '#contact'
+    - label: HSM Integrations
+      url: '#contact'
+    - label: Active-Active DR
+      url: '#contact'
+    - label: Micro-segmentation
+      url: '#contact'
+    - label: Low-Latency Fabrics
+      url: '#contact'
 sections:
   - id: challenges
     layout: no-image

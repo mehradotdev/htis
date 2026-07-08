@@ -8,7 +8,8 @@ metadata:
   iconName: HeartPulse
 hero:
   id: hero
-  eyebrow: HTIS Industry Solutions
+  heroEyebrowPill: 'Industry Solution: Healthcare & Edu'
+  heroEyebrowMuted: HTIS Industry Solutions
   backgroundImage: src/assets/industry-hero-bg.png
   title: Empowering Healthcare & Education
   summary: Bridging distances with high-capacity telemedicine networks, cloud-managed clinical platforms, and interactive smart classroom environments.
@@ -25,12 +26,18 @@ techStack:
   title: Technologies & Frameworks
   description: We architect secure infrastructures matching international compliance standards and state-of-the-art tech platforms.
   items:
-    - Smart Classrooms
-    - Custom LMS Systems
-    - Telehealth Wireless
-    - HIPAA Secure Storage
-    - Encrypted WAN Networks
-    - Samsung Display Arrays
+    - label: Smart Classrooms
+      url: '#contact'
+    - label: Custom LMS Systems
+      url: '#contact'
+    - label: Telehealth Wireless
+      url: '#contact'
+    - label: HIPAA Secure Storage
+      url: '#contact'
+    - label: Encrypted WAN Networks
+      url: '#contact'
+    - label: Samsung Display Arrays
+      url: '#contact'
 sections:
   - id: challenges
     layout: no-image
