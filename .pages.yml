@@ -2165,6 +2165,10 @@ content:
             type: object
             required: false
             fields:
+              - name: enabled
+                label: Show technologies section
+                type: boolean
+                required: true
               - name: id
                 label: Section ID
                 type: string
@@ -2195,6 +2199,114 @@ content:
                     required: true
                   - name: url
                     label: Badge URL
+                    type: string
+                    required: true
+          - name: caseStudyClients
+            label: Case Study and Clients
+            type: object
+            required: false
+            fields:
+              - name: enabled
+                label: Show case study and clients section
+                type: boolean
+                required: true
+              - name: id
+                label: Section ID
+                type: string
+                required: false
+                pattern:
+                  regex: '^[a-z0-9-]+$'
+                  message: Use lowercase letters, numbers, and hyphens only.
+              - name: title
+                label: Section title
+                type: string
+                required: true
+              - name: description
+                label: Section description
+                type: text
+                required: true
+              - name: clientLogos
+                label: Client logos
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{name}'
+                required: false
+                fields:
+                  - name: name
+                    label: Client name
+                    type: string
+                    required: true
+                  - name: logoSrc
+                    label: Logo image
+                    type: image
+                    required: false
+              - name: caseStudies
+                label: Case studies
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{eyebrow} - {title}'
+                required: false
+                fields:
+                  - name: eyebrow
+                    label: Eyebrow
+                    type: string
+                    required: true
+                  - name: title
+                    label: Case study title
+                    type: string
+                    required: true
+                  - name: description
+                    label: Case study description
+                    type: text
+                    required: true
+                  - name: image
+                    label: Case study image
+                    type: image
+                    required: false
+                  - name: url
+                    label: Case study URL
+                    type: string
+                    required: false
+                  - name: stats
+                    label: Stats
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{value} - {label}'
+                    required: false
+                    fields:
+                      - name: value
+                        label: Value
+                        type: string
+                        required: true
+                      - name: label
+                        label: Label
+                        type: string
+                        required: true
+              - name: testimonials
+                label: Testimonials
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{name}'
+                required: false
+                fields:
+                  - name: quote
+                    label: Quote
+                    type: text
+                    required: true
+                  - name: name
+                    label: Name
+                    type: string
+                    required: true
+                  - name: title
+                    label: Title
                     type: string
                     required: true
           - name: sections

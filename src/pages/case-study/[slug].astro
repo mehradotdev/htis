@@ -194,18 +194,6 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
     </section>
 
     {
-      MarkdownContent ? (
-        <section class="border-y border-base-content/5 bg-base-100 pt-0 pb-16 md:pb-20">
-          <div class="container mx-auto px-6">
-            <div class="cms-markdown mx-auto max-w-4xl">
-              <MarkdownContent />
-            </div>
-          </div>
-        </section>
-      ) : null
-    }
-
-    {
       study.sections.map((section, sectionIndex) => {
         const tone = getSectionTone(section);
         const isImageLeft = section.layout === 'image-left';
@@ -543,6 +531,18 @@ function getSectionTone(studySection: CaseStudyData['sections'][number]) {
           </section>
         );
       })
+    }
+
+    {
+      MarkdownContent ? (
+        <section class="border-y border-base-content/5 bg-base-100 pt-0 pb-16 md:pb-20">
+          <div class="container mx-auto px-6">
+            <div class="cms-markdown mx-auto max-w-4xl">
+              <MarkdownContent />
+            </div>
+          </div>
+        </section>
+      ) : null
     }
 
     <!-- Section 7: Final CTA -->

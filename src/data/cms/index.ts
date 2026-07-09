@@ -82,10 +82,46 @@ export interface CmsNavItem {
 }
 
 export interface IndustryTechStackSection {
+  enabled?: boolean;
   id?: string;
   title: string;
   description: string;
   items: CmsLink[];
+}
+
+export interface IndustryClientLogo {
+  name: string;
+  logoSrc?: string;
+}
+
+export interface IndustryCaseStudyClientStat {
+  value: string;
+  label: string;
+}
+
+export interface IndustryCaseStudyClientItem {
+  title: string;
+  eyebrow: string;
+  description: string;
+  image?: string;
+  url?: string;
+  stats: IndustryCaseStudyClientStat[];
+}
+
+export interface IndustryCaseStudyClientTestimonial {
+  quote: string;
+  name: string;
+  title: string;
+}
+
+export interface IndustryCaseStudyClientSection {
+  enabled?: boolean;
+  id?: string;
+  title: string;
+  description: string;
+  clientLogos: IndustryClientLogo[];
+  caseStudies: IndustryCaseStudyClientItem[];
+  testimonials: IndustryCaseStudyClientTestimonial[];
 }
 
 export interface IndustryData {
@@ -98,6 +134,7 @@ export interface IndustryData {
   heroSubtitle: string;
   iconName: string;
   techStack: IndustryTechStackSection;
+  caseStudyClients?: IndustryCaseStudyClientSection;
   heroId?: string;
   heroEyebrowPill?: string;
   heroEyebrowMuted?: string;
@@ -612,6 +649,13 @@ interface IndustryContentYaml {
     secondaryCtaUrl?: string;
   };
   techStack?: IndustryTechStackSection;
+  caseStudyClients?: Omit<IndustryCaseStudyClientSection, 'clientLogos' | 'caseStudies'> & {
+    clientLogos?: Array<{
+      name: string;
+      logoSrc?: string;
+    }>;
+    caseStudies?: Array<Omit<IndustryCaseStudyClientItem, 'image'> & { image?: string }>;
+  };
   sections?: Array<
     Omit<CaseStudySection, 'heroImage' | 'accentColor'> & {
       heroImage?: string;
@@ -1335,6 +1379,27 @@ function resolveDynamicSections(
   }));
 }
 
+function resolveIndustryCaseStudyClients(section?: IndustryContentYaml['caseStudyClients']) {
+  if (!section) return undefined;
+
+  return {
+    enabled: section.enabled ?? true,
+    id: section.id,
+    title: section.title,
+    description: section.description,
+    clientLogos: (section.clientLogos ?? []).map((logo) => ({
+      ...logo,
+      logoSrc: logo.logoSrc ? getCmsAssetSrc(logo.logoSrc) : undefined,
+    })),
+    caseStudies: (section.caseStudies ?? []).map((study) => ({
+      ...study,
+      image: study.image ? getCmsAssetSrc(study.image) : undefined,
+      stats: study.stats ?? [],
+    })),
+    testimonials: section.testimonials ?? [],
+  };
+}
+
 function resolveIndustry(
   industry: IndustryContentYaml,
   index: number,
@@ -1355,11 +1420,13 @@ function resolveIndustry(
     heroSubtitle: industry.hero.summary,
     iconName: industry.metadata.iconName,
     techStack: industry.techStack ?? {
+      enabled: true,
       title: 'Technologies & Frameworks',
       description:
         'We architect secure infrastructures matching international compliance standards and state-of-the-art tech platforms.',
       items: [],
     },
+    caseStudyClients: resolveIndustryCaseStudyClients(industry.caseStudyClients),
     heroId: industry.hero.id,
     heroEyebrowPill: industry.hero.heroEyebrowPill,
     heroEyebrowMuted: industry.hero.heroEyebrowMuted,

@@ -31,6 +31,9 @@ const resolveSocialIcon = (iconName: string) =>
 const offices = footer.offices?.list || [];
 const companySection = footer.company;
 const servicesSection = footer.services;
+
+const emptyCellsCount = (4 - (offices.length % 4)) % 4;
+const totalRows = (offices.length + emptyCellsCount) / 4;
 ---
 
 <div class={overlap ? '' : 'pt-12'}>
@@ -193,29 +196,34 @@ const servicesSection = footer.services;
                           (idx + 1) % 4 !== 0
                             ? 'border-r border-base-200 dark:border-base-300/35'
                             : '',
-                          // Bottom border for first row
-                          idx < 4
+                          // Bottom border except for last row
+                          Math.floor(idx / 4) < totalRows - 1
                             ? 'border-b border-base-200 dark:border-base-300/35'
                             : '',
                         ]}
-                        x-bind:class={`selected === ${idx} ? 'bg-base-100 text-primary font-bold border-b-transparent' : 'bg-base-200/35 text-base-content/75 hover:bg-base-200/60 hover:text-base-content'`}
+                        x-bind:class={`selected === ${idx} ? 'bg-base-100 text-primary font-bold' : 'bg-base-200/35 text-base-content/75 hover:bg-base-200/60 hover:text-base-content'`}
                       >
                         {office.name}
                       </button>
                     ))
                   }
                   {
-                    /* Empty cells to fill the 4-column grid (5 items means we need 3 empty cells in the second row) */
+                    /* Empty cells to fill the 4-column grid dynamically to complete the last row */
                   }
                   {
-                    Array.from({ length: 3 }).map((_, i) => {
-                      const idx = 5 + i;
+                    Array.from({ length: emptyCellsCount }).map((_, i) => {
+                      const idx = offices.length + i;
                       return (
                         <div
                           class="bg-base-200/35 py-2.5 dark:bg-base-300/5"
                           class:list={[
+                            // Right border except for last column
                             (idx + 1) % 4 !== 0
                               ? 'border-r border-base-200 dark:border-base-300/35'
+                              : '',
+                            // Bottom border except for last row
+                            Math.floor(idx / 4) < totalRows - 1
+                              ? 'border-b border-base-200 dark:border-base-300/35'
                               : '',
                           ]}
                         />
