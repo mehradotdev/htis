@@ -74,7 +74,7 @@ sections:
       description: HTIS developed an offline-first mobile app for field drivers, configured smart GPS trackers, and programmed a rich, central tracking portal.
       items:
         - title: Web tracking portal
-          text: Developed a real-time React/Svelte-based interface featuring dynamic leaflet maps.
+          text: Developed a real-time React/Svelte-based interface featuring dynamic web maps.
         - title: Offline-first app
           text: Built a lightweight driver utility that saves tracking points during network losses.
         - title: Route optimization
