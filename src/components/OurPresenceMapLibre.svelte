@@ -112,6 +112,13 @@
     pinnedPopup = null;
   }
 
+  function switchTab(tab: 'global' | 'india') {
+    if (tab === activeTab) return;
+    closePopups();
+    selectedLocation = null;
+    activeTab = tab;
+  }
+
   function markerElement(loc: Location) {
     const element = document.createElement('button');
     element.type = 'button';
@@ -122,6 +129,7 @@
 
   function renderMarkers() {
     if (!map || !ML) return;
+    closePopups();
     markers.forEach(({ marker }) => marker.remove());
     markers = [];
     updateIndiaOverlay();
@@ -189,10 +197,10 @@
     <div class="grid grid-cols-1 overflow-hidden rounded-3xl border border-base-200/60 bg-base-100 shadow-md lg:grid-cols-12">
       <div class="flex flex-col border-b border-base-200/60 lg:col-span-4 lg:border-r lg:border-b-0">
         <div class="grid grid-cols-2 border-b border-base-200/50 bg-base-200/35 p-2">
-          <button type="button" class="flex cursor-pointer items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all {activeTab === 'global' ? 'bg-base-100 text-primary shadow-sm' : 'text-base-content/75'}" onclick={() => { activeTab = 'global'; selectedLocation = null; }}>
+          <button type="button" class="flex cursor-pointer items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all {activeTab === 'global' ? 'bg-base-100 text-primary shadow-sm' : 'text-base-content/75'}" onclick={() => switchTab('global')}>
             <Globe class="h-4 w-4" /><CmsRichTextSvelte value={globalTabLabel} />
           </button>
-          <button type="button" class="flex cursor-pointer items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all {activeTab === 'india' ? 'bg-base-100 text-primary shadow-sm' : 'text-base-content/75'}" onclick={() => { activeTab = 'india'; selectedLocation = null; }}>
+          <button type="button" class="flex cursor-pointer items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all {activeTab === 'india' ? 'bg-base-100 text-primary shadow-sm' : 'text-base-content/75'}" onclick={() => switchTab('india')}>
             <MapPin class="h-4 w-4" /><CmsRichTextSvelte value={indiaTabLabel} />
           </button>
         </div>
