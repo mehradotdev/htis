@@ -421,14 +421,15 @@ interface HomeYaml {
 interface AboutYaml {
   title: string;
   hero: {
+    sectionId?: string;
     backgroundImage: string;
     title: string;
-    highlight: string;
     subtitle: string;
     ctaLabel: string;
     ctaUrl: string;
   };
   mission: {
+    sectionId?: string;
     image: string;
     imageAlt: string;
     cards: Array<{
@@ -437,16 +438,19 @@ interface AboutYaml {
     }>;
   };
   lifeAtHtis: {
+    sectionId?: string;
     backgroundImage: string;
     image: string;
     imageAlt: string;
     title: string;
-    highlight: string;
     body: string[];
     ctaLabel: string;
     ctaUrl: string;
   };
   team: {
+    sectionId?: string;
+    title: string;
+    description: string;
     members: Array<{
       name: string;
       role: string;
@@ -454,14 +458,33 @@ interface AboutYaml {
       image: string;
     }>;
   };
+  ourPresence: {
+    sectionId?: string;
+    title: string;
+    description: string;
+    globalTabLabel: string;
+    indiaTabLabel: string;
+    globalLocations: AboutLocation[];
+    indiaOffices: AboutLocation[];
+  };
   principles: {
+    sectionId?: string;
     image: string;
     imageAlt: string;
     title: string;
-    highlight: string;
     description: string;
     items: string[];
   };
+}
+
+interface AboutLocation {
+  name: string;
+  address: string;
+  phone?: string;
+  email?: string;
+  lat: number;
+  lng: number;
+  isHQ?: boolean;
 }
 
 interface AwardsYaml {
@@ -649,7 +672,10 @@ interface IndustryContentYaml {
     secondaryCtaUrl?: string;
   };
   techStack?: IndustryTechStackSection;
-  caseStudyClients?: Omit<IndustryCaseStudyClientSection, 'clientLogos' | 'caseStudies'> & {
+  caseStudyClients?: Omit<
+    IndustryCaseStudyClientSection,
+    'clientLogos' | 'caseStudies'
+  > & {
     clientLogos?: Array<{
       name: string;
       logoSrc?: string;
@@ -1076,6 +1102,9 @@ export const about = (() => {
       image: getCmsAsset(data.lifeAtHtis.image),
     },
     team: {
+      sectionId: data.team.sectionId,
+      title: data.team.title,
+      description: data.team.description,
       members: data.team.members.map((member) => ({
         name: member.name,
         role: member.role,
@@ -1379,7 +1408,9 @@ function resolveDynamicSections(
   }));
 }
 
-function resolveIndustryCaseStudyClients(section?: IndustryContentYaml['caseStudyClients']) {
+function resolveIndustryCaseStudyClients(
+  section?: IndustryContentYaml['caseStudyClients'],
+) {
   if (!section) return undefined;
 
   return {

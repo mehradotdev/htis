@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'leaflet/dist/leaflet.css';
 @plugin 'daisyui';
 
 @plugin 'daisyui/theme' {
@@ -891,4 +892,69 @@ details > summary::-webkit-details-marker {
   .resourcing-case-studies-scroll-container::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* ==========================================================================
+   Our Presence Map & Leaflet Custom Styles
+   ========================================================================== */
+.presence-tooltip.leaflet-tooltip {
+  background: var(--color-base-100) !important;
+  color: var(--color-base-content) !important;
+  border: 1px solid color-mix(in oklch, var(--color-primary) 20%, transparent) !important;
+  border-radius: 1.5rem !important;
+  padding: 1rem 1.25rem !important;
+  box-shadow: var(--shadow-sm) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.5rem !important;
+  white-space: normal !important;
+  max-width: 20rem !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* Hide default leaflet tooltip arrow for a clean bubble look */
+.presence-tooltip.leaflet-tooltip::before {
+  display: none !important;
+}
+
+.leaflet-container {
+  background-color: var(--color-base-200) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Force standard dark move cursors on Leaflet maps in light mode to fix visibility issues */
+html[data-theme='htis-theme'] .leaflet-grab {
+  cursor: move !important;
+}
+html[data-theme='htis-theme'] .leaflet-dragging .leaflet-grab {
+  cursor: move !important;
+}
+
+/* Theme-aware presence map markers */
+html[data-theme='htis-theme'] {
+  --color-presence-hq: oklch(48% 0.17 142);      /* Dark green */
+  --color-presence-office: oklch(72% 0.18 142);  /* Light green */
+}
+
+html[data-theme='htis-theme-dark'] {
+  --color-presence-hq: var(--color-primary);      /* Dark theme primary */
+  --color-presence-office: var(--color-secondary);/* Dark theme secondary */
+}
+
+.presence-marker-hq {
+  background-color: var(--color-presence-hq) !important;
+}
+.presence-marker-hq-pulse {
+  background-color: var(--color-presence-hq) !important;
+  opacity: 0.40;
+}
+
+.presence-marker-office {
+  background-color: var(--color-presence-office) !important;
+}
+.presence-marker-office-pulse {
+  background-color: var(--color-presence-office) !important;
+  opacity: 0.40;
 }

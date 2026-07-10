@@ -781,14 +781,15 @@ content:
           - name: hero
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
                 required: true
               - name: title
-                type: string
-                required: true
-              - name: highlight
                 type: string
                 required: true
               - name: subtitle
@@ -806,6 +807,10 @@ content:
             label: Mission section
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: image
                 type: image
                 required: true
@@ -830,6 +835,10 @@ content:
             label: Life at HTIS
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -842,9 +851,6 @@ content:
                 type: string
                 required: true
               - name: title
-                type: string
-                required: true
-              - name: highlight
                 type: string
                 required: true
               - name: body
@@ -862,6 +868,16 @@ content:
           - name: team
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
+              - name: title
+                type: string
+                required: true
+              - name: description
+                type: text
+                required: true
               - name: members
                 type: object
                 list:
@@ -882,9 +898,99 @@ content:
                   - name: image
                     type: image
                     required: true
+          - name: ourPresence
+            label: Our Presence
+            type: object
+            fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
+              - name: title
+                type: string
+                required: true
+              - name: description
+                type: text
+                required: true
+              - name: globalTabLabel
+                label: Global tab label
+                type: string
+                required: true
+              - name: indiaTabLabel
+                label: India tab label
+                type: string
+                required: true
+              - name: globalLocations
+                label: Global locations
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{name}'
+                fields:
+                  - name: name
+                    type: string
+                    required: true
+                  - name: address
+                    type: text
+                    required: true
+                  - name: phone
+                    type: string
+                    required: false
+                  - name: email
+                    type: string
+                    required: false
+                  - name: lat
+                    label: Latitude
+                    type: number
+                    required: true
+                  - name: lng
+                    label: Longitude
+                    type: number
+                    required: true
+                  - name: isHQ
+                    label: Headquarters
+                    type: boolean
+                    required: false
+              - name: indiaOffices
+                label: India offices
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{name}'
+                fields:
+                  - name: name
+                    type: string
+                    required: true
+                  - name: address
+                    type: text
+                    required: true
+                  - name: phone
+                    type: string
+                    required: false
+                  - name: email
+                    type: string
+                    required: false
+                  - name: lat
+                    label: Latitude
+                    type: number
+                    required: true
+                  - name: lng
+                    label: Longitude
+                    type: number
+                    required: true
+                  - name: isHQ
+                    label: Headquarters
+                    type: boolean
+                    required: false
           - name: principles
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: image
                 type: image
                 required: true
@@ -893,9 +999,6 @@ content:
                 type: string
                 required: true
               - name: title
-                type: string
-                required: true
-              - name: highlight
                 type: string
                 required: true
               - name: description

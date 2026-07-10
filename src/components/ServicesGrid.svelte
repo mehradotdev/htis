@@ -303,7 +303,8 @@
               : 'md:opacity-0 md:pointer-events-none'}"
             style={getStyle(pos.c, pos.r, pos.cs || 1, pos.rs || 1)}
           >
-            <span class="text-2xl lg:text-3xl font-bold text-primary">{metric.value}</span>
+            <span class="text-2xl lg:text-3xl font-bold text-primary">{metric.value}</span
+            >
             <span class="text-xs lg:text-sm font-semibold text-base-content/80"
               >{@html metric.label}</span
             >
