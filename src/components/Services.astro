@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import ServicesGrid from './ServicesGrid.svelte';
 import ServicesGridMobile from './ServicesGridMobile.svelte';
 import defaultServiceBg from '~/assets/our-services-bg.png';
+import CmsRichText from './CmsRichText.astro';
 
 const { services } = Astro.props;
 const serviceItems = services?.items ?? [];
@@ -28,9 +29,10 @@ const backgroundImage = services?.backgroundImage ?? defaultServiceBg;
         class="absolute inset-0 z-0 h-full w-full object-cover opacity-70"
         style="filter: var(--filter-invert-dark)"
       />
-      <h2
-        class="relative z-10 flex flex-col text-5xl leading-tight font-bold text-base-content md:text-6xl"
-        set:html={headingHtml}
+      <CmsRichText
+        value={headingHtml}
+        tag="h2"
+        className="relative z-10 flex flex-col text-5xl leading-tight font-bold text-base-content md:text-6xl"
       />
     </div>
 

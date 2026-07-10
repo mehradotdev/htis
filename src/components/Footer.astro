@@ -9,6 +9,7 @@ import YoutubeIcon from './icons/YoutubeIcon.astro';
 import PhoneIcon from './icons/PhoneIcon.astro';
 import EnvelopeIcon from './icons/EnvelopeIcon.astro';
 import ArrowRightIcon from './icons/ArrowRightIcon.astro';
+import CmsRichText from './CmsRichText.astro';
 
 interface Props {
   overlap?: boolean;
@@ -55,7 +56,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
             class="object-contain"
           />
           <p class="mt-4 max-w-sm text-[15px] leading-[1.85] text-base-content/70">
-            {footer.description}
+            <CmsRichText value={footer.description} />
           </p>
 
           <!-- Social Links (Horizontal row of icons below logo details) -->
@@ -90,14 +91,14 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
               companySection && (
                 <nav>
                   <h6 class="mb-5 text-[17px] font-semibold text-base-content">
-                    {companySection.heading}
+                    <CmsRichText value={companySection.heading} />
                   </h6>
                   {companySection.links.map((link) => (
                     <a
                       href={link.url}
                       class="mb-3.5 block text-[15px] text-base-content/80 transition-all duration-200 hover:translate-x-1 hover:text-primary"
                     >
-                      {link.label}
+                      <CmsRichText value={link.label} />
                     </a>
                   ))}
                 </nav>
@@ -109,14 +110,14 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
               servicesSection && (
                 <nav>
                   <h6 class="mb-5 text-[17px] font-semibold text-base-content">
-                    {servicesSection.heading}
+                    <CmsRichText value={servicesSection.heading} />
                   </h6>
                   {servicesSection.links.map((link) => (
                     <a
                       href={link.url}
                       class="mb-3.5 block text-[15px] text-base-content/80 transition-all duration-200 hover:translate-x-1 hover:text-primary"
                     >
-                      {link.label}
+                      <CmsRichText value={link.label} />
                     </a>
                   ))}
                 </nav>
@@ -127,7 +128,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
           <!-- Contact Links -->
           <nav class="shrink-0">
             <h6 class="mb-5 text-[17px] font-semibold text-base-content">
-              {footer.contact.heading}
+              <CmsRichText value={footer.contact.heading} />
             </h6>
             <div class="space-y-4">
               <div
@@ -139,7 +140,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
                   <PhoneIcon class="h-4 w-4" />
                 </div>
                 <span class="truncate text-[14px] font-semibold text-base-content"
-                  >{footer.contact.phone}</span
+                  ><CmsRichText value={footer.contact.phone} /></span
                 >
               </div>
               <div
@@ -152,7 +153,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
                 </div>
                 <span
                   class="truncate text-[14px] font-semibold text-base-content"
-                  title={footer.contact.email}>{footer.contact.email}</span
+                  title={footer.contact.email}><CmsRichText value={footer.contact.email} /></span
                 >
               </div>
             </div>
@@ -164,7 +165,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
           <div>
             <div class="mb-3 flex items-center justify-between">
               <h6 class="text-[17px] font-semibold text-base-content">
-                {footer.offices.heading}
+                <CmsRichText value={footer.offices.heading} />
               </h6>
             </div>
 
@@ -203,7 +204,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
                         ]}
                         x-bind:class={`selected === ${idx} ? 'bg-base-100 text-primary font-bold' : 'bg-base-200/35 text-base-content/75 hover:bg-base-200/60 hover:text-base-content'`}
                       >
-                        {office.name}
+                        <CmsRichText value={office.name} />
                       </button>
                     ))
                   }
@@ -244,20 +245,20 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
                         class="transition-all duration-200"
                       >
                         <h5 class="text-[13px] font-bold text-base-content">
-                          {office.companyName}
+                          <CmsRichText value={office.companyName} />
                         </h5>
                         <p class="mt-2 text-xs leading-relaxed text-base-content/75">
-                          {office.address}
+                          <CmsRichText value={office.address} />
                         </p>
 
                         <div class="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 border-t border-base-200/50 pt-2.5 text-xs text-base-content/60 dark:border-base-300/20">
-                          <span class="font-medium">{office.phone}</span>
+                          <CmsRichText value={office.phone} className="font-medium" />
                           <span class="hidden text-base-content/30 sm:inline">|</span>
                           <a
                             href={`mailto:${office.email}`}
                             class="font-medium text-primary hover:underline"
                           >
-                            {office.email}
+                            <CmsRichText value={office.email} />
                           </a>
                         </div>
                       </div>
@@ -272,7 +273,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
           <div>
             <div class="mb-3 flex items-center justify-between gap-3">
               <h6 class="text-[17px] font-semibold text-base-content">
-                {footer.globalPresence.heading}
+                <CmsRichText value={footer.globalPresence.heading} />
               </h6>
               {
                 footer.globalPresence.ctaLabel && footer.globalPresence.ctaUrl && (
@@ -280,7 +281,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
                     href={footer.globalPresence.ctaUrl}
                     class="flex items-center text-sm font-medium text-primary decoration-2 hover:underline"
                   >
-                    {footer.globalPresence.ctaLabel}
+                    <CmsRichText value={footer.globalPresence.ctaLabel} />
                     <ArrowRightIcon class="ml-1 h-4 w-4" />
                   </a>
                 )
@@ -306,7 +307,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
       <div
         class="flex flex-col items-center justify-between gap-4 border-t border-base-200 pt-6 pb-2 text-sm text-base-content/60 md:flex-row"
       >
-        <p>{footer.copyright}</p>
+        <CmsRichText value={footer.copyright} tag="p" />
 
         <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-end">
           {
@@ -315,7 +316,7 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
                 href={link.url}
                 class="cursor-pointer transition-colors duration-200 hover:text-primary"
               >
-                {link.label}
+                <CmsRichText value={link.label} />
               </a>
             ))
           }

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
   import type { TeamMember } from '~/data/cms';
+  import CmsRichTextSvelte from './CmsRichTextSvelte.svelte';
 
   interface Props {
     team: TeamMember[];
@@ -44,10 +45,10 @@
   <div class="relative z-10 container mx-auto px-4 lg:px-8">
     <div class="mb-12 max-w-3xl">
       <h2 class="mb-6 text-4xl font-extrabold text-base-content md:text-5xl">
-        {heading}
+        <CmsRichTextSvelte value={heading} />
       </h2>
       <p class="text-lg font-medium text-base-content/80 md:text-xl leading-relaxed">
-        {description}
+        <CmsRichTextSvelte value={description} />
       </p>
     </div>
 
@@ -80,12 +81,12 @@
             <h3
               class="mb-1 text-xl leading-tight font-bold whitespace-nowrap text-primary drop-shadow-sm sm:text-2xl md:text-3xl"
             >
-              {member.name}
+              <CmsRichTextSvelte value={member.name} />
             </h3>
             <p
               class="mb-2 text-xs font-bold tracking-wider whitespace-nowrap text-primary uppercase sm:text-sm md:mb-4 md:text-base"
             >
-              {member.role}
+              <CmsRichTextSvelte value={member.role} />
             </p>
           </div>
 
@@ -101,7 +102,7 @@
                 class="text-base-content text-xs sm:text-sm font-semibold leading-relaxed
                   md:text-sm md:bg-base-100/60 md:dark:bg-base-200/60 md:px-2.5 md:py-1.5 md:rounded-md md:shadow-md md:leading-[1.8] md:inline md:box-decoration-clone"
               >
-                {member.desc}
+                <CmsRichTextSvelte value={member.desc} />
               </span>
             </div>
           {/if}
@@ -162,7 +163,7 @@
             <h3
               class="mb-2 text-xl leading-tight font-bold text-primary drop-shadow-sm sm:text-2xl md:text-3xl"
             >
-              {ctaTitle}
+              <CmsRichTextSvelte value={ctaTitle} />
             </h3>
           </div>
 
@@ -172,7 +173,7 @@
                 href={ctaUrl}
                 class="btn btn-primary rounded-full px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-primary/20 hover:scale-105 transition-all duration-300 pointer-events-auto"
               >
-                {ctaLabel}
+                <CmsRichTextSvelte value={ctaLabel} />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-3.5 w-3.5 ml-1 inline-block"
@@ -221,7 +222,7 @@
           <span
             class="text-[10px] sm:text-xs font-bold tracking-widest text-primary uppercase vertical-text"
           >
-            {ctaTitle}
+            <CmsRichTextSvelte value={ctaTitle} />
           </span>
         </div>
       </div>

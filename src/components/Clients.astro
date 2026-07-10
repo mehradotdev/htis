@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { ArrowRight } from '@lucide/astro';
 import type { ClientLogo } from '~/data/cms';
+import CmsRichText from './CmsRichText.astro';
 
 interface Props {
   heading: string;
@@ -26,7 +27,7 @@ function getCardWidth(img: ImageMetadata) {
 <section class="relative mx-auto max-w-6xl overflow-hidden px-4 pb-24">
   <div class="mb-10 flex items-center justify-between">
     <h2 class="text-3xl font-bold text-base-content md:text-5xl">
-      {heading}
+      <CmsRichText value={heading} />
     </h2>
     <div class="flex shrink-0 items-center pl-4 md:pl-0">
       <a

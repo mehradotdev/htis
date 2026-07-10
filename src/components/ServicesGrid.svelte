@@ -1,6 +1,7 @@
 <script>
   import { ArrowRight } from '@lucide/svelte';
   import CmsIconSvelte from './CmsIconSvelte.svelte';
+  import CmsRichTextSvelte from './CmsRichTextSvelte.svelte';
 
   let { services = [] } = $props();
 
@@ -192,7 +193,11 @@
         ? 'flex-row items-center justify-between text-left'
         : 'flex-col items-center justify-center text-center'}"
       style={getStyle(pos.c, pos.r, pos.cs, pos.rs)}
-      onmouseenter={() => (active = service.id)}
+      onpointerenter={(e) => {
+        // Preserve hover expansion for mouse users without letting touch devices
+        // synthesize a hover that skips the first-tap-to-expand behavior.
+        if (e.pointerType === 'mouse') active = service.id;
+      }}
       onfocus={() => (active = service.id)}
       onclick={(e) => {
         if (active !== service.id) {
@@ -209,7 +214,7 @@
             ? 'text-2xl md:text-4xl mt-0'
             : 'text-xl mt-8 md:mt-4'}"
       >
-        {@html service.titleHtml}
+        <CmsRichTextSvelte value={service.titleHtml} />
       </h3>
 
       <div
@@ -270,7 +275,7 @@
               <CmsIconSvelte name={feature.iconName} size={40} />
             </div>
             <span class="text-xs lg:text-sm font-semibold text-base-content/80"
-              >{@html feature.label}</span
+              ><CmsRichTextSvelte value={feature.label} /></span
             >
           </button>
         {/each}
@@ -303,10 +308,10 @@
               : 'md:opacity-0 md:pointer-events-none'}"
             style={getStyle(pos.c, pos.r, pos.cs || 1, pos.rs || 1)}
           >
-            <span class="text-2xl lg:text-3xl font-bold text-primary">{metric.value}</span
+            <span class="text-2xl lg:text-3xl font-bold text-primary"><CmsRichTextSvelte value={metric.value} /></span
             >
             <span class="text-xs lg:text-sm font-semibold text-base-content/80"
-              >{@html metric.label}</span
+              ><CmsRichTextSvelte value={metric.label} /></span
             >
           </div>
         {/each}

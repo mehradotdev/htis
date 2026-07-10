@@ -33,6 +33,44 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;');
 }
 
+/**
+ * Preserves CMS-authored soft-hyphen hints while escaping ordinary text.
+ *
+ * The entity must be converted before `escapeHtml`; otherwise `&shy;` becomes
+ * `&amp;shy;` and is displayed literally. The resulting U+00AD character is
+ * invisible unless the browser wraps the word at that position.
+ *
+ * Example: `Tele&shy;communications` -> `Tele\u00ADcommunications`
+ */
+function escapeCmsText(value: string): string {
+  return escapeHtml(value.replace(/&shy;/gi, '\u00ad'));
+}
+
+/**
+ * Escapes arbitrary HTML while preserving the supported CMS line-break forms.
+ * A quoted `class` is allowed for responsive breaks such as
+ * `<br class="hidden md:block" />`; other attributes remain escaped as text.
+ */
+function escapeHtmlWithLineBreaks(value: string): string {
+  const lineBreakPattern = /<br(?:\s+class\s*=\s*(?:"([^"]*)"|'([^']*)'))?\s*\/?\s*>/gi;
+  let rendered = '';
+  let lastIndex = 0;
+
+  for (const match of value.matchAll(lineBreakPattern)) {
+    const matchIndex = match.index ?? 0;
+    const className = match[1] ?? match[2];
+
+    rendered += escapeCmsText(value.slice(lastIndex, matchIndex));
+    rendered += className === undefined
+      ? '<br />'
+      : `<br class="${escapeHtml(className)}" />`;
+    lastIndex = matchIndex + match[0].length;
+  }
+
+  rendered += escapeCmsText(value.slice(lastIndex));
+  return rendered;
+}
+
 function getSafeHref(href: string): string | null {
   const trimmedHref = href.trim();
 
@@ -66,11 +104,14 @@ function getSafeColorValue(color: string): string | null {
 }
 
 /**
- * Renders inline markdown for CMS content, supporting links and color formatting.
+ * Renders inline markdown for CMS content, supporting links, color formatting,
+ * and HTML-style line breaks. All other HTML remains escaped.
  *
  * Supported syntax:
  * - Links: [Link text](URL)
  * - Color formatting: [Text]{color=ColorValue}
+ * - Line breaks: `<br>`, `<br/>`, `<br />`, with an optional quoted `class` attribute
+ * - Soft hyphens: `&shy;`
  *
  * Examples:
  * [Click here](https://example.com)
@@ -96,13 +137,13 @@ export function renderCmsInlineMarkdown(
     const [rawMatch, linkLabel, href, colorLabel, color] = match;
     const matchIndex = match.index ?? 0;
 
-    rendered += escapeHtml(value.slice(lastIndex, matchIndex));
+    rendered += escapeHtmlWithLineBreaks(value.slice(lastIndex, matchIndex));
 
     if (href) {
       const safeHref = getSafeHref(href);
 
       if (!safeHref) {
-        rendered += escapeHtml(rawMatch);
+        rendered += escapeHtmlWithLineBreaks(rawMatch);
         lastIndex = matchIndex + rawMatch.length;
         continue;
       }
@@ -112,22 +153,22 @@ export function renderCmsInlineMarkdown(
         ? ' target="_blank" rel="noopener noreferrer"'
         : '';
 
-      rendered += `<a href="${escapeHtml(safeHref)}" class="${escapeHtml(linkClass)}"${externalAttributes}>${escapeHtml(linkLabel)}</a>`;
+      rendered += `<a href="${escapeHtml(safeHref)}" class="${escapeHtml(linkClass)}"${externalAttributes}>${escapeHtmlWithLineBreaks(linkLabel)}</a>`;
     } else {
       const safeColor = getSafeColorValue(color);
 
       if (!safeColor) {
-        rendered += escapeHtml(rawMatch);
+        rendered += escapeHtmlWithLineBreaks(rawMatch);
         lastIndex = matchIndex + rawMatch.length;
         continue;
       }
 
-      rendered += `<span style="color: ${escapeHtml(safeColor)}">${escapeHtml(colorLabel)}</span>`;
+      rendered += `<span style="color: ${escapeHtml(safeColor)}">${escapeHtmlWithLineBreaks(colorLabel)}</span>`;
     }
 
     lastIndex = matchIndex + rawMatch.length;
   }
 
-  rendered += escapeHtml(value.slice(lastIndex));
+  rendered += escapeHtmlWithLineBreaks(value.slice(lastIndex));
   return rendered;
 }

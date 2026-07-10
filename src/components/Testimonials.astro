@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { Quote, ArrowRight } from '@lucide/astro';
 import type { TestimonialItem } from '~/data/cms';
+import CmsRichText from './CmsRichText.astro';
 
 interface Props {
   headingPrefix: string;
@@ -41,10 +42,10 @@ const testimonialsCol2 = items.filter((_, index) => index % 2 === 1);
     >
       <div class="max-w-4xl">
         <h2 class="text-4xl leading-tight font-bold text-base-content md:text-5xl">
-          {headingPrefix}
-          <span class="text-primary">{clientsHighlight}</span>
-          {headingMiddle}<br />backed by <span class="text-primary">{awardsHighlight}</span>
-          {headingSuffix}
+          <CmsRichText value={headingPrefix} />
+          <CmsRichText value={clientsHighlight} className="text-primary" />
+          <CmsRichText value={headingMiddle} /><br />backed by <CmsRichText value={awardsHighlight} className="text-primary" />
+          <CmsRichText value={headingSuffix} />
         </h2>
       </div>
       <a
@@ -92,11 +93,11 @@ const testimonialsCol2 = items.filter((_, index) => index % 2 === 1);
                       <Quote class="absolute top-4 right-4 h-10 w-10 fill-current text-primary/10" />
                     )}
                     <p class="relative z-10 mb-6 font-medium text-base-content/80">
-                      "{item.quote}"
+                      &quot;<CmsRichText value={item.quote} />&quot;
                     </p>
                     <div class="relative z-10">
-                      <p class="font-bold text-base-content">{item.name}</p>
-                      <p class="text-sm text-base-content/60">{item.title}</p>
+                      <CmsRichText value={item.name} tag="p" className="font-bold text-base-content" />
+                      <CmsRichText value={item.title} tag="p" className="text-sm text-base-content/60" />
                     </div>
                   </div>
                 ))
@@ -118,11 +119,11 @@ const testimonialsCol2 = items.filter((_, index) => index % 2 === 1);
                       <Quote class="absolute top-4 right-4 h-10 w-10 fill-current text-primary/10" />
                     )}
                     <p class="relative z-10 mb-6 font-medium text-base-content/80">
-                      "{item.quote}"
+                      &quot;<CmsRichText value={item.quote} />&quot;
                     </p>
                     <div class="relative z-10">
-                      <p class="font-bold text-base-content">{item.name}</p>
-                      <p class="text-sm text-base-content/60">{item.title}</p>
+                      <CmsRichText value={item.name} tag="p" className="font-bold text-base-content" />
+                      <CmsRichText value={item.title} tag="p" className="text-sm text-base-content/60" />
                     </div>
                   </div>
                 ))

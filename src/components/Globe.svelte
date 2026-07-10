@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CmsRichTextSvelte from './CmsRichTextSvelte.svelte';
   import { untrack } from 'svelte';
   import createGlobe, { type COBEOptions } from 'cobe';
 
@@ -365,13 +366,13 @@
 
       <!-- Label badge — always visible, shows country name -->
       <span class="marker-badge">
-        <span class="marker-name">{marker.name}</span>
+        <CmsRichTextSvelte value={marker.name} className="marker-name" />
       </span>
 
       <!-- Expanded detail panel -->
       {#if isExpanded && marker.detail}
         <span class="marker-detail">
-          {marker.detail}
+          <CmsRichTextSvelte value={marker.detail} />
         </span>
       {/if}
     </button>

@@ -2,6 +2,7 @@
 import CurvedLineIcon from './icons/CurvedLineIcon.astro';
 import Globe from './Globe.svelte';
 import type { FootprintMetric, GlobeMarker } from '~/data/cms';
+import CmsRichText from './CmsRichText.astro';
 
 interface Props {
   heading: string;
@@ -36,7 +37,7 @@ const globeMarkers = globe.markers.map((marker) => ({
       <div class="w-full space-y-12 md:w-1/2">
         <div>
           <h2 class="mb-10 text-center text-4xl font-bold text-base-content md:text-left md:text-5xl">
-            {heading}
+            <CmsRichText value={heading} />
           </h2>
         </div>
 
@@ -45,10 +46,10 @@ const globeMarkers = globe.markers.map((marker) => ({
             metrics.map((metric) => (
               <div class="text-center md:text-left">
                 <div class="flex items-baseline justify-center text-5xl font-light text-primary md:justify-start">
-                  {metric.value}
-                  {metric.suffix && <span class="ml-1 text-4xl">{metric.suffix}</span>}
+                  <CmsRichText value={metric.value} />
+                  {metric.suffix && <CmsRichText value={metric.suffix} className="ml-1 text-4xl" />}
                 </div>
-                <p class="mt-1 text-lg text-base-content/70">{metric.label}</p>
+                <CmsRichText value={metric.label} tag="p" className="mt-1 text-lg text-base-content/70" />
               </div>
             ))
           }

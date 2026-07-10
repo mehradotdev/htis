@@ -1,6 +1,7 @@
 <script>
   import { ArrowRight } from '@lucide/svelte';
   import CmsIconSvelte from './CmsIconSvelte.svelte';
+  import CmsRichTextSvelte from './CmsRichTextSvelte.svelte';
 
   let { services = [] } = $props();
 
@@ -32,7 +33,7 @@
               aria-expanded={active === service.id}
             >
               <h3 class="m-0 text-2xl leading-tight font-bold text-base-content/80">
-                {@html service.titleHtml}
+                <CmsRichTextSvelte value={service.titleHtml} />
               </h3>
             </button>
 
@@ -66,7 +67,7 @@
                     <CmsIconSvelte name={feature.iconName} size={32} />
                   </div>
                   <span class="text-xs font-semibold leading-tight text-base-content/80"
-                    >{@html feature.label}</span
+                    ><CmsRichTextSvelte value={feature.label} /></span
                   >
                 </div>
               {/each}
@@ -78,9 +79,9 @@
                 <div
                   class="flex flex-col items-center justify-center py-5 px-4 text-center border-solid border-base-content/30 {idx % 2 !== 1 ? 'border-r' : ''} {idx < 2 ? 'border-b' : ''}"
                 >
-                  <span class="mb-1 text-2xl font-bold text-primary">{metric.value}</span>
+                  <span class="mb-1 text-2xl font-bold text-primary"><CmsRichTextSvelte value={metric.value} /></span>
                   <span class="text-xs font-semibold leading-tight text-base-content/80"
-                    >{@html metric.label}</span
+                    ><CmsRichTextSvelte value={metric.label} /></span
                   >
                 </div>
               {/each}

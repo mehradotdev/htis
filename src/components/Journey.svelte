@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CmsRichTextSvelte from './CmsRichTextSvelte.svelte';
   import type { Milestone } from '~/data/cms';
 
   interface Props {
@@ -86,12 +87,12 @@
     <!-- Title Area -->
     <div class="mb-8 text-center md:mb-12">
       <h2 class="text-5xl font-extrabold tracking-tight text-base-content md:text-7xl">
-        {titlePrefix} <span class="text-primary">{titleHighlight}</span>
+        <CmsRichTextSvelte value={titlePrefix} /> <CmsRichTextSvelte value={titleHighlight} className="text-primary" />
       </h2>
       <p
         class="mx-auto mt-4 max-w-2xl text-base font-medium text-base-content/80 md:text-xl"
       >
-        {subtitle}
+        <CmsRichTextSvelte value={subtitle} />
       </p>
     </div>
 
@@ -152,15 +153,15 @@
       {#key activeIndex}
         <div class="animate-fade-in-up flex flex-col items-center px-4">
           <h2 class="text-4xl font-extrabold text-primary md:text-5xl">
-            {milestones[activeIndex].year}
+            <CmsRichTextSvelte value={milestones[activeIndex].year} />
           </h2>
           <h3 class="mt-2 text-xl font-bold text-base-content md:text-2xl">
-            {milestones[activeIndex].title}
+            <CmsRichTextSvelte value={milestones[activeIndex].title} />
           </h3>
           <p
             class="mx-auto mt-3 max-w-xl text-sm font-medium leading-relaxed text-base-content/80 md:text-base"
           >
-            {milestones[activeIndex].description}
+            <CmsRichTextSvelte value={milestones[activeIndex].description} />
           </p>
         </div>
       {/key}
@@ -209,12 +210,12 @@
                     ? 'scale-110 transform'
                     : ''} transition-transform"
                 >
-                  {milestone.year}
+                  <CmsRichTextSvelte value={milestone.year} />
                 </div>
                 <div
                   class="mt-0.5 hidden text-[10px] font-bold text-base-content/70 md:block md:text-xs"
                 >
-                  {milestone.title}
+                  <CmsRichTextSvelte value={milestone.title} />
                 </div>
               </div>
             </button>

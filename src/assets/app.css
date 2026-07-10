@@ -104,6 +104,13 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Scale the complete desktop presentation while leaving mobile and tablet unchanged. */
+@media (min-width: 1024px) {
+  html {
+    zoom: 0.9;
+  }
+}
+
 ::view-transition-group(root) {
   animation-duration: var(--magicui-theme-toggle-vt-duration, 0s);
   animation-timing-function: cubic-bezier(0.87, 0, 0.13, 1);

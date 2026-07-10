@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import MenuIcon from './icons/MenuIcon.astro';
 import AnimatedThemeToggler from './AnimatedThemeToggler.svelte';
 import CmsIcon from './CmsIcon.astro';
+import CmsRichText from './CmsRichText.astro';
 import { getCmsAsset, industryNavItems, navigation } from '~/data/cms';
 
 import { ArrowRight, ChevronDown } from '@lucide/astro';
@@ -36,20 +37,20 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
 
 <div
   id="navbar-wrapper"
-  class="fixed top-0 right-0 left-0 z-50 px-0 pt-0 transition-all duration-500 md:px-8 md:pt-3"
+  class="fixed top-0 right-0 left-0 z-50 px-0 pt-0 transition-all duration-500 md:px-8 md:pt-3 lg:pt-2"
 >
   <div
     id="navbar"
     class="navbar mx-auto max-w-7xl bg-transparent px-4 transition-all duration-500 md:px-6"
   >
     <div class="navbar-start w-auto lg:flex-1">
-      <a href={navigation.primary.home.url} class="btn h-auto p-2 text-xl normal-case btn-ghost">
+      <a href={navigation.primary.home.url} class="btn h-auto p-2 text-xl normal-case btn-ghost lg:p-1">
         <Image
           src={navLogo}
           alt={navigation.logo.alt}
           width={140}
           id="navbar-logo"
-          class="w-[110px] lg:w-[140px] object-contain transition-all duration-500"
+          class="w-[110px] lg:w-[120px] object-contain transition-all duration-500"
         />
       </a>
     </div>
@@ -70,9 +71,9 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
       >
         <a
           href={navigation.primary.home.url}
-          class={`py-4 transition-colors hover:text-primary ${isActive(navigation.primary.home.url) ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+          class={`py-3 transition-colors hover:text-primary ${isActive(navigation.primary.home.url) ? 'text-primary font-semibold' : 'text-base-content/80'}`}
         >
-          {navigation.primary.home.title}
+          <CmsRichText value={navigation.primary.home.title} />
         </a>
 
         <!-- Solutions: Dropdown open state, focus/hover sync, Escape key to close, and screen-reader accessibility (aria-expanded) managed via Alpine.js -->
@@ -85,12 +86,12 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
         >
           <button
             type="button"
-            class={`flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isSolutionsActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+            class={`flex items-center gap-1 py-3 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isSolutionsActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
             aria-haspopup="true"
             :aria-expanded="activeDropdown === 'solutions'"
             @click="toggle('solutions')"
           >
-            {navigation.solutions.label}
+            <CmsRichText value={navigation.solutions.label} />
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-300"
               :class="activeDropdown === 'solutions' ? '-rotate-180 text-primary' : ''"
@@ -108,7 +109,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 <h3
                   class="mb-2 px-3 text-xs font-bold tracking-widest text-base-content/50 uppercase"
                 >
-                  {navigation.solutions.heading}
+                  <CmsRichText value={navigation.solutions.heading} />
                 </h3>
                 {
                   solutions.map((item) => (
@@ -125,10 +126,10 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                         <div
                           class={`font-bold transition-colors ${isActive(item.url) ? 'text-primary' : 'text-base-content group-hover/item:text-primary'}`}
                         >
-                          {item.title}
+                          <CmsRichText value={item.title} />
                         </div>
                         <div class="mt-0.5 text-sm leading-snug text-base-content/60">
-                          {item.desc}
+                          <CmsRichText value={item.desc} />
                         </div>
                       </div>
                     </a>
@@ -149,15 +150,15 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 >
                 </div>
                 <div class="absolute right-0 bottom-0 left-0 p-6 text-left text-white">
-                  <h4 class="mb-2 text-xl font-bold">{navigation.solutions.card.title}</h4>
+                  <CmsRichText value={navigation.solutions.card.title} tag="h3" className="mb-2 text-xl font-bold" />
                   <p class="mb-6 text-sm text-white/80">
-                    {navigation.solutions.card.description}
+                    <CmsRichText value={navigation.solutions.card.description} />
                   </p>
                   <a
                     href={navigation.solutions.card.ctaUrl}
                     class="btn w-full rounded-lg border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
                   >
-                    {navigation.solutions.card.ctaLabel} <ArrowRight class="ml-1 h-4 w-4" />
+                    <CmsRichText value={navigation.solutions.card.ctaLabel} /> <ArrowRight class="ml-1 h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -175,12 +176,12 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
         >
           <button
             type="button"
-            class={`flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isIndustriesActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+            class={`flex items-center gap-1 py-3 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isIndustriesActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
             aria-haspopup="true"
             :aria-expanded="activeDropdown === 'industries'"
             @click="toggle('industries')"
           >
-            {navigation.industries.label}
+            <CmsRichText value={navigation.industries.label} />
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-300"
               :class="activeDropdown === 'industries' ? '-rotate-180 text-primary' : ''"
@@ -198,7 +199,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 <h3
                   class="mb-2 px-3 text-xs font-bold tracking-widest text-base-content/50 uppercase"
                 >
-                  {navigation.industries.heading}
+                  <CmsRichText value={navigation.industries.heading} />
                 </h3>
                 {
                   industriesCol1.map((item) => (
@@ -215,10 +216,10 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                         <div
                           class={`font-bold transition-colors ${isActive(item.url) ? 'text-primary' : 'text-base-content group-hover/item:text-primary'}`}
                         >
-                          {item.title}
+                          <CmsRichText value={item.title} />
                         </div>
                         <div class="mt-0.5 text-sm leading-snug text-base-content/60">
-                          {item.desc}
+                          <CmsRichText value={item.desc} />
                         </div>
                       </div>
                     </a>
@@ -244,10 +245,10 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                         <div
                           class={`font-bold transition-colors ${isActive(item.url) ? 'text-primary' : 'text-base-content group-hover/item:text-primary'}`}
                         >
-                          {item.title}
+                          <CmsRichText value={item.title} />
                         </div>
                         <div class="mt-0.5 text-sm leading-snug text-base-content/60">
-                          {item.desc}
+                          <CmsRichText value={item.desc} />
                         </div>
                       </div>
                     </a>
@@ -268,12 +269,12 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
         >
           <button
             type="button"
-            class={`flex items-center gap-1 py-4 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isResourcesActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+            class={`flex items-center gap-1 py-3 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isResourcesActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
             aria-haspopup="true"
             :aria-expanded="activeDropdown === 'resources'"
             @click="toggle('resources')"
           >
-            {navigation.resources.label}
+            <CmsRichText value={navigation.resources.label} />
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-300"
               :class="activeDropdown === 'resources' ? '-rotate-180 text-primary' : ''"
@@ -291,7 +292,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 <h3
                   class="mb-2 px-3 text-xs font-bold tracking-widest text-base-content/50 uppercase"
                 >
-                  {navigation.resources.heading}
+                  <CmsRichText value={navigation.resources.heading} />
                 </h3>
                 {
                   resources.map((item) => (
@@ -308,10 +309,10 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                         <div
                           class={`font-bold transition-colors ${isActive(item.url) ? 'text-primary' : 'text-base-content group-hover/item:text-primary'}`}
                         >
-                          {item.title}
+                          <CmsRichText value={item.title} />
                         </div>
                         <div class="mt-0.5 text-sm leading-snug text-base-content/60">
-                          {item.desc}
+                          <CmsRichText value={item.desc} />
                         </div>
                       </div>
                     </a>
@@ -332,15 +333,15 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 >
                 </div>
                 <div class="absolute right-0 bottom-0 left-0 p-6 text-left text-white">
-                  <h4 class="mb-2 text-xl font-bold">{navigation.resources.card.title}</h4>
+                  <CmsRichText value={navigation.resources.card.title} tag="h3" className="mb-2 text-xl font-bold" />
                   <p class="mb-6 text-sm text-white/80">
-                    {navigation.resources.card.description}
+                    <CmsRichText value={navigation.resources.card.description} />
                   </p>
                   <a
                     href={navigation.resources.card.ctaUrl}
                     class="btn w-full rounded-lg border-none btn-sm btn-primary group-hover/card:shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
                   >
-                    {navigation.resources.card.ctaLabel} <ArrowRight class="ml-1 h-4 w-4" />
+                    <CmsRichText value={navigation.resources.card.ctaLabel} /> <ArrowRight class="ml-1 h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -350,9 +351,9 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
 
         <a
           href={navigation.primary.career.url}
-          class={`py-4 transition-colors hover:text-primary ${isActive(navigation.primary.career.url) ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+          class={`py-3 transition-colors hover:text-primary ${isActive(navigation.primary.career.url) ? 'text-primary font-semibold' : 'text-base-content/80'}`}
         >
-          {navigation.primary.career.title}
+          <CmsRichText value={navigation.primary.career.title} />
         </a>
       </nav>
     </div>
@@ -361,7 +362,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
       <div class="hidden lg:flex">
         <AnimatedThemeToggler
           client:load
-          className="btn btn-circle btn-ghost"
+          className="btn btn-sm btn-circle btn-ghost"
           duration={500}
           aria-label="Toggle theme"
         />
@@ -370,8 +371,8 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
       <!-- Contact Us (Desktop Only) -->
       <a
         href={navigation.primary.contact.url}
-        class="hidden lg:inline-flex btn rounded-lg px-4 text-base tracking-wide text-primary-content opacity-90 shadow-md btn-primary md:px-5"
-        >{navigation.primary.contact.title}</a
+        class="hidden lg:inline-flex btn btn-sm rounded-lg px-4 text-sm tracking-wide text-primary-content opacity-90 shadow-md btn-primary"
+        ><CmsRichText value={navigation.primary.contact.title} /></a
       >
 
       <!-- Hamburger Menu (Mobile Only) -->
@@ -388,7 +389,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
               href={navigation.primary.home.url}
               class={`py-3 ${isActive(navigation.primary.home.url) ? 'font-semibold text-primary bg-base-200/60' : 'text-base-content/80'}`}
             >
-              {navigation.primary.home.title}
+              <CmsRichText value={navigation.primary.home.title} />
             </a>
           </li>
 
@@ -396,7 +397,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             <details open={isSolutionsActive}>
               <summary
                 class={`py-3 font-semibold ${isSolutionsActive ? 'text-primary' : ''}`}
-                >{navigation.solutions.label}</summary
+                ><CmsRichText value={navigation.solutions.label} /></summary
               >
               <ul class="before:bg-base-200/50">
                 {
@@ -410,7 +411,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                           name={item.icon}
                           className={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
                         />
-                        <span class="leading-tight">{item.title}</span>
+                        <CmsRichText value={item.title} className="leading-tight" />
                       </a>
                     </li>
                   ))
@@ -423,7 +424,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             <details open={isIndustriesActive}>
               <summary
                 class={`py-3 font-semibold ${isIndustriesActive ? 'text-primary' : ''}`}
-                >{navigation.industries.label}</summary
+                ><CmsRichText value={navigation.industries.label} /></summary
               >
               <ul class="before:bg-base-200/50">
                 {
@@ -437,7 +438,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                           name={item.icon}
                           className={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
                         />
-                        <span class="text-sm leading-tight">{item.title}</span>
+                        <CmsRichText value={item.title} className="text-sm leading-tight" />
                       </a>
                     </li>
                   ))
@@ -450,7 +451,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             <details open={isResourcesActive}>
               <summary
                 class={`py-3 font-semibold ${isResourcesActive ? 'text-primary' : ''}`}
-                >{navigation.resources.label}</summary
+                ><CmsRichText value={navigation.resources.label} /></summary
               >
               <ul class="before:bg-base-200/50">
                 {
@@ -464,7 +465,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                           name={item.icon}
                           className={`mr-2 h-4 w-4 shrink-0 ${isActive(item.url) ? 'text-primary' : 'text-base-content/60'}`}
                         />
-                        <span class="leading-tight">{item.title}</span>
+                        <CmsRichText value={item.title} className="leading-tight" />
                       </a>
                     </li>
                   ))
@@ -478,7 +479,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
               href={navigation.primary.career.url}
               class={`py-3 ${isActive(navigation.primary.career.url) ? 'font-semibold text-primary bg-base-200/60' : 'text-base-content/80'}`}
             >
-              {navigation.primary.career.title}
+              <CmsRichText value={navigation.primary.career.title} />
             </a>
           </li>
 
@@ -490,7 +491,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
                 href={navigation.primary.contact.url}
                 class="btn rounded-lg px-4 text-base tracking-wide text-primary-content opacity-90 shadow-md btn-primary"
               >
-                {navigation.primary.contact.title}
+                <CmsRichText value={navigation.primary.contact.title} />
               </a>
 
               <!-- Theme Toggle (Right) -->
@@ -516,7 +517,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
       const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
 
       // Normalize logo classes before adding specific variants
-      logo?.classList.remove('w-[140px]', 'w-[110px]', 'w-[100px]', 'w-[85px]');
+      logo?.classList.remove('w-[120px]', 'w-[110px]', 'w-[90px]', 'w-[85px]');
 
       if (window.scrollY > 20) {
         // Normalize classes before adding specific variants
@@ -537,7 +538,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
         );
 
         if (isDesktop) {
-          logo?.classList.add('w-[100px]');
+          logo?.classList.add('w-[90px]');
         } else {
           logo?.classList.add('w-[85px]');
         }
@@ -584,7 +585,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
           'min-h-[4rem]',
         );
         if (isDesktop) {
-          logo?.classList.add('w-[140px]');
+          logo?.classList.add('w-[120px]');
         } else {
           logo?.classList.add('w-[110px]');
         }
