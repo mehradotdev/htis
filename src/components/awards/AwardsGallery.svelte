@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Calendar, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, X } from '@lucide/svelte';
   import { tick } from 'svelte';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
 
   type ItemType = 'award' | 'certificate';
 
@@ -17,7 +18,13 @@
     }>;
   }
 
-  let { items = [] }: { items: AwardItem[] } = $props();
+  let {
+    items = [],
+    gallerySectionId,
+  }: {
+    items: AwardItem[];
+    gallerySectionId: string;
+  } = $props();
 
   let activeTab = $state<'all' | 'award' | 'certificate'>('all');
   let startIndex = $state(0);
@@ -70,11 +77,21 @@
     animKey++;
   }
 
+  async function scrollToGalleryTop() {
+    if (!gallerySectionId || !window.matchMedia('(max-width: 767px)').matches) return;
+
+    await tick();
+    document
+      .getElementById(gallerySectionId)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   function goUp() {
     if (filteredItems.length === 0) return;
     animDirection = 'up';
     startIndex = (startIndex - 3 + filteredItems.length) % filteredItems.length;
     animKey++;
+    void scrollToGalleryTop();
   }
 
   function goDown() {
@@ -82,6 +99,7 @@
     animDirection = 'down';
     startIndex = (startIndex + 3) % filteredItems.length;
     animKey++;
+    void scrollToGalleryTop();
   }
 
   function openItem(item: AwardItem) {
@@ -174,14 +192,20 @@
         </div>
         <div class="flex flex-1 flex-col justify-between px-3 pt-2.5 pb-2.5">
           <div>
-            <h3 class="line-clamp-2 text-sm leading-snug font-bold text-base-content">
-              {item.title}
-            </h3>
-            <p class="mt-0.5 text-xs font-semibold text-primary">{item.organization}</p>
+            <CmsRichTextSvelte
+              value={item.title}
+              tag="h3"
+              className="line-clamp-2 text-sm leading-snug font-bold text-base-content"
+            />
+            <CmsRichTextSvelte
+              value={item.organization}
+              tag="p"
+              className="mt-0.5 text-xs font-semibold text-primary"
+            />
           </div>
           <div class="mt-2 flex items-center text-xs font-medium text-base-content/50">
             <Calendar size={13} class="mr-1.5" />
-            {item.date}
+            <CmsRichTextSvelte value={item.date} />
           </div>
         </div>
       </button>
@@ -254,14 +278,20 @@
         <span
           class="badge badge-primary badge-outline mb-2 text-[10px] font-semibold tracking-wider uppercase"
         >
-          {selectedItem.type}
+          <CmsRichTextSvelte value={selectedItem.type} />
         </span>
         <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h3 class="text-base leading-snug font-bold text-base-content">
-              {selectedItem.title}
-            </h3>
-            <p class="mt-1 text-xs font-semibold text-primary">{selectedItem.organization}</p>
+            <CmsRichTextSvelte
+              value={selectedItem.title}
+              tag="h3"
+              className="text-base leading-snug font-bold text-base-content"
+            />
+            <CmsRichTextSvelte
+              value={selectedItem.organization}
+              tag="p"
+              className="mt-1 text-xs font-semibold text-primary"
+            />
           </div>
           {#if selectedItem.images.length > 1}
             <p class="text-xs font-medium text-base-content/50">
@@ -271,7 +301,7 @@
         </div>
         <div class="mt-3 flex items-center text-xs font-medium text-base-content/60">
           <Calendar size={14} class="mr-2" />
-          {selectedItem.date}
+          <CmsRichTextSvelte value={selectedItem.date} />
         </div>
       </div>
     </div>

@@ -1023,6 +1023,10 @@ content:
           - name: hero
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1033,46 +1037,54 @@ content:
               - name: subtitle
                 type: text
                 required: true
-          - name: items
+          - name: gallery
+            label: Gallery section
             type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: '{title}'
             fields:
-              - name: type
-                type: select
-                required: true
-                options:
-                  values: [award, certificate]
-              - name: title
+              - name: sectionId
+                label: Section ID
                 type: string
                 required: true
-              - name: organization
-                type: string
-                required: true
-              - name: date
-                type: string
-                required: true
-              - name: thumbnail
-                label: Display thumbnail
-                type: image
-                required: true
-              - name: images
-                label: Popup carousel photos
+              - name: items
                 type: object
                 list:
                   collapsible:
                     collapsed: true
-                    summary: '{alt}'
+                    summary: '{title}'
                 fields:
-                  - name: image
-                    type: image
+                  - name: type
+                    type: select
                     required: true
-                  - name: alt
-                    label: Image alt
+                    options:
+                      values: [award, certificate]
+                  - name: title
                     type: string
                     required: true
+                  - name: organization
+                    type: string
+                    required: true
+                  - name: date
+                    type: string
+                    required: true
+                  - name: thumbnail
+                    label: Display thumbnail
+                    type: image
+                    required: true
+                  - name: images
+                    label: Popup carousel photos
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: '{alt}'
+                    fields:
+                      - name: image
+                        type: image
+                        required: true
+                      - name: alt
+                        label: Image alt
+                        type: string
+                        required: true
 
       - name: telecom
         label: Telecom

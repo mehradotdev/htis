@@ -490,23 +490,27 @@ interface AboutLocation {
 interface AwardsYaml {
   title: string;
   hero: {
+    sectionId?: string;
     backgroundImage: string;
     title: string;
     subtitle: string;
   };
-  items: Array<{
-    type: 'award' | 'certificate';
-    title: string;
-    organization: string;
-    date: string;
-    thumbnail?: string;
-    image?: string;
-    imageAlt?: string;
-    images?: Array<{
-      image: string;
-      alt: string;
+  gallery: {
+    sectionId: string;
+    items: Array<{
+      type: 'award' | 'certificate';
+      title: string;
+      organization: string;
+      date: string;
+      thumbnail?: string;
+      image?: string;
+      imageAlt?: string;
+      images?: Array<{
+        image: string;
+        alt: string;
+      }>;
     }>;
-  }>;
+  };
 }
 
 interface IndustryPageYaml {
@@ -1122,11 +1126,15 @@ export const about = (() => {
 export const awards: {
   title: string;
   hero: {
+    sectionId?: string;
     backgroundImage: ImageMetadata;
     title: string;
     subtitle: string;
   };
-  items: AwardGalleryItem[];
+  gallery: {
+    sectionId: string;
+    items: AwardGalleryItem[];
+  };
 } = (() => {
   const data = awardsYaml as AwardsYaml;
 
@@ -1136,31 +1144,34 @@ export const awards: {
       ...data.hero,
       backgroundImage: getCmsAsset(data.hero.backgroundImage),
     },
-    items: data.items.map((item, index) => {
-      const fallbackImage = item.image ?? item.thumbnail;
-      if (!fallbackImage) {
-        throw new Error(`Awards: "${item.title}" is missing a thumbnail or image.`);
-      }
+    gallery: {
+      sectionId: data.gallery.sectionId,
+      items: data.gallery.items.map((item, index) => {
+        const fallbackImage = item.image ?? item.thumbnail;
+        if (!fallbackImage) {
+          throw new Error(`Awards: "${item.title}" is missing a thumbnail or image.`);
+        }
 
-      const fallbackAlt = item.imageAlt ?? item.title;
-      const images = item.images?.length
-        ? item.images
-        : [{ image: fallbackImage, alt: fallbackAlt }];
-      const thumbnail = item.thumbnail ?? fallbackImage;
+        const fallbackAlt = item.imageAlt ?? item.title;
+        const images = item.images?.length
+          ? item.images
+          : [{ image: fallbackImage, alt: fallbackAlt }];
+        const thumbnail = item.thumbnail ?? fallbackImage;
 
-      return {
-        id: index + 1,
-        type: item.type,
-        title: item.title,
-        organization: item.organization,
-        date: item.date,
-        thumbnailSrc: getCmsAssetSrc(thumbnail),
-        images: images.map((image) => ({
-          src: getCmsAssetSrc(image.image),
-          alt: image.alt,
-        })),
-      };
-    }),
+        return {
+          id: index + 1,
+          type: item.type,
+          title: item.title,
+          organization: item.organization,
+          date: item.date,
+          thumbnailSrc: getCmsAssetSrc(thumbnail),
+          images: images.map((image) => ({
+            src: getCmsAssetSrc(image.image),
+            alt: image.alt,
+          })),
+        };
+      }),
+    },
   };
 })();
 
