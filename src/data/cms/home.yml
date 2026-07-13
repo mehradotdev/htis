@@ -10,7 +10,7 @@ hero:
   subtitle: 16+ years of proven solutions. Delivered through people. Driven by
     technology.
   ctaLabel: Contact Us
-  ctaUrl: '#contact'
+  ctaUrl: "#contact"
   trustedByLabel: Trusted by 50+ Partners
   partnerLogos:
     - image: src/assets/logo-legrand.png
@@ -36,9 +36,9 @@ hero:
     - image: src/assets/canon.png
       alt: Canon
     - image: src/assets/check-point.png
-      alt: 'Check Point '
+      alt: "Check Point "
     - image: src/assets/cisco.png
-      alt: 'Cisco '
+      alt: "Cisco "
     - image: src/assets/commscope.png
       alt: Commscope
     - image: src/assets/cpplus-1.png
@@ -263,76 +263,76 @@ journey:
   title: Our [Journey]{color=primary}
   subtitle: A timeline of innovation, milestones, and achievements that shaped
   milestones:
-    - year: '2008'
+    - year: "2008"
       title: HTIS Founded
       description: Established Horizon Telecom Infrastructure Services and secured
         initial telecom infrastructure projects with Vodafone and Bharti.
       image: src/assets/untitled-22-june-2026-at-151852-2.png
-    - year: '2010'
+    - year: "2010"
       title: Major Telecom Customer Expansion
       description: Added major customers including Idea and Ericsson, expanding
         nationwide telecom delivery capabilities.
       image: src/assets/geminigeneratedimageno004jno004jno00.png
-    - year: '2012'
+    - year: "2012"
       title: HTIS Telecom Pvt. Ltd. Incorporated
       description: Formal incorporation of HTIS Telecom Private Limited, laying the
         foundation for future growth.
       image: src/assets/geminigeneratedimage8k8gkr8k8gkr8k8g.png
-    - year: '2013'
+    - year: "2013"
       title: Cisco Service Partner
       description: Empanelled as a Cisco Service Partner, enabling HTIS to participate
         in large-scale enterprise networking and service provider projects.
       image: src/assets/geminigeneratedimage7ijrrl7ijrrl7ijr.png
-    - year: '2014'
+    - year: "2014"
       title: Jio 4G Rollout Program
       description: Supported large-scale Jio 4G network deployments across North and
         West India.
       image: src/assets/geminigeneratedimagew05k6fw05k6fw05k.png
-    - year: '2017'
+    - year: "2017"
       title: Cisco Global Partnership
       description: Signed a Global PSSA agreement with Cisco in the Service Provider domain.
       image: src/assets/chatgpt-image-jun-24-2026-103047-am.png
-    - year: '2017'
+    - year: "2017"
       title: International Expansion
       description: Expanded operations beyond India to support projects in Sri Lanka,
         Bangladesh, South Africa, and other international markets.
       image: src/assets/geminigeneratedimagexq8lrxq8lrxq8lrx.png
-    - year: '2018'
+    - year: "2018"
       title: WFMS Foundation
       description: Initiated development of WFMS, HTIS's proprietary workforce
         management platform.
       image: src/assets/geminigeneratedimagev7jy8bv7jy8bv7jy.png
-    - year: '2018'
+    - year: "2018"
       title: NTT Data UK Partnership
       description: Partnered with NTT Data UK and deployed dedicated resources in
         London to support telecom testing and network service programs.
       image: src/assets/2018-2.png
-    - year: '2019'
+    - year: "2019"
       title: United Nations Peacekeeping Project
       description: Delivered critical infrastructure solutions for a UN Peacekeeping
         Mission in the Central African Republic.
       image: src/assets/chatgpt-image-jun-24-2026-114757-am.png
-    - year: '2020'
+    - year: "2020"
       title: System Integration (SI) Business Launch
       description: Expanded into System Integration and IT Infrastructure solutions
         across North India.
       image: src/assets/2020.png
-    - year: '2021'
+    - year: "2021"
       title: ₹100 Crore Business Milestone
       description: Crossed ₹100 Crore business revenue within a year of entering
         System Integration.
       image: src/assets/geminigeneratedimageb1i47ob1i47ob1i4.png
-    - year: '2021'
+    - year: "2021"
       title: 400+ NHM Health Centres Digitized
       description: Enabled IT infrastructure deployment across 400+ NHM Primary Health
         Centres in Himachal Pradesh during COVID-19.
       image: src/assets/2021-2.png
-    - year: '2021'
+    - year: "2021"
       title: Employee Development Initiative (OBT)
       description: Launched annual Outbound Training (OBT) programs focused on
         leadership and team development.
       image: src/assets/htis-team-1.jpg
-    - year: '2022'
+    - year: "2022"
       title: Dell Titanium Partner
       description: Achieved Dell Titanium Partner accreditation, one of the highest
         levels of recognition within Dell's partner ecosystem.
@@ -342,21 +342,21 @@ journey:
       description: Contributed to nationwide 5G modernization through the Jio 5G Swap
         Program.
       image: src/assets/untitled-24-june-2026-at-131013.png
-    - year: '2024'
+    - year: "2024"
       title: 5000+ Smart Classrooms
       description: Delivered over 5,000 smart classrooms powered by Samsung hardware
         and HTIS software solutions.
       image: src/assets/2024.png
-    - year: '2024'
+    - year: "2024"
       title: Industry Recognition
       description: Received prestigious recognition from Samsung and Cisco ecosystem
         partners for excellence in project execution and customer success.
       image: src/assets/2024-2.png
-    - year: '2025'
+    - year: "2025"
       title: Environment Health and Safety (EHS) Recognition
-      description: ' Invited for safety show case to Vodafone Inc -Cisco global summit.'
+      description: " Invited for safety show case to Vodafone Inc -Cisco global summit."
       image: src/assets/2025.png
-    - year: '2026'
+    - year: "2026"
       title: WFMS 2.0 AI Launch
       description: Introducing AI-powered automation, analytics, and intelligent
         workforce management capabilities.
@@ -397,10 +397,10 @@ footprint:
   sectionId: footprint
   heading: Global Footprint
   metrics:
-    - value: '8'
+    - value: "8"
       suffix: +
       label: Countries Served
-    - value: '28'
+    - value: "28"
       suffix: +
       label: States & Union Territories Served
     - value: Pan-India
@@ -434,7 +434,7 @@ footprint:
 clients:
   sectionId: clients
   heading: Some of our valuable Clients
-  ctaUrl: '#contact'
+  ctaUrl: "#contact"
   ctaLabel: Contact Us
   logos:
     - image: src/assets/logo-hartron.png
@@ -497,14 +497,16 @@ clients:
       alt: Vodafone Idea
 testimonials:
   sectionId: testimonials
-  heading: Loved by [100+]{color=primary} Clients,<br />backed by [100+]{color=primary} awards and certificates
+  heading: Loved by [100+]{color=primary} Clients,<br />backed by
+    [100+]{color=primary} awards and certificates
   ctaUrl: /awards
   ctaLabel: View awards
   awardsImage: src/assets/edited-photo.png
   awardsImageAlt: Awards and Certificates
   items:
     - quote: “Thanks to Ankush Ji and the entire team for their outstanding efforts.
-        Your dedication and hard work are truly inspiring.” [Know more](/awards)
+        Your dedication and hard work are truly inspiring.” [Know
+        more](/awards?popup=aarohan-award)
       name: Bharat Sharma
       title: HP Para Veterinary Council
     - quote: “The Dashboard/Reports Menu is exceptionally well-designed and visually
@@ -533,7 +535,7 @@ testimonials:
     - quote: “We appreciate the outstanding work delivered during the Ahmedabad PCRF
         Installation and Commissioning Project. The team's professionalism and
         execution were commendable. Keep up the good work!”
-      name: 'Madhuraj Pramod kumar '
+      name: "Madhuraj Pramod kumar "
       title: Vodafone Idea Limited
     - quote: “Outstanding support and seamless integration. The team demonstrated deep
         technical expertise throughout the entire project lifecycle.”
