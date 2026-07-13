@@ -966,7 +966,8 @@ html[data-theme='htis-theme'] .maplibregl-canvas-container.maplibregl-interactiv
 }
 
 .presence-map-marker {
-  position: relative;
+  /* MapLibre positions marker elements with projected absolute transforms. */
+  position: absolute;
   width: 1.125rem;
   height: 1.125rem;
   cursor: pointer;

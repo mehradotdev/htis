@@ -1008,6 +1008,49 @@ content:
                 type: string
                 list: true
                 required: true
+          - name: social
+            label: Latest from our Social
+            type: object
+            fields:
+              - name: enabled
+                label: Enable section
+                type: boolean
+                default: true
+                required: true
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
+              - name: eyebrow
+                type: string
+                required: true
+              - name: heading
+                type: string
+                required: true
+              - name: posts
+                label: Facebook and Instagram posts
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{platform}: {fallbackTitle}'
+                fields:
+                  - name: platform
+                    type: select
+                    options:
+                      values:
+                        - facebook
+                        - instagram
+                    required: true
+                  - name: embedCode
+                    label: Facebook iframe or Instagram embed code
+                    description: Paste the official Facebook iframe or Instagram iframe/blockquote code.
+                    type: text
+                    required: true
+                  - name: fallbackTitle
+                    label: Fallback title
+                    type: text
+                    required: false
 
       - name: awards
         label: Awards

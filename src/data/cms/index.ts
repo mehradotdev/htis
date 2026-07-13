@@ -253,6 +253,17 @@ export interface ArticlePost {
   fallbackTitle: string;
 }
 
+export interface SocialPost {
+  platform: 'facebook' | 'instagram';
+  embedCode: string;
+  src: string;
+  url: string;
+  height: number;
+  width: number;
+  title: string;
+  fallbackTitle: string;
+}
+
 export interface AwardGalleryItem {
   id: number;
   type: 'award' | 'certificate';
@@ -474,6 +485,17 @@ interface AboutYaml {
     title: string;
     description: string;
     items: string[];
+  };
+  social: {
+    enabled: boolean;
+    sectionId?: string;
+    eyebrow: string;
+    heading: string;
+    posts: Array<{
+      platform: 'facebook' | 'instagram';
+      embedCode: string;
+      fallbackTitle?: string;
+    }>;
   };
 }
 
@@ -1044,7 +1066,15 @@ export const home = (() => {
 })();
 
 function getIframeAttribute(embedCode: string, attributeName: string) {
-  const pattern = new RegExp(`${attributeName}\\s*=\\s*["']([^"']+)["']`, 'i');
+  const pattern = new RegExp(
+    `<iframe\\b[^>]*?\\s${attributeName}\\s*=\\s*["']([^"']+)["']`,
+    'i',
+  );
+  return embedCode.match(pattern)?.[1];
+}
+
+function getInstagramPermalink(embedCode: string) {
+  const pattern = /<blockquote\b[^>]*?\sdata-instgrm-permalink\s*=\s*["']([^"']+)["']/i;
   return embedCode.match(pattern)?.[1];
 }
 
@@ -1087,6 +1117,91 @@ function resolveLinkedInEmbed(post: {
   };
 }
 
+function resolveSocialEmbed(post: {
+  platform: 'facebook' | 'instagram';
+  embedCode: string;
+  fallbackTitle?: string;
+}): SocialPost {
+  const iframeSrc = getIframeAttribute(post.embedCode, 'src');
+  const permalink = getInstagramPermalink(post.embedCode);
+  const source = iframeSrc || permalink;
+
+  if (!source) {
+    throw new Error(
+      `About social: ${post.platform} embed code is missing an iframe src or Instagram permalink.`,
+    );
+  }
+
+  const sourceUrl = new URL(source.replace(/&amp;/g, '&'));
+  let embedUrl: URL;
+  let postUrl: URL;
+  let defaultHeight: number;
+
+  if (post.platform === 'facebook') {
+    if (
+      sourceUrl.hostname !== 'www.facebook.com' ||
+      sourceUrl.pathname !== '/plugins/post.php'
+    ) {
+      throw new Error(`About social: unsupported Facebook embed URL "${source}"`);
+    }
+
+    const href = sourceUrl.searchParams.get('href');
+    if (!href) {
+      throw new Error('About social: Facebook embed URL is missing its post href.');
+    }
+
+    embedUrl = sourceUrl;
+    postUrl = new URL(href);
+    defaultHeight = sourceUrl.searchParams.get('show_text') === 'false' ? 498 : 757;
+  } else {
+    if (
+      sourceUrl.hostname !== 'www.instagram.com' ||
+      !/^\/(p|reel)\/[^/]+\//.test(sourceUrl.pathname)
+    ) {
+      throw new Error(`About social: unsupported Instagram embed URL "${source}"`);
+    }
+
+    const postPath = sourceUrl.pathname.replace(/\/(embed(?:\/captioned)?\/?$)/, '/');
+    const captioned =
+      /data-instgrm-captioned/i.test(post.embedCode) ||
+      /\/captioned\/?$/.test(sourceUrl.pathname);
+    postUrl = new URL(postPath, 'https://www.instagram.com');
+    embedUrl = new URL(
+      `${postPath}embed/${captioned ? 'captioned/' : ''}`,
+      postUrl.origin,
+    );
+    defaultHeight = captioned ? 820 : 680;
+  }
+
+  const heightValue = Number(getIframeAttribute(post.embedCode, 'height'));
+  const widthValue = Number(getIframeAttribute(post.embedCode, 'width'));
+  const platformName = post.platform === 'facebook' ? 'Facebook' : 'Instagram';
+
+  return {
+    ...post,
+    src: embedUrl.toString(),
+    url: postUrl.toString(),
+    height:
+      post.platform === 'instagram'
+        ? Number.isFinite(heightValue) && heightValue > 0
+          ? Math.max(heightValue, defaultHeight)
+          : defaultHeight
+        : Number.isFinite(heightValue) && heightValue > 0
+          ? heightValue
+          : defaultHeight,
+    width:
+      Number.isFinite(widthValue) && widthValue > 0
+        ? widthValue
+        : post.platform === 'facebook'
+          ? 500
+          : 540,
+    title: getIframeAttribute(post.embedCode, 'title') || `Embedded ${platformName} post`,
+    fallbackTitle:
+      post.fallbackTitle?.trim() ||
+      `View this update from HTIS Telecom on ${platformName}.`,
+  };
+}
+
 export const about = (() => {
   const data = aboutYaml as AboutYaml;
 
@@ -1119,6 +1234,10 @@ export const about = (() => {
     principles: {
       ...data.principles,
       image: getCmsAsset(data.principles.image),
+    },
+    social: {
+      ...data.social,
+      posts: data.social.posts.map(resolveSocialEmbed),
     },
   };
 })();

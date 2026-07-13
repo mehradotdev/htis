@@ -190,3 +190,29 @@ principles:
     - Innovation with Practical Impact
     - Collaboration That Drives Results
     - Commitment to Long-Term Growth
+social:
+  enabled: true
+  sectionId: latest-social
+  eyebrow: Social Updates
+  heading: Latest from our [Social]{color=primary}
+  posts:
+    - platform: facebook
+      embedCode: >-
+        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fhtistelecomindia%2Fposts%2Fpfbid02M1g2gzWy1S14txBiGFrUoF3McS1W6qxbTWJQDKeqsgpjLxoTHDs7CeJPzDyuYxQl&amp;show_text=true&amp;width=500" width="500" height="757" title="HTIS Telecom Facebook post"></iframe>
+      fallbackTitle: View our latest update on Facebook.
+    - platform: facebook
+      embedCode: >-
+        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fhtistelecomindia%2Fposts%2Fpfbid0xTbstPxdDjNBmnQZbSMXkjBT5baEyaD4wNA5ZaN7xaMqWGAKVHPbdoVn4eZx61GVl&amp;show_text=false&amp;width=500" width="500" height="498" title="HTIS Telecom Facebook post"></iframe>
+      fallbackTitle: View this post from HTIS Telecom on Facebook.
+    - platform: instagram
+      embedCode: >-
+        <iframe src="https://www.instagram.com/p/DZpt1A7gRdn/embed/captioned/" width="540" height="820" title="HTIS Telecom Instagram post"></iframe>
+      fallbackTitle: View this post from HTIS Telecom on Instagram.
+    - platform: instagram
+      embedCode: >-
+        <iframe src="https://www.instagram.com/p/DYraOxbgSTc/embed/captioned/" width="540" height="820" title="HTIS Telecom Instagram post"></iframe>
+      fallbackTitle: View this post from HTIS Telecom on Instagram.
+    - platform: instagram
+      embedCode: >-
+        <iframe src="https://www.instagram.com/p/DYZ1ieZlIku/embed/" width="540" height="680" title="HTIS Telecom Instagram post"></iframe>
+      fallbackTitle: View this post from HTIS Telecom on Instagram.
