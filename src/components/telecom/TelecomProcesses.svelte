@@ -1,5 +1,6 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
 
   interface TelecomProcessStep {
     name: string;
@@ -15,9 +16,11 @@
   }
 
   let {
+    sectionId,
     heading = 'Telecom Processes —\nBlueprint to Reality.',
     processes = [],
   }: {
+    sectionId?: string;
     heading?: string;
     processes?: TelecomProcess[];
   } = $props();
@@ -27,49 +30,72 @@
   let navElement = $state<HTMLElement | null>(null);
   let lastCircle = $state<HTMLDivElement | null>(null);
   let trackBottomOffset = $state(22);
+  let progressTransitionDuration = $state(0);
 
   const AUTOPLAY_INTERVAL = 5000;
+  let autoplayTimeout: ReturnType<typeof setTimeout> | undefined;
+  let progressFrame: number | undefined;
+  let autoplayStartedAt = 0;
+  let autoplayRemaining = AUTOPLAY_INTERVAL;
+  let isAutoplayPaused = false;
+
+  const stopAutoplay = () => {
+    if (autoplayTimeout) clearTimeout(autoplayTimeout);
+    if (progressFrame) cancelAnimationFrame(progressFrame);
+    autoplayTimeout = undefined;
+    progressFrame = undefined;
+  };
+
+  const startAutoplay = () => {
+    if (processes.length === 0) return;
+
+    autoplayStartedAt = performance.now();
+    progressTransitionDuration = autoplayRemaining;
+    progressFrame = requestAnimationFrame(() => {
+      progressWidth = 100;
+    });
+
+    autoplayTimeout = setTimeout(() => {
+      activeIndex = (activeIndex + 1) % processes.length;
+    }, autoplayRemaining);
+  };
+
+  const pauseAutoplay = () => {
+    if (isAutoplayPaused) return;
+    isAutoplayPaused = true;
+    if (!autoplayTimeout) return;
+
+    autoplayRemaining = Math.max(
+      0,
+      autoplayRemaining - (performance.now() - autoplayStartedAt),
+    );
+    stopAutoplay();
+    progressTransitionDuration = 0;
+    progressWidth = 100 * (1 - autoplayRemaining / AUTOPLAY_INTERVAL);
+  };
+
+  const resumeAutoplay = () => {
+    if (!isAutoplayPaused) return;
+    isAutoplayPaused = false;
+    if (autoplayTimeout || autoplayRemaining <= 0) return;
+    startAutoplay();
+  };
 
   /**
-   * Autoplay timer: Automatically transitions to the next step
-   * every 5 seconds. Re-runs and resets whenever `activeIndex` changes,
-   * ensuring manual clicks reset the timer duration.
+   * Autoplay timer: Automatically transitions to the next step every 5 seconds.
+   * Re-runs and resets whenever `activeIndex` changes, while the hover handlers
+   * pause and resume both the timeout and its visible progress indicator.
    */
   $effect(() => {
     activeIndex; // dependency to trigger reset
 
-    const intervalId = setInterval(() => {
-      if (processes.length === 0) return;
-      activeIndex = (activeIndex + 1) % processes.length;
-    }, AUTOPLAY_INTERVAL);
-
-    return () => clearInterval(intervalId);
-  });
-
-  /**
-   * Astro View Transitions Compatibility & Progress Bar Animation:
-   *
-   * Astro's soft page transitions (ClientRouter) strip dynamically loaded
-   * utility classes and keyframe animations from the <head> when navigating
-   * away, and they are not re-injected on returning.
-   *
-   * To prevent styling and animation breakage:
-   * 1. Positioning and track layout styles are set inline on DOM nodes.
-   * 2. The active step progress bar animation is triggered programmatically
-   *    via a CSS transition on the `width` property rather than stylesheet keyframes.
-   *
-   * This effect resets the width to 0% when the active step changes, then
-   * schedules a state update to 100% on the next paint cycle to start the transition.
-   */
-  $effect(() => {
-    activeIndex; // dependency on activeIndex to reset animation on active step change
+    stopAutoplay();
+    autoplayRemaining = AUTOPLAY_INTERVAL;
+    progressTransitionDuration = 0;
     progressWidth = 0;
+    if (!isAutoplayPaused) startAutoplay();
 
-    const timerId = setTimeout(() => {
-      progressWidth = 100;
-    }, 20);
-
-    return () => clearTimeout(timerId);
+    return stopAutoplay;
   });
 
   /**
@@ -103,14 +129,14 @@
   });
 </script>
 
-<section class="relative bg-base-100 pb-24 pt-24 md:pb-32 md:pt-32">
+<section id={sectionId} class="relative bg-base-100 pb-24 pt-24 md:pb-32 md:pt-32">
   <div class="container mx-auto px-6">
     <!-- Main Heading -->
-    <h2
-      class="mb-10 text-center text-4xl leading-tight font-medium tracking-tight text-base-content md:mb-16 md:text-5xl max-w-5xl mx-auto"
-    >
-      {@html heading.replace(/\n/g, '<br class="md:hidden" />')}
-    </h2>
+    <CmsRichTextSvelte
+      value={heading.replace(/\n/g, '<br class="md:hidden" />')}
+      tag="h2"
+      className="mb-10 text-center text-4xl leading-tight font-medium tracking-tight text-base-content md:mb-16 md:text-5xl lg:mb-7 max-w-5xl mx-auto"
+    />
 
     <!-- Two Column Layout -->
     {#if processes.length > 0}
@@ -119,6 +145,8 @@
         <div class="w-full lg:w-[336px] shrink-0">
           <nav
             bind:this={navElement}
+            onmouseenter={pauseAutoplay}
+            onmouseleave={resumeAutoplay}
             class="relative flex flex-row lg:flex-col justify-between gap-4 lg:gap-0 lg:h-full"
             aria-label="Process steps"
           >
@@ -188,9 +216,10 @@
                     ? 'bg-primary/10 border-primary text-primary font-semibold shadow-sm'
                     : 'bg-base-100 border-base-content/10 text-base-content/75 hover:bg-base-200/50 hover:border-base-content/20'}"
                 >
-                  <span class="text-[0.94rem] leading-snug">
-                    {process.title}
-                  </span>
+                  <CmsRichTextSvelte
+                    value={process.title}
+                    className="text-[0.94rem] leading-snug"
+                  />
 
                   <!-- Autoplay progress bar on active step -->
                   {#if activeIndex === i}
@@ -204,9 +233,7 @@
                         background-color: var(--color-primary);
                         opacity: 0.4;
                         width: {progressWidth}%;
-                        transition: width {progressWidth === 0
-                          ? '0ms'
-                          : `${AUTOPLAY_INTERVAL}ms`} linear;
+                        transition: width {progressTransitionDuration}ms linear;
                       "
                       ></div>
                     </div>
@@ -219,6 +246,10 @@
 
         <!-- Right: Content Panel -->
         <div
+          onmouseenter={pauseAutoplay}
+          onmouseleave={resumeAutoplay}
+          role="region"
+          aria-label="Active process details"
           class="w-full lg:flex-1 bg-base-200/40 rounded-3xl p-6 md:p-8 lg:p-10 border border-base-content/5 shadow-sm"
         >
           {#key activeIndex}
@@ -230,19 +261,19 @@
                 >
                   {processes[activeIndex].id}
                 </span>
-                <h3
-                  class="text-xl md:text-2xl xl:text-[1.7rem] font-medium text-base-content leading-snug"
-                >
-                  {processes[activeIndex].title}
-                </h3>
+                <CmsRichTextSvelte
+                  value={processes[activeIndex].title}
+                  tag="h3"
+                  className="text-xl md:text-2xl xl:text-[1.7rem] font-medium text-base-content leading-snug"
+                />
               </div>
 
               <!-- Description -->
-              <p
-                class="text-base text-base-content font-light mb-6 lg:mb-8 text-center max-w-xl mx-auto leading-relaxed"
-              >
-                {processes[activeIndex].description}
-              </p>
+              <CmsRichTextSvelte
+                value={processes[activeIndex].description}
+                tag="p"
+                className="text-base text-base-content font-light mb-6 lg:mb-8 text-center max-w-xl mx-auto leading-relaxed"
+              />
 
               <!-- Process Image (Mobile only: positioned between description and details) -->
               <div
@@ -265,16 +296,15 @@
                   <ul class="flex flex-col gap-4">
                     {#each processes[activeIndex].details as detail}
                       <li class="flex flex-col gap-0.5">
-                        <strong
-                          class="text-base font-semibold tracking-wide text-base-content/90"
-                        >
-                          {detail.name}
-                        </strong>
-                        <span
-                          class="text-base font-light leading-relaxed text-base-content"
-                        >
-                          {detail.desc}
-                        </span>
+                        <CmsRichTextSvelte
+                          value={detail.name}
+                          tag="strong"
+                          className="text-base font-semibold tracking-wide text-base-content/90"
+                        />
+                        <CmsRichTextSvelte
+                          value={detail.desc}
+                          className="text-base font-light leading-relaxed text-base-content"
+                        />
                       </li>
                     {/each}
                   </ul>

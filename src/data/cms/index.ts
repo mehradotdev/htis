@@ -553,6 +553,7 @@ interface IndustryPageYaml {
 }
 
 interface PageHeroYaml {
+  sectionId?: string;
   backgroundImage: string;
   foregroundImage?: string;
   title: string;
@@ -725,6 +726,7 @@ interface TelecomYaml {
   title: string;
   hero: PageHeroYaml;
   capabilities: {
+    sectionId?: string;
     backgroundImage: string;
     heading: string;
     description: string;
@@ -740,16 +742,18 @@ interface TelecomYaml {
     }>;
   };
   processes: {
+    sectionId?: string;
     heading: string;
     items: TelecomProcessYaml[];
   };
   deployments: {
+    sectionId?: string;
     heading: string;
     description: string;
     href?: string;
     items: TelecomDeploymentYaml[];
   };
-  execution: ExecutionYaml;
+  execution: ExecutionYaml & { sectionId?: string };
 }
 
 interface SystemIntegrationYaml {

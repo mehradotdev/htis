@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
 
   interface TelecomMetric {
     target: number;
@@ -120,21 +121,28 @@
   {#each metrics as metric, i}
     <div class="flex flex-col gap-2">
       <span class="text-5xl md:text-6xl font-bold text-primary"
-        >{currentValues[i]}{metric.unit}<span
+        >{currentValues[i]}<CmsRichTextSvelte value={metric.unit} /><span
           class={metric.suffix === '/4'
             ? 'text-4xl md:text-5xl font-light text-primary/60'
-            : 'text-4xl md:text-5xl font-light'}>{metric.suffix}</span
+            : 'text-4xl md:text-5xl font-light'}><CmsRichTextSvelte value={metric.suffix} /></span
         ></span
       >
       {#if metric.subLabel}
         <div class="flex flex-col">
-          <span class="font-medium text-base-content/70">{metric.label}</span>
-          <span class="mt-1 text-xs leading-relaxed text-base-content">
-            {metric.subLabel}
-          </span>
+          <CmsRichTextSvelte
+            value={metric.label}
+            className="font-medium text-base-content/70"
+          />
+          <CmsRichTextSvelte
+            value={metric.subLabel}
+            className="mt-1 text-xs leading-relaxed text-base-content"
+          />
         </div>
       {:else}
-        <span class="font-medium text-base-content/70">{metric.label}</span>
+        <CmsRichTextSvelte
+          value={metric.label}
+          className="font-medium text-base-content/70"
+        />
       {/if}
     </div>
   {/each}

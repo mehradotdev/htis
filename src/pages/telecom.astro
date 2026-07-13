@@ -4,6 +4,7 @@ import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import Contact from '~/components/Contact.astro';
+import CmsRichText from '~/components/CmsRichText.astro';
 import TelecomCapabilities from '~/components/telecom/TelecomCapabilities.svelte';
 import TelecomExtraSections from '~/components/telecom/TelecomExtraSections.astro';
 
@@ -15,7 +16,10 @@ import { telecom } from '~/data/cms';
     <Navbar />
 
     <!-- Hero Section -->
-    <section class="relative flex min-h-[70vh] items-center pt-24 pb-12">
+    <section
+      id={telecom.hero.sectionId}
+      class="relative flex min-h-[70vh] items-center pt-24 pb-12"
+    >
       <!-- Background Image -->
       <div class="absolute inset-0 z-0">
         <Image
@@ -42,26 +46,31 @@ import { telecom } from '~/data/cms';
         <div
           class="mx-auto flex max-w-2xl flex-col items-center text-center md:mx-0 md:items-start md:text-left"
         >
-          <h1
-            class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-6xl"
-          >
-            {telecom.hero.title}
-          </h1>
-          <p class="mb-10 text-lg text-base-content/80 md:text-xl">
-            {telecom.hero.subtitle}
-          </p>
+          <CmsRichText
+            value={telecom.hero.title}
+            tag="h1"
+            className="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-6xl"
+          />
+          <CmsRichText
+            value={telecom.hero.subtitle}
+            tag="p"
+            className="mb-10 text-lg text-base-content/80 md:text-xl"
+          />
           <a
             href={telecom.hero.ctaUrl}
             class="btn rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
           >
-            {telecom.hero.ctaLabel}
+            <CmsRichText value={telecom.hero.ctaLabel} />
           </a>
         </div>
       </div>
     </section>
 
     <!-- Capabilities Section -->
-    <section class="relative overflow-hidden bg-base-100 py-24">
+    <section
+      id={telecom.capabilities.sectionId}
+      class="relative overflow-hidden bg-base-100 py-24"
+    >
       <!-- Background Image -->
       <div
         class="pointer-events-none absolute inset-0 z-0 opacity-40 mix-blend-luminosity dark:mix-blend-overlay"
@@ -80,13 +89,17 @@ import { telecom } from '~/data/cms';
       </div>
 
       <div class="relative z-10 container mx-auto px-6">
-        <div class="mx-auto mb-10 max-w-3xl text-center">
-          <h2 class="mb-6 text-4xl font-bold text-base-content md:text-5xl">
-            {telecom.capabilities.heading}
-          </h2>
-          <p class="text-lg text-base-content/70">
-            {telecom.capabilities.description}
-          </p>
+        <div class="mx-auto mb-10 max-w-3xl text-center lg:mb-5">
+          <CmsRichText
+            value={telecom.capabilities.heading}
+            tag="h2"
+            className="mb-6 text-4xl font-bold text-base-content md:text-5xl"
+          />
+          <CmsRichText
+            value={telecom.capabilities.description}
+            tag="p"
+            className="text-lg text-base-content/70"
+          />
         </div>
 
         <TelecomCapabilities capabilities={telecom.capabilities.items} client:visible />

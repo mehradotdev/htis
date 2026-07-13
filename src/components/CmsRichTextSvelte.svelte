@@ -1,7 +1,7 @@
 <script lang="ts">
   import { renderCmsInlineMarkdown } from '~/utils/cmsMarkdown';
 
-  type CmsRichTextTag = 'div' | 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'strong';
+  type CmsRichTextTag = 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'strong';
 
   let {
     value,

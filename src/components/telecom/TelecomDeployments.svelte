@@ -1,5 +1,6 @@
 <script lang="ts">
   import { ArrowUpRight, ArrowRight } from '@lucide/svelte';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
 
   interface Deployment {
     title: string;
@@ -9,11 +10,13 @@
   }
 
   let {
+    sectionId,
     heading = 'Proven Network Deployments',
     description = '',
     href,
     deployments = [],
   }: {
+    sectionId?: string;
     heading?: string;
     description?: string;
     href?: string;
@@ -28,7 +31,11 @@
   /** Whether transition is animating (prevent rapid pagination clicks) */
   let isAnimating = $state(false);
 
+  /** Pause autoplay while the pointer is over the cards */
+  let isAutoplayPaused = $state(false);
+
   /** Card dimensions */
+  const AUTOPLAY_INTERVAL = 5000;
   const CARD_W = 280; // px base card width
   const GAP = 24; // px gap between cards
   const SCALE_ACTIVE = 1.08;
@@ -109,15 +116,33 @@
     swipeStartX = null;
     swipeStartY = null;
   }
+
+  /**
+   * Advance deployments in a continuous loop. Reading `activeIndex` resets the
+   * full delay after autoplay or any manual card/dot/swipe navigation.
+   */
+  $effect(() => {
+    activeIndex;
+
+    if (count <= 1 || isAutoplayPaused) return;
+
+    const autoplayTimeout = setTimeout(next, AUTOPLAY_INTERVAL);
+    return () => clearTimeout(autoplayTimeout);
+  });
 </script>
 
-<section class="relative bg-base-100 py-24 overflow-hidden">
+<section
+  id={sectionId}
+  class="relative overflow-hidden bg-base-100 pt-0 pb-24 md:py-24"
+>
   <div class="container mx-auto px-6">
     <div class="mb-10">
       <div class="flex items-center justify-between gap-4 {description ? 'mb-6' : ''}">
-        <h2 class="text-4xl font-bold tracking-tight text-base-content md:text-5xl">
-          {heading}
-        </h2>
+        <CmsRichTextSvelte
+          value={heading}
+          tag="h2"
+          className="text-4xl font-bold tracking-tight text-base-content md:text-5xl"
+        />
 
         {#if href}
           <div class="flex shrink-0 items-center pl-4 md:pl-0">
@@ -133,9 +158,11 @@
       </div>
 
       {#if description}
-        <p class="text-lg text-base-content/70 md:text-xl max-w-3xl">
-          {description}
-        </p>
+        <CmsRichTextSvelte
+          value={description}
+          tag="p"
+          className="text-lg text-base-content/70 md:text-xl max-w-3xl"
+        />
       {/if}
     </div>
 
@@ -149,6 +176,8 @@
         onpointerdown={handleSwipeStart}
         onpointerup={handleSwipeEnd}
         onpointercancel={cancelSwipe}
+        onmouseenter={() => (isAutoplayPaused = true)}
+        onmouseleave={() => (isAutoplayPaused = false)}
       >
         {#each slots as slot (slot.index)}
           {@const isActive = slot.offset === 0}
@@ -176,18 +205,22 @@
               : 'border-base-content/10 bg-base-100/50 hover:border-base-content/20 h-[300px]'}"
               aria-label="Select {project.title} deployment"
             >
-              <h3 class="text-xl font-medium tracking-tight md:text-2xl">
-                {project.title}
-              </h3>
-              <p class="max-w-[200px] flex-1 text-base leading-relaxed text-base-content/70">
-                {project.description}
-              </p>
+              <CmsRichTextSvelte
+                value={project.title}
+                tag="h3"
+                className="text-xl font-medium tracking-tight md:text-2xl"
+              />
+              <CmsRichTextSvelte
+                value={project.description}
+                tag="p"
+                className="max-w-[200px] flex-1 text-base leading-relaxed text-base-content/70"
+              />
               <div class="mt-auto flex max-w-[220px] flex-wrap gap-2">
                 {#each project.badges as badge}
                   <span
                     class="px-2.5 py-1 text-[10px] font-semibold tracking-tight text-secondary bg-secondary/10 border border-secondary/20 dark:text-base-content dark:bg-primary/15 dark:border-primary/25 rounded-md uppercase transition-colors hover:bg-secondary/20 dark:hover:bg-primary/25"
                   >
-                    {badge}
+                    <CmsRichTextSvelte value={badge} />
                   </span>
                 {/each}
               </div>

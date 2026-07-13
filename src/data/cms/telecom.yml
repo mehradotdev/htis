@@ -1,5 +1,6 @@
 title: Telecom - HTIS
 hero:
+  sectionId: telecom-hero
   backgroundImage: src/assets/lob-telecom-hero-bg.png
   title: Connecting the next billion-intelligent Network for tomorrow
   subtitle: Seamlessly integrating turnkey physical infrastructure and cognitive
@@ -7,6 +8,7 @@ hero:
   ctaLabel: Contact Us
   ctaUrl: /#contact
 capabilities:
+  sectionId: telecom-capabilities
   backgroundImage: src/assets/team-member-bg.png
   heading: Our Capabilities
   description: A structured approach to deploying, optimizing, and supporting
@@ -168,6 +170,7 @@ capabilities:
         - title: SLA-Driven Service Delivery
           desc: Guaranteed response and resolution times for mission-critical services.
 processes:
+  sectionId: telecom-processes
   heading: |-
     Telecom Processes -
     Blueprint to Reality.
@@ -268,6 +271,7 @@ processes:
           desc: Continuous tuning of RF parameters and software patches to maintain peak
             performance.
 deployments:
+  sectionId: telecom-deployments
   heading: Proven Network Deployments
   description: Explore how we design, deploy, and transform networks across
     hundreds of sites and thousands of devices.
@@ -310,6 +314,7 @@ deployments:
       badges:
         - Partnered with Cisco
 execution:
+  sectionId: telecom-execution
   heading: |-
     Built to Execute.
     Scaled to Deliver.
@@ -345,7 +350,7 @@ execution:
         backbone for modern Telcos, ranging from Tier III/IV Data Center
         engineering and virtualization to software-defined networking (SDN) and
         high-density compute environments.
-      url: "#"
+      url: '#'
     - iconName: Users
       title: Specialized Technical Resourcing & Deployment
       description: Scalable L1-L6 talent solutions engineered for complex,
@@ -353,7 +358,7 @@ execution:
         deploying a domain-expert workforce. From high-niche technical
         architects (L6) to scalable field engineering units (L1), we provide the
         human capital required for operational excellence.
-      url: "#"
+      url: '#'
     - iconName: Code
       title: Enterprise Software Engineering & On-Demand Solutions
       description: Bespoke digital assets and SaaS platforms tailored for government
@@ -361,4 +366,4 @@ execution:
         Specializing in on-demand software development, we deliver secure,
         high-compliance digital assets-including our proprietary ERP
         systems-designed for the most demanding regulatory environments.
-      url: "#"
+      url: '#'

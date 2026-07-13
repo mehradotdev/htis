@@ -16,10 +16,10 @@
   ];
 
   let {
-    headingHtml = 'Built to Execute.<br />Scaled to Deliver.',
+    heading = 'Built to Execute. Scaled to Deliver.',
     metrics = defaultMetrics,
   }: {
-    headingHtml?: string;
+    heading?: string;
     metrics?: ResourcingMetric[];
   } = $props();
 
@@ -82,7 +82,7 @@
 <div bind:this={sectionRef} class="pt-0 pb-16">
   <div class="mb-12">
     <h2 class="text-4xl leading-tight font-bold text-base-content md:text-5xl">
-      {@html headingHtml}
+      {heading}
     </h2>
   </div>
 
