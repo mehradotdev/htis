@@ -248,6 +248,10 @@ content:
         operations:
           delete: false
         fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
           - name: postUrl
             label: POST API call URL
             type: string
@@ -423,6 +427,10 @@ content:
           - name: hero
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -468,6 +476,10 @@ content:
           - name: services
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: headingHtml
                 label: Heading HTML
                 type: string
@@ -532,10 +544,12 @@ content:
           - name: journey
             type: object
             fields:
-              - name: titlePrefix
+              - name: sectionId
+                label: Section ID
                 type: string
-                required: true
-              - name: titleHighlight
+                required: false
+              - name: title
+                label: Title
                 type: string
                 required: true
               - name: subtitle
@@ -563,6 +577,10 @@ content:
           - name: team
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 type: image
                 required: true
@@ -606,6 +624,10 @@ content:
           - name: footprint
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: string
                 required: true
@@ -652,6 +674,10 @@ content:
           - name: clients
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: string
                 required: true
@@ -680,24 +706,12 @@ content:
           - name: testimonials
             type: object
             fields:
-              - name: headingPrefix
-                label: Heading prefix
+              - name: sectionId
+                label: Section ID
                 type: string
-                required: true
-              - name: clientsHighlight
-                label: Clients highlight
-                type: string
-                required: true
-              - name: headingMiddle
-                label: Heading middle
-                type: string
-                required: true
-              - name: awardsHighlight
-                label: Awards highlight
-                type: string
-                required: true
-              - name: headingSuffix
-                label: Heading suffix
+                required: false
+              - name: heading
+                label: Heading
                 type: string
                 required: true
               - name: ctaUrl
@@ -736,6 +750,10 @@ content:
           - name: articles
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: eyebrow
                 type: string
                 required: true

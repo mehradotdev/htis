@@ -2,13 +2,20 @@
 import { Image } from 'astro:assets';
 import LightRays from './LightRays.astro';
 import CmsRichText from './CmsRichText.astro';
+import MarqueePause from './MarqueePause.astro';
 import { home } from '~/data/cms';
 
+interface Props {
+  sectionId?: string;
+}
+
+const { sectionId } = Astro.props;
 const { hero } = home;
 ---
 
 <section
-  class="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden pt-20 sm:pt-28 pb-10"
+  id={sectionId}
+  class="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden pt-20 pb-10 sm:pt-28"
 >
   <!-- Background Image with Overlay -->
   <div class="pointer-events-none absolute inset-0 z-0 bg-base-100">
@@ -52,7 +59,7 @@ const { hero } = home;
   </div>
 
   <div
-    class="relative z-10 mx-auto mt-8 sm:mt-20 flex w-full max-w-5xl flex-col items-center px-4 text-center"
+    class="relative z-10 mx-auto mt-8 flex w-full max-w-5xl flex-col items-center px-4 text-center sm:mt-20"
   >
     <h1
       class="mb-6 text-4xl leading-[1.1] font-bold tracking-tight text-base-content sm:text-5xl md:text-6xl lg:text-[4.5rem]"
@@ -90,7 +97,7 @@ const { hero } = home;
     </a>
   </div>
 
-  <div class="relative z-10 mt-auto pt-24 w-full max-w-full">
+  <div class="relative z-10 mt-auto w-full max-w-full pt-24">
     <p
       class="relative mb-3 text-center text-base font-semibold text-base-content/60 md:text-lg"
     >
@@ -102,7 +109,7 @@ const { hero } = home;
       class="relative w-full overflow-hidden py-6 dark:bg-linear-to-b dark:from-transparent dark:via-secondary/50 dark:to-transparent"
     >
       <!-- Marquee Wrapper with Fade -->
-      <div
+      <MarqueePause
         class="relative flex w-full mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
       >
         <!--
@@ -112,7 +119,8 @@ const { hero } = home;
       -->
         <div
           id="partner-marquee"
-          class="group flex w-max opacity-70 dark:opacity-100 transition-opacity duration-500 hover:opacity-100"
+          data-marquee-track
+          class="group flex w-max opacity-70 transition-opacity duration-500 hover:opacity-100 dark:opacity-100"
         >
           {
             [0, 1].map((i) => (
@@ -132,7 +140,7 @@ const { hero } = home;
             ))
           }
         </div>
-      </div>
+      </MarqueePause>
     </div>
   </div>
 </section>
@@ -197,23 +205,6 @@ const { hero } = home;
     marqueeAnimation = wrapper.animate(
       [{ transform: 'translateX(0)' }, { transform: `translateX(-${halfWidth}px)` }],
       { duration, iterations: Infinity, easing: 'linear' },
-    );
-
-    // Smooth hover slow-down on the single animation
-    wrapper.addEventListener(
-      'mouseenter',
-      () => {
-        if (marqueeAnimation) marqueeAnimation.playbackRate = 0.35;
-      },
-      { signal: ac.signal },
-    );
-
-    wrapper.addEventListener(
-      'mouseleave',
-      () => {
-        if (marqueeAnimation) marqueeAnimation.playbackRate = 1.0;
-      },
-      { signal: ac.signal },
     );
   }
 

@@ -3,17 +3,17 @@
   import type { Milestone } from '~/data/cms';
 
   interface Props {
+    sectionId?: string;
     /** List of chronological milestones to display in the journey */
     milestones: Milestone[];
-    titlePrefix?: string;
-    titleHighlight?: string;
+    title?: string;
     subtitle?: string;
   }
 
   let {
+    sectionId,
     milestones,
-    titlePrefix = 'Our',
-    titleHighlight = 'Journey',
+    title = 'Our [Journey]{color=primary}',
     subtitle = 'A timeline of innovation, milestones, and achievements that shaped our path forward.',
   }: Props = $props();
 
@@ -27,12 +27,15 @@
   // -- State --
   let activeIndex = $state(0);
   let rotationIndex = $state(0);
+  let isAutoplayPaused = $state(false);
   let timelineContainer: HTMLElement | undefined = $state();
 
   // -- Effects --
   // Automatically advance to the next slide.
   $effect(() => {
     activeIndex;
+    if (isAutoplayPaused || milestones.length < 2) return;
+
     const intervalId = setInterval(nextSlide, AUTOPLAY_INTERVAL_MS);
     return () => clearInterval(intervalId);
   });
@@ -81,13 +84,13 @@
 
 <section
   class="relative w-full overflow-hidden bg-base-100 px-4 py-12 md:py-16 transition-colors duration-500"
-  id="journey-section"
+  id={sectionId}
 >
   <div class="relative z-10 mx-auto flex max-w-6xl flex-col items-center">
     <!-- Title Area -->
-    <div class="mb-8 text-center md:mb-12">
+    <div class="mb-8 text-center md:mb-14">
       <h2 class="text-5xl font-extrabold tracking-tight text-base-content md:text-7xl">
-        <CmsRichTextSvelte value={titlePrefix} /> <CmsRichTextSvelte value={titleHighlight} className="text-primary" />
+        <CmsRichTextSvelte value={title} />
       </h2>
       <p
         class="mx-auto mt-4 max-w-2xl text-base font-medium text-base-content/80 md:text-xl"
@@ -98,8 +101,12 @@
 
     <!-- 3D Film Strip Carousel -->
     <div
-      class="carousel-container relative mt-4 w-full"
+      class="carousel-container relative mt-4 md:mt-2 w-full"
       style="--theta: {thetaVal}deg; --r-mult: {rMultiplier};"
+      role="group"
+      aria-label="Journey filmstrip carousel"
+      onmouseenter={() => (isAutoplayPaused = true)}
+      onmouseleave={() => (isAutoplayPaused = false)}
     >
       <!-- Glow behind the center active item -->
       <div class="glow-effect"></div>
@@ -148,18 +155,18 @@
 
     <!-- Active Milestone Info -->
     <div
-      class="mt-8 flex h-[140px] flex-col items-center justify-end text-center md:mt-8"
+      class="mt-8 flex h-[140px] flex-col items-center justify-end text-center md:mt-4 md:h-[110px]"
     >
       {#key activeIndex}
         <div class="animate-fade-in-up flex flex-col items-center px-4">
           <h2 class="text-4xl font-extrabold text-primary md:text-5xl">
             <CmsRichTextSvelte value={milestones[activeIndex].year} />
           </h2>
-          <h3 class="mt-2 text-xl font-bold text-base-content md:text-2xl">
+          <h3 class="mt-2 text-xl font-bold text-base-content md:mt-1 md:text-2xl">
             <CmsRichTextSvelte value={milestones[activeIndex].title} />
           </h3>
           <p
-            class="mx-auto mt-3 max-w-xl text-sm font-medium leading-relaxed text-base-content/80 md:text-base"
+            class="mx-auto mt-3 max-w-xl text-sm font-medium leading-relaxed text-base-content/80 md:mt-2 md:text-base"
           >
             <CmsRichTextSvelte value={milestones[activeIndex].description} />
           </p>
@@ -167,12 +174,18 @@
       {/key}
 
       <!-- Vertical Connecting Line to Timeline -->
-      <div class="mt-6 h-10 w-[2px] rounded-full bg-primary/40 md:mt-8"></div>
+      <div class="mt-6 h-10 w-[2px] rounded-full bg-primary/40 md:mt-4 md:h-5"></div>
     </div>
 
     <!-- Timeline Navigation -->
-    <div class="relative mt-2 w-full max-w-4xl px-2 md:px-4">
-      <div class="no-scrollbar overflow-x-auto pb-4 pt-2" bind:this={timelineContainer}>
+    <div
+      class="relative mt-2 md:mt-0 w-full max-w-4xl px-2 md:px-4"
+      role="group"
+      aria-label="Journey timeline navigation"
+      onmouseenter={() => (isAutoplayPaused = true)}
+      onmouseleave={() => (isAutoplayPaused = false)}
+    >
+      <div class="no-scrollbar overflow-x-auto pb-0 pt-0" bind:this={timelineContainer}>
         <div class="relative flex w-max min-w-full items-start justify-between">
           <!-- Horizontal Connecting Line -->
           <div
@@ -213,7 +226,7 @@
                   <CmsRichTextSvelte value={milestone.year} />
                 </div>
                 <div
-                  class="mt-0.5 hidden text-[10px] font-bold text-base-content/70 md:block md:text-xs"
+                  class="mt-0.5 hidden text-[10px] font-bold text-base-content/70 md:line-clamp-2 md:text-xs"
                 >
                   <CmsRichTextSvelte value={milestone.title} />
                 </div>

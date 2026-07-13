@@ -4,15 +4,17 @@ import type { ImageMetadata } from 'astro';
 import { ArrowRight } from '@lucide/astro';
 import type { ClientLogo } from '~/data/cms';
 import CmsRichText from './CmsRichText.astro';
+import MarqueePause from './MarqueePause.astro';
 
 interface Props {
+  sectionId?: string;
   heading: string;
   ctaUrl: string;
   ctaLabel: string;
   logos: ClientLogo[];
 }
 
-const { heading, ctaUrl, ctaLabel, logos } = Astro.props;
+const { sectionId, heading, ctaUrl, ctaLabel, logos } = Astro.props;
 const reversedLogos = [...logos].reverse();
 
 // Helper to calculate elegant dynamic card width based on aspect ratio
@@ -24,7 +26,7 @@ function getCardWidth(img: ImageMetadata) {
 }
 ---
 
-<section class="relative mx-auto max-w-6xl overflow-hidden px-4 pb-24">
+<section id={sectionId} class="relative mx-auto max-w-6xl overflow-hidden px-4 pb-24">
   <div class="mb-10 flex items-center justify-between">
     <h2 class="text-3xl font-bold text-base-content md:text-5xl">
       <CmsRichText value={heading} />
@@ -41,7 +43,8 @@ function getCardWidth(img: ImageMetadata) {
   </div>
 
   <!-- Marquee Wrapper with Fade -->
-  <div
+  <MarqueePause
+    data-clients-marquee
     class="flex w-full flex-col gap-4 mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
   >
     <!-- Row 1: Right to Left (order 1...30) -->
@@ -49,6 +52,7 @@ function getCardWidth(img: ImageMetadata) {
       class="marquee-group group flex w-max transition-opacity duration-500 hover:opacity-100"
     >
       <div
+        data-marquee-track
         class="marquee-track flex shrink-0 items-center gap-4 pr-4"
         data-direction="left"
       >
@@ -69,6 +73,7 @@ function getCardWidth(img: ImageMetadata) {
       </div>
       <!-- Duplicate list for seamless infinite scroll -->
       <div
+        data-marquee-track
         class="marquee-track flex shrink-0 items-center gap-4 pr-4"
         data-direction="left"
         aria-hidden="true"
@@ -95,6 +100,7 @@ function getCardWidth(img: ImageMetadata) {
       class="marquee-group group flex w-max transition-opacity duration-500 hover:opacity-100"
     >
       <div
+        data-marquee-track
         class="marquee-track flex shrink-0 items-center gap-4 pr-4"
         data-direction="right"
       >
@@ -115,6 +121,7 @@ function getCardWidth(img: ImageMetadata) {
       </div>
       <!-- Duplicate list for seamless infinite scroll -->
       <div
+        data-marquee-track
         class="marquee-track flex shrink-0 items-center gap-4 pr-4"
         data-direction="right"
         aria-hidden="true"
@@ -135,65 +142,54 @@ function getCardWidth(img: ImageMetadata) {
         }
       </div>
     </div>
-  </div>
+  </MarqueePause>
 </section>
 
 <script>
   function setupClientsMarquees() {
-    const groups = document.querySelectorAll('.marquee-group');
+    const marquees = document.querySelectorAll<HTMLElement>('[data-clients-marquee]');
 
-    groups.forEach((group) => {
-      const tracks = group.querySelectorAll('.marquee-track');
-      if (!tracks.length) return;
+    marquees.forEach((marquee) => {
+      const existingCleanup = (marquee as any)._marqueeCleanup;
+      if (existingCleanup) existingCleanup();
 
-      const firstTrack = tracks[0] as HTMLElement;
-      // Get the width of one single track copy
-      const trackWidth = firstTrack.offsetWidth;
-      if (!trackWidth) return;
-
-      // Target constant speed: 80 pixels per second
-      const speed = 80;
-      const duration = (trackWidth / speed) * 1000; // in milliseconds
-
+      const groups = marquee.querySelectorAll('.marquee-group');
       const animations: Animation[] = [];
 
-      tracks.forEach((track) => {
-        const direction = track.getAttribute('data-direction');
-        const keyframes =
-          direction === 'right'
-            ? [{ transform: 'translateX(-100%)' }, { transform: 'translateX(0)' }]
-            : [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }];
+      groups.forEach((group) => {
+        const tracks = group.querySelectorAll('.marquee-track');
+        if (!tracks.length) return;
 
-        const animation = track.animate(keyframes, {
-          duration: duration,
-          iterations: Infinity,
-          easing: 'linear',
+        const firstTrack = tracks[0] as HTMLElement;
+        // Get the width of one single track copy
+        const trackWidth = firstTrack.offsetWidth;
+        if (!trackWidth) return;
+
+        // Target constant speed: 80 pixels per second
+        const speed = 80;
+        const duration = (trackWidth / speed) * 1000; // in milliseconds
+
+        tracks.forEach((track) => {
+          const direction = track.getAttribute('data-direction');
+          const keyframes =
+            direction === 'right'
+              ? [{ transform: 'translateX(-100%)' }, { transform: 'translateX(0)' }]
+              : [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }];
+
+          const animation = track.animate(keyframes, {
+            duration: duration,
+            iterations: Infinity,
+            easing: 'linear',
+          });
+
+          animations.push(animation);
         });
-
-        animations.push(animation);
       });
 
-      // Mouse events on the parent group container for slowing down
-      const onMouseEnter = () => {
-        animations.forEach((anim) => {
-          anim.playbackRate = 0.35; // Slow down to 35% speed
-        });
-      };
-
-      const onMouseLeave = () => {
-        animations.forEach((anim) => {
-          anim.playbackRate = 1.0; // Return to full speed
-        });
-      };
-
-      group.addEventListener('mouseenter', onMouseEnter);
-      group.addEventListener('mouseleave', onMouseLeave);
-
       // Store cleanup function on the element for View Transitions
-      (group as any)._marqueeCleanup = () => {
-        group.removeEventListener('mouseenter', onMouseEnter);
-        group.removeEventListener('mouseleave', onMouseLeave);
-        animations.forEach((anim) => anim.cancel());
+      (marquee as any)._marqueeCleanup = () => {
+        animations.forEach((animation) => animation.cancel());
+        delete (marquee as any)._marqueeCleanup;
       };
     });
   }
@@ -205,10 +201,10 @@ function getCardWidth(img: ImageMetadata) {
   document.addEventListener(
     'astro:before-swap',
     () => {
-      const groups = document.querySelectorAll('.marquee-group');
-      groups.forEach((group) => {
-        if ((group as any)._marqueeCleanup) {
-          (group as any)._marqueeCleanup();
+      const marquees = document.querySelectorAll<HTMLElement>('[data-clients-marquee]');
+      marquees.forEach((marquee) => {
+        if ((marquee as any)._marqueeCleanup) {
+          (marquee as any)._marqueeCleanup();
         }
       });
     },

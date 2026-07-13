@@ -366,6 +366,7 @@ export interface HomeService {
 
 interface HomeYaml {
   hero: {
+    sectionId?: string;
     backgroundImage: string;
     titlePrefix: string;
     rotatingWords: string[];
@@ -376,17 +377,19 @@ interface HomeYaml {
     partnerLogos: Array<{ image: string; alt: string }>;
   };
   services: {
+    sectionId?: string;
     headingHtml: string;
     backgroundImage: string;
     items: HomeService[];
   };
   journey: {
-    titlePrefix: string;
-    titleHighlight: string;
+    sectionId?: string;
+    title: string;
     subtitle: string;
     milestones: Array<Omit<Milestone, 'imageSrc'> & { image: string }>;
   };
   team: {
+    sectionId?: string;
     backgroundImage: string;
     meetTeamImage: string;
     heading: string;
@@ -397,6 +400,7 @@ interface HomeYaml {
     members: Array<{ name: string; role: string; desc: string; image: string }>;
   };
   footprint: {
+    sectionId?: string;
     heading: string;
     metrics: FootprintMetric[];
     globe: {
@@ -404,17 +408,15 @@ interface HomeYaml {
     };
   };
   clients: {
+    sectionId?: string;
     heading: string;
     ctaUrl: string;
     ctaLabel: string;
     logos: Array<{ image: string; alt: string }>;
   };
   testimonials: {
-    headingPrefix: string;
-    clientsHighlight: string;
-    headingMiddle: string;
-    awardsHighlight: string;
-    headingSuffix: string;
+    sectionId?: string;
+    heading: string;
     ctaUrl: string;
     ctaLabel: string;
     awardsImage: string;
@@ -422,6 +424,7 @@ interface HomeYaml {
     items: TestimonialItem[];
   };
   articles: {
+    sectionId?: string;
     eyebrow: string;
     heading: string;
     ctaLabel: string;
@@ -1010,6 +1013,7 @@ export const footer = footerYaml as {
 };
 
 export const contactForm = contactFormYaml as {
+  heading: string;
   postUrl: string;
   categories: string[];
 };

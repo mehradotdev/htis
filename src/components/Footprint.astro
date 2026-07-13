@@ -5,6 +5,7 @@ import type { FootprintMetric, GlobeMarker } from '~/data/cms';
 import CmsRichText from './CmsRichText.astro';
 
 interface Props {
+  sectionId?: string;
   heading: string;
   metrics: FootprintMetric[];
   globe: {
@@ -12,7 +13,7 @@ interface Props {
   };
 }
 
-const { heading, metrics, globe } = Astro.props;
+const { sectionId, heading, metrics, globe } = Astro.props;
 const globeMarkers = globe.markers.map((marker) => ({
   name: marker.name,
   size: marker.size,
@@ -20,13 +21,13 @@ const globeMarkers = globe.markers.map((marker) => ({
 }));
 ---
 
-<section class="relative mx-auto max-w-6xl overflow-hidden px-4 py-24">
+<section id={sectionId} class="relative mx-auto max-w-6xl overflow-hidden px-4 py-24">
   <div
-    class="relative isolate mx-4 transform-[translateZ(0)] overflow-visible rounded-3xl border border-primary/20 bg-base-100 px-4 py-20 sm:px-8 shadow-sm lg:mx-0 lg:px-16"
+    class="relative isolate mx-4 transform-[translateZ(0)] overflow-visible rounded-3xl border border-primary/20 bg-base-100 px-4 py-20 shadow-sm sm:px-8 lg:mx-0 lg:px-16"
   >
     <!-- Subtle curved top line -->
-    <div class="pointer-events-none absolute top-4 left-0 right-0 flex justify-center">
-      <CurvedLineIcon class="w-full max-w-[600px] h-auto px-4 sm:px-8 md:px-0" />
+    <div class="pointer-events-none absolute top-4 right-0 left-0 flex justify-center">
+      <CurvedLineIcon class="h-auto w-full max-w-[600px] px-4 sm:px-8 md:px-0" />
     </div>
 
     <!-- Content Split -->
@@ -36,7 +37,9 @@ const globeMarkers = globe.markers.map((marker) => ({
       <!-- Stats Side -->
       <div class="w-full space-y-12 md:w-1/2">
         <div>
-          <h2 class="mb-10 text-center text-4xl font-bold text-base-content md:text-left md:text-5xl">
+          <h2
+            class="mb-10 text-center text-4xl font-bold text-base-content md:text-left md:text-5xl"
+          >
             <CmsRichText value={heading} />
           </h2>
         </div>
@@ -47,9 +50,15 @@ const globeMarkers = globe.markers.map((marker) => ({
               <div class="text-center md:text-left">
                 <div class="flex items-baseline justify-center text-5xl font-light text-primary md:justify-start">
                   <CmsRichText value={metric.value} />
-                  {metric.suffix && <CmsRichText value={metric.suffix} className="ml-1 text-4xl" />}
+                  {metric.suffix && (
+                    <CmsRichText value={metric.suffix} className="ml-1 text-4xl" />
+                  )}
                 </div>
-                <CmsRichText value={metric.label} tag="p" className="mt-1 text-lg text-base-content/70" />
+                <CmsRichText
+                  value={metric.label}
+                  tag="p"
+                  className="mt-1 text-lg text-base-content/70"
+                />
               </div>
             ))
           }

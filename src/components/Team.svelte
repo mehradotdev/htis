@@ -4,6 +4,7 @@
   import CmsRichTextSvelte from './CmsRichTextSvelte.svelte';
 
   interface Props {
+    sectionId?: string;
     team: TeamMember[];
     bgImageSrc: string;
     meetTeamImageSrc: string;
@@ -15,6 +16,7 @@
   }
 
   let {
+    sectionId,
     team,
     bgImageSrc,
     meetTeamImageSrc,
@@ -25,9 +27,15 @@
     ctaUrl = '/about#team',
   }: Props = $props();
   let activeIndex = $state(0);
+
+  function activateMeetTeamOnMobile() {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      activeIndex = team.length;
+    }
+  }
 </script>
 
-<section id="team" class="relative w-full overflow-hidden pt-12 pb-24 md:pt-20">
+<section id={sectionId} class="relative w-full overflow-hidden pt-12 pb-24 md:pt-20">
   <!-- Background Image Layer -->
   <div class="absolute inset-0 z-0 bg-base-100">
     <img
@@ -54,7 +62,7 @@
 
     <!-- Horizontal Accordion Gallery -->
     <div
-      class="flex h-[24rem] w-full flex-row gap-1 overflow-hidden sm:h-[28rem] sm:gap-2 md:h-[32rem] md:gap-4"
+      class="team-gallery flex h-[24rem] w-full flex-row gap-1 overflow-hidden sm:h-[28rem] sm:gap-2 md:h-[32rem] md:gap-4"
     >
       {#each team as member, index}
         <div
@@ -122,17 +130,20 @@
 
       <!-- Meet the Team Card -->
       <div
-        class="team-member-card relative cursor-pointer overflow-hidden rounded-2xl shadow-md transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] md:rounded-3xl {activeIndex ===
+        class="team-member-card team-cta-card relative cursor-pointer overflow-hidden rounded-2xl shadow-md transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] md:cursor-default md:rounded-3xl {activeIndex ===
         team.length
           ? 'active bg-primary/10 border-primary/30 backdrop-blur-sm'
           : 'bg-base-200/40 border border-base-content/10'}"
         role="button"
         tabindex="0"
-        onmouseenter={() => (activeIndex = team.length)}
-        onfocus={() => (activeIndex = team.length)}
-        onclick={() => (activeIndex = team.length)}
+        onmouseenter={activateMeetTeamOnMobile}
+        onfocus={activateMeetTeamOnMobile}
+        onclick={activateMeetTeamOnMobile}
         onkeydown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          if (
+            window.matchMedia('(max-width: 767px)').matches &&
+            (e.key === 'Enter' || e.key === ' ')
+          ) {
             e.preventDefault();
             activeIndex = team.length;
           }
@@ -167,30 +178,31 @@
             </h3>
           </div>
 
-          {#if activeIndex === team.length}
-            <div in:fade={{ duration: 300, delay: 150 }} class="mb-4">
-              <a
-                href={ctaUrl}
-                class="btn btn-primary rounded-full px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-primary/20 hover:scale-105 transition-all duration-300 pointer-events-auto"
+          <div
+            in:fade={{ duration: 300, delay: 150 }}
+            class="mb-4 {activeIndex === team.length ? '' : 'hidden md:block'}"
+          >
+            <a
+              href={ctaUrl}
+              class="btn btn-primary pointer-events-auto rounded-full px-5 py-2 text-xs font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 sm:px-6 sm:py-2.5 sm:text-sm"
+            >
+              <CmsRichTextSvelte value={ctaLabel} />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="ml-1 inline-block h-3.5 w-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <CmsRichTextSvelte value={ctaLabel} />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-3.5 w-3.5 ml-1 inline-block"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2.5"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </a>
-            </div>
-          {/if}
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
 
         <!-- Inactive State Content (Vertical title/icon) -->

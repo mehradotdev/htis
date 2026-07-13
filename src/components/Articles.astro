@@ -4,6 +4,7 @@ import type { ArticlePost } from '~/data/cms';
 import CmsRichText from './CmsRichText.astro';
 
 interface Props {
+  sectionId?: string;
   eyebrow: string;
   heading: string;
   ctaLabel: string;
@@ -11,10 +12,10 @@ interface Props {
   posts: ArticlePost[];
 }
 
-const { eyebrow, heading, ctaLabel, ctaUrl, posts } = Astro.props;
+const { sectionId, eyebrow, heading, ctaLabel, ctaUrl, posts } = Astro.props;
 ---
 
-<section class="relative mx-auto max-w-6xl px-4 py-12 md:py-20" id="articles">
+<section class="relative mx-auto max-w-6xl px-4 py-12 md:py-20" id={sectionId}>
   <div
     class="border-t border-b border-base-content/20 py-16"
     x-data="{

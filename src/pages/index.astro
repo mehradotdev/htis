@@ -17,17 +17,18 @@ import { home } from '~/data/cms';
 <Layout>
   <div class="relative w-full overflow-hidden">
     <Navbar />
-    <Hero />
+    <Hero sectionId={home.hero.sectionId} />
     <Services services={home.services} />
     <div class="bg-linear-to-b from-transparent to-base-200/50">
       <Journey
+        sectionId={home.journey.sectionId}
         milestones={home.journey.milestones}
-        titlePrefix={home.journey.titlePrefix}
-        titleHighlight={home.journey.titleHighlight}
+        title={home.journey.title}
         subtitle={home.journey.subtitle}
         client:visible
       />
       <Team
+        sectionId={home.team.sectionId}
         team={home.team.members}
         bgImageSrc={home.team.backgroundImageSrc}
         meetTeamImageSrc={home.team.meetTeamImageSrc}
