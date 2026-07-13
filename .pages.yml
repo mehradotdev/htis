@@ -1103,6 +1103,10 @@ content:
                   - name: title
                     type: string
                     required: true
+                  - name: slug
+                    label: Slug (Must be unique)
+                    type: string
+                    required: false
                   - name: organization
                     type: string
                     required: true

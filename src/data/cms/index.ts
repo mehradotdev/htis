@@ -268,6 +268,7 @@ export interface AwardGalleryItem {
   id: number;
   type: 'award' | 'certificate';
   title: string;
+  slug?: string;
   organization: string;
   date: string;
   thumbnailSrc: string;
@@ -522,6 +523,7 @@ interface AwardsYaml {
     items: Array<{
       type: 'award' | 'certificate';
       title: string;
+      slug?: string;
       organization: string;
       date: string;
       thumbnail?: string;
@@ -1281,6 +1283,7 @@ export const awards: {
           id: index + 1,
           type: item.type,
           title: item.title,
+          slug: item.slug,
           organization: item.organization,
           date: item.date,
           thumbnailSrc: getCmsAssetSrc(thumbnail),

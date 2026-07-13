@@ -10,6 +10,7 @@ gallery:
   items:
     - type: award
       title: Aarohan Job & Internship Fair Excellence Award
+      slug: aarohan-award
       organization: SGT University
       date: May 7, 2026
       thumbnail: src/assets/ac-award11.jpg

@@ -1,5 +1,12 @@
 <script lang="ts">
-  import { Calendar, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, X } from '@lucide/svelte';
+  import {
+    Calendar,
+    ChevronDown,
+    ChevronLeft,
+    ChevronRight,
+    ChevronUp,
+    X,
+  } from '@lucide/svelte';
   import { tick } from 'svelte';
   import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
 
@@ -9,6 +16,7 @@
     id: number;
     type: ItemType;
     title: string;
+    slug?: string;
     organization: string;
     date: string;
     thumbnailSrc: string;
@@ -34,6 +42,18 @@
   let selectedItem = $state<AwardItem | null>(null);
   let selectedImageIndex = $state(0);
   let dialogEl = $state<HTMLDialogElement>();
+  let initialPopupHandled = false;
+
+  $effect(() => {
+    if (initialPopupHandled) return;
+    initialPopupHandled = true;
+
+    const popupSlug = new URLSearchParams(window.location.search).get('popup');
+    if (!popupSlug) return;
+
+    const item = items.find((candidate) => candidate.slug === popupSlug);
+    if (item) openItem(item);
+  });
 
   $effect(() => {
     animKey;
@@ -176,7 +196,10 @@
     </button>
   </div>
 
-  <div bind:this={gridEl} class="grid grid-cols-1 gap-x-5 gap-y-3 md:grid-cols-2 lg:grid-cols-3">
+  <div
+    bind:this={gridEl}
+    class="grid grid-cols-1 gap-x-5 gap-y-3 md:grid-cols-2 lg:grid-cols-3"
+  >
     {#each visibleItems as item}
       <button
         class="flex w-full cursor-pointer flex-col overflow-hidden rounded-lg border border-base-200 bg-base-100 text-left shadow-xs outline-hidden transition-all duration-300 hover:border-primary/20 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
@@ -187,7 +210,7 @@
           <img
             src={item.thumbnailSrc}
             alt={item.title}
-            class="aspect-[16/10] w-full rounded-md bg-base-200/30 object-cover transition-transform duration-500 hover:scale-[1.02]"
+            class="aspect-16/10 w-full rounded-md bg-base-200/30 object-cover transition-transform duration-500 hover:scale-[1.02]"
           />
         </div>
         <div class="flex flex-1 flex-col justify-between px-3 pt-2.5 pb-2.5">
@@ -234,7 +257,12 @@
   </div>
 </div>
 
-<dialog bind:this={dialogEl} class="modal" onclose={closeItem} onkeydown={handleDialogKeydown}>
+<dialog
+  bind:this={dialogEl}
+  class="modal"
+  onclose={closeItem}
+  onkeydown={handleDialogKeydown}
+>
   {#if selectedItem}
     <div
       class="modal-box relative flex max-w-5xl flex-col items-center justify-center overflow-hidden border border-base-300 bg-base-100 p-0 shadow-2xl"
