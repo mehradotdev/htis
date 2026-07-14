@@ -427,6 +427,7 @@ interface HomeYaml {
     items: TestimonialItem[];
   };
   articles: {
+    enabled: boolean;
     sectionId?: string;
     eyebrow: string;
     heading: string;

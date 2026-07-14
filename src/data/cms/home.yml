@@ -546,6 +546,7 @@ testimonials:
       name: Robert Taylor
       title: InnovaTech | CEO
 articles:
+  enabled: false
   sectionId: articles
   eyebrow: Insights
   heading: Latest from our LinkedIn

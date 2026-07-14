@@ -750,6 +750,11 @@ content:
           - name: articles
             type: object
             fields:
+              - name: enabled
+                label: Enable section
+                type: boolean
+                default: true
+                required: true
               - name: sectionId
                 label: Section ID
                 type: string

@@ -44,7 +44,7 @@ import { home } from '~/data/cms';
       <Testimonials {...home.testimonials} />
     </div>
     <div class="bg-base-200/50">
-      <Articles {...home.articles} />
+      {home.articles.enabled && <Articles {...home.articles} />}
       <div class="pt-16 md:pt-24">
         <Contact />
         <Footer overlap={true} />
