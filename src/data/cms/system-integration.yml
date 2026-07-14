@@ -215,7 +215,8 @@ partnerEcosystem:
 execution:
   sectionId: execution
   heading: |-
-    Built to Execute. Scaled to Deliver.
+    Built to Execute.
+    Scaled to Deliver.
   metrics:
     - target: 1.2
       showDecimalAnimation: true

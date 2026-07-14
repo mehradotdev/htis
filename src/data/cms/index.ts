@@ -312,6 +312,7 @@ export interface SoftwareEngineeringStackCard {
 }
 
 export interface SoftwareEngineeringStackSection {
+  sectionId?: string;
   backgroundImage: ImageMetadata;
   heading: string;
   description: string;
@@ -324,6 +325,7 @@ export interface SoftwareArchitecturalPrincipleItem {
 }
 
 export interface SoftwareArchitecturalPrinciplesSection {
+  sectionId?: string;
   backgroundImageSrc: string;
   heading: string;
   description: string;
@@ -337,6 +339,7 @@ export interface SoftwareOnboardingStep {
 }
 
 export interface SoftwareOnboardingSection {
+  sectionId?: string;
   backgroundImage: ImageMetadata;
   eyebrow: string;
   heading: string;
@@ -596,12 +599,14 @@ interface ExecutionMetricYaml {
 }
 
 interface ExecutionYaml {
+  sectionId?: string;
   heading: string;
   metrics: ExecutionMetricYaml[];
   pillars: ExecutionPillarYaml[];
 }
 
 interface MetricsOnlyExecutionYaml {
+  sectionId?: string;
   heading: string;
   metrics: ExecutionMetricYaml[];
 }
@@ -784,6 +789,7 @@ interface SoftwareYaml {
   title: string;
   hero: Omit<PageHeroYaml, 'carouselImages'>;
   portfolio: {
+    sectionId?: string;
     backgroundImage: string;
     heading: string;
     description: string;
@@ -808,6 +814,7 @@ interface SoftwareYaml {
   };
   execution: ExecutionYaml;
   caseStudies: {
+    sectionId?: string;
     heading: string;
     items: Array<Omit<SoftwareCaseStudyItem, 'image'> & { image: string }>;
   };
@@ -816,6 +823,7 @@ interface SoftwareYaml {
 interface ResourcingYaml {
   title: string;
   hero: {
+    sectionId?: string;
     backgroundImage: string;
     foregroundImage?: string;
     title: string;
@@ -825,6 +833,7 @@ interface ResourcingYaml {
     carouselImages?: string[];
   };
   capabilities: {
+    sectionId?: string;
     backgroundImage: string;
     heading: string;
     description: string;
@@ -836,6 +845,7 @@ interface ResourcingYaml {
     }>;
   };
   standard: {
+    sectionId?: string;
     heading: string;
     description: string;
     items: Array<{
@@ -849,6 +859,7 @@ interface ResourcingYaml {
     }>;
   };
   workforce: {
+    sectionId?: string;
     heading: string;
     tabs: Array<{
       title: string;
@@ -864,6 +875,7 @@ interface ResourcingYaml {
   };
   execution: MetricsOnlyExecutionYaml;
   caseStudies: {
+    sectionId?: string;
     heading: string;
     items: Array<{
       image: string;

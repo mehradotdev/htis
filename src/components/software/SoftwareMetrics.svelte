@@ -1,4 +1,6 @@
 <script lang="ts">
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
+
   interface SoftwareMetric {
     target: number;
     showDecimalAnimation?: boolean;
@@ -87,17 +89,21 @@
           >{#if metric.target >= 1000 && currentValues[i] >= 1000}{currentValues[
               i
             ].toLocaleString()}{:else}{currentValues[i]}{/if}<span
-            class="text-4xl md:text-5xl font-light">{metric.unit}{metric.suffix}</span
+            class="text-4xl md:text-5xl font-light"><CmsRichTextSvelte
+              value={metric.unit}
+            /><CmsRichTextSvelte value={metric.suffix} /></span
           ></span
         >
       </div>
-      <span class="text-sm md:text-base font-medium text-base-content/70"
-        >{metric.label}</span
-      >
+      <CmsRichTextSvelte
+        value={metric.label}
+        className="text-sm font-medium text-base-content/70 md:text-base"
+      />
       {#if metric.subLabel}
-        <span class="text-xs leading-relaxed text-base-content/60">
-          {metric.subLabel}
-        </span>
+        <CmsRichTextSvelte
+          value={metric.subLabel}
+          className="text-xs leading-relaxed text-base-content/60"
+        />
       {/if}
     </div>
   {/each}

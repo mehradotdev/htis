@@ -1,10 +1,11 @@
 ---
 import { Image } from 'astro:assets';
+import CmsRichText from '~/components/CmsRichText.astro';
 import type { SoftwareOnboardingSection } from '~/data/cms';
 
 type Props = SoftwareOnboardingSection;
 
-const { backgroundImage, eyebrow, heading, steps } = Astro.props as Props;
+const { sectionId, backgroundImage, eyebrow, heading, steps } = Astro.props as Props;
 const columnCount = Math.max(steps.length, 1);
 
 const arrows = [
@@ -14,7 +15,7 @@ const arrows = [
 ];
 ---
 
-<section class="relative overflow-hidden bg-[#163426] py-24 text-white">
+<section id={sectionId} class="relative overflow-hidden bg-[#163426] py-24 text-white">
   <!-- Background Image with custom overlay -->
   <div class="pointer-events-none absolute inset-0 z-0 select-none">
     <Image
@@ -32,14 +33,15 @@ const arrows = [
   <div class="relative z-10 container mx-auto px-6">
     <!-- Header -->
     <div class="mb-12 text-left md:text-center">
-      <span class="mb-4 block text-xs font-bold tracking-widest text-[#60B68C] uppercase">
-        {eyebrow}
-      </span>
-      <h2
-        class="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight md:mx-auto md:text-5xl"
-      >
-        {heading}
-      </h2>
+      <CmsRichText
+        value={eyebrow}
+        className="mb-4 block text-xs font-bold tracking-widest text-[#60B68C] uppercase"
+      />
+      <CmsRichText
+        value={heading}
+        tag="h2"
+        className="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight md:mx-auto md:text-5xl"
+      />
     </div>
 
     <!-- Desktop Timeline Layout -->
@@ -91,7 +93,7 @@ const arrows = [
         {
           steps.map((step) => (
             <div class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-xl font-bold text-[#163426] shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#60B68C] hover:text-white">
-              {step.number}
+              <CmsRichText value={step.number} />
               <div class="absolute -inset-1.5 scale-0 rounded-full border border-white/20 transition-transform duration-300 group-hover:scale-100" />
             </div>
           ))
@@ -106,10 +108,17 @@ const arrows = [
         {
           steps.map((step) => (
             <div class="flex flex-col gap-3">
-              <h3 class="text-2xl font-medium tracking-wide text-white">{step.title}</h3>
-              <p class="text-justify text-base leading-relaxed text-white/70">
-                {step.description}
-              </p>
+              <CmsRichText
+                value={step.title}
+                tag="h3"
+                className="text-2xl font-medium tracking-wide text-white"
+              />
+              <CmsRichText
+                value={step.description}
+                tag="p"
+                className="text-justify text-base leading-relaxed text-white/70"
+                linkClassName="text-white hover:text-[#60B68C]"
+              />
             </div>
           ))
         }
@@ -117,23 +126,28 @@ const arrows = [
     </div>
 
     <!-- Mobile Timeline Layout -->
-    <div
-      class="relative mx-auto block max-w-lg pl-16 md:hidden"
-    >
+    <div class="relative mx-auto block max-w-lg pl-16 md:hidden">
       {
         steps.map((step, index) => (
           <div class="relative mb-12 last:mb-0">
             <div class="absolute top-0 -left-16 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg font-bold text-[#163426] shadow-md">
-              {step.number}
+              <CmsRichText value={step.number} />
             </div>
             {index < steps.length - 1 && (
               <div class="absolute top-12 -bottom-12 -left-10 w-[2px] border-l-2 border-dashed border-[#60B68C]/40" />
             )}
             <div class="flex flex-col gap-2 text-left">
-              <h3 class="text-xl font-bold text-white">{step.title}</h3>
-              <p class="text-justify text-base leading-relaxed text-white/80">
-                {step.description}
-              </p>
+              <CmsRichText
+                value={step.title}
+                tag="h3"
+                className="text-xl font-bold text-white"
+              />
+              <CmsRichText
+                value={step.description}
+                tag="p"
+                className="text-justify text-base leading-relaxed text-white/80"
+                linkClassName="text-white hover:text-[#60B68C]"
+              />
             </div>
           </div>
         ))

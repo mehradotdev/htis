@@ -1652,6 +1652,10 @@ content:
           - name: hero
             type: object
             fields: &split_hero_fields
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1688,6 +1692,10 @@ content:
           - name: portfolio
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 type: image
                 required: true
@@ -1751,6 +1759,10 @@ content:
             label: Engineering stack
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1786,6 +1798,10 @@ content:
             label: Architectural principles
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1814,6 +1830,10 @@ content:
             label: Execution section
             type: object
             fields: &execution_fields
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: text
                 required: true
@@ -1871,6 +1891,10 @@ content:
             label: Onboarding roadmap
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1902,6 +1926,10 @@ content:
             label: Case studies
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: string
                 required: true
@@ -1943,6 +1971,10 @@ content:
           - name: hero
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1973,6 +2005,10 @@ content:
           - name: capabilities
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 type: image
                 required: true
@@ -2010,6 +2046,10 @@ content:
             label: 'Engineered Human Capital: The HTIS Standard'
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: string
                 required: true
@@ -2054,6 +2094,10 @@ content:
             label: Resourcing workforce
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: string
                 required: true
@@ -2101,6 +2145,10 @@ content:
             label: Execution section
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: text
                 required: true
@@ -2136,6 +2184,10 @@ content:
             label: Case studies
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: string
                 required: true

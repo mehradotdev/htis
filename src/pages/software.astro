@@ -5,6 +5,7 @@ import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import Contact from '~/components/Contact.astro';
 import CmsIcon from '~/components/CmsIcon.astro';
+import CmsRichText from '~/components/CmsRichText.astro';
 import SoftwarePortfolio from '~/components/software/SoftwarePortfolio.svelte';
 import SoftwareEngineeringStack from '~/components/software/SoftwareEngineeringStack.astro';
 import SoftwareArchitecturalPrinciples from '~/components/software/SoftwareArchitecturalPrinciples.svelte';
@@ -23,6 +24,7 @@ import { software } from '~/data/cms';
     <Navbar />
 
     <section
+      id={software.hero.sectionId}
       class="relative flex min-h-[85vh] items-start pt-32 pb-16 lg:items-center lg:pt-36 lg:pb-0"
     >
       <!-- Background Graphic Layer -->
@@ -74,17 +76,17 @@ import { software } from '~/data/cms';
             <h1
               class="text-4xl leading-tight font-extrabold tracking-tight text-base-content md:text-5xl lg:text-6xl"
             >
-              {software.hero.title}<br />
+              <CmsRichText value={software.hero.title} /><br />
               <span
                 class="bg-linear-to-r from-primary to-[#60B68C] bg-clip-text text-transparent"
-                >{software.hero.highlight}</span
+                ><CmsRichText value={software.hero.highlight} /></span
               >
             </h1>
 
             <p
               class="max-w-2xl text-lg leading-relaxed font-medium text-base-content/85 md:text-xl"
             >
-              {software.hero.subtitle}
+              <CmsRichText value={software.hero.subtitle} />
             </p>
 
             <div class="mt-4 flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
@@ -92,13 +94,13 @@ import { software } from '~/data/cms';
                 href={software.hero.ctaUrl}
                 class="btn w-full rounded-lg px-6 text-xl whitespace-nowrap text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary sm:w-60"
               >
-                {software.hero.ctaLabel}
+                <CmsRichText value={software.hero.ctaLabel} />
               </a>
               <a
                 href={software.hero.secondaryCtaUrl}
-                class="btn w-full rounded-lg border-base-content/50 px-6 text-xl font-semibold tracking-wide whitespace-nowrap text-base-content btn-ghost btn-lg hover:bg-base-200/50 sm:w-60"
+                class="btn w-full rounded-lg border-base-content/50 btn-ghost px-6 text-xl font-semibold tracking-wide whitespace-nowrap text-base-content btn-lg hover:bg-base-200/50 sm:w-60"
               >
-                {software.hero.secondaryCtaLabel}
+                <CmsRichText value={software.hero.secondaryCtaLabel} />
               </a>
             </div>
           </div>
@@ -129,7 +131,10 @@ import { software } from '~/data/cms';
     </section>
 
     <!-- 2nd Section: Converged Software Portfolio -->
-    <section id="portfolio" class="relative overflow-hidden bg-base-100 py-24">
+    <section
+      id={software.portfolio.sectionId}
+      class="relative overflow-hidden bg-base-100 py-24"
+    >
       <!-- Background Subtle Grid Mesh -->
       <div
         class="pointer-events-none absolute inset-0 z-0 opacity-20 mix-blend-luminosity dark:mix-blend-overlay"
@@ -149,20 +154,22 @@ import { software } from '~/data/cms';
 
       <div class="relative z-10 container mx-auto px-6">
         <!-- Title Info -->
-        <div class="mb-10 max-w-3xl text-left">
+        <div class="mb-10 max-w-3xl text-left lg:mb-6">
           <!-- <span
             class="mb-2 block text-xs font-bold tracking-wider text-primary uppercase"
           >
             Product & Engineering Matrix
           </span> -->
-          <h2
-            class="mb-6 text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
-          >
-            {software.portfolio.heading}
-          </h2>
-          <p class="text-lg font-medium text-base-content/70">
-            {software.portfolio.description}
-          </p>
+          <CmsRichText
+            value={software.portfolio.heading}
+            tag="h2"
+            className="mb-6 text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
+          />
+          <CmsRichText
+            value={software.portfolio.description}
+            tag="p"
+            className="text-lg font-medium text-base-content/70"
+          />
         </div>
 
         <!-- Svelte 5 Interactive Tabbed Showcase Island -->
@@ -183,12 +190,14 @@ import { software } from '~/data/cms';
     />
 
     <!-- 5th Section: Built to Execute & Synergy Pillars -->
-    <section class="relative bg-base-200/50 pt-24">
+    <section id={software.execution.sectionId} class="relative bg-base-200/50 pt-24">
       <div class="container mx-auto px-6">
         <div class="mb-10">
-          <h2 class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl">
-            {software.execution.heading}
-          </h2>
+          <CmsRichText
+            value={software.execution.heading}
+            tag="h2"
+            className="mb-6 text-4xl leading-tight font-bold whitespace-pre-line text-base-content md:text-5xl"
+          />
         </div>
 
         <SoftwareMetrics metrics={software.execution.metrics} client:visible />
@@ -215,7 +224,10 @@ import { software } from '~/data/cms';
                     ]}
                   >
                     <div class="mb-2 flex items-start justify-between">
-                      <CmsIcon name={pillar.iconName} className="h-12 w-12 text-primary" />
+                      <CmsIcon
+                        name={pillar.iconName}
+                        className="h-12 w-12 text-primary"
+                      />
                       <a
                         href={pillar.url ?? '#'}
                         aria-label={`View more details about ${pillar.title}`}
@@ -227,10 +239,16 @@ import { software } from '~/data/cms';
                         />
                       </a>
                     </div>
-                    <h3 class="text-2xl font-medium">{pillar.title}</h3>
-                    <p class="text-justify text-lg text-base-content/70">
-                      {pillar.description}
-                    </p>
+                    <CmsRichText
+                      value={pillar.title}
+                      tag="h3"
+                      className="text-2xl font-medium"
+                    />
+                    <CmsRichText
+                      value={pillar.description}
+                      tag="p"
+                      className="text-justify text-lg text-base-content/70"
+                    />
                   </div>
                 </>
               );
@@ -245,6 +263,7 @@ import { software } from '~/data/cms';
 
     <!-- 7th Section: Strategic Case Studies & Technical Impact -->
     <SoftwareCaseStudies
+      sectionId={software.caseStudies.sectionId}
       heading={software.caseStudies.heading}
       items={software.caseStudies.items}
       client:visible

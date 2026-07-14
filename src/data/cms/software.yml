@@ -1,5 +1,6 @@
 title: Software Development & SaaS - HTIS
 hero:
+  sectionId: software-hero
   backgroundImage: src/assets/lob-software-hero-bg.png
   foregroundImage: src/assets/webp-01-scaled.webp
   title: "Digital Intelligence:"
@@ -14,6 +15,7 @@ hero:
   secondaryCtaLabel: Explore Portfolio
   secondaryCtaUrl: "#portfolio"
 portfolio:
+  sectionId: portfolio
   backgroundImage: src/assets/team-member-bg.png
   heading: Converged Software Portfolio
   description: Enterprise SaaS & Bespoke Engineering - An interactive look at our
@@ -96,6 +98,7 @@ portfolio:
             reservations, and agricultural administration.
           image: src/assets/lob-software-sw-port-public-3.png
 engineeringStack:
+  sectionId: engineering-stack
   backgroundImage: src/assets/team-member-bg.png
   heading: |-
     Modern Engineering Stack &
@@ -140,6 +143,7 @@ engineeringStack:
       image: src/assets/lob-software-mobile-ui.png
       alt: Zero-Trust Security Mockup
 architecturalPrinciples:
+  sectionId: architectural-principles
   backgroundImage: src/assets/team-member-bg.png
   heading: Architectural Principles
   description: Our core engineering philosophies designed to build secure,
@@ -166,6 +170,7 @@ architecturalPrinciples:
         18-member core team accelerates delivery timelines while ensuring every
         line of code meets our strict quality benchmarks.
 execution:
+  sectionId: execution
   heading: |-
     Built to Execute.
     Scaled to Deliver.
@@ -209,6 +214,7 @@ execution:
         risk and drive long-term workforce retention.
       url: /resourcing
 onboarding:
+  sectionId: onboarding
   backgroundImage: src/assets/lob-software-onboarding-bg.png
   eyebrow: Engagement Lifecycle & Deployment Roadmap
   heading: A structured commercial framework for project onboarding and lifecycle
@@ -235,6 +241,7 @@ onboarding:
         structured documentation amendments and direct stakeholder review
         meetings, ensuring project timelines remain completely undisturbed.
 caseStudies:
+  sectionId: case-studies
   heading: Strategic Case Studies & Technical Impact
   items:
     - title: Public Utility & Citizen Services

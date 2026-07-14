@@ -1,12 +1,9 @@
 <script lang="ts">
   import { untrack } from 'svelte';
   import { slide, fly, fade } from 'svelte/transition';
-  import {
-    CirclePlus,
-    CircleMinus,
-    ArrowUpRight,
-  } from '@lucide/svelte';
+  import { CirclePlus, CircleMinus, ArrowUpRight } from '@lucide/svelte';
   import CmsIconSvelte from '~/components/CmsIconSvelte.svelte';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
   import type { SoftwarePortfolioTab } from '~/data/cms';
 
   let {
@@ -19,7 +16,10 @@
     untrack(() => (capabilities.length > 0 ? capabilities[0].id : '')),
   );
   let activeItemIndex = $state(0);
+  let hoveredItemIndex = $state<number | null>(null);
   let progress = $state(0);
+
+  let isAutoplayPaused = $derived(hoveredItemIndex === activeItemIndex);
 
   // Derive the active tab object
   let currentTabObj = $derived(
@@ -40,17 +40,26 @@
     activeItemIndex;
 
     progress = 0;
-    let start = Date.now();
+    let elapsed = 0;
+    let lastTick = Date.now();
 
     const intervalId = setInterval(() => {
-      const elapsed = Date.now() - start;
+      const now = Date.now();
+
+      if (isAutoplayPaused) {
+        lastTick = now;
+        return;
+      }
+
+      elapsed += now - lastTick;
+      lastTick = now;
       progress = Math.min((elapsed / AUTOPLAY_INTERVAL_MS) * 100, 100);
       if (elapsed >= AUTOPLAY_INTERVAL_MS) {
-        // Reset start and progress immediately before updating activeItemIndex.
+        // Reset elapsed time and progress immediately before updating activeItemIndex.
         // Because Svelte 5 schedules effect teardowns asynchronously, there might be a
         // tiny delay before this interval is cleared. Resetting here prevents additional
         // ticks of the interval from firing and causing rapid index cycling in the interim.
-        start = Date.now();
+        elapsed = 0;
         progress = 0;
         if (currentTabObj && currentTabObj.items.length > 1) {
           activeItemIndex = (activeItemIndex + 1) % currentTabObj.items.length;
@@ -65,8 +74,8 @@
   function selectTab(tabId: string) {
     activeTab = tabId;
     activeItemIndex = 0; // Reset active item index on tab swap
+    hoveredItemIndex = null;
   }
-
 </script>
 
 <div class="w-full" role="region" aria-label="Software Portfolio">
@@ -84,7 +93,7 @@
       >
         <span class="flex items-center justify-center gap-2">
           <CmsIconSvelte name={tab.iconName} size={18} />
-          {tab.shortLabel || tab.label}
+          <CmsRichTextSvelte value={tab.shortLabel || tab.label} />
         </span>
       </button>
     {/each}
@@ -92,16 +101,20 @@
 
   <!-- Content Container (Card Area) -->
   <div
-    class="bg-base-100/60 backdrop-blur-md rounded-3xl border border-base-content/10 shadow-xl overflow-hidden p-6 md:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-x-16 lg:gap-y-6"
+    class="bg-base-100/60 backdrop-blur-md rounded-3xl border border-base-content/10 shadow-xl overflow-hidden p-6 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-x-16 lg:gap-y-6"
   >
     <!-- Left Details Header/Desc: 7 cols -->
     <div class="lg:col-span-7">
-      <h3 class="text-2xl md:text-3xl font-medium text-base-content mb-4">
-        {currentTabObj?.label}
-      </h3>
-      <p class="text-base-content/70 leading-relaxed text-sm md:text-base">
-        {currentTabObj?.description}
-      </p>
+      <CmsRichTextSvelte
+        value={currentTabObj?.label}
+        tag="h3"
+        className="mb-4 text-2xl font-medium text-base-content md:text-3xl"
+      />
+      <CmsRichTextSvelte
+        value={currentTabObj?.description}
+        tag="p"
+        className="text-sm leading-relaxed text-base-content/70 md:text-base"
+      />
     </div>
 
     <!-- Right Showcase Image: 5 cols (Desktop side column span, Mobile center order) -->
@@ -149,6 +162,10 @@
             ? 'bg-base-100 border-primary/30 shadow-md ring-1 ring-primary/20'
             : 'border-base-content/5 bg-transparent hover:bg-base-200/30'}"
           onclick={() => (activeItemIndex = index)}
+          onmouseenter={() => (hoveredItemIndex = index)}
+          onmouseleave={() => {
+            if (hoveredItemIndex === index) hoveredItemIndex = null;
+          }}
         >
           <div class="relative z-10 flex justify-between items-center w-full">
             <div class="flex items-center gap-3">
@@ -160,12 +177,12 @@
               >
                 {index + 1}
               </span>
-              <h4
-                class="text-base md:text-lg pr-4 font-bold transition-colors
+              <CmsRichTextSvelte
+                value={item.title}
+                tag="h4"
+                className="pr-4 text-base font-bold transition-colors md:text-lg
                   {activeItemIndex === index ? 'text-primary' : 'text-base-content/85'}"
-              >
-                {item.title}
-              </h4>
+              />
             </div>
             <div class="text-base-content/40 shrink-0">
               {#if activeItemIndex === index}
@@ -178,19 +195,21 @@
 
           {#if activeItemIndex === index}
             <div transition:slide={{ duration: 300 }} class="relative z-10 mt-3 pl-9">
-              <p class="text-base-content/75 text-sm md:text-base leading-relaxed pb-1">
-                {item.desc}
+              <div class="pb-1 text-sm leading-relaxed text-base-content/75 md:text-base">
+                <CmsRichTextSvelte value={item.desc} />
                 {#if item.ctaUrl}
                   <a
                     href={item.ctaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="ml-1.5 inline-flex items-center gap-0.5 align-baseline font-semibold text-primary hover:underline"
                     onclick={(e) => e.stopPropagation()}
                   >
-                    {item.ctaLabel || 'Know more'}
+                    <CmsRichTextSvelte value={item.ctaLabel || 'Know more'} />
                     <ArrowUpRight size={14} class="translate-y-[1px]" />
                   </a>
                 {/if}
-              </p>
+              </div>
             </div>
           {/if}
 

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
+
   interface ResourcingMetric {
     target: number;
     showDecimalAnimation?: boolean;
@@ -16,9 +18,11 @@
   ];
 
   let {
+    sectionId,
     heading = 'Built to Execute. Scaled to Deliver.',
     metrics = defaultMetrics,
   }: {
+    sectionId?: string;
     heading?: string;
     metrics?: ResourcingMetric[];
   } = $props();
@@ -79,32 +83,38 @@
   }
 </script>
 
-<div bind:this={sectionRef} class="pt-0 pb-16">
+<section id={sectionId} bind:this={sectionRef} class="pt-0 pb-16">
   <div class="mb-12">
-    <h2 class="text-4xl leading-tight font-bold text-base-content md:text-5xl">
-      {heading}
+    <h2
+      class="text-4xl leading-tight font-bold whitespace-pre-line text-base-content md:text-5xl"
+    >
+      <CmsRichTextSvelte value={heading} />
     </h2>
   </div>
 
-  <div class="grid grid-cols-2 gap-8 border-b border-base-content/10 pb-12 md:grid-cols-4">
+  <div
+    class="grid grid-cols-2 gap-8 border-b border-base-content/10 pb-12 md:grid-cols-4"
+  >
     {#each metrics as metric, i}
       <div class="flex flex-col gap-2">
         <div class="flex items-baseline text-primary">
           <span class="text-5xl font-bold md:text-6xl"
-            >{currentValues[i]}{metric.unit ?? ''}<span
-              class="text-4xl font-light md:text-5xl">{metric.suffix}</span
+            ><CmsRichTextSvelte value={String(currentValues[i] ?? 0)} /><CmsRichTextSvelte
+              value={metric.unit}
+            /><span class="text-4xl font-light md:text-5xl"
+              ><CmsRichTextSvelte value={metric.suffix} /></span
             ></span
           >
         </div>
         <span class="text-sm font-medium text-base-content/70 md:text-base">
-          {metric.label}
+          <CmsRichTextSvelte value={metric.label} />
         </span>
         {#if metric.subLabel}
           <span class="text-xs leading-relaxed text-base-content/60">
-            {metric.subLabel}
+            <CmsRichTextSvelte value={metric.subLabel} />
           </span>
         {/if}
       </div>
     {/each}
   </div>
-</div>
+</section>

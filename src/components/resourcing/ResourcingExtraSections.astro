@@ -1,11 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import CmsIcon from '~/components/CmsIcon.astro';
+import CmsRichText from '~/components/CmsRichText.astro';
 import type { ImageMetadata } from 'astro';
 import ResourcingWorkforce from './ResourcingWorkforce.svelte';
 import ResourcingMetrics from './ResourcingMetrics.svelte';
 
 type Workforce = {
+  sectionId?: string;
   heading: string;
   tabs: Array<{
     title: string;
@@ -39,6 +41,7 @@ type CaseStudy = {
 
 interface Props {
   standard: {
+    sectionId?: string;
     heading: string;
     description: string;
     items: Array<{
@@ -53,10 +56,12 @@ interface Props {
   };
   workforce: Workforce;
   execution: {
+    sectionId?: string;
     heading: string;
     metrics: ResourcingMetric[];
   };
   caseStudies: {
+    sectionId?: string;
     heading: string;
     items: CaseStudy[];
   };
@@ -69,37 +74,40 @@ const imageFrames = [
   'absolute right-8 bottom-0 z-30 h-48 w-2/3 overflow-hidden rounded-xl border-4 border-base-100 shadow-xl md:right-12 md:h-64',
   'absolute top-24 left-0 z-20 h-48 w-2/3 overflow-hidden rounded-xl border-4 border-base-100 shadow-md md:top-32 md:h-64',
 ];
-
 ---
 
 <!-- 1. Build Amazing Teams, On Demand -->
-<section class="relative bg-base-200/50 py-24">
+<section id={standard.sectionId} class="relative bg-base-200/50 py-24">
   <div class="container mx-auto px-6">
     <div class="mb-10">
       <h2 class="mb-4 text-4xl font-bold text-base-content md:text-5xl">
-        {standard.heading}
+        <CmsRichText value={standard.heading} />
       </h2>
       <p class="text-lg text-base-content/70">
-        {standard.description}
+        <CmsRichText value={standard.description} />
       </p>
     </div>
 
     <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-      <div class="grid grid-cols-1 gap-10 md:grid-cols-2 order-2 lg:order-1">
-      {
-        standard.items.map((item) => {
-          return (
-            <div class="flex flex-col gap-4">
+      <div class="order-2 grid grid-cols-1 gap-10 md:grid-cols-2 lg:order-1">
+        {
+          standard.items.map((item) => {
+            return (
+              <div class="flex flex-col gap-4">
                 <CmsIcon name={item.iconName} className="h-12 w-12 text-primary" />
-                <h3 class="text-2xl font-medium text-base-content">{item.title}</h3>
-                <p class="text-base-content/90">{item.desc}</p>
+                <h3 class="text-2xl font-medium text-base-content">
+                  <CmsRichText value={item.title} />
+                </h3>
+                <p class="text-base-content/90">
+                  <CmsRichText value={item.desc} />
+                </p>
               </div>
             );
           })
         }
       </div>
 
-      <div class="relative h-[400px] w-full md:h-[500px] order-1 lg:order-2">
+      <div class="relative order-1 h-[400px] w-full md:h-[500px] lg:order-2">
         {
           standardImages.slice(0, 3).map((item, index) => (
             <div class={imageFrames[index]}>
@@ -113,22 +121,24 @@ const imageFrames = [
 </section>
 
 <!-- 2. One modern experience for today's workforce -->
-<section class="relative bg-base-100 py-24">
+<section id={workforce.sectionId} class="relative bg-base-100 py-24">
   <div class="container mx-auto px-6">
     <ResourcingWorkforce workforce={workforce} client:visible />
   </div>
 </section>
 
 <!-- 3. Metrics and 4. Case Studies -->
-<section class="relative bg-base-200/30 py-24">
+<div class="relative bg-base-200/30 py-24">
   <div class="container mx-auto px-6">
     <ResourcingMetrics
+      sectionId={execution.sectionId}
       heading={execution.heading}
       metrics={execution.metrics}
       client:visible
     />
 
-    <div
+    <section
+      id={caseStudies.sectionId}
       x-data="{
         scrollProgress: 0,
         hasScrollable: false,
@@ -149,7 +159,7 @@ const imageFrames = [
       @resize.window="updateScrollState()"
     >
       <h3 class="mb-10 text-3xl font-bold text-base-content md:text-4xl">
-        {caseStudies.heading}
+        <CmsRichText value={caseStudies.heading} />
       </h3>
       <div
         x-ref="scrollContainer"
@@ -168,13 +178,14 @@ const imageFrames = [
               </div>
               <div class="flex flex-1 flex-col gap-6 p-8">
                 <p class="text-lg font-medium text-base-content/80">
-                  {study.description}
+                  <CmsRichText value={study.description} />
                 </p>
                 <a
                   href={study.ctaUrl}
                   class="mt-auto flex items-center gap-1 font-medium text-primary hover:underline"
                 >
-                  {study.ctaLabel} <span aria-hidden="true">&rarr;</span>
+                  <CmsRichText value={study.ctaLabel} />{' '}
+                  <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
             </article>
@@ -191,6 +202,6 @@ const imageFrames = [
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
-</section>
+</div>

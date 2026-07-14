@@ -6,9 +6,11 @@
     FileText,
     TrendingUp,
   } from '@lucide/svelte';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
   import type { SoftwareCaseStudyItem } from '~/data/cms';
 
-  const { heading = 'Strategic Case Studies & Technical Impact', items = [] } = $props<{
+  const { sectionId, heading = 'Strategic Case Studies & Technical Impact', items = [] } = $props<{
+    sectionId?: string;
     heading?: string;
     items?: SoftwareCaseStudyItem[];
   }>();
@@ -72,15 +74,17 @@
   }
 </script>
 
-<section class="relative overflow-hidden bg-base-200/50 py-24">
+<section id={sectionId} class="relative overflow-hidden bg-base-200/50 py-24">
   <div class="container mx-auto px-6">
     <div
       class="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
     >
       <div class="max-w-3xl text-left">
-        <h2 class="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl">
-          {heading}
-        </h2>
+        <CmsRichTextSvelte
+          value={heading}
+          tag="h2"
+          className="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
+        />
       </div>
 
       <!-- Horizontal Controls -->
@@ -124,11 +128,11 @@
         {/if}
 
         <div class="z-10 flex w-full flex-col items-start gap-6 text-left md:w-[55%]">
-          <h3
-            class="font-sans text-xl leading-tight font-medium tracking-tight text-base-content uppercase md:text-2xl"
-          >
-            {study.title}
-          </h3>
+          <CmsRichTextSvelte
+            value={study.title}
+            tag="h3"
+            className="font-sans text-xl leading-tight font-medium tracking-tight text-base-content uppercase md:text-2xl"
+          />
 
           <div class="h-1 w-12 rounded-full bg-primary"></div>
 
@@ -139,9 +143,11 @@
               <FileText class="h-4 w-4" strokeWidth={2} />
               The Solution:
             </span>
-            <p class="text-base leading-snug font-medium text-base-content md:text-lg">
-              {study.solution}
-            </p>
+            <CmsRichTextSvelte
+              value={study.solution}
+              tag="p"
+              className="text-base leading-snug font-medium text-base-content md:text-lg"
+            />
           </div>
 
           <div class="flex flex-col gap-2">
@@ -151,11 +157,11 @@
               <TrendingUp class="h-4 w-4" strokeWidth={2} />
               The Impact:
             </span>
-            <p
-              class="text-justify text-sm leading-relaxed font-medium text-base-content/80 md:text-base"
-            >
-              {study.impact}
-            </p>
+            <CmsRichTextSvelte
+              value={study.impact}
+              tag="p"
+              className="text-justify text-sm leading-relaxed font-medium text-base-content/80 md:text-base"
+            />
           </div>
         </div>
 

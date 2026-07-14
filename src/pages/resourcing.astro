@@ -4,6 +4,7 @@ import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import Contact from '~/components/Contact.astro';
+import CmsRichText from '~/components/CmsRichText.astro';
 import ResourcingCapabilities from '~/components/resourcing/ResourcingCapabilities.astro';
 
 import ResourcingExtraSections from '~/components/resourcing/ResourcingExtraSections.astro';
@@ -16,7 +17,7 @@ import { resourcing } from '~/data/cms';
     <Navbar />
 
     <!-- Hero Section -->
-    <section class="relative pt-20 pb-5 sm:pt-32 sm:pb-16">
+    <section id={resourcing.hero.sectionId} class="relative pt-20 pb-5 sm:pt-32 sm:pb-16">
       <div class="container mx-auto px-6">
         <div class="flex flex-col gap-6 lg:flex-row lg:gap-8">
           <!-- Left part -->
@@ -40,16 +41,16 @@ import { resourcing } from '~/data/cms';
               <h1
                 class="mb-6 max-w-lg text-4xl leading-tight font-bold text-base-content md:text-5xl lg:text-[54px]"
               >
-                {resourcing.hero.title}
+                <CmsRichText value={resourcing.hero.title} />
               </h1>
               <p class="mb-10 max-w-lg text-xl font-medium text-base-content/80">
-                {resourcing.hero.subtitle}
+                <CmsRichText value={resourcing.hero.subtitle} />
               </p>
               <a
                 href={resourcing.hero.ctaUrl}
-                class="btn w-full lg:w-auto rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
+                class="btn w-full rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary lg:w-auto"
               >
-                {resourcing.hero.ctaLabel}
+                <CmsRichText value={resourcing.hero.ctaLabel} />
               </a>
             </div>
           </div>
@@ -60,7 +61,10 @@ import { resourcing } from '~/data/cms';
     </section>
 
     <!-- Capabilities Section -->
-    <section class="relative overflow-hidden bg-base-100 py-24">
+    <section
+      id={resourcing.capabilities.sectionId}
+      class="relative overflow-hidden bg-base-100 py-24"
+    >
       <!-- Background Image -->
       <div
         class="pointer-events-none absolute inset-0 z-0 opacity-70 dark:mix-blend-overlay"
@@ -79,12 +83,12 @@ import { resourcing } from '~/data/cms';
       </div>
 
       <div class="relative z-10 container mx-auto px-6">
-        <div class="mb-10 max-w-3xl">
+        <div class="mb-10 max-w-3xl md:mb-6">
           <h2 class="mb-6 text-4xl font-bold text-base-content md:text-5xl">
-            {resourcing.capabilities.heading}
+            <CmsRichText value={resourcing.capabilities.heading} />
           </h2>
           <p class="text-xl font-medium text-base-content/70">
-            {resourcing.capabilities.description}
+            <CmsRichText value={resourcing.capabilities.description} />
           </p>
         </div>
 

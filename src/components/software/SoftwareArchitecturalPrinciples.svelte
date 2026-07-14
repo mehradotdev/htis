@@ -1,8 +1,11 @@
 <script lang="ts">
+  import { untrack } from 'svelte';
   import { fade } from 'svelte/transition';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
   import type { SoftwareArchitecturalPrincipleItem } from '~/data/cms';
 
   interface Props {
+    sectionId?: string;
     backgroundImageSrc?: string;
     heading: string;
     description: string;
@@ -10,6 +13,7 @@
   }
 
   let {
+    sectionId,
     backgroundImageSrc = '',
     heading,
     description,
@@ -17,8 +21,18 @@
   }: Props = $props();
 
   let activeIndex = $state(0);
-  let interval: ReturnType<typeof setInterval>;
+  let autoplayTimer: ReturnType<typeof setTimeout>;
   let tabsContainer = $state<HTMLDivElement | null>(null);
+  let areTabsHovered = $state(false);
+  let areTabsFocused = $state(false);
+  let isCardHovered = $state(false);
+  let isCardFocused = $state(false);
+  let isAutoplayPaused = $derived(
+    areTabsHovered || areTabsFocused || isCardHovered || isCardFocused,
+  );
+  let remainingAutoplayTime = 6000;
+  let autoplayStartedAt = 0;
+  let isAutoplayTimerRunning = false;
 
   function scrollTabToActive(index: number) {
     if (!tabsContainer) return;
@@ -37,18 +51,57 @@
     tabsContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }
 
-  function startInterval() {
-    clearInterval(interval);
-    if (!principles.length) return;
-    interval = setInterval(() => {
+  function scheduleAutoplay() {
+    clearTimeout(autoplayTimer);
+    if (isAutoplayPaused || !principles.length) return;
+
+    autoplayStartedAt = Date.now();
+    isAutoplayTimerRunning = true;
+    autoplayTimer = setTimeout(() => {
+      isAutoplayTimerRunning = false;
+      remainingAutoplayTime = 6000;
       activeIndex = (activeIndex + 1) % principles.length;
-    }, 6000);
+      scheduleAutoplay();
+    }, remainingAutoplayTime);
+  }
+
+  function pauseAutoplay() {
+    if (!isAutoplayTimerRunning) return;
+
+    remainingAutoplayTime = Math.max(
+      0,
+      remainingAutoplayTime - (Date.now() - autoplayStartedAt),
+    );
+    clearTimeout(autoplayTimer);
+    isAutoplayTimerRunning = false;
+  }
+
+  function resumeAutoplay() {
+    if (!isAutoplayPaused) scheduleAutoplay();
+  }
+
+  function handleFocusOut(event: FocusEvent, region: 'tabs' | 'card') {
+    const container = event.currentTarget as HTMLElement;
+    if (container.contains(event.relatedTarget as Node | null)) return;
+
+    if (region === 'tabs') {
+      areTabsFocused = false;
+    } else {
+      isCardFocused = false;
+    }
+    resumeAutoplay();
   }
 
   $effect(() => {
-    startInterval();
+    principles.length;
+    untrack(() => {
+      remainingAutoplayTime = 6000;
+      scheduleAutoplay();
+    });
+
     return () => {
-      clearInterval(interval);
+      clearTimeout(autoplayTimer);
+      isAutoplayTimerRunning = false;
     };
   });
 
@@ -64,11 +117,13 @@
 
   function selectTab(index: number) {
     activeIndex = index;
-    startInterval();
+    remainingAutoplayTime = 6000;
+    scheduleAutoplay();
   }
 </script>
 
 <section
+  id={sectionId}
   class="relative overflow-hidden border-t border-base-content/10 bg-base-100 py-24"
 >
   {#if backgroundImageSrc}
@@ -85,23 +140,43 @@
 
   <div class="relative z-10 container mx-auto px-6">
     <div class="mb-16 max-w-3xl text-left">
-      <h2 class="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl">
-        {heading}
-      </h2>
-      <p class="mt-4 text-lg font-medium text-base-content/70">
-        {description}
-      </p>
+      <CmsRichTextSvelte
+        value={heading}
+        tag="h2"
+        className="text-4xl font-extrabold tracking-tight text-base-content md:text-5xl"
+      />
+      <CmsRichTextSvelte
+        value={description}
+        tag="p"
+        className="mt-4 text-lg font-medium text-base-content/70"
+      />
     </div>
 
     {#if principles.length}
       <div class="relative w-full">
         <div
           bind:this={tabsContainer}
+          role="group"
+          aria-label="Architectural principles"
+          onmouseenter={() => {
+            areTabsHovered = true;
+            pauseAutoplay();
+          }}
+          onmouseleave={() => {
+            areTabsHovered = false;
+            resumeAutoplay();
+          }}
+          onfocusin={() => {
+            areTabsFocused = true;
+            pauseAutoplay();
+          }}
+          onfocusout={(event) => handleFocusOut(event, 'tabs')}
           class="no-scrollbar relative flex w-full flex-nowrap gap-3 overflow-x-auto scroll-smooth pb-5 md:gap-4 lg:grid lg:grid-cols-5"
         >
           {#each principles as principle, i}
             <div class="relative shrink-0 w-[185px] md:w-[240px] lg:w-auto flex flex-col">
               <button
+                aria-pressed={activeIndex === i}
                 onclick={() => selectTab(i)}
                 class="relative flex flex-1 min-h-[96px] w-full cursor-pointer items-center justify-center rounded-2xl border px-3.5 pt-8 pb-6 text-center transition-all duration-300 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:min-h-[108px] md:px-6 md:pt-10 md:pb-8
                   {activeIndex === i
@@ -114,16 +189,19 @@
                   {#if activeIndex === i}
                     <div
                       class="h-full animate-progress bg-primary"
-                      style="--duration: 6000ms;"
+                      style="--duration: 6000ms; animation-play-state: {isAutoplayPaused
+                        ? 'paused'
+                        : 'running'};"
                     ></div>
                   {:else}
                     <div class="h-full bg-primary/30"></div>
                   {/if}
                 </div>
 
-                <span class="text-sm leading-snug font-medium md:text-lg lg:text-xl">
-                  {principle.title}
-                </span>
+                <CmsRichTextSvelte
+                  value={principle.title}
+                  className="text-sm leading-snug font-medium md:text-lg lg:text-xl"
+                />
               </button>
 
               {#if activeIndex === i}
@@ -136,6 +214,21 @@
         </div>
 
         <div
+          role="region"
+          aria-label="Architectural principle details"
+          onmouseenter={() => {
+            isCardHovered = true;
+            pauseAutoplay();
+          }}
+          onmouseleave={() => {
+            isCardHovered = false;
+            resumeAutoplay();
+          }}
+          onfocusin={() => {
+            isCardFocused = true;
+            pauseAutoplay();
+          }}
+          onfocusout={(event) => handleFocusOut(event, 'card')}
           class="relative mt-2 flex min-h-[160px] items-center overflow-hidden rounded-3xl border border-base-content/10 bg-base-100 p-8 shadow-lg md:min-h-[140px] md:p-12 dark:bg-base-200/40"
         >
           <div
@@ -175,7 +268,7 @@
                 in:fade={{ duration: 250 }}
                 class="text-justify text-lg leading-relaxed font-normal text-base-content/85 md:text-xl"
               >
-                {principles[activeIndex]?.description}
+                <CmsRichTextSvelte value={principles[activeIndex]?.description} />
               </div>
             {/key}
           </div>
