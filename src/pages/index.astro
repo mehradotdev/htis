@@ -1,4 +1,6 @@
 ---
+import { getImage } from 'astro:assets';
+import { home } from '~/data/cms';
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Hero from '~/components/Hero.astro';
@@ -11,7 +13,26 @@ import Footer from '~/components/Footer.astro';
 import Team from '~/components/Team.svelte';
 import Clients from '~/components/Clients.astro';
 import Testimonials from '~/components/Testimonials.astro';
-import { home } from '~/data/cms';
+
+const journeyMilestones = await Promise.all(
+  home.journey.milestones.map(async ({ image, ...milestone }) => ({
+    ...milestone,
+    imageSrc: (await getImage({ src: image, format: 'webp' })).src,
+  })),
+);
+
+const team = await Promise.all(
+  home.team.members.map(async (member) => ({
+    ...member,
+    img: (await getImage({ src: member.img, format: 'webp' })).src,
+  })),
+);
+
+const bgImageSrc = (await getImage({ src: home.team.backgroundImage, format: 'webp' }))
+  .src;
+const meetTeamImageSrc = (
+  await getImage({ src: home.team.meetTeamImage, format: 'webp' })
+).src;
 ---
 
 <Layout>
@@ -22,16 +43,16 @@ import { home } from '~/data/cms';
     <div class="bg-linear-to-b from-transparent to-base-200/50">
       <Journey
         sectionId={home.journey.sectionId}
-        milestones={home.journey.milestones}
+        milestones={journeyMilestones}
         title={home.journey.title}
         subtitle={home.journey.subtitle}
         client:visible
       />
       <Team
         sectionId={home.team.sectionId}
-        team={home.team.members}
-        bgImageSrc={home.team.backgroundImageSrc}
-        meetTeamImageSrc={home.team.meetTeamImageSrc}
+        team={team}
+        bgImageSrc={bgImageSrc}
+        meetTeamImageSrc={meetTeamImageSrc}
         heading={home.team.heading}
         description={home.team.description}
         ctaTitle={home.team.ctaTitle}

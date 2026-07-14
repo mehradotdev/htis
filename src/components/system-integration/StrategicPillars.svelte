@@ -20,41 +20,20 @@
   let hoveredIndex = $state<number | null>(null);
   const AUTOPLAY_INTERVAL = 7000;
   const isAutoplayPaused = $derived(hoveredIndex === activeIndex);
-  let autoplayRemaining = AUTOPLAY_INTERVAL;
 
   // The order in which pillars should autoplay to create a U-shape loop.
   const autoplaySequence = $derived(
     [0, 1, 2, 3, 6, 5, 4].filter((index) => index < pillars.length),
   );
 
-  $effect(() => {
-    const scheduledIndex = activeIndex;
+  const advanceAutoplay = (completedIndex: number) => {
+    // Ignore stale animation events from a card that is no longer active.
+    if (completedIndex !== activeIndex || isAutoplayPaused) return;
 
-    if (isAutoplayPaused || autoplaySequence.length === 0) {
-      return;
-    }
-
-    const startedAt = performance.now();
-    const timeoutId = setTimeout(() => {
-      const currentSeqIndex = autoplaySequence.indexOf(activeIndex);
-      const nextSeqIndex = (currentSeqIndex + 1) % autoplaySequence.length;
-      autoplayRemaining = AUTOPLAY_INTERVAL;
-      activeIndex = autoplaySequence[nextSeqIndex];
-    }, autoplayRemaining);
-
-    return () => {
-      clearTimeout(timeoutId);
-
-      if (activeIndex === scheduledIndex && isAutoplayPaused) {
-        autoplayRemaining = Math.max(
-          0,
-          autoplayRemaining - (performance.now() - startedAt),
-        );
-      } else {
-        autoplayRemaining = AUTOPLAY_INTERVAL;
-      }
-    };
-  });
+    const currentSeqIndex = autoplaySequence.indexOf(completedIndex);
+    const nextSeqIndex = (currentSeqIndex + 1) % autoplaySequence.length;
+    activeIndex = autoplaySequence[nextSeqIndex];
+  };
 
   const leftPillars = $derived(pillars.filter((p) => p.column === 'left'));
   const centerPillars = $derived(pillars.filter((p) => p.column === 'center'));
@@ -136,6 +115,7 @@
               style="--duration: {AUTOPLAY_INTERVAL}ms; animation-play-state: {isAutoplayPaused
                 ? 'paused'
                 : 'running'};"
+              onanimationend={() => advanceAutoplay(globalIndex)}
             ></div>
           </div>
         {/if}

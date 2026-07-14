@@ -109,23 +109,11 @@ const { sectionId, eyebrow, heading, ctaLabel, ctaUrl, posts } = Astro.props;
             </a>
 
             {/* The actual iframe */}
-            {/*
-              NOTE: Do NOT add loading="lazy" to these iframes.
-
-              With lazy loading, the browser defers the request until the iframe
-              is near the viewport. By that time our `load` listener is already
-              attached. When a privacy extension blocks the request, the browser
-              still fires a `load` event for the empty/blocked content. Our
-              handler catches it and hides the fallback card, leaving a blank space.
-
-              Without lazy loading the request fires immediately during HTML
-              parsing, before our script attaches listeners. A blocked request's
-              `load` event is missed, so the fallback card stays visible.
-            */}
             <iframe
               src={post.src}
               height={post.height}
               width={post.width}
+              loading="lazy"
               sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
               referrerpolicy="no-referrer"
               allowfullscreen

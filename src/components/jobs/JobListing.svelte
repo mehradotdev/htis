@@ -1,15 +1,26 @@
 <script lang="ts">
   import { Search, ChevronDown } from '@lucide/svelte';
-  import { fetchHiringJobs, mapApiJobToListItem, type JobListItem } from '~/data/jobApi';
+  import {
+    fetchHiringJobs,
+    mapApiJobToListItem,
+    type HiringApiJob,
+    type JobListItem,
+  } from '~/data/jobApi';
+  import { storeSelectedJob } from '~/utils/jobSelection';
 
-  let jobs = $state<JobListItem[]>([]);
+  type JobListRow = JobListItem & { apiJob: HiringApiJob };
+
+  let jobs = $state<JobListRow[]>([]);
   let isLoading = $state(true);
   let error = $state<string | null>(null);
 
   async function fetchJobs(signal: AbortSignal) {
     try {
       const apiJobs = await fetchHiringJobs({ signal });
-      jobs = apiJobs.map(mapApiJobToListItem);
+      jobs = apiJobs.map((apiJob) => ({
+        ...mapApiJobToListItem(apiJob),
+        apiJob,
+      }));
       error = null;
     } catch (err: unknown) {
       if (err instanceof DOMException && err.name === 'AbortError') {
@@ -96,6 +107,10 @@
     } else {
       selectedLocations = [...selectedLocations, loc];
     }
+  }
+
+  function rememberSelectedJob(job: JobListRow) {
+    storeSelectedJob(job.apiJob);
   }
 </script>
 
@@ -242,6 +257,7 @@
                     href={`/jobs/${job.id}`}
                     class="row-link hover:underline"
                     aria-label={`${job.role} — ${job.department}, ${job.location}`}
+                    onclick={() => rememberSelectedJob(job)}
                     >{job.role}</a
                   >
                 </td>

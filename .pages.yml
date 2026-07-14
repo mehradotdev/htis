@@ -1051,7 +1051,7 @@ content:
                 type: string
                 required: true
               - name: posts
-                label: Facebook and Instagram posts
+                label: Facebook, Instagram, and LinkedIn posts
                 type: object
                 list:
                   collapsible:
@@ -1064,10 +1064,11 @@ content:
                       values:
                         - facebook
                         - instagram
+                        - linkedin
                     required: true
                   - name: embedCode
-                    label: Facebook iframe or Instagram embed code
-                    description: Paste the official Facebook iframe or Instagram iframe/blockquote code.
+                    label: Social post embed code
+                    description: Paste the official Facebook, Instagram, or LinkedIn embed code.
                     type: text
                     required: true
                   - name: fallbackTitle

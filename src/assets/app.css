@@ -504,6 +504,65 @@ details > summary::-webkit-details-marker {
   transition: transform 0.4s ease;
 }
 
+/* Job detail API Markdown
+   The content is generated HTML, so descendant typography cannot be expressed
+   as utility classes directly on the generated elements. */
+.job-markdown {
+  font-size: 1.125rem;
+}
+
+.job-markdown h1,
+.job-markdown h4,
+.job-markdown h5,
+.job-markdown h6 {
+  color: var(--color-base-content);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.job-markdown h1 {
+  margin-top: 2.25rem;
+  font-size: clamp(2rem, 1.8rem + 0.75vw, 2.5rem);
+}
+
+.job-markdown h4 {
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+}
+
+.job-markdown code {
+  border-radius: 0.25rem;
+  background: var(--color-base-300);
+  padding: 0.125rem 0.375rem;
+  font-size: 0.9em;
+}
+
+.job-markdown pre {
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  background: var(--color-base-300);
+  padding: 1rem;
+}
+
+.job-markdown pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.job-markdown table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.job-markdown th,
+.job-markdown td {
+  border: 1px solid var(--color-base-300);
+  padding: 0.75rem;
+  text-align: left;
+}
+
 /* Team desktop layout fallback: keeps leadership cards at a playing-card
    proportion while the permanently open CTA fills the remaining row width. */
 @media (min-width: 768px) {

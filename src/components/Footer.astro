@@ -53,6 +53,8 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
             src={footerLogo}
             alt={footer.logo.alt}
             width={120}
+            loading="lazy"
+            decoding="async"
             class="object-contain"
           />
           <p class="mt-4 max-w-sm text-[15px] leading-[1.85] text-base-content/70">
@@ -175,6 +177,8 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
                 <img
                   src={`https://flagcdn.com/w80/${footer.offices.indiaFlagCode}.png`}
                   alt="India flag"
+                  loading="lazy"
+                  decoding="async"
                   class="h-auto w-[38px] rounded-xs border border-base-200 object-contain shadow-md dark:border-base-300/40"
                 />
               </div>
@@ -294,6 +298,8 @@ const totalRows = (offices.length + emptyCellsCount) / 4;
                     src={`https://flagcdn.com/w40/${country.code}.png`}
                     alt={`${country.name} flag`}
                     title={country.name}
+                    loading="lazy"
+                    decoding="async"
                     class="filter h-auto w-7 cursor-pointer rounded-xs border border-base-content/5 object-contain drop-shadow-[0_2px_3px_rgba(0,0,0,0.15)] transition-transform duration-200 hover:scale-125"
                   />
                 ))

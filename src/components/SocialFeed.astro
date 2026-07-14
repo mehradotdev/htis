@@ -10,6 +10,12 @@ interface Props {
 }
 
 const { sectionId = 'latest-social', eyebrow, heading, posts } = Astro.props;
+
+const platformDetails = {
+  facebook: { label: 'Facebook', badgeClass: 'badge-primary' },
+  instagram: { label: 'Instagram', badgeClass: 'badge-secondary' },
+  linkedin: { label: 'LinkedIn', badgeClass: 'badge-info' },
+} as const;
 ---
 
 <section id={sectionId} class="bg-base-100 py-16 md:py-24">
@@ -63,10 +69,8 @@ const { sectionId = 'latest-social', eyebrow, heading, posts } = Astro.props;
               rel="noopener noreferrer"
               class="social-fallback absolute inset-0 flex flex-col items-center justify-center gap-4 p-8 text-center transition-colors hover:bg-base-200/50"
             >
-              <span
-                class={`badge badge-lg ${post.platform === 'facebook' ? 'badge-primary' : 'badge-secondary'}`}
-              >
-                {post.platform === 'facebook' ? 'Facebook' : 'Instagram'}
+              <span class={`badge badge-lg ${platformDetails[post.platform].badgeClass}`}>
+                {platformDetails[post.platform].label}
               </span>
               <CmsRichText
                 value={post.fallbackTitle}
@@ -83,11 +87,25 @@ const { sectionId = 'latest-social', eyebrow, heading, posts } = Astro.props;
               width={post.width}
               height={post.height}
               title={post.title}
+              loading="lazy"
               scrolling="no"
               frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              allow={
+                post.platform === 'linkedin'
+                  ? undefined
+                  : 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'
+              }
+              sandbox={
+                post.platform === 'linkedin'
+                  ? 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms'
+                  : undefined
+              }
               allowfullscreen
-              referrerpolicy="strict-origin-when-cross-origin"
+              referrerpolicy={
+                post.platform === 'linkedin'
+                  ? 'no-referrer'
+                  : 'strict-origin-when-cross-origin'
+              }
               class="social-iframe pointer-events-none relative z-10 opacity-0 transition-opacity duration-300"
               style={`width:100%;height:${post.height}px;border:0;`}
             />

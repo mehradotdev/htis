@@ -254,7 +254,7 @@ export interface ArticlePost {
 }
 
 export interface SocialPost {
-  platform: 'facebook' | 'instagram';
+  platform: 'facebook' | 'instagram' | 'linkedin';
   embedCode: string;
   src: string;
   url: string;
@@ -500,7 +500,7 @@ interface AboutYaml {
     eyebrow: string;
     heading: string;
     posts: Array<{
-      platform: 'facebook' | 'instagram';
+      platform: 'facebook' | 'instagram' | 'linkedin';
       embedCode: string;
       fallbackTitle?: string;
     }>;
@@ -1055,7 +1055,7 @@ export const home = (() => {
       ...data.journey,
       milestones: data.journey.milestones.map(({ image, ...milestone }) => ({
         ...milestone,
-        imageSrc: getCmsAssetSrc(image),
+        image: getCmsAsset(image),
       })),
     },
     services: {
@@ -1064,10 +1064,10 @@ export const home = (() => {
     },
     team: {
       ...data.team,
-      backgroundImageSrc: getCmsAssetSrc(data.team.backgroundImage),
-      meetTeamImageSrc: getCmsAssetSrc(data.team.meetTeamImage),
+      backgroundImage: getCmsAsset(data.team.backgroundImage),
+      meetTeamImage: getCmsAsset(data.team.meetTeamImage),
       members: data.team.members.map((member) => ({
-        img: getCmsAssetSrc(member.image),
+        img: getCmsAsset(member.image),
         name: member.name,
         role: member.role,
         desc: member.desc,
@@ -1111,7 +1111,7 @@ function resolveLinkedInEmbed(post: {
 }): ArticlePost {
   const src = getIframeAttribute(post.embedCode, 'src');
   if (!src) {
-    throw new Error('Home articles: LinkedIn iframe embed is missing a src attribute.');
+    throw new Error('LinkedIn iframe embed is missing a src attribute.');
   }
 
   const embedUrl = new URL(src);
@@ -1119,7 +1119,7 @@ function resolveLinkedInEmbed(post: {
     embedUrl.hostname !== 'www.linkedin.com' ||
     !embedUrl.pathname.startsWith('/embed/feed/update/')
   ) {
-    throw new Error(`Home articles: unsupported LinkedIn embed URL "${src}"`);
+    throw new Error(`Unsupported LinkedIn embed URL "${src}"`);
   }
 
   const heightValue = Number(getIframeAttribute(post.embedCode, 'height'));
@@ -1145,10 +1145,17 @@ function resolveLinkedInEmbed(post: {
 }
 
 function resolveSocialEmbed(post: {
-  platform: 'facebook' | 'instagram';
+  platform: 'facebook' | 'instagram' | 'linkedin';
   embedCode: string;
   fallbackTitle?: string;
 }): SocialPost {
+  if (post.platform === 'linkedin') {
+    return {
+      ...resolveLinkedInEmbed(post),
+      platform: 'linkedin',
+    };
+  }
+
   const iframeSrc = getIframeAttribute(post.embedCode, 'src');
   const permalink = getInstagramPermalink(post.embedCode);
   const source = iframeSrc || permalink;
