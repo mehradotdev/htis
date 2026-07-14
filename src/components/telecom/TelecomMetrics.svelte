@@ -120,13 +120,16 @@
 >
   {#each metrics as metric, i}
     <div class="flex flex-col gap-2">
-      <span class="text-5xl md:text-6xl font-bold text-primary"
-        >{currentValues[i]}<CmsRichTextSvelte value={metric.unit} /><span
+      <span class="text-5xl md:text-6xl font-bold text-primary">
+        <CmsRichTextSvelte value={String(currentValues[i] ?? 0)} /><CmsRichTextSvelte
+          value={metric.unit}
+        /><span
           class={metric.suffix === '/4'
             ? 'text-4xl md:text-5xl font-light text-primary/60'
-            : 'text-4xl md:text-5xl font-light'}><CmsRichTextSvelte value={metric.suffix} /></span
-        ></span
-      >
+            : 'text-4xl md:text-5xl font-light'}
+          ><CmsRichTextSvelte value={metric.suffix} /></span
+        >
+      </span>
       {#if metric.subLabel}
         <div class="flex flex-col">
           <CmsRichTextSvelte

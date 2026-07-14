@@ -2,8 +2,10 @@
 import { Image } from 'astro:assets';
 import LightRays from '~/components/LightRays.astro';
 import SystemIntegrationCarousel from './SystemIntegrationCarousel.svelte';
+import CmsRichText from '~/components/CmsRichText.astro';
 
 interface Props {
+  sectionId?: string;
   backgroundImage: ImageMetadata;
   title: string;
   subtitle: string;
@@ -12,11 +14,12 @@ interface Props {
   carouselImages: string[];
 }
 
-const { backgroundImage, title, subtitle, ctaLabel, ctaUrl, carouselImages } =
+const { sectionId, backgroundImage, title, subtitle, ctaLabel, ctaUrl, carouselImages } =
   Astro.props;
 ---
 
 <section
+  id={sectionId}
   class="relative flex min-h-[85vh] w-full flex-col justify-center overflow-hidden pt-28 pb-10 lg:min-h-[85vh] lg:flex-row lg:items-center lg:pt-0 lg:pb-0"
 >
   <!-- Background Image with Overlay -->
@@ -57,19 +60,21 @@ const { backgroundImage, title, subtitle, ctaLabel, ctaUrl, carouselImages } =
       <div
         class="z-20 w-full max-lg:rounded-2xl max-lg:bg-base-100/20 max-lg:p-6 max-lg:backdrop-blur-md lg:w-1/2 lg:py-24 lg:pr-12"
       >
-        <h1
-          class="mb-6 text-4xl leading-tight font-bold text-base-content sm:text-5xl lg:text-[54px]"
-        >
-          {title}
-        </h1>
-        <p class="mb-10 max-w-xl text-lg font-medium text-base-content/80 lg:text-xl">
-          {subtitle}
-        </p>
+        <CmsRichText
+          value={title}
+          tag="h1"
+          className="mb-6 text-4xl leading-tight font-bold text-base-content sm:text-5xl lg:text-[54px]"
+        />
+        <CmsRichText
+          value={subtitle}
+          tag="p"
+          className="mb-10 max-w-xl text-lg font-medium text-base-content/80 lg:text-xl"
+        />
         <a
           href={ctaUrl}
-          class="btn w-full lg:w-auto rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary"
+          class="btn w-full rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary lg:w-auto"
         >
-          {ctaLabel}
+          <CmsRichText value={ctaLabel} />
         </a>
       </div>
     </div>

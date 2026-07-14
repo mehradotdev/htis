@@ -1,6 +1,7 @@
 <script lang="ts">
   import { slide } from 'svelte/transition';
   import CmsIconSvelte from '~/components/CmsIconSvelte.svelte';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
 
   interface PillarCard {
     iconName: string;
@@ -16,7 +17,10 @@
   const pillars = $derived(cards);
 
   let activeIndex = $state(0);
+  let hoveredIndex = $state<number | null>(null);
   const AUTOPLAY_INTERVAL = 7000;
+  const isAutoplayPaused = $derived(hoveredIndex === activeIndex);
+  let autoplayRemaining = AUTOPLAY_INTERVAL;
 
   // The order in which pillars should autoplay to create a U-shape loop.
   const autoplaySequence = $derived(
@@ -24,19 +28,32 @@
   );
 
   $effect(() => {
-    activeIndex;
+    const scheduledIndex = activeIndex;
 
-    const intervalId = setInterval(() => {
-      if (autoplaySequence.length === 0) {
-        return;
-      }
+    if (isAutoplayPaused || autoplaySequence.length === 0) {
+      return;
+    }
 
+    const startedAt = performance.now();
+    const timeoutId = setTimeout(() => {
       const currentSeqIndex = autoplaySequence.indexOf(activeIndex);
       const nextSeqIndex = (currentSeqIndex + 1) % autoplaySequence.length;
+      autoplayRemaining = AUTOPLAY_INTERVAL;
       activeIndex = autoplaySequence[nextSeqIndex];
-    }, AUTOPLAY_INTERVAL);
+    }, autoplayRemaining);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      clearTimeout(timeoutId);
+
+      if (activeIndex === scheduledIndex && isAutoplayPaused) {
+        autoplayRemaining = Math.max(
+          0,
+          autoplayRemaining - (performance.now() - startedAt),
+        );
+      } else {
+        autoplayRemaining = AUTOPLAY_INTERVAL;
+      }
+    };
   });
 
   const leftPillars = $derived(pillars.filter((p) => p.column === 'left'));
@@ -78,28 +95,34 @@
         ? 'border-primary/30 bg-primary/5 scale-[1.02] shadow-md'
         : 'border-base-content/20 bg-base-content/2 hover:bg-base-300/60'}"
       onclick={() => (activeIndex = globalIndex)}
+      onmouseenter={() => (hoveredIndex = globalIndex)}
+      onmouseleave={() => {
+        if (hoveredIndex === globalIndex) hoveredIndex = null;
+      }}
     >
       <div class="flex-1 w-full overflow-hidden">
-        <h3
-          class="mb-2 text-2xl font-medium transition-colors {activeIndex === globalIndex
+        <CmsRichTextSvelte
+          value={pillar.title}
+          tag="h3"
+          className="mb-2 text-2xl font-medium transition-colors {activeIndex === globalIndex
             ? 'text-primary'
             : 'text-base-content/90'}"
-        >
-          {pillar.title}
-        </h3>
-        <p
-          class="text-base font-medium transition-colors {activeIndex === globalIndex
+        />
+        <CmsRichTextSvelte
+          value={pillar.description}
+          tag="p"
+          className="text-base font-medium transition-colors {activeIndex === globalIndex
             ? 'text-base-content/90'
             : 'text-base-content/70'}"
-        >
-          {pillar.description}
-        </p>
+        />
         {#if activeIndex === globalIndex}
           <div transition:slide={{ duration: 300 }}>
             <div class="mt-4 border-t border-base-content/10 pt-4">
-              <p class="text-sm leading-relaxed text-base-content">
-                {pillar.content}
-              </p>
+              <CmsRichTextSvelte
+                value={pillar.content}
+                tag="p"
+                className="text-sm leading-relaxed text-base-content"
+              />
             </div>
           </div>
         {/if}
@@ -110,7 +133,9 @@
           >
             <div
               class="h-full animate-progress bg-primary/40"
-              style="--duration: {AUTOPLAY_INTERVAL}ms;"
+              style="--duration: {AUTOPLAY_INTERVAL}ms; animation-play-state: {isAutoplayPaused
+                ? 'paused'
+                : 'running'};"
             ></div>
           </div>
         {/if}

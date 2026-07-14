@@ -567,6 +567,7 @@ interface PageHeroYaml {
 }
 
 interface SystemIntegrationHeroYaml {
+  sectionId?: string;
   backgroundImage: string;
   foregroundImage?: string;
   title: string;
@@ -631,6 +632,7 @@ interface PartnerTabYaml {
 }
 
 interface PartnerEcosystemYaml {
+  sectionId?: string;
   heading: string;
   description: string;
   tabs: PartnerTabYaml[];
@@ -760,14 +762,16 @@ interface SystemIntegrationYaml {
   title: string;
   hero: SystemIntegrationHeroYaml;
   strategicPillars: {
+    sectionId?: string;
     backgroundImage: string;
     centerImage: string;
     heading: string;
     cards: StrategicPillarCardYaml[];
   };
   partnerEcosystem: PartnerEcosystemYaml;
-  execution: ExecutionYaml;
+  execution: ExecutionYaml & { sectionId?: string };
   deployments: {
+    sectionId?: string;
     heading: string;
     image: string;
     imageAlt: string;
@@ -1325,7 +1329,7 @@ function resolveSplitHero<T extends PageHeroYaml | SystemIntegrationHeroYaml>(he
   };
 }
 
-function resolveHero(hero: PageHeroYaml | SystemIntegrationHeroYaml) {
+function resolveHero<T extends PageHeroYaml | SystemIntegrationHeroYaml>(hero: T) {
   return {
     ...resolveSplitHero(hero),
     carouselImages: hero.carouselImages?.map(getCmsAssetSrc) ?? [],

@@ -1,10 +1,9 @@
 <script lang="ts">
+  import { untrack } from 'svelte';
   import { fade } from 'svelte/transition';
-  import {
-    ChevronLeft,
-    ChevronRight,
-  } from '@lucide/svelte';
+  import { ChevronLeft, ChevronRight } from '@lucide/svelte';
   import CmsIconSvelte from '~/components/CmsIconSvelte.svelte';
+  import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
 
   interface Partner {
     name: string;
@@ -32,9 +31,13 @@
   } = $props();
 
   const tabs = $derived(partnerEcosystem.tabs ?? []);
+  const AUTOPLAY_INTERVAL_MS = 6000;
 
   let activeIndex = $state(0);
-  let interval: ReturnType<typeof setInterval>;
+  let autoplayTimer: ReturnType<typeof setTimeout> | undefined;
+  let autoplayStartedAt = 0;
+  let autoplayRemainingMs = AUTOPLAY_INTERVAL_MS;
+  let isAutoplayPaused = $state(false);
   let carouselContainer = $state<HTMLDivElement | null>(null);
   let tabsContainer = $state<HTMLDivElement | null>(null);
   let hasScrollableContent = $state(false);
@@ -84,18 +87,51 @@
     tabsContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }
 
-  function startInterval() {
-    clearInterval(interval);
-    interval = setInterval(() => {
+  function clearAutoplayTimer() {
+    if (autoplayTimer === undefined) return;
+    clearTimeout(autoplayTimer);
+    autoplayTimer = undefined;
+  }
+
+  function scheduleAutoplay() {
+    clearAutoplayTimer();
+    if (isAutoplayPaused || tabs.length < 2) return;
+
+    autoplayStartedAt = Date.now();
+    autoplayTimer = setTimeout(() => {
       activeIndex = (activeIndex + 1) % tabs.length;
-    }, 6000);
+      autoplayRemainingMs = AUTOPLAY_INTERVAL_MS;
+      scheduleAutoplay();
+    }, autoplayRemainingMs);
+  }
+
+  function pauseAutoplay() {
+    if (isAutoplayPaused) return;
+    isAutoplayPaused = true;
+
+    if (autoplayTimer !== undefined) {
+      autoplayRemainingMs = Math.max(
+        0,
+        autoplayRemainingMs - (Date.now() - autoplayStartedAt),
+      );
+      clearAutoplayTimer();
+    }
+  }
+
+  function resumeAutoplay() {
+    if (!isAutoplayPaused) return;
+    isAutoplayPaused = false;
+    scheduleAutoplay();
+  }
+
+  function resetAutoplay() {
+    autoplayRemainingMs = AUTOPLAY_INTERVAL_MS;
+    scheduleAutoplay();
   }
 
   $effect(() => {
-    startInterval();
-    return () => {
-      clearInterval(interval);
-    };
+    untrack(scheduleAutoplay);
+    return clearAutoplayTimer;
   });
 
   // Handle auto-scroll and carousel reset on activeIndex changes
@@ -108,13 +144,13 @@
 
   function selectTab(index: number) {
     activeIndex = index;
-    startInterval();
+    resetAutoplay();
   }
 
   function scroll(direction: 'left' | 'right') {
     if (!carouselContainer) return;
     // Reset autoplay interval on interaction
-    startInterval();
+    resetAutoplay();
     const cardWidth = carouselContainer.firstElementChild?.clientWidth || 200;
     const gap = 16; // gap-4 is 16px
     const scrollAmount =
@@ -124,18 +160,26 @@
 </script>
 
 <div class="w-full">
-  <div class="max-w-4xl mb-12">
-    <h2 class="mb-6 text-3xl font-bold md:text-4xl lg:text-5xl text-base-content">
-      {@html partnerEcosystem.heading}
-    </h2>
-    <p class="text-lg md:text-xl text-base-content/70 leading-relaxed">
-      {partnerEcosystem.description}
-    </p>
+  <div class="max-w-4xl mb-12 lg:mb-6">
+    <CmsRichTextSvelte
+      value={partnerEcosystem.heading}
+      tag="h2"
+      className="mb-6 text-3xl font-bold text-base-content md:text-4xl lg:text-5xl"
+    />
+    <CmsRichTextSvelte
+      value={partnerEcosystem.description}
+      tag="p"
+      className="text-lg leading-relaxed text-base-content/70 md:text-xl"
+    />
   </div>
 
   <!-- Unified Redesigned Card Container -->
   <div
-    class="bg-base-100 dark:bg-base-200/40 border border-base-content/10 shadow-xl rounded-[2rem] p-6 md:p-10 relative"
+    class="bg-base-100 dark:bg-base-200/40 border border-base-content/10 shadow-xl rounded-[2rem] p-6 md:p-10 md:py-6 relative"
+    role="group"
+    aria-label="Partner ecosystem"
+    onmouseenter={pauseAutoplay}
+    onmouseleave={resumeAutoplay}
   >
     <!-- Pills/Tabs at the top -->
     <div
@@ -151,7 +195,7 @@
             : 'bg-base-200/50 text-base-content/80 hover:bg-base-200 border-base-content/5'}"
         >
           <CmsIconSvelte name={tab.iconName} class="h-4 w-4 shrink-0" />
-          <span>{tab.title}</span>
+          <CmsRichTextSvelte value={tab.title} />
 
           {#if activeIndex === i}
             <!-- Progress bar loader effect -->
@@ -160,7 +204,9 @@
             >
               <div
                 class="absolute bottom-0 left-0 h-1 bg-primary-content/85 animate-progress"
-                style="--duration: 6000ms;"
+                style="--duration: {AUTOPLAY_INTERVAL_MS}ms; animation-play-state: {isAutoplayPaused
+                  ? 'paused'
+                  : 'running'};"
               ></div>
             </div>
             <!-- Downward pointing indicator arrow -->
@@ -190,14 +236,18 @@
 
             <!-- Title & Description -->
             <div class="flex-1">
-              <h3 class="text-xl md:text-2xl font-medium text-secondary mb-2">
-                {tabs[activeIndex].subtitle}
-              </h3>
+              <CmsRichTextSvelte
+                value={tabs[activeIndex].subtitle}
+                tag="h3"
+                className="mb-2 text-xl font-medium text-secondary md:text-2xl"
+              />
               <div class="w-12 h-1 bg-primary rounded-full my-3"></div>
-              <p class="text-base text-base-content/75 max-w-3xl leading-relaxed">
-                {tabs[activeIndex].description ||
+              <CmsRichTextSvelte
+                value={tabs[activeIndex].description ||
                   'High-performance, secure and scalable solutions powered by industry-leading technology.'}
-              </p>
+                tag="p"
+                className="max-w-3xl text-base leading-relaxed text-base-content/75"
+              />
             </div>
           </div>
 
@@ -222,7 +272,7 @@
             >
               {#each tabs[activeIndex].partners as partner}
                 <div
-                  class="shrink-0 w-[170px] md:w-[210px] h-24 md:h-28 bg-base-100 dark:bg-base-300/40 border border-base-content/10 rounded-2xl shadow-xs flex items-center justify-center p-2 transition-all duration-300 hover:border-primary/30 hover:shadow-md hover:scale-[1.02] group"
+                  class="shrink-0 w-[170px] md:w-[210px] h-24 md:h-28 bg-base-100 dark:bg-white/50 border border-base-content/10 rounded-2xl shadow-xs flex items-center justify-center p-2 transition-all duration-300 hover:border-primary/30 hover:shadow-md hover:scale-[1.02] group"
                 >
                   {#if partner.logoSrc}
                     <img
@@ -231,11 +281,11 @@
                       class="max-h-16 md:max-h-20 max-w-[92%] object-contain transition-all duration-300 opacity-90 group-hover:opacity-100"
                     />
                   {:else}
-                    <div
-                      class="text-sm md:text-base font-bold text-secondary/80 dark:text-base-content/70 group-hover:text-primary transition-colors text-center uppercase tracking-wider font-sans px-2"
-                    >
-                      {partner.name}
-                    </div>
+                    <CmsRichTextSvelte
+                      value={partner.name}
+                      tag="div"
+                      className="px-2 text-center font-sans text-sm font-bold tracking-wider text-secondary/80 uppercase transition-colors group-hover:text-primary dark:text-base-content/70 md:text-base"
+                    />
                   {/if}
                 </div>
               {/each}

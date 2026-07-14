@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { ArrowRight } from '@lucide/astro';
+import CmsRichText from '~/components/CmsRichText.astro';
 
 interface CaseStudyItem {
   title: string;
@@ -10,6 +11,7 @@ interface CaseStudyItem {
 }
 
 interface Props {
+  sectionId?: string;
   heading: string;
   image: ImageMetadata;
   imageAlt: string;
@@ -17,18 +19,20 @@ interface Props {
   items: CaseStudyItem[];
 }
 
-const { heading, image, imageAlt, featured, items } = Astro.props;
+const { sectionId, heading, image, imageAlt, featured, items } = Astro.props;
 ---
 
-<section class="relative bg-base-200/50 pt-12 pb-16 md:py-24">
+<section id={sectionId} class="relative bg-base-200/50 pt-12 pb-16 md:py-24">
   <div class="container mx-auto px-6">
     <!-- Header -->
     <div
       class="mb-8 flex items-start justify-between border-t-2 border-base-content/20 pt-8 md:border-t-0 md:pt-0"
     >
-      <h2 class="text-3xl font-bold text-base-content md:text-4xl">
-        {heading}
-      </h2>
+      <CmsRichText
+        value={heading}
+        tag="h2"
+        className="text-3xl font-bold text-base-content md:text-4xl"
+      />
       <div class="flex shrink-0 items-center pt-1 pl-4 md:pl-0">
         <a
           href="#"
@@ -56,19 +60,25 @@ const { heading, image, imageAlt, featured, items } = Astro.props;
 
           <!-- Main Feature Text -->
           <div class="flex flex-col space-y-4 lg:pr-4">
-            <h3 class="text-2xl font-medium text-base-content">
-              {featured.title}
-            </h3>
+            <CmsRichText
+              value={featured.title}
+              tag="h3"
+              className="text-2xl font-medium text-base-content"
+            />
             {
               featured.description && (
-                <p class="text-lg text-base-content/70">{featured.description}</p>
+                <CmsRichText
+                  value={featured.description}
+                  tag="p"
+                  className="text-lg text-base-content/70"
+                />
               )
             }
             <a
               href={featured.ctaUrl}
               class="mt-2 inline-flex w-max items-center text-sm font-medium text-primary decoration-2 underline-offset-4 hover:underline"
             >
-              {featured.ctaLabel}
+              <CmsRichText value={featured.ctaLabel} />
               <ArrowRight class="ml-1 h-4 w-4" />
             </a>
           </div>
@@ -87,15 +97,24 @@ const { heading, image, imageAlt, featured, items } = Astro.props;
                   index < items.length - 1 && 'border-b-2 border-base-content/20 pb-8',
                 ]}
               >
-                <h4 class="mb-3 text-xl font-medium text-base-content">{item.title}</h4>
+                <CmsRichText
+                  value={item.title}
+                  tag="h4"
+                  className="mb-3 text-xl font-medium text-base-content"
+                />
                 {item.description && (
-                  <p class="mb-4 text-base text-base-content/70">{item.description}</p>
+                  <CmsRichText
+                    value={item.description}
+                    tag="p"
+                    className="mb-4 text-base text-base-content/70"
+                  />
                 )}
                 <a
                   href={item.ctaUrl}
                   class="inline-flex items-center text-sm font-medium text-primary decoration-2 underline-offset-4 hover:underline"
                 >
-                  {item.ctaLabel} <ArrowRight class="ml-1 h-4 w-4" />
+                  <CmsRichText value={item.ctaLabel} />{' '}
+                  <ArrowRight class="ml-1 h-4 w-4" />
                 </a>
               </div>
             ))

@@ -1,5 +1,6 @@
 title: System Integration & IT Infrastructure - HTIS
 hero:
+  sectionId: system-integration-hero
   backgroundImage: src/assets/hero-bg.png
   title: System Integration & IT Infrastructure
   subtitle: We don't just deploy hardware; we architect the digital nervous
@@ -7,12 +8,13 @@ hero:
     gap between high-performance physical infrastructure and cognitive digital
     operations.
   ctaLabel: Contact Us
-  ctaUrl: "#contact"
+  ctaUrl: '#contact'
   carouselImages:
     - src/assets/oip-2.webp
     - src/assets/web-analysis-programming-system-with-cloud-server-free-vector.jpg
     - src/assets/fff-1.jpg
 strategicPillars:
+  sectionId: strategic-pillars
   backgroundImage: src/assets/team-member-bg.png
   centerImage: src/assets/geminigeneratedimage8ndeq08ndeq08nde.png
   heading: Strategic Technical Pillars
@@ -79,8 +81,8 @@ strategicPillars:
         high-impact communication.
       column: right
 partnerEcosystem:
-  heading: <span class="text-2xl md:text-3xl lg:text-4xl font-medium">The</span>
-    <span class="text-primary">HTIS Partner</span> Ecosystem
+  sectionId: partner-ecosystem
+  heading: The [HTIS Partner]{color=primary} Ecosystem
   description: We collaborate with a specialized list of global OEMs to deliver
     end-to-end IT excellence. This ecosystem ensures that every layer of your
     infrastructure, from the endpoint to the cloud, is powered by
@@ -173,7 +175,7 @@ partnerEcosystem:
         - name: Eaton
           logo: src/assets/eaton-2.png
     - iconName: Cctv
-      title: "Surveillance "
+      title: 'Surveillance '
       subtitle: Physical Security & Surveillance
       description: Integrated physical security, CCTV surveillance, access control,
         and intelligent monitoring systems.
@@ -211,9 +213,9 @@ partnerEcosystem:
         - name: Crestron
           logo: src/assets/crestron-4.png
 execution:
+  sectionId: execution
   heading: |-
-    Built to Execute.
-    Scaled to Deliver.
+    Built to Execute. Scaled to Deliver.
   metrics:
     - target: 1.2
       showDecimalAnimation: true
@@ -248,7 +250,7 @@ execution:
         network evolution. We provide the specialized riggers, CCNA/ACI
         engineers, and operations coordinators required to ensure carrier-grade
         stability and high-performance network execution.
-      url: "#"
+      url: '#'
     - iconName: Users
       title: |-
         Specialized Technical Resourcing
@@ -258,7 +260,7 @@ execution:
         deploying a domain-expert workforce. From high-niche technical
         architects (L6) to scalable field engineering units (L1), we provide the
         human capital required for operational excellence.
-      url: "#"
+      url: '#'
     - iconName: Code
       title: |-
         Enterprise Software Engineering
@@ -268,8 +270,9 @@ execution:
         Specializing in on-demand software development, we deliver secure,
         high-compliance digital assets-including our proprietary ERP
         systems-designed for the most demanding regulatory environments.
-      url: "#"
+      url: '#'
 deployments:
+  sectionId: integrated-deployments
   heading: Integrated Infrastructure Deployments
   image: src/assets/bt-wholesale-2-1.jpg
   imageAlt: Enterprise Network Infrastructure
@@ -279,13 +282,13 @@ deployments:
       reliable connectivity foundations that power enterprise communication and
       data flow.
     ctaLabel: Read Case Study
-    ctaUrl: "#"
+    ctaUrl: '#'
   items:
     - title: Surveillance & Security Integration
       description: Integrated CCTV, access control, and monitoring infrastructure
         designed to improve security visibility and operational oversight.
       ctaLabel: Read Case Study
-      ctaUrl: "#"
+      ctaUrl: '#'
     - title: Data Center & Server Integration
       ctaLabel: Read Case Study
-      ctaUrl: "#"
+      ctaUrl: '#'

@@ -1165,6 +1165,10 @@ content:
           - name: hero
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1190,6 +1194,10 @@ content:
           - name: capabilities
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1242,6 +1250,10 @@ content:
             label: Telecom processes
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: text
                 required: true
@@ -1282,6 +1294,10 @@ content:
             label: Network deployments
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: string
                 required: true
@@ -1319,6 +1335,10 @@ content:
             label: Execution section
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: text
                 required: true
@@ -1388,6 +1408,10 @@ content:
           - name: hero
             type: object
             fields: &system_integration_hero_fields
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 label: Background image
                 type: image
@@ -1419,6 +1443,10 @@ content:
             label: Strategic pillars
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: backgroundImage
                 type: image
                 required: true
@@ -1460,6 +1488,10 @@ content:
             label: Partner ecosystem
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 label: Main title
                 type: text
@@ -1507,6 +1539,10 @@ content:
             label: Execution section
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: text
                 required: true
@@ -1563,6 +1599,10 @@ content:
           - name: deployments
             type: object
             fields:
+              - name: sectionId
+                label: Section ID
+                type: string
+                required: false
               - name: heading
                 type: string
                 required: true

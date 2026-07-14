@@ -8,6 +8,7 @@ import StrategicPillars from '~/components/system-integration/StrategicPillars.s
 import PartnerEcosystem from '~/components/system-integration/PartnerEcosystem.svelte';
 import IntegratedDeployments from '~/components/system-integration/IntegratedDeployments.astro';
 import CmsIcon from '~/components/CmsIcon.astro';
+import CmsRichText from '~/components/CmsRichText.astro';
 
 import { Image } from 'astro:assets';
 import { ArrowRight } from '@lucide/astro';
@@ -20,6 +21,7 @@ import { systemIntegration } from '~/data/cms';
     <Navbar />
 
     <SystemIntegrationHero
+      sectionId={systemIntegration.hero.sectionId}
       backgroundImage={systemIntegration.hero.backgroundImage}
       title={systemIntegration.hero.title}
       subtitle={systemIntegration.hero.subtitle}
@@ -29,7 +31,10 @@ import { systemIntegration } from '~/data/cms';
     />
 
     <!-- Strategic Technical Pillars Section -->
-    <section class="relative overflow-hidden bg-base-100 py-24">
+    <section
+      id={systemIntegration.strategicPillars.sectionId}
+      class="relative overflow-hidden bg-base-100 py-24"
+    >
       <!-- Background Image -->
       <div
         class="pointer-events-none absolute inset-0 z-0 opacity-70 dark:mix-blend-overlay"
@@ -49,9 +54,11 @@ import { systemIntegration } from '~/data/cms';
 
       <div class="relative z-10 container mx-auto px-6">
         <div class="mb-10">
-          <h2 class="text-4xl font-bold text-base-content md:text-5xl">
-            {systemIntegration.strategicPillars.heading}
-          </h2>
+          <CmsRichText
+            value={systemIntegration.strategicPillars.heading}
+            tag="h2"
+            className="text-4xl font-bold text-base-content md:text-5xl"
+          />
         </div>
 
         <StrategicPillars
@@ -63,7 +70,10 @@ import { systemIntegration } from '~/data/cms';
     </section>
 
     <!-- The HTIS Partner Ecosystem Section -->
-    <section class="relative bg-base-100 py-16 md:py-24">
+    <section
+      id={systemIntegration.partnerEcosystem.sectionId}
+      class="relative bg-base-100 py-16 md:py-24"
+    >
       <div class="container mx-auto px-6">
         <PartnerEcosystem
           partnerEcosystem={systemIntegration.partnerEcosystem}
@@ -73,12 +83,17 @@ import { systemIntegration } from '~/data/cms';
     </section>
 
     <!-- Built to Execute. Scaled to Deliver. Section (from Telecom) -->
-    <section class="relative bg-base-200/50 pt-24">
+    <section
+      id={systemIntegration.execution.sectionId}
+      class="relative bg-base-200/50 pt-24"
+    >
       <div class="container mx-auto px-6">
         <div class="mb-10">
-          <h2 class="mb-6 text-4xl leading-tight font-bold text-base-content md:text-5xl">
-            {systemIntegration.execution.heading}
-          </h2>
+          <CmsRichText
+            value={systemIntegration.execution.heading}
+            tag="h2"
+            className="mb-6 text-4xl leading-tight font-bold whitespace-pre-line text-base-content md:text-5xl"
+          />
         </div>
 
         <!-- Stats -->
@@ -92,9 +107,7 @@ import { systemIntegration } from '~/data/cms';
             systemIntegration.execution.pillars.map((pillar, index) => {
               return (
                 <>
-                  {index > 0 && (
-                    <div class="hidden w-0.5 bg-base-content/20 md:block" />
-                  )}
+                  {index > 0 && <div class="hidden w-0.5 bg-base-content/20 md:block" />}
                   <div
                     class:list={[
                       'flex flex-1 flex-col gap-4',
@@ -107,21 +120,31 @@ import { systemIntegration } from '~/data/cms';
                     ]}
                   >
                     <div class="mb-2 flex items-start justify-between">
-                      <CmsIcon name={pillar.iconName} className="h-12 w-12 text-primary" />
+                      <CmsIcon
+                        name={pillar.iconName}
+                        className="h-12 w-12 text-primary"
+                      />
                       <a
                         href={pillar.url ?? '#'}
                         aria-label={`View more details about ${pillar.title.replace(/\s+/g, ' ')}`}
                         class="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-all hover:bg-primary hover:text-primary-content hover:shadow-lg hover:shadow-primary/20 active:scale-95"
                       >
-                        <ArrowRight class="h-5 w-5 transition-transform group-hover:translate-x-0.5" stroke-width="2.5" />
+                        <ArrowRight
+                          class="h-5 w-5 transition-transform group-hover:translate-x-0.5"
+                          stroke-width="2.5"
+                        />
                       </a>
                     </div>
-                    <h3 class="text-2xl font-medium">
-                      <Fragment set:html={pillar.title.replace(/\n/g, '<br />')} />
-                    </h3>
-                    <p class="text-justify text-lg text-base-content/70">
-                      {pillar.description}
-                    </p>
+                    <CmsRichText
+                      value={pillar.title.replace(/\n/g, '<br />')}
+                      tag="h3"
+                      className="text-2xl font-medium"
+                    />
+                    <CmsRichText
+                      value={pillar.description}
+                      tag="p"
+                      className="text-justify text-lg text-base-content/70"
+                    />
                   </div>
                 </>
               );
