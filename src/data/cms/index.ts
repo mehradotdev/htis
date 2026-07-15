@@ -91,7 +91,7 @@ export interface IndustryTechStackSection {
 
 export interface IndustryClientLogo {
   name: string;
-  logoSrc?: string;
+  logoSrc?: ImageMetadata;
 }
 
 export interface IndustryCaseStudyClientStat {
@@ -103,7 +103,7 @@ export interface IndustryCaseStudyClientItem {
   title: string;
   eyebrow: string;
   description: string;
-  image?: string;
+  image?: ImageMetadata;
   url?: string;
   stats: IndustryCaseStudyClientStat[];
 }
@@ -186,7 +186,7 @@ export interface CaseStudyData {
   title: string;
   description: string;
   thumbnailImage: string;
-  thumbnailSrc: string;
+  thumbnailSrc: ImageMetadata;
   solution: string;
   industry: string;
   tags: string[];
@@ -271,9 +271,9 @@ export interface AwardGalleryItem {
   slug?: string;
   organization: string;
   date: string;
-  thumbnailSrc: string;
+  thumbnailSrc: ImageMetadata;
   images: Array<{
-    src: string;
+    src: ImageMetadata;
     alt: string;
   }>;
 }
@@ -1262,7 +1262,7 @@ export const about = (() => {
         name: member.name,
         role: member.role,
         dept: member.dept,
-        img: getCmsAssetSrc(member.image),
+        img: getCmsAsset(member.image),
       })),
     },
     principles: {
@@ -1318,9 +1318,9 @@ export const awards: {
           slug: item.slug,
           organization: item.organization,
           date: item.date,
-          thumbnailSrc: getCmsAssetSrc(thumbnail),
+          thumbnailSrc: getCmsAsset(thumbnail),
           images: images.map((image) => ({
-            src: getCmsAssetSrc(image.image),
+            src: getCmsAsset(image.image),
             alt: image.alt,
           })),
         };
@@ -1352,7 +1352,7 @@ function resolveSplitHero<T extends PageHeroYaml | SystemIntegrationHeroYaml>(he
 function resolveHero<T extends PageHeroYaml | SystemIntegrationHeroYaml>(hero: T) {
   return {
     ...resolveSplitHero(hero),
-    carouselImages: hero.carouselImages?.map(getCmsAssetSrc) ?? [],
+    carouselImages: hero.carouselImages?.map(getCmsAsset) ?? [],
   };
 }
 
@@ -1412,7 +1412,7 @@ export const telecom = (() => {
       items: data.capabilities.items.map((tab) => ({
         ...tab,
         id: uniqueSlug(tab.label, capabilityIds),
-        image: getCmsAssetSrc(tab.image),
+        image: getCmsAsset(tab.image),
       })),
     },
     processes: {
@@ -1420,7 +1420,7 @@ export const telecom = (() => {
       items: data.processes.items.map((process, index) => ({
         ...process,
         id: formatStepNumber(index),
-        image: getCmsAssetSrc(process.image),
+        image: getCmsAsset(process.image),
       })),
     },
     execution: resolveExecution(data.execution),
@@ -1436,7 +1436,7 @@ export const systemIntegration = (() => {
     strategicPillars: {
       ...data.strategicPillars,
       backgroundImage: getCmsAsset(data.strategicPillars.backgroundImage),
-      centerImageSrc: getCmsAssetSrc(data.strategicPillars.centerImage),
+      centerImage: getCmsAsset(data.strategicPillars.centerImage),
     },
     partnerEcosystem: {
       ...data.partnerEcosystem,
@@ -1444,7 +1444,7 @@ export const systemIntegration = (() => {
         ...tab,
         partners: tab.partners.map((partner) => ({
           name: partner.name,
-          logoSrc: partner.logo ? getCmsAssetSrc(partner.logo) : undefined,
+          logo: partner.logo ? getCmsAsset(partner.logo) : undefined,
         })),
       })),
     },
@@ -1471,7 +1471,7 @@ export const software = (() => {
         id: uniqueSlug(tab.label, usedPortfolioTabIds),
         items: tab.items.map((item) => ({
           ...item,
-          image: getCmsAssetSrc(item.image),
+          image: getCmsAsset(item.image),
         })),
       })),
     },
@@ -1485,7 +1485,7 @@ export const software = (() => {
     },
     architecturalPrinciples: {
       ...data.architecturalPrinciples,
-      backgroundImageSrc: getCmsAssetSrc(data.architecturalPrinciples.backgroundImage),
+      backgroundImage: getCmsAsset(data.architecturalPrinciples.backgroundImage),
     },
     onboarding: {
       ...data.onboarding,
@@ -1496,7 +1496,7 @@ export const software = (() => {
       ...data.caseStudies,
       items: data.caseStudies.items.map((item) => ({
         ...item,
-        image: getCmsAssetSrc(item.image),
+        image: getCmsAsset(item.image),
       })),
     },
   };
@@ -1523,7 +1523,7 @@ export const resourcing = (() => {
       ...data.workforce,
       tabs: data.workforce.tabs.map((tab) => ({
         ...tab,
-        image: getCmsAssetSrc(tab.image),
+        image: getCmsAsset(tab.image),
       })),
     },
     execution: resolveExecution(data.execution),
@@ -1585,11 +1585,11 @@ function resolveIndustryCaseStudyClients(
     description: section.description,
     clientLogos: (section.clientLogos ?? []).map((logo) => ({
       ...logo,
-      logoSrc: logo.logoSrc ? getCmsAssetSrc(logo.logoSrc) : undefined,
+      logoSrc: logo.logoSrc ? getCmsAsset(logo.logoSrc) : undefined,
     })),
     caseStudies: (section.caseStudies ?? []).map((study) => ({
       ...study,
-      image: study.image ? getCmsAssetSrc(study.image) : undefined,
+      image: study.image ? getCmsAsset(study.image) : undefined,
       stats: study.stats ?? [],
     })),
     testimonials: section.testimonials ?? [],
@@ -1666,7 +1666,7 @@ function resolveCaseStudy(
     ...study.metadata,
     slug: study.slug,
     id: index,
-    thumbnailSrc: getCmsAssetSrc(study.metadata.thumbnailImage),
+    thumbnailSrc: getCmsAsset(study.metadata.thumbnailImage),
     heroId: study.hero.id,
     heroEyebrow: study.hero.eyebrow,
     heroBackgroundImage: getCmsAsset(study.hero.backgroundImage),

@@ -4,11 +4,12 @@
   import type { CaseStudyData, IndustryData } from '~/data/cms';
 
   type IndustryFilterOption = Pick<IndustryData, 'shortTitle' | 'title' | 'iconName'>;
+  type CaseStudyListItem = Omit<CaseStudyData, 'thumbnailSrc'> & { thumbnailSrc: string };
 
   let {
     caseStudies,
     industries,
-  }: { caseStudies: CaseStudyData[]; industries: IndustryFilterOption[] } = $props();
+  }: { caseStudies: CaseStudyListItem[]; industries: IndustryFilterOption[] } = $props();
 
   const solutions = [
     'Telecom Services',

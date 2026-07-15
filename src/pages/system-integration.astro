@@ -14,6 +14,26 @@ import { Image } from 'astro:assets';
 import { ArrowRight } from '@lucide/astro';
 import TelecomMetrics from '~/components/telecom/TelecomMetrics.svelte';
 import { systemIntegration } from '~/data/cms';
+import { optimizeImageSrc, optimizeImageSrcs } from '~/utils/optimizeImage';
+
+const heroCarouselImages = await optimizeImageSrcs(systemIntegration.hero.carouselImages);
+const strategicPillarsCenterImageSrc = await optimizeImageSrc(
+  systemIntegration.strategicPillars.centerImage,
+);
+const partnerEcosystem = {
+  ...systemIntegration.partnerEcosystem,
+  tabs: await Promise.all(
+    systemIntegration.partnerEcosystem.tabs.map(async (tab) => ({
+      ...tab,
+      partners: await Promise.all(
+        tab.partners.map(async (partner) => ({
+          name: partner.name,
+          logoSrc: partner.logo ? await optimizeImageSrc(partner.logo) : undefined,
+        })),
+      ),
+    })),
+  ),
+};
 ---
 
 <Layout title={systemIntegration.title}>
@@ -27,7 +47,7 @@ import { systemIntegration } from '~/data/cms';
       subtitle={systemIntegration.hero.subtitle}
       ctaLabel={systemIntegration.hero.ctaLabel}
       ctaUrl={systemIntegration.hero.ctaUrl}
-      carouselImages={systemIntegration.hero.carouselImages}
+      carouselImages={heroCarouselImages}
     />
 
     <!-- Strategic Technical Pillars Section -->
@@ -62,7 +82,7 @@ import { systemIntegration } from '~/data/cms';
         </div>
 
         <StrategicPillars
-          centerImageSrc={systemIntegration.strategicPillars.centerImageSrc}
+          centerImageSrc={strategicPillarsCenterImageSrc}
           cards={systemIntegration.strategicPillars.cards}
           client:visible
         />
@@ -75,10 +95,7 @@ import { systemIntegration } from '~/data/cms';
       class="relative bg-base-100 py-16 md:py-24"
     >
       <div class="container mx-auto px-6">
-        <PartnerEcosystem
-          partnerEcosystem={systemIntegration.partnerEcosystem}
-          client:visible
-        />
+        <PartnerEcosystem partnerEcosystem={partnerEcosystem} client:visible />
       </div>
     </section>
 

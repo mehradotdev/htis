@@ -10,6 +10,7 @@ import Template6ScrollCard from '~/components/case-study/Template6ScrollCard.sve
 import { industriesData, type IndustryData } from '~/data/cms';
 import { renderCmsInlineMarkdown } from '~/utils/cmsMarkdown';
 import CaseStudyClient from '~/components/case-study/CaseStudyClient.svelte';
+import { optimizeImageSrc } from '~/utils/optimizeImage';
 
 import { ArrowLeft, Zap } from '@lucide/astro';
 
@@ -67,16 +68,32 @@ function getSectionTone(industrySection: IndustryData['sections'][number]) {
   return tones[industrySection.accentColor];
 }
 
-const caseStudyClients = industry.caseStudyClients;
+const caseStudyClients = industry.caseStudyClients
+  ? {
+      ...industry.caseStudyClients,
+      clientLogos: await Promise.all(
+        industry.caseStudyClients.clientLogos.map(async (logo) => ({
+          ...logo,
+          logoSrc: logo.logoSrc ? await optimizeImageSrc(logo.logoSrc) : undefined,
+        })),
+      ),
+      caseStudies: await Promise.all(
+        industry.caseStudyClients.caseStudies.map(async (study) => ({
+          ...study,
+          image: study.image ? await optimizeImageSrc(study.image) : undefined,
+        })),
+      ),
+    }
+  : undefined;
 const shouldShowTechStack =
   (industry.techStack.enabled ?? true) && industry.techStack.items.length > 0;
 const shouldShowCaseStudyClients =
   (caseStudyClients?.enabled ?? false) &&
   Boolean(
     caseStudyClients &&
-      (caseStudyClients.clientLogos.length ||
-        caseStudyClients.caseStudies.length ||
-        caseStudyClients.testimonials.length),
+    (caseStudyClients.clientLogos.length ||
+      caseStudyClients.caseStudies.length ||
+      caseStudyClients.testimonials.length),
   );
 ---
 

@@ -9,6 +9,14 @@ import TelecomCapabilities from '~/components/telecom/TelecomCapabilities.svelte
 import TelecomExtraSections from '~/components/telecom/TelecomExtraSections.astro';
 
 import { telecom } from '~/data/cms';
+import { optimizeImageSrc } from '~/utils/optimizeImage';
+
+const telecomCapabilities = await Promise.all(
+  telecom.capabilities.items.map(async (capability) => ({
+    ...capability,
+    image: await optimizeImageSrc(capability.image),
+  })),
+);
 ---
 
 <Layout title={telecom.title}>
@@ -102,7 +110,7 @@ import { telecom } from '~/data/cms';
           />
         </div>
 
-        <TelecomCapabilities capabilities={telecom.capabilities.items} client:visible />
+        <TelecomCapabilities capabilities={telecomCapabilities} client:visible />
       </div>
     </section>
 

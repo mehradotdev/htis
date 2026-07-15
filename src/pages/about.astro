@@ -10,6 +10,14 @@ import AboutTeam from '~/components/AboutTeam.svelte';
 import OurPresence from '~/components/OurPresenceMapLibre.svelte';
 import SocialFeed from '~/components/SocialFeed.astro';
 import { about } from '~/data/cms';
+import { optimizeImageSrc } from '~/utils/optimizeImage';
+
+const aboutTeam = await Promise.all(
+  about.team.members.map(async (member) => ({
+    ...member,
+    img: await optimizeImageSrc(member.img),
+  })),
+);
 ---
 
 <Layout title={about.title}>
@@ -52,7 +60,7 @@ import { about } from '~/data/cms';
         <div>
           <a
             href={about.hero.ctaUrl}
-            class="btn w-full rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 md:w-auto btn-lg btn-primary"
+            class="btn w-full rounded-lg px-12 text-xl text-primary-content shadow-lg shadow-primary/20 btn-lg btn-primary md:w-auto"
           >
             <CmsRichText value={about.hero.ctaLabel} />
           </a>
@@ -85,7 +93,9 @@ import { about } from '~/data/cms';
           </div>
 
           <!-- Right Column: Visual Element -->
-          <div class="relative order-first flex justify-center lg:order-none lg:col-span-5">
+          <div
+            class="relative order-first flex justify-center lg:order-none lg:col-span-5"
+          >
             <div class="group relative w-full max-w-md lg:max-w-none">
               <!-- Aesthetic outline wrapper -->
               <div
@@ -160,7 +170,7 @@ import { about } from '~/data/cms';
             <div class="w-full pt-4">
               <a
                 href={about.lifeAtHtis.ctaUrl}
-                class="btn w-full rounded-lg px-8 text-base font-semibold shadow-md transition-all duration-300 md:w-auto btn-primary hover:shadow-primary/20"
+                class="btn w-full rounded-lg px-8 text-base font-semibold shadow-md transition-all duration-300 btn-primary hover:shadow-primary/20 md:w-auto"
               >
                 <CmsRichText value={about.lifeAtHtis.ctaLabel} />
               </a>
@@ -175,7 +185,7 @@ import { about } from '~/data/cms';
       sectionId={about.team.sectionId}
       title={about.team.title}
       description={about.team.description}
-      team={about.team.members}
+      team={aboutTeam}
       client:visible
     />
 

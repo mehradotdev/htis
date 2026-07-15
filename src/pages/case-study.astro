@@ -5,12 +5,22 @@ import Footer from '~/components/Footer.astro';
 import Contact from '~/components/Contact.astro';
 import CaseStudyList from '~/components/case-study/CaseStudyList.svelte';
 import { caseStudiesData, industriesData } from '~/data/cms';
+import { optimizeImageSrc } from '~/utils/optimizeImage';
 
-const caseStudyIndustryFilters = industriesData.map(({ shortTitle, title, iconName }) => ({
-  shortTitle,
-  title,
-  iconName,
-}));
+const caseStudyIndustryFilters = industriesData.map(
+  ({ shortTitle, title, iconName }) => ({
+    shortTitle,
+    title,
+    iconName,
+  }),
+);
+
+const caseStudies = await Promise.all(
+  caseStudiesData.map(async (study) => ({
+    ...study,
+    thumbnailSrc: await optimizeImageSrc(study.thumbnailSrc),
+  })),
+);
 ---
 
 <Layout title="Case Studies - HTIS">
@@ -34,7 +44,7 @@ const caseStudyIndustryFilters = industriesData.map(({ shortTitle, title, iconNa
     <!-- Main Content Section -->
     <section class="mx-auto w-full max-w-7xl px-6 pb-24">
       <CaseStudyList
-        caseStudies={caseStudiesData}
+        caseStudies={caseStudies}
         industries={caseStudyIndustryFilters}
         client:load
       />

@@ -10,6 +10,18 @@ import ResourcingCapabilities from '~/components/resourcing/ResourcingCapabiliti
 import ResourcingExtraSections from '~/components/resourcing/ResourcingExtraSections.astro';
 import ResourcingHeroCarousel from '~/components/resourcing/ResourcingHeroCarousel.svelte';
 import { resourcing } from '~/data/cms';
+import { optimizeImageSrc, optimizeImageSrcs } from '~/utils/optimizeImage';
+
+const heroCarouselImages = await optimizeImageSrcs(resourcing.hero.carouselImages);
+const workforce = {
+  ...resourcing.workforce,
+  tabs: await Promise.all(
+    resourcing.workforce.tabs.map(async (tab) => ({
+      ...tab,
+      image: await optimizeImageSrc(tab.image),
+    })),
+  ),
+};
 ---
 
 <Layout title={resourcing.title}>
@@ -55,7 +67,7 @@ import { resourcing } from '~/data/cms';
             </div>
           </div>
           <!-- Right part -->
-          <ResourcingHeroCarousel images={resourcing.hero.carouselImages} client:load />
+          <ResourcingHeroCarousel images={heroCarouselImages} client:load />
         </div>
       </div>
     </section>
@@ -98,7 +110,7 @@ import { resourcing } from '~/data/cms';
 
     <ResourcingExtraSections
       standard={resourcing.standard}
-      workforce={resourcing.workforce}
+      workforce={workforce}
       execution={resourcing.execution}
       caseStudies={resourcing.caseStudies}
     />

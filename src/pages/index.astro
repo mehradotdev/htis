@@ -1,6 +1,6 @@
 ---
-import { getImage } from 'astro:assets';
 import { home } from '~/data/cms';
+import { optimizeImageSrc } from '~/utils/optimizeImage';
 import Layout from '~/layouts/Layout.astro';
 import Navbar from '~/components/Navbar.astro';
 import Hero from '~/components/Hero.astro';
@@ -17,22 +17,19 @@ import Testimonials from '~/components/Testimonials.astro';
 const journeyMilestones = await Promise.all(
   home.journey.milestones.map(async ({ image, ...milestone }) => ({
     ...milestone,
-    imageSrc: (await getImage({ src: image, format: 'webp' })).src,
+    imageSrc: await optimizeImageSrc(image),
   })),
 );
 
 const team = await Promise.all(
   home.team.members.map(async (member) => ({
     ...member,
-    img: (await getImage({ src: member.img, format: 'webp' })).src,
+    img: await optimizeImageSrc(member.img),
   })),
 );
 
-const bgImageSrc = (await getImage({ src: home.team.backgroundImage, format: 'webp' }))
-  .src;
-const meetTeamImageSrc = (
-  await getImage({ src: home.team.meetTeamImage, format: 'webp' })
-).src;
+const bgImageSrc = await optimizeImageSrc(home.team.backgroundImage);
+const meetTeamImageSrc = await optimizeImageSrc(home.team.meetTeamImage);
 ---
 
 <Layout>

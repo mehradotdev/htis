@@ -7,6 +7,20 @@ import Contact from '~/components/Contact.astro';
 import CmsRichText from '~/components/CmsRichText.astro';
 import AwardsGallery from '~/components/awards/AwardsGallery.svelte';
 import { awards } from '~/data/cms';
+import { optimizeImageSrc } from '~/utils/optimizeImage';
+
+const awardItems = await Promise.all(
+  awards.gallery.items.map(async (item) => ({
+    ...item,
+    thumbnailSrc: await optimizeImageSrc(item.thumbnailSrc),
+    images: await Promise.all(
+      item.images.map(async (image) => ({
+        ...image,
+        src: await optimizeImageSrc(image.src),
+      })),
+    ),
+  })),
+);
 ---
 
 <Layout title={awards.title}>
@@ -52,7 +66,7 @@ import { awards } from '~/data/cms';
     <section id={awards.gallery.sectionId} class="scroll-mt-20 pt-2 pb-8 md:scroll-mt-0">
       <div class="container mx-auto px-6">
         <AwardsGallery
-          items={awards.gallery.items}
+          items={awardItems}
           gallerySectionId={awards.gallery.sectionId}
           client:load
         />

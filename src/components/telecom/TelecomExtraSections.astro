@@ -6,13 +6,21 @@ import TelecomProcesses from './TelecomProcesses.svelte';
 import TelecomDeployments from './TelecomDeployments.svelte';
 import TelecomMetrics from './TelecomMetrics.svelte';
 import { telecom } from '~/data/cms';
+import { optimizeImageSrc } from '~/utils/optimizeImage';
+
+const telecomProcesses = await Promise.all(
+  telecom.processes.items.map(async (process) => ({
+    ...process,
+    image: await optimizeImageSrc(process.image),
+  })),
+);
 ---
 
 <!-- 1. Telecom Processes - Blueprint to Reality -->
 <TelecomProcesses
   sectionId={telecom.processes.sectionId}
   heading={telecom.processes.heading}
-  processes={telecom.processes.items}
+  processes={telecomProcesses}
   client:visible
 />
 

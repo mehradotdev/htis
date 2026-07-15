@@ -17,6 +17,28 @@ import SoftwareOnboarding from '~/components/software/SoftwareOnboarding.astro';
 import SoftwareCaseStudies from '~/components/software/SoftwareCaseStudies.svelte';
 import SoftwareMetrics from '~/components/software/SoftwareMetrics.svelte';
 import { software } from '~/data/cms';
+import { optimizeImageSrc } from '~/utils/optimizeImage';
+
+const portfolioCapabilities = await Promise.all(
+  software.portfolio.capabilities.map(async (capability) => ({
+    ...capability,
+    items: await Promise.all(
+      capability.items.map(async (item) => ({
+        ...item,
+        image: await optimizeImageSrc(item.image),
+      })),
+    ),
+  })),
+);
+const architecturalPrinciplesBackgroundImageSrc = await optimizeImageSrc(
+  software.architecturalPrinciples.backgroundImage,
+);
+const softwareCaseStudies = await Promise.all(
+  software.caseStudies.items.map(async (item) => ({
+    ...item,
+    image: await optimizeImageSrc(item.image),
+  })),
+);
 ---
 
 <Layout title={software.title}>
@@ -173,10 +195,7 @@ import { software } from '~/data/cms';
         </div>
 
         <!-- Svelte 5 Interactive Tabbed Showcase Island -->
-        <SoftwarePortfolio
-          capabilities={software.portfolio.capabilities}
-          client:visible
-        />
+        <SoftwarePortfolio capabilities={portfolioCapabilities} client:visible />
       </div>
     </section>
 
@@ -185,7 +204,11 @@ import { software } from '~/data/cms';
 
     <!-- 4th Section: Architectural Principles -->
     <SoftwareArchitecturalPrinciples
-      {...software.architecturalPrinciples}
+      sectionId={software.architecturalPrinciples.sectionId}
+      backgroundImageSrc={architecturalPrinciplesBackgroundImageSrc}
+      heading={software.architecturalPrinciples.heading}
+      description={software.architecturalPrinciples.description}
+      items={software.architecturalPrinciples.items}
       client:visible
     />
 
@@ -265,7 +288,7 @@ import { software } from '~/data/cms';
     <SoftwareCaseStudies
       sectionId={software.caseStudies.sectionId}
       heading={software.caseStudies.heading}
-      items={software.caseStudies.items}
+      items={softwareCaseStudies}
       client:visible
     />
 
