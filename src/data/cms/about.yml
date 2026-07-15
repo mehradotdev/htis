@@ -44,21 +44,21 @@ team:
   title: The Team behind the [HTIS]{color=primary}
   description: A passionate team of experts collaborating to deliver excellence.
   members:
-    - name: 'Aditya Kaushik '
+    - name: "Aditya Kaushik "
       role: Managing Director
-      dept: 'HTIS '
+      dept: "HTIS "
       image: src/assets/ak-2-1.png
-    - name: 'Sandeep Aswal '
+    - name: "Sandeep Aswal "
       role: Chief Operating Officer
       dept: HTIS
       image: src/assets/sandeep-aswal.png
-    - name: 'Amit Dhingra '
-      role: 'Sr. Vice President '
+    - name: "Amit Dhingra "
+      role: "Sr. Vice President "
       dept: System Integration
       image: src/assets/amit-dhingra.png
     - name: Arvind Sharma
       role: Center of Excellence
-      dept: 'HTIS '
+      dept: "HTIS "
       image: src/assets/arvind-sharma.png
     - name: Soni Jain
       role: General Manager
@@ -107,7 +107,7 @@ ourPresence:
   globalLocations:
     - name: India (HQ)
       address: PHS Business Center, 353/18, Civil Lines, Gurgaon - 122001 Haryana, India
-      phone: '0124-27243598'
+      phone: 0124-27243598
       email: info@htis.in
       lat: 28.4595
       lng: 77.0266
@@ -116,66 +116,79 @@ ourPresence:
       address: 30 St Mary Axe, London EC3A 8BF, United Kingdom
       lat: 51.5074
       lng: -0.1278
+      isHQ: false
     - name: South Africa
       address: Sandton City, Johannesburg 2196, South Africa
       lat: -26.2041
       lng: 28.0473
+      isHQ: false
     - name: Nigeria
       address: Victoria Island, Lagos 101241, Nigeria
       lat: 6.5244
       lng: 3.3792
+      isHQ: false
     - name: Bangladesh
       address: Gulshan-2, Dhaka 1212, Bangladesh
       lat: 23.8103
       lng: 90.4125
+      isHQ: false
     - name: Sri Lanka
       address: World Trade Center, Colombo 01, Sri Lanka
       lat: 6.9271
       lng: 79.8612
+      isHQ: false
   indiaOffices:
     - name: Gurgaon (HQ)
       address: PHS Business Center, 353/18, Civil Lines, Gurgaon - 122001 Haryana, India
-      phone: '0124-27243598'
+      phone: 0124-27243598
       email: info@htis.in
       lat: 28.4595
       lng: 77.0266
       isHQ: true
     - name: Mohali
-      address: E 94, 1st Floor, ELTOP Industrial Area, Phase 8, Mohali - 160055, Punjab, India
-      phone: '0172-5096134'
+      address: E 94, 1st Floor, ELTOP Industrial Area, Phase 8, Mohali - 160055,
+        Punjab, India
+      phone: 0172-5096134
       email: info@htis.in
       lat: 30.7046
       lng: 76.7179
+      isHQ: false
     - name: Shimla
       address: Flat A-01, Verma Apartment, near ISBT Tutikandi, Shimla - 171004, India
-      phone: '9817038008'
+      phone: "9817038008"
       email: SML@htis.in
       lat: 31.1048
       lng: 77.1734
+      isHQ: false
     - name: J&K
       address: Rather Complex, Baba Dharam Dass, Munwarabad, Srinagar - 190001, India
-      phone: '7006520020'
+      phone: "7006520020"
       email: JnK@htis.in
       lat: 34.0837
       lng: 74.7973
+      isHQ: false
     - name: Dehradun
       address: S-6, Tula Palace Araghar Chowk, Haridwar Road, Dehradun - 248001, India
-      phone: '9639194590'
+      phone: "9639194590"
       email: DDN@htis.in
       lat: 30.3165
       lng: 78.0322
+      isHQ: false
     - name: Chennai
-      address: 2f, 1st Floor, Rajarajan Street, Navarathna Garden Main Road, Ekkattuthangal, Chennai - 600032, India
-      phone: '9894010885'
+      address: 2f, 1st Floor, Rajarajan Street, Navarathna Garden Main Road,
+        Ekkattuthangal, Chennai - 600032, India
+      phone: "9894010885"
       email: CHN@htis.in
       lat: 13.0116
       lng: 80.2039
+      isHQ: false
     - name: Mumbai
       address: Mumbai, India (UPCOMING)
-      phone: '8699954005'
+      phone: "8699954005"
       email: MUM@htis.in
       lat: 19.076
       lng: 72.8777
+      isHQ: false
 principles:
   sectionId: principles
   image: src/assets/about-principles.png
@@ -192,27 +205,31 @@ principles:
     - Commitment to Long-Term Growth
 social:
   enabled: true
-  sectionId: latest-social
+  sectionId: latest- social
   eyebrow: Social Updates
   heading: Latest from our [Social]{color=primary}
   posts:
     - platform: facebook
-      embedCode: >-
-        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fhtistelecomindia%2Fposts%2Fpfbid02M1g2gzWy1S14txBiGFrUoF3McS1W6qxbTWJQDKeqsgpjLxoTHDs7CeJPzDyuYxQl&amp;show_text=true&amp;width=500" width="500" height="757" title="HTIS Telecom Facebook post"></iframe>
+      embedCode: <iframe
+        src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fhtistelecomindia%2Fposts%2Fpfbid02M1g2gzWy1S14txBiGFrUoF3McS1W6qxbTWJQDKeqsgpjLxoTHDs7CeJPzDyuYxQl&amp;show_text=true&amp;width=500"
+        width="500" height="757" title="HTIS Telecom Facebook post"></iframe>
       fallbackTitle: View our latest update on Facebook.
     - platform: facebook
-      embedCode: >-
-        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fhtistelecomindia%2Fposts%2Fpfbid0xTbstPxdDjNBmnQZbSMXkjBT5baEyaD4wNA5ZaN7xaMqWGAKVHPbdoVn4eZx61GVl&amp;show_text=false&amp;width=500" width="500" height="498" title="HTIS Telecom Facebook post"></iframe>
+      embedCode: <iframe
+        src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fhtistelecomindia%2Fposts%2Fpfbid0xTbstPxdDjNBmnQZbSMXkjBT5baEyaD4wNA5ZaN7xaMqWGAKVHPbdoVn4eZx61GVl&amp;show_text=false&amp;width=500"
+        width="500" height="498" title="HTIS Telecom Facebook post"></iframe>
       fallbackTitle: View this post from HTIS Telecom on Facebook.
     - platform: instagram
-      embedCode: >-
-        <iframe src="https://www.instagram.com/p/DZpt1A7gRdn/embed/captioned/" width="540" height="820" title="HTIS Telecom Instagram post"></iframe>
+      embedCode: <iframe
+        src="https://www.instagram.com/p/DZpt1A7gRdn/embed/captioned/"
+        width="540" height="820" title="HTIS Telecom Instagram post"></iframe>
       fallbackTitle: View this post from HTIS Telecom on Instagram.
     - platform: instagram
-      embedCode: >-
-        <iframe src="https://www.instagram.com/p/DYraOxbgSTc/embed/captioned/" width="540" height="820" title="HTIS Telecom Instagram post"></iframe>
+      embedCode: <iframe
+        src="https://www.instagram.com/p/DYraOxbgSTc/embed/captioned/"
+        width="540" height="820" title="HTIS Telecom Instagram post"></iframe>
       fallbackTitle: View this post from HTIS Telecom on Instagram.
     - platform: instagram
-      embedCode: >-
-        <iframe src="https://www.instagram.com/p/DYZ1ieZlIku/embed/" width="540" height="680" title="HTIS Telecom Instagram post"></iframe>
+      embedCode: <iframe src="https://www.instagram.com/p/DYZ1ieZlIku/embed/"
+        width="540" height="680" title="HTIS Telecom Instagram post"></iframe>
       fallbackTitle: View this post from HTIS Telecom on Instagram.
