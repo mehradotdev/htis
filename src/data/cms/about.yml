@@ -190,7 +190,6 @@ ourPresence:
       lng: 72.8777
       isHQ: false
 principles:
-  sectionId: principles
   image: src/assets/about-principles.png
   imageAlt: Telecom tower and architectural technology elements
   title: Principles that shape [Every Solution]{color=primary}
@@ -205,7 +204,7 @@ principles:
     - Commitment to Long-Term Growth
 social:
   enabled: true
-  sectionId: latest- social
+  sectionId: latest-social
   eyebrow: Social Updates
   heading: Latest from our [Social]{color=primary}
   posts:
