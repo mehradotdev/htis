@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "1.0.0",
+    "@astrojs/sitemap": "^3.7.3",
     "@astrojs/svelte": "9.0.1",
     "@lucide/astro": "^1.14.0",
     "@lucide/svelte": "^1.14.0",

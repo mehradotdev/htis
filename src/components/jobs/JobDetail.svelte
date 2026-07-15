@@ -1,7 +1,7 @@
 <script lang="ts">
   import JobApplyModal from '~/components/jobs/JobApplyModal.svelte';
-  import type { HiringApiJob } from '~/data/jobApi';
-  import { readSelectedJob } from '~/utils/jobSelection';
+  import { fetchHiringJobFromList, type HiringApiJob } from '~/data/jobApi';
+  import { takeSelectedJob } from '~/utils/jobSelection';
   import { renderMarkdown } from '~/utils/markdown';
 
   let {
@@ -15,6 +15,7 @@
   let selectedJob = $state<HiringApiJob | null>(null);
   let descriptionHtml = $state('');
   let isReady = $state(false);
+  let refreshError = $state<string | null>(null);
 
   let job = $derived(selectedJob ?? initialJob);
   let role = $derived(job.title?.trim() || 'Job opportunity');
@@ -32,16 +33,41 @@
     return 'Experience not specified';
   });
 
-  $effect(() => {
-    const transferredJob = readSelectedJob(jobId);
-    const markdown =
-      transferredJob?.jobDescriptionMarkdown?.trim() ||
-      initialJob.jobDescriptionMarkdown?.trim() ||
-      '';
+  function getDescription(job: HiringApiJob): string {
+    return job.jobDescriptionMarkdown?.trim() || job.description?.trim() || '';
+  }
 
-    selectedJob = transferredJob;
-    descriptionHtml = renderMarkdown(markdown);
+  function showJob(job: HiringApiJob) {
+    selectedJob = job;
+    descriptionHtml = renderMarkdown(getDescription(job));
+  }
+
+  $effect(() => {
+    const transferredJob = takeSelectedJob(jobId);
+
+    if (transferredJob) {
+      showJob(transferredJob);
+      isReady = true;
+      return;
+    }
+
+    const controller = new AbortController();
+    showJob(initialJob);
     isReady = true;
+
+    void fetchHiringJobFromList(jobId, { signal: controller.signal })
+      .then((liveJob) => {
+        showJob(liveJob);
+        refreshError = null;
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
+
+        refreshError =
+          error instanceof Error ? error.message : 'Unable to refresh this job';
+      });
+
+    return () => controller.abort();
   });
 </script>
 
@@ -52,7 +78,17 @@
 <div class="flex flex-col gap-12 lg:flex-row lg:gap-20">
   {#if isReady}
     <div class="cms-markdown job-markdown min-w-0 flex-1">
-      {@html descriptionHtml}
+      {#if refreshError}
+        <div class="alert alert-warning mb-6" role="status">
+          <span>Live job details could not be refreshed. Showing the saved version.</span>
+        </div>
+      {/if}
+
+      {#if descriptionHtml}
+        {@html descriptionHtml}
+      {:else}
+        <p class="text-base-content/70">No job description is available yet.</p>
+      {/if}
     </div>
   {:else}
     <div class="min-w-0 flex-1 space-y-5" aria-label="Loading job description">

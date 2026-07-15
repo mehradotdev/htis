@@ -14,10 +14,15 @@ export function storeSelectedJob(job: HiringApiJob): void {
   }
 }
 
-export function readSelectedJob(jobId: string): HiringApiJob | null {
+export function takeSelectedJob(jobId: string): HiringApiJob | null {
   try {
-    const storedJob = sessionStorage.getItem(getStorageKey(jobId));
+    const storageKey = getStorageKey(jobId);
+    const storedJob = sessionStorage.getItem(storageKey);
     if (!storedJob) return null;
+
+    // The stored record is a one-navigation handoff from the jobs listing.
+    // Consuming it ensures a later direct visit still refreshes from the API.
+    sessionStorage.removeItem(storageKey);
 
     const job = JSON.parse(storedJob) as Partial<HiringApiJob>;
     return String(job.jobId) === jobId ? (job as HiringApiJob) : null;

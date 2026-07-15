@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import svelte from '@astrojs/svelte';
 import alpinejs from '@astrojs/alpinejs';
+import sitemap from '@astrojs/sitemap';
 import yaml from 'js-yaml';
 
 const yamlPlugin = {
@@ -23,8 +24,9 @@ const yamlPlugin = {
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://htis.in',
   output: 'static',
-  integrations: [svelte(), alpinejs()],
+  integrations: [svelte(), alpinejs(), sitemap()],
   vite: {
     plugins: [yamlPlugin, tailwindcss()],
     optimizeDeps: {

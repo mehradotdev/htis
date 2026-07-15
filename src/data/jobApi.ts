@@ -4,8 +4,7 @@ export const JOB_LIST_ENDPOINT = jobs.api.jobListEndpoint;
 export const JOB_DETAIL_ENDPOINT = jobs.api.jobDetailEndpoint;
 export const APPLY_JOB_ENDPOINT = jobs.api.applyJobEndpoint;
 export const NOTICE_PERIOD_DDL_ENDPOINT = jobs.api.noticePeriodDdlEndpoint;
-export const TECHNICAL_SKILL_AUTOFILL_ENDPOINT =
-  jobs.api.technicalSkillAutoFillEndpoint;
+export const TECHNICAL_SKILL_AUTOFILL_ENDPOINT = jobs.api.technicalSkillAutoFillEndpoint;
 
 export interface HiringApiJob {
   // Astro route props normalize IDs to strings even though the upstream API returns integers.
@@ -24,6 +23,7 @@ export interface HiringApiJob {
   minCtc?: string;
   maxCtc?: string;
   gender?: string;
+  description?: string;
   jobDescriptionMarkdown?: string;
 }
 
@@ -144,14 +144,14 @@ async function fetchOptionList<T>(
   return result.data;
 }
 
-function isHiringApiJob(value: unknown): value is HiringApiJob {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
+// function isHiringApiJob(value: unknown): value is HiringApiJob {
+//   if (!value || typeof value !== 'object') {
+//     return false;
+//   }
 
-  const candidate = value as Partial<HiringApiJob>;
-  return candidate.jobId !== undefined;
-}
+//   const candidate = value as Partial<HiringApiJob>;
+//   return candidate.jobId !== undefined;
+// }
 
 /**
  * Converts a raw Hiring API job record into the smaller view model used by the
@@ -196,46 +196,64 @@ export async function fetchHiringJobs(
   return result.data;
 }
 
+/** Fetches the current job list and returns the record matching the route ID. */
+export async function fetchHiringJobFromList(
+  jobId: string,
+  options: { signal?: AbortSignal } = {},
+): Promise<HiringApiJob> {
+  const apiJobs = await fetchHiringJobs(options);
+  const job = apiJobs.find((candidate) => normalizeJobId(candidate.jobId) === jobId);
+
+  if (!job) {
+    throw new Error(`Job ${jobId} was not found in the current JobList response`);
+  }
+
+  return {
+    ...job,
+    jobId: normalizeJobId(job.jobId),
+  };
+}
+
 /**
  * Fetches a single job record from the Hiring detail endpoint and accepts both
  * the documented success/data envelope and the live bare-object response shape.
  */
-export async function fetchHiringJobDetail(
-  jobId: string,
-  options: { signal?: AbortSignal } = {},
-): Promise<HiringApiJob> {
-  const response = await fetch(`${JOB_DETAIL_ENDPOINT}/${jobId}`, {
-    signal: options.signal,
-  });
+// export async function fetchHiringJobDetail(
+//   jobId: string,
+//   options: { signal?: AbortSignal } = {},
+// ): Promise<HiringApiJob> {
+//   const response = await fetch(`${JOB_DETAIL_ENDPOINT}/${jobId}`, {
+//     signal: options.signal,
+//   });
 
-  if (!response.ok) {
-    throw new Error(`JobDetail request failed with status ${response.status}`);
-  }
+//   if (!response.ok) {
+//     throw new Error(`JobDetail request failed with status ${response.status}`);
+//   }
 
-  const contentType = (response.headers.get('content-type') || '').toLowerCase();
-  if (!contentType.includes('application/json')) {
-    throw new Error(
-      `JobDetail request returned unexpected content-type: ${contentType || 'unknown'}`,
-    );
-  }
+//   const contentType = (response.headers.get('content-type') || '').toLowerCase();
+//   if (!contentType.includes('application/json')) {
+//     throw new Error(
+//       `JobDetail request returned unexpected content-type: ${contentType || 'unknown'}`,
+//     );
+//   }
 
-  const result = await response.json();
-  if (isJobDetailResponse(result)) {
-    return {
-      ...result.data,
-      jobId: normalizeJobId(result.data.jobId),
-    };
-  }
+//   const result = await response.json();
+//   if (isJobDetailResponse(result)) {
+//     return {
+//       ...result.data,
+//       jobId: normalizeJobId(result.data.jobId),
+//     };
+//   }
 
-  if (isHiringApiJob(result)) {
-    return {
-      ...result,
-      jobId: normalizeJobId(result.jobId),
-    };
-  }
+//   if (isHiringApiJob(result)) {
+//     return {
+//       ...result,
+//       jobId: normalizeJobId(result.jobId),
+//     };
+//   }
 
-  throw new Error('JobDetail response payload does not match any supported shape');
-}
+//   throw new Error('JobDetail response payload does not match any supported shape');
+// }
 
 export function fetchNoticePeriods(
   options: { signal?: AbortSignal } = {},
