@@ -3,6 +3,9 @@ import { jobs } from './cms';
 export const JOB_LIST_ENDPOINT = jobs.api.jobListEndpoint;
 export const JOB_DETAIL_ENDPOINT = jobs.api.jobDetailEndpoint;
 export const APPLY_JOB_ENDPOINT = jobs.api.applyJobEndpoint;
+export const NOTICE_PERIOD_DDL_ENDPOINT = jobs.api.noticePeriodDdlEndpoint;
+export const TECHNICAL_SKILL_AUTOFILL_ENDPOINT =
+  jobs.api.technicalSkillAutoFillEndpoint;
 
 export interface HiringApiJob {
   // Astro route props normalize IDs to strings even though the upstream API returns integers.
@@ -21,7 +24,7 @@ export interface HiringApiJob {
   minCtc?: string;
   maxCtc?: string;
   gender?: string;
-  description?: string;
+  jobDescriptionMarkdown?: string;
 }
 
 export interface JobListItem {
@@ -29,6 +32,16 @@ export interface JobListItem {
   role: string;
   department: string;
   location: string;
+}
+
+export interface NoticePeriodOption {
+  id: number;
+  noticePeriod: string;
+}
+
+export interface TechnicalSkillOption {
+  id: number;
+  technicalSkillName: string;
 }
 
 export interface HiringApiEnvelope<TData> {
@@ -43,11 +56,17 @@ export interface JobApplicationPayload {
   contact: string;
   email: string;
   address: string;
-  previousCompany: string;
-  previousDesignation: string;
+  previousCompany?: string;
+  previousDesignation?: string;
   gender: string;
-  socialMediaUrl: string;
+  socialMediaUrl?: string;
   resume: File;
+  totalExperience?: number;
+  currentCTC?: number;
+  expectedCTC?: number;
+  noticePeriodId?: number;
+  skills: string[];
+  willingToRelocate?: string;
 }
 
 type JobListResponse = HiringApiEnvelope<HiringApiJob[]> & {
@@ -60,36 +79,6 @@ type JobStaticPath = {
   params: { id: string };
   props: { apiJob: HiringApiJob };
 };
-
-const fallbackJobs: HiringApiJob[] = [
-  {
-    jobId: '5',
-    title: '.Net Technical Lead',
-    location: 'CHANDIGARH',
-    skills: 'Programming & Development',
-    minExperience: 5,
-    maxExperience: 15,
-    description: 'Testing',
-  },
-  {
-    jobId: '4',
-    title: 'Accountant',
-    location: 'CHANDIGARH',
-    skills: 'Additional Specialized Skills',
-    minExperience: 2,
-    maxExperience: 10,
-    description: 'Testing',
-  },
-  {
-    jobId: '1',
-    title: 'Software Developer',
-    location: 'BILASPUR',
-    skills: 'Programming & Development',
-    minExperience: 2,
-    maxExperience: 5,
-    description: 'Testing',
-  },
-];
 
 function normalizeJobId(jobId: HiringApiJob['jobId']): string {
   return String(jobId);
@@ -127,6 +116,34 @@ function isJobDetailResponse(value: unknown): value is JobDetailResponse {
   );
 }
 
+function isOptionListResponse<T>(value: unknown): value is HiringApiEnvelope<T[]> {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const candidate = value as Partial<HiringApiEnvelope<T[]>>;
+  return candidate.success === true && Array.isArray(candidate.data);
+}
+
+async function fetchOptionList<T>(
+  endpoint: string,
+  label: string,
+  signal?: AbortSignal,
+): Promise<T[]> {
+  const response = await fetch(endpoint, { signal });
+
+  if (!response.ok) {
+    throw new Error(`${label} request failed with status ${response.status}`);
+  }
+
+  const result: unknown = await response.json();
+  if (!isOptionListResponse<T>(result)) {
+    throw new Error(`${label} response does not match the documented shape`);
+  }
+
+  return result.data;
+}
+
 function isHiringApiJob(value: unknown): value is HiringApiJob {
   if (!value || typeof value !== 'object') {
     return false;
@@ -134,14 +151,6 @@ function isHiringApiJob(value: unknown): value is HiringApiJob {
 
   const candidate = value as Partial<HiringApiJob>;
   return candidate.jobId !== undefined;
-}
-
-/**
- * Returns a cloned copy of the known-safe fallback jobs used when the Hiring API
- * is unavailable during static generation.
- */
-export function getFallbackJobs(): HiringApiJob[] {
-  return fallbackJobs.map((job) => ({ ...job }));
 }
 
 /**
@@ -228,23 +237,31 @@ export async function fetchHiringJobDetail(
   throw new Error('JobDetail response payload does not match any supported shape');
 }
 
-/**
- * Builds the static paths for the dynamic job detail route by combining the
- * live Hiring API jobs with a small fallback set for resilient builds.
- */
+export function fetchNoticePeriods(
+  options: { signal?: AbortSignal } = {},
+): Promise<NoticePeriodOption[]> {
+  return fetchOptionList<NoticePeriodOption>(
+    NOTICE_PERIOD_DDL_ENDPOINT,
+    'NoticePeriodDdl',
+    options.signal,
+  );
+}
+
+export function fetchTechnicalSkills(
+  search: string,
+  options: { signal?: AbortSignal } = {},
+): Promise<TechnicalSkillOption[]> {
+  const url = new URL(TECHNICAL_SKILL_AUTOFILL_ENDPOINT);
+  url.searchParams.set('search', search);
+  return fetchOptionList<TechnicalSkillOption>(
+    url.toString(),
+    'TechnicalSkillAutoFill',
+    options.signal,
+  );
+}
+
+/** Builds static job detail routes from the live Hiring API. */
 export async function getJobStaticPaths(): Promise<JobStaticPath[]> {
-  try {
-    const apiJobs = await fetchHiringJobs();
-    const allPathsMap = new Map<string, JobStaticPath>();
-
-    // Keep a few known IDs available even when the build-time API is unavailable.
-    [...getFallbackJobs(), ...apiJobs].forEach((job) => {
-      allPathsMap.set(normalizeJobId(job.jobId), createStaticPath(job));
-    });
-
-    return Array.from(allPathsMap.values());
-  } catch (error) {
-    console.error('Failed to fetch jobs at build time, using numeric fallbacks:', error);
-    return getFallbackJobs().map(createStaticPath);
-  }
+  const apiJobs = await fetchHiringJobs();
+  return apiJobs.map(createStaticPath);
 }

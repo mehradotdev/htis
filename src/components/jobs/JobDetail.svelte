@@ -6,19 +6,17 @@
 
   let {
     jobId,
-    fallbackJob,
-    fallbackMarkdown,
+    initialJob,
   }: {
     jobId: string;
-    fallbackJob: HiringApiJob;
-    fallbackMarkdown: string;
+    initialJob: HiringApiJob;
   } = $props();
 
   let selectedJob = $state<HiringApiJob | null>(null);
   let descriptionHtml = $state('');
   let isReady = $state(false);
 
-  let job = $derived(selectedJob ?? fallbackJob);
+  let job = $derived(selectedJob ?? initialJob);
   let role = $derived(job.title?.trim() || 'Job opportunity');
   let location = $derived(job.location?.trim() || 'Remote');
   let department = $derived(job.skills?.trim() || 'Other');
@@ -37,9 +35,9 @@
   $effect(() => {
     const transferredJob = readSelectedJob(jobId);
     const markdown =
-      transferredJob?.description?.trim() ||
-      fallbackJob.description?.trim() ||
-      fallbackMarkdown;
+      transferredJob?.jobDescriptionMarkdown?.trim() ||
+      initialJob.jobDescriptionMarkdown?.trim() ||
+      '';
 
     selectedJob = transferredJob;
     descriptionHtml = renderMarkdown(markdown);

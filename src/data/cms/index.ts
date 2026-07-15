@@ -905,6 +905,8 @@ interface JobsYaml {
     jobListEndpoint: string;
     jobDetailEndpoint: string;
     applyJobEndpoint: string;
+    noticePeriodDdlEndpoint: string;
+    technicalSkillAutoFillEndpoint: string;
   };
 }
 

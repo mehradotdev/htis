@@ -12,6 +12,36 @@ WFMS API Base URL :- https://wfmsv2api.htistelecom.in
     "version": "1.0"
   },
   "paths": {
+    "/api/Hiring/NoticePeriodDdl": {
+      "get": {
+        "tags": ["Hiring"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Hiring/TechnicalSkillAutoFill": {
+      "get": {
+        "tags": ["Hiring"],
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Hiring/JobList": {
       "get": {
         "tags": ["Hiring"],
@@ -78,10 +108,8 @@ WFMS API Base URL :- https://wfmsv2api.htistelecom.in
                   "gender",
                   "jobId",
                   "name",
-                  "previousCompany",
-                  "previousDesignation",
                   "resume",
-                  "socialMediaUrl"
+                  "skills"
                 ],
                 "type": "object",
                 "properties": {
@@ -117,12 +145,37 @@ WFMS API Base URL :- https://wfmsv2api.htistelecom.in
                     "type": "string"
                   },
                   "socialMediaUrl": {
-                    "type": "string",
-                    "format": "uri"
+                    "type": "string"
                   },
                   "resume": {
                     "type": "string",
                     "format": "binary"
+                  },
+                  "totalExperience": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "currentCTC": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "expectedCTC": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "noticePeriodId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "skills": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "willingToRelocate": {
+                    "type": "string"
                   }
                 }
               },
@@ -158,6 +211,24 @@ WFMS API Base URL :- https://wfmsv2api.htistelecom.in
                   "style": "form"
                 },
                 "resume": {
+                  "style": "form"
+                },
+                "totalExperience": {
+                  "style": "form"
+                },
+                "currentCTC": {
+                  "style": "form"
+                },
+                "expectedCTC": {
+                  "style": "form"
+                },
+                "noticePeriodId": {
+                  "style": "form"
+                },
+                "skills": {
+                  "style": "form"
+                },
+                "willingToRelocate": {
                   "style": "form"
                 }
               }
@@ -286,5 +357,77 @@ live response shape below.
   "maxCtc": "1600000",
   "gender": "M",
   "description": "Test"
+}
+```
+
+Sample response for /api/Hiring/NoticePeriodDdl:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "noticePeriod": "Immediate"
+    },
+    {
+      "id": 2,
+      "noticePeriod": "15 Days"
+    },
+    {
+      "id": 3,
+      "noticePeriod": "30 Days"
+    },
+    {
+      "id": 4,
+      "noticePeriod": "45 Days"
+    },
+    {
+      "id": 5,
+      "noticePeriod": "60 Days"
+    },
+    {
+      "id": 6,
+      "noticePeriod": "90 Days"
+    },
+    {
+      "id": 7,
+      "noticePeriod": "More than 90 Days"
+    }
+  ]
+}
+```
+
+Sample response for /api/Hiring/TechnicalSkillAutoFill?search=a:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "technicalSkillName": "Programming & Development"
+    },
+    {
+      "id": 2,
+      "technicalSkillName": "Backend Development"
+    },
+    {
+      "id": 3,
+      "technicalSkillName": "Database Management"
+    },
+    {
+      "id": 5,
+      "technicalSkillName": "Testing & Quality Assurance"
+    },
+    {
+      "id": 6,
+      "technicalSkillName": "Additional Specialized Skills"
+    },
+    {
+      "id": 9,
+      "technicalSkillName": "java"
+    }
+  ]
 }
 ```

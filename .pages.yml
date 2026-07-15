@@ -2247,6 +2247,14 @@ content:
                 label: Apply job endpoint
                 type: string
                 required: true
+              - name: noticePeriodDdlEndpoint
+                label: Notice period dropdown endpoint
+                type: string
+                required: true
+              - name: technicalSkillAutoFillEndpoint
+                label: Technical skill autocomplete endpoint
+                type: string
+                required: true
 
       - name: privacy
         label: Privacy Policy
@@ -2388,7 +2396,7 @@ content:
                 type: string
                 required: false
                 pattern:
-                  regex: '^[a-z0-9-]+$'
+                  regex: '^(?:[a-z0-9-]+)?$'
                   message: Use lowercase letters, numbers, and hyphens only.
               - name: heroEyebrowPill
                 label: Hero eyebrow pill
@@ -2452,7 +2460,7 @@ content:
                 type: string
                 required: false
                 pattern:
-                  regex: '^[a-z0-9-]+$'
+                  regex: '^(?:[a-z0-9-]+)?$'
                   message: Use lowercase letters, numbers, and hyphens only.
               - name: title
                 label: Section title
@@ -2493,7 +2501,7 @@ content:
                 type: string
                 required: false
                 pattern:
-                  regex: '^[a-z0-9-]+$'
+                  regex: '^(?:[a-z0-9-]+)?$'
                   message: Use lowercase letters, numbers, and hyphens only.
               - name: title
                 label: Section title
@@ -2601,7 +2609,7 @@ content:
                 type: string
                 required: false
                 pattern:
-                  regex: '^[a-z0-9-]+$'
+                  regex: '^(?:[a-z0-9-]+)?$'
                   message: Use lowercase letters, numbers, and hyphens only.
               - name: layout
                 label: Section layout
@@ -2763,7 +2771,7 @@ content:
                 type: string
                 required: false
                 pattern:
-                  regex: '^[a-z0-9-]+$'
+                  regex: '^(?:[a-z0-9-]+)?$'
                   message: Use lowercase letters, numbers, and hyphens only.
               - name: eyebrow
                 label: Hero eyebrow
@@ -2823,7 +2831,7 @@ content:
                 type: string
                 required: false
                 pattern:
-                  regex: '^[a-z0-9-]+$'
+                  regex: '^(?:[a-z0-9-]+)?$'
                   message: Use lowercase letters, numbers, and hyphens only.
               - name: layout
                 label: Section layout

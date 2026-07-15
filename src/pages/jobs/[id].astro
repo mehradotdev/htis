@@ -4,7 +4,6 @@ import Navbar from '~/components/Navbar.astro';
 import Footer from '~/components/Footer.astro';
 import Contact from '~/components/Contact.astro';
 import { getJobStaticPaths, type HiringApiJob } from '~/data/jobApi';
-import { resolveJobDetails } from '~/data/jobs';
 import JobDetail from '~/components/jobs/JobDetail.svelte';
 
 export async function getStaticPaths() {
@@ -13,22 +12,6 @@ export async function getStaticPaths() {
 
 const { apiJob } = Astro.props as { apiJob: HiringApiJob };
 const jobId = Astro.params.id ?? String(apiJob.jobId);
-const job = resolveJobDetails(apiJob);
-const fallbackMarkdown = `## What You'll do
-
-${job.whatYouWillDo}
-
-## Responsibilities
-
-${job.responsibilities.map((item) => `- ${item}`).join('\n')}
-
-## Who you are
-
-We're looking for someone who meets the minimum requirements to be considered for the role. If you meet these requirements, you are encouraged to apply. The preferred qualifications are a bonus, not a requirement.
-
-## Minimum requirements
-
-${job.minimumRequirements.map((item) => `- ${item}`).join('\n')}`;
 ---
 
 <Layout>
@@ -36,7 +19,7 @@ ${job.minimumRequirements.map((item) => `- ${item}`).join('\n')}`;
     <Navbar />
 
     <main class="z-10 mx-auto w-full max-w-5xl grow px-4 py-12 md:px-6 md:py-20">
-      <JobDetail {jobId} fallbackJob={apiJob} {fallbackMarkdown} client:load />
+      <JobDetail {jobId} initialJob={apiJob} client:load />
     </main>
 
     <div class="mt-auto bg-base-200/50">
