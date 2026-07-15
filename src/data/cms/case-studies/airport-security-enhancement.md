@@ -2,7 +2,8 @@
 slug: airport-security-enhancement
 metadata:
   title: Airport Security Enhancement
-  description: Upgraded surveillance and access control systems for a major international airport to comply with modern security standards.
+  description: Upgraded surveillance and access control systems for a major
+    international airport to comply with modern security standards.
   thumbnailImage: src/assets/case-study-1.png
   solution: System Integration
   industry: Smart Spaces
@@ -11,16 +12,21 @@ metadata:
     - Security
     - Surveillance
 hero:
-  eyebrow: International Airport Authority [Hello world]{color=#ff4500}
+  id: airport
+  eyebrow: International [Airport]{color=#ff4500} Authority
   backgroundImage: src/assets/industry-hero-bg.png
-  title: Unified Smart Space Access Controls & 1000+ AI-Powered IP Camera Array [Hello world]{color=#ff4500}
-  summary: Migrated legacy administrative systems into an ultra-resilient hyperconverged infrastructure across 750+ government offices, completely eliminating data corruption and application timeouts. [Hello world]{color=#ff4500}
+  title: Unified Smart Space Access Controls & 1000+ AI-Powered IP Camera Array
+    [Hello world]{color=#ff4500}
+  summary: Migrated legacy administrative systems into an ultra-resilient
+    hyperconverged infrastructure across 750+ government offices, completely
+    eliminating data corruption and application timeouts. [Hello
+    world]{color=#ff4500}
   metrics:
     - 1000+ Cameras [Hello world]{color=#ff4500}
     - Zero Blind Spots
     - 40% Less Gate Queue Time
   ctaLabel: Talk to our team
-  ctaUrl: '#contact-row'
+  ctaUrl: "#contact-row"
   secondaryCtaLabel: Contact Experts
   secondaryCtaUrl: /#contact
 sections:
@@ -30,20 +36,27 @@ sections:
     iconName: Building2
     eyebrow: Client & Context
     title: Operational Profile
-    description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
+    description: HTIS customized a robust, scalable infrastructure framework
+      designed for long-term load profiles and automated fault recovery.
     content:
       variant: template3-list-card
-      description: HTIS partnered directly with stakeholders to align infrastructural capacity, compliance systems, and operations metrics with high-performance industry paradigms. Below is a detailed contextual breakdown.
+      description: HTIS partnered directly with stakeholders to align infrastructural
+        capacity, compliance systems, and operations metrics with
+        high-performance industry paradigms. Below is a detailed contextual
+        breakdown.
       items:
         - eyebrow: Sector / Client Type
           title: Metro Airport Infrastructure Authority
-          text: Public infrastructure authority responsible for airport security modernization.
+          text: Public infrastructure authority responsible for airport security
+            modernization.
         - eyebrow: Deployment Scale
           title: International Air Hub & Public Transit Space
           text: Multi-terminal passenger, commercial, and airfield security environment.
         - eyebrow: Operating Environment
-          title: Vast, multi-terminal airport zones spanning commercial passenger halls and high-security airfields
-          text: Security coverage needed to remain consistent across public and restricted areas.
+          title: Vast, multi-terminal airport zones spanning commercial passenger halls
+            and high-security airfields
+          text: Security coverage needed to remain consistent across public and restricted
+            areas.
   - id: challenge
     layout: image-left
     heroImage: src/assets/case-study-1.png
@@ -52,17 +65,24 @@ sections:
     iconName: AlertTriangle
     eyebrow: The Challenge
     title: Operational Headwinds & Operational Pain
-    description: '[View the modernization brief](https://example.com) for how legacy workflow frameworks lacked necessary digital capabilities, creating constant service disruption and compounding resource overheads.'
+    description: "[View the modernization brief](https://example.com) for how legacy
+      workflow frameworks lacked necessary digital capabilities, creating
+      constant service disruption and compounding resource overheads."
     content:
       variant: template1-card
-      description: The existing security structure utilized disconnected analog CCTV feeds and [slow paper-based terminal logs](https://example.com), leading to long traveler delays and significant visibility blind spots.
+      description: The existing security structure utilized disconnected analog CCTV
+        feeds and [slow paper-based terminal logs](https://example.com), leading
+        to long traveler delays and significant visibility blind spots.
       items:
         - title: Perimeter security gaps
-          text: Analog setups lacked automated motion detections along dark runway fences. [Click here](https://example.com)
+          text: Analog setups lacked automated motion detections along dark runway fences.
+            [Click here](https://example.com)
         - title: Terminal bottlenecks
-          text: Slow physical credential checks at staff gates created long security queues.
+          text: Slow physical credential checks at staff gates created long security
+            queues.
         - title: Data compartmentalization
-          text: Control centers could not match real-time video feeds with swipe-card logs.
+          text: Control centers could not match real-time video feeds with swipe-card
+            logs.
   - id: solution-details
     layout: image-right
     heroImage: src/assets/lob-system-case-study-1.png
@@ -71,23 +91,31 @@ sections:
     iconName: ShieldCheck
     eyebrow: The Solution
     title: Precision Engineering & Delivery
-    description: HTIS customized a robust, scalable infrastructure framework designed for long-term load profiles and automated fault recovery.
+    description: HTIS customized a robust, scalable infrastructure framework
+      designed for long-term load profiles and automated fault recovery.
     content:
       variant: template2-list
-      description: HTIS architected a unified smart space framework, laying a high-performance Cat6A structured cable grid and deploying biometric locks alongside AI camera arrays. [Click here](https://example.com)
+      description: HTIS architected a unified smart space framework, laying a
+        high-performance Cat6A structured cable grid and deploying biometric
+        locks alongside AI camera arrays. [Click here](https://example.com)
       items:
         - title: AI camera deployments
-          text: Upgraded and calibrated over 1,000 smart IP nodes with built-in perimeter crossline analytics. [Click here](https://example.com)
+          text: Upgraded and calibrated over 1,000 smart IP nodes with built-in perimeter
+            crossline analytics. [Click here](https://example.com)
         - title: Biometric access nodes
-          text: Installed fast facial recognition gates for crew transitions and boarding zones.
+          text: Installed fast facial recognition gates for crew transitions and boarding
+            zones.
         - title: Unified security NOC
-          text: Engineered centralized command consoles linking biometric access alerts directly to CCTV cameras.
+          text: Engineered centralized command consoles linking biometric access alerts
+            directly to CCTV cameras.
   - id: outcomes
     layout: no-image
     accentColor: green
     eyebrow: Outcomes & Impact
     title: Quantifiable Success & Results
-    description: By actively refactoring operational layers, we achieved major improvements across all core key performance metrics. [Click here](https://example.com)
+    description: By actively refactoring operational layers, we achieved major
+      improvements across all core key performance metrics. [Click
+      here](https://example.com)
     content:
       variant: template4-metrics
       items:
@@ -102,48 +130,58 @@ sections:
     accentColor: green
     eyebrow: Proven Capability
     title: Why Partner with HTIS?
-    description: Our multi-disciplinary engineering expertise enables us to seamlessly execute high-complexity technology integrations at scale. [Click here](https://example.com)
+    description: Our multi-disciplinary engineering expertise enables us to
+      seamlessly execute high-complexity technology integrations at scale.
+      [Click here](https://example.com)
     content:
       variant: template5-icon-card
       items:
         - iconName: ShieldCheck
           title: Key Strengths
-          text: Superior capabilities in high-density structural cabling and specialized active network arrays.
+          text: Superior capabilities in high-density structural cabling and specialized
+            active network arrays.
         - iconName: ShieldCheck
           title: Key Strengths
-          text: Proven track record in high-security, zero-downtime public infrastructures.
+          text: Proven track record in high-security, zero-downtime public
+            infrastructures.
         - iconName: ShieldCheck
           title: Key Strengths
-          text: Unique hardware-software convergence capability for instant alarms and unified NOC interfaces.
+          text: Unique hardware-software convergence capability for instant alarms and
+            unified NOC interfaces.
   - id: scroll-card-demo
     layout: no-image
     accentColor: green
     eyebrow: Scroll Card Demo
     title: Template 6 Scroll Card Mockup [Heli]{color=#ff4500}
-    description: Dummy content to preview the sticky [Heli]{color=#ff4500} left-to-right scroll card variant.
+    description: Dummy content to preview the sticky [Heli]{color=#ff4500}
+      left-to-right scroll card variant.
     content:
       variant: template6-scroll-card
       items:
         - iconName: ShieldCheck
           title: Site Readiness
-          text: Validate locations, access routes, power availability, and mounting points before field execution begins.
+          text: Validate locations, access routes, power availability, and mounting points
+            before field execution begins.
         - iconName: Network
           title: Network Staging [Heli]{color=#ff4500}
-          text: Prepare active equipment, cabling plans, [Hello world]{color=#ff4500} and configuration baselines for a faster rollout window.
+          text: Prepare active equipment, cabling plans, [Hello world]{color=#ff4500} and
+            configuration baselines for a faster rollout window.
         - iconName: Cctv
           title: Device Deployment
-          text: Install, align, and test edge devices across critical checkpoints with centralized progress tracking.
+          text: Install, align, and test edge devices across critical checkpoints with
+            centralized progress tracking.
         - iconName: Monitor
           title: Command Integration
-          text: Connect alerts, camera feeds, and operator workflows into a unified monitoring environment.
+          text: Connect alerts, camera feeds, and operator workflows into a unified
+            monitoring environment.
         - iconName: CheckCircle2
           title: Handover Validation
-          text: Complete acceptance checks, documentation, and support readiness before operational handover.
+          text: Complete acceptance checks, documentation, and support readiness before
+            operational handover.
 ---
-
 ## Executive Case Study overview
 
-The airport authority needed a unified security backbone that could cover public terminals, restricted staff areas, service corridors, and airfield perimeters without slowing passenger movement. HTIS proposed a phased modernization program that combined **AI-enabled surveillance**, biometric access control, and a centralized <span style="color:#ff4500;">command workflow.</span>
+The airport authority needed a unified security backbone that could cover public terminals, restricted staff areas, service corridors, and airfield perimeters without slowing passenger movement. HTIS proposed a phased modernization program that combined **AI-enabled surveillance**, biometric access control, and a centralized command workflow.
 
 This sample narrative is intentionally written as loose Markdown. Editors can use paragraphs, **bold emphasis**, lists, blockquotes, and [external reference links](https://example.com) without changing the structured case-study sections below.
 
