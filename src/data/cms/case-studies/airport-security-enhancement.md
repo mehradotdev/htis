@@ -12,7 +12,6 @@ metadata:
     - Security
     - Surveillance
 hero:
-  id: airport
   eyebrow: International [Airport]{color=#ff4500} Authority
   backgroundImage: src/assets/industry-hero-bg.png
   title: Unified Smart Space Access Controls & 1000+ AI-Powered IP Camera Array
