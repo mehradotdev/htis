@@ -19,7 +19,7 @@ hero:
     equipment, fragmented security systems, and inconsistent store connectivity
     were impacting business operations and customer experience.
   ctaLabel: Explore Challenges
-  ctaUrl: industry/nationwide-retail-network-modernization#challenges
+  ctaUrl: "#challenges"
 sections:
   - id: challenges
     layout: no-image
