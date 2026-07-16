@@ -138,14 +138,14 @@ ourPresence:
       lng: 79.8612
       isHQ: false
   indiaOffices:
-    - name: Gurgaon (HQ)
+    - name: Gurgaon
       address: PHS Business Center, 353/18, Civil Lines, Gurgaon - 122001 Haryana, India
       phone: 0124-27243598
       email: info@htis.in
       lat: 28.4595
       lng: 77.0266
       isHQ: true
-    - name: Mohali
+    - name: Mohali (HQ)
       address: E 94, 1st Floor, ELTOP Industrial Area, Phase 8, Mohali - 160055,
         Punjab, India
       phone: 0172-5096134
