@@ -91,7 +91,7 @@ offices:
 globalPresence:
   heading: Global presence
   ctaLabel: Know more
-  ctaUrl: /our-presence
+  ctaUrl: "#our-presence"
   countries:
     - name: UAE
       code: ae
