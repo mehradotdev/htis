@@ -139,13 +139,6 @@ ourPresence:
       lng: 79.8612
       isHQ: false
   indiaOffices:
-    - name: Gurgaon
-      address: PHS Business Center, 353/18, Civil Lines, Gurgaon - 122001 Haryana, India
-      phone: 0124-27243598
-      email: info@htis.in
-      lat: 28.4595
-      lng: 77.0266
-      isHQ: false
     - name: Mohali (HQ)
       address: E 94, 1st Floor, ELTOP Industrial Area, Phase 8, Mohali - 160055,
         Punjab, India
@@ -154,6 +147,13 @@ ourPresence:
       lat: 30.7046
       lng: 76.7179
       isHQ: true
+    - name: Gurgaon
+      address: PHS Business Center, 353/18, Civil Lines, Gurgaon - 122001 Haryana, India
+      phone: 0124-27243598
+      email: info@htis.in
+      lat: 28.4595
+      lng: 77.0266
+      isHQ: false
     - name: Shimla
       address: Flat A-01, Verma Apartment, near ISBT Tutikandi, Shimla - 171004, India
       phone: "9817038008"
