@@ -106,8 +106,9 @@ ourPresence:
   indiaTabLabel: India Offices
   globalLocations:
     - name: India (HQ)
-      address: PHS Business Center, 353/18, Civil Lines, Gurgaon - 122001 Haryana, India
-      phone: 0124-27243598
+      address: E 94, 1st Floor, ELTOP Industrial Area, Phase 8, Mohali - 160055,
+        Punjab, India
+      phone: 0172-5096134
       email: info@htis.in
       lat: 28.4595
       lng: 77.0266
