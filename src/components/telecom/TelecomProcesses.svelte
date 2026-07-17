@@ -30,7 +30,6 @@
   let navElement = $state<HTMLElement | null>(null);
   let lastCircle = $state<HTMLDivElement | null>(null);
   let trackBottomOffset = $state(22);
-  let progressTransitionDuration = $state(0);
 
   const AUTOPLAY_INTERVAL = 5000;
   let autoplayTimeout: ReturnType<typeof setTimeout> | undefined;
@@ -41,7 +40,7 @@
 
   const stopAutoplay = () => {
     if (autoplayTimeout) clearTimeout(autoplayTimeout);
-    if (progressFrame) cancelAnimationFrame(progressFrame);
+    if (progressFrame !== undefined) cancelAnimationFrame(progressFrame);
     autoplayTimeout = undefined;
     progressFrame = undefined;
   };
@@ -50,10 +49,24 @@
     if (processes.length === 0) return;
 
     autoplayStartedAt = performance.now();
-    progressTransitionDuration = autoplayRemaining;
-    progressFrame = requestAnimationFrame(() => {
-      progressWidth = 100;
-    });
+    const progressAtStart =
+      100 * (1 - autoplayRemaining / AUTOPLAY_INTERVAL);
+
+    const updateProgress = (now: number) => {
+      const elapsed = Math.min(now - autoplayStartedAt, autoplayRemaining);
+      progressWidth = Math.min(
+        100,
+        progressAtStart + (elapsed / AUTOPLAY_INTERVAL) * 100,
+      );
+
+      if (elapsed < autoplayRemaining) {
+        progressFrame = requestAnimationFrame(updateProgress);
+      } else {
+        progressFrame = undefined;
+      }
+    };
+
+    progressFrame = requestAnimationFrame(updateProgress);
 
     autoplayTimeout = setTimeout(() => {
       activeIndex = (activeIndex + 1) % processes.length;
@@ -70,7 +83,6 @@
       autoplayRemaining - (performance.now() - autoplayStartedAt),
     );
     stopAutoplay();
-    progressTransitionDuration = 0;
     progressWidth = 100 * (1 - autoplayRemaining / AUTOPLAY_INTERVAL);
   };
 
@@ -91,7 +103,6 @@
 
     stopAutoplay();
     autoplayRemaining = AUTOPLAY_INTERVAL;
-    progressTransitionDuration = 0;
     progressWidth = 0;
     if (!isAutoplayPaused) startAutoplay();
 
@@ -233,7 +244,6 @@
                         background-color: var(--color-primary);
                         opacity: 0.4;
                         width: {progressWidth}%;
-                        transition: width {progressTransitionDuration}ms linear;
                       "
                       ></div>
                     </div>
