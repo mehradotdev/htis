@@ -35,7 +35,7 @@
   let noticePeriodId = $state<number | undefined>(undefined);
   let selectedSkills = $state<string[]>([]);
   let skillSearch = $state('');
-  let willingToRelocate = $state<'Y' | 'N'>('N');
+  let willingToRelocate = $state<'' | 'Y' | 'N'>('');
 
   // API-backed field options
   let noticePeriods = $state<NoticePeriodOption[]>([]);
@@ -320,7 +320,7 @@
         expectedCTC,
         noticePeriodId,
         skills: selectedSkills,
-        willingToRelocate,
+        willingToRelocate: willingToRelocate || 'N',
       };
 
       const formData = new FormData();
@@ -401,7 +401,7 @@
     skillSuggestionsError = null;
     isSkillDropdownOpen = false;
     activeSkillIndex = -1;
-    willingToRelocate = 'N';
+    willingToRelocate = '';
     void loadNoticePeriods();
     modalRef?.showModal();
   }
@@ -766,7 +766,7 @@
                 bind:value={willingToRelocate}
                 disabled={isSubmitting}
               >
-                <option value="N">Select an option</option>
+                <option value="">Select an option</option>
                 <option value="Y">Yes</option>
                 <option value="N">No</option>
               </select>
