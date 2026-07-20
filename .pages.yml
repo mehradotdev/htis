@@ -975,6 +975,10 @@ content:
                     label: Headquarters
                     type: boolean
                     required: false
+                  - name: mapUrl
+                    label: Google Maps link
+                    type: string
+                    required: false
               - name: indiaOffices
                 label: India offices
                 type: object
@@ -1006,6 +1010,10 @@ content:
                   - name: isHQ
                     label: Headquarters
                     type: boolean
+                    required: false
+                  - name: mapUrl
+                    label: Google Maps link
+                    type: string
                     required: false
           - name: principles
             type: object

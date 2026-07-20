@@ -105,19 +105,34 @@ const { hero } = home;
     </p>
 
     <!-- Rectangular strip for logos: distinct background in dark mode to ensure all logos are visible -->
+    <!--
+      --band-w  : width of the centered full-color window (30% of the viewport).
+      --feather : length of the smooth grayscale → color transition on each
+                  side of the band.
+      Dark mode overlay classes: "dark:bg-linear-to-b dark:from-transparent dark:via-secondary/50 dark:to-transparent"            
+    -->
     <div
-      class="relative w-full overflow-hidden py-6 dark:bg-linear-to-b dark:from-transparent dark:via-secondary/50 dark:to-transparent"
+      class="relative w-full overflow-hidden py-6"
+      style="--band-w: 30vw; --feather: 110px;"
     >
       <!-- Marquee Wrapper with Fade -->
       <MarqueePause
-        class="relative flex w-full mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
+        class="group/marquee relative flex w-full mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
       >
         <!--
         Marquee Container — only 2 track copies needed.
         The wrapper scrolls by exactly 50% (= one track width) then loops,
         creating a seamless infinite scroll with a single animation.
+
+        Base layer: grayscale logos for the full strip. Inverted in dark mode
+        so dark logos stay visible against the dark background. Brightness is
+        constant — hovering the marquee never lightens these.
       -->
-        <div id="partner-marquee" data-marquee-track class="group/marquee flex w-max">
+        <div
+          id="partner-marquee"
+          data-marquee-track
+          class="flex w-max grayscale dark:invert"
+        >
           {
             [0, 1].map((i) => (
               <div
@@ -129,12 +144,40 @@ const { hero } = home;
                     src={logo.image}
                     alt={logo.alt}
                     width={110}
-                    class="max-h-16 w-auto object-contain opacity-70 transition-opacity duration-300 group-hover/marquee:opacity-100 dark:opacity-100"
+                    class="max-h-16 w-auto object-contain opacity-70"
                   />
                 ))}
               </div>
             ))
           }
+        </div>
+
+        <!--
+        Color overlay: an identical, in-sync marquee revealed only through a
+        centered mask whose solid region matches the hero title width, with a
+        soft feather so logos ease from black & white into full color.
+      -->
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 flex w-full items-center"
+          style="mask-image: linear-gradient(to right, transparent calc(50% - var(--band-w) / 2 - var(--feather)), #000 calc(50% - var(--band-w) / 2), #000 calc(50% + var(--band-w) / 2), transparent calc(50% + var(--band-w) / 2 + var(--feather))); -webkit-mask-image: linear-gradient(to right, transparent calc(50% - var(--band-w) / 2 - var(--feather)), #000 calc(50% - var(--band-w) / 2), #000 calc(50% + var(--band-w) / 2), transparent calc(50% + var(--band-w) / 2 + var(--feather)));"
+        >
+          <div id="partner-marquee-color" data-marquee-track class="flex w-max">
+            {
+              [0, 1].map(() => (
+                <div class="flex shrink-0 items-center gap-16 pr-16">
+                  {hero.partnerLogos.map((logo) => (
+                    <Image
+                      src={logo.image}
+                      alt=""
+                      width={110}
+                      class="max-h-16 w-auto object-contain opacity-65 transition-opacity duration-300 group-hover/marquee:opacity-100 dark:opacity-100"
+                    />
+                  ))}
+                </div>
+              ))
+            }
+          </div>
         </div>
       </MarqueePause>
     </div>
@@ -148,7 +191,7 @@ const { hero } = home;
   // registered with `{ signal: ac.signal }` in one shot.
   let ac: AbortController;
   let carouselInterval: ReturnType<typeof setInterval> | undefined;
-  let marqueeAnimation: Animation | undefined;
+  let marqueeAnimations: Animation[] = [];
 
   // ── Word Carousel ────────────────────────────────────────────────────
   function setupWordCarousel() {
@@ -183,24 +226,33 @@ const { hero } = home;
   }
 
   // ── Partner Marquee ──────────────────────────────────────────────────
-  // Single animation on the wrapper element (not per-track) eliminates
-  // sync drift that caused abrupt jumps with the old 8-track approach.
+  // Two overlaid tracks (grayscale base + centered color overlay) are driven
+  // by identical animations created in the same frame, so they stay pixel-
+  // perfectly in sync and the color mask reveals the same logos underneath.
   function setupPartnerMarquee() {
-    const wrapper = document.getElementById('partner-marquee');
-    if (!wrapper) return;
+    // Scope to the two partner-marquee tracks only. A bare
+    // `[data-marquee-track]` selector also matches the Testimonials columns
+    // (which carry the same attribute for pause-on-hover) and would drive them
+    // with this horizontal translateX animation, breaking their vertical scroll.
+    const tracks = document.querySelectorAll<HTMLElement>(
+      '#partner-marquee, #partner-marquee-color',
+    );
+    if (!tracks.length) return;
 
-    // The wrapper contains exactly 2 identical track copies.
-    // scrollWidth / 2 = one track's pixel width.
-    const halfWidth = wrapper.scrollWidth / 2;
+    // Each track contains exactly 2 identical copies.
+    // scrollWidth / 2 = one copy's pixel width.
+    const halfWidth = tracks[0].scrollWidth / 2;
     if (!halfWidth) return;
 
     // Constant speed: 80 px/s → duration scales with content width
     const speed = 80;
     const duration = (halfWidth / speed) * 1000;
 
-    marqueeAnimation = wrapper.animate(
-      [{ transform: 'translateX(0)' }, { transform: `translateX(-${halfWidth}px)` }],
-      { duration, iterations: Infinity, easing: 'linear' },
+    marqueeAnimations = Array.from(tracks).map((track) =>
+      track.animate(
+        [{ transform: 'translateX(0)' }, { transform: `translateX(-${halfWidth}px)` }],
+        { duration, iterations: Infinity, easing: 'linear' },
+      ),
     );
   }
 
@@ -210,9 +262,9 @@ const { hero } = home;
       clearInterval(carouselInterval);
       carouselInterval = undefined;
     }
-    if (marqueeAnimation) {
-      marqueeAnimation.cancel();
-      marqueeAnimation = undefined;
+    if (marqueeAnimations.length) {
+      marqueeAnimations.forEach((animation) => animation.cancel());
+      marqueeAnimations = [];
     }
     ac?.abort(); // removes all listeners registered with ac.signal
   }

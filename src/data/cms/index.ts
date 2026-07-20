@@ -515,6 +515,7 @@ interface AboutLocation {
   lat: number;
   lng: number;
   isHQ?: boolean;
+  mapUrl?: string;
 }
 
 interface AwardsYaml {

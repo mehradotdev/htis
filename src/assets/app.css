@@ -568,7 +568,7 @@ details > summary::-webkit-details-marker {
 @media (min-width: 768px) {
   .team-gallery > .team-member-card:not(.team-cta-card) {
     flex: 0 1 8rem;
-    min-width: 3rem;
+    min-width: 2rem;
   }
 
   .team-gallery > .team-member-card.active:not(.team-cta-card) {
@@ -585,11 +585,24 @@ details > summary::-webkit-details-marker {
   .team-gallery > .team-cta-card,
   .team-gallery > .team-cta-card.active {
     max-width: none;
-    flex: 1 1 0;
+    /* Basis + min-width give the CTA a floor: on narrower desktops (where the
+       container width is locked and there is no positive free space to grow
+       into) it can no longer be shrunk to ~0 by the flex algorithm. It still
+       grows to fill leftover width on wide screens. */
+    flex: 1 1 10rem;
+    min-width: 10rem;
     border: 1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);
     border-top: none;
     background: color-mix(in oklch, var(--color-primary) 10%, transparent);
     backdrop-filter: blur(4px);
+  }
+
+  /* The shared .card-content is pinned to a fixed md width (320px) for the
+     leadership cards; on the CTA card that fixed width is what gets clipped
+     when the column is narrow. Let it track the card width instead. */
+  .team-gallery > .team-cta-card .card-content {
+    width: 100%;
+    padding: 1.25rem;
   }
 
   .team-member-card.team-cta-card:not(.active) .card-content {
@@ -1090,11 +1103,22 @@ html[data-theme='htis-theme'] .maplibregl-canvas-container.maplibregl-interactiv
 }
 
 .presence-map-marker-hq {
-  background: var(--color-presence-hq);
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 35%));
+}
+
+.presence-map-marker-hq svg {
+  width: 100%;
+  height: 100%;
 }
 
 .presence-map-marker-hq::before {
-  background: color-mix(in oklch, var(--color-presence-hq) 32%, transparent);
+  content: none;
 }
 
 @keyframes presence-marker-pulse {
@@ -1109,13 +1133,13 @@ html[data-theme='htis-theme'] .maplibregl-canvas-container.maplibregl-interactiv
 }
 
 html[data-theme='htis-theme'] {
-  --color-presence-hq: oklch(48% 0.17 142); /* Dark green */
-  --color-presence-office: oklch(72% 0.18 142); /* Light green */
+  --color-presence-hq: #ff4500; /* OrangeRed */
+  --color-presence-office: #ff4500; /* OrangeRed */
 }
 
 html[data-theme='htis-theme-dark'] {
-  --color-presence-hq: var(--color-primary); /* Dark theme primary */
-  --color-presence-office: var(--color-secondary); /* Dark theme secondary */
+  --color-presence-hq: #ff4500; /* OrangeRed */
+  --color-presence-office: #ff4500; /* OrangeRed */
 }
 
 .presence-marker-hq {

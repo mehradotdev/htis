@@ -71,7 +71,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
       >
         <a
           href={navigation.primary.home.url}
-          class={`py-3 transition-colors hover:text-primary ${isActive(navigation.primary.home.url) ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+          class={`py-3 transition-colors ${isActive(navigation.primary.home.url) ? 'text-primary font-semibold' : 'text-base-content/80 hover:text-[#FF4500]'}`}
         >
           <CmsRichText value={navigation.primary.home.title} />
         </a>
@@ -86,7 +86,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
         >
           <button
             type="button"
-            class={`flex items-center gap-1 py-3 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isSolutionsActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+            class={`flex items-center gap-1 py-3 transition-colors focus:outline-none ${isSolutionsActive ? 'text-primary font-semibold' : 'text-base-content/80 group-hover/nav:text-[#FF4500] focus:text-[#FF4500]'}`}
             aria-haspopup="true"
             :aria-expanded="activeDropdown === 'solutions'"
             @click="toggle('solutions')"
@@ -94,7 +94,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             <CmsRichText value={navigation.solutions.label} />
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-300"
-              :class="activeDropdown === 'solutions' ? '-rotate-180 text-primary' : ''"
+              :class={`activeDropdown === 'solutions' ? '-rotate-180 ${isSolutionsActive ? 'text-primary' : 'text-[#FF4500]'}' : ''`}
             />
           </button>
 
@@ -176,7 +176,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
         >
           <button
             type="button"
-            class={`flex items-center gap-1 py-3 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isIndustriesActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+            class={`flex items-center gap-1 py-3 transition-colors focus:outline-none ${isIndustriesActive ? 'text-primary font-semibold' : 'text-base-content/80 group-hover/nav:text-[#FF4500] focus:text-[#FF4500]'}`}
             aria-haspopup="true"
             :aria-expanded="activeDropdown === 'industries'"
             @click="toggle('industries')"
@@ -184,7 +184,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             <CmsRichText value={navigation.industries.label} />
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-300"
-              :class="activeDropdown === 'industries' ? '-rotate-180 text-primary' : ''"
+              :class={`activeDropdown === 'industries' ? '-rotate-180 ${isIndustriesActive ? 'text-primary' : 'text-[#FF4500]'}' : ''`}
             />
           </button>
 
@@ -269,7 +269,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
         >
           <button
             type="button"
-            class={`flex items-center gap-1 py-3 transition-colors hover:text-primary focus:text-primary focus:outline-none ${isResourcesActive ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+            class={`flex items-center gap-1 py-3 transition-colors focus:outline-none ${isResourcesActive ? 'text-primary font-semibold' : 'text-base-content/80 group-hover/nav:text-[#FF4500] focus:text-[#FF4500]'}`}
             aria-haspopup="true"
             :aria-expanded="activeDropdown === 'resources'"
             @click="toggle('resources')"
@@ -277,7 +277,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
             <CmsRichText value={navigation.resources.label} />
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-300"
-              :class="activeDropdown === 'resources' ? '-rotate-180 text-primary' : ''"
+              :class={`activeDropdown === 'resources' ? '-rotate-180 ${isResourcesActive ? 'text-primary' : 'text-[#FF4500]'}' : ''`}
             />
           </button>
 
@@ -351,7 +351,7 @@ const isResourcesActive = resources.some((item) => pathname.startsWith(item.url)
 
         <a
           href={navigation.primary.career.url}
-          class={`py-3 transition-colors hover:text-primary ${isActive(navigation.primary.career.url) ? 'text-primary font-semibold' : 'text-base-content/80'}`}
+          class={`py-3 transition-colors ${isActive(navigation.primary.career.url) ? 'text-primary font-semibold' : 'text-base-content/80 hover:text-[#FF4500]'}`}
         >
           <CmsRichText value={navigation.primary.career.title} />
         </a>

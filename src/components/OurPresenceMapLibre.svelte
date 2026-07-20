@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Globe, Mail, MapPin, Phone } from '@lucide/svelte';
+  import { Globe, Mail, MapPin, MapPinned, Phone } from '@lucide/svelte';
   import type * as MapLibreType from 'maplibre-gl';
   import CmsRichTextSvelte from '~/components/CmsRichTextSvelte.svelte';
   import indiaClaimedBoundary from '~/assets/maps/india-claimed-boundary.json';
@@ -13,6 +13,7 @@
     lat: number;
     lng: number;
     isHQ?: boolean;
+    mapUrl?: string;
   }
 
   interface Props {
@@ -119,11 +120,14 @@
     activeTab = tab;
   }
 
+  const hqPinSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FF4500" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3" fill="#ffffff" stroke="none"/></svg>`;
+
   function markerElement(loc: Location) {
     const element = document.createElement('button');
     element.type = 'button';
     element.className = `presence-map-marker${loc.isHQ ? ' presence-map-marker-hq' : ''}`;
     element.setAttribute('aria-label', `${loc.name} map marker`);
+    if (loc.isHQ) element.innerHTML = hqPinSvg;
     return element;
   }
 
@@ -136,7 +140,7 @@
 
     const locations = activeTab === 'global' ? globalLocations : indiaOffices;
     for (const loc of locations) {
-      const popup = new ML.Popup({ offset: 18, closeButton: false, maxWidth: '320px' })
+      const popup = new ML.Popup({ offset: loc.isHQ ? 40 : 18, closeButton: false, maxWidth: '320px' })
         .setLngLat([loc.lng, loc.lat])
         .setHTML(`
         <div class="presence-popup-content">
@@ -145,7 +149,16 @@
           ${loc.phone ? `<div><strong>Phone:</strong> ${renderCmsInlineMarkdown(loc.phone)}</div>` : ''}
           ${loc.email ? `<div><strong>Email:</strong> ${renderCmsInlineMarkdown(loc.email)}</div>` : ''}
         </div>`);
-      const marker = new ML.Marker({ element: markerElement(loc) })
+      // Keep local state in sync when MapLibre closes the popup itself
+      // (e.g. tap-to-dismiss on the map), otherwise pinnedPopup goes stale
+      // and the marker's hover/click handlers stop responding.
+      popup.on('close', () => {
+        if (pinnedPopup === popup) {
+          pinnedPopup = null;
+          selectedLocation = null;
+        }
+      });
+      const marker = new ML.Marker({ element: markerElement(loc), anchor: loc.isHQ ? 'bottom' : 'center' })
         .setLngLat([loc.lng, loc.lat])
         .addTo(map);
       const element = marker.getElement();
@@ -157,10 +170,12 @@
         if (pinnedPopup !== popup) popup.remove();
       });
       element.addEventListener('click', () => {
-        selectedLocation = loc;
         const shouldClose = pinnedPopup === popup;
+        // closePopups() fires each popup's 'close' handler, which clears
+        // selectedLocation/pinnedPopup — so set them afterwards, not before.
         closePopups();
         if (!shouldClose) {
+          selectedLocation = loc;
           pinnedPopup = popup;
           popup.addTo(map!);
         }
@@ -175,8 +190,8 @@
   }
 
   function selectLocation(loc: Location) {
-    selectedLocation = loc;
     closePopups();
+    selectedLocation = loc;
     map?.flyTo({ center: [loc.lng, loc.lat], zoom: activeTab === 'global' ? 4 : 7, duration: 800 });
     const match = markers.find(({ loc: item }) => item.name === loc.name);
     if (match && map) {
@@ -207,7 +222,12 @@
 
         <div class="max-h-[350px] flex-1 space-y-2 overflow-y-auto p-4 lg:max-h-[520px]">
           {#each activeTab === 'global' ? globalLocations : indiaOffices as loc}
-            <button type="button" class="group flex w-full cursor-pointer flex-col gap-2.5 rounded-2xl border p-4 text-left transition-all hover:border-primary/20 hover:bg-base-200/40 {selectedLocation?.name === loc.name ? 'border-primary/30 bg-primary/5' : 'border-base-200/60'}" onclick={() => selectLocation(loc)}>
+            <div role="button" tabindex="0" class="group relative flex w-full cursor-pointer flex-col gap-2.5 rounded-2xl border p-4 pr-12 text-left transition-all hover:border-primary/20 hover:bg-base-200/40 {selectedLocation?.name === loc.name ? 'border-primary/30 bg-primary/5' : 'border-base-200/60'}" onclick={() => selectLocation(loc)} onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectLocation(loc); } }}>
+              {#if loc.mapUrl}
+                <a href={loc.mapUrl} target="_blank" rel="noopener noreferrer" onclick={(e) => e.stopPropagation()} class="absolute right-2.5 bottom-2.5 flex h-10 w-10 items-center justify-center rounded-lg text-primary transition-colors hover:bg-primary/10" aria-label="Open {loc.name} in Google Maps">
+                  <MapPinned class="h-5.5 w-5.5" />
+                </a>
+              {/if}
               <div class="flex items-start justify-between gap-2">
                 <span class="text-base font-bold text-base-content transition-colors group-hover:text-primary md:text-lg"><CmsRichTextSvelte value={loc.name} /></span>
                 {#if loc.isHQ}<span class="badge badge-primary badge-sm shrink-0 text-[10px] font-bold">HQ</span>{/if}
@@ -219,7 +239,7 @@
                   {#if loc.email}<div class="flex items-center gap-2 text-xs text-base-content/85"><Mail class="h-3.5 w-3.5" /><CmsRichTextSvelte value={loc.email} /></div>{/if}
                 </div>
               {/if}
-            </button>
+            </div>
           {/each}
         </div>
       </div>

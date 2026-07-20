@@ -35,7 +35,7 @@
   let isAutoplayPaused = $state(false);
 
   /** Card dimensions */
-  const AUTOPLAY_INTERVAL = 5000;
+  const AUTOPLAY_INTERVAL = 3000;
   const CARD_W = 280; // px base card width
   const GAP = 24; // px gap between cards
   const SCALE_ACTIVE = 1.08;
@@ -94,7 +94,8 @@
   }
 
   function handleSwipeEnd(event: PointerEvent) {
-    if (event.pointerType !== 'touch' || swipeStartX === null || swipeStartY === null) return;
+    if (event.pointerType !== 'touch' || swipeStartX === null || swipeStartY === null)
+      return;
 
     const deltaX = event.clientX - swipeStartX;
     const deltaY = event.clientY - swipeStartY;
@@ -131,10 +132,7 @@
   });
 </script>
 
-<section
-  id={sectionId}
-  class="relative overflow-hidden bg-base-100 pt-0 pb-24 md:py-24"
->
+<section id={sectionId} class="relative overflow-hidden bg-base-100 pt-0 pb-24 md:py-24">
   <div class="container mx-auto px-6">
     <div class="mb-10">
       <div class="flex items-center justify-between gap-4 {description ? 'mb-6' : ''}">
@@ -147,11 +145,13 @@
         {#if href}
           <div class="flex shrink-0 items-center pl-4 md:pl-0">
             <a
-              href={href}
+              {href}
               class="group flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary shadow-sm transition-all hover:border-primary/30 hover:bg-primary/20 active:scale-95"
               aria-label="View all network deployments"
             >
-              <ArrowRight class="h-6 w-6 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight
+                class="h-6 w-6 transition-transform group-hover:translate-x-0.5"
+              />
             </a>
           </div>
         {/if}
@@ -201,8 +201,8 @@
               onclick={() => goTo(slot.index)}
               class="flex w-full flex-col gap-5 rounded-2xl border p-6 pr-20 text-left cursor-pointer
               {isActive
-              ? 'border-primary/30 bg-primary/5 shadow-xl shadow-primary/10 h-[340px]'
-              : 'border-base-content/10 bg-base-100/50 hover:border-base-content/20 h-[300px]'}"
+                ? 'border-primary/30 bg-primary/5 shadow-xl shadow-primary/10 h-[340px]'
+                : 'border-base-content/10 bg-base-100/50 hover:border-base-content/20 h-[300px]'}"
               aria-label="Select {project.title} deployment"
             >
               <CmsRichTextSvelte
@@ -230,7 +230,9 @@
               aria-label="View {project.title} deployment"
               class="group absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary transition-all hover:bg-primary hover:text-primary-content hover:shadow-lg hover:shadow-primary/20 active:scale-95"
             >
-              <ArrowUpRight class="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight
+                class="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </a>
           </div>
         {/each}
@@ -246,8 +248,8 @@
           >
             <span
               class="block rounded-full transition-all duration-300 {activeIndex === i
-              ? 'h-2.5 w-2.5 bg-primary'
-              : 'h-1.5 w-1.5 bg-primary/25 hover:bg-primary/50'}"
+                ? 'h-2.5 w-2.5 bg-primary'
+                : 'h-1.5 w-1.5 bg-primary/25 hover:bg-primary/50'}"
             ></span>
           </button>
         {/each}
