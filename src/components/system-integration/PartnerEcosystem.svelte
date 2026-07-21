@@ -272,7 +272,7 @@
             >
               {#each tabs[activeIndex].partners as partner}
                 <div
-                  class="shrink-0 w-[170px] md:w-[210px] h-24 md:h-28 bg-base-100 dark:bg-secondary/30 border border-base-content/10 rounded-2xl shadow-xs flex items-center justify-center p-2 transition-all duration-300 hover:border-primary/30 hover:shadow-md hover:scale-[1.02] group"
+                  class="shrink-0 w-[170px] md:w-[210px] h-24 md:h-28 bg-base-100 dark:bg-[#CBD6CF] border border-base-content/10 rounded-2xl shadow-xs flex items-center justify-center p-2 transition-all duration-300 hover:border-primary/30 hover:shadow-md hover:scale-[1.02] group"
                 >
                   {#if partner.logoSrc}
                     <img
