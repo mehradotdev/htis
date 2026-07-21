@@ -156,10 +156,13 @@ const { hero } = home;
         Color overlay: an identical, in-sync marquee revealed only through a
         centered mask whose solid region matches the hero title width, with a
         soft feather so logos ease from black & white into full color.
+        Hovering the marquee widens the band past the viewport so every logo
+        turns full color (the width transition is enabled by the @property
+        registration below).
       -->
         <div
           aria-hidden="true"
-          class="pointer-events-none absolute inset-0 flex w-full items-center"
+          class="pointer-events-none absolute inset-0 flex w-full items-center transition-[--band-w] duration-500 ease-out group-hover/marquee:[--band-w:120vw]"
           style="mask-image: linear-gradient(to right, transparent calc(50% - var(--band-w) / 2 - var(--feather)), #000 calc(50% - var(--band-w) / 2), #000 calc(50% + var(--band-w) / 2), transparent calc(50% + var(--band-w) / 2 + var(--feather))); -webkit-mask-image: linear-gradient(to right, transparent calc(50% - var(--band-w) / 2 - var(--feather)), #000 calc(50% - var(--band-w) / 2), #000 calc(50% + var(--band-w) / 2), transparent calc(50% + var(--band-w) / 2 + var(--feather)));"
         >
           <div id="partner-marquee-color" data-marquee-track class="flex w-max">
@@ -183,6 +186,17 @@ const { hero } = home;
     </div>
   </div>
 </section>
+
+<style is:global>
+  /* Registered so the color-band width can transition on marquee hover.
+     initial-value must be computationally independent (no vw), so the real
+     base value (30vw) stays on the logo strip container's inline style. */
+  @property --band-w {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 0px;
+  }
+</style>
 
 <script>
   // ── Shared cleanup controller ────────────────────────────────────────

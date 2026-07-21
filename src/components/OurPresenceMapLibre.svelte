@@ -38,6 +38,21 @@
   const styleUrl = 'https://tiles.openfreemap.org/styles/bright';
   const indiaSource = 'india-claimed-boundary';
 
+  // Bounding boxes ([west, south], [east, north]) per tab. fitBounds derives
+  // the zoom/center from the container size, so the full region stays visible
+  // on mobile and desktop alike.
+  const globalBounds: MapLibreType.LngLatBoundsLike = [[-20, -36], [97.5, 60]]; // Europe, Africa & India
+  const indiaBounds: MapLibreType.LngLatBoundsLike = [[68, 6], [97.5, 37]]; // whole of India
+
+  function fitActiveView(animate = true) {
+    if (!map) return;
+    const isMobile = mapContainer ? mapContainer.clientWidth < 640 : false;
+    map.fitBounds(activeTab === 'global' ? globalBounds : indiaBounds, {
+      padding: isMobile ? 12 : 40,
+      duration: animate ? 800 : 0,
+    });
+  }
+
   $effect(() => {
     if (!mapContainer) return;
     let destroyed = false;
@@ -49,8 +64,8 @@
       map = new ML.Map({
         container: mapContainer!,
         style: styleUrl,
-        center: [15, 20],
-        zoom: 2,
+        bounds: activeTab === 'global' ? globalBounds : indiaBounds,
+        fitBoundsOptions: { padding: mapContainer!.clientWidth < 640 ? 12 : 40 },
         minZoom: 1,
         maxZoom: 18,
         attributionControl: false,
@@ -184,9 +199,7 @@
       markers.push({ loc, marker, popup });
     }
 
-    map.flyTo(activeTab === 'global'
-      ? { center: [15, 20], zoom: 2, duration: 800 }
-      : { center: [78.5, 22.5], zoom: 4.5, duration: 800 });
+    fitActiveView();
   }
 
   function selectLocation(loc: Location) {
@@ -222,19 +235,17 @@
 
         <div class="max-h-[350px] flex-1 space-y-2 overflow-y-auto p-4 lg:max-h-[520px]">
           {#each activeTab === 'global' ? globalLocations : indiaOffices as loc}
-            <div role="button" tabindex="0" class="group relative flex w-full cursor-pointer flex-col gap-2.5 rounded-2xl border p-4 pr-12 text-left transition-all hover:border-primary/20 hover:bg-base-200/40 {selectedLocation?.name === loc.name ? 'border-primary/30 bg-primary/5' : 'border-base-200/60'}" onclick={() => selectLocation(loc)} onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectLocation(loc); } }}>
+            <div role="button" tabindex="0" class="group relative flex w-full cursor-pointer flex-col gap-2.5 rounded-2xl border p-4 text-left transition-all hover:border-primary/20 hover:bg-base-200/40 {selectedLocation?.name === loc.name ? 'border-primary/30 bg-primary/5' : 'border-base-200/60'}" onclick={() => selectLocation(loc)} onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectLocation(loc); } }}>
               {#if loc.mapUrl}
                 <a href={loc.mapUrl} target="_blank" rel="noopener noreferrer" onclick={(e) => e.stopPropagation()} class="absolute right-2.5 bottom-2.5 flex h-10 w-10 items-center justify-center rounded-lg text-primary transition-colors hover:bg-primary/10" aria-label="Open {loc.name} in Google Maps">
                   <MapPinned class="h-5.5 w-5.5" />
                 </a>
               {/if}
-              <div class="flex items-start justify-between gap-2">
-                <span class="text-base font-bold text-base-content transition-colors group-hover:text-primary md:text-lg"><CmsRichTextSvelte value={loc.name} /></span>
-                {#if loc.isHQ}<span class="badge badge-primary badge-sm shrink-0 text-[10px] font-bold">HQ</span>{/if}
-              </div>
+              {#if loc.isHQ}<span class="badge badge-primary badge-sm absolute top-4 right-4 text-[10px] font-bold">HQ</span>{/if}
+              <span class="text-base font-bold text-base-content transition-colors group-hover:text-primary md:text-lg {loc.isHQ ? 'pr-10' : ''}"><CmsRichTextSvelte value={loc.name} /></span>
               <div class="flex items-start gap-2 text-sm font-medium leading-relaxed text-base-content/90"><MapPin class="mt-0.5 h-4 w-4 shrink-0 text-base-content/50" /><CmsRichTextSvelte value={loc.address} tag="p" className="line-clamp-2" /></div>
               {#if loc.phone || loc.email}
-                <div class="mt-1 grid gap-1.5 border-t border-base-200/50 pt-2">
+                <div class="mt-1 grid gap-1.5 border-t border-base-200/50 pt-2 {loc.mapUrl ? 'pr-12' : ''}">
                   {#if loc.phone}<div class="flex items-center gap-2 text-xs text-base-content/85"><Phone class="h-3.5 w-3.5" /><CmsRichTextSvelte value={loc.phone} /></div>{/if}
                   {#if loc.email}<div class="flex items-center gap-2 text-xs text-base-content/85"><Mail class="h-3.5 w-3.5" /><CmsRichTextSvelte value={loc.email} /></div>{/if}
                 </div>
