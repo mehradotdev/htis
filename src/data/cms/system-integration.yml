@@ -8,7 +8,7 @@ hero:
     gap between high-performance physical infrastructure and cognitive digital
     operations.
   ctaLabel: Contact Us
-  ctaUrl: '#contact'
+  ctaUrl: "#contact"
   carouselImages:
     - src/assets/oip-2.webp
     - src/assets/web-analysis-programming-system-with-cloud-server-free-vector.jpg
@@ -103,7 +103,7 @@ partnerEcosystem:
         - name: MSi
           logo: src/assets/msi-logo-removebg-preview.png
         - name: Acer
-          logo: src/assets/acer.jpg
+          logo: src/assets/acer.png
     - iconName: Network
       title: Networking & Fabric
       subtitle: Active Switches, Routers, Wireless, SD-WAN
@@ -127,7 +127,7 @@ partnerEcosystem:
         threats and protect critical assets.
       partners:
         - name: Palo Alto
-          logo: src/assets/paloalto.webp
+          logo: src/assets/paloalto.png
         - name: Fortinet
           logo: src/assets/fortinet-2.png
         - name: Check Point
@@ -159,7 +159,7 @@ partnerEcosystem:
         - name: Veeam
           logo: src/assets/veeam.png
         - name: Commvault
-          logo: src/assets/commvault.png
+          logo: src/assets/commvault-1.png
     - iconName: Zap
       title: Infra & Power
       subtitle: Data Centre Racks, UPS, Precision Cooling
@@ -175,7 +175,7 @@ partnerEcosystem:
         - name: Eaton
           logo: src/assets/eaton-2.png
     - iconName: Cctv
-      title: 'Surveillance '
+      title: "Surveillance "
       subtitle: Physical Security & Surveillance
       description: Integrated physical security, CCTV surveillance, access control,
         and intelligent monitoring systems.
@@ -183,7 +183,7 @@ partnerEcosystem:
         - name: Bosch
           logo: src/assets/bosch-1.png
         - name: Hikvision
-          logo: src/assets/hik-vision.png
+          logo: src/assets/hikvision-3.png
         - name: Panasonic
           logo: src/assets/panasonic-2.png
         - name: Prama
@@ -191,7 +191,7 @@ partnerEcosystem:
         - name: Honeywell
           logo: src/assets/honeywell.webp
         - name: Matrix Comsec
-          logo: src/assets/matrix-comsec.jpg
+          logo: src/assets/matrix-comsec.png
         - name: CP Plus
           logo: src/assets/cp-plus.png
         - name: Sparsh
@@ -203,7 +203,7 @@ partnerEcosystem:
         high-impact visual communication systems.
       partners:
         - name: Samsung
-          logo: src/assets/samsung-2.png
+          logo: src/assets/samsung-3.png
         - name: LG
           logo: src/assets/lg-1.png
         - name: Sony
@@ -211,7 +211,7 @@ partnerEcosystem:
         - name: JBL
           logo: src/assets/jbl.webp
         - name: Crestron
-          logo: src/assets/crestron-4.png
+          logo: src/assets/crestron-5.png
 execution:
   sectionId: execution
   heading: |-
@@ -251,7 +251,7 @@ execution:
         network evolution. We provide the specialized riggers, CCNA/ACI
         engineers, and operations coordinators required to ensure carrier-grade
         stability and high-performance network execution.
-      url: '#'
+      url: "#"
     - iconName: Users
       title: |-
         Specialized Technical Resourcing
@@ -261,7 +261,7 @@ execution:
         deploying a domain-expert workforce. From high-niche technical
         architects (L6) to scalable field engineering units (L1), we provide the
         human capital required for operational excellence.
-      url: '#'
+      url: "#"
     - iconName: Code
       title: |-
         Enterprise Software Engineering
@@ -271,7 +271,7 @@ execution:
         Specializing in on-demand software development, we deliver secure,
         high-compliance digital assets-including our proprietary ERP
         systems-designed for the most demanding regulatory environments.
-      url: '#'
+      url: "#"
 deployments:
   sectionId: integrated-deployments
   heading: Integrated Infrastructure Deployments
@@ -283,13 +283,13 @@ deployments:
       reliable connectivity foundations that power enterprise communication and
       data flow.
     ctaLabel: Read Case Study
-    ctaUrl: '#'
+    ctaUrl: "#"
   items:
     - title: Surveillance & Security Integration
       description: Integrated CCTV, access control, and monitoring infrastructure
         designed to improve security visibility and operational oversight.
       ctaLabel: Read Case Study
-      ctaUrl: '#'
+      ctaUrl: "#"
     - title: Data Center & Server Integration
       ctaLabel: Read Case Study
-      ctaUrl: '#'
+      ctaUrl: "#"
